@@ -576,7 +576,6 @@
           <!-- 2 · Wo -->
           <fieldset class="form__section">
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Wo wird Hilfe benötigt?</legend>
-            <p class="form-field__hint" id="ort-hinweis">Zurzeit in Düsseldorf, Wuppertal, Hilden, Remscheid, Langenfeld, Haan, Wesel und Rees sowie Umgebung.</p>
             <div class="form__row form__row--plz">
               <div class="form-field">
                 <label class="form-field__label" for="f-plz">PLZ <span class="form-field__req">*</span></label>
@@ -587,7 +586,7 @@
               <div class="form-field">
                 <label class="form-field__label" for="f-ort">Ort <span class="form-field__req">*</span></label>
                 <input class="form-field__input" id="f-ort" name="ort" type="text" autocomplete="address-level2" list="f-orte"
-                       required aria-describedby="ort-hinweis f-ort-fehler">
+                       required aria-describedby="f-ort-fehler">
                 <datalist id="f-orte">
               <option value="Düsseldorf" data-region="duesseldorf"></option>
               <option value="Wuppertal" data-region="wuppertal"></option>

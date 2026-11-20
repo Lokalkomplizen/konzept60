@@ -106,12 +106,10 @@ Für Menschen mit Pflegegrad 1 sind die geplanten Veränderungen besonders wicht
 Nach dem aktuellen Entwurf sollen folgende Leistungen weiterhin zur Verfügung stehen:
 
 - Pflegeberatung
-- Technische Pflegehilfsmittel
 - Zuschüsse für wohnumfeldverbessernde Maßnahmen
 - Pflegekurse für Angehörige
-- Zusätzliche Beratungsangebote
 
-Allerdings sollen der bisherige monatliche Entlastungsbetrag und die Zuschüsse für zum Verbrauch bestimmte Pflegehilfsmittel entfallen.
+Allerdings sollen der bisherige monatliche Entlastungsbetrag und die Zuschüsse für zum Verbrauch bestimmte Pflegehilfsmittel entfallen. Ausgenommen sind nach dem Entwurf saugende Bettschutzeinlagen.
 
 Wer Pflegegrad 1 hat, sollte sich deshalb rechtzeitig informieren und prüfen, welche Unterstützung künftig noch zur Verfügung steht.
 
@@ -131,7 +129,7 @@ Die Reform sieht außerdem Verbesserungen bei Beratung, Prävention und Digitali
 
 Geplant sind unter anderem:
 
-- Ein neuer Check-up 60+ zur frühzeitigen Erkennung gesundheitlicher Risiken.
+- Ein neuer Check-up 60+ zur frühzeitigen Erkennung gesundheitlicher Risiken, voraussichtlich ab 2028.
 - Ein zentraler digitaler Zugang zu Informationen, Anträgen und Pflegeangeboten.
 - Eine bessere fachliche Begleitung von pflegebedürftigen Menschen und ihren Angehörigen.
 - Mehr Möglichkeiten für Pflegeeinrichtungen, digitale Technik einzusetzen.
@@ -150,7 +148,7 @@ Unsere Empfehlungen:
 4. Prüfen Sie, ob Ihnen noch nicht genutzte Leistungen aus dem Jahr 2026 zustehen.
 5. Lassen Sie sich beraten, wenn Sie Unterstützung im Haushalt oder bei der Betreuung benötigen.
 
-Besonders wichtig: Wer Leistungen aus der bisherigen Verhinderungs- oder Kurzzeitpflege für 2026 noch nicht abgerechnet hat, sollte die Abrechnung rechtzeitig klären. Nach dem aktuellen Entwurf können entsprechende Ansprüche noch bis zum 31. Dezember 2027 geltend gemacht werden.
+Besonders wichtig: Wer Leistungen aus der bisherigen Verhinderungs- oder Kurzzeitpflege für 2026 noch nicht abgerechnet hat, sollte die Abrechnung rechtzeitig klären. Nach geltendem Recht können Kosten aus 2026 noch bis zum 31. Dezember 2027 geltend gemacht werden. Eine eigene Übergangsregel enthält der Entwurf nicht. Rechnen Sie deshalb möglichst früh ab.
 
 ## Unser Fazit: Gut informiert in die Pflegezukunft
 

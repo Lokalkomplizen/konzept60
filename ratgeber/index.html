@@ -100,15 +100,11 @@
 
 <main id="inhalt" tabindex="-1">
   <!-- Ratgeber  (→ WordPress: home.php / Beitragsarchiv, Karten = template-parts/card-artikel.php)
-       Karten erzeugt von tools/build.py aus content/ratgeber/*.md -->
-  <div class="page-header">
+       Karten erzeugt von tools/build.py aus content/ratgeber/*.md
+       Ohne Breadcrumb (Hauptnavigation markiert „Ratgeber“) → page-header--plain gleicht den Abstand oben aus.
+       Themenfilter: tools/build.py (ratgeber_filter), Verhalten: main.js (7.), ohne JS ausgeblendet. -->
+  <div class="page-header page-header--plain">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
-        <ol class="breadcrumb__list">
-          <li><a href="/">Startseite</a></li>
-          <li><a href="/ratgeber/" aria-current="page">Ratgeber</a></li>
-        </ol>
-      </nav>
       <span class="section__eyebrow">Ratgeber</span>
       <h1>Wissen, das weiterhilft</h1>
       <p class="section__intro">
@@ -120,8 +116,19 @@
   <section class="section section--tight" aria-labelledby="beitraege-titel">
     <div class="container">
       <h2 class="visually-hidden" id="beitraege-titel">Alle Beiträge</h2>
-      <ul class="grid grid--4">
-        <li>
+      <div class="filter" data-filter>
+        <p class="filter__label" id="filter-label">Beiträge nach Thema filtern</p>
+        <div class="filter__list" role="group" aria-labelledby="filter-label">
+          <button type="button" class="filter__btn" aria-pressed="true" data-filter-thema=""><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Alle <span class="filter__count">(4)</span></button>
+          <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="wohnen-haus-handwerk"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Wohnen, Haus und Handwerk <span class="filter__count">(1)</span></button>
+          <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="haushalt-reinigung"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Haushalt und Reinigung <span class="filter__count">(1)</span></button>
+          <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="alltag-persoenliche-hilfe"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Alltag und persönliche Hilfe <span class="filter__count">(1)</span></button>
+          <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="technik-sicherheit"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Technik und Sicherheit <span class="filter__count">(1)</span></button>
+        </div>
+        <p class="filter__status" aria-live="polite" data-filter-status>4 Beiträge</p>
+      </div>
+      <ul class="grid grid--4" data-filter-items>
+        <li data-thema="wohnen-haus-handwerk">
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/treppenlift-einbau-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
@@ -133,7 +140,7 @@
             </div>
           </article>
         </li>
-        <li>
+        <li data-thema="technik-sicherheit">
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/hausnotruf-auswahl-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
@@ -145,7 +152,7 @@
             </div>
           </article>
         </li>
-        <li>
+        <li data-thema="haushalt-reinigung">
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-betrieb-oder-privat-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
@@ -157,7 +164,7 @@
             </div>
           </article>
         </li>
-        <li>
+        <li data-thema="alltag-persoenliche-hilfe">
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/eltern-aus-der-ferne-unterstuetzen-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">

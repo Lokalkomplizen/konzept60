@@ -481,11 +481,12 @@ def write_ratgeber_json(beitraege):
     (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def article_card(b, heading="h3", n=0):
-    """Beitragskarte mit Teaserbild 4:3 (→ template-parts/card-artikel.php)."""
+def article_card(b, heading="h3", n=0, filter_attr=False):
+    """Beitragskarte mit Teaserbild 4:3 (→ template-parts/card-artikel.php).
+    filter_attr: data-thema am <li> für die Themenfilter der Übersicht /ratgeber/."""
     title = esc(b["titel"])
     lines = [
-        "<li>",
+        f'<li data-thema="{b["thema"]}">' if filter_attr else "<li>",
         '  <article class="article-card article-card--image">',
         f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">',
         '    <div class="article-card__body">',
@@ -499,6 +500,41 @@ def article_card(b, heading="h3", n=0):
         "</li>",
     ]
     return indent(lines, n)
+
+
+def ratgeber_filter(themen, beitraege):
+    """Themenfilter der Übersicht /ratgeber/: „Alle“ + nur Themenbereiche mit Beiträgen
+    (Reihenfolge wie data/themen.json), je mit Anzahl. Ohne JS per CSS ausgeblendet (.js),
+    main.js blendet Karten über das hidden-Attribut ein/aus (→ WordPress: get_terms('themenbereich',
+    hide_empty) + Zählung aus term->count)."""
+    counts = {}
+    for b in beitraege:
+        counts[b["thema"]] = counts.get(b["thema"], 0) + 1
+    gesamt = len(beitraege)
+    wort = "Beitrag" if gesamt == 1 else "Beiträge"
+    lines = [
+        '<div class="filter" data-filter>',
+        '  <p class="filter__label" id="filter-label">Beiträge nach Thema filtern</p>',
+        '  <div class="filter__list" role="group" aria-labelledby="filter-label">',
+        f'    <button type="button" class="filter__btn" aria-pressed="true" data-filter-thema="">'
+        f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>'
+        f'Alle <span class="filter__count">({gesamt})</span></button>',
+    ]
+    for t in themen:
+        n = counts.get(t["slug"])
+        if not n:
+            continue
+        lines.append(
+            f'    <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="{t["slug"]}">'
+            f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>'
+            f'{esc(t["titel"])} <span class="filter__count">({n})</span></button>'
+        )
+    lines += [
+        "  </div>",
+        f'  <p class="filter__status" aria-live="polite" data-filter-status>{gesamt} {wort}</p>',
+        "</div>",
+    ]
+    return indent(lines, 6)
 
 
 def article_toc(blocks, ids):
@@ -550,6 +586,12 @@ def beitrag_ctx(b, beitraege):
     blocks = b["_blocks"]
     ids = heading_ids(blocks)
     andere = [x for x in beitraege if x["slug"] != b["slug"]]
+    # Link auf die gefilterte Übersicht nur, wenn es weitere Beiträge zum selben Thema gibt
+    gleiches_thema = [x for x in andere if x["thema"] == b["thema"]]
+    thema_link = (
+        f'      <p class="article-list__all"><a href="/ratgeber/?thema={b["thema"]}">'
+        f'Weitere Beiträge zum Thema {esc(b["thema_titel"])}</a></p>'
+    ) if gleiches_thema else ""
     return {
         "meta_titel": b["titel"],
         "meta_description": b["description"],
@@ -565,6 +607,7 @@ def beitrag_ctx(b, beitraege):
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung")).splitlines(), 8),
         "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in andere),
+        "weitere_zum_thema": thema_link,
     }
 
 
@@ -718,11 +761,12 @@ def main():
 
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
-        # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle
+        # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle (keine Begrenzung)
         "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
-        "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8) for b in beitraege),
+        "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8, filter_attr=True) for b in beitraege),
+        "ratgeber_filter": ratgeber_filter(themen, beitraege),
         "home_head": home_head(regionen),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),

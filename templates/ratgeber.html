@@ -4,15 +4,11 @@ description: Der Ratgeber von KONZEPT 60+: verständliche Beiträge rund um Haus
 nav: ratgeber
 -->
   <!-- Ratgeber  (→ WordPress: home.php / Beitragsarchiv, Karten = template-parts/card-artikel.php)
-       Karten erzeugt von tools/build.py aus content/ratgeber/*.md -->
-  <div class="page-header">
+       Karten erzeugt von tools/build.py aus content/ratgeber/*.md
+       Ohne Breadcrumb (Hauptnavigation markiert „Ratgeber“) → page-header--plain gleicht den Abstand oben aus.
+       Themenfilter: tools/build.py (ratgeber_filter), Verhalten: main.js (7.), ohne JS ausgeblendet. -->
+  <div class="page-header page-header--plain">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
-        <ol class="breadcrumb__list">
-          <li><a href="/">Startseite</a></li>
-          <li><a href="/ratgeber/" aria-current="page">Ratgeber</a></li>
-        </ol>
-      </nav>
       <span class="section__eyebrow">Ratgeber</span>
       <h1>Wissen, das weiterhilft</h1>
       <p class="section__intro">
@@ -24,7 +20,8 @@ nav: ratgeber
   <section class="section section--tight" aria-labelledby="beitraege-titel">
     <div class="container">
       <h2 class="visually-hidden" id="beitraege-titel">Alle Beiträge</h2>
-      <ul class="grid grid--4">
+{{ratgeber_filter}}
+      <ul class="grid grid--4" data-filter-items>
 {{ratgeber_karten_h2}}
       </ul>
     </div>

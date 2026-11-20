@@ -1478,3 +1478,68 @@ select.form-field__input {
 .topic-ratgeber__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
 
 .topic-link__img--wide { width: 6rem; height: 4.5rem; }
+
+/* ==========================================================================
+   Ergänzungen v5 (Ratgeber-Übersicht: Seitenkopf ohne Breadcrumb, Themenfilter)
+   → WordPress: home.php
+   ========================================================================== */
+
+/* Seitenkopf ohne Breadcrumb: oben etwas mehr Luft, damit der Kopf ausgewogen wirkt */
+.page-header--plain { padding-top: var(--space-2xl); }
+
+/* ---- Themenfilter (nur mit JS sichtbar; ohne JS alle Karten sichtbar) ---------- */
+.filter { display: none; margin-bottom: var(--space-xl); }
+.js .filter { display: block; }
+
+.filter__label {
+  margin: 0 0 var(--space-s);
+  font-weight: 700;
+  color: var(--color-navy-800);
+}
+
+.filter__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.filter__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--touch-min);
+  padding: 0.55rem 1.1rem;
+  border: 2px solid var(--color-sand-300);
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+
+.filter__btn:hover { border-color: var(--color-navy-800); }
+
+.filter__count { font-weight: 400; }
+
+/* Aktiver Zustand: Navy-Fläche + Häkchen (nicht nur über Farbe erkennbar) */
+.filter__check { display: none; width: 1.1em; height: 1.1em; flex-shrink: 0; }
+
+.filter__btn[aria-pressed="true"] {
+  background: var(--color-navy-800);
+  border-color: var(--color-navy-800);
+  color: var(--color-white);
+}
+
+.filter__btn[aria-pressed="true"] .filter__check { display: inline-block; }
+
+.filter__status {
+  margin: var(--space-m) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+}

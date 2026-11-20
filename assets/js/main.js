@@ -6,6 +6,7 @@
    4. Formular-Validierung (gemeinsamer Baustein für Anfrage + Anbieter-Registrierung)
    5. Anfrageformular – Simulation
    6. Anbieter-Registrierung – Simulation, Felder je Anbieterart
+   7. Ratgeber-Übersicht – Themenfilter (?thema=…)
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'konzept60-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -477,10 +478,67 @@
     }
   }
 
+  /* ------------------------------------------------------------------------
+     7. Ratgeber-Übersicht – Themenfilter
+        Markup erzeugt tools/build.py (Buttons mit aria-pressed, Karten mit data-thema).
+        Ohne JS ist die Leiste per CSS ausgeblendet und alle Karten sind sichtbar.
+        Zustand in der Adresszeile (?thema=slug), damit Links wie /ratgeber/?thema=… funktionieren.
+     ------------------------------------------------------------------------ */
+  function initRatgeberFilter() {
+    var root = document.querySelector('[data-filter]');
+    var list = document.querySelector('[data-filter-items]');
+    if (!root || !list) return;
+    var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-filter-thema]'));
+    var items = Array.prototype.slice.call(list.querySelectorAll('[data-thema]'));
+    var status = root.querySelector('[data-filter-status]');
+
+    function labelOf(button) {
+      // Thementitel ohne Anzahl in Klammern
+      var clone = button.cloneNode(true);
+      var count = clone.querySelector('.filter__count');
+      if (count) count.remove();
+      return clone.textContent.trim();
+    }
+
+    function apply(thema, updateUrl) {
+      var button = buttons.filter(function (b) { return b.getAttribute('data-filter-thema') === thema; })[0];
+      if (!button) { thema = ''; button = buttons[0]; }
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+      var visible = 0;
+      items.forEach(function (item) {
+        var show = !thema || item.getAttribute('data-thema') === thema;
+        item.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (status) {
+        var text = visible + (visible === 1 ? ' Beitrag' : ' Beiträge');
+        if (thema) text += ' zum Thema „' + labelOf(button) + '“';
+        status.textContent = text;
+      }
+      if (updateUrl) {
+        var params = new URLSearchParams(window.location.search);
+        if (thema) params.set('thema', thema); else params.delete('thema');
+        var query = params.toString();
+        history.replaceState(null, '', window.location.pathname + (query ? '?' + query : '') + window.location.hash);
+      }
+    }
+
+    root.addEventListener('click', function (event) {
+      var button = event.target.closest('[data-filter-thema]');
+      if (!button || !root.contains(button)) return;
+      apply(button.getAttribute('data-filter-thema'), true);
+    });
+
+    // Beim Laden: ?thema=… übernehmen (unbekannte/leere Themen → „Alle“, Parameter wird entfernt)
+    var initial = new URLSearchParams(window.location.search).get('thema');
+    if (initial !== null) apply(initial, true);
+  }
+
   /* ------------------------------------------------------------------------ */
   initNavigation();
   var updateLeistungen = initLeistungen();
   initRequestForm(updateLeistungen);
   initPreselect();
   initProviderForm();
+  initRatgeberFilter();
 })();

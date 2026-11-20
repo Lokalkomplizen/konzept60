@@ -3,7 +3,7 @@ titel: Treppenlift: Was Sie vor dem Einbau wissen sollten
 slug: treppenlift-einbau
 thema: wohnen-haus-handwerk
 bild: treppenlift-einbau
-bild_alt: Ein älterer Mann und ein Handwerker mit Werkzeugkoffer unterhalten sich lachend vor einer Haustür, neben dem Eingang blühen Hortensien.
+bild_alt: Eine ältere Frau sitzt lachend auf einem Sitztreppenlift an einer Treppe, ein Monteur mit Tablet kniet daneben und erklärt ihr die Bedienung.
 stand: November 2026
 geaendert: 2026-11-20
 ---

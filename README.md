@@ -62,9 +62,11 @@ Markdown-Teilmenge (eigener Parser in `build.py`, HTML wird escaped): `##`/`###`
 
 Bilder: `python3 tools/bilder.py --ratgeber <ordner>` erzeugt aus `<bild>.png/.jpg` die Größen oben (mittiger Zuschnitt; Teaser nur für Titelbilder). Originale danach löschen.
 
-Reihenfolge: neueste zuerst nach `geaendert` (bei gleichem Datum Dateiname absteigend). Die Startseite zeigt die drei neuesten Beiträge, die Übersicht `/ratgeber/` alle (Raster 1 → 2 → 4 Spalten), „Weitere Beiträge“ alle übrigen.
+Reihenfolge: neueste zuerst nach `geaendert` (bei gleichem Datum Dateiname absteigend). Die Startseite zeigt die drei neuesten Beiträge, die Übersicht `/ratgeber/` alle ohne Begrenzung (Raster 1 → 2 → 4 Spalten), „Weitere Beiträge“ alle übrigen.
 
-Titelbild später ersetzen (z. B. Übergangsbild `treppenlift-einbau`): neues Original im Seitenverhältnis 3:2, mind. 1400 px breit, als `assets/img/ratgeber-original/<bild>.png` ablegen (Dateiname = Feld `bild`), `python3 tools/bilder.py --ratgeber assets/img/ratgeber-original` ausführen (überschreibt alle Größen inkl. Teaser), `bild_alt` im Frontmatter an das neue Motiv anpassen, `geaendert` pflegen, `python3 tools/build.py` ausführen und `assets/img/ratgeber-original/` wieder löschen.
+**Themenfilter `/ratgeber/`:** `ratgeber_filter()` in `build.py` erzeugt „Alle“ + nur Themenbereiche mit mindestens einem Beitrag (Reihenfolge `data/themen.json`, mit Anzahl) als `<button type="button" aria-pressed>` in einer Gruppe „Beiträge nach Thema filtern“; Karten tragen `data-thema`. `main.js` (7.) blendet Karten per `hidden` ein/aus, meldet die Anzahl in einer `aria-live`-Zeile und schreibt `?thema=<slug>` per `history.replaceState` in die Adresszeile – Links wie `/ratgeber/?thema=technik-sicherheit` filtern beim Laden (unbekannte/leere Themen → „Alle“). Ohne JS ist die Leiste ausgeblendet (`.js .filter`), alle Karten sind sichtbar. Aktiv = Navy-Fläche **plus** Häkchen. Die Übersicht hat bewusst keine Breadcrumb (Hauptnavigation markiert „Ratgeber“; `page-header--plain`); Beitragsseiten behalten sie. Gibt es zum Thema eines Beitrags weitere Beiträge, erscheint unter „Weitere Beiträge“ der Link „Weitere Beiträge zum Thema …“ auf die gefilterte Übersicht (derzeit je Thema nur ein Beitrag → nicht ausgegeben).
+
+Titelbild später ersetzen (zuletzt `treppenlift-einbau`, November 2026): neues Original im Seitenverhältnis 3:2, mind. 1400 px breit, als `assets/img/ratgeber-original/<bild>.png` ablegen (Dateiname = Feld `bild`), `python3 tools/bilder.py --ratgeber assets/img/ratgeber-original` ausführen (überschreibt alle Größen inkl. Teaser), `bild_alt` im Frontmatter an das neue Motiv anpassen, `geaendert` pflegen, `python3 tools/build.py` ausführen und `assets/img/ratgeber-original/` wieder löschen.
 
 Platzhalter `{{name}}`; unbekannte Platzhalter brechen den Build ab, ebenso fehlende Bilder oder Datenfelder. **Die generierten HTML-Dateien werden eingecheckt** – das Deployment braucht keinen Build. Generierte Dateien tragen den Kommentar „GENERIERT von tools/build.py – nicht direkt bearbeiten“. `templates/`, `tools/`, `partials/` und `data/` stehen in `.assetsignore` (werden nicht ausgeliefert; JS lädt kein JSON mehr).
 
@@ -79,7 +81,7 @@ assets/css/layout.css      Container, Sektionen, Header, Hero, Raster, Footer
 assets/css/components.css  BEM-Komponenten (.card, .personal, .relatives, .benefits, .path-card,
                            .page-header, .breadcrumb, .topic-*, .form__section, .notice--*, .demo-label …)
 assets/js/no-js.js         setzt html.js (Mobilmenü klappt nur mit JS zu)
-assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen
+assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen, Ratgeber-Themenfilter
 _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Cache-Regeln
 ```
 
@@ -143,5 +145,6 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).
 - Echte Telefonnummer, Erreichbarkeit, Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
 - Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss, Treppenlift: Pflegekassen-Zuschuss, KfW-Status) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
+- Treppenlift-Titelbild: Original nur 1199 px breit → `-1400`-Varianten sind leicht hochskaliert; bei Gelegenheit Original ≥ 1400 px nachliefern.
 - Ob Anbieterprofile später öffentlich sichtbar sind („Veröffentlichung“) oder nur intern genutzt werden, ist inhaltlich zu klären.
 - Formular-Backend (Spam-Schutz, Bestätigungsmail) und CSP vor Livegang gegen tatsächliche Einbindungen prüfen.

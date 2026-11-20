@@ -1,5 +1,5 @@
-# Cloudflare Pages – HTTP-Header
-# Doku: https://developers.cloudflare.com/pages/configuration/headers/
+# Cloudflare Workers Static Assets / Pages – HTTP-Header (gleiche Syntax)
+# Doku: https://developers.cloudflare.com/workers/static-assets/headers/
 
 /*
   X-Content-Type-Options: nosniff
@@ -10,11 +10,24 @@
   Cross-Origin-Opener-Policy: same-origin
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
-# HTML immer frisch validieren
+# HTML immer frisch validieren (alle Seiten; Unterseiten liegen als <ordner>/index.html vor)
 /
   Cache-Control: public, max-age=0, must-revalidate
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+/themen/*
+  Cache-Control: public, max-age=0, must-revalidate
+/fuer-anbieter/*
+  Cache-Control: public, max-age=0, must-revalidate
+/ratgeber/*
+  Cache-Control: public, max-age=0, must-revalidate
+/impressum/*
+  Cache-Control: public, max-age=0, must-revalidate
+/datenschutz/*
+  Cache-Control: public, max-age=0, must-revalidate
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex
 
 # CSS/JS ohne Hash im Dateinamen: 1 Tag + Revalidierung
 /assets/css/*
@@ -26,14 +39,9 @@
 /assets/fonts/*
   Cache-Control: public, max-age=31536000
 
-# Bilder: 30 Tage (bei Änderung Dateinamen ändern)
+# Bilder (inkl. /assets/img/themen/*): 30 Tage (bei Änderung Dateinamen ändern)
 /assets/img/*
   Cache-Control: public, max-age=2592000
-
-# Daten: kurz cachen
-/data/*
-  Cache-Control: public, max-age=300
-  X-Robots-Tag: noindex
 
 # Nur Referenz/Entwicklung – nicht indexieren
 /partials/*

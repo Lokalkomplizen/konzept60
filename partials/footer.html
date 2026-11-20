@@ -1,53 +1,53 @@
-<!--
-  REFERENZKOPIE – FOOTER  →  WordPress: footer.php
-  Quelle der Wahrheit ist index.html (Block zwischen "BEGIN/END partial:footer").
-  Diese Datei wird NICHT per JS eingebunden; sie dient als Vorlage für das Theme.
-  Neu erzeugen: python3 tools/sync-partials.py
--->
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="logo logo--light" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
           <span>KONZEPT</span><span class="logo__plus">60+</span>
         </a>
-        <p>Kostenlose Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
           KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
-        <p>
-          <!-- BEISPIEL-Telefonnummer -->
-          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+        <p class="site-footer__contact">
+          <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) -->
+          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon"><span class="visually-hidden">Telefon: </span>0211 000 000 00</a>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span><br>
+          <span class="site-footer__hours">Montag bis Freitag, 9 bis 17 Uhr (Beispielzeiten)</span>
         </p>
       </div>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+{{footer_themen}}
+        </ul>
+      </nav>
 
       <nav aria-labelledby="footer-regionen">
         <h2 id="footer-regionen">Regionen</h2>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
-          <li><a href="#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
-          <li><a href="#anfrage" data-region="wuppertal">Wuppertal</a></li>
-          <li><a href="#anfrage" data-region="hilden">Hilden</a></li>
-          <li><a href="#anfrage" data-region="remscheid">Remscheid</a></li>
-          <li><a href="#anfrage" data-region="langenfeld">Langenfeld</a></li>
-          <li><a href="#anfrage" data-region="haan">Haan</a></li>
-          <li><a href="#anfrage" data-region="wesel">Wesel</a></li>
-          <li><a href="#anfrage" data-region="rees">Rees</a></li>
+{{footer_regionen}}
         </ul>
       </nav>
 
       <nav aria-labelledby="footer-info">
         <h2 id="footer-info">Informationen</h2>
         <ul>
-          <li><a href="#so-funktionierts">So funktioniert’s</a></li>
-          <li><a href="#fuer-anbieter">Für Anbieter</a></li>
-          <li><a href="#impressum" id="impressum">Impressum (Platzhalter)</a></li>
-          <li><a href="#datenschutz" id="datenschutz">Datenschutz (Platzhalter)</a></li>
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
       </nav>
     </div>
 
     <div class="site-footer__bottom">
       <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
-      <p><strong>Prototyp mit Beispieldaten.</strong> Telefonnummer, Adresse und Artikel sind Platzhalter.</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, Telefonnummer, Domain und Artikel sind Platzhalter.</p>
     </div>
   </div>
 </footer>
+<!-- END partial:footer -->

@@ -4,6 +4,8 @@
   "name": "konzept60",
   "compatibility_date": "2026-11-01",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    // Unbekannte Pfade → 404.html mit Status 404 (statt leerer Antwort)
+    "not_found_handling": "404-page"
   }
 }

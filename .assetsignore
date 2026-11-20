@@ -5,7 +5,10 @@
 wrangler.jsonc
 README.md
 tools/
+templates/
 partials/
 screenshots/
 node_modules/
 .wrangler/
+data/
+assets/img/hero-garten.png

@@ -1,26 +1,22 @@
-<!--
-  REFERENZKOPIE – HEADER  →  WordPress: header.php
-  Quelle der Wahrheit ist index.html (Block zwischen "BEGIN/END partial:header").
-  Diese Datei wird NICHT per JS eingebunden; sie dient als Vorlage für das Theme.
-  Neu erzeugen: python3 tools/sync-partials.py
--->
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
 <header class="site-header">
   <div class="site-header__topbar">
     <div class="container">
-      <p class="site-header__topbar-hint">Kostenlose Vermittlung für Menschen ab 60 und Angehörige</p>
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
       <p>
-        <!-- BEISPIEL-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
+        <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
         <a href="tel:+4921100000000" data-placeholder="telefon">
           <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
           <span><span class="visually-hidden">Telefon: </span>0211 000 000 00</span>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span>
         </a>
-        <span class="visually-hidden">(Mo–Fr, 9–17 Uhr)</span>
+        <span class="visually-hidden">(Montag bis Freitag, 9 bis 17 Uhr, Beispielzeiten)</span>
       </p>
     </div>
   </div>
 
   <div class="container site-header__bar">
-    <a class="logo" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+    <a class="logo" href="/" aria-label="KONZEPT 60+ – zur Startseite">
       <span>KONZEPT</span><span class="logo__plus">60+</span>
     </a>
 
@@ -33,13 +29,14 @@
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
       <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="#anfrage">Hilfe finden</a></li>
-        <li><a class="site-nav__link" href="#themen">Themen</a></li>
-        <li><a class="site-nav__link" href="#so-funktionierts">So funktioniert’s</a></li>
-        <li><a class="site-nav__link" href="#ratgeber">Ratgeber</a></li>
-        <li><a class="site-nav__link" href="#fuer-anbieter">Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/#anfrage">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/themen/"{{nav:themen}}>Themen</a></li>
+        <li><a class="site-nav__link" href="/#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/"{{nav:ratgeber}}>Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/fuer-anbieter/"{{nav:anbieter}}>Für Anbieter</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="#anfrage">Anliegen beschreiben</a>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anliegen beschreiben</a>
     </nav>
   </div>
 </header>
+<!-- END partial:header -->

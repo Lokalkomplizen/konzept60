@@ -1,77 +1,61 @@
 <!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/index.html – nicht direkt bearbeiten -->
 <html lang="de" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KONZEPT 60+ – Hilfe finden. Einfach und kostenlos.</title>
-  <meta name="description" content="KONZEPT 60+ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.">
-  <!-- PROTOTYP: Domain ist Platzhalter (example.org) -->
+  <meta name="description" content="KONZEPT 60+ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
   <link rel="canonical" href="https://www.example.org/">
-  <meta name="theme-color" content="#14213d">
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="KONZEPT 60+">
   <meta property="og:title" content="KONZEPT 60+ – Hilfe finden. Einfach und kostenlos.">
-  <meta property="og:description" content="Beschreiben Sie Ihr Anliegen – wir suchen passende Dienstleister oder private Helfer in Ihrer Region. Kostenlos und unverbindlich.">
+  <meta property="og:description" content="KONZEPT 60+ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.">
   <meta property="og:url" content="https://www.example.org/">
   <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
   <meta property="og:image:width" content="1600">
   <meta property="og:image:height" content="900">
   <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
 
   <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
-  <script src="assets/js/no-js.js"></script>
+  <script src="/assets/js/no-js.js"></script>
 
-  <!-- CSS-Reihenfolge = Kaskade: Tokens → Base → Layout → Komponenten
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
-  <link rel="preload" href="assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/fonts.css">
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="preload" as="image" type="image/webp"
-        imagesrcset="assets/img/hero-garten-800.webp 800w, assets/img/hero-garten-1600.webp 1600w"
+        imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
         imagesizes="(min-width: 60em) 55vw, 100vw">
 
-  <!-- JSON-LD: Platzhalterwerte, vor Livegang ersetzen -->
+  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain) und telephone
+       (Demo-Nummer, nicht vergeben) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "KONZEPT 60+",
     "url": "https://www.example.org/",
-    "logo": "https://www.example.org/assets/img/logo-platzhalter.png",
-    "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Wir suchen passende Dienstleister und private Helfer in der Region.",
+    "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
     "telephone": "+49-211-00000000",
-    "areaServed": ["Düsseldorf", "Wuppertal", "Hilden", "Remscheid", "Langenfeld", "Haan", "Wesel", "Rees"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Musterstraße 1",
-      "postalCode": "40000",
-      "addressLocality": "Düsseldorf",
-      "addressCountry": "DE"
-    }
+    "areaServed": ["Düsseldorf", "Wuppertal", "Hilden", "Remscheid", "Langenfeld", "Haan", "Wesel", "Rees"]
   }
   </script>
 </head>
 <body>
 
-<!-- ==========================================================================
-     Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
-     → WordPress: inc/icons.php oder template-parts/icon-sprite.php
-     ========================================================================== -->
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
 <svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
-  <symbol id="icon-haus" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.8v9.7h13V9.8"/><path d="M10 19.5v-5h4v5"/></symbol>
-  <symbol id="icon-haushalt" viewBox="0 0 24 24"><path d="M4.5 10h13l-1.6 10H6.1z"/><path d="M7.5 10a3.5 3.5 0 0 1 7 0"/><path d="M19.5 3v4M17.5 5h4"/><path d="M8.5 14v2.5M13.5 14v2.5"/></symbol>
-  <symbol id="icon-betreuung" viewBox="0 0 24 24"><path d="M12 10.2c-1.5-2.3-5-1.7-5 .9 0 2.1 2.6 3.7 5 5.6 2.4-1.9 5-3.5 5-5.6 0-2.6-3.5-3.2-5-.9z"/><path d="M3 20c2.6-1.4 5.6-2.1 9-2.1s6.4.7 9 2.1"/><path d="M12 3v2.5M6.5 5.2l1.3 1.3M17.5 5.2l-1.3 1.3"/></symbol>
-  <symbol id="icon-alltag" viewBox="0 0 24 24"><path d="M5 8.5h14l-1 11.5H6z"/><path d="M9 8.5V7a3 3 0 0 1 6 0v1.5"/><path d="M9.5 13.5h5"/></symbol>
-  <symbol id="icon-technik" viewBox="0 0 24 24"><path d="M12 3 5 6v5.5c0 4.2 3 7.6 7 9 4-1.4 7-4.8 7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
-  <symbol id="icon-freizeit" viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="3.2"/><path d="M12 3v1.5M5.5 9.5H4M20 9.5h-1.5M7.4 4.9l1 1M16.6 4.9l-1 1"/><path d="M3 20.5c3-3.8 6-5 9-5s6 1.2 9 5"/></symbol>
   <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
   <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
   <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -79,30 +63,33 @@
   <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
   <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
   <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
   <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
 </svg>
 
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
-<!-- BEGIN partial:header  (→ header.php; Referenzkopie in partials/header.html) -->
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
 <header class="site-header">
   <div class="site-header__topbar">
     <div class="container">
-      <p class="site-header__topbar-hint">Kostenlose Vermittlung für Menschen ab 60 und Angehörige</p>
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
       <p>
-        <!-- BEISPIEL-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
+        <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
         <a href="tel:+4921100000000" data-placeholder="telefon">
           <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
           <span><span class="visually-hidden">Telefon: </span>0211 000 000 00</span>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span>
         </a>
-        <span class="visually-hidden">(Mo–Fr, 9–17 Uhr)</span>
+        <span class="visually-hidden">(Montag bis Freitag, 9 bis 17 Uhr, Beispielzeiten)</span>
       </p>
     </div>
   </div>
 
   <div class="container site-header__bar">
-    <a class="logo" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+    <a class="logo" href="/" aria-label="KONZEPT 60+ – zur Startseite">
       <span>KONZEPT</span><span class="logo__plus">60+</span>
     </a>
 
@@ -115,30 +102,29 @@
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
       <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="#anfrage">Hilfe finden</a></li>
-        <li><a class="site-nav__link" href="#themen">Themen</a></li>
-        <li><a class="site-nav__link" href="#so-funktionierts">So funktioniert’s</a></li>
-        <li><a class="site-nav__link" href="#ratgeber">Ratgeber</a></li>
-        <li><a class="site-nav__link" href="#fuer-anbieter">Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/#anfrage">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/themen/">Themen</a></li>
+        <li><a class="site-nav__link" href="/#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/fuer-anbieter/">Für Anbieter</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="#anfrage">Anliegen beschreiben</a>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anliegen beschreiben</a>
     </nav>
   </div>
 </header>
 <!-- END partial:header -->
 
 <main id="inhalt" tabindex="-1">
-
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
        ====================================================================== -->
   <section class="hero" aria-labelledby="hero-titel">
     <picture class="hero__media">
       <source type="image/webp"
-              srcset="assets/img/hero-garten-800.webp 800w, assets/img/hero-garten-1600.webp 1600w"
+              srcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
               sizes="(min-width: 60em) 55vw, 100vw">
-      <img src="assets/img/hero-garten-1600.jpg"
-           srcset="assets/img/hero-garten-800.jpg 800w, assets/img/hero-garten-1600.jpg 1600w"
+      <img src="/assets/img/hero-garten-1600.jpg"
+           srcset="/assets/img/hero-garten-800.jpg 800w, /assets/img/hero-garten-1600.jpg 1600w"
            sizes="(min-width: 60em) 55vw, 100vw"
            width="1600" height="900"
            alt="Eine ältere Frau sitzt lächelnd mit einem Glas in der Hand in ihrem sonnigen Garten."
@@ -148,9 +134,9 @@
     <div class="hero__content">
       <h1 class="hero__title" id="hero-titel">Hilfe finden. <span>Einfach und kostenlos.</span></h1>
       <p class="hero__text">
-        Sie beschreiben, wobei Sie Unterstützung brauchen. Wir suchen passende
-        Dienstleister oder private Helfer in Ihrer Region – für Sie selbst oder
-        für Ihre Angehörigen.
+        Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team
+        sucht für Sie passende Dienstleister oder private Helfer in Ihrer Region – für Sie
+        selbst oder für Ihre Angehörigen.
       </p>
       <div class="btn-group">
         <a class="btn btn--primary" href="#anfrage">
@@ -161,8 +147,9 @@
       </div>
       <p class="hero__note">
         Lieber telefonieren? Rufen Sie uns an:
-        <!-- BEISPIEL-Telefonnummer -->
-        <a class="hero__phone" href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+        <!-- DEMO-Telefonnummer -->
+        <span class="nowrap"><a class="hero__phone" href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+        <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span></span>
       </p>
     </div>
   </section>
@@ -179,17 +166,17 @@
           </span>
         </li>
         <li class="trust__item">
-          <span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-geprueft"/></svg></span>
+          <span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-team"/></svg></span>
           <span>
-            <strong class="trust__title">Persönlich geprüft</strong>
-            <span class="trust__text">Jede Anfrage liest ein Mensch aus unserem Team – kein Automat.</span>
+            <strong class="trust__title">Persönlich statt anonym</strong>
+            <span class="trust__text">Jede Anfrage liest ein Mensch aus unserem Team – keine anonyme Datenbank, kein Automat.</span>
           </span>
         </li>
         <li class="trust__item">
           <span class="trust__icon"><svg class="icon" aria-hidden="true"><use href="#icon-region"/></svg></span>
           <span>
             <strong class="trust__title">Regional</strong>
-            <span class="trust__text">Wir suchen in Ihrer Nähe – zunächst im Rheinland und Bergischen Land.</span>
+            <span class="trust__text">Wir suchen in Ihrer Nähe – zunächst im Rheinland, am Niederrhein und im Bergischen Land.</span>
           </span>
         </li>
       </ul>
@@ -199,7 +186,7 @@
   <!-- ======================================================================
        Themenbereiche
        → WordPress: get_terms( 'themenbereich' ) + template-parts/card-thema.php
-       Statisches Markup = Ausgabe ohne JS; main.js rendert aus data/themen.json neu
+       Karten erzeugt tools/build.py aus data/themen.json
        ====================================================================== -->
   <section class="section" id="themen" aria-labelledby="themen-titel">
     <div class="container">
@@ -212,72 +199,157 @@
         </p>
       </div>
 
-      <ul class="grid grid--3" data-themen-liste>
+      <ul class="grid grid--3 card-grid">
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-haus"/></svg></span>
-            <h3 class="card__title">Wohnen, Haus und Handwerk</h3>
-            <p class="card__text">Kleine Reparaturen, Garten, Umbau für mehr Komfort oder Hilfe beim Umzug.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Kleinreparaturen</li><li>Gartenpflege</li><li>Barrierearmer Umbau</li><li>Umzugshilfe</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="wohnen-haus-handwerk">Anliegen beschreiben<span class="visually-hidden">: Wohnen, Haus und Handwerk</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/wohnen-haus-handwerk-480.webp 480w, /assets/img/themen/wohnen-haus-handwerk-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/wohnen-haus-handwerk-800.jpg" width="800" height="1000" alt="Ein Handwerker mit Werkzeugkoffer steht lächelnd vor der Haustür eines älteren Herrn, der ihn freundlich empfängt."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Wohnen, Haus und Handwerk</h3>
+              <p class="card__text">Kleine Reparaturen, Garten, Umbau für mehr Komfort oder Hilfe beim Umzug.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Kleinreparaturen</li><li>Gartenpflege</li><li>Barrierearmer Umbau</li><li>Umzugshilfe</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Anliegen beschreiben<span class="visually-hidden">: Wohnen, Haus und Handwerk</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/wohnen-haus-handwerk/">Mehr zum Thema<span class="visually-hidden">: Wohnen, Haus und Handwerk</span></a>
+              </div>
+            </div>
           </article>
         </li>
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-haushalt"/></svg></span>
-            <h3 class="card__title">Haushalt und Reinigung</h3>
-            <p class="card__text">Unterstützung im Haushalt, regelmäßig oder einmalig.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Wohnungsreinigung</li><li>Fenster putzen</li><li>Wäsche</li><li>Entrümpelung</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="haushalt-reinigung">Anliegen beschreiben<span class="visually-hidden">: Haushalt und Reinigung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/haushalt-reinigung-480.webp 480w, /assets/img/themen/haushalt-reinigung-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/haushalt-reinigung-800.jpg" width="800" height="1000" alt="Eine Haushaltshilfe mit gelben Handschuhen wischt den Tisch, während eine ältere Frau mit einer Tasse in der Hand daneben sitzt und lacht."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Haushalt und Reinigung</h3>
+              <p class="card__text">Unterstützung im Haushalt, regelmäßig oder einmalig.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Wohnungsreinigung</li><li>Fenster putzen</li><li>Wäsche</li><li>Entrümpelung</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=haushalt-reinigung#anfrage" data-thema="haushalt-reinigung">Anliegen beschreiben<span class="visually-hidden">: Haushalt und Reinigung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/haushalt-reinigung/">Mehr zum Thema<span class="visually-hidden">: Haushalt und Reinigung</span></a>
+              </div>
+            </div>
           </article>
         </li>
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-betreuung"/></svg></span>
-            <h3 class="card__title">Pflege und Betreuung</h3>
-            <p class="card__text">Wir vermitteln Kontakte zu Pflegediensten und Betreuungsangeboten – und entlasten Angehörige.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Ambulante Pflege</li><li>Stundenweise Betreuung</li><li>Entlastung für Angehörige</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="pflege-betreuung">Anliegen beschreiben<span class="visually-hidden">: Pflege und Betreuung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/pflege-betreuung-480.webp 480w, /assets/img/themen/pflege-betreuung-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/pflege-betreuung-800.jpg" width="800" height="1000" alt="Eine Betreuerin kniet lächelnd neben einer älteren Frau, die im Garten sitzt, und legt ihr freundlich die Hand auf den Arm."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Pflege und Betreuung</h3>
+              <p class="card__text">Wir vermitteln Kontakte zu Pflegediensten und Betreuungsangeboten – und entlasten Angehörige.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Ambulante Pflege</li><li>Stundenweise Betreuung</li><li>Entlastung für Angehörige</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Anliegen beschreiben<span class="visually-hidden">: Pflege und Betreuung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/pflege-betreuung/">Mehr zum Thema<span class="visually-hidden">: Pflege und Betreuung</span></a>
+              </div>
+            </div>
           </article>
         </li>
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-alltag"/></svg></span>
-            <h3 class="card__title">Alltag und persönliche Hilfe</h3>
-            <p class="card__text">Begleitung und praktische Hilfe für die kleinen und großen Dinge des Alltags.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Einkaufen</li><li>Begleitung zu Terminen</li><li>Fahrdienst</li><li>Post und Formulare</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="alltag-persoenliche-hilfe">Anliegen beschreiben<span class="visually-hidden">: Alltag und persönliche Hilfe</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/alltag-persoenliche-hilfe-480.webp 480w, /assets/img/themen/alltag-persoenliche-hilfe-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/alltag-persoenliche-hilfe-800.jpg" width="800" height="1000" alt="Ein Mann trägt eine Einkaufstüte und geht lächelnd mit einer älteren Dame untergehakt die Straße entlang."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Alltag und persönliche Hilfe</h3>
+              <p class="card__text">Begleitung und praktische Hilfe für die kleinen und großen Dinge des Alltags.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Einkaufen</li><li>Begleitung zu Terminen</li><li>Fahrdienst</li><li>Post und Formulare</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=alltag-persoenliche-hilfe#anfrage" data-thema="alltag-persoenliche-hilfe">Anliegen beschreiben<span class="visually-hidden">: Alltag und persönliche Hilfe</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/alltag-persoenliche-hilfe/">Mehr zum Thema<span class="visually-hidden">: Alltag und persönliche Hilfe</span></a>
+              </div>
+            </div>
           </article>
         </li>
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-technik"/></svg></span>
-            <h3 class="card__title">Technik und Sicherheit</h3>
-            <p class="card__text">Geräte einrichten, Fragen klären und sicher zu Hause leben.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Smartphone und Tablet</li><li>Hausnotruf</li><li>Rauchmelder</li><li>Fernseher einrichten</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="technik-sicherheit">Anliegen beschreiben<span class="visually-hidden">: Technik und Sicherheit</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/technik-sicherheit-480.webp 480w, /assets/img/themen/technik-sicherheit-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/technik-sicherheit-800.jpg" width="800" height="1000" alt="Ein jüngerer Mann zeigt einem älteren Herrn am Tisch etwas auf dem Tablet, beide lachen."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Technik und Sicherheit</h3>
+              <p class="card__text">Geräte einrichten, Fragen klären und sicher zu Hause leben.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Smartphone und Tablet</li><li>Hausnotruf</li><li>Rauchmelder</li><li>Fernseher einrichten</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=technik-sicherheit#anfrage" data-thema="technik-sicherheit">Anliegen beschreiben<span class="visually-hidden">: Technik und Sicherheit</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/technik-sicherheit/">Mehr zum Thema<span class="visually-hidden">: Technik und Sicherheit</span></a>
+              </div>
+            </div>
           </article>
         </li>
         <li>
           <article class="card">
-            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#icon-freizeit"/></svg></span>
-            <h3 class="card__title">Freizeit und Lebensqualität</h3>
-            <p class="card__text">Gemeinsam unterwegs sein, Neues lernen und Kontakte pflegen.</p>
-            <ul class="card__examples" aria-label="Beispiele">
-              <li>Spaziergänge</li><li>Kurse</li><li>Ausflüge</li><li>Gesellschaft</li>
-            </ul>
-            <a class="card__link" href="#anfrage" data-thema="freizeit-lebensqualitaet">Anliegen beschreiben<span class="visually-hidden">: Freizeit und Lebensqualität</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/freizeit-lebensqualitaet-480.webp 480w, /assets/img/themen/freizeit-lebensqualitaet-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/freizeit-lebensqualitaet-800.jpg" width="800" height="1000" alt="Eine Gruppe älterer Menschen ist gut gelaunt mit Wanderstöcken in der Natur unterwegs."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Freizeit und Lebensqualität</h3>
+              <p class="card__text">Gemeinsam unterwegs sein, Neues lernen und Kontakte pflegen.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Spaziergänge</li><li>Kurse</li><li>Ausflüge</li><li>Gesellschaft</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=freizeit-lebensqualitaet#anfrage" data-thema="freizeit-lebensqualitaet">Anliegen beschreiben<span class="visually-hidden">: Freizeit und Lebensqualität</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/freizeit-lebensqualitaet/">Mehr zum Thema<span class="visually-hidden">: Freizeit und Lebensqualität</span></a>
+              </div>
+            </div>
           </article>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Persönliche Vermittlung  (→ template-parts/persoenlich.php, auch auf Themenseiten)
+       ====================================================================== -->
+  <section class="section section--sage personal" aria-labelledby="persoenlich-titel">
+    <div class="container personal__inner">
+      <div class="personal__lead">
+        <span class="section__eyebrow">Persönliche Vermittlung</span>
+        <h2 id="persoenlich-titel">Bei uns landen Sie nicht in einer anonymen Datenbank.</h2>
+        <p class="section__intro">
+          Echte Menschen aus unserem Team kümmern sich persönlich um Ihr Anliegen. Wir lesen,
+          was Sie uns schreiben, fragen bei Bedarf nach und suchen dann gezielt nach passenden
+          Ansprechpartnern in Ihrer Region.
+        </p>
+      </div>
+      <ul class="personal__list">
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-team"/></svg>
+          <span><strong>Ein Mensch liest mit.</strong> Kein Algorithmus entscheidet über Ihre Anfrage.</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
+          <span><strong>Wir melden uns persönlich</strong> – so, wie Sie es wünschen: telefonisch oder per E-Mail.</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+          <span><strong>Sie behalten die Kontrolle.</strong> Ihre Kontaktdaten geben wir nur mit Ihrer ausdrücklichen Zustimmung weiter.</span>
         </li>
       </ul>
     </div>
@@ -291,7 +363,7 @@
       <div class="section__header">
         <span class="section__eyebrow">So funktioniert’s</span>
         <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
-        <p class="section__intro">KONZEPT 60+ ist selbst kein Dienstleister. Wir hören zu, suchen und stellen den Kontakt her.</p>
+        <p class="section__intro">KONZEPT 60+ ist selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
       </div>
 
       <ol class="steps">
@@ -300,12 +372,12 @@
           <p class="step__text">Per Formular oder Telefon. Erzählen Sie in eigenen Worten, was Sie brauchen und wo Sie wohnen.</p>
         </li>
         <li class="step">
-          <h3 class="step__title">Wir prüfen und suchen</h3>
-          <p class="step__text">Unser Team liest Ihre Anfrage persönlich und sucht passende Betriebe oder private Helfer in Ihrer Region.</p>
+          <h3 class="step__title">Unser Team sucht für Sie</h3>
+          <p class="step__text">Ein Mensch aus unserem Team liest Ihre Anfrage, fragt bei Bedarf nach und sucht passende Betriebe oder private Helfer in Ihrer Region.</p>
         </li>
         <li class="step">
           <h3 class="step__title">Sie erhalten Rückmeldung</h3>
-          <p class="step__text">Wir melden uns mit einem oder mehreren Kontakten. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
+          <p class="step__text">Wir melden uns persönlich mit einem oder mehreren Kontakten. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
         </li>
       </ol>
 
@@ -313,6 +385,31 @@
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
         <p><strong>Ehrlich gesagt:</strong> Wir können nicht garantieren, dass wir immer jemanden finden.
           Wenn wir niemanden finden, sagen wir Ihnen das offen – und nennen Ihnen, wenn möglich, andere Anlaufstellen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Für Angehörige  (→ front-page.php, Block "angehoerige")
+       ====================================================================== -->
+  <section class="section relatives" id="angehoerige" aria-labelledby="angehoerige-titel">
+    <div class="container">
+      <div class="relatives__panel">
+        <span class="relatives__icon" aria-hidden="true"><svg class="icon"><use href="#icon-team"/></svg></span>
+        <div class="relatives__text">
+          <span class="section__eyebrow">Für Angehörige</span>
+          <h2 id="angehoerige-titel">Sie suchen Unterstützung für Ihre Eltern oder Angehörigen?</h2>
+          <p>
+            Auch Sie können unser Portal nutzen. Beschreiben Sie uns einfach, wobei Hilfe benötigt wird.
+            Wir suchen nach passenden Ansprechpartnern in der Region – auch wenn Sie selbst nicht vor Ort wohnen.
+          </p>
+        </div>
+        <div class="relatives__action">
+          <a class="btn btn--primary" href="/?fuer=angehoerige#anfrage" data-fuer="angehoerige">
+            Für Angehörige anfragen
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -326,28 +423,30 @@
     <div class="container request-layout">
       <div class="request-layout__aside">
         <span class="section__eyebrow">Hilfe finden</span>
-        <h2 id="anfrage-titel">Beschreiben Sie Ihr Anliegen</h2>
-        <p class="section__intro">Es dauert etwa drei Minuten. Wir melden uns so schnell wie möglich.</p>
+        <h2 id="anfrage-titel" tabindex="-1">Beschreiben Sie Ihr Anliegen</h2>
+        <p class="section__intro">Es dauert etwa drei Minuten. Ein Mensch aus unserem Team meldet sich so schnell wie möglich bei Ihnen.</p>
 
         <ul class="check-list">
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kostenlos und unverbindlich</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Persönlich bearbeitet – keine anonyme Datenbank</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Auch für Angehörige, die für andere suchen</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Ihre Daten nutzen wir nur für Ihre Anfrage</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Weitergabe Ihrer Kontaktdaten nur mit Ihrer Zustimmung</span></li>
         </ul>
 
         <div class="phone-block">
           <p>Lieber persönlich sprechen?</p>
-          <!-- BEISPIEL-Telefonnummer -->
+          <!-- DEMO-Telefonnummer -->
           <a class="phone-block__number" href="tel:+4921100000000" data-placeholder="telefon">
             <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
             0211 000 000 00
           </a>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span>
           <p class="phone-block__hours">Montag bis Freitag, 9 bis 17 Uhr (Beispielzeiten)</p>
         </div>
       </div>
 
       <div class="request-layout__main">
-        <form class="form" id="anfrage-formular" action="#anfrage" method="post" aria-labelledby="formular-titel">
+        <form class="form" id="anfrage-formular" action="/#anfrage" method="post" aria-labelledby="formular-titel">
           <h3 class="form__title" id="formular-titel">Ihre Anfrage</h3>
           <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
 
@@ -356,10 +455,22 @@
             <ul data-fehlerliste></ul>
           </div>
 
-          <div class="form__row form__row--2">
+          <!-- 1 · Anliegen -->
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">1</span> Ihr Anliegen</legend>
+
+            <fieldset class="form-field" id="f-wer" aria-describedby="f-wer-fehler">
+              <legend>Für wen suchen Sie Hilfe? <span class="form-field__req">*</span></legend>
+              <div class="choice-group choice-group--inline">
+                <label class="choice"><input type="radio" name="wer" value="selbst" id="f-wer-selbst" required> <span>Für mich selbst</span></label>
+                <label class="choice"><input type="radio" name="wer" value="angehoerige" id="f-wer-angehoerige"> <span>Für Angehörige oder Bekannte</span></label>
+              </div>
+              <p class="form-field__error" id="f-wer-fehler" aria-live="polite"></p>
+            </fieldset>
+
             <div class="form-field">
               <label class="form-field__label" for="f-thema">Themenbereich <span class="form-field__req">*</span></label>
-              <select class="form-field__input" id="f-thema" name="thema" required aria-describedby="f-thema-fehler" data-themen-select>
+              <select class="form-field__input" id="f-thema" name="thema" required aria-describedby="f-thema-fehler" data-kategorie-select>
                 <option value="">Bitte wählen</option>
                 <option value="wohnen-haus-handwerk">Wohnen, Haus und Handwerk</option>
                 <option value="haushalt-reinigung">Haushalt und Reinigung</option>
@@ -372,91 +483,209 @@
               <p class="form-field__error" id="f-thema-fehler" aria-live="polite"></p>
             </div>
 
+            <!-- Leistungen je Kategorie (aus data/themen.json); ohne JS verborgen – die Beschreibung genügt -->
+            <div data-leistungen-bereich>
+            <fieldset class="form-field" data-leistungen="wohnen-haus-handwerk" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="kleinreparaturen-im-haus" id="f-l-wohnen-haus-handwerk-1"> <span>Kleinreparaturen im Haus</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="gartenpflege-und-heckenschnitt" id="f-l-wohnen-haus-handwerk-2"> <span>Gartenpflege und Heckenschnitt</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="barrierearmer-umbau-z-b-bad-haltegriffe" id="f-l-wohnen-haus-handwerk-3"> <span>Barrierearmer Umbau (z. B. Bad, Haltegriffe)</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="maler-und-tapezierarbeiten" id="f-l-wohnen-haus-handwerk-4"> <span>Maler- und Tapezierarbeiten</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="moebel-aufbauen-oder-umstellen" id="f-l-wohnen-haus-handwerk-5"> <span>Möbel aufbauen oder umstellen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="umzugshilfe" id="f-l-wohnen-haus-handwerk-6"> <span>Umzugshilfe</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="winterdienst" id="f-l-wohnen-haus-handwerk-7"> <span>Winterdienst</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-wohnen-haus-handwerk-8"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field" data-leistungen="haushalt-reinigung" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="regelmaessige-wohnungsreinigung" id="f-l-haushalt-reinigung-1"> <span>Regelmäßige Wohnungsreinigung</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="fenster-putzen" id="f-l-haushalt-reinigung-2"> <span>Fenster putzen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="waesche-waschen-und-buegeln" id="f-l-haushalt-reinigung-3"> <span>Wäsche waschen und bügeln</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="grossputz-oder-fruehjahrsputz" id="f-l-haushalt-reinigung-4"> <span>Großputz oder Frühjahrsputz</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="entruempelung-und-haushaltsaufloesung" id="f-l-haushalt-reinigung-5"> <span>Entrümpelung und Haushaltsauflösung</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="hilfe-beim-kochen-und-vorraete-auffuellen" id="f-l-haushalt-reinigung-6"> <span>Hilfe beim Kochen und Vorräte auffüllen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-haushalt-reinigung-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field" data-leistungen="pflege-betreuung" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="ambulante-pflege-durch-einen-pflegedienst" id="f-l-pflege-betreuung-1"> <span>Ambulante Pflege durch einen Pflegedienst</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="stundenweise-betreuung-zu-hause" id="f-l-pflege-betreuung-2"> <span>Stundenweise Betreuung zu Hause</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="entlastung-fuer-pflegende-angehoerige" id="f-l-pflege-betreuung-3"> <span>Entlastung für pflegende Angehörige</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="verhinderungspflege" id="f-l-pflege-betreuung-4"> <span>Verhinderungspflege</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="tagespflege" id="f-l-pflege-betreuung-5"> <span>Tagespflege</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="betreuung-bei-demenz" id="f-l-pflege-betreuung-6"> <span>Betreuung bei Demenz</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-pflege-betreuung-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field" data-leistungen="alltag-persoenliche-hilfe" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="einkaufen-und-besorgungen" id="f-l-alltag-persoenliche-hilfe-1"> <span>Einkaufen und Besorgungen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-arztterminen" id="f-l-alltag-persoenliche-hilfe-2"> <span>Begleitung zu Arztterminen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-behoerden-und-banken" id="f-l-alltag-persoenliche-hilfe-3"> <span>Begleitung zu Behörden und Banken</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="fahrdienst" id="f-l-alltag-persoenliche-hilfe-4"> <span>Fahrdienst</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="hilfe-bei-post-und-formularen" id="f-l-alltag-persoenliche-hilfe-5"> <span>Hilfe bei Post und Formularen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="botengaenge-zum-beispiel-zur-apotheke" id="f-l-alltag-persoenliche-hilfe-6"> <span>Botengänge, zum Beispiel zur Apotheke</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-alltag-persoenliche-hilfe-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field" data-leistungen="technik-sicherheit" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="smartphone-und-tablet-einrichten-und-erklaeren" id="f-l-technik-sicherheit-1"> <span>Smartphone und Tablet einrichten und erklären</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="computer-internet-und-e-mail" id="f-l-technik-sicherheit-2"> <span>Computer, Internet und E-Mail</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="fernseher-und-receiver-einrichten" id="f-l-technik-sicherheit-3"> <span>Fernseher und Receiver einrichten</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="hausnotruf" id="f-l-technik-sicherheit-4"> <span>Hausnotruf</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="rauchmelder-anbringen" id="f-l-technik-sicherheit-5"> <span>Rauchmelder anbringen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="einbruchschutz-und-tuersicherung" id="f-l-technik-sicherheit-6"> <span>Einbruchschutz und Türsicherung</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="seniorentelefon-einrichten" id="f-l-technik-sicherheit-7"> <span>Seniorentelefon einrichten</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-technik-sicherheit-8"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="form-field" data-leistungen="freizeit-lebensqualitaet" hidden disabled>
+              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="leistungen" value="spaziergaenge-in-begleitung" id="f-l-freizeit-lebensqualitaet-1"> <span>Spaziergänge in Begleitung</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-veranstaltungen" id="f-l-freizeit-lebensqualitaet-2"> <span>Begleitung zu Veranstaltungen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="ausfluege-und-tagesfahrten" id="f-l-freizeit-lebensqualitaet-3"> <span>Ausflüge und Tagesfahrten</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="kurse-zum-beispiel-bewegung-oder-kreatives" id="f-l-freizeit-lebensqualitaet-4"> <span>Kurse, zum Beispiel Bewegung oder Kreatives</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="gesellschaft-leisten-und-vorlesen" id="f-l-freizeit-lebensqualitaet-5"> <span>Gesellschaft leisten und Vorlesen</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="gemeinsame-hobbys-und-spiele" id="f-l-freizeit-lebensqualitaet-6"> <span>Gemeinsame Hobbys und Spiele</span></label>
+                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-freizeit-lebensqualitaet-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              </div>
+            </fieldset>
+            </div>
+
             <div class="form-field">
-              <label class="form-field__label" for="f-region">Region <span class="form-field__req">*</span></label>
-              <select class="form-field__input" id="f-region" name="region" required aria-describedby="f-region-fehler" data-regionen-select>
-                <option value="">Bitte wählen</option>
-                <option value="duesseldorf">Düsseldorf</option>
-                <option value="wuppertal">Wuppertal</option>
-                <option value="hilden">Hilden</option>
-                <option value="remscheid">Remscheid</option>
-                <option value="langenfeld">Langenfeld</option>
-                <option value="haan">Haan</option>
-                <option value="wesel">Wesel</option>
-                <option value="rees">Rees</option>
-                <option value="andere">Andere Region</option>
-              </select>
-              <p class="form-field__error" id="f-region-fehler" aria-live="polite"></p>
+              <label class="form-field__label" for="f-beschreibung">Beschreiben Sie Ihr Anliegen <span class="form-field__req">*</span></label>
+              <span class="form-field__hint" id="f-beschreibung-hinweis">Zum Beispiel: Was soll erledigt werden, wie oft, ab wann? Ein paar Sätze genügen.</span>
+              <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="5" required minlength="20"
+                        aria-describedby="f-beschreibung-hinweis f-beschreibung-fehler"></textarea>
+              <p class="form-field__error" id="f-beschreibung-fehler" aria-live="polite"></p>
             </div>
-          </div>
-
-          <div class="form-field">
-            <label class="form-field__label" for="f-beschreibung">Wobei brauchen Sie Hilfe? <span class="form-field__req">*</span></label>
-            <span class="form-field__hint" id="f-beschreibung-hinweis">Zum Beispiel: Was soll erledigt werden, wie oft, ab wann? Ein paar Sätze genügen.</span>
-            <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="5" required minlength="20"
-                      aria-describedby="f-beschreibung-hinweis f-beschreibung-fehler"></textarea>
-            <p class="form-field__error" id="f-beschreibung-fehler" aria-live="polite"></p>
-          </div>
-
-          <fieldset class="form-field" id="f-wer" aria-describedby="f-wer-fehler">
-            <legend>Für wen suchen Sie Hilfe? <span class="form-field__req">*</span></legend>
-            <div class="choice-group choice-group--inline">
-              <label class="choice"><input type="radio" name="wer" value="selbst" required> <span>Für mich selbst</span></label>
-              <label class="choice"><input type="radio" name="wer" value="angehoerige"> <span>Für Angehörige oder Bekannte</span></label>
-            </div>
-            <p class="form-field__error" id="f-wer-fehler" aria-live="polite"></p>
           </fieldset>
 
-          <div class="form-field">
-            <label class="form-field__label" for="f-name">Ihr Name <span class="form-field__req">*</span></label>
-            <input class="form-field__input" id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-fehler">
-            <p class="form-field__error" id="f-name-fehler" aria-live="polite"></p>
-          </div>
-
-          <p class="form-field__hint" id="kontakt-hinweis"><strong>So erreichen wir Sie:</strong> Bitte geben Sie eine Telefonnummer <em>oder</em> eine E-Mail-Adresse an.</p>
-          <div class="form__row form__row--2">
-            <div class="form-field">
-              <label class="form-field__label" for="f-telefon">Telefon</label>
-              <input class="form-field__input" id="f-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel"
-                     aria-describedby="kontakt-hinweis f-telefon-fehler">
-              <p class="form-field__error" id="f-telefon-fehler" aria-live="polite"></p>
-            </div>
-            <div class="form-field">
-              <label class="form-field__label" for="f-email">E-Mail</label>
-              <input class="form-field__input" id="f-email" name="email" type="email" autocomplete="email"
-                     aria-describedby="kontakt-hinweis f-email-fehler">
-              <p class="form-field__error" id="f-email-fehler" aria-live="polite"></p>
-            </div>
-          </div>
-
-          <fieldset class="form-field">
-            <legend>Wann dürfen wir Sie zurückrufen? <span class="form-field__hint">(freiwillig)</span></legend>
-            <div class="choice-group choice-group--inline">
-              <label class="choice"><input type="radio" name="rueckruf" value="egal" checked> <span>Egal</span></label>
-              <label class="choice"><input type="radio" name="rueckruf" value="vormittags"> <span>Vormittags</span></label>
-              <label class="choice"><input type="radio" name="rueckruf" value="nachmittags"> <span>Nachmittags</span></label>
-              <label class="choice"><input type="radio" name="rueckruf" value="kein-anruf"> <span>Bitte nur per E-Mail</span></label>
+          <!-- 2 · Wo -->
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Wo wird Hilfe benötigt?</legend>
+            <p class="form-field__hint" id="ort-hinweis">Wir vermitteln zunächst in Düsseldorf, Wuppertal, Hilden, Remscheid, Langenfeld, Haan, Wesel und Rees sowie Umgebung.</p>
+            <div class="form__row form__row--plz">
+              <div class="form-field">
+                <label class="form-field__label" for="f-plz">PLZ <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-plz" name="plz" type="text" inputmode="numeric" autocomplete="postal-code"
+                       maxlength="5" pattern="[0-9]{5}" required aria-describedby="f-plz-fehler">
+                <p class="form-field__error" id="f-plz-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="f-ort">Ort <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-ort" name="ort" type="text" autocomplete="address-level2" list="f-orte"
+                       required aria-describedby="ort-hinweis f-ort-fehler">
+                <datalist id="f-orte">
+              <option value="Düsseldorf" data-region="duesseldorf"></option>
+              <option value="Wuppertal" data-region="wuppertal"></option>
+              <option value="Hilden" data-region="hilden"></option>
+              <option value="Remscheid" data-region="remscheid"></option>
+              <option value="Langenfeld" data-region="langenfeld"></option>
+              <option value="Haan" data-region="haan"></option>
+              <option value="Wesel" data-region="wesel"></option>
+              <option value="Rees" data-region="rees"></option>
+                </datalist>
+                <p class="form-field__error" id="f-ort-fehler" aria-live="polite"></p>
+              </div>
             </div>
           </fieldset>
 
-          <div class="form-field" id="f-datenschutz-feld">
-            <label class="choice" for="f-datenschutz">
-              <input type="checkbox" id="f-datenschutz" name="datenschutz" required aria-describedby="f-datenschutz-fehler">
-              <span>Ich bin einverstanden, dass KONZEPT 60+ meine Angaben zur Bearbeitung dieser Anfrage nutzt und an passende Anbieter weitergibt. Mehr dazu in der <a href="#datenschutz">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
-            </label>
-            <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
-          </div>
+          <!-- 3 · Kontakt -->
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Ihre Kontaktdaten</legend>
+
+            <div class="form__row form__row--2">
+              <div class="form-field">
+                <label class="form-field__label" for="f-vorname">Vorname <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-vorname" name="vorname" type="text" autocomplete="given-name" required aria-describedby="f-vorname-fehler">
+                <p class="form-field__error" id="f-vorname-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="f-nachname">Nachname <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-nachname" name="nachname" type="text" autocomplete="family-name" required aria-describedby="f-nachname-fehler">
+                <p class="form-field__error" id="f-nachname-fehler" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <fieldset class="form-field form-field--group" id="f-kontakt" aria-describedby="kontakt-hinweis f-kontakt-fehler">
+              <legend>So erreichen wir Sie <span class="form-field__req">*</span></legend>
+              <p class="form-field__hint" id="kontakt-hinweis">Bitte geben Sie mindestens eines an: Telefonnummer <strong>oder</strong> E-Mail-Adresse.</p>
+              <div class="form__row form__row--2">
+                <div class="form-field">
+                  <label class="form-field__label" for="f-telefon">Telefon</label>
+                  <input class="form-field__input" id="f-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel"
+                         aria-describedby="f-kontakt-fehler f-telefon-fehler">
+                  <p class="form-field__error" id="f-telefon-fehler" aria-live="polite"></p>
+                </div>
+                <div class="form-field">
+                  <label class="form-field__label" for="f-email">E-Mail</label>
+                  <input class="form-field__input" id="f-email" name="email" type="email" autocomplete="email"
+                         aria-describedby="f-kontakt-fehler f-email-fehler">
+                  <p class="form-field__error" id="f-email-fehler" aria-live="polite"></p>
+                </div>
+              </div>
+              <p class="form-field__error" id="f-kontakt-fehler" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="form-field">
+              <legend>Wann dürfen wir Sie zurückrufen? <span class="form-field__hint">(freiwillig)</span></legend>
+              <div class="choice-group choice-group--inline">
+                <label class="choice"><input type="radio" name="rueckruf" value="egal" checked> <span>Egal</span></label>
+                <label class="choice"><input type="radio" name="rueckruf" value="vormittags"> <span>Vormittags</span></label>
+                <label class="choice"><input type="radio" name="rueckruf" value="nachmittags"> <span>Nachmittags</span></label>
+                <label class="choice"><input type="radio" name="rueckruf" value="kein-anruf"> <span>Bitte nur per E-Mail</span></label>
+              </div>
+            </fieldset>
+          </fieldset>
+
+          <!-- 4 · Einwilligung -->
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Einwilligung</legend>
+
+            <div class="form-field" id="f-datenschutz-feld">
+              <label class="choice" for="f-datenschutz">
+                <input type="checkbox" id="f-datenschutz" name="einwilligung_bearbeitung" required aria-describedby="f-datenschutz-fehler">
+                <span>Ich bin einverstanden, dass das Team von KONZEPT 60+ meine Angaben zur Bearbeitung meiner Anfrage verwendet und mich dazu kontaktiert. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
+              </label>
+              <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="notice notice--privacy" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+              <p><strong>Ihre Daten bleiben bei uns.</strong> Ihre Kontaktdaten geben wir erst weiter, wenn wir Ihnen einen passenden
+                Anbieter genannt haben und Sie der Weitergabe ausdrücklich zugestimmt haben.</p>
+            </div>
+
+            <div class="form-field" id="f-newsletter-feld">
+              <label class="choice" for="f-newsletter">
+                <input type="checkbox" id="f-newsletter" name="newsletter" value="ja" aria-describedby="f-newsletter-fehler">
+                <span><strong>Freiwillig:</strong> Ich möchte gelegentlich Neuigkeiten und Ratgeber-Tipps von KONZEPT 60+ per E-Mail erhalten (Newsletter). Diese Einwilligung kann ich jederzeit widerrufen. Siehe <a href="/datenschutz/#newsletter">Datenschutzerklärung</a>.</span>
+              </label>
+              <p class="form-field__error" id="f-newsletter-fehler" aria-live="polite"></p>
+            </div>
+          </fieldset>
 
           <div class="form__actions">
             <button class="btn btn--primary btn--block" type="submit">Anfrage kostenlos absenden</button>
-            <p class="form__privacy-hint">Prototyp: Dieses Formular sendet keine Daten.</p>
+            <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
           </div>
         </form>
 
         <div class="form-success" id="anfrage-erfolg" tabindex="-1" role="status" hidden>
           <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
-          <h3>Vielen Dank, <span data-erfolg-name>Ihre Anfrage ist angekommen</span>!</h3>
-          <p>So würde es weitergehen: Unser Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <h3>Vielen Dank<span data-erfolg-name></span>!</h3>
+          <p>So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <p>Ihre Kontaktdaten geben wir erst weiter, wenn Sie einem konkreten Anbieter ausdrücklich zugestimmt haben.</p>
           <p class="form-success__prototype">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
             <span>Prototyp – es wurden keine Daten gesendet oder gespeichert.</span>
@@ -468,34 +697,54 @@
   </section>
 
   <!-- ======================================================================
-       Für Anbieter
-       → WordPress: Seite "Für Anbieter" + CPTs "anbieter" (gewerblich) / "helfer" (privat)
+       Für Anbieter (Teaser)  → Seite /fuer-anbieter/ (page-fuer-anbieter.php)
        ====================================================================== -->
   <section class="section" id="fuer-anbieter" aria-labelledby="anbieter-titel">
-    <div class="container split">
+    <div class="container split split--top">
       <div>
         <span class="section__eyebrow">Für Anbieter</span>
         <h2 id="anbieter-titel">Für Dienstleister und private Helfer</h2>
         <p class="section__intro">
           Sie bieten Leistungen für Menschen ab 60 an – als Betrieb oder als Privatperson mit Zeit und Erfahrung?
-          Registrieren Sie sich kostenlos. Wir melden uns, wenn eine Anfrage zu Ihnen passt.
+          Werden Sie Teil unseres regionalen Netzwerks.
         </p>
-        <a class="btn btn--secondary" href="#fuer-anbieter">Als Anbieter registrieren <span class="badge">bald</span></a>
+        <ul class="benefits">
+          <li class="benefits__item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-region"/></svg>
+            <span><strong>Neue Kunden aus der Region erreichen</strong> Menschen ab 60 und ihre Familien in Ihrer Nähe.</span>
+          </li>
+          <li class="benefits__item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>
+            <span><strong>Passende Vermittlungsanfragen erhalten</strong> Unser Team gleicht jede Anfrage persönlich ab.</span>
+          </li>
+          <li class="benefits__item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-team"/></svg>
+            <span><strong>Teil eines regionalen Netzwerks werden</strong> Gemeinsam mit Betrieben und Helfern vor Ort.</span>
+          </li>
+          <li class="benefits__item">
+            <svg class="icon" aria-hidden="true"><use href="#icon-kostenlos"/></svg>
+            <span><strong>Kostenlos mit Basisprofil starten</strong> Registrierung und Basisprofil kosten nichts.</span>
+          </li>
+        </ul>
+        <div class="btn-group">
+          <a class="btn btn--primary" href="/fuer-anbieter/#registrierung">Als Anbieter registrieren</a>
+          <a class="btn btn--secondary" href="/fuer-anbieter/">Mehr für Anbieter</a>
+        </div>
       </div>
       <div class="provider-panel">
         <h3>Worauf wir achten</h3>
         <ul class="check-list">
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Jedes Profil wird vor der ersten Vermittlung persönlich geprüft.</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen oder bestimmte Handwerksarbeiten – vermitteln wir nur an entsprechend qualifizierte Betriebe.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Jedes Profil wird vor der Freischaltung persönlich von unserem Team geprüft.</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen oder bestimmte Handwerksarbeiten – vermitteln wir nur an entsprechend qualifizierte und berechtigte Betriebe.</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Private Helfer unterstützen bei alltäglichen Dingen, nicht bei Tätigkeiten, die eine Fachausbildung erfordern.</span></li>
         </ul>
-        <p class="form-field__hint">KONZEPT 60+ ist kein Branchenverzeichnis: Anbieterprofile sind nicht öffentlich einsehbar.</p>
+        <p class="form-field__hint">KONZEPT 60+ ist kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
       </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       Ratgeber-Teaser (Beispieldaten)
+       Ratgeber-Teaser (Beispieldaten) → /ratgeber/ (in Vorbereitung)
        → WordPress: WP_Query( post_type 'post', posts_per_page 3 ) + template-parts/card-artikel.php
        ====================================================================== -->
   <section class="section section--sage" id="ratgeber" aria-labelledby="ratgeber-titel">
@@ -503,7 +752,7 @@
       <div class="section__header">
         <span class="section__eyebrow">Ratgeber</span>
         <h2 id="ratgeber-titel">Wissen, das weiterhilft</h2>
-        <p class="section__intro">Verständlich erklärt, ohne Fachchinesisch. <span class="badge">Beispielartikel</span></p>
+        <p class="section__intro">Verständlich erklärt, ohne Fachchinesisch. <span class="badge">In Vorbereitung</span></p>
       </div>
       <ul class="grid grid--3">
         <li>
@@ -511,9 +760,9 @@
             <div class="article-card__band"></div>
             <div class="article-card__body">
               <p class="article-card__meta">Haushalt · 4 Minuten Lesezeit</p>
-              <h3 class="article-card__title"><a href="#ratgeber">Haushaltshilfe: Betrieb oder privat – was passt zu mir?</a></h3>
+              <h3 class="article-card__title"><a href="/ratgeber/#haushaltshilfe">Haushaltshilfe: Betrieb oder privat – was passt zu mir?</a></h3>
               <p class="article-card__text">Vor- und Nachteile beider Wege, und welche Fragen Sie vorab klären sollten.</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+              <p class="article-card__more" aria-hidden="true">Vorschau ansehen →</p>
             </div>
           </article>
         </li>
@@ -522,9 +771,9 @@
             <div class="article-card__band"></div>
             <div class="article-card__body">
               <p class="article-card__meta">Sicherheit · 5 Minuten Lesezeit</p>
-              <h3 class="article-card__title"><a href="#ratgeber">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></h3>
+              <h3 class="article-card__title"><a href="/ratgeber/#hausnotruf">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></h3>
               <p class="article-card__text">Welche Systeme es gibt, was sie leisten und wie Sie Angebote vergleichen.</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+              <p class="article-card__more" aria-hidden="true">Vorschau ansehen →</p>
             </div>
           </article>
         </li>
@@ -533,68 +782,83 @@
             <div class="article-card__band"></div>
             <div class="article-card__body">
               <p class="article-card__meta">Angehörige · 6 Minuten Lesezeit</p>
-              <h3 class="article-card__title"><a href="#ratgeber">Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige</a></h3>
+              <h3 class="article-card__title"><a href="/ratgeber/#eltern-aus-der-ferne">Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige</a></h3>
               <p class="article-card__text">Wie Sie Hilfe vor Ort organisieren, auch wenn Sie selbst nicht in der Nähe wohnen.</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+              <p class="article-card__more" aria-hidden="true">Vorschau ansehen →</p>
             </div>
           </article>
         </li>
       </ul>
     </div>
   </section>
-
 </main>
 
-<!-- BEGIN partial:footer  (→ footer.php; Referenzkopie in partials/footer.html) -->
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="logo logo--light" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
           <span>KONZEPT</span><span class="logo__plus">60+</span>
         </a>
-        <p>Kostenlose Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
           KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
-        <p>
-          <!-- BEISPIEL-Telefonnummer -->
-          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+        <p class="site-footer__contact">
+          <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) -->
+          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon"><span class="visually-hidden">Telefon: </span>0211 000 000 00</a>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span><br>
+          <span class="site-footer__hours">Montag bis Freitag, 9 bis 17 Uhr (Beispielzeiten)</span>
         </p>
       </div>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        </ul>
+      </nav>
 
       <nav aria-labelledby="footer-regionen">
         <h2 id="footer-regionen">Regionen</h2>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
-          <li><a href="#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
-          <li><a href="#anfrage" data-region="wuppertal">Wuppertal</a></li>
-          <li><a href="#anfrage" data-region="hilden">Hilden</a></li>
-          <li><a href="#anfrage" data-region="remscheid">Remscheid</a></li>
-          <li><a href="#anfrage" data-region="langenfeld">Langenfeld</a></li>
-          <li><a href="#anfrage" data-region="haan">Haan</a></li>
-          <li><a href="#anfrage" data-region="wesel">Wesel</a></li>
-          <li><a href="#anfrage" data-region="rees">Rees</a></li>
+          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+          <li><a href="/?region=rees#anfrage" data-region="rees">Rees</a></li>
         </ul>
       </nav>
 
       <nav aria-labelledby="footer-info">
         <h2 id="footer-info">Informationen</h2>
         <ul>
-          <li><a href="#so-funktionierts">So funktioniert’s</a></li>
-          <li><a href="#fuer-anbieter">Für Anbieter</a></li>
-          <li><a href="#impressum" id="impressum">Impressum (Platzhalter)</a></li>
-          <li><a href="#datenschutz" id="datenschutz">Datenschutz (Platzhalter)</a></li>
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
       </nav>
     </div>
 
     <div class="site-footer__bottom">
       <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
-      <p><strong>Prototyp mit Beispieldaten.</strong> Telefonnummer, Adresse und Artikel sind Platzhalter.</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, Telefonnummer, Domain und Artikel sind Platzhalter.</p>
     </div>
   </div>
 </footer>
 <!-- END partial:footer -->
 
-<script src="assets/js/main.js" defer></script>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

@@ -1,47 +1,158 @@
 {
-  "_hinweis": "Beispieldaten für den Prototyp. In WordPress: Taxonomie 'themenbereich' (term name = titel, slug = slug, Beschreibung = kurztext, Term-Meta: beispiele, icon).",
+  "_hinweis": "Beispieldaten für den Prototyp. Quelle für tools/build.py (Startseite, Themenseiten, Formular-Leistungen). In WordPress: Taxonomie 'themenbereich' (term name = titel, slug = slug, Beschreibung = kurztext, Term-Meta: einleitung, beispiele, leistungen, angebote, hinweis, bild). 'Sonstiges' wird bei den Leistungen automatisch ergänzt.",
   "themen": [
     {
       "slug": "wohnen-haus-handwerk",
       "titel": "Wohnen, Haus und Handwerk",
       "kurztext": "Kleine Reparaturen, Garten, Umbau für mehr Komfort oder Hilfe beim Umzug.",
+      "einleitung": "Ein tropfender Wasserhahn, eine Hecke, die geschnitten werden muss, oder ein Bad, das bequemer werden soll: Rund ums Haus fällt immer etwas an. Wir suchen für Sie Handwerksbetriebe, Hausmeisterdienste oder hilfsbereite Menschen aus Ihrer Nachbarschaft, die zu Ihrem Anliegen passen.",
       "beispiele": ["Kleinreparaturen", "Gartenpflege", "Barrierearmer Umbau", "Umzugshilfe"],
-      "icon": "haus"
+      "leistungen": [
+        "Kleinreparaturen im Haus",
+        "Gartenpflege und Heckenschnitt",
+        "Barrierearmer Umbau (z. B. Bad, Haltegriffe)",
+        "Maler- und Tapezierarbeiten",
+        "Möbel aufbauen oder umstellen",
+        "Umzugshilfe",
+        "Winterdienst"
+      ],
+      "angebote": [
+        "Handwerksbetriebe für Arbeiten, die eine Fachkraft erfordern – etwa Elektrik, Sanitär oder Umbauten",
+        "Hausmeister- und Gartendienste für wiederkehrende Arbeiten",
+        "Umzugsunternehmen, auch für kleinere Umzüge",
+        "Private Helfer für einfache Handgriffe, zum Beispiel ein Regal aufhängen oder Laub fegen"
+      ],
+      "bild": {
+        "datei": "assets/img/themen/wohnen-haus-handwerk",
+        "alt": "Ein Handwerker mit Werkzeugkoffer steht lächelnd vor der Haustür eines älteren Herrn, der ihn freundlich empfängt."
+      }
     },
     {
       "slug": "haushalt-reinigung",
       "titel": "Haushalt und Reinigung",
       "kurztext": "Unterstützung im Haushalt, regelmäßig oder einmalig.",
+      "einleitung": "Wenn das Putzen schwerer fällt oder einfach mehr Zeit für Schönes bleiben soll: Wir suchen Unterstützung im Haushalt, die zu Ihnen passt – ob jede Woche, alle zwei Wochen oder einmalig, etwa für einen Großputz.",
       "beispiele": ["Wohnungsreinigung", "Fenster putzen", "Wäsche", "Entrümpelung"],
-      "icon": "haushalt"
+      "leistungen": [
+        "Regelmäßige Wohnungsreinigung",
+        "Fenster putzen",
+        "Wäsche waschen und bügeln",
+        "Großputz oder Frühjahrsputz",
+        "Entrümpelung und Haushaltsauflösung",
+        "Hilfe beim Kochen und Vorräte auffüllen"
+      ],
+      "angebote": [
+        "Reinigungsfirmen und haushaltsnahe Dienstleister",
+        "Anbieter für Entrümpelung und Haushaltsauflösung",
+        "Private Haushaltshilfen für einfache, regelmäßige Aufgaben",
+        "Auf Wunsch Anbieter, die als „Angebot zur Unterstützung im Alltag“ anerkannt sind – ob das für Sie in Frage kommt, klären Sie bitte mit Ihrer Pflegekasse"
+      ],
+      "bild": {
+        "datei": "assets/img/themen/haushalt-reinigung",
+        "alt": "Eine Haushaltshilfe mit gelben Handschuhen wischt den Tisch, während eine ältere Frau mit einer Tasse in der Hand daneben sitzt und lacht."
+      }
     },
     {
       "slug": "pflege-betreuung",
       "titel": "Pflege und Betreuung",
       "kurztext": "Wir vermitteln Kontakte zu Pflegediensten und Betreuungsangeboten – und entlasten Angehörige.",
+      "einleitung": "Wenn Pflege oder Betreuung nötig wird, ist die Suche nach einem passenden Angebot oft mühsam. Wir nehmen Ihnen einen Teil davon ab: Sie schildern uns die Situation, und wir suchen Kontakte zu Pflegediensten und Betreuungsangeboten in Ihrer Region.",
       "beispiele": ["Ambulante Pflege", "Stundenweise Betreuung", "Entlastung für Angehörige"],
-      "icon": "betreuung"
+      "leistungen": [
+        "Ambulante Pflege durch einen Pflegedienst",
+        "Stundenweise Betreuung zu Hause",
+        "Entlastung für pflegende Angehörige",
+        "Verhinderungspflege",
+        "Tagespflege",
+        "Betreuung bei Demenz"
+      ],
+      "angebote": [
+        "Zugelassene ambulante Pflegedienste",
+        "Betreuungsdienste und anerkannte Angebote zur Unterstützung im Alltag",
+        "Einrichtungen der Tagespflege",
+        "Kontakte zu Beratungsstellen, wenn Sie Fragen zu Pflegegrad oder Leistungen der Pflegekasse haben"
+      ],
+      "hinweis": "Pflegeleistungen werden ausschließlich von zugelassenen Pflegediensten und Einrichtungen erbracht. KONZEPT 60+ pflegt nicht selbst und bietet keine Pflegeberatung an. Wir stellen lediglich den Kontakt her. Für eine Beratung zu Pflegegrad und Leistungen wenden Sie sich bitte an Ihre Pflegekasse oder eine Pflegeberatungsstelle.",
+      "bild": {
+        "datei": "assets/img/themen/pflege-betreuung",
+        "alt": "Eine Betreuerin kniet lächelnd neben einer älteren Frau, die im Garten sitzt, und legt ihr freundlich die Hand auf den Arm."
+      }
     },
     {
       "slug": "alltag-persoenliche-hilfe",
       "titel": "Alltag und persönliche Hilfe",
       "kurztext": "Begleitung und praktische Hilfe für die kleinen und großen Dinge des Alltags.",
+      "einleitung": "Einkäufe tragen, zum Arzt begleiten, einen Brief vom Amt gemeinsam lesen: Oft sind es die alltäglichen Dinge, bei denen eine helfende Hand fehlt. Wir suchen Menschen und Dienste, die Sie dabei zuverlässig unterstützen.",
       "beispiele": ["Einkaufen", "Begleitung zu Terminen", "Fahrdienst", "Post und Formulare"],
-      "icon": "alltag"
+      "leistungen": [
+        "Einkaufen und Besorgungen",
+        "Begleitung zu Arztterminen",
+        "Begleitung zu Behörden und Banken",
+        "Fahrdienst",
+        "Hilfe bei Post und Formularen",
+        "Botengänge, zum Beispiel zur Apotheke"
+      ],
+      "angebote": [
+        "Fahr- und Begleitdienste",
+        "Alltagshelfer und Seniorenassistenz",
+        "Private Helfer aus der Nachbarschaft für Einkäufe und Besorgungen",
+        "Ehrenamtliche Angebote, sofern es sie in Ihrer Region gibt"
+      ],
+      "bild": {
+        "datei": "assets/img/themen/alltag-persoenliche-hilfe",
+        "alt": "Ein Mann trägt eine Einkaufstüte und geht lächelnd mit einer älteren Dame untergehakt die Straße entlang."
+      }
     },
     {
       "slug": "technik-sicherheit",
       "titel": "Technik und Sicherheit",
       "kurztext": "Geräte einrichten, Fragen klären und sicher zu Hause leben.",
+      "einleitung": "Ein neues Smartphone, ein Fernseher, der nicht mehr will, oder der Wunsch nach mehr Sicherheit zu Hause: Wir suchen geduldige Menschen und Fachbetriebe, die Technik verständlich erklären und zuverlässig einrichten.",
       "beispiele": ["Smartphone und Tablet", "Hausnotruf", "Rauchmelder", "Fernseher einrichten"],
-      "icon": "technik"
+      "leistungen": [
+        "Smartphone und Tablet einrichten und erklären",
+        "Computer, Internet und E-Mail",
+        "Fernseher und Receiver einrichten",
+        "Hausnotruf",
+        "Rauchmelder anbringen",
+        "Einbruchschutz und Türsicherung",
+        "Seniorentelefon einrichten"
+      ],
+      "angebote": [
+        "Technikhilfe für zu Hause, auch mit viel Geduld beim Erklären",
+        "Anbieter von Hausnotrufsystemen",
+        "Fachbetriebe für Sicherheitstechnik und Einbruchschutz",
+        "Private Helfer, die sich mit Smartphone und Tablet gut auskennen"
+      ],
+      "bild": {
+        "datei": "assets/img/themen/technik-sicherheit",
+        "alt": "Ein jüngerer Mann zeigt einem älteren Herrn am Tisch etwas auf dem Tablet, beide lachen."
+      }
     },
     {
       "slug": "freizeit-lebensqualitaet",
       "titel": "Freizeit und Lebensqualität",
       "kurztext": "Gemeinsam unterwegs sein, Neues lernen und Kontakte pflegen.",
+      "einleitung": "Gemeinsam spazieren gehen, einen Kurs besuchen oder einfach jemanden zum Reden haben: Lebensqualität hat viele Gesichter. Wir suchen Angebote und Menschen in Ihrer Nähe, mit denen Sie Ihre freie Zeit gerne verbringen.",
       "beispiele": ["Spaziergänge", "Kurse", "Ausflüge", "Gesellschaft"],
-      "icon": "freizeit"
+      "leistungen": [
+        "Spaziergänge in Begleitung",
+        "Begleitung zu Veranstaltungen",
+        "Ausflüge und Tagesfahrten",
+        "Kurse, zum Beispiel Bewegung oder Kreatives",
+        "Gesellschaft leisten und Vorlesen",
+        "Gemeinsame Hobbys und Spiele"
+      ],
+      "angebote": [
+        "Kurs- und Freizeitanbieter in Ihrer Region",
+        "Begleitdienste für Ausflüge und Veranstaltungen",
+        "Private Helfer, die gerne Zeit mit Ihnen verbringen",
+        "Hinweise auf Treffpunkte und Gruppen in Ihrer Nähe"
+      ],
+      "bild": {
+        "datei": "assets/img/themen/freizeit-lebensqualitaet",
+        "alt": "Eine Gruppe älterer Menschen ist gut gelaunt mit Wanderstöcken in der Natur unterwegs."
+      }
     }
   ]
 }

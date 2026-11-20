@@ -1,0 +1,99 @@
+<!--meta
+title: {{thema_titel}} – Themen – KONZEPT 60+
+description: {{thema_kurztext}} KONZEPT 60+ sucht persönlich und kostenlos passende Dienstleister oder private Helfer in Ihrer Region.
+nav: themen
+nav_level: section
+-->
+  <!-- ======================================================================
+       Themenseite  (→ WordPress: taxonomy-themenbereich.php, Daten = Term + Term-Meta)
+       erzeugt von tools/build.py aus templates/thema.html + data/themen.json
+       ====================================================================== -->
+  <div class="page-header page-header--topic">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/themen/">Themen</a></li>
+          <li><a href="/themen/{{thema_slug}}/" aria-current="page">{{thema_titel}}</a></li>
+        </ol>
+      </nav>
+      <div class="topic-hero">
+        <div class="topic-hero__text">
+          <span class="section__eyebrow">Themenbereich</span>
+          <h1>{{thema_titel}}</h1>
+          <p class="section__intro">{{thema_einleitung}}</p>
+          <div class="btn-group">
+            <a class="btn btn--primary" href="/?thema={{thema_slug}}#anfrage" data-thema="{{thema_slug}}">
+              Anliegen zu diesem Thema beschreiben
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+            </a>
+          </div>
+          <p class="hero__note topic-hero__phone">
+            Oder rufen Sie uns an:
+            <a href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+            <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span>
+          </p>
+        </div>
+{{thema_bild}}
+      </div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="angebote-titel">
+    <div class="container">
+{{thema_hinweis}}
+      <div class="topic-columns">
+        <div class="topic-columns__item">
+          <h2 id="angebote-titel">Mögliche Unterstützungsangebote</h2>
+          <p>Je nach Anliegen suchen wir zum Beispiel nach:</p>
+{{thema_angebote}}
+        </div>
+        <div class="topic-columns__item topic-columns__item--panel">
+          <h2 id="leistungen-titel">Beispiele für konkrete Leistungen</h2>
+          <p>Das sind typische Anliegen in diesem Bereich. Ihres ist nicht dabei? Beschreiben Sie es uns einfach.</p>
+{{thema_leistungen}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="persoenlich-titel">
+    <div class="container personal__inner">
+      <div class="personal__lead">
+        <span class="section__eyebrow">Persönliche Vermittlung</span>
+        <h2 id="persoenlich-titel">Bei uns landen Sie nicht in einer anonymen Datenbank.</h2>
+        <p class="section__intro">
+          Echte Menschen aus unserem Team kümmern sich persönlich um Ihr Anliegen. Wir suchen
+          passende Ansprechpartner in Ihrer Region und melden uns so schnell wie möglich bei Ihnen.
+          KONZEPT 60+ erbringt die Leistungen nicht selbst – wir stellen den Kontakt her.
+        </p>
+        <a class="btn btn--primary" href="/?thema={{thema_slug}}#anfrage" data-thema="{{thema_slug}}">
+          Jetzt Anliegen beschreiben
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+        </a>
+      </div>
+      <ul class="personal__list">
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-kostenlos"/></svg>
+          <span><strong>Kostenlos und unverbindlich.</strong> Sie entscheiden selbst, ob Sie ein Angebot annehmen.</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-team"/></svg>
+          <span><strong>Auch für Angehörige.</strong> Sie können gern für Ihre Eltern oder andere Angehörige anfragen.</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+          <span><strong>Ihre Daten bleiben bei uns,</strong> bis Sie einer Weitergabe an einen konkreten Anbieter ausdrücklich zustimmen.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="weitere-titel">
+    <div class="container">
+      <h2 id="weitere-titel">Weitere Themen</h2>
+      <ul class="topic-links">
+{{andere_themen}}
+      </ul>
+    </div>
+  </section>

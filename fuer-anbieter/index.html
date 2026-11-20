@@ -1,0 +1,490 @@
+<!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/fuer-anbieter.html – nicht direkt bearbeiten -->
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Für Anbieter – KONZEPT 60+</title>
+  <meta name="description" content="Für gewerbliche Dienstleister und private Helfer: Erreichen Sie Menschen ab 60 in Ihrer Region, erhalten Sie passende Vermittlungsanfragen und starten Sie kostenlos mit einem Basisprofil.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <link rel="canonical" href="https://www.example.org/fuer-anbieter/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="KONZEPT 60+">
+  <meta property="og:title" content="Für Anbieter – KONZEPT 60+">
+  <meta property="og:description" content="Für gewerbliche Dienstleister und private Helfer: Erreichen Sie Menschen ab 60 in Ihrer Region, erhalten Sie passende Vermittlungsanfragen und starten Sie kostenlos mit einem Basisprofil.">
+  <meta property="og:url" content="https://www.example.org/fuer-anbieter/">
+  <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
+
+  <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
+  <script src="/assets/js/no-js.js"></script>
+
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
+       → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/layout.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+
+</head>
+<body>
+
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/></symbol>
+  <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
+  <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
+  <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+      <p>
+        <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
+        <a href="tel:+4921100000000" data-placeholder="telefon">
+          <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
+          <span><span class="visually-hidden">Telefon: </span>0211 000 000 00</span>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span>
+        </a>
+        <span class="visually-hidden">(Montag bis Freitag, 9 bis 17 Uhr, Beispielzeiten)</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="/" aria-label="KONZEPT 60+ – zur Startseite">
+      <span>KONZEPT</span><span class="logo__plus">60+</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="/#anfrage">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/themen/">Themen</a></li>
+        <li><a class="site-nav__link" href="/#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/fuer-anbieter/" aria-current="page">Für Anbieter</a></li>
+      </ul>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anliegen beschreiben</a>
+    </nav>
+  </div>
+</header>
+<!-- END partial:header -->
+
+<main id="inhalt" tabindex="-1">
+  <!-- ======================================================================
+       Für Anbieter  (→ WordPress: page-fuer-anbieter.php; Registrierung legt
+       Entwurf im CPT "anbieter" bzw. "helfer" an, Status "Prüfung ausstehend")
+       ====================================================================== -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/fuer-anbieter/" aria-current="page">Für Anbieter</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Für Anbieter</span>
+      <h1>Gemeinsam für Menschen ab 60 in der Region</h1>
+      <p class="section__intro">
+        Ob Handwerksbetrieb, Pflegedienst oder Privatperson mit Zeit und Erfahrung: Werden Sie Teil
+        unseres regionalen Netzwerks. Unser Team vermittelt Ihnen Anfragen, die wirklich zu Ihnen passen.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="#registrierung">Jetzt kostenlos registrieren</a>
+        <a class="btn btn--secondary" href="#zwei-wege">Welcher Weg passt zu mir?</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="vorteile-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Ihre Vorteile</span>
+        <h2 id="vorteile-titel">Warum mitmachen?</h2>
+      </div>
+      <ul class="benefits benefits--grid">
+        <li class="benefits__item">
+          <svg class="icon" aria-hidden="true"><use href="#icon-region"/></svg>
+          <span><strong>Neue Kunden aus der Region erreichen</strong> Menschen ab 60 und ihre Angehörigen suchen Unterstützung direkt in Ihrer Nähe.</span>
+        </li>
+        <li class="benefits__item">
+          <svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>
+          <span><strong>Passende Vermittlungsanfragen erhalten</strong> Unser Team liest jede Anfrage persönlich und meldet sich nur, wenn sie zu Ihrem Angebot passt.</span>
+        </li>
+        <li class="benefits__item">
+          <svg class="icon" aria-hidden="true"><use href="#icon-team"/></svg>
+          <span><strong>Teil eines regionalen Netzwerks werden</strong> Gemeinsam mit Betrieben und Helfern aus Ihrer Stadt.</span>
+        </li>
+        <li class="benefits__item">
+          <svg class="icon" aria-hidden="true"><use href="#icon-kostenlos"/></svg>
+          <span><strong>Kostenlos mit Basisprofil starten</strong> Die Registrierung und das Basisprofil kosten nichts.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--sand" id="zwei-wege" aria-labelledby="wege-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Zwei Wege</span>
+        <h2 id="wege-titel">Gewerblicher Dienstleister oder privater Helfer?</h2>
+        <p class="section__intro">Beide Wege sind wichtig – sie unterscheiden sich aber darin, welche Aufgaben übernommen werden dürfen.</p>
+      </div>
+
+      <div class="paths">
+        <article class="path-card" aria-labelledby="weg-gewerblich">
+          <span class="path-card__tag">Weg 1</span>
+          <h3 id="weg-gewerblich">Gewerbliche Dienstleister</h3>
+          <p>Für Betriebe, Selbstständige und Organisationen – zum Beispiel Handwerksbetriebe, Reinigungsfirmen, Pflege- und Betreuungsdienste, Fahrdienste oder Anbieter von Hausnotruf.</p>
+          <ul class="check-list">
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Angemeldetes Gewerbe bzw. selbstständige Tätigkeit</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen, Elektro-, Gas- oder Wasserinstallation – nur mit entsprechender Qualifikation, Zulassung oder Eintragung</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Passende Nachweise reichen Sie nach der Registrierung ein</span></li>
+          </ul>
+          <a class="btn btn--secondary" href="#registrierung" data-anbieterart="gewerblich">Als Betrieb registrieren</a>
+        </article>
+
+        <article class="path-card path-card--sage" aria-labelledby="weg-privat">
+          <span class="path-card__tag">Weg 2</span>
+          <h3 id="weg-privat">Private Helfer</h3>
+          <p>Für Privatpersonen, die gern einfache Alltagshilfe leisten – zum Beispiel einkaufen, begleiten, Gesellschaft leisten oder beim Smartphone helfen.</p>
+          <ul class="check-list">
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Einfache Hilfe im Alltag, keine Tätigkeiten, die eine Fachausbildung oder Genehmigung erfordern</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Keine Pflege, keine Elektro- oder Installationsarbeiten</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Sie entscheiden, wann und wie oft Sie helfen möchten</span></li>
+          </ul>
+          <a class="btn btn--secondary" href="#registrierung" data-anbieterart="privat">Als privater Helfer registrieren</a>
+        </article>
+      </div>
+
+      <div class="notice notice--light">
+        <svg class="icon" aria-hidden="true"><use href="#icon-geprueft"/></svg>
+        <p><strong>Alle Profile werden geprüft.</strong> Jedes Profil wird vor der Veröffentlichung bzw. Freischaltung
+          von unserem Team persönlich geprüft. Erst danach vermitteln wir Anfragen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="kosten-titel">
+    <div class="container split split--top">
+      <div>
+        <span class="section__eyebrow">Kosten</span>
+        <h2 id="kosten-titel">Kostenlos starten</h2>
+        <p>Die Registrierung und Ihr Basisprofil sind kostenlos. Ob es später zusätzliche, freiwillige Leistungen für
+          gewerbliche Anbieter geben wird, steht noch nicht fest – darüber würden wir Sie vorab transparent informieren.</p>
+        <p>Für Menschen, die bei uns Hilfe suchen, bleibt die Vermittlung immer kostenlos.</p>
+      </div>
+      <div class="provider-panel">
+        <h3>So geht es nach der Registrierung weiter</h3>
+        <ol class="mini-steps">
+          <li>Unser Team prüft Ihre Angaben und meldet sich bei Ihnen.</li>
+          <li>Gewerbliche Anbieter reichen bei Bedarf Nachweise nach.</li>
+          <li>Nach der Freischaltung erhalten Sie passende Anfragen – Sie entscheiden, ob Sie sie annehmen.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Registrierung (SIMULIERT – sendet nichts)
+       ====================================================================== -->
+  <section class="section section--sand" id="registrierung" aria-labelledby="registrierung-titel">
+    <div class="container request-layout">
+      <div class="request-layout__aside">
+        <span class="section__eyebrow">Registrierung</span>
+        <h2 id="registrierung-titel" tabindex="-1">Als Anbieter registrieren</h2>
+        <p class="section__intro">Es dauert nur wenige Minuten. Nachweise und Details klären wir anschließend persönlich mit Ihnen.</p>
+        <ul class="check-list">
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kostenloses Basisprofil</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Persönliche Prüfung durch unser Team</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Keine Verpflichtung, Anfragen anzunehmen</span></li>
+        </ul>
+      </div>
+
+      <div class="request-layout__main">
+        <form class="form" id="anbieter-formular" action="/fuer-anbieter/#registrierung" method="post" aria-labelledby="anbieter-formular-titel">
+          <h3 class="form__title" id="anbieter-formular-titel">Ihre Registrierung</h3>
+          <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
+
+          <div class="form-summary" id="anbieter-fehler" tabindex="-1" hidden>
+            <h3>Bitte prüfen Sie Ihre Angaben</h3>
+            <ul data-fehlerliste></ul>
+          </div>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">1</span> Art des Angebots</legend>
+            <fieldset class="form-field" id="a-art" aria-describedby="a-art-fehler">
+              <legend>Wie möchten Sie sich registrieren? <span class="form-field__req">*</span></legend>
+              <div class="choice-group choice-group--inline">
+                <label class="choice"><input type="radio" name="art" value="gewerblich" id="a-art-gewerblich" required> <span><strong>Gewerblicher Dienstleister</strong><br>Betrieb, Selbstständige, Organisation</span></label>
+                <label class="choice"><input type="radio" name="art" value="privat" id="a-art-privat"> <span><strong>Privater Helfer</strong><br>Einfache Alltagshilfe als Privatperson</span></label>
+              </div>
+              <p class="form-field__error" id="a-art-fehler" aria-live="polite"></p>
+            </fieldset>
+            <p class="form-field__hint form-hint-js" data-art-hinweis>Nach Ihrer Auswahl zeigen wir Ihnen die passenden Felder.</p>
+          </fieldset>
+
+          <!-- Gewerblich -->
+          <fieldset class="form__section" data-art-bereich="gewerblich">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zum Betrieb</legend>
+
+            <div class="form-field">
+              <label class="form-field__label" for="a-firma">Firmenname <span class="form-field__req">*</span></label>
+              <input class="form-field__input" id="a-firma" name="firma" type="text" autocomplete="organization" aria-required="true" aria-describedby="a-firma-fehler">
+              <p class="form-field__error" id="a-firma-fehler" aria-live="polite"></p>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="a-ansprechpartner">Ansprechpartner (Vor- und Nachname) <span class="form-field__req">*</span></label>
+              <input class="form-field__input" id="a-ansprechpartner" name="ansprechpartner" type="text" autocomplete="name" aria-required="true" aria-describedby="a-ansprechpartner-fehler">
+              <p class="form-field__error" id="a-ansprechpartner-fehler" aria-live="polite"></p>
+            </div>
+
+            <fieldset class="form-field" id="a-bereiche" aria-describedby="a-bereiche-fehler">
+              <legend>Leistungsbereiche <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="bereiche" value="wohnen-haus-handwerk" id="a-bereich-wohnen-haus-handwerk"> <span>Wohnen, Haus und Handwerk</span></label>
+                <label class="choice"><input type="checkbox" name="bereiche" value="haushalt-reinigung" id="a-bereich-haushalt-reinigung"> <span>Haushalt und Reinigung</span></label>
+                <label class="choice"><input type="checkbox" name="bereiche" value="pflege-betreuung" id="a-bereich-pflege-betreuung"> <span>Pflege und Betreuung</span></label>
+                <label class="choice"><input type="checkbox" name="bereiche" value="alltag-persoenliche-hilfe" id="a-bereich-alltag-persoenliche-hilfe"> <span>Alltag und persönliche Hilfe</span></label>
+                <label class="choice"><input type="checkbox" name="bereiche" value="technik-sicherheit" id="a-bereich-technik-sicherheit"> <span>Technik und Sicherheit</span></label>
+                <label class="choice"><input type="checkbox" name="bereiche" value="freizeit-lebensqualitaet" id="a-bereich-freizeit-lebensqualitaet"> <span>Freizeit und Lebensqualität</span></label>
+              </div>
+              <p class="form-field__error" id="a-bereiche-fehler" aria-live="polite"></p>
+            </fieldset>
+
+            <fieldset class="form-field" id="a-einsatzorte" aria-describedby="a-einsatzorte-fehler">
+              <legend>Einsatzorte / Regionen <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="duesseldorf" id="a-ort-duesseldorf"> <span>Düsseldorf</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="wuppertal" id="a-ort-wuppertal"> <span>Wuppertal</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="hilden" id="a-ort-hilden"> <span>Hilden</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="remscheid" id="a-ort-remscheid"> <span>Remscheid</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="langenfeld" id="a-ort-langenfeld"> <span>Langenfeld</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="haan" id="a-ort-haan"> <span>Haan</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="wesel" id="a-ort-wesel"> <span>Wesel</span></label>
+                <label class="choice"><input type="checkbox" name="einsatzorte" value="rees" id="a-ort-rees"> <span>Rees</span></label>
+              </div>
+              <p class="form-field__error" id="a-einsatzorte-fehler" aria-live="polite"></p>
+            </fieldset>
+            <div class="form-field">
+              <label class="form-field__label" for="a-weitere-orte">Weitere Orte <span class="form-field__hint">(freiwillig)</span></label>
+              <input class="form-field__input" id="a-weitere-orte" name="weitere_orte" type="text">
+            </div>
+
+            <div class="notice notice--light" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+              <p><strong>Nachweise:</strong> Für genehmigungspflichtige Tätigkeiten (z. B. Pflege, Elektro-, Gas- oder
+                Wasserinstallation) bitten wir Sie nach der Registrierung um passende Nachweise – etwa Gewerbeanmeldung,
+                Eintragung in die Handwerksrolle oder Zulassung. Bitte laden Sie jetzt noch nichts hoch.</p>
+            </div>
+          </fieldset>
+
+          <!-- Privat -->
+          <fieldset class="form__section" data-art-bereich="privat">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zu Ihnen</legend>
+
+            <div class="form__row form__row--2">
+              <div class="form-field">
+                <label class="form-field__label" for="a-vorname">Vorname <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="a-vorname" name="vorname" type="text" autocomplete="given-name" aria-required="true" aria-describedby="a-vorname-fehler">
+                <p class="form-field__error" id="a-vorname-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="a-nachname">Nachname <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="a-nachname" name="nachname" type="text" autocomplete="family-name" aria-required="true" aria-describedby="a-nachname-fehler">
+                <p class="form-field__error" id="a-nachname-fehler" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <fieldset class="form-field" id="a-hilfe" aria-describedby="a-hilfe-hinweis a-hilfe-fehler">
+              <legend>Wobei möchten Sie helfen? <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
+              <p class="form-field__hint" id="a-hilfe-hinweis">Private Helfer übernehmen einfache Alltagshilfe – keine Pflege und keine Arbeiten, die eine Fachausbildung erfordern.</p>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="hilfe" value="einkaufen" id="a-hilfe-einkaufen"> <span>Einkaufen und Besorgungen</span></label>
+                <label class="choice"><input type="checkbox" name="hilfe" value="begleitung" id="a-hilfe-begleitung"> <span>Begleitung zu Terminen oder Spaziergängen</span></label>
+                <label class="choice"><input type="checkbox" name="hilfe" value="gesellschaft" id="a-hilfe-gesellschaft"> <span>Gesellschaft leisten, Vorlesen</span></label>
+                <label class="choice"><input type="checkbox" name="hilfe" value="technik" id="a-hilfe-technik"> <span>Hilfe bei Smartphone und Tablet</span></label>
+                <label class="choice"><input type="checkbox" name="hilfe" value="garten" id="a-hilfe-garten"> <span>Leichte Gartenarbeit</span></label>
+                <label class="choice"><input type="checkbox" name="hilfe" value="haushalt" id="a-hilfe-haushalt"> <span>Kleine Handgriffe im Haushalt</span></label>
+              </div>
+              <p class="form-field__error" id="a-hilfe-fehler" aria-live="polite"></p>
+            </fieldset>
+
+            <div class="form-field">
+              <label class="form-field__label" for="a-region">Wo möchten Sie helfen? <span class="form-field__req">*</span></label>
+              <select class="form-field__input" id="a-region" name="region" aria-required="true" aria-describedby="a-region-fehler">
+                <option value="">Bitte wählen</option>
+                <option value="duesseldorf">Düsseldorf</option>
+                <option value="wuppertal">Wuppertal</option>
+                <option value="hilden">Hilden</option>
+                <option value="remscheid">Remscheid</option>
+                <option value="langenfeld">Langenfeld</option>
+                <option value="haan">Haan</option>
+                <option value="wesel">Wesel</option>
+                <option value="rees">Rees</option>
+                <option value="andere">Andere Region</option>
+              </select>
+              <p class="form-field__error" id="a-region-fehler" aria-live="polite"></p>
+            </div>
+
+            <fieldset class="form-field" id="a-verfuegbarkeit" aria-describedby="a-verfuegbarkeit-fehler">
+              <legend>Wann haben Sie in der Regel Zeit? <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
+              <div class="choice-group choice-group--cols">
+                <label class="choice"><input type="checkbox" name="verfuegbarkeit" value="vormittags" id="a-zeit-vormittags"> <span>Werktags vormittags</span></label>
+                <label class="choice"><input type="checkbox" name="verfuegbarkeit" value="nachmittags" id="a-zeit-nachmittags"> <span>Werktags nachmittags</span></label>
+                <label class="choice"><input type="checkbox" name="verfuegbarkeit" value="abends" id="a-zeit-abends"> <span>Abends</span></label>
+                <label class="choice"><input type="checkbox" name="verfuegbarkeit" value="wochenende" id="a-zeit-wochenende"> <span>Am Wochenende</span></label>
+              </div>
+              <p class="form-field__error" id="a-verfuegbarkeit-fehler" aria-live="polite"></p>
+            </fieldset>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Kontakt</legend>
+            <div class="form__row form__row--2">
+              <div class="form-field">
+                <label class="form-field__label" for="a-email">E-Mail <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="a-email" name="email" type="email" autocomplete="email" required aria-describedby="a-email-fehler">
+                <p class="form-field__error" id="a-email-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="a-telefon">Telefon <span class="form-field__hint">(freiwillig)</span></label>
+                <input class="form-field__input" id="a-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="a-telefon-fehler">
+                <p class="form-field__error" id="a-telefon-fehler" aria-live="polite"></p>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="a-nachricht">Was sollten wir noch wissen? <span class="form-field__hint">(freiwillig)</span></label>
+              <textarea class="form-field__input" id="a-nachricht" name="nachricht" rows="4"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Einwilligung</legend>
+            <div class="form-field" id="a-einwilligung-feld">
+              <label class="choice" for="a-einwilligung">
+                <input type="checkbox" id="a-einwilligung" name="einwilligung" required aria-describedby="a-einwilligung-fehler">
+                <span>Ich bin einverstanden, dass das Team von KONZEPT 60+ meine Angaben zur Prüfung meiner Registrierung und zur Kontaktaufnahme verwendet. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
+              </label>
+              <p class="form-field__error" id="a-einwilligung-fehler" aria-live="polite"></p>
+            </div>
+          </fieldset>
+
+          <div class="form__actions">
+            <button class="btn btn--primary btn--block" type="submit">Kostenlos registrieren</button>
+            <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
+          </div>
+        </form>
+
+        <div class="form-success" id="anbieter-erfolg" tabindex="-1" role="status" hidden>
+          <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
+          <h3>Vielen Dank für Ihr Interesse!</h3>
+          <p>So würde es weitergehen: Unser Team prüft Ihre Angaben persönlich und meldet sich per E-Mail bei Ihnen<span data-erfolg-art></span>.</p>
+          <p class="form-success__prototype">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <span>Prototyp – keine Registrierung verarbeitet. Es wurden keine Daten gesendet oder gespeichert.</span>
+          </p>
+          <button class="btn btn--secondary" type="button" data-neue-anfrage>Neue Registrierung beginnen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
+          <span>KONZEPT</span><span class="logo__plus">60+</span>
+        </a>
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
+        <p class="site-footer__contact">
+          <!-- DEMO-Telefonnummer (Platzhalter, nicht vergeben) -->
+          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon"><span class="visually-hidden">Telefon: </span>0211 000 000 00</a>
+          <span class="demo-label">Demo<span class="visually-hidden">-Nummer</span></span><br>
+          <span class="site-footer__hours">Montag bis Freitag, 9 bis 17 Uhr (Beispielzeiten)</span>
+        </p>
+      </div>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+          <li><a href="/?region=rees#anfrage" data-region="rees">Rees</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul>
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, Telefonnummer, Domain und Artikel sind Platzhalter.</p>
+    </div>
+  </div>
+</footer>
+<!-- END partial:footer -->
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

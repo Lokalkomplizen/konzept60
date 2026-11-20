@@ -57,7 +57,7 @@ Quelle: gesetze-im-internet.de, § 15, Anlage 1 und Anlage 2 SGB XI, abgerufen 2
 
 Tests: 22 Fälle, alle Grenzen knapp darunter/darauf, Modul-5-Schwellen, Gleitkomma-Fallen, ungültige Eingaben. **Keine amtlichen Referenzfälle** – der Medizinische Dienst veröffentlicht keine durchgerechneten Beispielfälle. Die Erwartungswerte sind von Hand aus Anlage 1/2 nachgerechnet.
 
-## 5. Fragebogen (Etappe 2, Plan)
+## 5. Fragebogen (Etappe 2, umgesetzt)
 
 - 64 Kriterien sind zu viel für Laien in 10–15 Minuten. Ansatz: Jedes Kriterium bleibt einzeln (keine eigene Formel), aber **Filterfragen** überspringen ganze Blöcke („Gibt es Verhaltensweisen, die Ihnen Sorgen machen?“ nein → Modul 3 = 0). Ergebnis bleibt identisch, weil übersprungene Kriterien sachlich 0 sind.
 - Antworttexte je Skala in Alltagssprache, aber 1:1 auf die Stufen von Anlage 1 abgebildet.
@@ -80,7 +80,7 @@ Tests: 22 Fälle, alle Grenzen knapp darunter/darauf, Modul-5-Schwellen, Gleitko
 | Briefing-Werte 386/638/889/1.079, 2.089/2.529, Überbrückung 1.855 | **nicht übernommen** | 386/638 = Referentenentwurf; übrige in keiner Quelle gefunden |
 | Hälftige Auszahlung erste 3 Monate | **nicht übernommen** | laut Sekundärquellen im Regierungsentwurf gestrichen |
 | Pflegebegleitung | Drucksache: ab 01.01.2029 | Briefing nennt 2027 – angepasst |
-| Begutachtungsrichtlinien (Abgrenzung der Stufen, Sonderfälle z. B. Sondenernährung und 4.8/4.9) | nicht gelesen | Original BRi MD Bund lesen, bevor Fragetexte entstehen |
+| Begutachtungsrichtlinien (BRi, Kap. 4.9: Abgrenzung je Kriterium) | **nicht im Original gelesen** – PDF (Stand Jan. 2024) technisch nur bis Kap. 4.5 abrufbar | Fragetexte stützen sich auf Anlage 1, die MDS-Broschüre „Die Selbstständigkeit als Maß der Pflegebedürftigkeit“ (Treppen-Beispiel, Modul 3 nur mit Unterstützungsbedarf, Hilfsmittel = selbstständig) und allgemeine Stufenbeschreibungen. Vor Livegang Kap. 4.9 gegenlesen. |
 | NRW-Anerkennung (AnFöVO) | nicht geprüft | Anbieterprofil braucht internes Merkmal „anerkannt nach § 45a“ |
 | Vorpflegezeit Verhinderungspflege | Wegfall seit 01.07.2025 [wahrscheinlich] | § 39 im Original prüfen |
 | Beitrags-/Finanzierungsthemen (Kinderlose 0,9 %, Minijobs, BBG 6.375 €, Ehegattenzuschlag 0,52) | nicht geprüft | Drucksache Artikel zu §§ 55, 57 SGB XI-E |
@@ -91,3 +91,12 @@ Tests: 22 Fälle, alle Grenzen knapp darunter/darauf, Modul-5-Schwellen, Gleitko
 - **Haftung/Erwartung:** Selbsteinschätzungen weichen erfahrungsgemäß oft vom Gutachten ab. Gegenmittel: klare Formulierung, kein „Ihnen steht zu“, Hinweis auf Widerspruchsmöglichkeit und Pflegeberatung (§ 7a).
 - **Reform während der Entwicklung:** Das Gesetz kann bis 18.12.2026 geändert werden. Deshalb Datenpakete statt fester Texte; nach Verkündung nur JSON austauschen.
 - **SEO-Erwartung „KI-Suche“:** strukturierte Daten nur, wo sie zutreffen (WebApplication, BreadcrumbList, FAQPage nur bei sichtbarer FAQ).
+
+## 9. Stand Etappe 2
+
+- Seite `/mein-alltag/pflegegrad-rechner/`, Karte auf `/mein-alltag/`, Eintrag im Assistenten.
+- `data/pflegegrad/fragen.json`: 29 Schritte (bei allen Filtern „Nein“ 13), 64 Kriterien; `build.py` bricht ab, wenn ein Kriterium fehlt oder doppelt ist.
+- Filterfragen für Modul 2, 3, 5 und für 4.11/4.12; übersprungene Kriterien zählen 0 (inhaltlich identisch, weil „keine Einschränkung“).
+- Hinweise im Ergebnis: Nähe zur Grenze (Anzeigeregel von Wir helfen, 3 Punkte, keine Gesetzesregel), besondere Bedarfskonstellation (§ 15 Abs. 4, nur Hinweis), Reform 2027 (nur wenn der Entwurf einen niedrigeren Grad ergäbe).
+- Tests: `node --test tests/*.test.js` (22 Rechentests) und `tests/rechner.e2e.js` (Durchlauf im Browser, Desktop + Handy: UI-Ergebnis = nba.js, Schrittzahl, Pflichtfelder, keine Netzwerkanfragen, kein Storage).
+- Offen für Etappe 3: Leistungen 2026, Vergleich 2027, „Was bedeutet die Reform für mich?“, Vermittlung nach Themen, PDF-Layout (print.css), SEO/FAQ/JSON-LD.

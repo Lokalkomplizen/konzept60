@@ -603,6 +603,7 @@ def assistent_data(themen, regionen, beitraege):
         "alltag": [
             {"id": "checklisten", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
             {"id": "wohnungs-check", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
+            {"id": "pflegegrad-rechner", "titel": "Pflegegradrechner", "hinweis": "Welcher Pflegegrad könnte vorliegen?", "url": "/mein-alltag/pflegegrad-rechner/", "bald": False},
             {"id": "termine", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
             {"id": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
         ],
@@ -863,6 +864,29 @@ def wohnungs_check_html(check, beitraege, site_name):
 # --------------------------------------------------------------------------
 # Seiten
 # --------------------------------------------------------------------------
+def pflegegrad_daten():
+    """Bettet die Rechner-Daten als JSON in die Seite ein (data/ wird nicht veröffentlicht, kein fetch).
+    → WordPress: dieselbe Struktur per wp_add_inline_script oder <script type="application/json">."""
+    d = ROOT / "data" / "pflegegrad"
+    daten = {
+        "regeln": json.loads(read(d / "nba-2017.json")),
+        "entwurf": json.loads(read(d / "nba-2027-entwurf.json")),
+        "fragen": json.loads(read(d / "fragen.json")),
+    }
+    # Jedes Kriterium mit Einzelpunkten muss genau einmal abgefragt werden
+    erwartet = []
+    for m in daten["regeln"]["module"]:
+        for k in m["kriterien"]:
+            erwartet += [t[0] for t in k["teile"]] if "teile" in k else [k["id"]]
+    gefragt = [f["kriterium"] for s in daten["fragen"]["schritte"] for f in s["fragen"] if "kriterium" in f]
+    if sorted(gefragt) != sorted(erwartet):
+        fehlt = sorted(set(erwartet) - set(gefragt))
+        doppelt = sorted({k for k in gefragt if gefragt.count(k) > 1})
+        raise SystemExit(f"FEHLER: fragen.json – fehlende Kriterien {fehlt}, doppelte {doppelt}")
+    text = json.dumps(daten, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/json" id="pgr-daten">{text}</script>'
+
+
 def home_head(regionen):
     """Hero-Preload + JSON-LD der Startseite (Platzhalterwerte)."""
     area = ", ".join(json.dumps(r["name"], ensure_ascii=False) for r in regionen)
@@ -1003,6 +1027,7 @@ def main():
         "checklisten_inhalt": checklisten_html(checklisten, beitraege, SITE_NAME),
         "wc_formular": wc_form,
         "wc_ergebnis": wc_result,
+        "pgr_daten": pflegegrad_daten(),
         "home_head": home_head(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
@@ -1030,6 +1055,7 @@ def main():
         ("mein-alltag.html", "mein-alltag/index.html"),
         ("mein-alltag-checklisten.html", "mein-alltag/checklisten/index.html"),
         ("mein-alltag-wohnungs-check.html", "mein-alltag/wohnungs-check/index.html"),
+        ("mein-alltag-pflegegrad-rechner.html", "mein-alltag/pflegegrad-rechner/index.html"),
         ("impressum.html", "impressum/index.html"),
         ("datenschutz.html", "datenschutz/index.html"),
         ("404.html", "404.html"),

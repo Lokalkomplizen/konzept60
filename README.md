@@ -24,6 +24,7 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/mein-alltag/` | `mein-alltag/index.html` | `templates/mein-alltag.html` (Übersicht der Alltags-Werkzeuge) |
 | `/mein-alltag/checklisten/` | `mein-alltag/checklisten/index.html` | `templates/mein-alltag-checklisten.html` + `data/checklisten.json` (4 Listen, nur allgemeine Punkte ohne Beträge/Fristen) |
 | `/mein-alltag/wohnungs-check/` | `mein-alltag/wohnungs-check/index.html` | `templates/mein-alltag-wohnungs-check.html` + `data/wohnungs-check.json` (12 Fragen, Priorität 1 = Sturzgefahr) |
+| `/mein-alltag/pflegegrad-rechner/` | `mein-alltag/pflegegrad-rechner/index.html` | `templates/mein-alltag-pflegegrad-rechner.html` + `data/pflegegrad/*.json` (eingebettet), Logik `assets/js/pflegegrad/`; Konzept: `docs/pflegegradrechner-konzept.md` |
 | `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
 | `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |

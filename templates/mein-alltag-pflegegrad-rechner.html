@@ -1,0 +1,146 @@
+<!--meta
+title: Pflegegradrechner: Welcher Pflegegrad könnte vorliegen? – {{site_name}}
+description: Kostenloser Pflegegradrechner nach dem offiziellen Begutachtungsverfahren (§ 15 SGB XI). Fragen zum Alltag beantworten und eine erste Einschätzung erhalten. Ohne Anmeldung, nichts wird gespeichert.
+nav: alltag
+nav_level: section
+body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/assets/js/pflegegrad/nba.js" defer></script><script src="/assets/js/pflegegrad/rechner.js" defer></script>
+-->
+  <!-- Pflegegradrechner  (→ WordPress: Seite "Pflegegradrechner" bzw. Shortcode [wirhelfen_pflegegradrechner];
+       Regeln: data/pflegegrad/*.json, von tools/build.py unten eingebettet; Rechnen: assets/js/pflegegrad/nba.js;
+       Oberfläche: assets/js/pflegegrad/rechner.js). Nichts wird gespeichert oder gesendet. -->
+  <div class="page-header page-header--compact no-print">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag</a></li>
+          <li><a href="/mein-alltag/pflegegrad-rechner/" aria-current="page">Pflegegradrechner</a></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <section class="section section--tight pgr-section" aria-labelledby="pgr-titel">
+    <div class="container">
+      <div class="pgr" data-pgr>
+
+        <!-- 1. Start -->
+        <div class="pgr-start" data-pgr-start>
+          <div class="pgr-start__text">
+            <span class="section__eyebrow">Mein Alltag · Pflegegradrechner</span>
+            <h1 id="pgr-titel">Welcher Pflegegrad könnte vorliegen?</h1>
+            <p class="section__intro">
+              Mit unserem kostenlosen Pflegegradrechner können Sie unverbindlich einschätzen, welcher Pflegegrad aufgrund
+              der persönlichen Einschränkungen infrage kommen könnte. Beantworten Sie Fragen zum Alltag und erhalten Sie
+              anschließend eine erste Orientierung.
+            </p>
+            <div class="notice notice--important" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+              <p>Die Berechnung ersetzt keine offizielle Begutachtung durch den Medizinischen Dienst und keine Entscheidung Ihrer Pflegekasse.</p>
+            </div>
+            <ul class="pgr-start__facts">
+              <li>Dauer: etwa 10 bis 15 Minuten</li>
+              <li>Ohne Anmeldung, kostenlos</li>
+              <li>Ihre Antworten verlassen dieses Gerät nicht</li>
+            </ul>
+            <p class="pgr-start__person">
+              Sie können den Rechner für sich selbst oder für einen Angehörigen ausfüllen. In den Fragen ist mit
+              „die Person“ immer die Person gemeint, um deren Pflegegrad es geht. Der Rechner ist für Erwachsene gedacht –
+              bei Kindern wird mit gleichaltrigen Kindern verglichen, das bildet er nicht ab.
+            </p>
+            <p class="no-js-note">Der Rechner braucht JavaScript. Bitte aktivieren Sie JavaScript oder nutzen Sie einen anderen Browser.</p>
+            <div class="btn-group">
+              <button type="button" class="btn btn--primary" data-pgr-los data-pgr-js hidden>Jetzt Pflegegrad berechnen</button>
+            </div>
+          </div>
+          <picture class="pgr-start__media">
+            <source type="image/webp" srcset="/assets/img/pflegegrad/titelbild-800.webp 800w, /assets/img/pflegegrad/titelbild-1536.webp 1536w" sizes="(min-width: 60em) 40vw, 92vw">
+            <img src="/assets/img/pflegegrad/titelbild-800.jpg" srcset="/assets/img/pflegegrad/titelbild-800.jpg 800w, /assets/img/pflegegrad/titelbild-1536.jpg 1536w" sizes="(min-width: 60em) 40vw, 92vw"
+                 width="1536" height="1024" alt="Ein älterer Mann und eine Frau sitzen lächelnd vor einem Laptop und beantworten gemeinsam Fragen." fetchpriority="high">
+          </picture>
+        </div>
+
+        <!-- 2. Fragebogen (wird von rechner.js gefüllt) -->
+        <div class="pgr-panel" data-pgr-frage hidden aria-live="off"></div>
+
+        <!-- 3. Zusammenfassung vor der Auswertung -->
+        <div class="pgr-panel" data-pgr-zusammenfassung hidden>
+          <h2 data-pgr-fokus>Ihre Antworten im Überblick</h2>
+          <p>Bitte prüfen Sie Ihre Angaben. Mit „Ändern“ springen Sie zur jeweiligen Frage zurück.</p>
+          <div class="pgr-summary" data-pgr-liste></div>
+          <div class="pgr-nav">
+            <button type="button" class="btn btn--secondary" data-pgr-zurueck-zu-fragen>Zurück</button>
+            <button type="button" class="btn btn--primary" data-pgr-auswerten>Pflegegrad auswerten</button>
+          </div>
+        </div>
+
+        <!-- 4. Ergebnis -->
+        <div class="pgr-panel pgr-result" data-pgr-ergebnis data-druck-bereich hidden>
+          <p class="section__eyebrow">Ihr voraussichtlicher Pflegegrad</p>
+          <h2 class="pgr-result__grad" data-pgr-grad data-pgr-fokus></h2>
+          <p class="pgr-result__satz" data-pgr-satz></p>
+          <p data-pgr-grad-text></p>
+
+          <div class="notice notice--light" data-pgr-grenze hidden role="note">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <p></p>
+          </div>
+
+          <div class="notice notice--important" data-pgr-sonderfall hidden role="note">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <p><strong>Sonderregel möglich:</strong> Wenn eine Person weder Arme noch Beine gebrauchen kann, kann nach § 15 Abs. 4 SGB XI Pflegegrad 5 auch mit weniger als 90 Punkten festgestellt werden. Ob das zutrifft, prüft die Begutachtung.</p>
+          </div>
+
+          <div class="notice notice--important" data-pgr-reform hidden role="note">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <div>
+              <p><strong>Pflegereform 2027 (Gesetzentwurf, noch nicht beschlossen)</strong></p>
+              <p data-pgr-reform-text></p>
+            </div>
+          </div>
+
+          <h3>So verteilen sich die Punkte</h3>
+          <ul class="pgr-bars" data-pgr-module></ul>
+
+          <h3>Wo die größten Einschränkungen liegen</h3>
+          <ul class="pgr-liste" data-pgr-staerkste></ul>
+
+          <details class="pgr-details">
+            <summary>Rechenweg anzeigen</summary>
+            <div class="pgr-table-wrap">
+              <table class="pgr-table">
+                <caption>Punkte je Abschnitt nach Anlage 2 zu § 15 SGB XI</caption>
+                <thead><tr><th scope="col">Abschnitt</th><th scope="col">Einzelpunkte</th><th scope="col">Einschränkung</th><th scope="col">Gewichtete Punkte</th></tr></thead>
+                <tbody data-pgr-tabelle></tbody>
+                <tfoot><tr><th scope="row" colspan="3">Gesamtpunkte</th><td data-pgr-summe></td></tr></tfoot>
+              </table>
+            </div>
+            <p class="pgr-quelle">Grundlage: § 15 SGB XI mit Anlage 1 und 2 (Stand des Rechners: November 2026). Pflegegrad 1 ab 12,5 Punkten, 2 ab 27, 3 ab 47,5, 4 ab 70, 5 ab 90 Punkten. Abschnitt 2 und 3 werden nicht addiert, es zählt nur der höhere Wert.</p>
+          </details>
+
+          <h3>Wie es weitergehen kann</h3>
+          <ol class="pgr-next">
+            <li><strong>Antrag stellen:</strong> Den Antrag auf Pflegegrad stellen Sie bei der Pflegekasse (sie ist bei der Krankenkasse angesiedelt). Ein formloser Anruf oder ein kurzes Schreiben genügt. Leistungen gibt es frühestens ab dem Monat der Antragstellung.</li>
+            <li><strong>Begutachtung vorbereiten:</strong> Notieren Sie einige Tage lang, wobei Hilfe nötig ist. Bei der Begutachtung sollte eine vertraute Person dabei sein.</li>
+            <li><strong>Beraten lassen:</strong> Sie haben Anspruch auf kostenlose Pflegeberatung durch Ihre Pflegekasse oder einen Pflegestützpunkt.</li>
+            <li><strong>Hilfe im Alltag finden:</strong> Wir suchen kostenlos und unverbindlich passende Unterstützung in Ihrer Region.</li>
+          </ol>
+          <p><a href="/ratgeber/pflegegrad-beantragen/">Ratgeber: Pflegegrad beantragen – so geht es Schritt für Schritt</a></p>
+
+          <div class="btn-group no-print">
+            <a class="btn btn--primary" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Passende Unterstützung finden</a>
+            <button type="button" class="btn btn--secondary" data-drucken hidden>Auswertung drucken oder als PDF speichern</button>
+          </div>
+
+          <div class="pgr-result__footer no-print">
+            <button type="button" class="pgr-link-button" data-pgr-uebersicht>Antworten ansehen und ändern</button>
+            <button type="button" class="pgr-link-button" data-pgr-neu>Alle Antworten löschen und neu beginnen</button>
+          </div>
+          <p class="pgr-quelle">Dies ist eine unverbindliche Einschätzung auf Grundlage Ihrer Angaben. Über den Pflegegrad entscheidet allein die Pflegekasse nach einer Begutachtung durch den Medizinischen Dienst (bei Privatversicherten: Medicproof).</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{{pgr_daten}}

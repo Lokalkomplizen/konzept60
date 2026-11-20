@@ -1,0 +1,205 @@
+{
+ "_doku": "Passende Hilfe nach dem Ergebnis. 'wenn' = Modulnummer und Mindeststufe (0 keine … 4 schwerste) oder Pflegegrad. finanzierung: kasse = über die Pflegekasse, nur mit zugelassenem/vertraglich gebundenem Anbieter; anerkannt = nur Angebote, die nach Landesrecht anerkannt sind (NRW: Anerkennungs- und Förderungsverordnung, AnFöVO); privat = selbst zu zahlen. Kein Anbieter rechnet automatisch über die Pflegekasse ab. auch_ohne_budget: Kassenleistung bleibt auch bei Pflegegrad 1 ohne Budget möglich (z. B. Hausnotruf als technisches Pflegehilfsmittel).",
+ "finanzierung_texte": {
+  "kasse": "Über die Pflegekasse möglich – nur mit einem zugelassenen Anbieter",
+  "anerkannt": "Über die Pflegekasse nur bei anerkannten Angeboten zur Unterstützung im Alltag",
+  "zuschuss": "Zuschuss der Pflegekasse möglich – Antrag vor Beginn stellen",
+  "privat": "In der Regel selbst zu zahlen"
+ },
+ "nrw_hinweis": "In Nordrhein-Westfalen regelt die Anerkennungs- und Förderungsverordnung (AnFöVO), welche Angebote zur Unterstützung im Alltag über die Pflegekasse abgerechnet werden dürfen. Ob ein Anbieter anerkannt ist, klären wir bei der Vermittlung – fragen Sie im Zweifel auch Ihre Pflegekasse.",
+ "angebote": [
+  {
+   "id": "haushalt",
+   "titel": "Haushaltshilfe: Reinigung, Wäsche, Einkäufe",
+   "thema": "haushalt-reinigung",
+   "wenn": {
+    "pflegegrad_ab": 1
+   },
+   "finanzierung": [
+    "anerkannt",
+    "privat"
+   ]
+  },
+  {
+   "id": "alltagsbegleitung",
+   "titel": "Alltagsbegleitung und Begleitung zu Arztterminen",
+   "thema": "alltag-persoenliche-hilfe",
+   "wenn": {
+    "module": [
+     [
+      5,
+      1
+     ],
+     [
+      2,
+      2
+     ],
+     [
+      1,
+      2
+     ]
+    ]
+   },
+   "finanzierung": [
+    "anerkannt",
+    "privat"
+   ]
+  },
+  {
+   "id": "pflegedienst",
+   "titel": "Ambulante Pflege: Hilfe beim Waschen, Duschen und Anziehen",
+   "thema": "pflege-betreuung",
+   "wenn": {
+    "module": [
+     [
+      4,
+      2
+     ]
+    ],
+    "pflegegrad_ab": 2
+   },
+   "finanzierung": [
+    "kasse"
+   ]
+  },
+  {
+   "id": "betreuung",
+   "titel": "Stundenweise Betreuung, auch bei Demenz",
+   "thema": "pflege-betreuung",
+   "wenn": {
+    "module": [
+     [
+      2,
+      2
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      6,
+      2
+     ]
+    ]
+   },
+   "finanzierung": [
+    "anerkannt",
+    "kasse",
+    "privat"
+   ]
+  },
+  {
+   "id": "tagespflege",
+   "titel": "Tagespflege zur Entlastung von Angehörigen",
+   "thema": "pflege-betreuung",
+   "wenn": {
+    "pflegegrad_ab": 2
+   },
+   "finanzierung": [
+    "kasse"
+   ]
+  },
+  {
+   "id": "angehoerige",
+   "titel": "Entlastung und Unterstützung für pflegende Angehörige",
+   "thema": "pflege-betreuung",
+   "wenn": {
+    "pflegegrad_ab": 2
+   },
+   "finanzierung": [
+    "anerkannt",
+    "kasse",
+    "privat"
+   ]
+  },
+  {
+   "id": "hausnotruf",
+   "titel": "Hausnotruf",
+   "thema": "technik-sicherheit",
+   "wenn": {
+    "module": [
+     [
+      1,
+      1
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      5,
+      2
+     ]
+    ]
+   },
+   "finanzierung": [
+    "kasse",
+    "privat"
+   ],
+   "hinweis": "Die Pflegekasse kann den Basistarif als Pflegehilfsmittel übernehmen, wenn ein Pflegegrad vorliegt und die Voraussetzungen erfüllt sind.",
+   "auch_ohne_budget": true
+  },
+  {
+   "id": "umbau",
+   "titel": "Barrierefreier Badumbau, Haltegriffe, Treppenlift",
+   "thema": "wohnen-haus-handwerk",
+   "wenn": {
+    "module": [
+     [
+      1,
+      1
+     ],
+     [
+      4,
+      2
+     ]
+    ]
+   },
+   "finanzierung": [
+    "zuschuss",
+    "privat"
+   ]
+  },
+  {
+   "id": "technik",
+   "titel": "Technische Alltagshilfen einrichten (z. B. Seniorentelefon)",
+   "thema": "technik-sicherheit",
+   "wenn": {
+    "module": [
+     [
+      2,
+      1
+     ],
+     [
+      6,
+      1
+     ]
+    ]
+   },
+   "finanzierung": [
+    "privat"
+   ]
+  },
+  {
+   "id": "gesellschaft",
+   "titel": "Gesellschaft, Spaziergänge und Ausflüge in Begleitung",
+   "thema": "freizeit-lebensqualitaet",
+   "wenn": {
+    "module": [
+     [
+      6,
+      1
+     ],
+     [
+      3,
+      1
+     ]
+    ]
+   },
+   "finanzierung": [
+    "anerkannt",
+    "privat"
+   ]
+  }
+ ]
+}

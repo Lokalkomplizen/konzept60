@@ -61,6 +61,18 @@
     });
   }
 
+  /** Heutiges Datum (lokal) als JJJJ-MM-TT. Für Tests: ?testdatum=2027-01-02 */
+  function heute() {
+    var m = /[?&]testdatum=(\d{4}-\d{2}-\d{2})/.exec(window.location.search);
+    if (m) return m[1];
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function datumText(iso) {
+    var t = iso.split('-');
+    return +t[2] + '. ' + ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'][+t[1] - 1] + ' ' + t[0];
+  }
+
   // ---------------------------------------------------------------------
   // Hilfen für Markup
   // ---------------------------------------------------------------------
@@ -350,8 +362,12 @@
     var bedingungen = {};
     F.bedingungen.forEach(function (b) { bedingungen[b] = state.filter[b] === 'ja'; });
     var r = NBA.berechne(REGELN, state.antworten, bedingungen);
-    var gradNeu = NBA.pflegegradAusPunkten(ENTWURF.pflegegrade, r.gesamtpunkte);
+    // Welche Grenzen gelten heute? Ein Entwurf wird nie gerechnet (nba.js regelwerkFuer).
+    var rw = NBA.regelwerkFuer(REGELN, [ENTWURF], heute());
+    r.pflegegrad = NBA.pflegegradAusPunkten(rw.aktiv.pflegegrade, r.gesamtpunkte);
     var zahl = function (n) { return n.toLocaleString('de-DE', { maximumFractionDigits: 2 }); };
+    var grenzen = rw.aktiv.pflegegrade;
+    var neuesRecht = rw.aktiv.id !== REGELN.id;
 
     var titel = el.ergebnis.querySelector('[data-pgr-grad]');
     var satz = el.ergebnis.querySelector('[data-pgr-satz]');
@@ -359,13 +375,15 @@
     satz.textContent = 'Nach Ihren Angaben ergibt sich eine geschätzte Gesamtpunktzahl von ' + zahl(r.gesamtpunkte) +
       ' von 100 Punkten. ' + (r.pflegegrad
         ? 'Das entspricht nach dem geltenden Recht (§ 15 SGB XI) voraussichtlich Pflegegrad ' + r.pflegegrad + '.'
-        : 'Für Pflegegrad 1 sind mindestens 12,5 Punkte nötig.');
+        : 'Für Pflegegrad 1 sind mindestens ' + zahl(grenzen[1].ab) + ' Punkte nötig.');
+    el.ergebnis.querySelector('[data-pgr-grenzen-text]').textContent = grenzen.slice(1).map(function (g) {
+      return 'Pflegegrad ' + g.grad + ' ab ' + zahl(g.ab);
+    }).join(', ') + ' Punkten.';
 
     el.ergebnis.querySelector('[data-pgr-grad-text]').textContent = F.grad_texte[r.pflegegrad];
 
     // Nähe zur Grenze: reine Anzeige, verändert das Ergebnis nicht
     var grenzHinweis = el.ergebnis.querySelector('[data-pgr-grenze]');
-    var grenzen = REGELN.pflegegrade;
     var naechste = grenzen.filter(function (g) { return g.ab > r.gesamtpunkte; })[0];
     var eigene = grenzen.filter(function (g) { return g.grad === r.pflegegrad; })[0];
     var text = '';
@@ -380,15 +398,27 @@
     // Besondere Bedarfskonstellation (§ 15 Abs. 4): nur Hinweis, keine automatische Einstufung
     el.ergebnis.querySelector('[data-pgr-sonderfall]').hidden = !(state.filter.bedarfskonstellation === 'ja' && r.pflegegrad < 5);
 
-    // Reform 2027: Hinweis, wenn der Wert zwischen alter und neuer Schwelle liegt
+    // Kommende Änderung der Grenzen (Entwurf oder beschlossen, noch nicht in Kraft)
     var reform = el.ergebnis.querySelector('[data-pgr-reform]');
+    var gradNeu = rw.kommend ? NBA.pflegegradAusPunkten(rw.kommend.pflegegrade, r.gesamtpunkte) : r.pflegegrad;
     reform.hidden = gradNeu >= r.pflegegrad;
     if (!reform.hidden) {
+      var beschlossen = rw.kommend.rechtsstatus === 'beschlossen';
+      reform.querySelector('[data-pgr-reform-titel]').textContent = beschlossen
+        ? 'Pflegereform: neue Punktgrenzen beschlossen'
+        : 'Pflegereform (Gesetzentwurf, noch nicht beschlossen)';
       reform.querySelector('[data-pgr-reform-text]').textContent =
-        'Nach dem Gesetzentwurf zur Pflegereform (noch nicht beschlossen) sollen die Punktgrenzen für Pflegegrad 1 bis 3 ab 2027 steigen. ' +
-        'Mit ' + zahl(r.gesamtpunkte) + ' Punkten käme bei einem neuen Antrag ab 2027 dann voraussichtlich ' +
-        (gradNeu ? 'Pflegegrad ' + gradNeu : 'kein Pflegegrad') + ' heraus. Bereits anerkannte Pflegegrade sollen nach dem Entwurf Bestandsschutz erhalten.';
+        (beschlossen ? 'Ab dem ' + datumText(rw.kommend.gueltig_ab) + ' gelten' : 'Nach dem Gesetzentwurf sollen ab dem ' + datumText(rw.kommend.gueltig_ab)) +
+        ' höhere Punktgrenzen für Pflegegrad 1 bis 3' + (beschlossen ? '' : ' gelten') + '. Mit ' + zahl(r.gesamtpunkte) +
+        ' Punkten käme bei einem neuen Antrag danach voraussichtlich ' + (gradNeu ? 'Pflegegrad ' + gradNeu : 'kein Pflegegrad') +
+        ' heraus. Bereits anerkannte Pflegegrade sollen Bestandsschutz erhalten.';
     }
+
+    // Unter neuem Recht: Hinweis auf Bestandsschutz für bereits festgestellte Pflegegrade
+    el.ergebnis.querySelector('[data-pgr-bestandsschutz]').hidden = !neuesRecht;
+
+    // Leistungen, Reform-Erklärung, passende Hilfe (pflegegrad/leistungen.js)
+    if (window.WirHelfenLeistungen) window.WirHelfenLeistungen.zeige(el.ergebnis, r, state.filter, D);
 
     // Modulgrafik
     var liste = el.ergebnis.querySelector('[data-pgr-module]');

@@ -2307,3 +2307,34 @@ select.form-field__input {
 .pgr-next { display: grid; gap: var(--space-s); padding-left: 1.4em; margin: 0; }
 .pgr-result__footer { display: flex; flex-wrap: wrap; gap: var(--space-m) var(--space-xl); }
 .pgr-quelle { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+
+/* ---- Pflegegradrechner Etappe 3: Leistungen, Hilfe, FAQ ------------------- */
+.pgr-block { margin-bottom: var(--space-l); }
+.pgr-status { margin-bottom: var(--space-xs); }
+.pgr-status--beschlossen, .pgr-status--geltend { background: var(--color-sage-100); color: var(--color-sage-700); }
+.pgr-leistungen, .pgr-hilfe { list-style: none; padding: 0; margin: var(--space-m) 0; display: grid; gap: var(--space-m); }
+@media (min-width: 48em) { .pgr-leistungen, .pgr-hilfe { grid-template-columns: 1fr 1fr; } }
+.pgr-leistung, .pgr-hilfe__item {
+  padding: var(--space-m) var(--space-l);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+}
+.pgr-leistung > * + *, .pgr-hilfe__item > * + * { margin-top: var(--space-xs); }
+.pgr-leistung__titel, .pgr-hilfe__titel { font-size: var(--font-size-lg); margin: 0; }
+.pgr-leistung__betrag { font-size: var(--font-size-lg); font-weight: 700; color: var(--color-navy-800); }
+.pgr-leistung__voraus { font-size: var(--font-size-sm); }
+.pgr-leistung__offen { font-size: var(--font-size-sm); color: var(--color-terra-700); }
+.pgr-finanzierung { list-style: none; padding: 0; margin: var(--space-xs) 0 0; display: grid; gap: var(--space-2xs); }
+.pgr-fin { padding: var(--space-2xs) var(--space-s); border-radius: var(--radius-s); font-size: var(--font-size-sm); border-left: 5px solid; }
+.pgr-fin--kasse { background: var(--color-sage-100); border-color: var(--color-sage-700); }
+.pgr-fin--anerkannt { background: var(--color-navy-100); border-color: var(--color-navy-700); }
+.pgr-fin--zuschuss { background: var(--color-sand-100); border-color: var(--color-sage-400); }
+.pgr-fin--privat { background: var(--color-terra-100); border-color: var(--color-terra-600); }
+.pgr-hilfe__link { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 600; }
+.pgr-faq { max-width: 48rem; }
+.faq { display: grid; gap: var(--space-s); margin-top: var(--space-l); }
+.faq__item { border: 1px solid var(--color-sand-300); border-radius: var(--radius-m); background: var(--color-white); padding: 0 var(--space-l); }
+.faq__item summary { cursor: pointer; min-height: var(--touch-min); display: flex; align-items: center; padding: var(--space-s) 0; }
+.faq__frage { font-size: var(--font-size-lg); margin: 0; display: inline; }
+.faq__item p { padding-bottom: var(--space-m); }

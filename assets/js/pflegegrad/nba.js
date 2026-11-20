@@ -193,7 +193,36 @@
     return grad;
   }
 
+  // ---------------------------------------------------------------------
+  // Welches Regelwerk gilt? (Datum + Rechtsstand)
+  // ---------------------------------------------------------------------
+  var VERBINDLICH = ["geltend", "beschlossen"];
+
+  /**
+   * Wählt die Pflegegrad-Grenzen für ein Datum.
+   * Eine Änderung (z. B. nba-2027-entwurf.json) wird nur angewendet, wenn sie
+   * rechtlich verbindlich ist (geltend/beschlossen) UND ihr gueltig_ab erreicht ist.
+   * Ein Entwurf wird nie gerechnet, sondern als `entwurf` zurückgegeben (nur Hinweis).
+   * @param {object} basis      nba-2017.json
+   * @param {object[]} aenderungen  z. B. [nba-2027-entwurf.json]
+   * @param {string} datum      ISO-Datum JJJJ-MM-TT (z. B. heutiges Datum)
+   */
+  function regelwerkFuer(basis, aenderungen, datum) {
+    var aktiv = { id: basis.id, pflegegrade: basis.pflegegrade, rechtsstatus: basis.rechtsstatus, gueltig_ab: basis.gueltig_ab };
+    var entwurf = null;
+    (aenderungen || []).slice().sort(function (a, b) { return a.gueltig_ab < b.gueltig_ab ? -1 : 1; }).forEach(function (a) {
+      var verbindlich = VERBINDLICH.indexOf(a.rechtsstatus) >= 0;
+      if (verbindlich && a.gueltig_ab <= datum) {
+        aktiv = { id: a.id, pflegegrade: a.pflegegrade, rechtsstatus: a.rechtsstatus, gueltig_ab: a.gueltig_ab };
+      } else if (!entwurf) {
+        entwurf = a; // nächste noch nicht wirksame Änderung (Entwurf oder beschlossen, aber noch nicht in Kraft)
+      }
+    });
+    return { aktiv: aktiv, kommend: entwurf };
+  }
+
   return {
+    regelwerkFuer: regelwerkFuer,
     berechne: berechne,
     pflegegradAusPunkten: pflegegradAusPunkten,
     stufeAusSumme: stufeAusSumme,

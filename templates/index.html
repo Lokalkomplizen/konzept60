@@ -2,6 +2,7 @@
 title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
 description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
+body_extra: <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -27,11 +28,11 @@ head_extra: {{home_head}}
         selbst oder für Ihre Angehörigen.
       </p>
       <div class="btn-group">
-        <a class="btn btn--primary" href="#anfrage">
-          Anliegen beschreiben
+        <a class="btn btn--primary" href="#assistent">
+          Assistent starten
           <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
         </a>
-        <a class="btn btn--outline-light" href="#so-funktionierts">So funktioniert’s</a>
+        <a class="btn btn--outline-light" href="#anfrage">Anliegen beschreiben</a>
       </div>
     </div>
   </section>
@@ -62,6 +63,32 @@ head_extra: {{home_head}}
           </span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Unterstützungs-Assistent (→ WordPress: Block/Template-Part "assistent"; Logik: assets/js/assistent.js)
+       Daten (Themen, Städte, Ratgeber-Beiträge) rendert tools/build.py als data-assistent (JSON).
+       Ohne JS: nur die drei Säulen-Links. Es wird nichts gespeichert oder gesendet – das Ergebnis
+       ist ein Link auf das vorausgefüllte Anfrageformular (?thema=…&wer=…&ort=…#anfrage).
+       ====================================================================== -->
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent="{{assistent_daten}}">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Assistent</span>
+        <h2 id="assistent-titel">Wie können wir Ihnen heute helfen?</h2>
+        <p class="section__intro">Beantworten Sie zwei, drei kurze Fragen – wir zeigen Ihnen den passenden nächsten Schritt.</p>
+      </div>
+
+      <!-- Ohne JavaScript -->
+      <ul class="assistent__nojs">
+        <li><a href="/themen/">Hilfe finden</a> – wir suchen persönlich für Sie</li>
+        <li><a href="/ratgeber/">Wissen bekommen</a> – der Ratgeber</li>
+        <li><a href="/mein-alltag/">Alltag erleichtern</a> – Mein Alltag</li>
+      </ul>
+
+      <!-- Mit JavaScript: assistent.js füllt diesen Bereich -->
+      <div class="assistent__app" data-assistent-app hidden></div>
     </div>
   </section>
 

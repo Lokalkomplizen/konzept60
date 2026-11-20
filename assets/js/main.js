@@ -1,7 +1,8 @@
 /* ==========================================================================
    Wir helfen – main.js (Vanilla JS, kein Framework, kein Build)
    1. Mobile Navigation
-   2. Vorauswahl im Anfrageformular (?thema=…, ?fuer=…, ?region=… bzw. Links)
+   2. Vorauswahl im Anfrageformular (?thema=…, ?wer=…|?fuer=…, ?ort=…|?region=… bzw. Links;
+      nur Werte aus den erlaubten Listen werden übernommen)
    3. Abhängige Leistungen je Themenbereich (Markup erzeugt tools/build.py aus data/themen.json)
    4. Formular-Validierung (gemeinsamer Baustein für Anfrage + Anbieter-Registrierung)
    5. Anfrageformular – Simulation
@@ -80,7 +81,8 @@
         applied = true;
       }
     }
-    var fuer = params.get('fuer');
+    // ?wer=selbst|angehoerige (vom Assistenten) – ?fuer= bleibt als älterer Name gültig
+    var fuer = params.get('wer') || params.get('fuer');
     if (fuer) {
       var radio = form.querySelector('input[name="wer"][value="' + CSS.escape(fuer) + '"]');
       if (radio) { radio.checked = true; applied = true; }
@@ -89,6 +91,14 @@
     if (region && form.elements.ort && !form.elements.ort.value) {
       var option = document.querySelector('#f-orte option[data-region="' + CSS.escape(region) + '"]');
       if (option) { form.elements.ort.value = option.value; applied = true; }
+    }
+    // ?ort=<Stadt> (vom Assistenten): nur Städte aus der Liste der Startregionen übernehmen, sonst ignorieren
+    var ort = params.get('ort');
+    if (ort && form.elements.ort && !form.elements.ort.value) {
+      var match = Array.prototype.slice.call(document.querySelectorAll('#f-orte option')).filter(function (o) {
+        return o.value === ort;
+      })[0];
+      if (match) { form.elements.ort.value = match.value; applied = true; }
     }
     return applied;
   }
@@ -99,7 +109,7 @@
 
     // a) Beim Laden: Parameter übernehmen, danach aus der Adresszeile entfernen
     var params = new URLSearchParams(window.location.search);
-    if (applyPreselect(form, params) || params.has('thema') || params.has('fuer') || params.has('region')) {
+    if (applyPreselect(form, params) || ['thema', 'fuer', 'wer', 'region', 'ort'].some(function (k) { return params.has(k); })) {
       history.replaceState(null, '', window.location.pathname + window.location.hash);
     }
 

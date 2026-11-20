@@ -568,6 +568,37 @@ def ratgeber_filter(themen, beitraege):
     return indent(lines, 6)
 
 
+def assistent_data(themen, regionen, beitraege):
+    """Daten für den Unterstützungs-Assistenten (Startseite) → als data-Attribut ins HTML (kein Inline-Skript,
+    kein Nachladen). Gelesen von assets/js/assistent.js. → WordPress: wp_localize_script bzw. data-Attribut
+    im Block-Template; Beiträge per WP_Query nach Taxonomie themenbereich."""
+    data = {
+        "ziele": [
+            {"id": "praktisch", "titel": "Ich brauche praktische Unterstützung", "hinweis": "Zum Beispiel im Haushalt, bei Reparaturen oder im Alltag"},
+            {"id": "informieren", "titel": "Ich möchte mich informieren", "hinweis": "Verständliche Beiträge im Ratgeber"},
+            {"id": "alltag", "titel": "Ich möchte meinen Alltag besser organisieren", "hinweis": "Checklisten und Wohnungs-Check zum Selbermachen"},
+            {"id": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
+        ],
+        "themen": [
+            {
+                "slug": t["slug"],
+                "titel": t["titel"],
+                "url": f"/themen/{t['slug']}/",
+                "ratgeber": [{"titel": b["titel"], "url": b["url"]} for b in beitraege if b["thema"] == t["slug"]][:2],
+            }
+            for t in themen
+        ],
+        "alltag": [
+            {"id": "checklisten", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
+            {"id": "wohnungs-check", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
+            {"id": "termine", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+            {"id": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+        ],
+        "orte": [r["name"] for r in regionen],
+    }
+    return esc(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+
+
 def article_toc(blocks, ids):
     lines = [
         '<nav class="toc article__toc" aria-labelledby="toc-titel">',
@@ -748,6 +779,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
         "description": esc(description),
         "meta_seo": meta_seo(path, title, description, image, noindex=path is None, article=article),
         "head_extra": render(meta.get("head_extra", ""), page_ctx, template),
+        "body_extra": ("  " + render(meta["body_extra"], page_ctx, template)) if meta.get("body_extra") else "",
         "icons": partials["icons"].rstrip(),
         "header": render(partials["header"], nav_ctx, "partials/header.html").rstrip(),
         "footer": render(partials["footer"], {
@@ -806,6 +838,7 @@ def main():
         "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8, filter_attr=True) for b in beitraege),
         "ratgeber_filter": ratgeber_filter(themen, beitraege),
         "home_head": home_head(regionen),
+        "assistent_daten": assistent_data(themen, regionen, beitraege),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
         "kategorie_optionen": kategorie_optionen(themen),

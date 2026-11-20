@@ -1809,3 +1809,179 @@ select.form-field__input {
 .path-card--terra { border-top-color: var(--color-terra-600); }
 .path-card__title { margin-bottom: var(--space-s); }
 .path-card__text { margin-bottom: var(--space-l); }
+
+/* ---- Unterstützungs-Assistent (Startseite, assets/js/assistent.js) ----------------
+   Ohne JS: nur die drei Säulen-Links (.assistent__nojs). Mit JS: Karte mit Schritten.
+   Auswahl = echte Radio-Buttons (unsichtbar über der Fläche, per Tastatur bedienbar);
+   Zustand = Füllung PLUS Häkchen, nicht nur Farbe. */
+.assistent__nojs {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: var(--space-s);
+}
+.js .assistent__nojs { display: none; }
+.assistent__app { display: none; }
+.js .assistent__app:not([hidden]) { display: block; }
+
+.assistent__card {
+  max-width: 56rem;
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 40em) {
+  .assistent__card { padding: var(--space-2xl); }
+}
+
+.assistent__progress {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-sage-700);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.assistent__bar {
+  display: flex;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-l);
+}
+.assistent__bar-step {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sand-300);
+}
+.assistent__bar-step.is-done { background: var(--color-navy-800); }
+
+.assistent__fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.assistent__legend { padding: 0; margin-bottom: var(--space-m); }
+.assistent__heading {
+  margin: 0;
+  font-size: var(--font-size-h3);
+  outline-offset: 6px;
+}
+
+.assistent__choices {
+  display: grid;
+  gap: var(--space-s);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 40em) {
+  .assistent__choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) {
+  .assistent__choices:not(.assistent__choices--wide):not(.assistent__choices--chips) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.assistent__choices--chips { grid-template-columns: minmax(0, 1fr); }
+.assistent__choices--chips .choice-card { min-height: var(--touch-min); align-items: center; padding-block: var(--space-s); }
+.assistent__choices--chips .choice-card::before { margin-top: 0; }
+@media (min-width: 30em) {
+  .assistent__choices--chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 48em) {
+  .assistent__choices--chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.choice-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-s);
+  min-height: 4rem;
+  padding: var(--space-m);
+  border: 2px solid #6b7385; /* Rand-Kontrast ≥ 3:1 */
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  cursor: pointer;
+}
+.choice-card input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Symbol: leerer Kreis → gefüllt mit Häkchen */
+.choice-card::before {
+  content: "";
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.1rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.choice-card__text { display: grid; gap: var(--space-2xs); }
+.choice-card__title { font-weight: 700; line-height: 1.3; }
+.choice-card__hint { font-size: var(--font-size-sm); color: var(--color-ink-muted); line-height: 1.4; }
+
+.choice-card:hover { border-color: var(--color-navy-800); background: var(--color-navy-100); }
+.choice-card:has(input:checked) {
+  border-color: var(--color-navy-800);
+  background: var(--color-navy-800);
+  color: var(--color-white);
+}
+.choice-card:has(input:checked)::before {
+  content: "\2713";
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-navy-800);
+}
+.choice-card:has(input:checked) .choice-card__hint { color: #dfe4ee; }
+.choice-card:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800);
+}
+.assistent__fieldset[aria-invalid="true"] .choice-card { border-color: var(--color-error); }
+
+.assistent__note {
+  margin: var(--space-m) 0 0;
+  padding: var(--space-s) var(--space-m);
+  border-left: 6px solid var(--color-sage-700);
+  background: var(--color-sage-100);
+  border-radius: var(--radius-s);
+}
+.assistent__note:empty { display: none; }
+
+.assistent__fieldset .form-field__error:empty { display: none; }
+.assistent__fieldset .form-field__error { margin-top: var(--space-s); }
+
+.assistent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin-top: var(--space-xl);
+}
+@media (max-width: 29.99em) {
+  .assistent__actions .btn { width: 100%; }
+}
+
+.assistent__summary { font-size: var(--font-size-lg); margin: var(--space-m) 0 var(--space-s); }
+.assistent__extra { color: var(--color-ink-muted); }
+.assistent__main { margin: var(--space-l) 0; }
+@media (max-width: 39.99em) {
+  .btn--block-mobile { width: 100%; }
+}
+.assistent__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+.assistent__links a { display: inline-block; padding-block: var(--space-2xs); font-weight: 600; }

@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "gemeinsam-statt-einsam",
+      "titel": "Gemeinsam statt einsam: Warum soziale Kontakte im Alter so wichtig sind",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "gemeinsam-statt-einsam",
+      "bild_alt": "Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:50",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ein gutes Gespräch, ein gemeinsamer Spaziergang oder eine Tasse Kaffee mit Freunden: Oft sind es die kleinen Begegnungen, die den Alltag besonders machen.",
+      "url": "/ratgeber/gemeinsam-statt-einsam/"
+    },
+    {
       "slug": "haushaltshilfe-im-alter",
       "titel": "Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht",
       "thema": "haushalt-reinigung",

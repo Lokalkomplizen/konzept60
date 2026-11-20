@@ -21,6 +21,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /ratgeber/*
   Cache-Control: public, max-age=0, must-revalidate
+/mein-alltag/*
+  Cache-Control: public, max-age=0, must-revalidate
 /impressum/*
   Cache-Control: public, max-age=0, must-revalidate
 /datenschutz/*

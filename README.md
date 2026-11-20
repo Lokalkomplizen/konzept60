@@ -1,6 +1,6 @@
-# KONZEPT 60+ – statischer Prototyp (Arbeitstitel)
+# Wir helfen – statischer Prototyp (Arbeitstitel)
 
-Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare werden nur simuliert (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; Telefonnummer `0211 000 000 00` ist als „Demo“ gekennzeichnet, Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
+Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare werden nur simuliert (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
 ## Lokal starten
 
@@ -21,12 +21,17 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/themen/` | `themen/index.html` | `templates/themen.html` |
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
+| `/mein-alltag/` | `mein-alltag/index.html` | `templates/mein-alltag.html` (Übersicht der Alltags-Werkzeuge) |
 | `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
 | `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
 | unbekannte Pfade | `404.html` | `wrangler.jsonc` → `assets.not_found_handling: "404-page"` |
 
 Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (`/themen/slug` → 307 auf die Variante mit Slash).
+
+**Name:** „Wir helfen“ ist ein Arbeitstitel und steht zentral in `tools/build.py` (`SITE_NAME`); Templates/Partials nutzen `{{site_name}}`, Meta-Titel, Open Graph und JSON-LD folgen automatisch. Textlogo = Serif + Akzentpunkt (`.logo__text`).
+
+**Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
 
 **Entscheidung Navigation „Themen“:** verweist auf die eigene Übersichtsseite `/themen/` (entspricht später dem Taxonomie-Archiv). Die Startseite behält zusätzlich den Abschnitt `#themen`. Aktiver Menüpunkt: `aria-current="page"` (Übersicht) bzw. `aria-current="true"` (Unterseiten eines Bereichs).
 

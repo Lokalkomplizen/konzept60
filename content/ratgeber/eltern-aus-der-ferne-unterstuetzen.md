@@ -137,6 +137,6 @@ Unterstützung zu organisieren bedeutet nicht, Verantwortung abzugeben. Es bedeu
 
 Auch wenn Sie nicht in derselben Stadt oder Region wohnen, können Sie für Ihre Eltern da sein. Entscheidend sind regelmäßiger Kontakt, verlässliche Menschen vor Ort und eine gute Organisation.
 
-KONZEPT 60+ hilft Ihnen dabei, passende Unterstützung in der Nähe Ihrer Eltern zu finden. Ob Haushaltshilfe, Einkaufsservice, Alltagshilfe, Hausnotruf oder professionelle Pflege: Wir möchten Ihnen helfen, die richtigen Ansprechpartner und Angebote zu finden.
+Wir helfen Ihnen dabei, passende Unterstützung in der Nähe Ihrer Eltern zu finden. Ob Haushaltshilfe, Einkaufsservice, Alltagshilfe, Hausnotruf oder professionelle Pflege: Wir möchten Ihnen helfen, die richtigen Ansprechpartner und Angebote zu finden.
 
 Damit Ihre Eltern gut versorgt sind und Sie auch aus der Ferne ein beruhigendes Gefühl haben.

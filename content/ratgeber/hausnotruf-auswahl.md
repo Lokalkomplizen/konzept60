@@ -154,6 +154,6 @@ Ein Hausnotruf soll Ihnen und Ihren Angehörigen ein gutes Gefühl geben. Entsch
 
 Lassen Sie sich verschiedene Möglichkeiten erklären und testen Sie die Bedienung möglichst vor Vertragsabschluss.
 
-KONZEPT 60+ hilft Ihnen dabei, sich einen Überblick über passende Unterstützungsangebote zu verschaffen und den richtigen Ansprechpartner zu finden.
+Wir helfen Ihnen dabei, sich einen Überblick über passende Unterstützungsangebote zu verschaffen und den richtigen Ansprechpartner zu finden.
 
 Denn Sicherheit bedeutet auch, selbstbestimmt und mit einem guten Gefühl zu Hause leben zu können.

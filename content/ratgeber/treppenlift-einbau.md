@@ -193,6 +193,6 @@ Ein Treppenlift begleitet Sie viele Jahre. Lassen Sie sich nicht unter Zeitdruck
 
 Holen Sie mehrere Angebote ein und klären Sie die Förderung, bevor Sie unterschreiben. Es kann helfen, eine vertraute Person zum Termin dazuzuholen.
 
-KONZEPT 60+ hilft Ihnen dabei, passende Anbieter in Ihrer Region zu finden.
+Wir helfen Ihnen dabei, passende Anbieter in Ihrer Region zu finden.
 
 Damit die Treppe wieder das wird, was sie sein sollte: ein ganz normaler Weg in Ihrem Zuhause.

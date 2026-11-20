@@ -1,5 +1,5 @@
 /* ==========================================================================
-   KONZEPT 60+ – main.js (Vanilla JS, kein Framework, kein Build)
+   Wir helfen – main.js (Vanilla JS, kein Framework, kein Build)
    1. Mobile Navigation
    2. Vorauswahl im Anfrageformular (?thema=…, ?fuer=…, ?region=… bzw. Links)
    3. Abhängige Leistungen je Themenbereich (Markup erzeugt tools/build.py aus data/themen.json)
@@ -10,7 +10,7 @@
    8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
    9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
-   → WordPress: wp_enqueue_script( 'konzept60-main', …, [ 'strategy' => 'defer' ] );
+   → WordPress: wp_enqueue_script( 'wirhelfen-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
 (function () {
   'use strict';

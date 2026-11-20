@@ -53,4 +53,4 @@ Reden Sie offen über verdächtige Anrufe und Situationen. Vereinbaren Sie in de
 
 Niemand muss sich für einen Betrugsversuch schämen. Die Täter sind oft sehr geschickt und arbeiten mit psychologischem Druck. Wer aufmerksam bleibt, sich Zeit nimmt und im Zweifel nachfragt, kann sich wirksam schützen.
 
-KONZEPT 60+ möchte dabei helfen, den Alltag sicherer und selbstbestimmter zu gestalten. Sprechen Sie auch mit Ihren Angehörigen über solche Situationen. Ein kurzes Gespräch kann viel bewirken.
+Wir möchten dabei helfen, den Alltag sicherer und selbstbestimmter zu gestalten. Sprechen Sie auch mit Ihren Angehörigen über solche Situationen. Ein kurzes Gespräch kann viel bewirken.

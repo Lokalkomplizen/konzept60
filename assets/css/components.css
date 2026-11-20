@@ -3,28 +3,29 @@
    → WordPress: Block-Styles / Template-Parts (template-parts/card-thema.php …)
    ========================================================================== */
 
-/* ---- Logo ----------------------------------------------------------------- */
+/* ---- Logo (Textlogo, Arbeitstitel – Name zentral in tools/build.py: SITE_NAME) ---- */
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.35em;
-  min-height: var(--touch-min);
   align-items: center;
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
+  min-height: var(--touch-min);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.005em;
   color: var(--color-navy-800);
   text-decoration: none;
 }
 
-.logo__plus {
+/* dezenter Akzentpunkt in Terrakotta (wie das frühere „60+“-Schild) */
+.logo__text::after {
+  content: "";
   display: inline-block;
-  padding: 0.05em 0.35em;
-  border-radius: var(--radius-s);
+  width: 0.28em;
+  height: 0.28em;
+  margin-left: 0.14em;
+  border-radius: 50%;
   background: var(--color-terra-600);
-  color: var(--color-white);
-  letter-spacing: 0;
 }
 
 .logo:hover { color: var(--color-navy-800); }
@@ -70,11 +71,21 @@
   margin-bottom: var(--space-s);
 }
 
+/* „Für Anbieter“: bewusst kleiner und leiser als die drei Säulen */
+.site-nav__link--minor {
+  font-weight: 400;
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+}
+
 @media (min-width: 68em) {
   .site-nav__list {
     flex-direction: row;
+    align-items: center;
     gap: var(--space-2xs);
   }
+  .site-nav__item--minor { margin-left: var(--space-s); }
+  .site-nav__link--minor { font-size: 1rem; }
   .site-nav__link {
     border-bottom: 0;
     padding-inline: var(--space-s);
@@ -1783,3 +1794,18 @@ select.form-field__input {
   .steps-section .step { padding: var(--space-2xl) var(--space-xl); }
   .steps-section .notice { grid-column: 2; margin-top: var(--space-xl); }
 }
+
+/* ==========================================================================
+   Ergänzungen v3 (Drei Säulen, Assistent, Mein Alltag)
+   ========================================================================== */
+
+/* ---- Drei Wege (Startseite): Säulenkarten im Stil der path-cards -------------- */
+.paths--3 { gap: var(--space-l); }
+
+@media (min-width: 56em) {
+  .paths--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.path-card--terra { border-top-color: var(--color-terra-600); }
+.path-card__title { margin-bottom: var(--space-s); }
+.path-card__text { margin-bottom: var(--space-l); }

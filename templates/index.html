@@ -1,6 +1,6 @@
 <!--meta
-title: KONZEPT 60+ – Hilfe finden. Einfach und kostenlos.
-description: KONZEPT 60+ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
+title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
+description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
 -->
   <!-- ======================================================================
@@ -20,7 +20,7 @@ head_extra: {{home_head}}
     </picture>
 
     <div class="hero__content">
-      <h1 class="hero__title" id="hero-titel">Hilfe finden. <span>Einfach und kostenlos.</span></h1>
+      <h1 class="hero__title" id="hero-titel">Sie müssen nicht wissen, wer Ihnen helfen kann. <span>Dafür sind wir da.</span></h1>
       <p class="hero__text">
         Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team
         sucht für Sie passende Dienstleister oder private Helfer in Ihrer Region – für Sie
@@ -62,6 +62,43 @@ head_extra: {{home_head}}
           </span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Drei Wege, wie wir helfen  (→ template-parts/saeulen.php)
+       Säulen: Hilfe finden · Wissen bekommen (Ratgeber) · Alltag erleichtern (Mein Alltag)
+       ====================================================================== -->
+  <section class="section" id="drei-wege" aria-labelledby="drei-wege-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Unser Angebot</span>
+        <h2 id="drei-wege-titel">Drei Wege, wie wir helfen</h2>
+        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten. Alles ist kostenlos und unverbindlich.</p>
+      </div>
+
+      <div class="paths paths--3">
+        <article class="path-card" aria-labelledby="weg-hilfe">
+          <span class="path-card__tag">Hilfe finden</span>
+          <h3 class="path-card__title" id="weg-hilfe">Wir suchen für Sie</h3>
+          <p class="path-card__text">Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team sucht passende Dienstleister oder private Helfer in Ihrer Region.</p>
+          <a class="btn btn--primary" href="/themen/">Hilfe finden <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+
+        <article class="path-card path-card--sage" aria-labelledby="weg-wissen">
+          <span class="path-card__tag">Wissen bekommen</span>
+          <h3 class="path-card__title" id="weg-wissen">Verständlich erklärt</h3>
+          <p class="path-card__text">Im Ratgeber finden Sie Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit – ohne Fachchinesisch.</p>
+          <a class="btn btn--secondary" href="/ratgeber/">Zum Ratgeber <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+
+        <article class="path-card path-card--terra" aria-labelledby="weg-alltag">
+          <span class="path-card__tag">Alltag erleichtern</span>
+          <h3 class="path-card__title" id="weg-alltag">Mein Alltag</h3>
+          <p class="path-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause – ohne Anmeldung, ohne Speicherung.</p>
+          <a class="btn btn--secondary" href="/mein-alltag/">Zu Mein Alltag <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -126,7 +163,7 @@ head_extra: {{home_head}}
       <div class="section__header">
         <span class="section__eyebrow">So funktioniert’s</span>
         <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
-        <p class="section__intro">KONZEPT 60+ ist selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
+        <p class="section__intro">Wir sind selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
       </div>
 
       <ol class="steps">
@@ -313,7 +350,7 @@ head_extra: {{home_head}}
             <div class="form-field" id="f-datenschutz-feld">
               <label class="choice" for="f-datenschutz">
                 <input type="checkbox" id="f-datenschutz" name="einwilligung_bearbeitung" required aria-describedby="f-datenschutz-fehler">
-                <span>Ich bin einverstanden, dass KONZEPT 60+ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
+                <span>Ich bin einverstanden, dass das Team von „{{site_name}}“ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
               </label>
               <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
             </div>
@@ -395,7 +432,7 @@ head_extra: {{home_head}}
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen oder bestimmte Handwerksarbeiten – vermitteln wir nur an entsprechend qualifizierte und berechtigte Betriebe.</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Private Helfer unterstützen bei alltäglichen Dingen, nicht bei Tätigkeiten, die eine Fachausbildung erfordern.</span></li>
         </ul>
-        <p class="form-field__hint">KONZEPT 60+ ist kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
+        <p class="form-field__hint">Wir sind kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
       </div>
     </div>
   </section>

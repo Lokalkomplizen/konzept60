@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""KONZEPT 60+ – statischer Seitengenerator (nur Python-Standardbibliothek).
+"""Wir helfen – statischer Seitengenerator (nur Python-Standardbibliothek).
 
 Aufruf im Projektordner:   python3 tools/build.py
 
@@ -31,11 +31,12 @@ TEMPLATES = ROOT / "templates"
 PARTIALS = ROOT / "partials"
 CONTENT = ROOT / "content" / "ratgeber"
 RATGEBER_IMG = "assets/img/ratgeber"
+SITE_NAME = "Wir helfen"  # Arbeitstitel – hier zentral ändern; Templates nutzen {{site_name}}
 SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
 META_RE = re.compile(r"\A<!--meta\n(.*?)\n-->\n", re.S)
-NAV_KEYS = ("themen", "ratgeber", "anbieter")
+NAV_KEYS = ("themen", "ratgeber", "alltag", "anbieter")
 
 
 # --------------------------------------------------------------------------
@@ -591,7 +592,7 @@ def article_jsonld(b):
         "inLanguage": "de-DE",
         "articleSection": b["thema_titel"],
         "mainEntityOfPage": f'{SITE}{b["url"]}',
-        "publisher": {"@type": "Organization", "name": "KONZEPT 60+", "url": f"{SITE}/"},
+        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": f"{SITE}/"},
     }
     body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
     return (
@@ -683,7 +684,7 @@ def home_head(regionen):
   {{
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "KONZEPT 60+",
+    "name": "{SITE_NAME}",
     "url": "{SITE}/",
     "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
     "areaServed": [{area}]
@@ -708,7 +709,7 @@ def meta_seo(path, title, description, image=None, noindex=False, article=None):
   <link rel="canonical" href="{SITE}{path}">
   <meta property="og:type" content="{"article" if article else "website"}">{article_tags}
   <meta property="og:locale" content="de_DE">
-  <meta property="og:site_name" content="KONZEPT 60+">
+  <meta property="og:site_name" content="{esc(SITE_NAME)}">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{SITE}{path}">
@@ -726,7 +727,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
     description = render(meta["description"], page_ctx, template)
     path = "/" + output.replace("index.html", "") if output != "404.html" else None
     nav = meta.get("nav", "")
-    nav_ctx = {}
+    nav_ctx = {"site_name": esc(SITE_NAME)}
     for key in NAV_KEYS:
         if key == nav:
             nav_ctx[f"nav:{key}"] = ' aria-current="true"' if meta.get("nav_level") == "section" else ' aria-current="page"'
@@ -750,6 +751,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
         "icons": partials["icons"].rstrip(),
         "header": render(partials["header"], nav_ctx, "partials/header.html").rstrip(),
         "footer": render(partials["footer"], {
+            "site_name": esc(SITE_NAME),
             "footer_themen": footer_themen(themen),
             "footer_regionen": footer_regionen(regionen),
         }, "partials/footer.html").rstrip(),
@@ -796,6 +798,7 @@ def main():
 
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
+        "site_name": esc(SITE_NAME),
         # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle (keine Begrenzung)
         "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
         "leitfaden_angehoerige": next(
@@ -825,6 +828,7 @@ def main():
         ("themen.html", "themen/index.html"),
         ("fuer-anbieter.html", "fuer-anbieter/index.html"),
         ("ratgeber.html", "ratgeber/index.html"),
+        ("mein-alltag.html", "mein-alltag/index.html"),
         ("impressum.html", "impressum/index.html"),
         ("datenschutz.html", "datenschutz/index.html"),
         ("404.html", "404.html"),

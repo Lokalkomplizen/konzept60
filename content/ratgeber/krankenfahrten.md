@@ -7,7 +7,7 @@ bild_alt: Ein silberner Kleinbus mit geöffneter Heckklappe und ausgeklappter Ra
 stand: November 2026
 veroeffentlicht: 2026-11-20 17:00
 geaendert: 2026-11-20
-hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall.
+hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall. Die Angaben zur Kostenübernahme orientieren sich an § 60 SGB V und der Krankentransport-Richtlinie des Gemeinsamen Bundesausschusses, Stand 2026.
 ---
 
 Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein bewältigt werden kann?

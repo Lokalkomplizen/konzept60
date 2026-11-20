@@ -1192,6 +1192,132 @@ select.form-field__input {
 .form-field--group .form-field { margin-bottom: var(--space-s); }
 .form-field--group.form-field--invalid { border-color: var(--color-error); }
 
+/* ---- Anfrageformular kompakt ------------------------------------------------
+   Segment-Auswahl (Für wen?), Leistungs-Chips, engere Abstände auf dem Handy.
+   Echte Radio-/Checkbox-Eingaben bleiben erhalten (unsichtbar über der Fläche,
+   per Tastatur bedienbar); Zustand = Füllung PLUS Symbol, nicht nur Farbe. */
+.form--compact { container-type: inline-size; }
+
+.segment {
+  display: flex;
+  gap: var(--space-2xs);
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.segment__option,
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: var(--touch-min);
+  padding: 0.35rem 0.85rem;
+  border: 2px solid #6b7385; /* Rand-Kontrast ≥3:1 */
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  font-size: var(--font-size-sm);
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.segment__option { flex: 1 1 0; min-width: 0; padding-inline: 0.3rem; font-size: 1rem; }
+.chip { justify-content: flex-start; text-align: left; }
+
+/* Symbol als eigenes Flex-Element neben dem (ggf. umbrechenden) Text */
+.segment__option span,
+.chip span { display: flex; align-items: center; }
+
+.segment__option input,
+.chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Symbol: leerer Kreis/Plus → gefüllt mit Häkchen */
+.segment__option span::before,
+.chip span::before {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.3rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: -0.15em;
+  content: "";
+}
+.chip span::before { content: "+"; border-radius: 4px; font-size: 0.9rem; }
+
+.segment__option:hover,
+.chip:hover { border-color: var(--color-navy-800); background: var(--color-navy-100); }
+
+.segment__option:has(input:checked),
+.chip:has(input:checked) {
+  border-color: var(--color-navy-800);
+  background: var(--color-navy-800);
+  color: var(--color-white);
+}
+.segment__option:has(input:checked) span::before,
+.chip:has(input:checked) span::before {
+  content: "\2713";
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-navy-800);
+}
+
+.segment__option:has(input:focus-visible),
+.chip:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800);
+}
+
+.form-field--invalid .segment__option { border-color: var(--color-error); }
+
+/* Kompakte Abstände */
+.form--compact .form__title { margin-bottom: var(--space-2xs); }
+.form--compact .form__required-note { margin-bottom: var(--space-m); }
+.form--compact .form-field { margin-bottom: var(--space-m); }
+.form--compact .form-field__hint { margin-bottom: var(--space-2xs); }
+.form--compact textarea.form-field__input { min-height: 7rem; }
+.form--compact .form__section { margin-bottom: var(--space-m); padding-top: var(--space-m); }
+.form--compact .form__legend { margin-bottom: var(--space-s); }
+.form--compact .form__row--plz { grid-template-columns: 7rem minmax(0, 1fr); gap: 0 var(--space-s); }
+.form--compact .form-field--group { padding: var(--space-s) var(--space-s) 0; }
+.form--compact .form-field--group .form-field { margin-bottom: var(--space-s); }
+.form--compact .choice { padding: var(--space-xs) var(--space-s); font-size: var(--font-size-sm); }
+.form--compact .notice--privacy { gap: var(--space-s); padding: var(--space-s) var(--space-m); margin-bottom: var(--space-m); font-size: var(--font-size-sm); }
+.form--compact .form__actions { margin-top: var(--space-l); }
+.form--compact .form__privacy-hint { margin-top: var(--space-s); }
+
+/* Vor-/Nachname nebeneinander, sobald jedes Feld ≥ 140px breit bleibt */
+.form__row--name { gap: 0 var(--space-s); }
+@container (min-width: 19rem) {
+  .form__row--name { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 39.99em) {
+  .form--compact { padding: var(--space-l) var(--space-m); }
+  .form--compact .form__legend { font-size: var(--font-size-base); gap: var(--space-xs); }
+  .form--compact .form__legend-nr { width: 1.6rem; height: 1.6rem; font-size: 0.875rem; }
+}
+
 .form-hint-js { display: none; }
 .js .form-hint-js { display: block; }
 

@@ -136,22 +136,22 @@ def kategorie_optionen(themen):
 
 
 def leistungen_gruppen(themen):
-    """Je Kategorie eine Checkbox-Gruppe; JS blendet die passende ein (ohne JS: verborgen, Freitext genügt)."""
+    """Je Kategorie eine Checkbox-Gruppe als umbrechende Chips; JS blendet die passende ein
+    (ohne JS: verborgen, Freitext genügt)."""
     blocks = []
     for t in themen:
         items = t["leistungen"] + ["Sonstiges"]
         choices = []
         for i, leistung in enumerate(items, 1):
             value = slugify(leistung) if leistung != "Sonstiges" else "sonstiges"
-            label = esc(leistung) if leistung != "Sonstiges" else "Sonstiges (bitte unten beschreiben)"
             choices.append(
-                f'  <label class="choice"><input type="checkbox" name="leistungen" value="{value}" '
-                f'id="f-l-{t["slug"]}-{i}"> <span>{label}</span></label>'
+                f'  <label class="chip"><input type="checkbox" name="leistungen" value="{value}" '
+                f'id="f-l-{t["slug"]}-{i}"> <span>{esc(leistung)}</span></label>'
             )
         blocks.append(
             f'<fieldset class="form-field" data-leistungen="{t["slug"]}" hidden disabled>\n'
-            f'  <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>\n'
-            f'  <div class="choice-group choice-group--cols">\n'
+            f'  <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>\n'
+            f'  <div class="chip-group">\n'
             + indent(choices, 2) + "\n"
             f"  </div>\n"
             f"</fieldset>"

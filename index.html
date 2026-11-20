@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=5fbfd7b381">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
   <link rel="stylesheet" href="/assets/css/layout.css?v=aecd5d8e59">
-  <link rel="stylesheet" href="/assets/css/components.css?v=a8d26725eb">
+  <link rel="stylesheet" href="/assets/css/components.css?v=d793440f7f">
   <link rel="preload" as="image" type="image/webp"
         imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
         imagesizes="(min-width: 60em) 55vw, 100vw">
@@ -427,7 +427,7 @@
       <div class="request-layout__aside">
         <span class="section__eyebrow">Hilfe finden</span>
         <h2 id="anfrage-titel" tabindex="-1">Beschreiben Sie Ihr Anliegen</h2>
-        <p class="section__intro">Es dauert etwa drei Minuten. Ein Mensch aus unserem Team meldet sich so schnell wie möglich bei Ihnen.</p>
+        <p class="section__intro">Es dauert etwa zwei Minuten. Ein Mensch aus unserem Team meldet sich so schnell wie möglich bei Ihnen.</p>
 
         <ul class="check-list">
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kostenlos und unverbindlich</span></li>
@@ -449,7 +449,7 @@
       </div>
 
       <div class="request-layout__main">
-        <form class="form" id="anfrage-formular" action="/#anfrage" method="post" aria-labelledby="formular-titel">
+        <form class="form form--compact" id="anfrage-formular" action="/#anfrage" method="post" aria-labelledby="formular-titel">
           <h3 class="form__title" id="formular-titel">Ihre Anfrage</h3>
           <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
 
@@ -464,9 +464,9 @@
 
             <fieldset class="form-field" id="f-wer" aria-describedby="f-wer-fehler">
               <legend>Für wen suchen Sie Hilfe? <span class="form-field__req">*</span></legend>
-              <div class="choice-group choice-group--inline">
-                <label class="choice"><input type="radio" name="wer" value="selbst" id="f-wer-selbst" required> <span>Für mich selbst</span></label>
-                <label class="choice"><input type="radio" name="wer" value="angehoerige" id="f-wer-angehoerige"> <span>Für Angehörige oder Bekannte</span></label>
+              <div class="segment">
+                <label class="segment__option"><input type="radio" name="wer" value="selbst" id="f-wer-selbst" required> <span>Für mich</span></label>
+                <label class="segment__option"><input type="radio" name="wer" value="angehoerige" id="f-wer-angehoerige"> <span>Für Angehörige</span></label>
               </div>
               <p class="form-field__error" id="f-wer-fehler" aria-live="polite"></p>
             </fieldset>
@@ -489,85 +489,85 @@
             <!-- Leistungen je Kategorie (aus data/themen.json); ohne JS verborgen – die Beschreibung genügt -->
             <div data-leistungen-bereich>
             <fieldset class="form-field" data-leistungen="wohnen-haus-handwerk" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="kleinreparaturen-im-haus" id="f-l-wohnen-haus-handwerk-1"> <span>Kleinreparaturen im Haus</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="gartenpflege-und-heckenschnitt" id="f-l-wohnen-haus-handwerk-2"> <span>Gartenpflege und Heckenschnitt</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="barrierearmer-umbau-z-b-bad-haltegriffe" id="f-l-wohnen-haus-handwerk-3"> <span>Barrierearmer Umbau (z. B. Bad, Haltegriffe)</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="maler-und-tapezierarbeiten" id="f-l-wohnen-haus-handwerk-4"> <span>Maler- und Tapezierarbeiten</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="moebel-aufbauen-oder-umstellen" id="f-l-wohnen-haus-handwerk-5"> <span>Möbel aufbauen oder umstellen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="umzugshilfe" id="f-l-wohnen-haus-handwerk-6"> <span>Umzugshilfe</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="winterdienst" id="f-l-wohnen-haus-handwerk-7"> <span>Winterdienst</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-wohnen-haus-handwerk-8"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="kleinreparaturen-im-haus" id="f-l-wohnen-haus-handwerk-1"> <span>Kleinreparaturen im Haus</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="gartenpflege-und-heckenschnitt" id="f-l-wohnen-haus-handwerk-2"> <span>Gartenpflege und Heckenschnitt</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="barrierearmer-umbau-z-b-bad-haltegriffe" id="f-l-wohnen-haus-handwerk-3"> <span>Barrierearmer Umbau (z. B. Bad, Haltegriffe)</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="maler-und-tapezierarbeiten" id="f-l-wohnen-haus-handwerk-4"> <span>Maler- und Tapezierarbeiten</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="moebel-aufbauen-oder-umstellen" id="f-l-wohnen-haus-handwerk-5"> <span>Möbel aufbauen oder umstellen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="umzugshilfe" id="f-l-wohnen-haus-handwerk-6"> <span>Umzugshilfe</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="winterdienst" id="f-l-wohnen-haus-handwerk-7"> <span>Winterdienst</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-wohnen-haus-handwerk-8"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             <fieldset class="form-field" data-leistungen="haushalt-reinigung" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="regelmaessige-wohnungsreinigung" id="f-l-haushalt-reinigung-1"> <span>Regelmäßige Wohnungsreinigung</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="fenster-putzen" id="f-l-haushalt-reinigung-2"> <span>Fenster putzen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="waesche-waschen-und-buegeln" id="f-l-haushalt-reinigung-3"> <span>Wäsche waschen und bügeln</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="grossputz-oder-fruehjahrsputz" id="f-l-haushalt-reinigung-4"> <span>Großputz oder Frühjahrsputz</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="entruempelung-und-haushaltsaufloesung" id="f-l-haushalt-reinigung-5"> <span>Entrümpelung und Haushaltsauflösung</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="hilfe-beim-kochen-und-vorraete-auffuellen" id="f-l-haushalt-reinigung-6"> <span>Hilfe beim Kochen und Vorräte auffüllen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-haushalt-reinigung-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="regelmaessige-wohnungsreinigung" id="f-l-haushalt-reinigung-1"> <span>Regelmäßige Wohnungsreinigung</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="fenster-putzen" id="f-l-haushalt-reinigung-2"> <span>Fenster putzen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="waesche-waschen-und-buegeln" id="f-l-haushalt-reinigung-3"> <span>Wäsche waschen und bügeln</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="grossputz-oder-fruehjahrsputz" id="f-l-haushalt-reinigung-4"> <span>Großputz oder Frühjahrsputz</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="entruempelung-und-haushaltsaufloesung" id="f-l-haushalt-reinigung-5"> <span>Entrümpelung und Haushaltsauflösung</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="hilfe-beim-kochen-und-vorraete-auffuellen" id="f-l-haushalt-reinigung-6"> <span>Hilfe beim Kochen und Vorräte auffüllen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-haushalt-reinigung-7"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             <fieldset class="form-field" data-leistungen="pflege-betreuung" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="ambulante-pflege-durch-einen-pflegedienst" id="f-l-pflege-betreuung-1"> <span>Ambulante Pflege durch einen Pflegedienst</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="stundenweise-betreuung-zu-hause" id="f-l-pflege-betreuung-2"> <span>Stundenweise Betreuung zu Hause</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="entlastung-fuer-pflegende-angehoerige" id="f-l-pflege-betreuung-3"> <span>Entlastung für pflegende Angehörige</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="verhinderungspflege" id="f-l-pflege-betreuung-4"> <span>Verhinderungspflege</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="tagespflege" id="f-l-pflege-betreuung-5"> <span>Tagespflege</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="betreuung-bei-demenz" id="f-l-pflege-betreuung-6"> <span>Betreuung bei Demenz</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-pflege-betreuung-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="ambulante-pflege-durch-einen-pflegedienst" id="f-l-pflege-betreuung-1"> <span>Ambulante Pflege durch einen Pflegedienst</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="stundenweise-betreuung-zu-hause" id="f-l-pflege-betreuung-2"> <span>Stundenweise Betreuung zu Hause</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="entlastung-fuer-pflegende-angehoerige" id="f-l-pflege-betreuung-3"> <span>Entlastung für pflegende Angehörige</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="verhinderungspflege" id="f-l-pflege-betreuung-4"> <span>Verhinderungspflege</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="tagespflege" id="f-l-pflege-betreuung-5"> <span>Tagespflege</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="betreuung-bei-demenz" id="f-l-pflege-betreuung-6"> <span>Betreuung bei Demenz</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-pflege-betreuung-7"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             <fieldset class="form-field" data-leistungen="alltag-persoenliche-hilfe" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="einkaufen-und-besorgungen" id="f-l-alltag-persoenliche-hilfe-1"> <span>Einkaufen und Besorgungen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-arztterminen" id="f-l-alltag-persoenliche-hilfe-2"> <span>Begleitung zu Arztterminen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-behoerden-und-banken" id="f-l-alltag-persoenliche-hilfe-3"> <span>Begleitung zu Behörden und Banken</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="fahrdienst" id="f-l-alltag-persoenliche-hilfe-4"> <span>Fahrdienst</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="hilfe-bei-post-und-formularen" id="f-l-alltag-persoenliche-hilfe-5"> <span>Hilfe bei Post und Formularen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="botengaenge-zum-beispiel-zur-apotheke" id="f-l-alltag-persoenliche-hilfe-6"> <span>Botengänge, zum Beispiel zur Apotheke</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-alltag-persoenliche-hilfe-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="einkaufen-und-besorgungen" id="f-l-alltag-persoenliche-hilfe-1"> <span>Einkaufen und Besorgungen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="begleitung-zu-arztterminen" id="f-l-alltag-persoenliche-hilfe-2"> <span>Begleitung zu Arztterminen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="begleitung-zu-behoerden-und-banken" id="f-l-alltag-persoenliche-hilfe-3"> <span>Begleitung zu Behörden und Banken</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="fahrdienst" id="f-l-alltag-persoenliche-hilfe-4"> <span>Fahrdienst</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="hilfe-bei-post-und-formularen" id="f-l-alltag-persoenliche-hilfe-5"> <span>Hilfe bei Post und Formularen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="botengaenge-zum-beispiel-zur-apotheke" id="f-l-alltag-persoenliche-hilfe-6"> <span>Botengänge, zum Beispiel zur Apotheke</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-alltag-persoenliche-hilfe-7"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             <fieldset class="form-field" data-leistungen="technik-sicherheit" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="smartphone-und-tablet-einrichten-und-erklaeren" id="f-l-technik-sicherheit-1"> <span>Smartphone und Tablet einrichten und erklären</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="computer-internet-und-e-mail" id="f-l-technik-sicherheit-2"> <span>Computer, Internet und E-Mail</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="fernseher-und-receiver-einrichten" id="f-l-technik-sicherheit-3"> <span>Fernseher und Receiver einrichten</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="hausnotruf" id="f-l-technik-sicherheit-4"> <span>Hausnotruf</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="rauchmelder-anbringen" id="f-l-technik-sicherheit-5"> <span>Rauchmelder anbringen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="einbruchschutz-und-tuersicherung" id="f-l-technik-sicherheit-6"> <span>Einbruchschutz und Türsicherung</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="seniorentelefon-einrichten" id="f-l-technik-sicherheit-7"> <span>Seniorentelefon einrichten</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-technik-sicherheit-8"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="smartphone-und-tablet-einrichten-und-erklaeren" id="f-l-technik-sicherheit-1"> <span>Smartphone und Tablet einrichten und erklären</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="computer-internet-und-e-mail" id="f-l-technik-sicherheit-2"> <span>Computer, Internet und E-Mail</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="fernseher-und-receiver-einrichten" id="f-l-technik-sicherheit-3"> <span>Fernseher und Receiver einrichten</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="hausnotruf" id="f-l-technik-sicherheit-4"> <span>Hausnotruf</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="rauchmelder-anbringen" id="f-l-technik-sicherheit-5"> <span>Rauchmelder anbringen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="einbruchschutz-und-tuersicherung" id="f-l-technik-sicherheit-6"> <span>Einbruchschutz und Türsicherung</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="seniorentelefon-einrichten" id="f-l-technik-sicherheit-7"> <span>Seniorentelefon einrichten</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-technik-sicherheit-8"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             <fieldset class="form-field" data-leistungen="freizeit-lebensqualitaet" hidden disabled>
-              <legend>Was genau wird benötigt? <span class="form-field__hint">(freiwillig, mehrere möglich)</span></legend>
-              <div class="choice-group choice-group--cols">
-                <label class="choice"><input type="checkbox" name="leistungen" value="spaziergaenge-in-begleitung" id="f-l-freizeit-lebensqualitaet-1"> <span>Spaziergänge in Begleitung</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="begleitung-zu-veranstaltungen" id="f-l-freizeit-lebensqualitaet-2"> <span>Begleitung zu Veranstaltungen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="ausfluege-und-tagesfahrten" id="f-l-freizeit-lebensqualitaet-3"> <span>Ausflüge und Tagesfahrten</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="kurse-zum-beispiel-bewegung-oder-kreatives" id="f-l-freizeit-lebensqualitaet-4"> <span>Kurse, zum Beispiel Bewegung oder Kreatives</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="gesellschaft-leisten-und-vorlesen" id="f-l-freizeit-lebensqualitaet-5"> <span>Gesellschaft leisten und Vorlesen</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="gemeinsame-hobbys-und-spiele" id="f-l-freizeit-lebensqualitaet-6"> <span>Gemeinsame Hobbys und Spiele</span></label>
-                <label class="choice"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-freizeit-lebensqualitaet-7"> <span>Sonstiges (bitte unten beschreiben)</span></label>
+              <legend>Was genau? <span class="form-field__hint">(optional)</span></legend>
+              <div class="chip-group">
+                <label class="chip"><input type="checkbox" name="leistungen" value="spaziergaenge-in-begleitung" id="f-l-freizeit-lebensqualitaet-1"> <span>Spaziergänge in Begleitung</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="begleitung-zu-veranstaltungen" id="f-l-freizeit-lebensqualitaet-2"> <span>Begleitung zu Veranstaltungen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="ausfluege-und-tagesfahrten" id="f-l-freizeit-lebensqualitaet-3"> <span>Ausflüge und Tagesfahrten</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="kurse-zum-beispiel-bewegung-oder-kreatives" id="f-l-freizeit-lebensqualitaet-4"> <span>Kurse, zum Beispiel Bewegung oder Kreatives</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="gesellschaft-leisten-und-vorlesen" id="f-l-freizeit-lebensqualitaet-5"> <span>Gesellschaft leisten und Vorlesen</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="gemeinsame-hobbys-und-spiele" id="f-l-freizeit-lebensqualitaet-6"> <span>Gemeinsame Hobbys und Spiele</span></label>
+                <label class="chip"><input type="checkbox" name="leistungen" value="sonstiges" id="f-l-freizeit-lebensqualitaet-7"> <span>Sonstiges</span></label>
               </div>
             </fieldset>
             </div>
 
             <div class="form-field">
               <label class="form-field__label" for="f-beschreibung">Beschreiben Sie Ihr Anliegen <span class="form-field__req">*</span></label>
-              <span class="form-field__hint" id="f-beschreibung-hinweis">Zum Beispiel: Was soll erledigt werden, wie oft, ab wann? Ein paar Sätze genügen.</span>
-              <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="5" required minlength="20"
+              <span class="form-field__hint" id="f-beschreibung-hinweis">Was, wie oft, ab wann? Ein paar Sätze genügen.</span>
+              <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="4" required minlength="20"
                         aria-describedby="f-beschreibung-hinweis f-beschreibung-fehler"></textarea>
               <p class="form-field__error" id="f-beschreibung-fehler" aria-live="polite"></p>
             </div>
@@ -576,7 +576,7 @@
           <!-- 2 · Wo -->
           <fieldset class="form__section">
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Wo wird Hilfe benötigt?</legend>
-            <p class="form-field__hint" id="ort-hinweis">Wir vermitteln zunächst in Düsseldorf, Wuppertal, Hilden, Remscheid, Langenfeld, Haan, Wesel und Rees sowie Umgebung.</p>
+            <p class="form-field__hint" id="ort-hinweis">Zurzeit in Düsseldorf, Wuppertal, Hilden, Remscheid, Langenfeld, Haan, Wesel und Rees sowie Umgebung.</p>
             <div class="form__row form__row--plz">
               <div class="form-field">
                 <label class="form-field__label" for="f-plz">PLZ <span class="form-field__req">*</span></label>
@@ -607,7 +607,7 @@
           <fieldset class="form__section">
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Ihre Kontaktdaten</legend>
 
-            <div class="form__row form__row--2">
+            <div class="form__row form__row--name">
               <div class="form-field">
                 <label class="form-field__label" for="f-vorname">Vorname <span class="form-field__req">*</span></label>
                 <input class="form-field__input" id="f-vorname" name="vorname" type="text" autocomplete="given-name" required aria-describedby="f-vorname-fehler">
@@ -622,7 +622,7 @@
 
             <fieldset class="form-field form-field--group" id="f-kontakt" aria-describedby="kontakt-hinweis f-kontakt-fehler">
               <legend>So erreichen wir Sie <span class="form-field__req">*</span></legend>
-              <p class="form-field__hint" id="kontakt-hinweis">Bitte geben Sie mindestens eines an: Telefonnummer <strong>oder</strong> E-Mail-Adresse.</p>
+              <p class="form-field__hint" id="kontakt-hinweis">Telefon <strong>oder</strong> E-Mail genügt.</p>
               <div class="form__row form__row--2">
                 <div class="form-field">
                   <label class="form-field__label" for="f-telefon">Telefon</label>
@@ -640,15 +640,6 @@
               <p class="form-field__error" id="f-kontakt-fehler" aria-live="polite"></p>
             </fieldset>
 
-            <fieldset class="form-field">
-              <legend>Wann dürfen wir Sie zurückrufen? <span class="form-field__hint">(freiwillig)</span></legend>
-              <div class="choice-group choice-group--inline">
-                <label class="choice"><input type="radio" name="rueckruf" value="egal" checked> <span>Egal</span></label>
-                <label class="choice"><input type="radio" name="rueckruf" value="vormittags"> <span>Vormittags</span></label>
-                <label class="choice"><input type="radio" name="rueckruf" value="nachmittags"> <span>Nachmittags</span></label>
-                <label class="choice"><input type="radio" name="rueckruf" value="kein-anruf"> <span>Bitte nur per E-Mail</span></label>
-              </div>
-            </fieldset>
           </fieldset>
 
           <!-- 4 · Einwilligung -->
@@ -658,21 +649,20 @@
             <div class="form-field" id="f-datenschutz-feld">
               <label class="choice" for="f-datenschutz">
                 <input type="checkbox" id="f-datenschutz" name="einwilligung_bearbeitung" required aria-describedby="f-datenschutz-fehler">
-                <span>Ich bin einverstanden, dass das Team von KONZEPT 60+ meine Angaben zur Bearbeitung meiner Anfrage verwendet und mich dazu kontaktiert. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
+                <span>Ich bin einverstanden, dass KONZEPT 60+ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
               </label>
               <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
             </div>
 
             <div class="notice notice--privacy" role="note">
               <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
-              <p><strong>Ihre Daten bleiben bei uns.</strong> Ihre Kontaktdaten geben wir erst weiter, wenn wir Ihnen einen passenden
-                Anbieter genannt haben und Sie der Weitergabe ausdrücklich zugestimmt haben.</p>
+              <p><strong>Ihre Daten bleiben bei uns.</strong> Weitergabe erst, wenn wir Ihnen einen Anbieter genannt haben und Sie ausdrücklich zustimmen. <a href="/datenschutz/">Mehr zum Datenschutz</a></p>
             </div>
 
             <div class="form-field" id="f-newsletter-feld">
               <label class="choice" for="f-newsletter">
                 <input type="checkbox" id="f-newsletter" name="newsletter" value="ja" aria-describedby="f-newsletter-fehler">
-                <span><strong>Freiwillig:</strong> Ich möchte gelegentlich Neuigkeiten und Ratgeber-Tipps von KONZEPT 60+ per E-Mail erhalten (Newsletter). Diese Einwilligung kann ich jederzeit widerrufen. Siehe <a href="/datenschutz/#newsletter">Datenschutzerklärung</a>.</span>
+                <span><strong>Freiwillig:</strong> Newsletter mit Ratgeber-Tipps per E-Mail, jederzeit <a href="/datenschutz/#newsletter">widerrufbar</a>.</span>
               </label>
               <p class="form-field__error" id="f-newsletter-fehler" aria-live="polite"></p>
             </div>
@@ -866,6 +856,6 @@
 </footer>
 <!-- END partial:footer -->
 
-<script src="/assets/js/main.js?v=2c70177bec" defer></script>
+<script src="/assets/js/main.js?v=d92c692488" defer></script>
 </body>
 </html>

@@ -267,7 +267,6 @@
     kontakt: 'Bitte geben Sie eine Telefonnummer oder eine E-Mail-Adresse an – mindestens eines von beiden –, damit wir Sie erreichen können.',
     telefon: 'Die Telefonnummer scheint nicht vollständig zu sein. Bitte nur Ziffern, Leerzeichen und + / - verwenden.',
     email: 'Bitte prüfen Sie die E-Mail-Adresse. Sie sollte so aussehen: name@beispiel.de',
-    emailNoetig: 'Sie möchten nur per E-Mail kontaktiert werden – bitte geben Sie dafür Ihre E-Mail-Adresse an.',
     newsletter: 'Für den Newsletter benötigen wir Ihre E-Mail-Adresse. Bitte tragen Sie sie ein oder entfernen Sie das Häkchen.',
     einwilligung: 'Bitte bestätigen Sie die Einwilligung, damit unser Team Ihre Anfrage bearbeiten darf.'
   };
@@ -314,10 +313,7 @@
         when: function () { return Boolean(val(f.telefon) || val(f.email)); },
         check: function () {
           var mail = val(f.email);
-          var rueckruf = form.querySelector('input[name="rueckruf"]:checked');
-          if (mail && !EMAIL_RE.test(mail)) return MSG.email;
-          if (!mail && rueckruf && rueckruf.value === 'kein-anruf') return MSG.emailNoetig;
-          return '';
+          return mail && !EMAIL_RE.test(mail) ? MSG.email : '';
         } },
       { error: 'f-newsletter-fehler', focus: self(f.newsletter), inputs: one(f.newsletter),
         group: document.getElementById('f-newsletter-feld'),

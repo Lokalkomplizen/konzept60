@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "betrug-telefon-haustuer",
+      "titel": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
+      "thema": "technik-sicherheit",
+      "thema_titel": "Technik und Sicherheit",
+      "bild": "betrug-telefon-haustuer",
+      "bild_alt": "Ein Festnetztelefon und ein Schlüsselbund liegen auf einem Holztisch neben einem kleinen Holzhaus mit Schloss-Symbol, im Hintergrund eine Wohnungstür.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:30",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu…",
+      "url": "/ratgeber/betrug-telefon-haustuer/"
+    },
+    {
       "slug": "alltag-gut-organisiert",
       "titel": "Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen",
       "thema": "alltag-persoenliche-hilfe",

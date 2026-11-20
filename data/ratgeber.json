@@ -2,6 +2,21 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "pflegegrad-beantragen",
+      "titel": "Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad",
+      "thema": "pflege-betreuung",
+      "thema_titel": "Pflege und Betreuung",
+      "bild": "pflegegrad-beantragen",
+      "bild_alt": "Ein Klemmbrett mit der Überschrift „Pflegegrad“ und abgehakten Schritten – Antrag stellen, Begutachtung, Einstufung, Leistungen nutzen – liegt auf einem Holztisch neben einem Kugelschreiber, einer Kaffeetasse und einem Holzherz.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 17:10",
+      "geaendert": "2026-11-20",
+      "anreisser": "Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…",
+      "url": "/ratgeber/pflegegrad-beantragen/",
+      "tabelle_beschriftung": "Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung",
+      "hinweis": "Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung."
+    },
+    {
       "slug": "altersgerechter-umbau",
       "titel": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
       "thema": "wohnen-haus-handwerk",

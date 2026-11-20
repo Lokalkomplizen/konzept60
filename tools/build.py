@@ -236,7 +236,7 @@ def hinweis_block(t):
 # Optionale Frontmatter-Felder:
 #   inline_bild, inline_bild_alt, inline_nach_ueberschrift  zweites Bild im Text: nach der
 #       ersten Liste des ##-Abschnitts, dessen Überschrift so beginnt (sonst direkt nach der Überschrift)
-#   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag
+#   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag; mehrere Tabellen: „Erste | Zweite“
 # --------------------------------------------------------------------------
 FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
@@ -366,6 +366,9 @@ def heading_ids(blocks):
 
 def render_blocks(blocks, ids=None, caption=None):
     ids = ids or {}
+    # mehrere Tabellen: Beschriftungen mit „ | “ trennen (eine Angabe gilt für alle Tabellen)
+    captions = [c.strip() for c in caption.split(" | ")] if caption else []
+    n_table = 0
     out = []
     for i, (kind, data) in enumerate(blocks):
         if kind == "h2":
@@ -382,8 +385,10 @@ def render_blocks(blocks, ids=None, caption=None):
             head, rows = data
             out.append('<div class="article__table-wrap">')
             out.append('  <table class="article__table">')
-            if caption:
-                out.append(f'    <caption class="visually-hidden">{esc(caption)}</caption>')
+            cap = captions[min(n_table, len(captions) - 1)] if captions else ""
+            n_table += 1
+            if cap:
+                out.append(f'    <caption class="visually-hidden">{esc(cap)}</caption>')
             out.append("    <thead>")
             out.append("      <tr>" + "".join(f'<th scope="col">{inline(h)}</th>' for h in head) + "</tr>")
             out.append("    </thead>")

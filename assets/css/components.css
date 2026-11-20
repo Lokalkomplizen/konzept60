@@ -1664,7 +1664,8 @@ select.form-field__input {
   .article__table tbody tr:nth-child(even) td { background: var(--color-white); }
   .article__table td {
     display: grid;
-    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+    /* min-content: lange Spaltennamen („Gesamtpunktzahl“) nicht mitten im Wort umbrechen */
+    grid-template-columns: minmax(min-content, 8.5rem) minmax(0, 1fr);
     gap: var(--space-s);
     padding: 0.55rem var(--space-m);
   }
@@ -1674,6 +1675,7 @@ select.form-field__input {
     content: attr(data-label);
     font-weight: 700;
     color: var(--color-ink-muted);
+    hyphens: auto;
   }
 }
 

@@ -2,6 +2,21 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "kurzzeitpflege",
+      "titel": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
+      "thema": "pflege-betreuung",
+      "thema_titel": "Pflege und Betreuung",
+      "bild": "kurzzeitpflege",
+      "bild_alt": "Tochter und Pflegerin im Gespräch mit lächelnder älterer Frau im hellen Aufenthaltsraum einer Pflegeeinrichtung.",
+      "stand": "November 2026 (Rechtsstand 2026)",
+      "veroeffentlicht": "2026-11-20 22:00",
+      "geaendert": "2026-11-20",
+      "anreisser": "Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…",
+      "url": "/ratgeber/kurzzeitpflege/",
+      "tabelle_beschriftung": "Gemeinsamer Jahresbetrag für Kurzzeit- und Verhinderungspflege 2026 nach Pflegegrad",
+      "hinweis": "Dieser Beitrag beschreibt die Rechtslage 2026. Für 2027 ist eine Pflegereform geplant, die Kurzzeit- und Verhinderungspflege neu regeln soll. Er ersetzt keine Pflegeberatung."
+    },
+    {
       "slug": "pflegereform-2027",
       "titel": "Pflege 2027: Was sich zum 1. Januar ändern soll",
       "thema": "pflege-betreuung",

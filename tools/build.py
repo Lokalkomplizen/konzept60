@@ -631,7 +631,8 @@ def beitrag_ctx(b, beitraege):
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung")).splitlines(), 8),
-        "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in andere),
+        # Beiträge zum selben Thema zuerst, dann die neuesten übrigen; max. 3 Karten
+        "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in (gleiches_thema + [x for x in andere if x["thema"] != b["thema"]])[:3]),
         "weitere_zum_thema": thema_link,
     }
 

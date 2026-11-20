@@ -1529,6 +1529,16 @@ select.form-field__input {
   gap: var(--space-xl);
 }
 
+/* Beitrag mittig auf der Seite: Kopf und Inhalt teilen sich dieselbe Breite (Text 42rem + Inhaltsverzeichnis) */
+.page-header--article .breadcrumb,
+.page-header--article .article__header,
+.container.article__layout {
+  max-width: calc(64rem + 2 * var(--gutter));
+  margin-inline: auto;
+}
+.page-header--article .breadcrumb,
+.page-header--article .article__header { max-width: 64rem; }
+
 .article__media {
   aspect-ratio: 3 / 2;
   border-radius: var(--radius-l);

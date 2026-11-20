@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "haushaltshilfe-im-alter",
+      "titel": "Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht",
+      "thema": "haushalt-reinigung",
+      "thema_titel": "Haushalt und Reinigung",
+      "bild": "haushaltshilfe-im-alter",
+      "bild_alt": "Ein Putzeimer mit Sprühflasche, Bürste und gelben Handschuhen, gefaltete Handtücher und eine Einkaufstüte mit Obst, Gemüse und Brot stehen auf einem Holztisch.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:45",
+      "geaendert": "2026-11-20",
+      "anreisser": "Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher…",
+      "url": "/ratgeber/haushaltshilfe-im-alter/"
+    },
+    {
       "slug": "betrug-telefon-haustuer",
       "titel": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
       "thema": "technik-sicherheit",

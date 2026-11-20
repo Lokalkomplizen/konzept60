@@ -4,11 +4,11 @@ slug: kurzzeitpflege
 thema: pflege-betreuung
 bild: kurzzeitpflege
 bild_alt: Tochter und Pflegerin im Gespräch mit lächelnder älterer Frau im hellen Aufenthaltsraum einer Pflegeeinrichtung.
-stand: November 2026 (Rechtsstand 2026)
+stand: November 2026 (geplant ab 2027, Regierungsentwurf)
 veroeffentlicht: 2026-11-20 22:00
 geaendert: 2026-11-20
-tabelle_beschriftung: Gemeinsamer Jahresbetrag für Kurzzeit- und Verhinderungspflege 2026 nach Pflegegrad
-hinweis: Dieser Beitrag beschreibt die Rechtslage 2026. Für 2027 ist eine Pflegereform geplant, die Kurzzeit- und Verhinderungspflege neu regeln soll. Er ersetzt keine Pflegeberatung.
+tabelle_beschriftung: Geplantes Überbrückungsbudget ab 2027 nach Pflegegrad (Regierungsentwurf)
+hinweis: Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung.
 ---
 
 Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem Krankenhausaufenthalt noch keine ausreichende Versorgung zu Hause bereit. Oder die bisherige Pflegeperson fällt aus und eine andere Lösung wird benötigt.
@@ -37,39 +37,29 @@ Einen Anspruch auf Kurzzeitpflege über die Pflegeversicherung haben grundsätzl
 
 Voraussetzung ist, dass die häusliche Pflege zeitweise nicht, noch nicht oder nicht im erforderlichen Umfang erbracht werden kann und eine teilstationäre Versorgung nicht ausreicht.
 
-Auch Menschen mit Pflegegrad 1 können unter bestimmten Voraussetzungen den monatlichen Entlastungsbetrag für Kurzzeitpflege einsetzen.
-
-Wichtig: Auch ohne Pflegegrad 2 kann unter bestimmten Voraussetzungen ein Anspruch über die gesetzliche Krankenversicherung bestehen, beispielsweise nach einer Krankenhausbehandlung, wenn die Versorgung zu Hause nicht ausreichend sichergestellt werden kann.
+Wichtig: Wer keinen Pflegegrad 2 bis 5 hat, kann unter bestimmten Voraussetzungen über die gesetzliche Krankenversicherung Kurzzeitpflege für bis zu acht Wochen erhalten, beispielsweise nach einer Krankenhausbehandlung, wenn häusliche Krankenpflege nicht ausreicht.
 
 ## Wie lange kann Kurzzeitpflege genutzt werden?
 
-Die Pflegeversicherung unterstützt die Kurzzeitpflege für bis zu acht Wochen pro Kalenderjahr.
+Die Pflegeversicherung unterstützt die Kurzzeitpflege auch nach der geplanten Reform für bis zu acht Wochen pro Kalenderjahr.
 
-Seit dem 1. Juli 2025 gibt es dafür gemeinsam mit der Verhinderungspflege einen einheitlichen Jahresbetrag.
+## Wie viel zahlt die Pflegekasse ab 2027?
 
-Das bedeutet: Die verfügbaren Mittel können flexibel für Kurzzeitpflege und Verhinderungspflege eingesetzt werden. Wird ein Teil des Budgets für die eine Leistung verwendet, steht dieser Betrag für die andere Leistung nicht mehr zur Verfügung.
+Nach dem Regierungsentwurf zur [Pflegereform 2027](/ratgeber/pflegereform-2027/) soll der bisherige gemeinsame Jahresbetrag für Kurzzeit- und Verhinderungspflege im neuen Überbrückungsbudget aufgehen. Pflegebedürftige mit Pflegegrad 2 bis 5 sollen daraus bis zu 2.285 Euro je Kalenderjahr erhalten. Das Budget ist für Situationen gedacht, in denen die Versorgung zu Hause vorübergehend nicht sichergestellt ist, zum Beispiel für eine Kurzzeitpflege oder eine Ersatzpflege, wenn die Pflegeperson ausfällt.
 
-## Wie viel zahlt die Pflegekasse 2026?
-
-Für Kurzzeitpflege und Verhinderungspflege steht Pflegebedürftigen ab Pflegegrad 2 im Jahr 2026 ein gemeinsamer Jahresbetrag von bis zu 3.539 Euro zur Verfügung.
-
-| Pflegegrad | Gemeinsamer Jahresbetrag |
+| Pflegegrad | Überbrückungsbudget (geplant, pro Jahr) |
 | --- | --- |
-| Pflegegrad 1 | Kein Anspruch auf den gemeinsamen Jahresbetrag |
-| Pflegegrad 2 | bis zu 3.539 € |
-| Pflegegrad 3 | bis zu 3.539 € |
-| Pflegegrad 4 | bis zu 3.539 € |
-| Pflegegrad 5 | bis zu 3.539 € |
+| Pflegegrad 1 | kein Anspruch |
+| Pflegegrad 2 | bis zu 2.285 € |
+| Pflegegrad 3 | bis zu 2.285 € |
+| Pflegegrad 4 | bis zu 2.285 € |
+| Pflegegrad 5 | bis zu 2.285 € |
 
-Der Betrag gilt insgesamt für beide Leistungsarten und nicht jeweils separat.
-
-Pflegebedürftige mit Pflegegrad 1 können stattdessen unter bestimmten Voraussetzungen ihren Entlastungsbetrag von bis zu 131 Euro monatlich für Kurzzeitpflege einsetzen.
-
-**Ab 2027 geplant:** Nach dem Regierungsentwurf zur Pflegereform soll der gemeinsame Jahresbetrag ab 2027 im neuen Überbrückungsbudget aufgehen. Mehr dazu im Beitrag [Pflege 2027: Was sich zum 1. Januar ändern soll](/ratgeber/pflegereform-2027/).
+Für Menschen mit Pflegegrad 1 soll der bisherige Entlastungsbetrag nach dem Entwurf ersatzlos entfallen. Eine Kurzzeitpflege würde von der Pflegekasse dann nicht mehr bezuschusst.
 
 ## Welche Kosten übernimmt die Pflegekasse?
 
-Die Pflegekasse beteiligt sich im Rahmen des verfügbaren Budgets insbesondere an den pflegebedingten Aufwendungen der Kurzzeitpflege.
+Die Pflegekasse beteiligt sich im Rahmen des Überbrückungsbudgets insbesondere an den pflegebedingten Aufwendungen der Kurzzeitpflege.
 
 Weitere Kosten können entstehen, zum Beispiel für:
 
@@ -81,11 +71,9 @@ Diese Kosten müssen häufig selbst getragen werden. Unter bestimmten Voraussetz
 
 Es lohnt sich deshalb, vor der Aufnahme einen detaillierten Kostenvoranschlag der Einrichtung anzufordern.
 
-## Wird das Pflegegeld während der Kurzzeitpflege weitergezahlt?
+## Was passiert mit den laufenden Leistungen während der Kurzzeitpflege?
 
-Ja. Während der Kurzzeitpflege wird das bisher bezogene anteilige Pflegegeld für bis zu acht Wochen je Kalenderjahr zur Hälfte weitergezahlt.
-
-Das kann für Familien wichtig sein, die während des Aufenthalts weiterhin Kosten oder organisatorische Aufwendungen haben.
+Bisher wurde das Pflegegeld während einer Kurzzeitpflege zur Hälfte weitergezahlt. Ob und in welcher Höhe das geplante Entlastungsbudget während eines Aufenthalts weiterläuft, geht aus den bisher veröffentlichten Informationen zum Entwurf noch nicht eindeutig hervor. Fragen Sie vor der Aufnahme bei Ihrer Pflegekasse nach.
 
 ## Wie findet man einen passenden Kurzzeitpflegeplatz?
 
@@ -117,15 +105,15 @@ Dazu gehören:
 
 Ein persönliches Gespräch mit der Einrichtung vor der Aufnahme kann viele Fragen klären.
 
-## Kurzzeitpflege oder Verhinderungspflege: Was ist der Unterschied?
+## Kurzzeitpflege oder Ersatzpflege zu Hause: Was ist der Unterschied?
 
 Beide Leistungen unterstützen Familien, wenn die häusliche Pflege vorübergehend nicht wie gewohnt möglich ist. Sie verfolgen jedoch unterschiedliche Ansätze.
 
 **Kurzzeitpflege:** Die pflegebedürftige Person zieht vorübergehend in eine stationäre Pflegeeinrichtung.
 
-**Verhinderungspflege:** Die bisherige private Pflegeperson fällt vorübergehend aus. Eine Ersatzpflege übernimmt die Versorgung, beispielsweise ein ambulanter Pflegedienst oder eine andere geeignete Person.
+**Ersatzpflege zu Hause:** Die bisherige private Pflegeperson fällt vorübergehend aus. Eine Ersatzpflege übernimmt die Versorgung, beispielsweise ein ambulanter Pflegedienst oder eine andere geeignete Person.
 
-Beide Leistungen teilen sich seit Juli 2025 einen gemeinsamen Jahresbetrag von bis zu 3.539 Euro.
+Nach dem Entwurf soll es die Verhinderungspflege als eigene Leistung nicht mehr geben. Beide Fälle sollen künftig aus dem gemeinsamen Überbrückungsbudget von bis zu 2.285 Euro im Jahr bezahlt werden.
 
 ## Wie geht es nach der Kurzzeitpflege weiter?
 

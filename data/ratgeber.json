@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "gesund-und-fit-im-alter",
+      "titel": "Gesund und fit im Alter: Was Sie selbst für Ihr Wohlbefinden tun können",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "gesund-und-fit-im-alter",
+      "bild_alt": "Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine Schale Müsli mit Beeren, ein grüner Apfel, Mandeln, zwei blaue Hanteln, ein Handtuch und ein Blutdruckmessgerät.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:55",
+      "geaendert": "2026-11-20",
+      "anreisser": "Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert…",
+      "url": "/ratgeber/gesund-und-fit-im-alter/"
+    },
+    {
       "slug": "gemeinsam-statt-einsam",
       "titel": "Gemeinsam statt einsam: Warum soziale Kontakte im Alter so wichtig sind",
       "thema": "freizeit-lebensqualitaet",

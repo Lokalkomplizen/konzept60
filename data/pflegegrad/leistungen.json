@@ -1,5 +1,5 @@
 {
- "_doku": "Zentrale Leistungsdaten. Jede Leistung: Betrag je PG, Zeitraum, Voraussetzungen, Quelle; jedes Paket: Rechtsstatus und Gültigkeit. rechtsstatus ∈ geltend | beschlossen | gesetzentwurf | historisch.",
+ "_doku": "Zentrale Leistungsdaten. Anzeige: Paket mit anzeige='haupt' ist die Hauptansicht (Entscheidung Tommy 20.11.2026: Seite startet 2027, deshalb 2027 als Hauptansicht, 2026 nur im zugeklappten Kasten 'Was ändert sich gegenüber 2026?'). Jede Leistung: Betrag je PG, Zeitraum, Voraussetzungen, Quelle; jedes Paket: Rechtsstatus und Gültigkeit. rechtsstatus ∈ geltend | beschlossen | gesetzentwurf | historisch. Nach Verkündung des PNOG: Beträge im Original prüfen, rechtsstatus auf 'beschlossen' setzen, quellenqualitaet anpassen.",
  "stand_geprueft": "2026-11-20",
  "pakete": [
   {
@@ -238,7 +238,8 @@
      ],
      "paragraf": "§ 38a SGB XI"
     }
-   ]
+   ],
+   "anzeige": "vergleich"
   },
   {
    "id": "leistungen_2027_entwurf",
@@ -256,7 +257,7 @@
    "leistungen": [
     {
      "id": "entlastungsbudget",
-     "titel": "Entlastungsbudget (ersetzt Pflegegeld)",
+     "titel": "Entlastungsbudget",
      "zeitraum": "monatlich",
      "betraege": {
       "1": null,
@@ -265,7 +266,7 @@
       "4": 890,
       "5": 1080
      },
-     "voraussetzungen": "Selbst organisierte häusliche Pflege.",
+     "voraussetzungen": "Ab Pflegegrad 2, häusliche Pflege. Daraus sollen künftig auch Pflegehilfsmittel zum Verbrauch (z. B. Einmalhandschuhe) und selbst organisierte Ersatzpflege bezahlt werden.",
      "quellen": [
       {
        "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
@@ -297,7 +298,8 @@
        "5": null
       },
       "herkunft": "Referentenentwurf Juni 2026"
-     }
+     },
+     "kurz": "Ersetzt das Pflegegeld. Für die selbst organisierte Pflege zu Hause, zum Beispiel durch Angehörige."
     },
     {
      "id": "sachleistungsbudget",
@@ -310,7 +312,7 @@
       "4": 2090,
       "5": 2530
      },
-     "voraussetzungen": "Professionelle ambulante Pflege, Betreuung, Hilfen bei der Haushaltsführung.",
+     "voraussetzungen": "Ab Pflegegrad 2. Abrechnung nur über Dienste mit Zulassung bzw. Vertrag mit der Pflegekasse.",
      "quellen": [
       {
        "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
@@ -332,7 +334,11 @@
        "abgerufen": "2026-11-20"
       }
      ],
-     "ersetzt": "pflegesachleistung"
+     "ersetzt": "pflegesachleistung",
+     "kurz": "Ersetzt die Pflegesachleistungen. Für einen zugelassenen ambulanten Pflege- oder Betreuungsdienst.",
+     "offen": [
+      "Ob und wie Entlastungs- und Sachleistungsbudget anteilig kombiniert werden (heute Kombinationsleistung § 38), ist in den geprüften Quellen nicht beschrieben."
+     ]
     },
     {
      "id": "sozialraumbudget",
@@ -345,7 +351,7 @@
       "4": 175,
       "5": 175
      },
-     "voraussetzungen": "Nur PG 2–5. Anerkannte Angebote zur Unterstützung im Alltag. Bis zum vollendeten 25. Lebensjahr 300 €. Keine Ansparung.",
+     "voraussetzungen": "Ab Pflegegrad 2. Nur für nach Landesrecht anerkannte Angebote zur Unterstützung im Alltag (in NRW: AnFöVO). Bis zum vollendeten 25. Lebensjahr 300 €. Ansparen wie beim heutigen Entlastungsbetrag soll nicht mehr möglich sein.",
      "quellen": [
       {
        "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
@@ -370,7 +376,8 @@
      "ersetzt": "entlastungsbetrag",
      "sonderwert": {
       "unter_25": 300
-     }
+     },
+     "kurz": "Ersetzt den Entlastungsbetrag ab Pflegegrad 2. Für anerkannte Angebote zur Unterstützung im Alltag."
     },
     {
      "id": "ueberbrueckungsbudget",
@@ -383,7 +390,7 @@
       "4": 2285,
       "5": 2285
      },
-     "voraussetzungen": "Akute Versorgungslücken (z. B. Ausfall der Pflegeperson), u. a. Kurzzeitpflege.",
+     "voraussetzungen": "Ab Pflegegrad 2, einheitlich für alle Pflegegrade, je Kalenderjahr. Ab 2028 sollen auch ambulante Notdienste und Akut-Kurzzeitpflegeplätze daraus bezahlt werden können.",
      "quellen": [
       {
        "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
@@ -414,35 +421,83 @@
        "5": 2285
       },
       "herkunft": "Briefing Tommy, in keiner geprüften Quelle gefunden"
-     }
-    },
-    {
-     "id": "entlastungsbetrag_pg1",
-     "titel": "Entlastungsbetrag Pflegegrad 1",
-     "zeitraum": "monatlich",
-     "betraege": {
-      "1": 0
      },
-     "voraussetzungen": "Soll ersatzlos entfallen (Drucksache, Finanztabelle: „Streichung der Leistung Entlastungsbetrag nach § 45b SGB XI in Pflegegrad 1“).",
-     "quellen": [
-      {
-       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
-       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
-       "art": "amtlich",
-       "abgerufen": "2026-11-20",
-       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
-      }
-     ],
-     "ersetzt": "entlastungsbetrag"
+     "kurz": "Für Kurzzeitpflege und akute Situationen, zum Beispiel wenn die Pflegeperson plötzlich ausfällt."
     }
    ],
    "gestrichen_gegenueber_referentenentwurf": [
     "Hälftige Auszahlung des Entlastungsbudgets in den ersten drei Monaten (laut beiden Sekundärquellen nicht mehr im Regierungsentwurf)"
    ],
    "weitere": {
-    "pflegebegleitung": "§ 7c SGB XI-E: ab 01.01.2029 (Drucksache)",
-    "dynamisierung": "ab 2029 jeweils zum 01.01.; Dynamisierung 2028 entfällt (Drucksache)"
-   }
+    "pflegebegleitung": "§ 7c SGB XI-E: ab 01.01.2029 (DCO; Drucksache).",
+    "dynamisierung": "ab 2029 jeweils zum 01.01.; Dynamisierung 2028 entfällt (Drucksache)",
+    "rentenbeitraege": "Kürzung der Rentenbeiträge für pflegende Angehörige aus dem Referentenentwurf nicht mehr enthalten (DCO); Ende mit Regelaltersgrenze bei Altersrentnern nur laut AssistenzPlus."
+   },
+   "anzeige": "haupt",
+   "status_text": {
+    "gesetzentwurf": "Gesetzentwurf – noch nicht beschlossen",
+    "beschlossen": "Beschlossen – gilt ab 1. Januar 2027",
+    "geltend": "Geltendes Recht"
+   },
+   "entfaellt": [
+    {
+     "id": "pflegegeld",
+     "text": "Pflegegeld: wird durch das Entlastungsbudget ersetzt."
+    },
+    {
+     "id": "pflegesachleistung",
+     "text": "Pflegesachleistungen: werden durch das Sachleistungsbudget ersetzt."
+    },
+    {
+     "id": "entlastungsbetrag",
+     "text": "Entlastungsbetrag (131 €): ab Pflegegrad 2 durch das Sozialraumbudget ersetzt, bei Pflegegrad 1 ersatzlos gestrichen."
+    },
+    {
+     "id": "gemeinsamer_jahresbetrag",
+     "text": "Verhinderungspflege und Gemeinsamer Jahresbetrag (3.539 €) als eigene Leistung: sollen entfallen. Kurzzeitpflege läuft über das Überbrückungsbudget, Ersatzpflege über die neuen Budgets."
+    },
+    {
+     "id": "pflegehilfsmittel_verbrauch",
+     "text": "Pflegehilfsmittel zum Verbrauch (42 €) als eigene Leistung: soll entfallen, ab Pflegegrad 2 aus dem Entlastungsbudget, bei Pflegegrad 1 ohne Ersatz."
+    },
+    {
+     "id": "vollstationaer_pg1",
+     "text": "Zuschuss im Pflegeheim bei Pflegegrad 1: soll für neue Fälle entfallen (Bestandsfälle behalten ihn)."
+    }
+   ],
+   "entfaellt_quellen": [
+    {
+     "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+     "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+     "art": "sekundaer",
+     "abgerufen": "2026-11-20"
+    },
+    {
+     "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+     "url": "https://dco-care.de/wissen/pnog-radar/",
+     "art": "sekundaer",
+     "abgerufen": "2026-11-20"
+    }
+   ],
+   "ungeprueft": {
+    "ids": [
+     "tages_nachtpflege",
+     "vollstationaer",
+     "wohnumfeld",
+     "dipa",
+     "wohngruppenzuschlag"
+    ],
+    "text": "Zu diesen Leistungen nennen die geprüften Quellen für 2027 keine neuen Beträge. Gezeigt wird der Betrag 2026. Ob er 2027 gleich bleibt, ist nicht geprüft."
+   },
+   "pflegegrad_texte": {
+    "0": "Nach Ihren Angaben liegt voraussichtlich kein Pflegegrad vor. Leistungen der Pflegeversicherung gibt es dann nicht, aber die Pflegekasse berät Sie kostenlos. Hilfe im Alltag ist privat möglich.",
+    "1": "Bei Pflegegrad 1 sollen ab 2027 der Entlastungsbetrag (131 € im Monat) und die Pflegehilfsmittel zum Verbrauch (42 € im Monat) ersatzlos entfallen. Ein Entlastungs-, Sachleistungs- oder Sozialraumbudget ist für Pflegegrad 1 nicht vorgesehen. Der Pflegegrad selbst bleibt bestehen. Vorgesehen sind Beratungsbesuche und ab 2029 eine fachliche Pflegebegleitung. Für neue Anträge soll Pflegegrad 1 erst ab 15 Punkten gelten.",
+    "2": "Bei Pflegegrad 2 sollen Pflegegeld, Sachleistung und Entlastungsbetrag durch vier Budgets ersetzt werden: Entlastungsbudget 380 €, Sachleistungsbudget bis 890 € und Sozialraumbudget bis 175 € im Monat, dazu bis 2.285 € im Jahr für Überbrückung. Aus dem Entlastungsbudget sollen auch Verbrauchsmaterial und Ersatzpflege bezahlt werden. Für neue Anträge soll Pflegegrad 2 erst ab 30 Punkten gelten.",
+    "3": "Bei Pflegegrad 3 sind vorgesehen: Entlastungsbudget 630 €, Sachleistungsbudget bis 1.590 € und Sozialraumbudget bis 175 € im Monat, dazu bis 2.285 € im Jahr für Überbrückung. Verhinderungspflege und der Gemeinsame Jahresbetrag sollen als eigene Leistung entfallen. Für neue Anträge soll Pflegegrad 3 erst ab 50 Punkten gelten.",
+    "4": "Bei Pflegegrad 4 sind vorgesehen: Entlastungsbudget 890 €, Sachleistungsbudget bis 2.090 € und Sozialraumbudget bis 175 € im Monat, dazu bis 2.285 € im Jahr für Überbrückung. Die Punktgrenze für Pflegegrad 4 (70 Punkte) soll gleich bleiben.",
+    "5": "Bei Pflegegrad 5 sind vorgesehen: Entlastungsbudget 1.080 €, Sachleistungsbudget bis 2.530 € und Sozialraumbudget bis 175 € im Monat, dazu bis 2.285 € im Jahr für Überbrückung. Die Punktgrenze für Pflegegrad 5 (90 Punkte) soll gleich bleiben."
+   },
+   "bestandsschutz": "Wer schon einen Pflegegrad hat, soll ihn nicht allein wegen der neuen Punktgrenzen verlieren. Der Schutz gilt für den Pflegegrad, nicht für jede bisherige Leistung."
   }
  ]
 }

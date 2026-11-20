@@ -68,3 +68,11 @@ button,
 .segment__option span::before { display: none; }
 
 a { color: #000; text-decoration: none; }
+
+/* Pflegegradrechner: Auswertung als PDF – aufgeklappte Details, keine Kartenschatten */
+.pgr-details summary { font-weight: 700; }
+.pgr-leistungen, .pgr-hilfe { display: block; }
+.pgr-leistung, .pgr-hilfe__item { border: 1px solid #999; margin-bottom: 0.4rem; break-inside: avoid; }
+.pgr-fin { border: 0; background: none; padding: 0; }
+.pgr-fin::before { content: "• "; }
+.pgr-bar__fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }

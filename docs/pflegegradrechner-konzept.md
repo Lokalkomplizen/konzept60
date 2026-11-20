@@ -100,3 +100,14 @@ Tests: 22 Fälle, alle Grenzen knapp darunter/darauf, Modul-5-Schwellen, Gleitko
 - Hinweise im Ergebnis: Nähe zur Grenze (Anzeigeregel von Wir helfen, 3 Punkte, keine Gesetzesregel), besondere Bedarfskonstellation (§ 15 Abs. 4, nur Hinweis), Reform 2027 (nur wenn der Entwurf einen niedrigeren Grad ergäbe).
 - Tests: `node --test tests/*.test.js` (22 Rechentests) und `tests/rechner.e2e.js` (Durchlauf im Browser, Desktop + Handy: UI-Ergebnis = nba.js, Schrittzahl, Pflichtfelder, keine Netzwerkanfragen, kein Storage).
 - Offen für Etappe 3: Leistungen 2026, Vergleich 2027, „Was bedeutet die Reform für mich?“, Vermittlung nach Themen, PDF-Layout (print.css), SEO/FAQ/JSON-LD.
+
+## 10. Stand Etappe 3
+
+- **Regelumschaltung:** `nba.js` → `regelwerkFuer()`. Neue Punktgrenzen gelten erst, wenn `nba-2027-entwurf.json` den Status `beschlossen`/`geltend` hat **und** `gueltig_ab` erreicht ist. Ein Entwurf wird nie gerechnet, nur als Hinweis gezeigt. Testdatum per `?testdatum=JJJJ-MM-TT`.
+- **Leistungen:** `leistungen.json` – Paket 2027 (`anzeige: "haupt"`) ist Hauptansicht mit Status-Badge, Paket 2026 (`anzeige: "vergleich"`) nur im zugeklappten Kasten „Was ändert sich gegenüber 2026?“. Monats- und Jahresbeträge getrennt, keine Summen. Leistungen ohne geprüften 2027-Betrag (Tagespflege, Heim, Wohnumfeld, DiPA, Wohngruppe) zeigen ausdrücklich den Betrag 2026 mit Hinweis „nicht geprüft“.
+- **Reform je Pflegegrad:** Texte in `leistungen.json` → `pflegegrad_texte` (PG 1: Wegfall 131 € und 42 €, keine Budgets).
+- **Passende Hilfe:** `hilfe.json` – Regeln nach Modulstufen/Pflegegrad, Etiketten Kasse / anerkannt / Zuschuss / privat, NRW-Hinweis (AnFöVO). Bei PG 0–1 entfallen Kassen-/Anerkannt-Etiketten (Ausnahme Hausnotruf bei PG 1: `auch_ohne_budget`).
+- **PDF:** Druckfunktion des Browsers, `print.css`; zugeklappte Abschnitte werden beim Drucken geöffnet.
+- **SEO:** sichtbare FAQ aus `faq.json`, JSON-LD (WebApplication, FAQPage, BreadcrumbList) aus derselben Quelle, `sitemap.xml` + `robots.txt` werden von `build.py` erzeugt (Domain example.org = Platzhalter).
+- **Tests:** 25 Rechentests; e2e prüft zusätzlich Leistungen 2027 (Status, Beträge, keine Summen), 2026 zugeklappt, PG-1-Sonderfall.
+- **Nach Verkündung PNOG (nach 18.12.2026):** Beträge und §§ im Gesetzestext prüfen, in `nba-2027-entwurf.json` und `leistungen.json` `rechtsstatus` auf `beschlossen` setzen; PG-1-Texte („soll“) ggf. anpassen.

@@ -1,0 +1,38 @@
+{
+ "_doku": "Sichtbare FAQ und FAQPage-JSON-LD werden aus derselben Quelle erzeugt (build.py). Antworten nur mit geprüften Aussagen; Reform-Antworten nach Verkündung des PNOG aktualisieren.",
+ "stand": "November 2026",
+ "fragen": [
+  {
+   "frage": "Wie wird der Pflegegrad berechnet?",
+   "antwort": "Der Medizinische Dienst prüft sechs Lebensbereiche: Mobilität, Denken und Verständigung, Verhalten und Psyche, Selbstversorgung, Umgang mit Krankheit und Therapie sowie Alltag und soziale Kontakte. Jeder Bereich wird gewichtet, die Selbstversorgung zählt mit 40 Prozent am meisten. Aus der Summe von höchstens 100 Punkten ergibt sich der Pflegegrad. Grundlage ist § 15 SGB XI."
+  },
+  {
+   "frage": "Ab wie vielen Punkten gibt es welchen Pflegegrad?",
+   "antwort": "Nach geltendem Recht: Pflegegrad 1 ab 12,5 Punkten, Pflegegrad 2 ab 27, Pflegegrad 3 ab 47,5, Pflegegrad 4 ab 70 und Pflegegrad 5 ab 90 Punkten. Nach dem Gesetzentwurf zur Pflegereform sollen für neue Anträge ab 2027 höhere Grenzen für Pflegegrad 1 bis 3 gelten (15, 30 und 50 Punkte). Stand: November 2026, das Gesetz ist noch nicht beschlossen."
+  },
+  {
+   "frage": "Ist das Ergebnis des Pflegegradrechners verbindlich?",
+   "antwort": "Nein. Der Rechner gibt eine erste Orientierung auf Grundlage Ihrer Angaben. Über den Pflegegrad entscheidet allein die Pflegekasse nach einer Begutachtung durch den Medizinischen Dienst, bei Privatversicherten durch Medicproof."
+  },
+  {
+   "frage": "Wie beantrage ich einen Pflegegrad?",
+   "antwort": "Stellen Sie einen Antrag bei Ihrer Pflegekasse. Sie gehört zu Ihrer Krankenkasse. Ein Anruf oder ein kurzes Schreiben genügt. Danach kommt in der Regel eine Gutachterin oder ein Gutachter zu Ihnen nach Hause. Leistungen gibt es frühestens ab dem Monat, in dem Sie den Antrag gestellt haben."
+  },
+  {
+   "frage": "Was ändert sich mit der Pflegereform 2027?",
+   "antwort": "Der Gesetzentwurf sieht vor, mehrere Leistungen in neuen Budgets zusammenzufassen, zum Beispiel ein Entlastungsbudget anstelle des Pflegegeldes und ein Sozialraumbudget für anerkannte Alltagshilfen. Bei Pflegegrad 1 soll der Entlastungsbetrag entfallen. Bereits festgestellte Pflegegrade sollen Bestandsschutz erhalten. Stand: November 2026, das Gesetz ist noch nicht beschlossen."
+  },
+  {
+   "frage": "Werden meine Angaben gespeichert?",
+   "antwort": "Nein. Der Rechner läuft vollständig in Ihrem Browser. Ihre Antworten werden weder gespeichert noch an uns oder andere übertragen. Wenn Sie die Seite schließen oder neu laden, sind alle Angaben gelöscht."
+  },
+  {
+   "frage": "Kann ich den Rechner für meine Mutter oder meinen Vater ausfüllen?",
+   "antwort": "Ja. Viele Angehörige nutzen den Rechner, um die Lage ihrer Eltern einzuschätzen. Beantworten Sie die Fragen so, wie es an den meisten Tagen ist – nicht nach einem besonders guten oder schlechten Tag."
+  },
+  {
+   "frage": "Darf jeder Dienstleister über die Pflegekasse abrechnen?",
+   "antwort": "Nein. Pflegesachleistungen gibt es nur über zugelassene Pflegedienste. Für Alltagshilfen über den Entlastungsbetrag muss das Angebot nach Landesrecht anerkannt sein, in Nordrhein-Westfalen nach der Anerkennungs- und Förderungsverordnung. Viele Hilfen wie Gartenarbeit oder Handwerk sind privat zu bezahlen."
+  }
+ ]
+}

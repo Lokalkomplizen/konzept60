@@ -282,3 +282,28 @@ test("Leistungsdaten: jedes Paket hat Rechtsstatus, jede Leistung Quelle und Zei
     }
   }
 });
+
+// -------------------------------------------------------------------------
+// Umschaltung nach Datum und Rechtsstand
+// -------------------------------------------------------------------------
+test("Regelwerk: Entwurf wird nie gerechnet, auch nach dem 1.1.2027", () => {
+  const r = NBA.regelwerkFuer(REGELN, [ENTWURF], "2027-03-01");
+  assert.equal(r.aktiv.id, "nba_2017");
+  assert.equal(r.kommend.id, ENTWURF.id);
+});
+
+test("Regelwerk: beschlossen, aber vor Inkrafttreten → alte Grenzen + Hinweis", () => {
+  const b = { ...ENTWURF, rechtsstatus: "beschlossen" };
+  const r = NBA.regelwerkFuer(REGELN, [b], "2026-12-31");
+  assert.equal(r.aktiv.id, "nba_2017");
+  assert.equal(NBA.pflegegradAusPunkten(r.aktiv.pflegegrade, 28), 2);
+  assert.equal(r.kommend.rechtsstatus, "beschlossen");
+});
+
+test("Regelwerk: beschlossen und in Kraft → neue Grenzen, kein Hinweis mehr", () => {
+  const b = { ...ENTWURF, rechtsstatus: "beschlossen" };
+  const r = NBA.regelwerkFuer(REGELN, [b], "2027-01-01");
+  assert.equal(r.aktiv.id, ENTWURF.id);
+  assert.equal(r.kommend, null);
+  assert.equal(NBA.pflegegradAusPunkten(r.aktiv.pflegegrade, 28), 1);
+});

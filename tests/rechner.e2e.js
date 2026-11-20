@@ -92,6 +92,30 @@ async function durchlauf(page, prefix) {
   assert.equal(summe, e.gesamtpunkte.toLocaleString("de-DE", { maximumFractionDigits: 2 }));
   assert.equal(grad, e.pflegegrad ? "Pflegegrad " + e.pflegegrad : "Voraussichtlich kein Pflegegrad");
 
+  // Etappe 3: Leistungen 2027 als Hauptansicht, mit Status, ohne Summen
+  const leist = await page.textContent("[data-pgr-leistungen]");
+  assert.match(leist, /Gesetzentwurf – noch nicht beschlossen/);
+  assert.equal(await page.locator("[data-pgr-leistungen] .pgr-leistung").count(), 4);
+  assert.match(leist, /630 € im Monat/);
+  assert.match(leist, /2\.285 € im Jahr/);
+  assert.doesNotMatch(await page.textContent("[data-pgr-ergebnis]"), /insgesamt|Gesamtbetrag|Summe der Leistungen/i);
+  assert.match(await page.textContent("[data-pgr-reform-ich]"), /Pflegegrad 3/);
+  assert.ok((await page.locator("[data-pgr-hilfe] .pgr-hilfe__item").count()) > 0, "passende Hilfe");
+  assert.ok(!(await page.isVisible("[data-pgr-aenderungen]")), "2026 nur zugeklappt");
+  // Pflegegrad 1: keine Budgets, keine Kassen-/Anerkannt-Etiketten außer Hausnotruf
+  const pg1 = await page.evaluate(() => {
+    const D = JSON.parse(document.getElementById("pgr-daten").textContent);
+    const box = document.createElement("div");
+    box.innerHTML = '<div data-pgr-leistungen></div><div data-pgr-hilfe></div><div data-pgr-reform-ich></div>';
+    const module = [1, 2, 3, 4, 5, 6].map((nr) => ({ nr, stufe: 2 }));
+    window.WirHelfenLeistungen.zeige(box, { pflegegrad: 1, gesamtpunkte: 20, module }, {}, D);
+    const fremd = [...box.querySelectorAll(".pgr-hilfe__item")].filter((li) => !/Hausnotruf/.test(li.textContent) && li.querySelector(".pgr-fin--kasse, .pgr-fin--anerkannt")).length;
+    return { karten: box.querySelectorAll(".pgr-leistung").length, fremd, reform: box.querySelector("[data-pgr-reform-ich]").textContent };
+  });
+  assert.equal(pg1.karten, 0);
+  assert.equal(pg1.fremd, 0);
+  assert.match(pg1.reform, /ersatzlos entfallen/);
+
   // Verhalten-Filter "nein" → keine Modul-3-Fragen gezeigt; Schrittzahl passt
   const aktiv = FRAGEN.schritte.filter((s) => !s.nur_wenn || FALL.filter[s.nur_wenn.split("=")[0]] === s.nur_wenn.split("=")[1]);
   assert.equal(schritt, aktiv.length, "Anzahl der gezeigten Schritte");

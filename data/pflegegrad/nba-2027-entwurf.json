@@ -44,5 +44,7 @@
    "abgerufen": "2026-11-20"
   }
  ],
- "im_rechner": "NICHT zur Berechnung, nur Hinweis bei Ergebnissen zwischen alter und neuer Schwelle, bis das Gesetz verkündet ist."
+ "im_rechner": "Wird nur gerechnet, wenn rechtsstatus 'beschlossen' oder 'geltend' ist und das Datum gueltig_ab erreicht ist (nba.js regelwerkFuer). Sonst nur Hinweis.",
+ "gueltig_ab": "2027-01-01",
+ "umschalten": "Nach Verkündung im Bundesgesetzblatt: Werte gegen den Gesetzestext prüfen, rechtsstatus auf 'beschlossen' setzen, Quellen ergänzen. Ab gueltig_ab rechnet der Rechner dann automatisch mit diesen Grenzen."
 }

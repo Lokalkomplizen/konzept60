@@ -3,7 +3,8 @@ title: Pflegegradrechner: Welcher Pflegegrad könnte vorliegen? – {{site_name}
 description: Kostenloser Pflegegradrechner nach dem offiziellen Begutachtungsverfahren (§ 15 SGB XI). Fragen zum Alltag beantworten und eine erste Einschätzung erhalten. Ohne Anmeldung, nichts wird gespeichert.
 nav: alltag
 nav_level: section
-body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/assets/js/pflegegrad/nba.js" defer></script><script src="/assets/js/pflegegrad/rechner.js" defer></script>
+head_extra: {{pgr_jsonld}}
+body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/assets/js/pflegegrad/nba.js" defer></script><script src="/assets/js/pflegegrad/leistungen.js" defer></script><script src="/assets/js/pflegegrad/rechner.js" defer></script>
 -->
   <!-- Pflegegradrechner  (→ WordPress: Seite "Pflegegradrechner" bzw. Shortcode [wirhelfen_pflegegradrechner];
        Regeln: data/pflegegrad/*.json, von tools/build.py unten eingebettet; Rechnen: assets/js/pflegegrad/nba.js;
@@ -94,9 +95,14 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
           <div class="notice notice--important" data-pgr-reform hidden role="note">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
             <div>
-              <p><strong>Pflegereform 2027 (Gesetzentwurf, noch nicht beschlossen)</strong></p>
+              <p><strong data-pgr-reform-titel></strong></p>
               <p data-pgr-reform-text></p>
             </div>
+          </div>
+
+          <div class="notice notice--light" data-pgr-bestandsschutz hidden role="note">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <p><strong>Sie haben schon einen Pflegegrad?</strong> Wurde Ihr Pflegegrad vor der Pflegereform festgestellt, soll er Bestandsschutz haben: Er wird nicht allein wegen der neuen Punktgrenzen herabgestuft. Einzelheiten nennt Ihre Pflegekasse. Dieser Rechner verwendet die Grenzen für neue Anträge.</p>
           </div>
 
           <h3>So verteilen sich die Punkte</h3>
@@ -115,8 +121,23 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
                 <tfoot><tr><th scope="row" colspan="3">Gesamtpunkte</th><td data-pgr-summe></td></tr></tfoot>
               </table>
             </div>
-            <p class="pgr-quelle">Grundlage: § 15 SGB XI mit Anlage 1 und 2 (Stand des Rechners: November 2026). Pflegegrad 1 ab 12,5 Punkten, 2 ab 27, 3 ab 47,5, 4 ab 70, 5 ab 90 Punkten. Abschnitt 2 und 3 werden nicht addiert, es zählt nur der höhere Wert.</p>
+            <p class="pgr-quelle">Grundlage: § 15 SGB XI mit Anlage 1 und 2 (Stand des Rechners: November 2026). Grenzen: <span data-pgr-grenzen-text></span> Abschnitt 2 und 3 werden nicht addiert, es zählt nur der höhere Wert.</p>
           </details>
+
+          <h3>Was bedeutet die Pflegereform für Sie?</h3>
+          <div class="pgr-block" data-pgr-reform-ich></div>
+
+          <h3>Leistungen der Pflegeversicherung ab 2027</h3>
+          <div class="pgr-block" data-pgr-leistungen></div>
+
+          <details class="pgr-details">
+            <summary>Was ändert sich gegenüber 2026?</summary>
+            <div class="pgr-block" data-pgr-aenderungen></div>
+          </details>
+
+          <h3>Welche Unterstützung passen könnte</h3>
+          <p>Nicht jeder Anbieter darf über die Pflegekasse abrechnen. Bei jedem Vorschlag steht deshalb, wie er sich bezahlen lässt.</p>
+          <div class="pgr-block" data-pgr-hilfe></div>
 
           <h3>Wie es weitergehen kann</h3>
           <ol class="pgr-next">
@@ -136,6 +157,7 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
             <button type="button" class="pgr-link-button" data-pgr-uebersicht>Antworten ansehen und ändern</button>
             <button type="button" class="pgr-link-button" data-pgr-neu>Alle Antworten löschen und neu beginnen</button>
           </div>
+          <p class="pgr-quelle no-print">Datenschutz: Ihre Antworten bleiben in diesem Browserfenster und werden weder gespeichert noch gesendet. Erst wenn Sie über „Unterstützung anfragen“ freiwillig das Anfrageformular ausfüllen, übermitteln Sie die dort eingetragenen Angaben an uns – Ihre Antworten aus dem Rechner gehören nicht dazu.</p>
           <p class="pgr-quelle">Dies ist eine unverbindliche Einschätzung auf Grundlage Ihrer Angaben. Über den Pflegegrad entscheidet allein die Pflegekasse nach einer Begutachtung durch den Medizinischen Dienst (bei Privatversicherten: Medicproof).</p>
         </div>
 
@@ -144,3 +166,13 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
   </section>
 
 {{pgr_daten}}
+
+  <section class="section section--sand" aria-labelledby="pgr-faq-titel">
+    <div class="container pgr-faq">
+      <h2 id="pgr-faq-titel">Häufige Fragen zum Pflegegradrechner</h2>
+      <div class="faq">
+{{pgr_faq}}
+      </div>
+      <p class="pgr-quelle">Stand: {{pgr_faq_stand}}</p>
+    </div>
+  </section>

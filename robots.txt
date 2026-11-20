@@ -1,0 +1,7 @@
+# GENERIERT von tools/build.py
+User-agent: *
+Allow: /
+Disallow: /partials/
+Disallow: /screenshots/
+
+Sitemap: https://www.example.org/sitemap.xml

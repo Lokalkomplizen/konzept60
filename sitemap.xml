@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GENERIERT von tools/build.py – example.org ist ein Platzhalter -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.example.org/</loc></url>
+  <url><loc>https://www.example.org/datenschutz/</loc></url>
+  <url><loc>https://www.example.org/fuer-anbieter/</loc></url>
+  <url><loc>https://www.example.org/impressum/</loc></url>
+  <url><loc>https://www.example.org/mein-alltag/</loc></url>
+  <url><loc>https://www.example.org/mein-alltag/checklisten/</loc></url>
+  <url><loc>https://www.example.org/mein-alltag/pflegegrad-rechner/</loc></url>
+  <url><loc>https://www.example.org/mein-alltag/wohnungs-check/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/alltag-gut-organisiert/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/altersgerechter-umbau/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/barrierefrei-wohnen/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/betrug-telefon-haustuer/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/eltern-aus-der-ferne-unterstuetzen/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/gemeinsam-statt-einsam/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/gesund-und-fit-im-alter/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/haushaltshilfe-betrieb-oder-privat/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/haushaltshilfe-im-alter/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/hausnotruf-auswahl/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/krankenfahrten/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/kurzzeitpflege/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/pflegegrad-beantragen/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/pflegereform-2027/</loc></url>
+  <url><loc>https://www.example.org/ratgeber/treppenlift-einbau/</loc></url>
+  <url><loc>https://www.example.org/themen/</loc></url>
+  <url><loc>https://www.example.org/themen/alltag-persoenliche-hilfe/</loc></url>
+  <url><loc>https://www.example.org/themen/freizeit-lebensqualitaet/</loc></url>
+  <url><loc>https://www.example.org/themen/haushalt-reinigung/</loc></url>
+  <url><loc>https://www.example.org/themen/pflege-betreuung/</loc></url>
+  <url><loc>https://www.example.org/themen/technik-sicherheit/</loc></url>
+  <url><loc>https://www.example.org/themen/wohnen-haus-handwerk/</loc></url>
+</urlset>

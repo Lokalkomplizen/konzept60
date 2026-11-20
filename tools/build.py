@@ -872,6 +872,8 @@ def pflegegrad_daten():
         "regeln": json.loads(read(d / "nba-2017.json")),
         "entwurf": json.loads(read(d / "nba-2027-entwurf.json")),
         "fragen": json.loads(read(d / "fragen.json")),
+        "leistungen": json.loads(read(d / "leistungen.json")),
+        "hilfe": json.loads(read(d / "hilfe.json")),
     }
     # Jedes Kriterium mit Einzelpunkten muss genau einmal abgefragt werden
     erwartet = []
@@ -885,6 +887,52 @@ def pflegegrad_daten():
         raise SystemExit(f"FEHLER: fragen.json – fehlende Kriterien {fehlt}, doppelte {doppelt}")
     text = json.dumps(daten, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return f'<script type="application/json" id="pgr-daten">{text}</script>'
+
+
+def pflegegrad_seo():
+    """FAQ (sichtbar) + JSON-LD (WebApplication, FAQPage, BreadcrumbList) aus derselben Quelle."""
+    faq = json.loads(read(ROOT / "data" / "pflegegrad" / "faq.json"))
+    items = []
+    for i, f in enumerate(faq["fragen"]):
+        items.append(
+            f'        <details class="faq__item"{" open" if i == 0 else ""}>\n'
+            f'          <summary><h3 class="faq__frage">{esc(f["frage"])}</h3></summary>\n'
+            f'          <p>{esc(f["antwort"])}</p>\n'
+            f'        </details>'
+        )
+    url = f"{SITE}/mein-alltag/pflegegrad-rechner/"
+    data = [
+        {"@context": "https://schema.org", "@type": "WebApplication", "name": "Pflegegradrechner",
+         "url": url, "applicationCategory": "HealthApplication", "operatingSystem": "Alle (Browser)",
+         "inLanguage": "de-DE", "isAccessibleForFree": True,
+         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+         "description": "Unverbindliche Einschätzung des Pflegegrades nach dem Begutachtungsverfahren (§ 15 SGB XI). Läuft im Browser, speichert nichts.",
+         "provider": {"@type": "Organization", "name": SITE_NAME, "url": f"{SITE}/"}},
+        {"@context": "https://schema.org", "@type": "FAQPage",
+         "mainEntity": [{"@type": "Question", "name": f["frage"],
+                         "acceptedAnswer": {"@type": "Answer", "text": f["antwort"]}} for f in faq["fragen"]]},
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Startseite", "item": f"{SITE}/"},
+            {"@type": "ListItem", "position": 2, "name": "Mein Alltag", "item": f"{SITE}/mein-alltag/"},
+            {"@type": "ListItem", "position": 3, "name": "Pflegegradrechner", "item": url}]},
+    ]
+    body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
+    jsonld = ("  <!-- JSON-LD: PLATZHALTER-Domain example.org vor Livegang ersetzen. FAQ-Antworten = sichtbarer Text. -->\n"
+              '  <script type="application/ld+json">\n' + indent(body.splitlines(), 2) + "\n  </script>")
+    return "\n".join(items), jsonld, faq["stand"]
+
+
+def write_sitemap(paths):
+    """sitemap.xml + robots.txt (Platzhalter-Domain, vor Livegang ersetzen)."""
+    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc></url>" for p in sorted(paths))
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        "<!-- GENERIERT von tools/build.py – example.org ist ein Platzhalter -->\n"
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "\n</urlset>\n",
+        encoding="utf-8")
+    (ROOT / "robots.txt").write_text(
+        "# GENERIERT von tools/build.py\nUser-agent: *\nAllow: /\nDisallow: /partials/\nDisallow: /screenshots/\n\n"
+        f"Sitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
 
 def home_head(regionen):
@@ -1014,6 +1062,7 @@ def main():
     write_ratgeber_json(beitraege)
 
     checklisten, wohnungs_check = load_alltag(themen, beitraege)
+    pgr_faq, pgr_jsonld, pgr_faq_stand = pflegegrad_seo()
     wc_form, wc_result = wohnungs_check_html(wohnungs_check, beitraege, SITE_NAME)
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
@@ -1028,6 +1077,9 @@ def main():
         "wc_formular": wc_form,
         "wc_ergebnis": wc_result,
         "pgr_daten": pflegegrad_daten(),
+        "pgr_faq": pgr_faq,
+        "pgr_jsonld": pgr_jsonld,
+        "pgr_faq_stand": esc(pgr_faq_stand),
         "home_head": home_head(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
@@ -1083,7 +1135,8 @@ def main():
         ctx.update(beitrag_ctx(b, beitraege))
         built.append(build_page("ratgeber-beitrag.html", f"ratgeber/{b['slug']}/index.html", ctx, partials, themen, regionen))
 
-    print("  ✓ data/ratgeber.json")
+    write_sitemap(["/" + p.removesuffix("index.html") for p in built if p != "404.html"])
+    print("  ✓ data/ratgeber.json, sitemap.xml, robots.txt")
     for path in built:
         print(f"  ✓ {path}")
     print(f"{len(built)} Seiten erzeugt.")

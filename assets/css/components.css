@@ -1985,3 +1985,24 @@ select.form-field__input {
   gap: var(--space-xs);
 }
 .assistent__links a { display: inline-block; padding-block: var(--space-2xs); font-weight: 600; }
+
+/* ---- Rückrufwunsch im Anfrageformular (Segment-Buttons wie „Für mich / Für Angehörige“) -- */
+.segment--wrap { flex-wrap: wrap; }
+.segment--wrap .segment__option { flex: 1 1 9rem; padding-inline: 0.6rem; }
+.form-field--sub { margin-top: var(--space-s); margin-bottom: 0; }
+.form--compact .form-field--sub { margin-bottom: var(--space-s); }
+
+/* Textähnlicher Button (z. B. „Auswahl zurücknehmen“) */
+.link-button {
+  min-height: var(--touch-min);
+  padding: 0 var(--space-2xs);
+  border: 0;
+  background: none;
+  color: var(--color-navy-800);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.link-button:hover { color: var(--color-terra-700); }

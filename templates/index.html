@@ -2,7 +2,7 @@
 title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
 description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
-body_extra: <script src="/assets/js/assistent.js" defer></script>
+body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -368,6 +368,25 @@ body_extra: <script src="/assets/js/assistent.js" defer></script>
               <p class="form-field__error" id="f-kontakt-fehler" aria-live="polite"></p>
             </fieldset>
 
+            <!-- Rückrufwunsch (optional): mit JS nur sichtbar, wenn eine Telefonnummer eingetragen ist;
+                 ohne JS immer sichtbar. → WordPress: Meta „Rückrufwunsch“ am CPT anfrage -->
+            <fieldset class="form-field" id="f-rueckruf" data-rueckruf aria-describedby="f-rueckruf-fehler">
+              <legend>Wann dürfen wir Sie zurückrufen? <span class="form-field__hint">(optional)</span></legend>
+              <div class="segment segment--wrap">
+                <label class="segment__option"><input type="radio" name="rueckruf" value="vormittags" id="f-rueckruf-vormittags"> <span>Vormittags (9–12 Uhr)</span></label>
+                <label class="segment__option"><input type="radio" name="rueckruf" value="nachmittags" id="f-rueckruf-nachmittags"> <span>Nachmittags (13–17 Uhr)</span></label>
+                <label class="segment__option"><input type="radio" name="rueckruf" value="eigen" id="f-rueckruf-eigen-option"> <span>Eigenes Zeitfenster</span></label>
+              </div>
+              <div class="form-field form-field--sub" data-rueckruf-eigen>
+                <label class="form-field__label" for="f-rueckruf-eigen">Ihr Zeitfenster <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-rueckruf-eigen" name="rueckruf_eigen" type="text" maxlength="120"
+                       placeholder="z. B. dienstags ab 15 Uhr" aria-describedby="f-rueckruf-eigen-fehler">
+                <p class="form-field__error" id="f-rueckruf-eigen-fehler" aria-live="polite"></p>
+              </div>
+              <p class="form-field__error" id="f-rueckruf-fehler" aria-live="polite"></p>
+              <button class="link-button" type="button" data-rueckruf-zuruecksetzen hidden>Auswahl zurücknehmen</button>
+            </fieldset>
+
           </fieldset>
 
           <!-- 4 · Einwilligung -->
@@ -397,15 +416,18 @@ body_extra: <script src="/assets/js/assistent.js" defer></script>
           </fieldset>
 
           <div class="form__actions">
-            <button class="btn btn--primary btn--block" type="submit">Anfrage kostenlos absenden</button>
+            <button class="btn btn--primary btn--block" type="submit" data-absenden>Anfrage kostenlos absenden</button>
+            <p class="form-field__error" data-sende-fehler role="alert"></p>
             <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
           </div>
         </form>
 
         <div class="form-success" id="anfrage-erfolg" tabindex="-1" role="status" hidden>
           <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
-          <h3>Vielen Dank<span data-erfolg-name></span>!</h3>
-          <p>So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <h3>Ihre Anfrage ist bei uns eingegangen</h3>
+          <p>Vielen Dank<span data-erfolg-name></span>! So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <p data-erfolg-rueckruf hidden><strong>Ihr Rückrufwunsch:</strong> <span data-erfolg-rueckruf-text></span></p>
+          <p data-erfolg-email hidden>Sie erhalten zusätzlich eine Bestätigung per E-Mail.</p>
           <p>Ihre Kontaktdaten geben wir erst weiter, wenn Sie einem konkreten Anbieter ausdrücklich zugestimmt haben.</p>
           <p class="form-success__prototype">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>

@@ -280,8 +280,12 @@
     telefon: 'Die Telefonnummer scheint nicht vollständig zu sein. Bitte nur Ziffern, Leerzeichen und + / - verwenden.',
     email: 'Bitte prüfen Sie die E-Mail-Adresse. Sie sollte so aussehen: name@beispiel.de',
     newsletter: 'Für den Newsletter benötigen wir Ihre E-Mail-Adresse. Bitte tragen Sie sie ein oder entfernen Sie das Häkchen.',
-    einwilligung: 'Bitte bestätigen Sie die Einwilligung, damit unser Team Ihre Anfrage bearbeiten darf.'
+    einwilligung: 'Bitte bestätigen Sie die Einwilligung, damit unser Team Ihre Anfrage bearbeiten darf.',
+    rueckrufEigen: 'Bitte nennen Sie Ihr gewünschtes Zeitfenster, zum Beispiel „dienstags ab 15 Uhr“, oder wählen Sie eine andere Möglichkeit.',
+    senden: 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal.'
   };
+
+  var RUECKRUF_TEXT = { vormittags: 'Vormittags (9–12 Uhr)', nachmittags: 'Nachmittags (13–17 Uhr)' };
 
   function initRequestForm(updateLeistungen) {
     var form = document.getElementById('anfrage-formular');
@@ -335,14 +339,109 @@
         check: function () { return f.einwilligung_bearbeitung.checked ? '' : MSG.einwilligung; } }
     ];
 
-    var validation = setupValidation(form, summary, fields, function () {
+    // Rückrufwunsch (optional): Gruppe nur sichtbar/aktiv, solange eine Telefonnummer eingetragen ist
+    var rueckrufGroup = form.querySelector('[data-rueckruf]');
+    var rueckrufEigen = form.querySelector('[data-rueckruf-eigen]');
+    var rueckrufReset = form.querySelector('[data-rueckruf-zuruecksetzen]');
+    var radiosRueckruf = byName(form, 'rueckruf');
+    function rueckrufAktiv() { return Boolean(rueckrufGroup) && !rueckrufGroup.hidden; }
+    function rueckrufWahl() {
+      var checked = form.querySelector('input[name="rueckruf"]:checked');
+      return rueckrufAktiv() && checked ? checked.value : '';
+    }
+    function setDisabled(node, disabled) {
+      node.hidden = disabled;
+      node.disabled = disabled; // wirkt auf fieldset; Eingaben darin werden dann nicht übertragen/validiert
+    }
+    function updateRueckruf() {
+      if (!rueckrufGroup) return;
+      setDisabled(rueckrufGroup, !val(f.telefon));
+      var wahl = form.querySelector('input[name="rueckruf"]:checked');
+      if (rueckrufEigen) {
+        var eigen = Boolean(wahl) && wahl.value === 'eigen' && rueckrufAktiv();
+        rueckrufEigen.hidden = !eigen;
+        f.rueckruf_eigen.disabled = !eigen;
+      }
+      if (rueckrufReset) rueckrufReset.hidden = !wahl;
+    }
+    if (rueckrufGroup) {
+      radiosRueckruf().forEach(function (r) { r.setAttribute('aria-describedby', 'f-rueckruf-fehler'); });
+      f.telefon.addEventListener('input', updateRueckruf);
+      form.addEventListener('change', updateRueckruf);
+      if (rueckrufReset) {
+        rueckrufReset.addEventListener('click', function () {
+          radiosRueckruf().forEach(function (r) { r.checked = false; });
+          f.rueckruf_eigen.value = '';
+          updateRueckruf();
+          radiosRueckruf()[0].focus();
+        });
+      }
+      updateRueckruf();
+      fields.push({ error: 'f-rueckruf-eigen-fehler', focus: self(f.rueckruf_eigen), inputs: one(f.rueckruf_eigen),
+        when: function () { return rueckrufWahl() === 'eigen'; },
+        check: function () { return val(f.rueckruf_eigen) ? '' : MSG.rueckrufEigen; } });
+    }
+
+    // Nutzlast gemäß JSDoc in api.js (AnfragePayload)
+    function buildPayload() {
+      var wahl = rueckrufWahl();
+      var wer = form.querySelector('input[name="wer"]:checked');
+      return {
+        wer: wer ? wer.value : '',
+        thema: f.thema.value,
+        leistungen: Array.prototype.slice.call(form.querySelectorAll('input[name="leistungen"]:checked'))
+          .filter(function (i) { return !i.disabled; }).map(function (i) { return i.value; }),
+        beschreibung: val(f.beschreibung),
+        plz: val(f.plz),
+        ort: val(f.ort),
+        vorname: val(f.vorname),
+        nachname: val(f.nachname),
+        telefon: val(f.telefon),
+        email: val(f.email),
+        rueckruf: wahl ? { fenster: wahl, eigenes: wahl === 'eigen' ? val(f.rueckruf_eigen) : null } : null,
+        einwilligung_bearbeitung: f.einwilligung_bearbeitung.checked,
+        newsletter: f.newsletter.checked
+      };
+    }
+
+    var absenden = form.querySelector('[data-absenden]');
+    var absendenLabel = absenden ? absenden.textContent : '';
+    var sendeFehler = form.querySelector('[data-sende-fehler]');
+
+    function zeigeErfolg(payload) {
       var nameEl = success.querySelector('[data-erfolg-name]');
       var kontaktEl = success.querySelector('[data-erfolg-kontakt]');
-      var tel = val(f.telefon);
-      var mail = val(f.email);
-      if (nameEl) nameEl.textContent = ', ' + val(f.vorname) + ' ' + val(f.nachname);
-      if (kontaktEl) kontaktEl.textContent = tel ? ' – telefonisch unter ' + tel : ' – per E-Mail an ' + mail;
+      var rueckrufEl = success.querySelector('[data-erfolg-rueckruf]');
+      var rueckrufText = success.querySelector('[data-erfolg-rueckruf-text]');
+      var mailEl = success.querySelector('[data-erfolg-email]');
+      if (nameEl) nameEl.textContent = ', ' + payload.vorname + ' ' + payload.nachname;
+      if (kontaktEl) kontaktEl.textContent = payload.telefon ? ' – telefonisch unter ' + payload.telefon : ' – per E-Mail an ' + payload.email;
+      if (rueckrufEl && rueckrufText) {
+        rueckrufEl.hidden = !payload.rueckruf;
+        if (payload.rueckruf) {
+          rueckrufText.textContent = payload.rueckruf.fenster === 'eigen'
+            ? 'Eigenes Zeitfenster – ' + payload.rueckruf.eigenes
+            : RUECKRUF_TEXT[payload.rueckruf.fenster];
+        }
+      }
+      // Hinweis auf die E-Mail-Bestätigung nur, wenn eine E-Mail-Adresse angegeben wurde
+      if (mailEl) mailEl.hidden = !payload.email;
       showSuccess(form, success);
+    }
+
+    var validation = setupValidation(form, summary, fields, function () {
+      var payload = buildPayload();
+      if (absenden) { absenden.disabled = true; absenden.textContent = 'Wird übermittelt …'; }
+      form.setAttribute('aria-busy', 'true');
+      // Schnittstelle: assets/js/api.js – im Prototyp simuliert, es wird nichts gesendet
+      window.WirHelfenAPI.sendeAnfrage(payload).then(function () {
+        zeigeErfolg(payload);
+      }).catch(function () {
+        if (sendeFehler) { sendeFehler.textContent = MSG.senden; }
+      }).then(function () {
+        form.removeAttribute('aria-busy');
+        if (absenden) { absenden.disabled = false; absenden.textContent = absendenLabel; }
+      });
     });
 
     var again = success.querySelector('[data-neue-anfrage]');
@@ -350,6 +449,8 @@
       again.addEventListener('click', function () {
         validation.reset();
         if (updateLeistungen) updateLeistungen();
+        updateRueckruf();
+        if (sendeFehler) sendeFehler.textContent = '';
         success.hidden = true;
         form.hidden = false;
         var firstRadio = radiosWer()[0];

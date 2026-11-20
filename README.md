@@ -146,6 +146,18 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 
 **Taxonomien:** `themenbereich` (Slugs/Term-Meta wie `data/themen.json`), `region` (wie `data/regionen.json`, hierarchisch möglich).
 
+## Schnittstellen (simuliert)
+
+`assets/js/api.js` ist die einzige Stelle, an der später mit einem Backend gesprochen wird. Im Prototyp **sendet nichts**: kein `fetch`, kein Storage, keine Cookies – `WirHelfenAPI.sendeAnfrage(payload)` gibt ein Promise zurück, das nach kurzer Zeit (simuliert) auflöst.
+
+| | |
+|---|---|
+| Aufruf | `WirHelfenAPI.sendeAnfrage(payload) → Promise<{ ok, simuliert }>` (Anfrageformular, `main.js` 5.) |
+| Payload | `wer`, `thema`, `leistungen[]`, `beschreibung`, `plz`, `ort`, `vorname`, `nachname`, `telefon`, `email`, `rueckruf { fenster: vormittags\|nachmittags\|eigen, eigenes }` \| `null`, `einwilligung_bearbeitung`, `newsletter` – Typen als JSDoc in `api.js` |
+| Zielendpunkt (später) | WordPress REST `POST /wp-json/wirhelfen/v1/anfragen` |
+| Verarbeitung (später) | legt CPT `anfrage` an (Status: neu → in Bearbeitung → vermittelt → abgeschlossen), Taxonomien `themenbereich`/`region`; Eingangsbestätigung per `wp_mail()` an die angegebene E-Mail (nur wenn vorhanden) |
+| Rückrufwunsch | optional, Gruppe erscheint (mit JS) erst bei eingetragener Telefonnummer; „Eigenes Zeitfenster“ verlangt den Freitext; Anzeige in der Erfolgsmeldung |
+
 ## Offene Punkte
 
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).

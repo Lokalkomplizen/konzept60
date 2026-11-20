@@ -2158,3 +2158,11 @@ select.form-field__input {
 .wc-result__links { margin: 0; padding-left: 1.25rem; display: grid; gap: var(--space-xs); }
 .wc-result__hinweis { margin-bottom: var(--space-l); }
 .wc-result .btn-group { margin-top: var(--space-l); }
+
+/* Deaktivierte Buttons (z. B. während des simulierten Absendens): klar lesbar, nie grau auf grau */
+.btn:disabled {
+  background: var(--color-sand-100);
+  color: var(--color-ink);
+  border-color: var(--color-ink-muted);
+  cursor: progress;
+}

@@ -2,6 +2,21 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "pflegereform-2027",
+      "titel": "Pflege 2027: Was sich zum 1. Januar ändern soll",
+      "thema": "pflege-betreuung",
+      "thema_titel": "Pflege und Betreuung",
+      "bild": "pflegereform-2027",
+      "bild_alt": "Eine ältere und eine jüngere Frau sitzen nebeneinander, lächeln und lesen gemeinsam ein Blatt mit der Überschrift „Pflege 2027“ und Stichpunkten.",
+      "stand": "November 2026 (Gesetzentwurf)",
+      "veroeffentlicht": "2026-11-20 19:00",
+      "geaendert": "2026-11-20",
+      "anreisser": "Neue Pflegebudgets, Änderungen beim Pflegegrad und andere Möglichkeiten zur Unterstützung im Alltag: Zum 1. Januar 2027 plant die Bundesregierung eine…",
+      "url": "/ratgeber/pflegereform-2027/",
+      "tabelle_beschriftung": "Geplante monatliche Budgets für Pflegegrad 2 bis 5 | Erforderliche Punktzahl je Pflegegrad, bisher und geplant ab 2027",
+      "hinweis": "Dieser Beitrag beschreibt einen Gesetzentwurf (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung."
+    },
+    {
       "slug": "pflegegrad-beantragen",
       "titel": "Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad",
       "thema": "pflege-betreuung",

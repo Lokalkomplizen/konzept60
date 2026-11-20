@@ -230,7 +230,7 @@ def hinweis_block(t):
 # Ratgeber: Frontmatter + minimaler Markdown-Parser
 # (→ WordPress: Beitrag = Post, Inhalt = post_content/Blöcke)
 #
-# Unterstützte Teilmenge: ## / ### Überschriften, Absätze, "- " Listen,
+# Unterstützte Teilmenge: ## / ### Überschriften, Absätze, "- " Listen, "1. " nummerierte Listen,
 # **fett**, "> " Zitat-Blöcke (mehrzeilig, mehrere Absätze über ">"-Leerzeile),
 # Pipe-Tabellen ("| a | b |" + Trennzeile "| --- | --- |", erste Zeile = Kopf).
 # Alles andere wird als normaler Absatz-Text (HTML-escaped) ausgegeben.
@@ -285,8 +285,9 @@ def plain(text):
 
 
 def md_blocks(text):
-    """Zerlegt Markdown in Blöcke: (typ, daten). typ ∈ h2, h3, p, ul, quote."""
+    """Zerlegt Markdown in Blöcke: (typ, daten). typ ∈ h2, h3, p, ul, ol, quote, table."""
     blocks, para, items, quote, table = [], [], [], [], []
+    ordered = []   # nummerierte Liste ("1. Text")
 
     def cells(row):
         return [c.strip() for c in row.strip().strip("|").split("|")]
@@ -307,6 +308,9 @@ def md_blocks(text):
         if items:
             blocks.append(("ul", list(items)))
             items.clear()
+        if ordered:
+            blocks.append(("ol", list(ordered)))
+            ordered.clear()
         if quote:
             blocks.append(("quote", md_blocks("\n".join(quote))))
             quote.clear()
@@ -315,14 +319,14 @@ def md_blocks(text):
         line = raw.rstrip()
         stripped = line.strip()
         if stripped.startswith(">"):
-            if para or items:
+            if para or items or ordered:
                 flush()
             quote.append(re.sub(r"^>\s?", "", stripped))
             continue
         if quote:
             flush()
         if stripped.startswith("|"):
-            if para or items:
+            if para or items or ordered:
                 flush()
             table.append(stripped)
             continue
@@ -337,13 +341,17 @@ def md_blocks(text):
             flush()
             blocks.append(("h2", stripped[3:].strip()))
         elif stripped.startswith("- "):
-            if para:
+            if para or ordered:
                 flush()
             items.append(stripped[2:].strip())
-        elif items and line.startswith("  "):
-            items[-1] += " " + stripped          # Fortsetzungszeile eines Listenpunkts
-        else:
+        elif re.match(r"\d+\.\s", stripped) and not para:
             if items:
+                flush()
+            ordered.append(re.sub(r"^\d+\.\s+", "", stripped))
+        elif (items or ordered) and line.startswith("  "):
+            (items or ordered)[-1] += " " + stripped   # Fortsetzungszeile eines Listenpunkts
+        else:
+            if items or ordered:
                 flush()
             para.append(stripped)
     flush()
@@ -382,6 +390,10 @@ def render_blocks(blocks, ids=None, caption=None):
             out.append("<ul>")
             out += [f"  <li>{inline(item)}</li>" for item in data]
             out.append("</ul>")
+        elif kind == "ol":
+            out.append("<ol>")
+            out += [f"  <li>{inline(item)}</li>" for item in data]
+            out.append("</ol>")
         elif kind == "table":
             head, rows = data
             out.append('<div class="article__table-wrap">')

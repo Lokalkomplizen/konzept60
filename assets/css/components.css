@@ -1547,9 +1547,9 @@ select.form-field__input {
 }
 .article__body > h2:first-child { margin-top: 0; }
 .article__body > h3 { font-size: var(--font-size-lg); margin-top: var(--space-xl); margin-bottom: var(--space-xs); }
-.article__body > ul { padding-left: 1.5rem; }
-.article__body > ul li { margin-bottom: var(--space-xs); padding-left: 0.25rem; }
-.article__body > ul li::marker { color: var(--color-sage-700); }
+.article__body > ul, .article__body > ol { padding-left: 1.5rem; }
+.article__body > ul li, .article__body > ol li { margin-bottom: var(--space-xs); padding-left: 0.25rem; }
+.article__body > ul li::marker, .article__body > ol li::marker { color: var(--color-sage-700); }
 
 .article__notice { margin: var(--space-xl) 0; }
 .notice__body p + p { margin-top: var(--space-s); }

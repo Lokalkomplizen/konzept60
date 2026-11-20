@@ -2,6 +2,20 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "altersgerechter-umbau",
+      "titel": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
+      "thema": "wohnen-haus-handwerk",
+      "thema_titel": "Wohnen, Haus und Handwerk",
+      "bild": "altersgerechter-umbau",
+      "bild_alt": "Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriffen, einem Klappsitz, wandhängender Toilette und Waschbecken.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 17:05",
+      "geaendert": "2026-11-20",
+      "anreisser": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne…",
+      "url": "/ratgeber/altersgerechter-umbau/",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026."
+    },
+    {
       "slug": "krankenfahrten",
       "titel": "Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie",
       "thema": "alltag-persoenliche-hilfe",

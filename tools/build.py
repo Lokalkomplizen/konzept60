@@ -499,7 +499,7 @@ def add_asset_versions(page):
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
     keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
-            "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung")
+            "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis")
     data = {
         "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
         "beitraege": [{k: b[k] for k in keys if k in b} for b in beitraege],
@@ -628,6 +628,10 @@ def beitrag_ctx(b, beitraege):
         "beitrag_thema_titel": esc(b["thema_titel"]),
         "beitrag_stand": esc(b["stand"]),
         "beitrag_geaendert": b["geaendert"],
+        # Hinweisbox am Beitragsende: eigener Text über Frontmatter "hinweis", sonst Standardtext
+        "beitrag_hinweis": inline(b["hinweis"]) if b.get("hinweis") else (
+            "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. "
+            f"Beträge und Voraussetzungen können sich ändern – maßgeblich sind die Angaben Ihrer Pflegekasse. Stand: {esc(b['stand'])}."),
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung")).splitlines(), 8),

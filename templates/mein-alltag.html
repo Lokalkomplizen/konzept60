@@ -1,0 +1,75 @@
+<!--meta
+title: Mein Alltag – {{site_name}}
+description: Mein Alltag: Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause. Ohne Anmeldung, nichts wird gespeichert.
+nav: alltag
+-->
+  <!-- Mein Alltag – Übersicht  (→ WordPress: Seite "Mein Alltag", page-mein-alltag.php; Karten = template-parts/card-werkzeug.php)
+       Dritte Säule: „Alltag erleichtern“. Ohne Anmeldung, ohne Speicherung. -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/mein-alltag/" aria-current="page">Mein Alltag</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Alltag erleichtern</span>
+      <h1>Mein Alltag</h1>
+      <p class="section__intro">
+        Kleine Helfer für mehr Überblick und Sicherheit im Alltag: Checklisten zum Abhaken und ein Wohnungs-Check.
+        Sie können sie einfach ausprobieren – ganz ohne Anmeldung.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--tight" aria-labelledby="werkzeuge-titel">
+    <div class="container">
+      <h2 class="visually-hidden" id="werkzeuge-titel">Unsere Werkzeuge</h2>
+
+      <div class="notice notice--light notice--flush alltag-hinweis" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+        <p><strong>Ohne Anmeldung.</strong> Wir speichern nichts – Ihre Angaben bleiben auf diesem Gerät nur, solange die Seite geöffnet ist. Zum Aufheben drucken oder als PDF speichern.</p>
+      </div>
+
+      <ul class="tool-grid">
+        <li>
+          <article class="path-card" aria-labelledby="werkzeug-checklisten">
+            <span class="path-card__tag">Zum Abhaken</span>
+            <h3 class="path-card__title" id="werkzeug-checklisten">Meine Checklisten</h3>
+            <p class="path-card__text">Vier Checklisten für typische Situationen: Arzttermin, Wohnung altersgerecht gestalten, Pflegegrad beantragen und Handwerkertermin.</p>
+            <a class="btn btn--primary" href="/mein-alltag/checklisten/">Checklisten öffnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--sage" aria-labelledby="werkzeug-wohnungscheck">
+            <span class="path-card__tag">In wenigen Minuten</span>
+            <h3 class="path-card__title" id="werkzeug-wohnungscheck">Mein Wohnungs-Check</h3>
+            <p class="path-card__text">Zwölf kurze Fragen zu Eingang, Flur, Bad, Küche und Licht. Am Ende sehen Sie, was schon gut ist und wo sich ein Blick lohnt.</p>
+            <a class="btn btn--primary" href="/mein-alltag/wohnungs-check/">Wohnungs-Check starten <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--soon" id="erinnerungen" aria-labelledby="werkzeug-erinnerungen">
+            <span class="path-card__tag">In Vorbereitung</span>
+            <h3 class="path-card__title" id="werkzeug-erinnerungen">Meine Erinnerungen</h3>
+            <p class="path-card__text">Termine und wiederkehrende Aufgaben im Blick behalten. Daran arbeiten wir gerade.</p>
+            <p class="path-card__soon"><span class="badge">Kommt bald</span></p>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--soon" id="unterstuetzungsplan" aria-labelledby="werkzeug-plan">
+            <span class="path-card__tag">In Vorbereitung</span>
+            <h3 class="path-card__title" id="werkzeug-plan">Mein Unterstützungsplan</h3>
+            <p class="path-card__text">Übersichtlich festhalten, wer Ihnen bei welchen Dingen hilft. Daran arbeiten wir gerade.</p>
+            <p class="path-card__soon"><span class="badge">Kommt bald</span></p>
+          </article>
+        </li>
+      </ul>
+
+      <div class="notice notice--light">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Lieber persönlich?</strong> Wenn Sie Unterstützung bei etwas Konkretem suchen, hilft unser Team Ihnen gern.
+          <a href="/#anfrage">Zur Anfrage</a></p>
+      </div>
+    </div>
+  </section>

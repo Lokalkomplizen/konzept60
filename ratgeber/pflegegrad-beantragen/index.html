@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad – Ratgeber – KONZEPT 60+</title>
+  <title>Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad – Ratgeber – Wir helfen</title>
   <meta name="description" content="Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…">
   <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
        und JSON-LD vor Livegang auf die echte Domain umstellen. -->
@@ -13,8 +13,8 @@
   <meta property="article:modified_time" content="2026-11-20">
   <meta property="article:section" content="Pflege und Betreuung">
   <meta property="og:locale" content="de_DE">
-  <meta property="og:site_name" content="KONZEPT 60+">
-  <meta property="og:title" content="Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad – Ratgeber – KONZEPT 60+">
+  <meta property="og:site_name" content="Wir helfen">
+  <meta property="og:title" content="Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad – Ratgeber – Wir helfen">
   <meta property="og:description" content="Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…">
   <meta property="og:url" content="https://www.example.org/ratgeber/pflegegrad-beantragen/">
   <meta property="og:image" content="https://www.example.org/assets/img/ratgeber/pflegegrad-beantragen-1400.jpg">
@@ -31,10 +31,11 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=70c5e12894">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=9c9b3f07e2">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=d532c69669">
-  <link rel="stylesheet" href="/assets/css/components.css?v=2368d6486d">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
+  <link rel="stylesheet" href="/assets/css/components.css?v=82859adfd3">
+  <link rel="stylesheet" href="/assets/css/print.css?v=4682c5f5a1" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
@@ -52,7 +53,7 @@
     "mainEntityOfPage": "https://www.example.org/ratgeber/pflegegrad-beantragen/",
     "publisher": {
       "@type": "Organization",
-      "name": "KONZEPT 60+",
+      "name": "Wir helfen",
       "url": "https://www.example.org/"
     }
   }
@@ -90,8 +91,8 @@
   </div>
 
   <div class="container site-header__bar">
-    <a class="logo" href="/" aria-label="KONZEPT 60+ – zur Startseite">
-      <span>KONZEPT</span><span class="logo__plus">60+</span>
+    <a class="logo" href="/" aria-label="Wir helfen – zur Startseite">
+      <span class="logo__text">Wir helfen</span>
     </a>
 
     <button class="btn btn--menu site-header__nav-toggle" type="button"
@@ -101,15 +102,15 @@
     </button>
 
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
-      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="/#anfrage">Hilfe finden</a></li>
-        <li><a class="site-nav__link" href="/themen/">Themen</a></li>
-        <li><a class="site-nav__link" href="/#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
         <li><a class="site-nav__link" href="/ratgeber/" aria-current="true">Ratgeber</a></li>
-        <li><a class="site-nav__link" href="/fuer-anbieter/">Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/">Mein Alltag</a></li>
+        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anliegen beschreiben</a>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
     </nav>
   </div>
 </header>
@@ -269,7 +270,7 @@
         <p>Welche Leistungen sinnvoll sind, hängt vom Pflegegrad und von der persönlichen Lebenssituation ab. Außerdem haben Sie Anspruch auf eine kostenlose Pflegeberatung durch Ihre Pflegekasse.</p>
         <h2 id="fruehzeitig-hilfe-organisieren">Frühzeitig Hilfe organisieren</h2>
         <p>Ein Pflegegrad ist kein Grund, die Selbstständigkeit aufzugeben. Er kann vielmehr dabei helfen, notwendige Unterstützung zu organisieren und den Alltag zu erleichtern.</p>
-        <p>KONZEPT 60+ unterstützt Sie dabei, passende Ansprechpartner für Pflege, Betreuung, Haushaltshilfe und weitere Dienstleistungen zu finden. Beschreiben Sie einfach, wobei Sie Unterstützung benötigen. Ihre Anfrage ist kostenlos und unverbindlich.</p>
+        <p>Wir unterstützen Sie dabei, passende Ansprechpartner für Pflege, Betreuung, Haushaltshilfe und weitere Dienstleistungen zu finden. Beschreiben Sie einfach, wobei Sie Unterstützung benötigen. Ihre Anfrage ist kostenlos und unverbindlich.</p>
 
           <div class="notice article__disclaimer" role="note">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
@@ -351,12 +352,22 @@
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
-          <span>KONZEPT</span><span class="logo__plus">60+</span>
+        <a class="logo logo--light" href="/" aria-label="Wir helfen – zur Startseite">
+          <span class="logo__text">Wir helfen</span>
         </a>
         <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
-          KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
+          Wir erbringen selbst keine Dienstleistungen.</p>
       </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
 
       <nav aria-labelledby="footer-themen">
         <h2 id="footer-themen">Themen</h2>
@@ -392,7 +403,6 @@
         <ul>
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/ratgeber/">Ratgeber</a></li>
           <li><a href="/impressum/">Impressum</a></li>
           <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
@@ -400,13 +410,14 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
+      <p>© 2026 Wir helfen (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
   </div>
 </footer>
 <!-- END partial:footer -->
 
-<script src="/assets/js/main.js?v=d13ccaeba1" defer></script>
+<script src="/assets/js/main.js?v=2f57f90f14" defer></script>
+
 </body>
 </html>

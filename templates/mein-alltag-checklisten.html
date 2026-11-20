@@ -1,0 +1,35 @@
+<!--meta
+title: Checklisten – Mein Alltag – {{site_name}}
+description: Vier Checklisten zum Abhaken und Ausdrucken: Arzttermin, Wohnung altersgerecht gestalten, Pflegegrad beantragen und Handwerkertermin. Ohne Anmeldung, nichts wird gespeichert.
+nav: alltag
+nav_level: section
+body_extra: <script src="/assets/js/alltag.js" defer></script>
+-->
+  <!-- Checklisten  (→ WordPress: Seite "Checklisten" bzw. CPT "checkliste"; Inhalte aus data/checklisten.json,
+       gerendert von tools/build.py). Abhaken wird NICHT gespeichert. Drucken: alltag.js (1.) + print.css -->
+  <div class="page-header no-print">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag</a></li>
+          <li><a href="/mein-alltag/checklisten/" aria-current="page">Checklisten</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Mein Alltag</span>
+      <h1>Meine Checklisten</h1>
+      <p class="section__intro">
+        Haken Sie ab, was erledigt ist. Zum Aufheben können Sie die Liste drucken oder als PDF speichern.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--tight" aria-label="Checklisten">
+    <div class="container checklist-page">
+      <div class="notice notice--light notice--flush no-print" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+        <p><strong>Ohne Anmeldung.</strong> Wir speichern nichts – Ihre Haken bleiben nur, solange diese Seite geöffnet ist. Zum Aufheben drucken oder als PDF speichern.</p>
+      </div>
+{{checklisten_inhalt}}
+    </div>
+  </section>

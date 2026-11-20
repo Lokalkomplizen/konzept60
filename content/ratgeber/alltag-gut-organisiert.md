@@ -73,4 +73,4 @@ Sie müssen nicht alles auf einmal erledigen. Nehmen Sie sich einfach einen Bere
 
 > **Unser Tipp:** Bitten Sie bei Bedarf Familie, Freunde oder passende Dienstleister um Unterstützung. Nicht alles muss man allein organisieren.
 
-KONZEPT 60+ möchte Ihnen dabei helfen, passende Unterstützung für Ihren Alltag zu finden. Kostenlos und unverbindlich.
+Wir möchten Ihnen dabei helfen, passende Unterstützung für Ihren Alltag zu finden. Kostenlos und unverbindlich.

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen – Ratgeber – KONZEPT 60+</title>
+  <title>Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen – Ratgeber – Wir helfen</title>
   <meta name="description" content="Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche…">
   <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
        und JSON-LD vor Livegang auf die echte Domain umstellen. -->
@@ -13,8 +13,8 @@
   <meta property="article:modified_time" content="2026-11-20">
   <meta property="article:section" content="Alltag und persönliche Hilfe">
   <meta property="og:locale" content="de_DE">
-  <meta property="og:site_name" content="KONZEPT 60+">
-  <meta property="og:title" content="Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen – Ratgeber – KONZEPT 60+">
+  <meta property="og:site_name" content="Wir helfen">
+  <meta property="og:title" content="Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen – Ratgeber – Wir helfen">
   <meta property="og:description" content="Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche…">
   <meta property="og:url" content="https://www.example.org/ratgeber/alltag-gut-organisiert/">
   <meta property="og:image" content="https://www.example.org/assets/img/ratgeber/alltag-gut-organisiert-1400.jpg">
@@ -31,10 +31,11 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=70c5e12894">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=9c9b3f07e2">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=d532c69669">
-  <link rel="stylesheet" href="/assets/css/components.css?v=2368d6486d">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
+  <link rel="stylesheet" href="/assets/css/components.css?v=82859adfd3">
+  <link rel="stylesheet" href="/assets/css/print.css?v=4682c5f5a1" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
@@ -52,7 +53,7 @@
     "mainEntityOfPage": "https://www.example.org/ratgeber/alltag-gut-organisiert/",
     "publisher": {
       "@type": "Organization",
-      "name": "KONZEPT 60+",
+      "name": "Wir helfen",
       "url": "https://www.example.org/"
     }
   }
@@ -90,8 +91,8 @@
   </div>
 
   <div class="container site-header__bar">
-    <a class="logo" href="/" aria-label="KONZEPT 60+ – zur Startseite">
-      <span>KONZEPT</span><span class="logo__plus">60+</span>
+    <a class="logo" href="/" aria-label="Wir helfen – zur Startseite">
+      <span class="logo__text">Wir helfen</span>
     </a>
 
     <button class="btn btn--menu site-header__nav-toggle" type="button"
@@ -101,15 +102,15 @@
     </button>
 
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
-      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="/#anfrage">Hilfe finden</a></li>
-        <li><a class="site-nav__link" href="/themen/">Themen</a></li>
-        <li><a class="site-nav__link" href="/#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
         <li><a class="site-nav__link" href="/ratgeber/" aria-current="true">Ratgeber</a></li>
-        <li><a class="site-nav__link" href="/fuer-anbieter/">Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/">Mein Alltag</a></li>
+        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anliegen beschreiben</a>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
     </nav>
   </div>
 </header>
@@ -219,7 +220,7 @@
             <p><strong>Unser Tipp:</strong> Bitten Sie bei Bedarf Familie, Freunde oder passende Dienstleister um Unterstützung. Nicht alles muss man allein organisieren.</p>
           </div>
         </div>
-        <p>KONZEPT 60+ möchte Ihnen dabei helfen, passende Unterstützung für Ihren Alltag zu finden. Kostenlos und unverbindlich.</p>
+        <p>Wir möchten Ihnen dabei helfen, passende Unterstützung für Ihren Alltag zu finden. Kostenlos und unverbindlich.</p>
 
           <div class="notice article__disclaimer" role="note">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
@@ -301,12 +302,22 @@
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
-          <span>KONZEPT</span><span class="logo__plus">60+</span>
+        <a class="logo logo--light" href="/" aria-label="Wir helfen – zur Startseite">
+          <span class="logo__text">Wir helfen</span>
         </a>
         <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
-          KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
+          Wir erbringen selbst keine Dienstleistungen.</p>
       </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
 
       <nav aria-labelledby="footer-themen">
         <h2 id="footer-themen">Themen</h2>
@@ -342,7 +353,6 @@
         <ul>
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/ratgeber/">Ratgeber</a></li>
           <li><a href="/impressum/">Impressum</a></li>
           <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
@@ -350,13 +360,14 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
+      <p>© 2026 Wir helfen (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
   </div>
 </footer>
 <!-- END partial:footer -->
 
-<script src="/assets/js/main.js?v=d13ccaeba1" defer></script>
+<script src="/assets/js/main.js?v=2f57f90f14" defer></script>
+
 </body>
 </html>

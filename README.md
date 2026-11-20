@@ -1,6 +1,6 @@
-# KONZEPT 60+ – statischer Prototyp (Arbeitstitel)
+# Wir helfen – statischer Prototyp (Arbeitstitel)
 
-Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare werden nur simuliert (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; Telefonnummer `0211 000 000 00` ist als „Demo“ gekennzeichnet, Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
+Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare werden nur simuliert (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
 ## Lokal starten
 
@@ -21,12 +21,19 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/themen/` | `themen/index.html` | `templates/themen.html` |
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
+| `/mein-alltag/` | `mein-alltag/index.html` | `templates/mein-alltag.html` (Übersicht der Alltags-Werkzeuge) |
+| `/mein-alltag/checklisten/` | `mein-alltag/checklisten/index.html` | `templates/mein-alltag-checklisten.html` + `data/checklisten.json` (4 Listen, nur allgemeine Punkte ohne Beträge/Fristen) |
+| `/mein-alltag/wohnungs-check/` | `mein-alltag/wohnungs-check/index.html` | `templates/mein-alltag-wohnungs-check.html` + `data/wohnungs-check.json` (12 Fragen, Priorität 1 = Sturzgefahr) |
 | `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
 | `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
 | unbekannte Pfade | `404.html` | `wrangler.jsonc` → `assets.not_found_handling: "404-page"` |
 
 Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (`/themen/slug` → 307 auf die Variante mit Slash).
+
+**Name:** „Wir helfen“ ist ein Arbeitstitel und steht zentral in `tools/build.py` (`SITE_NAME`); Templates/Partials nutzen `{{site_name}}`, Meta-Titel, Open Graph und JSON-LD folgen automatisch. Textlogo = Serif + Akzentpunkt (`.logo__text`).
+
+**Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
 
 **Entscheidung Navigation „Themen“:** verweist auf die eigene Übersichtsseite `/themen/` (entspricht später dem Taxonomie-Archiv). Die Startseite behält zusätzlich den Abschnitt `#themen`. Aktiver Menüpunkt: `aria-current="page"` (Übersicht) bzw. `aria-current="true"` (Unterseiten eines Bereichs).
 
@@ -88,7 +95,8 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 ### Entscheidungen
 
 - **Kein Inline-JS/-CSS** (außer JSON-LD) → CSP ohne `unsafe-inline`; geprüft unter `wrangler dev` mit echten Headern.
-- **Vorauswahl:** Links wie `/?thema=pflege-betreuung#anfrage`, `/?fuer=angehoerige#anfrage`, `/?region=wesel#anfrage` funktionieren von jeder Seite (ohne JS: normale Navigation zum Formular). `main.js` übernimmt die Parameter und entfernt sie danach aus der Adresszeile; auf der Startseite selbst werden solche Links ohne Neuladen abgefangen.
+- **Unterstützungs-Assistent** (Startseite, `#assistent`, `assets/js/assistent.js`, nur dort eingebunden über `body_extra` im Template-Kopf): Ziel → Thema → (bei Hilfe/Angehörigen) Stadt → Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Daten rendert `build.py` (`assistent_data()`) als JSON ins Attribut `data-assistent` (kein Inline-Skript, kein Nachladen). Ohne JS zeigt der Abschnitt die drei Säulen-Links. Nichts wird gespeichert; Ergebnis = Link `/?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>#anfrage`.
+- **Vorauswahl:** Links wie `/?thema=pflege-betreuung#anfrage`, `/?wer=angehoerige#anfrage` (älter: `?fuer=`), `/?ort=Hilden#anfrage` (nur Städte aus `data/regionen.json`; älter: `/?region=wesel#anfrage`) funktionieren von jeder Seite (ohne JS: normale Navigation zum Formular). `main.js` übernimmt die Parameter und entfernt sie danach aus der Adresszeile; auf der Startseite selbst werden solche Links ohne Neuladen abgefangen.
 - **Leistungen je Kategorie** werden serverseitig (Build) als Checkbox-Gruppen gerendert, standardmäßig `hidden disabled`; JS blendet die passende ein. Ohne JS genügt die Pflicht-Beschreibung.
 - **Formular-Validierung** (gemeinsamer Baustein für Anfrage und Registrierung): Fehler je Feld (`aria-invalid`, `aria-describedby`), Fehlerzusammenfassung mit Sprunglinks, Fokus aufs erste Fehlerfeld, Live-Aktualisierung nach dem ersten Absenden. Regel „Telefon **oder** E-Mail“ als eigene Gruppe.
 - **Einwilligungen getrennt:** Pflicht-Checkbox nur für die Bearbeitung durch das Team; Weitergabe an Anbieter erfolgt erst nach späterer ausdrücklicher Zustimmung (Infokasten, keine Checkbox); Newsletter separat, freiwillig, nicht vorausgewählt.
@@ -139,6 +147,22 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | Hinweis-Kasten, CTA, „Weitere Beiträge“ | fest in `single.php` (Vorauswahl über `themenbereich`-Slug) |
 
 **Taxonomien:** `themenbereich` (Slugs/Term-Meta wie `data/themen.json`), `region` (wie `data/regionen.json`, hierarchisch möglich).
+
+### Mein Alltag (Checklisten, Wohnungs-Check)
+
+Ohne Anmeldung, **ohne Speicherung**: Haken und Antworten leben nur im geöffneten Tab (`assets/js/alltag.js`, nur auf den beiden Unterseiten eingebunden). Zum Aufheben: „Drucken / als PDF speichern“ (`window.print()`); `assets/css/print.css` (nur `media="print"`) blendet Navigation, Fußbereich und – über `body.is-printing` / `.is-print-target` – alle anderen Bereiche aus. Der Wohnungs-Check wertet ohne Noten aus („Das ist schon gut“ / „Hier lohnt sich ein Blick“, Sturzgefahr zuerst) und ersetzt keine Fachberatung. „Erinnerungen“ und „Unterstützungsplan“ sind als „In Vorbereitung“ gekennzeichnet. Eine Sitemap gibt es im Prototyp nicht.
+
+## Schnittstellen (simuliert)
+
+`assets/js/api.js` ist die einzige Stelle, an der später mit einem Backend gesprochen wird. Im Prototyp **sendet nichts**: kein `fetch`, kein Storage, keine Cookies – `WirHelfenAPI.sendeAnfrage(payload)` gibt ein Promise zurück, das nach kurzer Zeit (simuliert) auflöst.
+
+| | |
+|---|---|
+| Aufruf | `WirHelfenAPI.sendeAnfrage(payload) → Promise<{ ok, simuliert }>` (Anfrageformular, `main.js` 5.) |
+| Payload | `wer`, `thema`, `leistungen[]`, `beschreibung`, `plz`, `ort`, `vorname`, `nachname`, `telefon`, `email`, `rueckruf { fenster: vormittags\|nachmittags\|eigen, eigenes }` \| `null`, `einwilligung_bearbeitung`, `newsletter` – Typen als JSDoc in `api.js` |
+| Zielendpunkt (später) | WordPress REST `POST /wp-json/wirhelfen/v1/anfragen` |
+| Verarbeitung (später) | legt CPT `anfrage` an (Status: neu → in Bearbeitung → vermittelt → abgeschlossen), Taxonomien `themenbereich`/`region`; Eingangsbestätigung per `wp_mail()` an die angegebene E-Mail (nur wenn vorhanden) |
+| Rückrufwunsch | optional, Gruppe erscheint (mit JS) erst bei eingetragener Telefonnummer; „Eigenes Zeitfenster“ verlangt den Freitext; Anzeige in der Erfolgsmeldung |
 
 ## Offene Punkte
 

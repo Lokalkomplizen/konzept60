@@ -3,12 +3,22 @@
   <div class="container">
     <div class="site-footer__grid">
       <div>
-        <a class="logo logo--light" href="/" aria-label="KONZEPT 60+ – zur Startseite">
-          <span>KONZEPT</span><span class="logo__plus">60+</span>
+        <a class="logo logo--light" href="/" aria-label="{{site_name}} – zur Startseite">
+          <span class="logo__text">{{site_name}}</span>
         </a>
         <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
-          KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
+          Wir erbringen selbst keine Dienstleistungen.</p>
       </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
 
       <nav aria-labelledby="footer-themen">
         <h2 id="footer-themen">Themen</h2>
@@ -31,7 +41,6 @@
         <ul>
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/ratgeber/">Ratgeber</a></li>
           <li><a href="/impressum/">Impressum</a></li>
           <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
@@ -39,7 +48,7 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
+      <p>© 2026 {{site_name}} (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
   </div>

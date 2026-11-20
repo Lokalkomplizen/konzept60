@@ -3,28 +3,29 @@
    → WordPress: Block-Styles / Template-Parts (template-parts/card-thema.php …)
    ========================================================================== */
 
-/* ---- Logo ----------------------------------------------------------------- */
+/* ---- Logo (Textlogo, Arbeitstitel – Name zentral in tools/build.py: SITE_NAME) ---- */
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.35em;
-  min-height: var(--touch-min);
   align-items: center;
-  font-family: var(--font-sans);
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
+  min-height: var(--touch-min);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.005em;
   color: var(--color-navy-800);
   text-decoration: none;
 }
 
-.logo__plus {
+/* dezenter Akzentpunkt in Terrakotta (wie das frühere „60+“-Schild) */
+.logo__text::after {
+  content: "";
   display: inline-block;
-  padding: 0.05em 0.35em;
-  border-radius: var(--radius-s);
+  width: 0.28em;
+  height: 0.28em;
+  margin-left: 0.14em;
+  border-radius: 50%;
   background: var(--color-terra-600);
-  color: var(--color-white);
-  letter-spacing: 0;
 }
 
 .logo:hover { color: var(--color-navy-800); }
@@ -70,11 +71,21 @@
   margin-bottom: var(--space-s);
 }
 
+/* „Für Anbieter“: bewusst kleiner und leiser als die drei Säulen */
+.site-nav__link--minor {
+  font-weight: 400;
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+}
+
 @media (min-width: 68em) {
   .site-nav__list {
     flex-direction: row;
+    align-items: center;
     gap: var(--space-2xs);
   }
+  .site-nav__item--minor { margin-left: var(--space-s); }
+  .site-nav__link--minor { font-size: 1rem; }
   .site-nav__link {
     border-bottom: 0;
     padding-inline: var(--space-s);
@@ -1782,4 +1793,376 @@ select.form-field__input {
   }
   .steps-section .step { padding: var(--space-2xl) var(--space-xl); }
   .steps-section .notice { grid-column: 2; margin-top: var(--space-xl); }
+}
+
+/* ==========================================================================
+   Ergänzungen v3 (Drei Säulen, Assistent, Mein Alltag)
+   ========================================================================== */
+
+/* ---- Drei Wege (Startseite): Säulenkarten im Stil der path-cards -------------- */
+.paths--3 { gap: var(--space-l); }
+
+@media (min-width: 56em) {
+  .paths--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.path-card--terra { border-top-color: var(--color-terra-600); }
+.path-card__title { margin-bottom: var(--space-s); }
+.path-card__text { margin-bottom: var(--space-l); }
+
+/* ---- Unterstützungs-Assistent (Startseite, assets/js/assistent.js) ----------------
+   Ohne JS: nur die drei Säulen-Links (.assistent__nojs). Mit JS: Karte mit Schritten.
+   Auswahl = echte Radio-Buttons (unsichtbar über der Fläche, per Tastatur bedienbar);
+   Zustand = Füllung PLUS Häkchen, nicht nur Farbe. */
+.assistent__nojs {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: var(--space-s);
+}
+.js .assistent__nojs { display: none; }
+.assistent__app { display: none; }
+.js .assistent__app:not([hidden]) { display: block; }
+
+.assistent__card {
+  max-width: 56rem;
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 40em) {
+  .assistent__card { padding: var(--space-2xl); }
+}
+
+.assistent__progress {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-sage-700);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.assistent__bar {
+  display: flex;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-l);
+}
+.assistent__bar-step {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sand-300);
+}
+.assistent__bar-step.is-done { background: var(--color-navy-800); }
+
+.assistent__fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.assistent__legend { padding: 0; margin-bottom: var(--space-m); }
+.assistent__heading {
+  margin: 0;
+  font-size: var(--font-size-h3);
+  outline-offset: 6px;
+}
+
+.assistent__choices {
+  display: grid;
+  gap: var(--space-s);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 40em) {
+  .assistent__choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) {
+  .assistent__choices:not(.assistent__choices--wide):not(.assistent__choices--chips) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.assistent__choices--chips { grid-template-columns: minmax(0, 1fr); }
+.assistent__choices--chips .choice-card { min-height: var(--touch-min); align-items: center; padding-block: var(--space-s); }
+.assistent__choices--chips .choice-card::before { margin-top: 0; }
+@media (min-width: 30em) {
+  .assistent__choices--chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 48em) {
+  .assistent__choices--chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.choice-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-s);
+  min-height: 4rem;
+  padding: var(--space-m);
+  border: 2px solid #6b7385; /* Rand-Kontrast ≥ 3:1 */
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  cursor: pointer;
+}
+.choice-card input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Symbol: leerer Kreis → gefüllt mit Häkchen */
+.choice-card::before {
+  content: "";
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.1rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.choice-card__text { display: grid; gap: var(--space-2xs); }
+.choice-card__title { font-weight: 700; line-height: 1.3; }
+.choice-card__hint { font-size: var(--font-size-sm); color: var(--color-ink-muted); line-height: 1.4; }
+
+.choice-card:hover { border-color: var(--color-navy-800); background: var(--color-navy-100); }
+.choice-card:has(input:checked) {
+  border-color: var(--color-navy-800);
+  background: var(--color-navy-800);
+  color: var(--color-white);
+}
+.choice-card:has(input:checked)::before {
+  content: "\2713";
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-navy-800);
+}
+.choice-card:has(input:checked) .choice-card__hint { color: #dfe4ee; }
+.choice-card:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800);
+}
+.assistent__fieldset[aria-invalid="true"] .choice-card { border-color: var(--color-error); }
+
+.assistent__note {
+  margin: var(--space-m) 0 0;
+  padding: var(--space-s) var(--space-m);
+  border-left: 6px solid var(--color-sage-700);
+  background: var(--color-sage-100);
+  border-radius: var(--radius-s);
+}
+.assistent__note:empty { display: none; }
+
+.assistent__fieldset .form-field__error:empty { display: none; }
+.assistent__fieldset .form-field__error { margin-top: var(--space-s); }
+
+.assistent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin-top: var(--space-xl);
+}
+@media (max-width: 29.99em) {
+  .assistent__actions .btn { width: 100%; }
+}
+
+.assistent__summary { font-size: var(--font-size-lg); margin: var(--space-m) 0 var(--space-s); }
+.assistent__extra { color: var(--color-ink-muted); }
+.assistent__main { margin: var(--space-l) 0; }
+@media (max-width: 39.99em) {
+  .btn--block-mobile { width: 100%; }
+}
+.assistent__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+.assistent__links a { display: inline-block; padding-block: var(--space-2xs); font-weight: 600; }
+
+/* ---- Rückrufwunsch im Anfrageformular (Segment-Buttons wie „Für mich / Für Angehörige“) -- */
+.segment--wrap { flex-wrap: wrap; }
+.segment--wrap .segment__option { flex: 1 1 9rem; padding-inline: 0.6rem; }
+.form-field--sub { margin-top: var(--space-s); margin-bottom: 0; }
+.form--compact .form-field--sub { margin-bottom: var(--space-s); }
+
+/* Textähnlicher Button (z. B. „Auswahl zurücknehmen“) */
+.link-button {
+  min-height: var(--touch-min);
+  padding: 0 var(--space-2xs);
+  border: 0;
+  background: none;
+  color: var(--color-navy-800);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+.link-button:hover { color: var(--color-terra-700); }
+
+/* ---- Mein Alltag: Übersicht ------------------------------------------------------ */
+.alltag-hinweis { margin-bottom: var(--space-xl); }
+
+.tool-grid {
+  list-style: none;
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  display: grid;
+  gap: var(--space-l);
+}
+@media (min-width: 48em) {
+  .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.tool-grid .path-card { height: 100%; }
+.tool-grid .path-card .btn { margin-top: auto; }
+
+/* „In Vorbereitung“: ruhiger, nicht klickbar */
+.path-card--soon {
+  background: var(--color-sand-50);
+  border-top-color: var(--color-sand-300);
+  box-shadow: none;
+}
+.path-card--soon .path-card__tag { color: var(--color-ink-muted); }
+.path-card__soon { margin: auto 0 0; }
+
+/* ---- Hilfsklassen: Druck / ohne JS ------------------------------------------------ */
+.print-only { display: none; }
+.no-js-note { display: none; }
+.no-js .no-js-note { display: block; margin-bottom: var(--space-l); }
+
+/* ---- Checklisten ------------------------------------------------------------------ */
+.checklist-page { display: grid; gap: var(--space-2xl); max-width: 52rem; margin-inline: 0; }
+.checklist-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.checklist-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: 0.35rem 1rem;
+  border: 2px solid var(--color-navy-800);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-navy-800);
+}
+.checklist-nav a:hover { background: var(--color-navy-100); }
+
+.checklist {
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: var(--space-l);
+}
+@media (min-width: 40em) {
+  .checklist { padding: var(--space-xl) var(--space-2xl); }
+}
+.checklist h2 { font-size: var(--font-size-h3); margin-bottom: var(--space-xs); }
+.checklist__intro { color: var(--color-ink-muted); }
+.checklist__progress {
+  margin: 0 0 var(--space-m);
+  font-weight: 700;
+  color: var(--color-sage-700);
+}
+.checklist__items {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+.checklist__items .choice:has(input:checked) span { text-decoration: line-through; text-decoration-thickness: 1px; }
+.checklist__actions { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+@media (max-width: 29.99em) {
+  .checklist__actions .btn { width: 100%; }
+}
+.checklist__more { margin: var(--space-m) 0 0; font-size: var(--font-size-sm); }
+
+/* ---- Wohnungs-Check ---------------------------------------------------------------- */
+.wc-page { display: grid; gap: var(--space-xl); max-width: 52rem; margin-inline: 0; }
+.wc { display: grid; gap: var(--space-xl); }
+.wc__group { margin: 0; padding: 0; border: 0; min-width: 0; display: grid; gap: var(--space-m); }
+.wc__group-title {
+  padding: 0;
+  margin-bottom: var(--space-s);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--font-size-h3);
+  color: var(--color-navy-800);
+}
+.wc__question {
+  margin: 0;
+  min-width: 0;
+  padding: var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+}
+@media (min-width: 40em) {
+  .wc__question { padding: var(--space-l); }
+}
+.wc__q-text { display: flex; gap: var(--space-s); padding: 0; margin-bottom: var(--space-s); font-weight: 600; color: var(--color-ink); }
+.wc__q-nr {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.wc__answers .segment__option { flex: 1 1 6rem; }
+.wc__actions { display: grid; gap: var(--space-s); justify-items: start; }
+.wc__actions .form-field__error:empty { display: none; }
+
+.wc-result {
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 40em) {
+  .wc-result { padding: var(--space-xl) var(--space-2xl); }
+}
+.wc-result h2 { font-size: var(--font-size-h2); }
+.wc-result h3 { font-size: var(--font-size-h3); margin-top: var(--space-xl); }
+.wc-result h4 { font-size: var(--font-size-lg); margin: var(--space-l) 0 var(--space-s); }
+.wc-result__intro { font-size: var(--font-size-lg); }
+.wc-result__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
+.wc-result__item {
+  padding: var(--space-m);
+  background: var(--color-sand-50);
+  border-left: 6px solid var(--color-terra-600);
+  border-radius: var(--radius-s);
+}
+.wc-result__item p { margin: 0; }
+.wc-result__item-title { margin-bottom: var(--space-2xs) !important; }
+.wc-result__links { margin: 0; padding-left: 1.25rem; display: grid; gap: var(--space-xs); }
+.wc-result__hinweis { margin-bottom: var(--space-l); }
+.wc-result .btn-group { margin-top: var(--space-l); }
+
+/* Deaktivierte Buttons (z. B. während des simulierten Absendens): klar lesbar, nie grau auf grau */
+.btn:disabled {
+  background: var(--color-sand-100);
+  color: var(--color-ink);
+  border-color: var(--color-ink-muted);
+  cursor: progress;
 }

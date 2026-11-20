@@ -37,4 +37,4 @@ Es lohnt sich, frühzeitig über Veränderungen nachzudenken. Fachbetriebe für 
 
 Barrierefreiheit bedeutet nicht, dass eine Wohnung wie ein Krankenhaus aussehen muss. Es geht darum, das eigene Zuhause so zu gestalten, dass es zum Leben passt und Sicherheit gibt.
 
-Bei KONZEPT 60+ möchten wir dabei helfen, passende Ansprechpartner und Unterstützung zu finden. Beschreiben Sie uns einfach, wobei Sie Hilfe benötigen. Die Anfrage ist kostenlos und unverbindlich.
+Wir möchten Ihnen dabei helfen, passende Ansprechpartner und Unterstützung zu finden. Beschreiben Sie uns einfach, wobei Sie Hilfe benötigen. Die Anfrage ist kostenlos und unverbindlich.

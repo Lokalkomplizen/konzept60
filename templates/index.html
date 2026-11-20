@@ -1,7 +1,8 @@
 <!--meta
-title: KONZEPT 60+ – Hilfe finden. Einfach und kostenlos.
-description: KONZEPT 60+ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
+title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
+description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
+body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -20,18 +21,18 @@ head_extra: {{home_head}}
     </picture>
 
     <div class="hero__content">
-      <h1 class="hero__title" id="hero-titel">Hilfe finden. <span>Einfach und kostenlos.</span></h1>
+      <h1 class="hero__title" id="hero-titel">Sie müssen nicht wissen, wer Ihnen helfen kann. <span>Dafür sind wir da.</span></h1>
       <p class="hero__text">
         Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team
         sucht für Sie passende Dienstleister oder private Helfer in Ihrer Region – für Sie
         selbst oder für Ihre Angehörigen.
       </p>
       <div class="btn-group">
-        <a class="btn btn--primary" href="#anfrage">
-          Anliegen beschreiben
+        <a class="btn btn--primary" href="#assistent">
+          Assistent starten
           <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
         </a>
-        <a class="btn btn--outline-light" href="#so-funktionierts">So funktioniert’s</a>
+        <a class="btn btn--outline-light" href="#anfrage">Anliegen beschreiben</a>
       </div>
     </div>
   </section>
@@ -62,6 +63,69 @@ head_extra: {{home_head}}
           </span>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Unterstützungs-Assistent (→ WordPress: Block/Template-Part "assistent"; Logik: assets/js/assistent.js)
+       Daten (Themen, Städte, Ratgeber-Beiträge) rendert tools/build.py als data-assistent (JSON).
+       Ohne JS: nur die drei Säulen-Links. Es wird nichts gespeichert oder gesendet – das Ergebnis
+       ist ein Link auf das vorausgefüllte Anfrageformular (?thema=…&wer=…&ort=…#anfrage).
+       ====================================================================== -->
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent="{{assistent_daten}}">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Assistent</span>
+        <h2 id="assistent-titel">Wie können wir Ihnen heute helfen?</h2>
+        <p class="section__intro">Beantworten Sie zwei, drei kurze Fragen – wir zeigen Ihnen den passenden nächsten Schritt.</p>
+      </div>
+
+      <!-- Ohne JavaScript -->
+      <ul class="assistent__nojs">
+        <li><a href="/themen/">Hilfe finden</a> – wir suchen persönlich für Sie</li>
+        <li><a href="/ratgeber/">Wissen bekommen</a> – der Ratgeber</li>
+        <li><a href="/mein-alltag/">Alltag erleichtern</a> – Mein Alltag</li>
+      </ul>
+
+      <!-- Mit JavaScript: assistent.js füllt diesen Bereich -->
+      <div class="assistent__app" data-assistent-app hidden></div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Drei Wege, wie wir helfen  (→ template-parts/saeulen.php)
+       Säulen: Hilfe finden · Wissen bekommen (Ratgeber) · Alltag erleichtern (Mein Alltag)
+       ====================================================================== -->
+  <section class="section" id="drei-wege" aria-labelledby="drei-wege-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Unser Angebot</span>
+        <h2 id="drei-wege-titel">Drei Wege, wie wir helfen</h2>
+        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten. Alles ist kostenlos und unverbindlich.</p>
+      </div>
+
+      <div class="paths paths--3">
+        <article class="path-card" aria-labelledby="weg-hilfe">
+          <span class="path-card__tag">Hilfe finden</span>
+          <h3 class="path-card__title" id="weg-hilfe">Wir suchen für Sie</h3>
+          <p class="path-card__text">Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team sucht passende Dienstleister oder private Helfer in Ihrer Region.</p>
+          <a class="btn btn--primary" href="/themen/">Hilfe finden <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+
+        <article class="path-card path-card--sage" aria-labelledby="weg-wissen">
+          <span class="path-card__tag">Wissen bekommen</span>
+          <h3 class="path-card__title" id="weg-wissen">Verständlich erklärt</h3>
+          <p class="path-card__text">Im Ratgeber finden Sie Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit – ohne Fachchinesisch.</p>
+          <a class="btn btn--secondary" href="/ratgeber/">Zum Ratgeber <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+
+        <article class="path-card path-card--terra" aria-labelledby="weg-alltag">
+          <span class="path-card__tag">Alltag erleichtern</span>
+          <h3 class="path-card__title" id="weg-alltag">Mein Alltag</h3>
+          <p class="path-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause – ohne Anmeldung, ohne Speicherung.</p>
+          <a class="btn btn--secondary" href="/mein-alltag/">Zu Mein Alltag <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -126,7 +190,7 @@ head_extra: {{home_head}}
       <div class="section__header">
         <span class="section__eyebrow">So funktioniert’s</span>
         <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
-        <p class="section__intro">KONZEPT 60+ ist selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
+        <p class="section__intro">Wir sind selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
       </div>
 
       <ol class="steps">
@@ -304,6 +368,25 @@ head_extra: {{home_head}}
               <p class="form-field__error" id="f-kontakt-fehler" aria-live="polite"></p>
             </fieldset>
 
+            <!-- Rückrufwunsch (optional): mit JS nur sichtbar, wenn eine Telefonnummer eingetragen ist;
+                 ohne JS immer sichtbar. → WordPress: Meta „Rückrufwunsch“ am CPT anfrage -->
+            <fieldset class="form-field" id="f-rueckruf" data-rueckruf aria-describedby="f-rueckruf-fehler">
+              <legend>Wann dürfen wir Sie zurückrufen? <span class="form-field__hint">(optional)</span></legend>
+              <div class="segment segment--wrap">
+                <label class="segment__option"><input type="radio" name="rueckruf" value="vormittags" id="f-rueckruf-vormittags"> <span>Vormittags (9–12 Uhr)</span></label>
+                <label class="segment__option"><input type="radio" name="rueckruf" value="nachmittags" id="f-rueckruf-nachmittags"> <span>Nachmittags (13–17 Uhr)</span></label>
+                <label class="segment__option"><input type="radio" name="rueckruf" value="eigen" id="f-rueckruf-eigen-option"> <span>Eigenes Zeitfenster</span></label>
+              </div>
+              <div class="form-field form-field--sub" data-rueckruf-eigen>
+                <label class="form-field__label" for="f-rueckruf-eigen">Ihr Zeitfenster <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="f-rueckruf-eigen" name="rueckruf_eigen" type="text" maxlength="120"
+                       placeholder="z. B. dienstags ab 15 Uhr" aria-describedby="f-rueckruf-eigen-fehler">
+                <p class="form-field__error" id="f-rueckruf-eigen-fehler" aria-live="polite"></p>
+              </div>
+              <p class="form-field__error" id="f-rueckruf-fehler" aria-live="polite"></p>
+              <button class="link-button" type="button" data-rueckruf-zuruecksetzen hidden>Auswahl zurücknehmen</button>
+            </fieldset>
+
           </fieldset>
 
           <!-- 4 · Einwilligung -->
@@ -313,7 +396,7 @@ head_extra: {{home_head}}
             <div class="form-field" id="f-datenschutz-feld">
               <label class="choice" for="f-datenschutz">
                 <input type="checkbox" id="f-datenschutz" name="einwilligung_bearbeitung" required aria-describedby="f-datenschutz-fehler">
-                <span>Ich bin einverstanden, dass KONZEPT 60+ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
+                <span>Ich bin einverstanden, dass das Team von „{{site_name}}“ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
               </label>
               <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
             </div>
@@ -333,15 +416,18 @@ head_extra: {{home_head}}
           </fieldset>
 
           <div class="form__actions">
-            <button class="btn btn--primary btn--block" type="submit">Anfrage kostenlos absenden</button>
+            <button class="btn btn--primary btn--block" type="submit" data-absenden>Anfrage kostenlos absenden</button>
+            <p class="form-field__error" data-sende-fehler role="alert"></p>
             <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
           </div>
         </form>
 
         <div class="form-success" id="anfrage-erfolg" tabindex="-1" role="status" hidden>
           <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
-          <h3>Vielen Dank<span data-erfolg-name></span>!</h3>
-          <p>So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <h3>Ihre Anfrage ist bei uns eingegangen</h3>
+          <p>Vielen Dank<span data-erfolg-name></span>! So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
+          <p data-erfolg-rueckruf hidden><strong>Ihr Rückrufwunsch:</strong> <span data-erfolg-rueckruf-text></span></p>
+          <p data-erfolg-email hidden>Sie erhalten zusätzlich eine Bestätigung per E-Mail.</p>
           <p>Ihre Kontaktdaten geben wir erst weiter, wenn Sie einem konkreten Anbieter ausdrücklich zugestimmt haben.</p>
           <p class="form-success__prototype">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
@@ -395,7 +481,7 @@ head_extra: {{home_head}}
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen oder bestimmte Handwerksarbeiten – vermitteln wir nur an entsprechend qualifizierte und berechtigte Betriebe.</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Private Helfer unterstützen bei alltäglichen Dingen, nicht bei Tätigkeiten, die eine Fachausbildung erfordern.</span></li>
         </ul>
-        <p class="form-field__hint">KONZEPT 60+ ist kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
+        <p class="form-field__hint">Wir sind kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
       </div>
     </div>
   </section>

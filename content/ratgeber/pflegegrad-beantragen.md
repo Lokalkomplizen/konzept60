@@ -114,4 +114,4 @@ Welche Leistungen sinnvoll sind, hängt vom Pflegegrad und von der persönlichen
 
 Ein Pflegegrad ist kein Grund, die Selbstständigkeit aufzugeben. Er kann vielmehr dabei helfen, notwendige Unterstützung zu organisieren und den Alltag zu erleichtern.
 
-KONZEPT 60+ unterstützt Sie dabei, passende Ansprechpartner für Pflege, Betreuung, Haushaltshilfe und weitere Dienstleistungen zu finden. Beschreiben Sie einfach, wobei Sie Unterstützung benötigen. Ihre Anfrage ist kostenlos und unverbindlich.
+Wir unterstützen Sie dabei, passende Ansprechpartner für Pflege, Betreuung, Haushaltshilfe und weitere Dienstleistungen zu finden. Beschreiben Sie einfach, wobei Sie Unterstützung benötigen. Ihre Anfrage ist kostenlos und unverbindlich.

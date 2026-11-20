@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""KONZEPT 60+ – statischer Seitengenerator (nur Python-Standardbibliothek).
+"""Wir helfen – statischer Seitengenerator (nur Python-Standardbibliothek).
 
 Aufruf im Projektordner:   python3 tools/build.py
 
@@ -9,7 +9,7 @@ Erzeugt alle HTML-Seiten aus
   partials/icons.html             SVG-Sprite
   partials/header.html            Kopfbereich inkl. Navigation ({{nav:…}} → aria-current)
   partials/footer.html            Fußbereich ({{footer_themen}}, {{footer_regionen}})
-  data/themen.json, data/regionen.json
+  data/themen.json, data/regionen.json, data/checklisten.json, data/wohnungs-check.json
   content/ratgeber/*.md           Ratgeber-Beiträge (Frontmatter + Markdown-Teilmenge)
                                   → ratgeber/<slug>/index.html, ratgeber/index.html,
                                     data/ratgeber.json (gesammelte Frontmatter, generiert)
@@ -31,11 +31,12 @@ TEMPLATES = ROOT / "templates"
 PARTIALS = ROOT / "partials"
 CONTENT = ROOT / "content" / "ratgeber"
 RATGEBER_IMG = "assets/img/ratgeber"
+SITE_NAME = "Wir helfen"  # Arbeitstitel – hier zentral ändern; Templates nutzen {{site_name}}
 SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
 META_RE = re.compile(r"\A<!--meta\n(.*?)\n-->\n", re.S)
-NAV_KEYS = ("themen", "ratgeber", "anbieter")
+NAV_KEYS = ("themen", "ratgeber", "alltag", "anbieter")
 
 
 # --------------------------------------------------------------------------
@@ -567,6 +568,37 @@ def ratgeber_filter(themen, beitraege):
     return indent(lines, 6)
 
 
+def assistent_data(themen, regionen, beitraege):
+    """Daten für den Unterstützungs-Assistenten (Startseite) → als data-Attribut ins HTML (kein Inline-Skript,
+    kein Nachladen). Gelesen von assets/js/assistent.js. → WordPress: wp_localize_script bzw. data-Attribut
+    im Block-Template; Beiträge per WP_Query nach Taxonomie themenbereich."""
+    data = {
+        "ziele": [
+            {"id": "praktisch", "titel": "Ich brauche praktische Unterstützung", "hinweis": "Zum Beispiel im Haushalt, bei Reparaturen oder im Alltag"},
+            {"id": "informieren", "titel": "Ich möchte mich informieren", "hinweis": "Verständliche Beiträge im Ratgeber"},
+            {"id": "alltag", "titel": "Ich möchte meinen Alltag besser organisieren", "hinweis": "Checklisten und Wohnungs-Check zum Selbermachen"},
+            {"id": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
+        ],
+        "themen": [
+            {
+                "slug": t["slug"],
+                "titel": t["titel"],
+                "url": f"/themen/{t['slug']}/",
+                "ratgeber": [{"titel": b["titel"], "url": b["url"]} for b in beitraege if b["thema"] == t["slug"]][:2],
+            }
+            for t in themen
+        ],
+        "alltag": [
+            {"id": "checklisten", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
+            {"id": "wohnungs-check", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
+            {"id": "termine", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+            {"id": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+        ],
+        "orte": [r["name"] for r in regionen],
+    }
+    return esc(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+
+
 def article_toc(blocks, ids):
     lines = [
         '<nav class="toc article__toc" aria-labelledby="toc-titel">',
@@ -591,7 +623,7 @@ def article_jsonld(b):
         "inLanguage": "de-DE",
         "articleSection": b["thema_titel"],
         "mainEntityOfPage": f'{SITE}{b["url"]}',
-        "publisher": {"@type": "Organization", "name": "KONZEPT 60+", "url": f"{SITE}/"},
+        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": f"{SITE}/"},
     }
     body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
     return (
@@ -668,6 +700,155 @@ def thema_ratgeber(t, beitraege):
 
 
 # --------------------------------------------------------------------------
+# Mein Alltag: Checklisten + Wohnungs-Check (→ WordPress: Seiten mit Template-Parts;
+# Inhalte später als Custom Post Type „checkliste“ bzw. Options-/JSON-Daten)
+# Es wird nichts gespeichert: Abhaken/Antworten leben nur im geöffneten Browser-Tab.
+# --------------------------------------------------------------------------
+def load_alltag(themen, beitraege):
+    checklisten = json.loads(read(ROOT / "data" / "checklisten.json"))["checklisten"]
+    check = json.loads(read(ROOT / "data" / "wohnungs-check.json"))
+    slugs_t = {t["slug"] for t in themen}
+    by_slug = {b["slug"]: b for b in beitraege}
+    for c in checklisten:
+        for key in ("id", "titel", "einleitung", "punkte", "thema", "ratgeber"):
+            if key not in c:
+                raise SystemExit(f"FEHLER: checklisten.json – '{key}' fehlt bei {c.get('id')}")
+        if not 8 <= len(c["punkte"]) <= 12:
+            raise SystemExit(f"FEHLER: checklisten.json – {c['id']} braucht 8–12 Punkte")
+        if c["thema"] not in slugs_t or c["ratgeber"] not in by_slug:
+            raise SystemExit(f"FEHLER: checklisten.json – unbekanntes Thema/Ratgeber bei {c['id']}")
+    fragen = [f for g in check["gruppen"] for f in g["fragen"]]
+    if not 10 <= len(fragen) <= 12:
+        raise SystemExit("FEHLER: wohnungs-check.json – 10–12 Fragen erwartet")
+    if check["thema"] not in slugs_t or any(r not in by_slug for r in check["ratgeber"]):
+        raise SystemExit("FEHLER: wohnungs-check.json – unbekanntes Thema/Ratgeber")
+    return checklisten, check
+
+
+def checklisten_html(checklisten, beitraege, site_name):
+    by_slug = {b["slug"]: b for b in beitraege}
+    nav = ['<nav class="checklist-nav no-print" aria-label="Alle Checklisten">', "  <ul>"]
+    for c in checklisten:
+        nav.append(f'    <li><a href="#{c["id"]}">{esc(c["titel"])}</a></li>')
+    nav += ["  </ul>", "</nav>"]
+    out = ["\n".join(nav)]
+    for c in checklisten:
+        r = by_slug[c["ratgeber"]]
+        items = "\n".join(
+            f'    <li><label class="choice"><input type="checkbox" id="{c["id"]}-{i}"> <span>{esc(p)}</span></label></li>'
+            for i, p in enumerate(c["punkte"], 1)
+        )
+        out.append(f"""<section class="checklist" id="{c["id"]}" aria-labelledby="{c["id"]}-titel" data-checkliste data-druck-bereich>
+  <h2 id="{c["id"]}-titel">{esc(c["titel"])}</h2>
+  <p class="checklist__intro">{esc(c["einleitung"])}</p>
+  <p class="checklist__progress" aria-live="polite" data-fortschritt hidden></p>
+  <ul class="checklist__items">
+{items}
+  </ul>
+  <p class="print-only">{esc(site_name)} – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
+  <div class="checklist__actions no-print">
+    <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
+    <a class="btn btn--primary" href="/?thema={c["thema"]}#anfrage" data-thema="{c["thema"]}">Unterstützung anfragen</a>
+  </div>
+  <p class="checklist__more no-print">Mehr dazu: <a href="{r["url"]}">{esc(r["titel"])}</a></p>
+</section>""")
+    return indent("\n\n".join(out).splitlines(), 6)
+
+
+def wohnungs_check_html(check, beitraege, site_name):
+    by_slug = {b["slug"]: b for b in beitraege}
+    antworten = (("ja", "Ja"), ("teilweise", "Teilweise"), ("nein", "Nein"))
+    form = ['<div data-druck-bereich class="wc-form-wrap">',
+            '<form class="wc" id="wohnungs-check-formular" novalidate aria-label="Wohnungs-Check: Fragen">']
+    nr = 0
+    for g in check["gruppen"]:
+        form.append(f'  <fieldset class="wc__group">\n    <legend class="wc__group-title">{esc(g["titel"])}</legend>')
+        for f in g["fragen"]:
+            nr += 1
+            opts = "\n".join(
+                f'        <label class="segment__option"><input type="radio" name="{f["id"]}" value="{v}" id="{f["id"]}-{v}"> <span>{label}</span></label>'
+                for v, label in antworten
+            )
+            form.append(f"""    <fieldset class="wc__question" id="frage-{f["id"]}" data-frage="{f["id"]}">
+      <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">{nr}</span> {esc(f["frage"])}</legend>
+      <div class="segment segment--wrap wc__answers">
+{opts}
+      </div>
+    </fieldset>""")
+        form.append("  </fieldset>")
+    form.append("""  <div class="wc__actions">
+    <p class="form-field__error" id="wc-fehler" role="alert"></p>
+    <button class="btn btn--primary" type="submit">Auswertung anzeigen</button>
+  </div>
+</form>
+</div>""")
+
+    gut, blick = [], []
+    for g in check["gruppen"]:
+        for f in g["fragen"]:
+            gut.append(f'      <li data-gut="{f["id"]}" hidden>{esc(f["kurz"])}</li>')
+            blick.append(
+                f'      <li class="wc-result__item" data-blick="{f["id"]}" data-prio="{f["prioritaet"]}">\n'
+                f'        <p class="wc-result__item-title"><strong>{esc(f["kurz"])}</strong> '
+                f'<span class="badge" data-antwort-label></span></p>\n'
+                f'        <p>{esc(f["empfehlung"])}</p>\n'
+                f"      </li>"
+            )
+    links = "\n".join(
+        f'      <li><a href="{by_slug[s]["url"]}">{esc(by_slug[s]["titel"])}</a></li>' for s in check["ratgeber"]
+    )
+    nl = "\n"
+    result = f"""<section class="wc-result" id="ergebnis" aria-labelledby="ergebnis-titel" data-ergebnis data-druck-bereich hidden>
+  <h2 id="ergebnis-titel" tabindex="-1">Ihre Auswertung</h2>
+  <p class="wc-result__intro" data-ergebnis-intro></p>
+
+  <div class="wc-result__block" data-block-gut hidden>
+    <h3>Das ist schon gut</h3>
+    <ul class="check-list" data-gut-liste>
+{nl.join(gut)}
+    </ul>
+  </div>
+
+  <div class="wc-result__block" data-block-blick hidden>
+    <h3>Hier lohnt sich ein Blick</h3>
+    <div data-blick-zuerst hidden>
+      <h4>Zuerst: hier besteht Sturzgefahr</h4>
+      <ol class="wc-result__list" data-blick-liste-zuerst></ol>
+    </div>
+    <div data-blick-danach hidden>
+      <h4>Danach</h4>
+      <ol class="wc-result__list" data-blick-liste-danach></ol>
+    </div>
+    <!-- Empfehlungen je Frage (Vorrat): assets/js/alltag.js blendet je nach Antwort ein und sortiert nach Priorität -->
+    <ul class="wc-result__pool" hidden>
+{nl.join(blick)}
+    </ul>
+  </div>
+
+  <div class="wc-result__block no-print">
+    <h3>Mehr dazu im Ratgeber</h3>
+    <ul class="wc-result__links">
+{links}
+    </ul>
+  </div>
+
+  <p class="print-only">{esc(site_name)} – Ergebnis des Wohnungs-Checks (nur für Sie ausgedruckt, nichts wurde gespeichert).</p>
+
+  <div class="notice notice--light wc-result__hinweis">
+    <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+    <p><strong>Wichtig:</strong> Der Wohnungs-Check gibt Anregungen und ersetzt keine Fachberatung. Bei größeren Veränderungen holen Sie sich bitte Rat von Fachleuten, zum Beispiel einer Wohnberatung.</p>
+  </div>
+
+  <div class="btn-group no-print">
+    <a class="btn btn--primary" href="/?thema={check["thema"]}#anfrage" data-thema="{check["thema"]}">Unterstützung anfragen</a>
+    <button class="btn btn--secondary" type="button" data-drucken>Drucken / als PDF speichern</button>
+    <button class="btn btn--secondary" type="button" data-neu-starten>Antworten ändern</button>
+  </div>
+</section>"""
+    return indent("\n".join(form).splitlines(), 6), indent(result.splitlines(), 6)
+
+
+# --------------------------------------------------------------------------
 # Seiten
 # --------------------------------------------------------------------------
 def home_head(regionen):
@@ -683,7 +864,7 @@ def home_head(regionen):
   {{
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "KONZEPT 60+",
+    "name": "{SITE_NAME}",
     "url": "{SITE}/",
     "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
     "areaServed": [{area}]
@@ -708,7 +889,7 @@ def meta_seo(path, title, description, image=None, noindex=False, article=None):
   <link rel="canonical" href="{SITE}{path}">
   <meta property="og:type" content="{"article" if article else "website"}">{article_tags}
   <meta property="og:locale" content="de_DE">
-  <meta property="og:site_name" content="KONZEPT 60+">
+  <meta property="og:site_name" content="{esc(SITE_NAME)}">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{SITE}{path}">
@@ -726,7 +907,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
     description = render(meta["description"], page_ctx, template)
     path = "/" + output.replace("index.html", "") if output != "404.html" else None
     nav = meta.get("nav", "")
-    nav_ctx = {}
+    nav_ctx = {"site_name": esc(SITE_NAME)}
     for key in NAV_KEYS:
         if key == nav:
             nav_ctx[f"nav:{key}"] = ' aria-current="true"' if meta.get("nav_level") == "section" else ' aria-current="page"'
@@ -747,9 +928,11 @@ def build_page(template, output, ctx, partials, themen, regionen):
         "description": esc(description),
         "meta_seo": meta_seo(path, title, description, image, noindex=path is None, article=article),
         "head_extra": render(meta.get("head_extra", ""), page_ctx, template),
+        "body_extra": ("  " + render(meta["body_extra"], page_ctx, template)) if meta.get("body_extra") else "",
         "icons": partials["icons"].rstrip(),
         "header": render(partials["header"], nav_ctx, "partials/header.html").rstrip(),
         "footer": render(partials["footer"], {
+            "site_name": esc(SITE_NAME),
             "footer_themen": footer_themen(themen),
             "footer_regionen": footer_regionen(regionen),
         }, "partials/footer.html").rstrip(),
@@ -794,15 +977,22 @@ def main():
     beitraege = load_beitraege(themen)
     write_ratgeber_json(beitraege)
 
+    checklisten, wohnungs_check = load_alltag(themen, beitraege)
+    wc_form, wc_result = wohnungs_check_html(wohnungs_check, beitraege, SITE_NAME)
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
+        "site_name": esc(SITE_NAME),
         # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle (keine Begrenzung)
         "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
         "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8, filter_attr=True) for b in beitraege),
         "ratgeber_filter": ratgeber_filter(themen, beitraege),
+        "checklisten_inhalt": checklisten_html(checklisten, beitraege, SITE_NAME),
+        "wc_formular": wc_form,
+        "wc_ergebnis": wc_result,
         "home_head": home_head(regionen),
+        "assistent_daten": assistent_data(themen, regionen, beitraege),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
         "kategorie_optionen": kategorie_optionen(themen),
@@ -825,6 +1015,9 @@ def main():
         ("themen.html", "themen/index.html"),
         ("fuer-anbieter.html", "fuer-anbieter/index.html"),
         ("ratgeber.html", "ratgeber/index.html"),
+        ("mein-alltag.html", "mein-alltag/index.html"),
+        ("mein-alltag-checklisten.html", "mein-alltag/checklisten/index.html"),
+        ("mein-alltag-wohnungs-check.html", "mein-alltag/wohnungs-check/index.html"),
         ("impressum.html", "impressum/index.html"),
         ("datenschutz.html", "datenschutz/index.html"),
         ("404.html", "404.html"),

@@ -95,6 +95,6 @@ Eine Haushaltshilfe kommt in Ihren persönlichen Lebensbereich. Deshalb sollten 
 
 Vergleichen Sie verschiedene Angebote, lernen Sie die betreffende Person kennen und klären Sie alle wichtigen Fragen vorab.
 
-KONZEPT 60+ unterstützt Sie dabei, passende Möglichkeiten zu finden und den richtigen Ansprechpartner für Ihre persönliche Situation kennenzulernen.
+Wir unterstützen Sie dabei, passende Möglichkeiten zu finden und den richtigen Ansprechpartner für Ihre persönliche Situation kennenzulernen.
 
 Denn gute Unterstützung soll nicht kompliziert sein. Sie soll Ihren Alltag leichter machen.

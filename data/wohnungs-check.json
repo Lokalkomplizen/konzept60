@@ -1,0 +1,126 @@
+{
+  "_hinweis": "Fragen und Empfehlungen für /mein-alltag/wohnungs-check/ – gerendert von tools/build.py. prioritaet 1 = Sturzgefahr (wird zuerst genannt), 2 = wichtig, 3 = sinnvoll.",
+  "thema": "wohnen-haus-handwerk",
+  "ratgeber": [
+    "barrierefrei-wohnen",
+    "altersgerechter-umbau",
+    "treppenlift-einbau",
+    "hausnotruf-auswahl"
+  ],
+  "gruppen": [
+    {
+      "id": "zugang",
+      "titel": "Eingang und Zugang",
+      "fragen": [
+        {
+          "id": "zugang-stufen",
+          "frage": "Kommen Sie sicher in Ihre Wohnung oder Ihr Haus – auch bei Nässe und Dunkelheit?",
+          "kurz": "Sicherer Zugang",
+          "prioritaet": 1,
+          "empfehlung": "Prüfen Sie die Stufen vor dem Haus: ein fester Handlauf, ein rutschfester Belag und gutes Licht machen den Zugang sicherer. Bei größeren Hürden lohnt sich eine Beratung."
+        },
+        {
+          "id": "zugang-greifen",
+          "frage": "Können Sie Haustür, Schlüssel und Briefkasten gut greifen und bedienen?",
+          "kurz": "Tür, Schlüssel, Briefkasten",
+          "prioritaet": 3,
+          "empfehlung": "Griffe und Schlüssel, die gut in der Hand liegen, erleichtern vieles. Eine feste Ablage für den Schlüssel neben der Tür hilft, und ein Zweitschlüssel bei einer Vertrauensperson ist im Notfall hilfreich."
+        }
+      ]
+    },
+    {
+      "id": "flur",
+      "titel": "Flur und Treppen",
+      "fragen": [
+        {
+          "id": "flur-stolper",
+          "frage": "Sind Ihre Böden frei von Stolperfallen wie losen Teppichen, Kabeln oder Türschwellen?",
+          "kurz": "Stolperfallen",
+          "prioritaet": 1,
+          "empfehlung": "Lose Teppiche am besten entfernen oder mit rutschfester Unterlage sichern, Kabel an der Wand entlangführen. Hohe Schwellen lassen sich oft mit kleinen Rampen entschärfen."
+        },
+        {
+          "id": "flur-treppen",
+          "frage": "Haben Ihre Treppen einen stabilen Handlauf und gut erkennbare Stufenkanten?",
+          "kurz": "Treppen",
+          "prioritaet": 1,
+          "empfehlung": "Ein fester Handlauf – wenn möglich auf beiden Seiten – gibt Halt. Stufenkanten lassen sich mit hellen, rutschhemmenden Streifen markieren. Wenn Treppen zur Last werden, kann ein Treppenlift eine Möglichkeit sein."
+        },
+        {
+          "id": "flur-wege",
+          "frage": "Sind Flure und Durchgänge frei, sodass Sie auch mit Gehhilfe gut durchkommen?",
+          "kurz": "Freie Wege",
+          "prioritaet": 2,
+          "empfehlung": "Stellen Sie Möbel, Kartons und Schuhe so, dass die Wege breit und frei bleiben. Schon ein Umstellen kann viel bringen."
+        }
+      ]
+    },
+    {
+      "id": "bad",
+      "titel": "Bad",
+      "fragen": [
+        {
+          "id": "bad-rutsch",
+          "frage": "Ist der Boden in Dusche oder Wanne rutschfest?",
+          "kurz": "Rutschfestes Bad",
+          "prioritaet": 1,
+          "empfehlung": "Eine rutschfeste Matte oder ein rutschhemmender Belag in Dusche und Wanne verringert die Sturzgefahr deutlich. Auch der Boden vor der Dusche sollte nicht glatt werden."
+        },
+        {
+          "id": "bad-halt",
+          "frage": "Gibt es feste Haltegriffe an Dusche, Wanne und WC?",
+          "kurz": "Haltegriffe",
+          "prioritaet": 1,
+          "empfehlung": "Fest montierte Haltegriffe geben Sicherheit beim Aufstehen und Einsteigen. Handtuchhalter sind dafür nicht gedacht. Lassen Sie die Griffe fachgerecht anbringen."
+        }
+      ]
+    },
+    {
+      "id": "wohnen",
+      "titel": "Küche und Wohnräume",
+      "fragen": [
+        {
+          "id": "wohnen-greifhoehe",
+          "frage": "Liegen die Dinge, die Sie täglich brauchen, in bequemer Reichweite – ohne Leiter oder Hocker?",
+          "kurz": "Alltägliches in Reichweite",
+          "prioritaet": 1,
+          "empfehlung": "Räumen Sie Alltägliches in Hüft- bis Schulterhöhe. Was Sie selten brauchen, darf weiter oben oder unten stehen. Auf Leitern und Hocker sollten Sie möglichst verzichten."
+        },
+        {
+          "id": "wohnen-sitzen",
+          "frage": "Gibt es Stühle oder Sessel, aus denen Sie leicht und sicher aufstehen können?",
+          "kurz": "Sicher sitzen und aufstehen",
+          "prioritaet": 2,
+          "empfehlung": "Ein stabiler Stuhl mit Armlehnen und passender Sitzhöhe macht das Aufstehen leichter. Ein Sanitätshaus kann dazu beraten."
+        },
+        {
+          "id": "wohnen-moebel",
+          "frage": "Stehen die Möbel, auf die Sie sich beim Gehen stützen, fest und stabil?",
+          "kurz": "Standfeste Möbel",
+          "prioritaet": 2,
+          "empfehlung": "Wackelnde Regale oder Stühle sind beim Abstützen gefährlich. Befestigen Sie hohe Möbel an der Wand oder tauschen Sie wackelige Möbel gegen stabile aus."
+        }
+      ]
+    },
+    {
+      "id": "licht",
+      "titel": "Licht und Notfall",
+      "fragen": [
+        {
+          "id": "licht-nacht",
+          "frage": "Sind Flure, Treppen und der Weg zur Toilette nachts ausreichend beleuchtet?",
+          "kurz": "Licht in der Nacht",
+          "prioritaet": 1,
+          "empfehlung": "Nachtlichter oder Bewegungsmelder auf dem Weg zur Toilette sind günstig und wirksam. Auch Treppen und Flure sollten hell genug und nicht blendend beleuchtet sein."
+        },
+        {
+          "id": "licht-notruf",
+          "frage": "Können Sie in jedem Raum im Notfall Hilfe rufen – zum Beispiel mit einem Telefon in Reichweite oder einem Notrufknopf?",
+          "kurz": "Notruf erreichbar",
+          "prioritaet": 1,
+          "empfehlung": "Ein Telefon in Reichweite, auch im Bad und im Schlafzimmer, ist ein guter Anfang. Ein Hausnotruf mit Notrufknopf kann zusätzlich Sicherheit geben. Besprechen Sie das mit Menschen, die Ihnen nahestehen."
+        }
+      ]
+    }
+  ]
+}

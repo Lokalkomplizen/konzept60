@@ -1,0 +1,9 @@
+// Cloudflare Workers – nur statische Assets, kein Worker-Code, keine Datenbank.
+// Deploy: `npx wrangler deploy` (Cloudflare Git-Integration führt das automatisch aus).
+{
+  "name": "konzept60",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./"
+  }
+}

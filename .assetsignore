@@ -1,0 +1,11 @@
+# Nicht veröffentlichen (Syntax wie .gitignore)
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+README.md
+tools/
+partials/
+screenshots/
+node_modules/
+.wrangler/

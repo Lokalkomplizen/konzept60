@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Druckansicht (wird nur beim Drucken geladen: media="print")
+   Gilt für „Mein Alltag“: Checklisten und Wohnungs-Check lassen sich drucken oder
+   als PDF speichern (window.print() in assets/js/alltag.js). Während des Druckens setzt
+   alltag.js body.is-printing und .is-print-target am gewählten Bereich – dann erscheint
+   nur dieser Bereich. Navigation, Fußbereich und Schaltflächen sind immer ausgeblendet.
+   ========================================================================== */
+@page { margin: 1.5cm; }
+
+body {
+  background: #fff;
+  color: #000;
+  font-size: 12pt;
+}
+
+.skip-link,
+.site-header,
+.site-footer,
+.breadcrumb,
+.no-print,
+.btn,
+button,
+.checklist-nav {
+  display: none !important;
+}
+
+/* Nur der gewählte Bereich */
+.is-printing [data-druck-bereich]:not(.is-print-target),
+.is-printing .page-header {
+  display: none !important;
+}
+
+.print-only { display: block !important; margin-top: 1rem; font-size: 10pt; color: #333; }
+
+.section, .section--tight { padding: 0; }
+.container { max-width: none; padding: 0; }
+
+.checklist,
+.wc-result,
+.wc__question {
+  box-shadow: none;
+  border: 0;
+  padding: 0;
+  background: #fff;
+  break-inside: avoid;
+}
+.wc__question { border-bottom: 1px solid #999; padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+.checklist { margin-bottom: 1.5rem; }
+.checklist h2, .wc-result h2 { font-size: 20pt; }
+
+.checklist__items { gap: 0.25rem; }
+.choice {
+  border: 0;
+  background: none;
+  padding: 0.2rem 0;
+  min-height: 0;
+  break-inside: avoid;
+}
+.choice input { width: 1.1rem; height: 1.1rem; }
+.checklist__items .choice:has(input:checked) span { text-decoration: none; }
+
+.wc-result__item { background: #fff; border-left: 3px solid #000; break-inside: avoid; }
+.badge { border: 1px solid #000; background: none; color: #000; }
+.notice { border: 1px solid #000; background: #fff; border-left-width: 4px; break-inside: avoid; }
+
+.segment__option { border: 1px solid #000; background: #fff; color: #000; }
+.segment__option:has(input:checked) { background: #ddd; color: #000; font-weight: 700; }
+.segment__option span::before { display: none; }
+
+a { color: #000; text-decoration: none; }

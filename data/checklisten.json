@@ -1,0 +1,86 @@
+{
+  "_hinweis": "Inhalte für /mein-alltag/checklisten/ – gerendert von tools/build.py. Bewusst nur allgemeine, unstrittige Punkte: keine Beträge, Fristen oder Zahlen ohne Quelle.",
+  "checklisten": [
+    {
+      "id": "arzttermin",
+      "titel": "Vorbereitung auf einen Arzttermin",
+      "thema": "alltag-persoenliche-hilfe",
+      "ratgeber": "krankenfahrten",
+      "einleitung": "Mit ein paar Vorbereitungen gehen Sie entspannter in das Gespräch und vergessen nichts Wichtiges.",
+      "punkte": [
+        "Termin, Uhrzeit und Adresse der Praxis aufschreiben",
+        "Versichertenkarte bereitlegen",
+        "Eine Liste Ihrer Medikamente mitnehmen (Name und Einnahme) – oder die Packungen selbst",
+        "Frühere Befunde, Arztbriefe und, wenn vorhanden, Impfpass und Allergiepass einpacken",
+        "Beschwerden aufschreiben: Was ist los, seit wann, wann ist es stärker oder schwächer?",
+        "Die wichtigsten Fragen vorab notieren – die dringendste zuerst",
+        "Brille, Hörgerät und gegebenenfalls Gehhilfe nicht vergessen",
+        "Anreise und Rückweg planen – wenn nötig mit Begleitung oder Fahrdienst",
+        "Überlegen, ob jemand mitkommt, der zuhört und mitschreibt",
+        "Stift und Papier einpacken, um Antworten festzuhalten",
+        "Nach dem Termin in eigenen Worten festhalten, was besprochen wurde und was als Nächstes ansteht"
+      ]
+    },
+    {
+      "id": "wohnung-altersgerecht",
+      "titel": "Wohnung altersgerecht gestalten",
+      "thema": "wohnen-haus-handwerk",
+      "ratgeber": "altersgerechter-umbau",
+      "einleitung": "Oft helfen schon kleine Veränderungen, damit Sie sich zu Hause sicher und wohl fühlen.",
+      "punkte": [
+        "Stolperfallen beseitigen: lose Teppiche, Kabel auf dem Boden, hohe Schwellen",
+        "Flure und Durchgänge frei halten, auch von Kartons und kleinen Möbeln",
+        "Flure, Treppen und Bad gut und blendfrei beleuchten",
+        "Auf dem Weg zur Toilette ein Nachtlicht oder einen Bewegungsmelder einplanen",
+        "Treppen prüfen: fester Handlauf, gut erkennbare Stufenkanten",
+        "Im Bad über Haltegriffe an Dusche, Wanne und WC nachdenken",
+        "Rutschfeste Matte oder einen rutschfesten Belag in Dusche und Wanne verwenden",
+        "Alltägliche Dinge so aufbewahren, dass Sie sie ohne Leiter oder Hocker erreichen",
+        "Einen stabilen Stuhl mit Armlehnen bereitstellen, aus dem das Aufstehen leichtfällt",
+        "Prüfen, ob Sie in jedem Raum im Notfall Hilfe rufen können",
+        "Rauchmelder kontrollieren",
+        "Bei größeren Umbauten vorher beraten lassen und mehrere Angebote einholen"
+      ]
+    },
+    {
+      "id": "pflegegrad",
+      "titel": "Pflegegrad beantragen",
+      "thema": "pflege-betreuung",
+      "ratgeber": "pflegegrad-beantragen",
+      "einleitung": "Eine Übersicht der Schritte, damit Sie wissen, was auf Sie zukommt. Die Einzelheiten erklärt Ihnen Ihre Pflegekasse.",
+      "punkte": [
+        "Klären, bei welcher Pflegekasse Sie versichert sind (sie gehört zu Ihrer Krankenkasse)",
+        "Den Antrag bei der Pflegekasse stellen und den Eingang bestätigen lassen",
+        "Versichertenkarte und persönliche Daten bereithalten",
+        "Ein Pflegetagebuch führen: Bei welchen Dingen im Alltag brauchen Sie Hilfe?",
+        "Ärztliche Unterlagen sammeln, zum Beispiel Befunde, Entlassbriefe und Medikamentenplan",
+        "Eine Liste der behandelnden Ärztinnen und Ärzte, Therapien und Hilfsmittel zusammenstellen",
+        "Zum Begutachtungstermin eine vertraute Person einladen",
+        "Beim Termin den Alltag ehrlich schildern – auch die schwierigen Tage",
+        "Den Bescheid sorgfältig lesen und aufbewahren",
+        "Bei Unklarheiten bei der Pflegekasse nachfragen und eine Pflegeberatung nutzen",
+        "Wenn Sie mit dem Bescheid nicht einverstanden sind: die Hinweise zum Widerspruch im Bescheid beachten"
+      ]
+    },
+    {
+      "id": "handwerker",
+      "titel": "Vorbereitung auf einen Handwerkertermin",
+      "thema": "wohnen-haus-handwerk",
+      "ratgeber": "altersgerechter-umbau",
+      "einleitung": "So wissen Sie vorher, was gemacht werden soll – und behalten bei Kosten und Ablauf den Überblick.",
+      "punkte": [
+        "Aufschreiben, was genau gemacht werden soll – wenn möglich mit Fotos",
+        "Wichtige Maße notieren, wenn sie bekannt sind",
+        "Wenn möglich, mehrere schriftliche Angebote einholen und vergleichen",
+        "Prüfen, was im Angebot enthalten ist: Material, Anfahrt, Entsorgung",
+        "Termin und Zeitfenster schriftlich festhalten",
+        "Den Arbeitsbereich frei räumen und Möbel oder Böden abdecken",
+        "Wertsachen und Unterlagen vorher wegräumen",
+        "Bei größeren Arbeiten eine vertraute Person dazubitten",
+        "Vorsicht bei unangekündigten Handwerkern an der Haustür: nichts sofort unterschreiben, nicht im Voraus bar bezahlen",
+        "Nach der Arbeit das Ergebnis in Ruhe prüfen und Mängel gleich ansprechen",
+        "Rechnung und Belege aufbewahren"
+      ]
+    }
+  ]
+}

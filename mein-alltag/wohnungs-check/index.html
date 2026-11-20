@@ -1,0 +1,428 @@
+<!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/mein-alltag-wohnungs-check.html – nicht direkt bearbeiten -->
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wohnungs-Check – Mein Alltag – Wir helfen</title>
+  <meta name="description" content="Wie sicher ist Ihr Zuhause? Zwölf kurze Fragen, danach eine verständliche Auswertung mit Verbesserungsvorschlägen. Ohne Anmeldung, nichts wird gespeichert.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <link rel="canonical" href="https://www.example.org/mein-alltag/wohnungs-check/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Wir helfen">
+  <meta property="og:title" content="Wohnungs-Check – Mein Alltag – Wir helfen">
+  <meta property="og:description" content="Wie sicher ist Ihr Zuhause? Zwölf kurze Fragen, danach eine verständliche Auswertung mit Verbesserungsvorschlägen. Ohne Anmeldung, nichts wird gespeichert.">
+  <meta property="og:url" content="https://www.example.org/mein-alltag/wohnungs-check/">
+  <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
+
+  <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
+  <script src="/assets/js/no-js.js?v=cbdd4bffae"></script>
+
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
+       → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=9c9b3f07e2">
+  <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
+  <link rel="stylesheet" href="/assets/css/components.css?v=6560861264">
+  <link rel="stylesheet" href="/assets/css/print.css?v=4682c5f5a1" media="print">
+
+</head>
+<body>
+
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/></symbol>
+  <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
+  <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
+  <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="/" aria-label="Wir helfen – zur Startseite">
+      <span class="logo__text">Wir helfen</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/" aria-current="true">Mein Alltag</a></li>
+        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
+      </ul>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
+    </nav>
+  </div>
+</header>
+<!-- END partial:header -->
+
+<main id="inhalt" tabindex="-1">
+  <!-- Wohnungs-Check  (→ WordPress: Seite "Wohnungs-Check"; Fragen/Empfehlungen aus data/wohnungs-check.json,
+       gerendert von tools/build.py; Auswertung: assets/js/alltag.js (2.)). Nichts wird gespeichert. -->
+  <div class="page-header no-print">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag</a></li>
+          <li><a href="/mein-alltag/wohnungs-check/" aria-current="page">Wohnungs-Check</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Mein Alltag</span>
+      <h1>Mein Wohnungs-Check</h1>
+      <p class="section__intro">
+        Wie sicher ist Ihr Zuhause? Beantworten Sie zwölf kurze Fragen. Danach zeigen wir Ihnen, was schon gut ist
+        und wo sich ein Blick lohnt – ohne Noten und ohne Bewertung.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--tight" aria-label="Wohnungs-Check">
+    <div class="container wc-page">
+      <div class="notice notice--light notice--flush no-print" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+        <p><strong>Ohne Anmeldung.</strong> Wir speichern nichts – Ihre Antworten bleiben nur, solange diese Seite geöffnet ist. Zum Aufheben drucken oder als PDF speichern. Der Check ersetzt keine Fachberatung.</p>
+      </div>
+      <p class="no-js-note">Für die Auswertung braucht diese Seite JavaScript. Sie können die Fragen aber auch ausdrucken und von Hand beantworten.</p>
+      <div data-druck-bereich class="wc-form-wrap">
+      <form class="wc" id="wohnungs-check-formular" novalidate aria-label="Wohnungs-Check: Fragen">
+        <fieldset class="wc__group">
+          <legend class="wc__group-title">Eingang und Zugang</legend>
+          <fieldset class="wc__question" id="frage-zugang-stufen" data-frage="zugang-stufen">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">1</span> Kommen Sie sicher in Ihre Wohnung oder Ihr Haus – auch bei Nässe und Dunkelheit?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="zugang-stufen" value="ja" id="zugang-stufen-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="zugang-stufen" value="teilweise" id="zugang-stufen-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="zugang-stufen" value="nein" id="zugang-stufen-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-zugang-greifen" data-frage="zugang-greifen">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">2</span> Können Sie Haustür, Schlüssel und Briefkasten gut greifen und bedienen?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="zugang-greifen" value="ja" id="zugang-greifen-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="zugang-greifen" value="teilweise" id="zugang-greifen-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="zugang-greifen" value="nein" id="zugang-greifen-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset class="wc__group">
+          <legend class="wc__group-title">Flur und Treppen</legend>
+          <fieldset class="wc__question" id="frage-flur-stolper" data-frage="flur-stolper">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">3</span> Sind Ihre Böden frei von Stolperfallen wie losen Teppichen, Kabeln oder Türschwellen?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="flur-stolper" value="ja" id="flur-stolper-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="flur-stolper" value="teilweise" id="flur-stolper-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="flur-stolper" value="nein" id="flur-stolper-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-flur-treppen" data-frage="flur-treppen">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">4</span> Haben Ihre Treppen einen stabilen Handlauf und gut erkennbare Stufenkanten?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="flur-treppen" value="ja" id="flur-treppen-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="flur-treppen" value="teilweise" id="flur-treppen-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="flur-treppen" value="nein" id="flur-treppen-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-flur-wege" data-frage="flur-wege">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">5</span> Sind Flure und Durchgänge frei, sodass Sie auch mit Gehhilfe gut durchkommen?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="flur-wege" value="ja" id="flur-wege-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="flur-wege" value="teilweise" id="flur-wege-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="flur-wege" value="nein" id="flur-wege-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset class="wc__group">
+          <legend class="wc__group-title">Bad</legend>
+          <fieldset class="wc__question" id="frage-bad-rutsch" data-frage="bad-rutsch">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">6</span> Ist der Boden in Dusche oder Wanne rutschfest?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="bad-rutsch" value="ja" id="bad-rutsch-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="bad-rutsch" value="teilweise" id="bad-rutsch-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="bad-rutsch" value="nein" id="bad-rutsch-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-bad-halt" data-frage="bad-halt">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">7</span> Gibt es feste Haltegriffe an Dusche, Wanne und WC?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="bad-halt" value="ja" id="bad-halt-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="bad-halt" value="teilweise" id="bad-halt-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="bad-halt" value="nein" id="bad-halt-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset class="wc__group">
+          <legend class="wc__group-title">Küche und Wohnräume</legend>
+          <fieldset class="wc__question" id="frage-wohnen-greifhoehe" data-frage="wohnen-greifhoehe">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">8</span> Liegen die Dinge, die Sie täglich brauchen, in bequemer Reichweite – ohne Leiter oder Hocker?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="wohnen-greifhoehe" value="ja" id="wohnen-greifhoehe-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-greifhoehe" value="teilweise" id="wohnen-greifhoehe-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-greifhoehe" value="nein" id="wohnen-greifhoehe-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-wohnen-sitzen" data-frage="wohnen-sitzen">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">9</span> Gibt es Stühle oder Sessel, aus denen Sie leicht und sicher aufstehen können?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="wohnen-sitzen" value="ja" id="wohnen-sitzen-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-sitzen" value="teilweise" id="wohnen-sitzen-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-sitzen" value="nein" id="wohnen-sitzen-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-wohnen-moebel" data-frage="wohnen-moebel">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">10</span> Stehen die Möbel, auf die Sie sich beim Gehen stützen, fest und stabil?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="wohnen-moebel" value="ja" id="wohnen-moebel-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-moebel" value="teilweise" id="wohnen-moebel-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="wohnen-moebel" value="nein" id="wohnen-moebel-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+        <fieldset class="wc__group">
+          <legend class="wc__group-title">Licht und Notfall</legend>
+          <fieldset class="wc__question" id="frage-licht-nacht" data-frage="licht-nacht">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">11</span> Sind Flure, Treppen und der Weg zur Toilette nachts ausreichend beleuchtet?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="licht-nacht" value="ja" id="licht-nacht-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="licht-nacht" value="teilweise" id="licht-nacht-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="licht-nacht" value="nein" id="licht-nacht-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="wc__question" id="frage-licht-notruf" data-frage="licht-notruf">
+            <legend class="wc__q-text"><span class="wc__q-nr" aria-hidden="true">12</span> Können Sie in jedem Raum im Notfall Hilfe rufen – zum Beispiel mit einem Telefon in Reichweite oder einem Notrufknopf?</legend>
+            <div class="segment segment--wrap wc__answers">
+              <label class="segment__option"><input type="radio" name="licht-notruf" value="ja" id="licht-notruf-ja"> <span>Ja</span></label>
+              <label class="segment__option"><input type="radio" name="licht-notruf" value="teilweise" id="licht-notruf-teilweise"> <span>Teilweise</span></label>
+              <label class="segment__option"><input type="radio" name="licht-notruf" value="nein" id="licht-notruf-nein"> <span>Nein</span></label>
+            </div>
+          </fieldset>
+        </fieldset>
+        <div class="wc__actions">
+          <p class="form-field__error" id="wc-fehler" role="alert"></p>
+          <button class="btn btn--primary" type="submit">Auswertung anzeigen</button>
+        </div>
+      </form>
+      </div>
+      <section class="wc-result" id="ergebnis" aria-labelledby="ergebnis-titel" data-ergebnis data-druck-bereich hidden>
+        <h2 id="ergebnis-titel" tabindex="-1">Ihre Auswertung</h2>
+        <p class="wc-result__intro" data-ergebnis-intro></p>
+
+        <div class="wc-result__block" data-block-gut hidden>
+          <h3>Das ist schon gut</h3>
+          <ul class="check-list" data-gut-liste>
+            <li data-gut="zugang-stufen" hidden>Sicherer Zugang</li>
+            <li data-gut="zugang-greifen" hidden>Tür, Schlüssel, Briefkasten</li>
+            <li data-gut="flur-stolper" hidden>Stolperfallen</li>
+            <li data-gut="flur-treppen" hidden>Treppen</li>
+            <li data-gut="flur-wege" hidden>Freie Wege</li>
+            <li data-gut="bad-rutsch" hidden>Rutschfestes Bad</li>
+            <li data-gut="bad-halt" hidden>Haltegriffe</li>
+            <li data-gut="wohnen-greifhoehe" hidden>Alltägliches in Reichweite</li>
+            <li data-gut="wohnen-sitzen" hidden>Sicher sitzen und aufstehen</li>
+            <li data-gut="wohnen-moebel" hidden>Standfeste Möbel</li>
+            <li data-gut="licht-nacht" hidden>Licht in der Nacht</li>
+            <li data-gut="licht-notruf" hidden>Notruf erreichbar</li>
+          </ul>
+        </div>
+
+        <div class="wc-result__block" data-block-blick hidden>
+          <h3>Hier lohnt sich ein Blick</h3>
+          <div data-blick-zuerst hidden>
+            <h4>Zuerst: hier besteht Sturzgefahr</h4>
+            <ol class="wc-result__list" data-blick-liste-zuerst></ol>
+          </div>
+          <div data-blick-danach hidden>
+            <h4>Danach</h4>
+            <ol class="wc-result__list" data-blick-liste-danach></ol>
+          </div>
+          <!-- Empfehlungen je Frage (Vorrat): assets/js/alltag.js blendet je nach Antwort ein und sortiert nach Priorität -->
+          <ul class="wc-result__pool" hidden>
+            <li class="wc-result__item" data-blick="zugang-stufen" data-prio="1">
+              <p class="wc-result__item-title"><strong>Sicherer Zugang</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Prüfen Sie die Stufen vor dem Haus: ein fester Handlauf, ein rutschfester Belag und gutes Licht machen den Zugang sicherer. Bei größeren Hürden lohnt sich eine Beratung.</p>
+            </li>
+            <li class="wc-result__item" data-blick="zugang-greifen" data-prio="3">
+              <p class="wc-result__item-title"><strong>Tür, Schlüssel, Briefkasten</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Griffe und Schlüssel, die gut in der Hand liegen, erleichtern vieles. Eine feste Ablage für den Schlüssel neben der Tür hilft, und ein Zweitschlüssel bei einer Vertrauensperson ist im Notfall hilfreich.</p>
+            </li>
+            <li class="wc-result__item" data-blick="flur-stolper" data-prio="1">
+              <p class="wc-result__item-title"><strong>Stolperfallen</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Lose Teppiche am besten entfernen oder mit rutschfester Unterlage sichern, Kabel an der Wand entlangführen. Hohe Schwellen lassen sich oft mit kleinen Rampen entschärfen.</p>
+            </li>
+            <li class="wc-result__item" data-blick="flur-treppen" data-prio="1">
+              <p class="wc-result__item-title"><strong>Treppen</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Ein fester Handlauf – wenn möglich auf beiden Seiten – gibt Halt. Stufenkanten lassen sich mit hellen, rutschhemmenden Streifen markieren. Wenn Treppen zur Last werden, kann ein Treppenlift eine Möglichkeit sein.</p>
+            </li>
+            <li class="wc-result__item" data-blick="flur-wege" data-prio="2">
+              <p class="wc-result__item-title"><strong>Freie Wege</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Stellen Sie Möbel, Kartons und Schuhe so, dass die Wege breit und frei bleiben. Schon ein Umstellen kann viel bringen.</p>
+            </li>
+            <li class="wc-result__item" data-blick="bad-rutsch" data-prio="1">
+              <p class="wc-result__item-title"><strong>Rutschfestes Bad</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Eine rutschfeste Matte oder ein rutschhemmender Belag in Dusche und Wanne verringert die Sturzgefahr deutlich. Auch der Boden vor der Dusche sollte nicht glatt werden.</p>
+            </li>
+            <li class="wc-result__item" data-blick="bad-halt" data-prio="1">
+              <p class="wc-result__item-title"><strong>Haltegriffe</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Fest montierte Haltegriffe geben Sicherheit beim Aufstehen und Einsteigen. Handtuchhalter sind dafür nicht gedacht. Lassen Sie die Griffe fachgerecht anbringen.</p>
+            </li>
+            <li class="wc-result__item" data-blick="wohnen-greifhoehe" data-prio="1">
+              <p class="wc-result__item-title"><strong>Alltägliches in Reichweite</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Räumen Sie Alltägliches in Hüft- bis Schulterhöhe. Was Sie selten brauchen, darf weiter oben oder unten stehen. Auf Leitern und Hocker sollten Sie möglichst verzichten.</p>
+            </li>
+            <li class="wc-result__item" data-blick="wohnen-sitzen" data-prio="2">
+              <p class="wc-result__item-title"><strong>Sicher sitzen und aufstehen</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Ein stabiler Stuhl mit Armlehnen und passender Sitzhöhe macht das Aufstehen leichter. Ein Sanitätshaus kann dazu beraten.</p>
+            </li>
+            <li class="wc-result__item" data-blick="wohnen-moebel" data-prio="2">
+              <p class="wc-result__item-title"><strong>Standfeste Möbel</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Wackelnde Regale oder Stühle sind beim Abstützen gefährlich. Befestigen Sie hohe Möbel an der Wand oder tauschen Sie wackelige Möbel gegen stabile aus.</p>
+            </li>
+            <li class="wc-result__item" data-blick="licht-nacht" data-prio="1">
+              <p class="wc-result__item-title"><strong>Licht in der Nacht</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Nachtlichter oder Bewegungsmelder auf dem Weg zur Toilette sind günstig und wirksam. Auch Treppen und Flure sollten hell genug und nicht blendend beleuchtet sein.</p>
+            </li>
+            <li class="wc-result__item" data-blick="licht-notruf" data-prio="1">
+              <p class="wc-result__item-title"><strong>Notruf erreichbar</strong> <span class="badge" data-antwort-label></span></p>
+              <p>Ein Telefon in Reichweite, auch im Bad und im Schlafzimmer, ist ein guter Anfang. Ein Hausnotruf mit Notrufknopf kann zusätzlich Sicherheit geben. Besprechen Sie das mit Menschen, die Ihnen nahestehen.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="wc-result__block no-print">
+          <h3>Mehr dazu im Ratgeber</h3>
+          <ul class="wc-result__links">
+            <li><a href="/ratgeber/barrierefrei-wohnen/">Barrierefrei wohnen: Kleine Veränderungen, große Wirkung</a></li>
+            <li><a href="/ratgeber/altersgerechter-umbau/">Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</a></li>
+            <li><a href="/ratgeber/treppenlift-einbau/">Treppenlift: Was Sie vor dem Einbau wissen sollten</a></li>
+            <li><a href="/ratgeber/hausnotruf-auswahl/">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></li>
+          </ul>
+        </div>
+
+        <p class="print-only">Wir helfen – Ergebnis des Wohnungs-Checks (nur für Sie ausgedruckt, nichts wurde gespeichert).</p>
+
+        <div class="notice notice--light wc-result__hinweis">
+          <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+          <p><strong>Wichtig:</strong> Der Wohnungs-Check gibt Anregungen und ersetzt keine Fachberatung. Bei größeren Veränderungen holen Sie sich bitte Rat von Fachleuten, zum Beispiel einer Wohnberatung.</p>
+        </div>
+
+        <div class="btn-group no-print">
+          <a class="btn btn--primary" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Unterstützung anfragen</a>
+          <button class="btn btn--secondary" type="button" data-drucken>Drucken / als PDF speichern</button>
+          <button class="btn btn--secondary" type="button" data-neu-starten>Antworten ändern</button>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="logo logo--light" href="/" aria-label="Wir helfen – zur Startseite">
+          <span class="logo__text">Wir helfen</span>
+        </a>
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          Wir erbringen selbst keine Dienstleistungen.</p>
+      </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/?region=solingen#anfrage" data-region="solingen">Solingen</a></li>
+          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+          <li><a href="/?region=rees#anfrage" data-region="rees">Rees</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul>
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Wir helfen (Arbeitstitel)</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
+    </div>
+  </div>
+</footer>
+<!-- END partial:footer -->
+
+<script src="/assets/js/main.js?v=2f57f90f14" defer></script>
+  <script src="/assets/js/alltag.js?v=93e94aa602" defer></script>
+</body>
+</html>

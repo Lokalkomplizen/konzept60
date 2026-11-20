@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mein Alltag – Wir helfen</title>
-  <meta name="description" content="Mein Alltag: Werkzeuge, die den Alltag erleichtern – Checklisten und ein Wohnungs-Check. Ohne Anmeldung, nichts wird gespeichert.">
+  <meta name="description" content="Mein Alltag: Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause. Ohne Anmeldung, nichts wird gespeichert.">
   <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
        und JSON-LD vor Livegang auf die echte Domain umstellen. -->
   <link rel="canonical" href="https://www.example.org/mein-alltag/">
@@ -13,7 +13,7 @@
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="Wir helfen">
   <meta property="og:title" content="Mein Alltag – Wir helfen">
-  <meta property="og:description" content="Mein Alltag: Werkzeuge, die den Alltag erleichtern – Checklisten und ein Wohnungs-Check. Ohne Anmeldung, nichts wird gespeichert.">
+  <meta property="og:description" content="Mein Alltag: Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause. Ohne Anmeldung, nichts wird gespeichert.">
   <meta property="og:url" content="https://www.example.org/mein-alltag/">
   <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
   <meta property="og:image:width" content="1600">
@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=9c9b3f07e2">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
   <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
-  <link rel="stylesheet" href="/assets/css/components.css?v=478112bef1">
+  <link rel="stylesheet" href="/assets/css/components.css?v=6560861264">
+  <link rel="stylesheet" href="/assets/css/print.css?v=4682c5f5a1" media="print">
 
 </head>
 <body>
@@ -93,7 +94,8 @@
 <!-- END partial:header -->
 
 <main id="inhalt" tabindex="-1">
-  <!-- Mein Alltag – Übersicht  (→ WordPress: Seite "Mein Alltag", page-mein-alltag.php) -->
+  <!-- Mein Alltag – Übersicht  (→ WordPress: Seite "Mein Alltag", page-mein-alltag.php; Karten = template-parts/card-werkzeug.php)
+       Dritte Säule: „Alltag erleichtern“. Ohne Anmeldung, ohne Speicherung. -->
   <div class="page-header">
     <div class="container">
       <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
@@ -105,11 +107,63 @@
       <span class="section__eyebrow">Alltag erleichtern</span>
       <h1>Mein Alltag</h1>
       <p class="section__intro">
-        Kleine Helfer für den Alltag: Checklisten zum Abhaken und ein Wohnungs-Check.
-        Die Werkzeuge entstehen gerade – hier finden Sie sie bald.
+        Kleine Helfer für mehr Überblick und Sicherheit im Alltag: Checklisten zum Abhaken und ein Wohnungs-Check.
+        Sie können sie einfach ausprobieren – ganz ohne Anmeldung.
       </p>
     </div>
   </div>
+
+  <section class="section section--tight" aria-labelledby="werkzeuge-titel">
+    <div class="container">
+      <h2 class="visually-hidden" id="werkzeuge-titel">Unsere Werkzeuge</h2>
+
+      <div class="notice notice--light notice--flush alltag-hinweis" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+        <p><strong>Ohne Anmeldung.</strong> Wir speichern nichts – Ihre Angaben bleiben auf diesem Gerät nur, solange die Seite geöffnet ist. Zum Aufheben drucken oder als PDF speichern.</p>
+      </div>
+
+      <ul class="tool-grid">
+        <li>
+          <article class="path-card" aria-labelledby="werkzeug-checklisten">
+            <span class="path-card__tag">Zum Abhaken</span>
+            <h3 class="path-card__title" id="werkzeug-checklisten">Meine Checklisten</h3>
+            <p class="path-card__text">Vier Checklisten für typische Situationen: Arzttermin, Wohnung altersgerecht gestalten, Pflegegrad beantragen und Handwerkertermin.</p>
+            <a class="btn btn--primary" href="/mein-alltag/checklisten/">Checklisten öffnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--sage" aria-labelledby="werkzeug-wohnungscheck">
+            <span class="path-card__tag">In wenigen Minuten</span>
+            <h3 class="path-card__title" id="werkzeug-wohnungscheck">Mein Wohnungs-Check</h3>
+            <p class="path-card__text">Zwölf kurze Fragen zu Eingang, Flur, Bad, Küche und Licht. Am Ende sehen Sie, was schon gut ist und wo sich ein Blick lohnt.</p>
+            <a class="btn btn--primary" href="/mein-alltag/wohnungs-check/">Wohnungs-Check starten <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--soon" id="erinnerungen" aria-labelledby="werkzeug-erinnerungen">
+            <span class="path-card__tag">In Vorbereitung</span>
+            <h3 class="path-card__title" id="werkzeug-erinnerungen">Meine Erinnerungen</h3>
+            <p class="path-card__text">Termine und wiederkehrende Aufgaben im Blick behalten. Daran arbeiten wir gerade.</p>
+            <p class="path-card__soon"><span class="badge">Kommt bald</span></p>
+          </article>
+        </li>
+        <li>
+          <article class="path-card path-card--soon" id="unterstuetzungsplan" aria-labelledby="werkzeug-plan">
+            <span class="path-card__tag">In Vorbereitung</span>
+            <h3 class="path-card__title" id="werkzeug-plan">Mein Unterstützungsplan</h3>
+            <p class="path-card__text">Übersichtlich festhalten, wer Ihnen bei welchen Dingen hilft. Daran arbeiten wir gerade.</p>
+            <p class="path-card__soon"><span class="badge">Kommt bald</span></p>
+          </article>
+        </li>
+      </ul>
+
+      <div class="notice notice--light">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Lieber persönlich?</strong> Wenn Sie Unterstützung bei etwas Konkretem suchen, hilft unser Team Ihnen gern.
+          <a href="/#anfrage">Zur Anfrage</a></p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->

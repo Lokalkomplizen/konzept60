@@ -22,6 +22,8 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
 | `/mein-alltag/` | `mein-alltag/index.html` | `templates/mein-alltag.html` (Übersicht der Alltags-Werkzeuge) |
+| `/mein-alltag/checklisten/` | `mein-alltag/checklisten/index.html` | `templates/mein-alltag-checklisten.html` + `data/checklisten.json` (4 Listen, nur allgemeine Punkte ohne Beträge/Fristen) |
+| `/mein-alltag/wohnungs-check/` | `mein-alltag/wohnungs-check/index.html` | `templates/mein-alltag-wohnungs-check.html` + `data/wohnungs-check.json` (12 Fragen, Priorität 1 = Sturzgefahr) |
 | `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
 | `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
@@ -145,6 +147,10 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | Hinweis-Kasten, CTA, „Weitere Beiträge“ | fest in `single.php` (Vorauswahl über `themenbereich`-Slug) |
 
 **Taxonomien:** `themenbereich` (Slugs/Term-Meta wie `data/themen.json`), `region` (wie `data/regionen.json`, hierarchisch möglich).
+
+### Mein Alltag (Checklisten, Wohnungs-Check)
+
+Ohne Anmeldung, **ohne Speicherung**: Haken und Antworten leben nur im geöffneten Tab (`assets/js/alltag.js`, nur auf den beiden Unterseiten eingebunden). Zum Aufheben: „Drucken / als PDF speichern“ (`window.print()`); `assets/css/print.css` (nur `media="print"`) blendet Navigation, Fußbereich und – über `body.is-printing` / `.is-print-target` – alle anderen Bereiche aus. Der Wohnungs-Check wertet ohne Noten aus („Das ist schon gut“ / „Hier lohnt sich ein Blick“, Sturzgefahr zuerst) und ersetzt keine Fachberatung. „Erinnerungen“ und „Unterstützungsplan“ sind als „In Vorbereitung“ gekennzeichnet. Eine Sitemap gibt es im Prototyp nicht.
 
 ## Schnittstellen (simuliert)
 

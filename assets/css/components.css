@@ -2006,3 +2006,155 @@ select.form-field__input {
   cursor: pointer;
 }
 .link-button:hover { color: var(--color-terra-700); }
+
+/* ---- Mein Alltag: Übersicht ------------------------------------------------------ */
+.alltag-hinweis { margin-bottom: var(--space-xl); }
+
+.tool-grid {
+  list-style: none;
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  display: grid;
+  gap: var(--space-l);
+}
+@media (min-width: 48em) {
+  .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.tool-grid .path-card { height: 100%; }
+.tool-grid .path-card .btn { margin-top: auto; }
+
+/* „In Vorbereitung“: ruhiger, nicht klickbar */
+.path-card--soon {
+  background: var(--color-sand-50);
+  border-top-color: var(--color-sand-300);
+  box-shadow: none;
+}
+.path-card--soon .path-card__tag { color: var(--color-ink-muted); }
+.path-card__soon { margin: auto 0 0; }
+
+/* ---- Hilfsklassen: Druck / ohne JS ------------------------------------------------ */
+.print-only { display: none; }
+.no-js-note { display: none; }
+.no-js .no-js-note { display: block; margin-bottom: var(--space-l); }
+
+/* ---- Checklisten ------------------------------------------------------------------ */
+.checklist-page { display: grid; gap: var(--space-2xl); max-width: 52rem; margin-inline: 0; }
+.checklist-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.checklist-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: 0.35rem 1rem;
+  border: 2px solid var(--color-navy-800);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-navy-800);
+}
+.checklist-nav a:hover { background: var(--color-navy-100); }
+
+.checklist {
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  scroll-margin-top: var(--space-l);
+}
+@media (min-width: 40em) {
+  .checklist { padding: var(--space-xl) var(--space-2xl); }
+}
+.checklist h2 { font-size: var(--font-size-h3); margin-bottom: var(--space-xs); }
+.checklist__intro { color: var(--color-ink-muted); }
+.checklist__progress {
+  margin: 0 0 var(--space-m);
+  font-weight: 700;
+  color: var(--color-sage-700);
+}
+.checklist__items {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+.checklist__items .choice:has(input:checked) span { text-decoration: line-through; text-decoration-thickness: 1px; }
+.checklist__actions { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+@media (max-width: 29.99em) {
+  .checklist__actions .btn { width: 100%; }
+}
+.checklist__more { margin: var(--space-m) 0 0; font-size: var(--font-size-sm); }
+
+/* ---- Wohnungs-Check ---------------------------------------------------------------- */
+.wc-page { display: grid; gap: var(--space-xl); max-width: 52rem; margin-inline: 0; }
+.wc { display: grid; gap: var(--space-xl); }
+.wc__group { margin: 0; padding: 0; border: 0; min-width: 0; display: grid; gap: var(--space-m); }
+.wc__group-title {
+  padding: 0;
+  margin-bottom: var(--space-s);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--font-size-h3);
+  color: var(--color-navy-800);
+}
+.wc__question {
+  margin: 0;
+  min-width: 0;
+  padding: var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+}
+@media (min-width: 40em) {
+  .wc__question { padding: var(--space-l); }
+}
+.wc__q-text { display: flex; gap: var(--space-s); padding: 0; margin-bottom: var(--space-s); font-weight: 600; color: var(--color-ink); }
+.wc__q-nr {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.wc__answers .segment__option { flex: 1 1 6rem; }
+.wc__actions { display: grid; gap: var(--space-s); justify-items: start; }
+.wc__actions .form-field__error:empty { display: none; }
+
+.wc-result {
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 40em) {
+  .wc-result { padding: var(--space-xl) var(--space-2xl); }
+}
+.wc-result h2 { font-size: var(--font-size-h2); }
+.wc-result h3 { font-size: var(--font-size-h3); margin-top: var(--space-xl); }
+.wc-result h4 { font-size: var(--font-size-lg); margin: var(--space-l) 0 var(--space-s); }
+.wc-result__intro { font-size: var(--font-size-lg); }
+.wc-result__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
+.wc-result__item {
+  padding: var(--space-m);
+  background: var(--color-sand-50);
+  border-left: 6px solid var(--color-terra-600);
+  border-radius: var(--radius-s);
+}
+.wc-result__item p { margin: 0; }
+.wc-result__item-title { margin-bottom: var(--space-2xs) !important; }
+.wc-result__links { margin: 0; padding-left: 1.25rem; display: grid; gap: var(--space-xs); }
+.wc-result__hinweis { margin-bottom: var(--space-l); }
+.wc-result .btn-group { margin-top: var(--space-l); }

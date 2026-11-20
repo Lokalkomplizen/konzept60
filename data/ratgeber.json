@@ -2,20 +2,28 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
-      "slug": "eltern-aus-der-ferne-unterstuetzen",
-      "titel": "Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige",
-      "thema": "alltag-persoenliche-hilfe",
-      "thema_titel": "Alltag und persönliche Hilfe",
-      "bild": "eltern-aus-der-ferne-unterstuetzen",
-      "bild_alt": "Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.",
+      "slug": "treppenlift-einbau",
+      "titel": "Treppenlift: Was Sie vor dem Einbau wissen sollten",
+      "thema": "wohnen-haus-handwerk",
+      "thema_titel": "Wohnen, Haus und Handwerk",
+      "bild": "treppenlift-einbau",
+      "bild_alt": "Ein älterer Mann und ein Handwerker mit Werkzeugkoffer unterhalten sich lachend vor einer Haustür, neben dem Eingang blühen Hortensien.",
       "stand": "November 2026",
       "geaendert": "2026-11-20",
-      "anreisser": "Die Eltern werden älter, benötigen zunehmend Unterstützung und wohnen vielleicht mehrere hundert Kilometer entfernt. Für viele Angehörige ist das eine…",
-      "url": "/ratgeber/eltern-aus-der-ferne-unterstuetzen/",
-      "inline_bild": "eltern-aus-der-ferne-tablet-kueche",
-      "inline_bild_alt": "Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.",
-      "inline_nach_ueberschrift": "3. Unterstützung organisieren",
-      "tabelle_beschriftung": "Beispielplan: Aufgaben und Zuständigkeiten"
+      "anreisser": "Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…",
+      "url": "/ratgeber/treppenlift-einbau/"
+    },
+    {
+      "slug": "hausnotruf-auswahl",
+      "titel": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
+      "thema": "technik-sicherheit",
+      "thema_titel": "Technik und Sicherheit",
+      "bild": "hausnotruf-auswahl",
+      "bild_alt": "Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an ihrer Halskette, eine jüngere Frau erklärt ihr die Bedienung.",
+      "stand": "November 2026",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
+      "url": "/ratgeber/hausnotruf-auswahl/"
     },
     {
       "slug": "haushaltshilfe-betrieb-oder-privat",
@@ -30,16 +38,20 @@
       "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/"
     },
     {
-      "slug": "hausnotruf-auswahl",
-      "titel": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
-      "thema": "technik-sicherheit",
-      "thema_titel": "Technik und Sicherheit",
-      "bild": "hausnotruf-auswahl",
-      "bild_alt": "Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an ihrer Halskette, eine jüngere Frau erklärt ihr die Bedienung.",
+      "slug": "eltern-aus-der-ferne-unterstuetzen",
+      "titel": "Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "eltern-aus-der-ferne-unterstuetzen",
+      "bild_alt": "Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.",
       "stand": "November 2026",
       "geaendert": "2026-11-20",
-      "anreisser": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
-      "url": "/ratgeber/hausnotruf-auswahl/"
+      "anreisser": "Die Eltern werden älter, benötigen zunehmend Unterstützung und wohnen vielleicht mehrere hundert Kilometer entfernt. Für viele Angehörige ist das eine…",
+      "url": "/ratgeber/eltern-aus-der-ferne-unterstuetzen/",
+      "inline_bild": "eltern-aus-der-ferne-tablet-kueche",
+      "inline_bild_alt": "Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.",
+      "inline_nach_ueberschrift": "3. Unterstützung organisieren",
+      "tabelle_beschriftung": "Beispielplan: Aufgaben und Zuständigkeiten"
     }
   ]
 }

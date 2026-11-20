@@ -465,6 +465,8 @@ def load_beitraege(themen):
         b["url"] = f"/ratgeber/{meta['slug']}/"
         b["_blocks"] = blocks
         beitraege.append(b)
+    # Neueste zuerst (→ WordPress: orderby date DESC); bei gleichem Datum Dateiname absteigend
+    beitraege.sort(key=lambda x: (x["geaendert"], x["slug"]), reverse=True)
     return beitraege
 
 
@@ -716,7 +718,8 @@ def main():
 
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
-        "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege),
+        # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle
+        "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
         "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8) for b in beitraege),

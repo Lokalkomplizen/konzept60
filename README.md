@@ -22,7 +22,7 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
 | `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
-| `/ratgeber/<slug>/` (3×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
+| `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
 | unbekannte Pfade | `404.html` | `wrangler.jsonc` → `assets.not_found_handling: "404-page"` |
 
@@ -61,6 +61,10 @@ Frontmatter (`---` … `---`, je Zeile `feld: wert`, Wert ab dem ersten Doppelpu
 Markdown-Teilmenge (eigener Parser in `build.py`, HTML wird escaped): `##`/`###` Überschriften (`##` erhalten ids → automatisches Inhaltsverzeichnis), Absätze, `- ` Listen, `**fett**`, `> ` Zitat-Blöcke (mehrere Absätze über `>`-Leerzeile → Hinweis-Box; beginnt der Text mit „**Wichtig**“ in Terrakotta, sonst Salbei), Pipe-Tabellen mit Trennzeile (→ `<table>` mit `<th scope="col">`, mobil als Label/Wert-Karten über `data-label`). Anreißer und Meta-Description = erster Absatz, an Wortgrenze auf ~160/155 Zeichen gekürzt. Der Text wird **wörtlich** übernommen; Rahmen (Breadcrumb, Stand, Hinweis-Kasten, CTA, „Weitere Beiträge“) kommt aus der Vorlage.
 
 Bilder: `python3 tools/bilder.py --ratgeber <ordner>` erzeugt aus `<bild>.png/.jpg` die Größen oben (mittiger Zuschnitt; Teaser nur für Titelbilder). Originale danach löschen.
+
+Reihenfolge: neueste zuerst nach `geaendert` (bei gleichem Datum Dateiname absteigend). Die Startseite zeigt die drei neuesten Beiträge, die Übersicht `/ratgeber/` alle (Raster 1 → 2 → 4 Spalten), „Weitere Beiträge“ alle übrigen.
+
+Titelbild später ersetzen (z. B. Übergangsbild `treppenlift-einbau`): neues Original im Seitenverhältnis 3:2, mind. 1400 px breit, als `assets/img/ratgeber-original/<bild>.png` ablegen (Dateiname = Feld `bild`), `python3 tools/bilder.py --ratgeber assets/img/ratgeber-original` ausführen (überschreibt alle Größen inkl. Teaser), `bild_alt` im Frontmatter an das neue Motiv anpassen, `geaendert` pflegen, `python3 tools/build.py` ausführen und `assets/img/ratgeber-original/` wieder löschen.
 
 Platzhalter `{{name}}`; unbekannte Platzhalter brechen den Build ab, ebenso fehlende Bilder oder Datenfelder. **Die generierten HTML-Dateien werden eingecheckt** – das Deployment braucht keinen Build. Generierte Dateien tragen den Kommentar „GENERIERT von tools/build.py – nicht direkt bearbeiten“. `templates/`, `tools/`, `partials/` und `data/` stehen in `.assetsignore` (werden nicht ausgeliefert; JS lädt kein JSON mehr).
 
@@ -138,6 +142,6 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).
 - Echte Telefonnummer, Erreichbarkeit, Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
-- Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
+- Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss, Treppenlift: Pflegekassen-Zuschuss, KfW-Status) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
 - Ob Anbieterprofile später öffentlich sichtbar sind („Veröffentlichung“) oder nur intern genutzt werden, ist inhaltlich zu klären.
 - Formular-Backend (Spam-Schutz, Bestätigungsmail) und CSP vor Livegang gegen tatsächliche Einbindungen prüfen.

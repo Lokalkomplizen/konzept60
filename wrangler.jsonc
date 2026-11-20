@@ -3,6 +3,8 @@
 {
   "name": "konzept60",
   "compatibility_date": "2026-11-01",
+  // Vorschau-Builds für Branches/PRs (`npx wrangler preview`) brauchen diesen Block, er darf leer sein
+  "previews": {},
   "assets": {
     "directory": "./",
     // Unbekannte Pfade → 404.html mit Status 404 (statt leerer Antwort)

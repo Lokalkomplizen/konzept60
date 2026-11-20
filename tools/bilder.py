@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""Erzeugt einheitliche 4:5-Hochformat-Zuschnitte der Themenbilder (WebP 480/800 + JPG 800).
+"""Erzeugt einheitliche Bildzuschnitte aus Originalen (Pillow).
 
-Aufruf:  python3 tools/bilder.py <ordner-mit-originalen>
-Erwartet <slug>.png/.jpg je Themenbereich (Slugs wie in data/themen.json) und schreibt nach
-assets/img/themen/<slug>-480.webp, <slug>-800.webp, <slug>-800.jpg.
+Themenbilder:   python3 tools/bilder.py <ordner-mit-originalen>
+  Erwartet <slug>.png/.jpg je Themenbereich (Slugs wie in data/themen.json), Zuschnitt 4:5,
+  schreibt assets/img/themen/<slug>-480.webp, <slug>-800.webp, <slug>-800.jpg.
+
+Ratgeberbilder: python3 tools/bilder.py --ratgeber <ordner-mit-originalen>
+  Erwartet <bild>.png/.jpg je Beitrag (Feld "bild" im Frontmatter von content/ratgeber/*.md),
+  schreibt nach assets/img/ratgeber/:
+    Beitragsbild 3:2 (mittig):  <bild>-800.webp, <bild>-1400.webp, <bild>-1400.jpg
+    Teaser 4:3 (mittig):        <bild>-teaser-600.webp
 Die Originale gehören NICHT ins Repo/Deploy (nach dem Lauf löschen bzw. extern ablegen).
 Benötigt Pillow (nur dieses Hilfsskript; build.py nutzt ausschließlich die Standardbibliothek).
 """
@@ -31,6 +37,39 @@ def crop_4_5(img):
     return img.crop((0, top, w, top + nh))
 
 
+def crop_center(img, ratio):
+    """Mittiger Zuschnitt auf Breite:Höhe = ratio."""
+    w, h = img.size
+    if w / h > ratio:
+        nw = round(h * ratio)
+        left = (w - nw) // 2
+        return img.crop((left, 0, left + nw, h))
+    nh = round(w / ratio)
+    top = (h - nh) // 2
+    return img.crop((0, top, w, top + nh))
+
+
+RATGEBER_OUT = ROOT / "assets" / "img" / "ratgeber"
+
+
+def main_ratgeber(src_dir):
+    RATGEBER_OUT.mkdir(parents=True, exist_ok=True)
+    files = sorted(p for p in Path(src_dir).iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg"))
+    if not files:
+        raise SystemExit(f"Keine Bilder in {src_dir}")
+    for src in files:
+        orig = Image.open(src).convert("RGB")
+        hero = crop_center(orig, 3 / 2)
+        for width in (800, 1400):
+            resized = hero.resize((width, round(width * 2 / 3)), Image.LANCZOS)
+            resized.save(RATGEBER_OUT / f"{src.stem}-{width}.webp", "WEBP", quality=QUALITY, method=6)
+            if width == 1400:
+                resized.save(RATGEBER_OUT / f"{src.stem}-{width}.jpg", "JPEG", quality=QUALITY, optimize=True, progressive=True)
+        teaser = crop_center(orig, 4 / 3).resize((600, 450), Image.LANCZOS)
+        teaser.save(RATGEBER_OUT / f"{src.stem}-teaser-600.webp", "WEBP", quality=QUALITY, method=6)
+        print(f"{src.stem}: {orig.size[0]}×{orig.size[1]} → 3:2 800/1400 (WebP) + 1400 (JPG), 4:3 600 (WebP)")
+
+
 def main(src_dir):
     OUT.mkdir(parents=True, exist_ok=True)
     files = sorted(p for p in Path(src_dir).iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg"))
@@ -48,6 +87,9 @@ def main(src_dir):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) == 3 and sys.argv[1] == "--ratgeber":
+        main_ratgeber(sys.argv[2])
+    elif len(sys.argv) == 2:
+        main(sys.argv[1])
+    else:
         raise SystemExit(__doc__)
-    main(sys.argv[1])

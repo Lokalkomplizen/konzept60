@@ -1,9 +1,10 @@
 <!--meta
 title: Ratgeber – KONZEPT 60+
-description: Der Ratgeber von KONZEPT 60+ ist in Vorbereitung: verständliche Artikel rund um Haushaltshilfe, Hausnotruf und die Unterstützung von Angehörigen.
+description: Der Ratgeber von KONZEPT 60+: verständliche Beiträge rund um Haushaltshilfe, Hausnotruf und die Unterstützung von Angehörigen – ohne Fachchinesisch.
 nav: ratgeber
 -->
-  <!-- Ratgeber  (→ WordPress: home.php / Beitragsarchiv, Artikel = Beiträge) -->
+  <!-- Ratgeber  (→ WordPress: home.php / Beitragsarchiv, Karten = template-parts/card-artikel.php)
+       Karten erzeugt von tools/build.py aus content/ratgeber/*.md -->
   <div class="page-header">
     <div class="container">
       <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
@@ -12,51 +13,32 @@ nav: ratgeber
           <li><a href="/ratgeber/" aria-current="page">Ratgeber</a></li>
         </ol>
       </nav>
-      <span class="section__eyebrow">Ratgeber <span class="badge">In Vorbereitung</span></span>
+      <span class="section__eyebrow">Ratgeber</span>
       <h1>Wissen, das weiterhilft</h1>
       <p class="section__intro">
-        Hier entstehen verständliche Artikel rund um Hilfe im Alltag – ohne Fachchinesisch.
-        Die ersten Beiträge sind in Arbeit. Eine kleine Vorschau:
+        Verständliche Beiträge rund um Hilfe im Alltag – ohne Fachchinesisch.
       </p>
     </div>
   </div>
 
-  <section class="section section--tight" aria-label="Vorschau auf geplante Artikel">
+  <section class="section section--tight" aria-labelledby="beitraege-titel">
     <div class="container">
+      <h2 class="visually-hidden" id="beitraege-titel">Alle Beiträge</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--preview" id="haushaltshilfe">
-            <div class="article-card__band"></div>
-            <div class="article-card__body">
-              <p class="article-card__meta">Haushalt · geplant</p>
-              <h2 class="article-card__title">Haushaltshilfe: Betrieb oder privat – was passt zu mir?</h2>
-              <p class="article-card__text">Vor- und Nachteile beider Wege, und welche Fragen Sie vorab klären sollten.</p>
-              <p class="article-card__more"><span class="badge">In Vorbereitung</span></p>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="article-card article-card--terra article-card--preview" id="hausnotruf">
-            <div class="article-card__band"></div>
-            <div class="article-card__body">
-              <p class="article-card__meta">Sicherheit · geplant</p>
-              <h2 class="article-card__title">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</h2>
-              <p class="article-card__text">Welche Systeme es gibt, was sie leisten und wie Sie Angebote vergleichen.</p>
-              <p class="article-card__more"><span class="badge">In Vorbereitung</span></p>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="article-card article-card--navy article-card--preview" id="eltern-aus-der-ferne">
-            <div class="article-card__band"></div>
-            <div class="article-card__body">
-              <p class="article-card__meta">Angehörige · geplant</p>
-              <h2 class="article-card__title">Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige</h2>
-              <p class="article-card__text">Wie Sie Hilfe vor Ort organisieren, auch wenn Sie selbst nicht in der Nähe wohnen.</p>
-              <p class="article-card__more"><span class="badge">In Vorbereitung</span></p>
-            </div>
-          </article>
-        </li>
+{{ratgeber_karten_h2}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--sand" aria-labelledby="geplant-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Vorschau</span>
+        <h2 id="geplant-titel">In Vorbereitung</h2>
+        <p class="section__intro">Dieser Beitrag ist noch in Arbeit und erscheint demnächst.</p>
+      </div>
+      <ul class="grid grid--3">
+{{ratgeber_vorschau}}
       </ul>
 
       <div class="notice notice--light">

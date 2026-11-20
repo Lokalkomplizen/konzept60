@@ -10,6 +10,9 @@ Erzeugt alle HTML-Seiten aus
   partials/header.html            Kopfbereich inkl. Navigation ({{nav:…}} → aria-current)
   partials/footer.html            Fußbereich ({{footer_themen}}, {{footer_regionen}})
   data/themen.json, data/regionen.json
+  content/ratgeber/*.md           Ratgeber-Beiträge (Frontmatter + Markdown-Teilmenge)
+                                  → ratgeber/<slug>/index.html, ratgeber/index.html,
+                                    data/ratgeber.json (gesammelte Frontmatter, generiert)
 
 Die erzeugten Dateien (index.html, themen/…, fuer-anbieter/…, 404.html …) werden
 eingecheckt – das Deployment (Cloudflare Workers Assets) braucht keinen Build.
@@ -25,6 +28,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "templates"
 PARTIALS = ROOT / "partials"
+CONTENT = ROOT / "content" / "ratgeber"
+RATGEBER_IMG = "assets/img/ratgeber"
 SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
@@ -220,6 +225,312 @@ def hinweis_block(t):
 
 
 # --------------------------------------------------------------------------
+# Ratgeber: Frontmatter + minimaler Markdown-Parser
+# (→ WordPress: Beitrag = Post, Inhalt = post_content/Blöcke)
+#
+# Unterstützte Teilmenge: ## / ### Überschriften, Absätze, "- " Listen,
+# **fett**, "> " Zitat-Blöcke (mehrzeilig, mehrere Absätze über ">"-Leerzeile).
+# Alles andere wird als normaler Absatz-Text (HTML-escaped) ausgegeben.
+# --------------------------------------------------------------------------
+FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
+BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+
+
+def parse_frontmatter(src, source):
+    lines = src.splitlines()
+    if not lines or lines[0].strip() != "---":
+        raise SystemExit(f"FEHLER: {source} beginnt nicht mit Frontmatter (---)")
+    try:
+        end = lines.index("---", 1)
+    except ValueError:
+        raise SystemExit(f"FEHLER: {source} – Frontmatter nicht abgeschlossen (---)")
+    meta = {}
+    for line in lines[1:end]:
+        if line.strip():
+            key, sep, value = line.partition(":")
+            if not sep:
+                raise SystemExit(f"FEHLER: {source} – ungültige Frontmatter-Zeile: {line!r}")
+            meta[key.strip()] = value.strip()
+    for key in FRONTMATTER_KEYS:
+        if not meta.get(key):
+            raise SystemExit(f"FEHLER: {source} – Frontmatter-Feld '{key}' fehlt")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["geaendert"]):
+        raise SystemExit(f"FEHLER: {source} – 'geaendert' muss JJJJ-MM-TT sein")
+    return meta, "\n".join(lines[end + 1:])
+
+
+def inline(text):
+    """Escaping zuerst, danach **fett** → <strong> (Sternchen werden nicht escaped)."""
+    return BOLD_RE.sub(r"<strong>\1</strong>", esc(text))
+
+
+def plain(text):
+    """Markdown-Zeichen entfernen (für Meta-Description, Anreißer, TOC)."""
+    return BOLD_RE.sub(r"\1", text)
+
+
+def md_blocks(text):
+    """Zerlegt Markdown in Blöcke: (typ, daten). typ ∈ h2, h3, p, ul, quote."""
+    blocks, para, items, quote = [], [], [], []
+
+    def flush():
+        if para:
+            blocks.append(("p", " ".join(para)))
+            para.clear()
+        if items:
+            blocks.append(("ul", list(items)))
+            items.clear()
+        if quote:
+            blocks.append(("quote", md_blocks("\n".join(quote))))
+            quote.clear()
+
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        stripped = line.strip()
+        if stripped.startswith(">"):
+            if para or items:
+                flush()
+            quote.append(re.sub(r"^>\s?", "", stripped))
+            continue
+        if quote:
+            flush()
+        if not stripped:
+            flush()
+        elif stripped.startswith("### "):
+            flush()
+            blocks.append(("h3", stripped[4:].strip()))
+        elif stripped.startswith("## "):
+            flush()
+            blocks.append(("h2", stripped[3:].strip()))
+        elif stripped.startswith("- "):
+            if para:
+                flush()
+            items.append(stripped[2:].strip())
+        elif items and line.startswith("  "):
+            items[-1] += " " + stripped          # Fortsetzungszeile eines Listenpunkts
+        else:
+            if items:
+                flush()
+            para.append(stripped)
+    flush()
+    return blocks
+
+
+def heading_ids(blocks):
+    """Eindeutige ids für ##-Überschriften (Sprungziele des Inhaltsverzeichnisses)."""
+    ids, seen = {}, set()
+    for i, (kind, data) in enumerate(blocks):
+        if kind == "h2":
+            base = slugify(plain(data)) or "abschnitt"
+            anchor, n = base, 2
+            while anchor in seen or anchor in ("inhalt", "toc-titel"):
+                anchor, n = f"{base}-{n}", n + 1
+            seen.add(anchor)
+            ids[i] = anchor
+    return ids
+
+
+def render_blocks(blocks, ids=None):
+    ids = ids or {}
+    out = []
+    for i, (kind, data) in enumerate(blocks):
+        if kind == "h2":
+            out.append(f'<h2 id="{ids[i]}">{inline(data)}</h2>')
+        elif kind == "h3":
+            out.append(f"<h3>{inline(data)}</h3>")
+        elif kind == "p":
+            out.append(f"<p>{inline(data)}</p>")
+        elif kind == "ul":
+            out.append("<ul>")
+            out += [f"  <li>{inline(item)}</li>" for item in data]
+            out.append("</ul>")
+        elif kind == "quote":
+            first = next((d for k, d in data if k == "p"), "")
+            variant = "notice--important" if plain(first).startswith("Wichtig") else "notice--light"
+            out.append(f'<div class="notice {variant} article__notice" role="note">')
+            out.append('  <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>')
+            out.append('  <div class="notice__body">')
+            out += ["    " + line for line in render_blocks(data).splitlines()]
+            out.append("  </div>")
+            out.append("</div>")
+    return "\n".join(out)
+
+
+def kuerzen(text, limit=160):
+    """Auf ~limit Zeichen an Wortgrenze kürzen, mit „…“."""
+    if len(text) <= limit:
+        return text
+    cut = text[:limit + 1].rsplit(" ", 1)[0].rstrip(" ,;:–-")
+    return cut + "…"
+
+
+def load_beitraege(themen):
+    themen_by_slug = {t["slug"]: t for t in themen}
+    beitraege = []
+    for path in sorted(CONTENT.glob("*.md")):
+        source = path.relative_to(ROOT)
+        meta, body = parse_frontmatter(read(path), source)
+        if meta["slug"] != path.stem:
+            raise SystemExit(f"FEHLER: {source} – slug '{meta['slug']}' passt nicht zum Dateinamen")
+        if meta["thema"] not in themen_by_slug:
+            raise SystemExit(f"FEHLER: {source} – unbekanntes Thema '{meta['thema']}'")
+        for suffix in ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"):
+            if not (ROOT / RATGEBER_IMG / (meta["bild"] + suffix)).exists():
+                raise SystemExit(f"FEHLER: Bild fehlt: {RATGEBER_IMG}/{meta['bild']}{suffix}")
+        blocks = md_blocks(body)
+        first = next((d for k, d in blocks if k == "p"), None)
+        if not first:
+            raise SystemExit(f"FEHLER: {source} – kein einleitender Absatz")
+        b = dict(meta)
+        b["thema_titel"] = themen_by_slug[meta["thema"]]["titel"]
+        b["anreisser"] = kuerzen(plain(first), 160)
+        b["description"] = kuerzen(plain(first), 155)
+        b["url"] = f"/ratgeber/{meta['slug']}/"
+        b["_blocks"] = blocks
+        beitraege.append(b)
+    return beitraege
+
+
+def write_ratgeber_json(beitraege):
+    """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
+    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "geaendert", "anreisser", "url")
+    data = {
+        "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
+        "beitraege": [{k: b[k] for k in keys} for b in beitraege],
+    }
+    (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def article_card(b, heading="h3", n=0):
+    """Beitragskarte mit Teaserbild 4:3 (→ template-parts/card-artikel.php)."""
+    title = esc(b["titel"])
+    lines = [
+        "<li>",
+        '  <article class="article-card article-card--image">',
+        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">',
+        '    <div class="article-card__body">',
+        f'      <p class="article-card__meta">{esc(b["thema_titel"])}</p>',
+        f'      <{heading} class="article-card__title"><a href="{b["url"]}">{title}</a></{heading}>',
+        f'      <p class="article-card__text">{esc(b["anreisser"])}</p>',
+        f'      <p class="article-card__stand">Stand: {esc(b["stand"])}</p>',
+        '      <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>',
+        "    </div>",
+        "  </article>",
+        "</li>",
+    ]
+    return indent(lines, n)
+
+
+def preview_card(heading="h3", n=0, link=False):
+    """Geplanter Beitrag ohne eigene Seite („In Vorbereitung“)."""
+    title = "Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige"
+    title_html = f'<a href="/ratgeber/#eltern-aus-der-ferne">{title}</a>' if link else title
+    lines = [
+        "<li>",
+        '  <article class="article-card article-card--navy article-card--preview" id="eltern-aus-der-ferne">' if not link else
+        '  <article class="article-card article-card--navy article-card--preview">',
+        '    <div class="article-card__band"></div>',
+        '    <div class="article-card__body">',
+        '      <p class="article-card__meta">Angehörige · geplant</p>',
+        f'      <{heading} class="article-card__title">{title_html}</{heading}>',
+        '      <p class="article-card__text">Wie Sie Hilfe vor Ort organisieren, auch wenn Sie selbst nicht in der Nähe wohnen.</p>',
+        '      <p class="article-card__more"><span class="badge">In Vorbereitung</span></p>',
+        "    </div>",
+        "  </article>",
+        "</li>",
+    ]
+    return indent(lines, n)
+
+
+def article_toc(blocks, ids):
+    lines = [
+        '<nav class="toc article__toc" aria-labelledby="toc-titel">',
+        '  <h2 id="toc-titel">Inhalt</h2>',
+        '  <ul class="article__toc-list">',
+    ]
+    for i, (kind, data) in enumerate(blocks):
+        if kind == "h2":
+            lines.append(f'    <li><a href="#{ids[i]}">{esc(plain(data))}</a></li>')
+    lines += ["  </ul>", "</nav>"]
+    return lines
+
+
+def article_jsonld(b):
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": b["titel"],
+        "description": b["description"],
+        "image": [f'{SITE}/{RATGEBER_IMG}/{b["bild"]}-1400.jpg'],
+        "dateModified": b["geaendert"],
+        "inLanguage": "de-DE",
+        "articleSection": b["thema_titel"],
+        "mainEntityOfPage": f'{SITE}{b["url"]}',
+        "publisher": {"@type": "Organization", "name": "KONZEPT 60+", "url": f"{SITE}/"},
+    }
+    body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
+    return (
+        "  <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang\n"
+        "       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->\n"
+        '  <script type="application/ld+json">\n'
+        + indent(body.splitlines(), 2) + "\n  </script>"
+    )
+
+
+def article_picture(b):
+    base = f'/{RATGEBER_IMG}/{b["bild"]}'
+    return [
+        '<picture class="article__media">',
+        f'  <source type="image/webp" srcset="{base}-800.webp 800w, {base}-1400.webp 1400w" sizes="(min-width: 64em) 63rem, calc(100vw - 2.5rem)">',
+        f'  <img src="{base}-1400.jpg" width="1400" height="933" alt="{esc(b["bild_alt"])}" decoding="async" fetchpriority="high">',
+        "</picture>",
+    ]
+
+
+def beitrag_ctx(b, beitraege):
+    blocks = b["_blocks"]
+    ids = heading_ids(blocks)
+    andere = [x for x in beitraege if x["slug"] != b["slug"]]
+    return {
+        "meta_titel": b["titel"],
+        "meta_description": b["description"],
+        "beitrag_jsonld": article_jsonld(b),
+        "og_article": b,
+        "beitrag_slug": b["slug"],
+        "beitrag_titel": esc(b["titel"]),
+        "beitrag_thema": b["thema"],
+        "beitrag_thema_titel": esc(b["thema_titel"]),
+        "beitrag_stand": esc(b["stand"]),
+        "beitrag_geaendert": b["geaendert"],
+        "beitrag_bild": indent(article_picture(b), 6),
+        "beitrag_toc": indent(article_toc(blocks, ids), 6),
+        "beitrag_inhalt": indent(render_blocks(blocks, ids).splitlines(), 8),
+        "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in andere),
+    }
+
+
+def thema_ratgeber(t, beitraege):
+    """Verweis „Passender Ratgeber“ auf Themenseiten (→ WP_Query tax_query themenbereich)."""
+    passend = [b for b in beitraege if b["thema"] == t["slug"]]
+    if not passend:
+        return ""
+    lines = [
+        '<aside class="topic-ratgeber" aria-labelledby="ratgeber-hinweis-titel">',
+        '  <h2 class="topic-ratgeber__title" id="ratgeber-hinweis-titel">Passender Ratgeber</h2>',
+        '  <ul class="topic-ratgeber__list">',
+    ]
+    for b in passend:
+        lines.append(
+            f'    <li><a class="topic-link" href="{b["url"]}">'
+            f'<img class="topic-link__img topic-link__img--wide" src="/{RATGEBER_IMG}/{b["bild"]}-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">'
+            f'<span class="topic-link__title">{esc(b["titel"])}</span>'
+            f'<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></li>'
+        )
+    lines += ["  </ul>", "</aside>"]
+    return indent(lines, 6)
+
+
+# --------------------------------------------------------------------------
 # Seiten
 # --------------------------------------------------------------------------
 def home_head(regionen):
@@ -244,16 +555,22 @@ def home_head(regionen):
   </script>"""
 
 
-def meta_seo(path, title, description, image=None, noindex=False):
+def meta_seo(path, title, description, image=None, noindex=False, article=None):
     if noindex:
         return '  <meta name="robots" content="noindex">'
     img, w, h, alt = image or (
         "/assets/img/hero-garten-1600.jpg", 1600, 900, "Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten."
     )
+    article_tags = ""
+    if article:
+        article_tags = (
+            f'\n  <meta property="article:modified_time" content="{article["geaendert"]}">'
+            f'\n  <meta property="article:section" content="{esc(article["thema_titel"])}">'
+        )
     return f"""  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
        und JSON-LD vor Livegang auf die echte Domain umstellen. -->
   <link rel="canonical" href="{SITE}{path}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{"article" if article else "website"}">{article_tags}
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="KONZEPT 60+">
   <meta property="og:title" content="{esc(title)}">
@@ -284,12 +601,15 @@ def build_page(template, output, ctx, partials, themen, regionen):
     if "thema_slug" in ctx:
         t = next(t for t in themen if t["slug"] == ctx["thema_slug"])
         image = (f'/{t["bild"]["datei"]}-800.jpg', 800, 1000, t["bild"]["alt"])
+    article = ctx.get("og_article")
+    if article:
+        image = (f'/{RATGEBER_IMG}/{article["bild"]}-1400.jpg', 1400, 933, article["bild_alt"])
 
     content = render(body, page_ctx, template)
     layout_ctx = {
         "title": esc(title),
         "description": esc(description),
-        "meta_seo": meta_seo(path, title, description, image, noindex=path is None),
+        "meta_seo": meta_seo(path, title, description, image, noindex=path is None, article=article),
         "head_extra": render(meta.get("head_extra", ""), page_ctx, template),
         "icons": partials["icons"].rstrip(),
         "header": render(partials["header"], nav_ctx, "partials/header.html").rstrip(),
@@ -334,8 +654,15 @@ def main():
         "footer": read(PARTIALS / "footer.html"),
     }
 
+    beitraege = load_beitraege(themen)
+    write_ratgeber_json(beitraege)
+
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
+        "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege),
+        "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8) for b in beitraege),
+        "ratgeber_vorschau_start": preview_card("h3", 8, link=True),
+        "ratgeber_vorschau": preview_card("h2", 8),
         "home_head": home_head(regionen),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
@@ -377,9 +704,16 @@ def main():
             "thema_leistungen": liste(t["leistungen"], 8),
             "thema_hinweis": hinweis_block(t),
             "andere_themen": andere_themen(themen, t["slug"]),
+            "thema_ratgeber": thema_ratgeber(t, beitraege),
         })
         built.append(build_page("thema.html", f"themen/{t['slug']}/index.html", ctx, partials, themen, regionen))
 
+    for b in beitraege:
+        ctx = dict(common)
+        ctx.update(beitrag_ctx(b, beitraege))
+        built.append(build_page("ratgeber-beitrag.html", f"ratgeber/{b['slug']}/index.html", ctx, partials, themen, regionen))
+
+    print("  ✓ data/ratgeber.json")
     for path in built:
         print(f"  ✓ {path}")
     print(f"{len(built)} Seiten erzeugt.")

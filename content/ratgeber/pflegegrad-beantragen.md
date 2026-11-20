@@ -108,7 +108,7 @@ Eine Pflegeberatungsstelle kann Sie dabei unterstützen. Begründen Sie den Wide
 
 Mit einem anerkannten Pflegegrad können verschiedene Leistungen der Pflegeversicherung infrage kommen. Dazu zählen beispielsweise Pflegegeld, ambulante Pflegesachleistungen, der [Entlastungsbetrag](/ratgeber/haushaltshilfe-im-alter/) oder Zuschüsse für [wohnumfeldverbessernde Maßnahmen](/ratgeber/altersgerechter-umbau/).
 
-Welche Leistungen sinnvoll sind, hängt vom Pflegegrad und von der persönlichen Lebenssituation ab. Die Pflegekasse hat außerdem einen Anspruch auf Pflegeberatung zu vermitteln.
+Welche Leistungen sinnvoll sind, hängt vom Pflegegrad und von der persönlichen Lebenssituation ab. Außerdem haben Sie Anspruch auf eine kostenlose Pflegeberatung durch Ihre Pflegekasse.
 
 ## Frühzeitig Hilfe organisieren
 

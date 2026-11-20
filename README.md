@@ -143,7 +143,7 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 ## Offene Punkte
 
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).
-- Echte Telefonnummer, Erreichbarkeit, Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
+- Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
 - Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss, Treppenlift: Pflegekassen-Zuschuss, KfW-Status) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
 - Treppenlift-Titelbild: Original nur 1199 px breit → `-1400`-Varianten sind leicht hochskaliert; bei Gelegenheit Original ≥ 1400 px nachliefern.
 - Ob Anbieterprofile später öffentlich sichtbar sind („Veröffentlichung“) oder nur intern genutzt werden, ist inhaltlich zu klären.

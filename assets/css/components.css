@@ -638,35 +638,6 @@ select.form-field__input {
 
 .info-box h3 { font-size: var(--font-size-lg); }
 
-.phone-block {
-  margin-top: var(--space-l);
-  padding: var(--space-l);
-  border-radius: var(--radius-m);
-  background: var(--color-navy-800);
-  color: var(--color-white);
-}
-
-.phone-block p { margin-bottom: var(--space-xs); }
-
-.phone-block__number {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  min-height: var(--touch-min);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--color-white);
-  text-decoration: none;
-}
-
-.phone-block__number:hover { color: #f0c9b4; text-decoration: underline; }
-
-.phone-block__hours {
-  font-size: var(--font-size-sm);
-  color: #d5dbe7;
-  margin: 0;
-}
-
 /* ---- Artikel-Karte (Ratgeber) ------------------------------------------ */
 .article-card {
   display: flex;
@@ -1058,9 +1029,6 @@ select.form-field__input {
   .topic-hero__media img { object-position: 50% 35%; }
 }
 
-.topic-hero__phone { color: var(--color-ink-muted); }
-.topic-hero__phone a { color: var(--color-navy-800); }
-.topic-hero__phone a:hover { color: var(--color-terra-700); }
 
 @media (min-width: 60em) {
   .topic-hero {

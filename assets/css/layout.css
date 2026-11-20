@@ -87,6 +87,7 @@
 }
 
 .site-header__topbar {
+  display: none; /* nur noch der Hinweistext – mobil ausgeblendet */
   background: var(--color-navy-900);
   color: var(--color-white);
   font-size: var(--font-size-sm);
@@ -112,10 +113,8 @@
   gap: var(--space-xs);
 }
 
-.site-header__topbar-hint { display: none; }
-
 @media (min-width: 48em) {
-  .site-header__topbar-hint { display: block; }
+  .site-header__topbar { display: block; }
 }
 
 .site-header__bar {
@@ -316,16 +315,7 @@
   column-gap: var(--space-l);
 }
 
-.site-footer__contact .demo-label { margin-left: var(--space-xs); }
-.site-footer__hours { font-size: var(--font-size-sm); }
 .site-footer__prototype .demo-label { margin-right: var(--space-xs); }
-
-.site-footer__phone {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--touch-min);
-  font-weight: 700;
-}
 
 .site-footer li a {
   display: inline-flex;

@@ -677,7 +677,7 @@ def home_head(regionen):
         imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
         imagesizes="(min-width: 60em) 55vw, 100vw">
 
-  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain) und telephone
+  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain)
        (Demo-Nummer, nicht vergeben) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
   {{
@@ -686,7 +686,6 @@ def home_head(regionen):
     "name": "KONZEPT 60+",
     "url": "{SITE}/",
     "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
-    "telephone": "+49-211-00000000",
     "areaServed": [{area}]
   }}
   </script>"""

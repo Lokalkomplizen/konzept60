@@ -8,7 +8,6 @@
     { "slug": "solingen", "name": "Solingen" },
     { "slug": "langenfeld", "name": "Langenfeld" },
     { "slug": "haan", "name": "Haan" },
-    { "slug": "wesel", "name": "Wesel" },
-    { "slug": "rees", "name": "Rees" }
+    { "slug": "wesel", "name": "Wesel" }
   ]
 }

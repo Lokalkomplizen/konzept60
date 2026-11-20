@@ -7,6 +7,7 @@
    5. Anfrageformular – Simulation
    6. Anbieter-Registrierung – Simulation, Felder je Anbieterart
    7. Ratgeber-Übersicht – Themenfilter (?thema=…)
+   8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'konzept60-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -530,6 +531,127 @@
     if (initial !== null) apply(initial, true);
   }
 
+
+  /* ------------------------------------------------------------------------
+     8. Ratgeber-Beitrag – Vorlesen
+     Liest Titel und Beitragstext abschnittsweise mit der Sprachausgabe des Browsers vor
+     (speechSynthesis, deutsche Stimme falls vorhanden). Pause = anhalten und an derselben
+     Stelle weiterlesen (abschnittsweise, weil pause()/resume() auf Android unzuverlässig ist).
+     Ohne Unterstützung bleibt die Schaltfläche verborgen.
+     ------------------------------------------------------------------------ */
+  function initVorlesen() {
+    var root = document.querySelector('[data-vorlesen]');
+    var body = document.querySelector('.article__body');
+    if (!root || !body) return;
+    if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') return;
+
+    var synth = window.speechSynthesis;
+    var startBtn = root.querySelector('[data-vorlesen-start]');
+    var stoppBtn = root.querySelector('[data-vorlesen-stopp]');
+    var label = root.querySelector('[data-vorlesen-label]');
+    var icon = root.querySelector('[data-vorlesen-icon]');
+    var status = root.querySelector('[data-vorlesen-status]');
+
+    var title = document.querySelector('.article__header h1');
+    var parts = [title].concat(Array.prototype.slice.call(
+      body.querySelectorAll('h2, h3, p, li, th, td, figcaption, caption')
+    )).filter(function (el) {
+      // Hinweisbox am Ende und verschachtelte Absätze (z. B. <p> in <li>) nicht doppelt lesen
+      if (!el || el.closest('.article__disclaimer')) return false;
+      var parent = el.parentElement && el.parentElement.closest('li, th, td, p');
+      return !(parent && body.contains(parent));
+    }).filter(function (el) { return el.textContent.trim() !== ''; });
+    if (!parts.length) return;
+
+    var state = 'idle';   // idle | playing | paused
+    var index = 0;
+    var current = null;
+    var voice = null;
+
+    function pickVoice() {
+      var voices = synth.getVoices() || [];
+      voice = voices.filter(function (v) { return /^de(-|_|$)/i.test(v.lang) && v.localService; })[0] ||
+              voices.filter(function (v) { return /^de(-|_|$)/i.test(v.lang); })[0] || null;
+    }
+    pickVoice();
+    if (typeof synth.addEventListener === 'function') synth.addEventListener('voiceschanged', pickVoice);
+
+    function mark(el) {
+      var prev = document.querySelector('.vorlesen-aktiv');
+      if (prev) prev.classList.remove('vorlesen-aktiv');
+      if (el) el.classList.add('vorlesen-aktiv');
+    }
+
+    function setUi() {
+      var text = state === 'playing' ? 'Pause' : state === 'paused' ? 'Weiterlesen' : 'Beitrag vorlesen';
+      label.textContent = text;
+      icon.setAttribute('href', state === 'playing' ? '#icon-pause' : '#icon-vorlesen');
+      stoppBtn.hidden = state === 'idle';
+    }
+
+    function announce(text) { status.textContent = text; }
+
+    function speakFrom(i) {
+      if (i >= parts.length) { stop('Vorlesen beendet.'); return; }
+      index = i;
+      var el = parts[i];
+      var u = new window.SpeechSynthesisUtterance(el.textContent.replace(/\s+/g, ' ').trim());
+      u.lang = 'de-DE';
+      if (voice) u.voice = voice;
+      u.rate = 0.95;
+      current = u;
+      u.onend = function () {
+        if (current !== u || state !== 'playing') return;
+        speakFrom(i + 1);
+      };
+      u.onerror = function (e) {
+        if (current !== u || state !== 'playing') return;
+        if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
+        speakFrom(i + 1);
+      };
+      mark(el);
+      synth.speak(u);
+    }
+
+    function play() {
+      synth.cancel();
+      state = 'playing';
+      setUi();
+      announce(index === 0 ? 'Vorlesen gestartet.' : 'Vorlesen fortgesetzt.');
+      speakFrom(index);
+    }
+
+    function pause() {
+      state = 'paused';
+      current = null;
+      synth.cancel();
+      setUi();
+      announce('Vorlesen angehalten.');
+    }
+
+    function stop(message) {
+      state = 'idle';
+      current = null;
+      index = 0;
+      synth.cancel();
+      mark(null);
+      setUi();
+      announce(message || 'Vorlesen beendet.');
+    }
+
+    startBtn.addEventListener('click', function () {
+      if (state === 'playing') pause(); else play();
+    });
+    stoppBtn.addEventListener('click', function () { stop(); startBtn.focus(); });
+    window.addEventListener('pagehide', function () { synth.cancel(); });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && state !== 'idle') stop();
+    });
+
+    synth.cancel();   // evtl. noch laufende Ausgabe einer vorherigen Seite beenden
+    root.hidden = false;
+  }
+
   /* ------------------------------------------------------------------------ */
   initNavigation();
   var updateLeistungen = initLeistungen();
@@ -537,4 +659,5 @@
   initPreselect();
   initProviderForm();
   initRatgeberFilter();
+  initVorlesen();
 })();

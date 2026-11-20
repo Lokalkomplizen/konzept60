@@ -1486,6 +1486,26 @@ select.form-field__input {
 
 .notice--flush { margin-top: 0; }
 
+/* ---- Vorlesen (Ratgeber-Beitrag) ------------------------------------------- */
+.vorlesen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin-top: var(--space-m);
+}
+
+.vorlesen[hidden],
+.vorlesen__btn[hidden] { display: none; }
+
+.vorlesen__btn { min-height: 3.25rem; }
+
+/* gerade vorgelesener Abschnitt */
+.vorlesen-aktiv {
+  background: var(--color-terra-100);
+  box-shadow: 0 0 0 0.4rem var(--color-terra-100);
+  border-radius: 2px;
+}
+
 /* ---- Beitragskopf ---------------------------------------------------------- */
 .article__kicker { margin-bottom: var(--space-s); }
 .article__kicker a { color: var(--color-sage-700); }

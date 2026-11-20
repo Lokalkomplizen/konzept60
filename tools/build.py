@@ -19,6 +19,7 @@ eingecheckt – das Deployment (Cloudflare Workers Assets) braucht keinen Build.
 
 Platzhalter-Syntax: {{name}}. Unbekannte Platzhalter brechen den Build ab.
 """
+import hashlib
 import html
 import json
 import re
@@ -470,6 +471,25 @@ def load_beitraege(themen):
     return beitraege
 
 
+# Cache-Busting: CSS/JS-Verweise bekommen ?v=<Inhalts-Hash>, damit Browser nach
+# einem Deploy sofort die neue Fassung laden (WordPress: Versionsparameter von
+# wp_enqueue_style/wp_enqueue_script, z. B. filemtime()).
+ASSET_RE = re.compile(r'((?:href|src)="/assets/(?:css|js)/[^"?]+\.(?:css|js))"')
+
+
+def _asset_version(path):
+    data = (ROOT / path.lstrip("/")).read_bytes()
+    return hashlib.sha256(data).hexdigest()[:10]
+
+
+def add_asset_versions(page):
+    def repl(m):
+        attr_url = m.group(1)
+        url = attr_url.split('"', 1)[1]
+        return f'{attr_url}?v={_asset_version(url)}"'
+    return ASSET_RE.sub(repl, page)
+
+
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
     keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "geaendert", "anreisser", "url",
@@ -729,6 +749,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
     )
     if PLACEHOLDER_RE.search(page):
         raise SystemExit(f"FEHLER: Platzhalter-Reste in {output}")
+    page = add_asset_versions(page)
     target = ROOT / output
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(page, encoding="utf-8")

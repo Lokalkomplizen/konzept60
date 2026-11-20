@@ -1485,7 +1485,7 @@ select.form-field__input {
    ========================================================================== */
 
 /* Seitenkopf ohne Breadcrumb: oben etwas mehr Luft, damit der Kopf ausgewogen wirkt */
-.page-header--plain { padding-top: var(--space-2xl); }
+.page-header--plain { padding-top: var(--space-3xl); }
 
 /* ---- Themenfilter (nur mit JS sichtbar; ohne JS alle Karten sichtbar) ---------- */
 .filter { display: none; margin-bottom: var(--space-xl); }
@@ -1500,7 +1500,7 @@ select.form-field__input {
 .filter__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-s);
+  gap: var(--space-xs) var(--space-s);
 }
 
 .filter__btn {
@@ -1508,7 +1508,7 @@ select.form-field__input {
   align-items: center;
   gap: var(--space-xs);
   min-height: var(--touch-min);
-  padding: 0.55rem 1.1rem;
+  padding: 0.5rem 1rem;
   border: 2px solid var(--color-sand-300);
   border-radius: 999px;
   background: var(--color-white);
@@ -1525,7 +1525,7 @@ select.form-field__input {
 
 .filter__btn:hover { border-color: var(--color-navy-800); }
 
-.filter__count { font-weight: 400; }
+.filter__count { font-weight: 400; opacity: .8; }
 
 /* Aktiver Zustand: Navy-Fläche + Häkchen (nicht nur über Farbe erkennbar) */
 .filter__check { display: none; width: 1.1em; height: 1.1em; flex-shrink: 0; }

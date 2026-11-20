@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "alltag-gut-organisiert",
+      "titel": "Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "alltag-gut-organisiert",
+      "bild_alt": "Eine ältere Frau sitzt lächelnd mit Stift und Notizbuch an einem Holztisch, daneben Ordner, Laptop, Smartphone und eine Tasse.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 15:30",
+      "geaendert": "2026-11-20",
+      "anreisser": "Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche Aufgaben…",
+      "url": "/ratgeber/alltag-gut-organisiert/"
+    },
+    {
       "slug": "treppenlift-einbau",
       "titel": "Treppenlift: Was Sie vor dem Einbau wissen sollten",
       "thema": "wohnen-haus-handwerk",
@@ -9,6 +22,7 @@
       "bild": "treppenlift-einbau",
       "bild_alt": "Eine ältere Frau sitzt lachend auf einem Sitztreppenlift an einer Treppe, ein Monteur mit Tablet kniet daneben und erklärt ihr die Bedienung.",
       "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 12:00",
       "geaendert": "2026-11-20",
       "anreisser": "Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…",
       "url": "/ratgeber/treppenlift-einbau/"
@@ -21,6 +35,7 @@
       "bild": "hausnotruf-auswahl",
       "bild_alt": "Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an ihrer Halskette, eine jüngere Frau erklärt ihr die Bedienung.",
       "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 10:02",
       "geaendert": "2026-11-20",
       "anreisser": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
       "url": "/ratgeber/hausnotruf-auswahl/"
@@ -33,6 +48,7 @@
       "bild": "haushaltshilfe-betrieb-oder-privat",
       "bild_alt": "Eine ältere Frau sitzt mit einer Tasse am Tisch und lacht mit einer Haushaltshilfe; im Vordergrund steht ein Putzeimer mit Tüchern und Sprühflasche.",
       "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 10:01",
       "geaendert": "2026-11-20",
       "anreisser": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
       "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/"
@@ -45,6 +61,7 @@
       "bild": "eltern-aus-der-ferne-unterstuetzen",
       "bild_alt": "Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.",
       "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 10:00",
       "geaendert": "2026-11-20",
       "anreisser": "Die Eltern werden älter, benötigen zunehmend Unterstützung und wohnen vielleicht mehrere hundert Kilometer entfernt. Für viele Angehörige ist das eine…",
       "url": "/ratgeber/eltern-aus-der-ferne-unterstuetzen/",

@@ -5,6 +5,7 @@ thema: alltag-persoenliche-hilfe
 bild: eltern-aus-der-ferne-unterstuetzen
 bild_alt: Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.
 stand: November 2026
+veroeffentlicht: 2026-11-20 10:00
 geaendert: 2026-11-20
 inline_bild: eltern-aus-der-ferne-tablet-kueche
 inline_bild_alt: Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.

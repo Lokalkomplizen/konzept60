@@ -5,6 +5,7 @@ thema: wohnen-haus-handwerk
 bild: treppenlift-einbau
 bild_alt: Eine ältere Frau sitzt lachend auf einem Sitztreppenlift an einer Treppe, ein Monteur mit Tablet kniet daneben und erklärt ihr die Bedienung.
 stand: November 2026
+veroeffentlicht: 2026-11-20 12:00
 geaendert: 2026-11-20
 ---
 

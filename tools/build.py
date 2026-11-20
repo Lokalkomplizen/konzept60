@@ -466,8 +466,9 @@ def load_beitraege(themen):
         b["url"] = f"/ratgeber/{meta['slug']}/"
         b["_blocks"] = blocks
         beitraege.append(b)
-    # Neueste zuerst (→ WordPress: orderby date DESC); bei gleichem Datum Dateiname absteigend
-    beitraege.sort(key=lambda x: (x["geaendert"], x["slug"]), reverse=True)
+    # Neueste zuerst (→ WordPress: orderby date DESC): Feld "veroeffentlicht" (JJJJ-MM-TT HH:MM),
+    # sonst "geaendert"; bei Gleichstand Dateiname absteigend
+    beitraege.sort(key=lambda x: (x.get("veroeffentlicht", x["geaendert"]), x["slug"]), reverse=True)
     return beitraege
 
 
@@ -492,7 +493,7 @@ def add_asset_versions(page):
 
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
-    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "geaendert", "anreisser", "url",
+    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
             "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung")
     data = {
         "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
@@ -502,18 +503,17 @@ def write_ratgeber_json(beitraege):
 
 
 def article_card(b, heading="h3", n=0, filter_attr=False):
-    """Beitragskarte mit Teaserbild 4:3 (→ template-parts/card-artikel.php).
+    """Beitragskarte mit Bild 3:2, geschwungener Textfläche und Themen-Pill (→ template-parts/card-artikel.php).
     filter_attr: data-thema am <li> für die Themenfilter der Übersicht /ratgeber/."""
     title = esc(b["titel"])
     lines = [
         f'<li data-thema="{b["thema"]}">' if filter_attr else "<li>",
         '  <article class="article-card article-card--image">',
-        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">',
+        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">',
         '    <div class="article-card__body">',
-        f'      <p class="article-card__meta">{esc(b["thema_titel"])}</p>',
+        f'      <p class="article-card__meta"><span class="article-card__pill">{esc(b["thema_titel"])}</span></p>',
         f'      <{heading} class="article-card__title"><a href="{b["url"]}">{title}</a></{heading}>',
         f'      <p class="article-card__text">{esc(b["anreisser"])}</p>',
-        f'      <p class="article-card__stand">Stand: {esc(b["stand"])}</p>',
         '      <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>',
         "    </div>",
         "  </article>",

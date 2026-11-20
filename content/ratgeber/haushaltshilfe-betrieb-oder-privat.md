@@ -5,6 +5,7 @@ thema: haushalt-reinigung
 bild: haushaltshilfe-betrieb-oder-privat
 bild_alt: Eine ältere Frau sitzt mit einer Tasse am Tisch und lacht mit einer Haushaltshilfe; im Vordergrund steht ein Putzeimer mit Tüchern und Sprühflasche.
 stand: November 2026
+veroeffentlicht: 2026-11-20 10:01
 geaendert: 2026-11-20
 ---
 

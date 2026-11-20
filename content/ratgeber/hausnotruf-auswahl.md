@@ -75,8 +75,8 @@ Ein klassischer Hausnotruf kostet im Basistarif häufig zwischen 27 und 40 Euro 
 
 Voraussetzungen sind unter anderem:
 
-- Es liegt mindestens Pflegegrad 1 vor.
-- Die betroffene Person lebt überwiegend allein oder mit jemandem zusammen, der im Notfall selbst keinen Hilferuf absetzen kann.
+- Es liegt ein anerkannter Pflegegrad vor.
+- Die betroffene Person ist über weite Teile des Tages allein oder lebt mit jemandem zusammen, der im Notfall selbst keinen Hilferuf absetzen kann.
 - Aufgrund des Gesundheits- oder Pflegezustands ist jederzeit mit einer Notsituation zu rechnen.
 - Ohne Hausnotruf wäre es nicht möglich, in dieser Situation selbstständig Hilfe zu rufen.
 

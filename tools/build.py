@@ -229,8 +229,13 @@ def hinweis_block(t):
 # (→ WordPress: Beitrag = Post, Inhalt = post_content/Blöcke)
 #
 # Unterstützte Teilmenge: ## / ### Überschriften, Absätze, "- " Listen,
-# **fett**, "> " Zitat-Blöcke (mehrzeilig, mehrere Absätze über ">"-Leerzeile).
+# **fett**, "> " Zitat-Blöcke (mehrzeilig, mehrere Absätze über ">"-Leerzeile),
+# Pipe-Tabellen ("| a | b |" + Trennzeile "| --- | --- |", erste Zeile = Kopf).
 # Alles andere wird als normaler Absatz-Text (HTML-escaped) ausgegeben.
+# Optionale Frontmatter-Felder:
+#   inline_bild, inline_bild_alt, inline_nach_ueberschrift  zweites Bild im Text: nach der
+#       ersten Liste des ##-Abschnitts, dessen Überschrift so beginnt (sonst direkt nach der Überschrift)
+#   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag
 # --------------------------------------------------------------------------
 FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
@@ -254,6 +259,9 @@ def parse_frontmatter(src, source):
     for key in FRONTMATTER_KEYS:
         if not meta.get(key):
             raise SystemExit(f"FEHLER: {source} – Frontmatter-Feld '{key}' fehlt")
+    inline_keys = ("inline_bild", "inline_bild_alt", "inline_nach_ueberschrift")
+    if any(meta.get(k) for k in inline_keys) and not all(meta.get(k) for k in inline_keys):
+        raise SystemExit(f"FEHLER: {source} – inline_bild braucht inline_bild_alt und inline_nach_ueberschrift")
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["geaendert"]):
         raise SystemExit(f"FEHLER: {source} – 'geaendert' muss JJJJ-MM-TT sein")
     return meta, "\n".join(lines[end + 1:])
@@ -271,9 +279,21 @@ def plain(text):
 
 def md_blocks(text):
     """Zerlegt Markdown in Blöcke: (typ, daten). typ ∈ h2, h3, p, ul, quote."""
-    blocks, para, items, quote = [], [], [], []
+    blocks, para, items, quote, table = [], [], [], [], []
+
+    def cells(row):
+        return [c.strip() for c in row.strip().strip("|").split("|")]
 
     def flush():
+        if table:
+            if len(table) < 2 or not re.fullmatch(r"\|?(:?-+:?\|)*:?-+:?\|?", table[1].replace(" ", "")):
+                raise SystemExit(f"FEHLER: Tabelle ohne Trennzeile: {table[0]!r}")
+            head = cells(table[0])
+            rows = [cells(r) for r in table[2:]]
+            if any(len(r) != len(head) for r in rows):
+                raise SystemExit(f"FEHLER: Tabellenzeile mit falscher Spaltenzahl: {table[0]!r}")
+            blocks.append(("table", (head, rows)))
+            table.clear()
         if para:
             blocks.append(("p", " ".join(para)))
             para.clear()
@@ -293,6 +313,13 @@ def md_blocks(text):
             quote.append(re.sub(r"^>\s?", "", stripped))
             continue
         if quote:
+            flush()
+        if stripped.startswith("|"):
+            if para or items:
+                flush()
+            table.append(stripped)
+            continue
+        if table:
             flush()
         if not stripped:
             flush()
@@ -321,7 +348,8 @@ def heading_ids(blocks):
     ids, seen = {}, set()
     for i, (kind, data) in enumerate(blocks):
         if kind == "h2":
-            base = slugify(plain(data)) or "abschnitt"
+            # führende Nummerierung („1. “) weglassen → ids beginnen mit Buchstaben (CSS-/JS-Selektoren)
+            base = slugify(re.sub(r"^\d+\.\s*", "", plain(data))) or "abschnitt"
             anchor, n = base, 2
             while anchor in seen or anchor in ("inhalt", "toc-titel"):
                 anchor, n = f"{base}-{n}", n + 1
@@ -330,7 +358,7 @@ def heading_ids(blocks):
     return ids
 
 
-def render_blocks(blocks, ids=None):
+def render_blocks(blocks, ids=None, caption=None):
     ids = ids or {}
     out = []
     for i, (kind, data) in enumerate(blocks):
@@ -344,6 +372,32 @@ def render_blocks(blocks, ids=None):
             out.append("<ul>")
             out += [f"  <li>{inline(item)}</li>" for item in data]
             out.append("</ul>")
+        elif kind == "table":
+            head, rows = data
+            out.append('<div class="article__table-wrap">')
+            out.append('  <table class="article__table">')
+            if caption:
+                out.append(f'    <caption class="visually-hidden">{esc(caption)}</caption>')
+            out.append("    <thead>")
+            out.append("      <tr>" + "".join(f'<th scope="col">{inline(h)}</th>' for h in head) + "</tr>")
+            out.append("    </thead>")
+            out.append("    <tbody>")
+            for row in rows:
+                out.append("      <tr>" + "".join(
+                    f'<td data-label="{esc(plain(h))}">{inline(c)}</td>' for h, c in zip(head, row)) + "</tr>")
+            out.append("    </tbody>")
+            out.append("  </table>")
+            out.append("</div>")
+        elif kind == "img":
+            base = f'/{RATGEBER_IMG}/{data["bild"]}'
+            out += [
+                '<figure class="article__figure">',
+                '  <picture>',
+                f'    <source type="image/webp" srcset="{base}-800.webp 800w, {base}-1400.webp 1400w" sizes="(min-width: 48em) 42rem, calc(100vw - 2.5rem)">',
+                f'    <img src="{base}-1400.jpg" width="1400" height="933" alt="{esc(data["alt"])}" loading="lazy" decoding="async">',
+                "  </picture>",
+                "</figure>",
+            ]
         elif kind == "quote":
             first = next((d for k, d in data if k == "p"), "")
             variant = "notice--important" if plain(first).startswith("Wichtig") else "notice--light"
@@ -354,6 +408,23 @@ def render_blocks(blocks, ids=None):
             out.append("  </div>")
             out.append("</div>")
     return "\n".join(out)
+
+
+def insert_inline_bild(blocks, meta, source):
+    """Fügt das zweite Bild nach der ersten Liste des passenden ##-Abschnitts ein."""
+    start = next((i for i, (k, d) in enumerate(blocks)
+                  if k == "h2" and plain(d).startswith(meta["inline_nach_ueberschrift"])), None)
+    if start is None:
+        raise SystemExit(f"FEHLER: {source} – Überschrift für inline_bild nicht gefunden: {meta['inline_nach_ueberschrift']!r}")
+    pos = start + 1
+    for i in range(start + 1, len(blocks)):
+        if blocks[i][0] == "h2":
+            break
+        if blocks[i][0] == "ul":
+            pos = i + 1
+            break
+    img = ("img", {"bild": meta["inline_bild"], "alt": meta["inline_bild_alt"]})
+    return blocks[:pos] + [img] + blocks[pos:]
 
 
 def kuerzen(text, limit=160):
@@ -374,10 +445,16 @@ def load_beitraege(themen):
             raise SystemExit(f"FEHLER: {source} – slug '{meta['slug']}' passt nicht zum Dateinamen")
         if meta["thema"] not in themen_by_slug:
             raise SystemExit(f"FEHLER: {source} – unbekanntes Thema '{meta['thema']}'")
-        for suffix in ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"):
-            if not (ROOT / RATGEBER_IMG / (meta["bild"] + suffix)).exists():
-                raise SystemExit(f"FEHLER: Bild fehlt: {RATGEBER_IMG}/{meta['bild']}{suffix}")
+        bilder = [(meta["bild"], ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
+        if meta.get("inline_bild"):
+            bilder.append((meta["inline_bild"], ("-800.webp", "-1400.webp", "-1400.jpg")))
+        for name, suffixes in bilder:
+            for suffix in suffixes:
+                if not (ROOT / RATGEBER_IMG / (name + suffix)).exists():
+                    raise SystemExit(f"FEHLER: Bild fehlt: {RATGEBER_IMG}/{name}{suffix}")
         blocks = md_blocks(body)
+        if meta.get("inline_bild"):
+            blocks = insert_inline_bild(blocks, meta, source)
         first = next((d for k, d in blocks if k == "p"), None)
         if not first:
             raise SystemExit(f"FEHLER: {source} – kein einleitender Absatz")
@@ -393,10 +470,11 @@ def load_beitraege(themen):
 
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
-    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "geaendert", "anreisser", "url")
+    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "geaendert", "anreisser", "url",
+            "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung")
     data = {
         "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
-        "beitraege": [{k: b[k] for k in keys} for b in beitraege],
+        "beitraege": [{k: b[k] for k in keys if k in b} for b in beitraege],
     }
     (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -414,27 +492,6 @@ def article_card(b, heading="h3", n=0):
         f'      <p class="article-card__text">{esc(b["anreisser"])}</p>',
         f'      <p class="article-card__stand">Stand: {esc(b["stand"])}</p>',
         '      <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>',
-        "    </div>",
-        "  </article>",
-        "</li>",
-    ]
-    return indent(lines, n)
-
-
-def preview_card(heading="h3", n=0, link=False):
-    """Geplanter Beitrag ohne eigene Seite („In Vorbereitung“)."""
-    title = "Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige"
-    title_html = f'<a href="/ratgeber/#eltern-aus-der-ferne">{title}</a>' if link else title
-    lines = [
-        "<li>",
-        '  <article class="article-card article-card--navy article-card--preview" id="eltern-aus-der-ferne">' if not link else
-        '  <article class="article-card article-card--navy article-card--preview">',
-        '    <div class="article-card__band"></div>',
-        '    <div class="article-card__body">',
-        '      <p class="article-card__meta">Angehörige · geplant</p>',
-        f'      <{heading} class="article-card__title">{title_html}</{heading}>',
-        '      <p class="article-card__text">Wie Sie Hilfe vor Ort organisieren, auch wenn Sie selbst nicht in der Nähe wohnen.</p>',
-        '      <p class="article-card__more"><span class="badge">In Vorbereitung</span></p>',
         "    </div>",
         "  </article>",
         "</li>",
@@ -502,9 +559,9 @@ def beitrag_ctx(b, beitraege):
         "beitrag_thema_titel": esc(b["thema_titel"]),
         "beitrag_stand": esc(b["stand"]),
         "beitrag_geaendert": b["geaendert"],
-        "beitrag_bild": indent(article_picture(b), 6),
-        "beitrag_toc": indent(article_toc(blocks, ids), 6),
-        "beitrag_inhalt": indent(render_blocks(blocks, ids).splitlines(), 8),
+        "beitrag_bild": indent(article_picture(b), 8),
+        "beitrag_toc": indent(article_toc(blocks, ids), 8),
+        "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung")).splitlines(), 8),
         "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in andere),
     }
 
@@ -660,9 +717,9 @@ def main():
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
         "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege),
+        "leitfaden_angehoerige": next(
+            (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
         "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8) for b in beitraege),
-        "ratgeber_vorschau_start": preview_card("h3", 8, link=True),
-        "ratgeber_vorschau": preview_card("h2", 8),
         "home_head": home_head(regionen),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),

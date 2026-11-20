@@ -5,6 +5,11 @@ thema: alltag-persoenliche-hilfe
 bild: eltern-aus-der-ferne-unterstuetzen
 bild_alt: Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.
 stand: November 2026
+geaendert: 2026-11-20
+inline_bild: eltern-aus-der-ferne-tablet-kueche
+inline_bild_alt: Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.
+inline_nach_ueberschrift: 3. Unterstützung organisieren
+tabelle_beschriftung: Beispielplan: Aufgaben und Zuständigkeiten
 ---
 
 Die Eltern werden älter, benötigen zunehmend Unterstützung und wohnen vielleicht mehrere hundert Kilometer entfernt. Für viele Angehörige ist das eine schwierige Situation. Man möchte helfen, kann aber nicht jeden Tag vorbeischauen. Wie lässt sich die Unterstützung organisieren, wenn man selbst nicht in der Nähe wohnt? Mit guter Planung, verlässlichen Ansprechpartnern und einem Netzwerk vor Ort kann vieles gelingen.

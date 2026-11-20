@@ -15,6 +15,8 @@
 }
 
 .section--tight { padding-block: var(--space-2xl) var(--space-3xl); }
+.section--compact { padding-block: var(--space-2xl); }
+.section--flush-top { padding-top: 0; }
 
 .section--sand { background: var(--color-sand-100); }
 .section--sage { background: var(--color-sage-100); }

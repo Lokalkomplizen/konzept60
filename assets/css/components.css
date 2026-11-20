@@ -1267,3 +1267,214 @@ select.form-field__input {
   min-height: var(--touch-min);
   font-weight: 600;
 }
+
+/* ==========================================================================
+   Ergänzungen v3 (Ratgeber-Beiträge)
+   → WordPress: single.php, template-parts/card-artikel.php
+   ========================================================================== */
+
+/* ---- Beitragskarte mit Teaserbild (4:3) ----------------------------------- */
+.article-card__media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-sand-100);
+  border-bottom: 1px solid var(--color-sand-300);
+}
+
+.article-card__stand {
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-s);
+}
+
+.article-list__all {
+  margin: var(--space-xl) 0 0;
+  font-weight: 700;
+}
+
+.article-list__all a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+}
+
+.relatives__text .relatives__guide { margin-top: var(--space-s); font-weight: 700; }
+.relatives__guide a { display: inline-flex; align-items: center; min-height: var(--touch-min); }
+
+.notice--flush { margin-top: 0; }
+
+/* ---- Beitragskopf ---------------------------------------------------------- */
+.article__kicker { margin-bottom: var(--space-s); }
+.article__kicker a { color: var(--color-sage-700); }
+.article__kicker a:hover { color: var(--color-terra-700); }
+
+.article__stand {
+  display: inline-block;
+  margin: var(--space-xs) 0 0;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--color-sand-300);
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+/* ---- Beitragslayout: Bild, Inhaltsverzeichnis, Fließtext ------------------ */
+.article__layout {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.article__media {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--color-sand-100);
+  box-shadow: var(--shadow-card);
+}
+
+.article__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.article__toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.article__toc-list li + li { border-top: 1px solid var(--color-sand-300); }
+.article__toc-list a { display: block; padding-block: 0.6rem; }
+
+/* Fließtext: max. ~42rem ≈ 65–70 Zeichen bei 19–20px */
+.article__body { max-width: 42rem; min-width: 0; }
+.article__body > h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+  margin-top: var(--space-2xl);
+}
+.article__body > h2:first-child { margin-top: 0; }
+.article__body > h3 { font-size: var(--font-size-lg); margin-top: var(--space-xl); margin-bottom: var(--space-xs); }
+.article__body > ul { padding-left: 1.5rem; }
+.article__body > ul li { margin-bottom: var(--space-xs); padding-left: 0.25rem; }
+.article__body > ul li::marker { color: var(--color-sage-700); }
+
+.article__notice { margin: var(--space-xl) 0; }
+.notice__body p + p { margin-top: var(--space-s); }
+
+.article__disclaimer {
+  margin-top: var(--space-2xl);
+  background: var(--color-sand-100);
+  border-left-color: var(--color-navy-700);
+  font-size: var(--font-size-sm);
+}
+.article__disclaimer .icon { color: var(--color-navy-700); }
+
+.article__figure {
+  margin: var(--space-xl) 0;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--color-sand-100);
+}
+.article__figure img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (min-width: 64em) {
+  .article__layout {
+    grid-template-columns: minmax(0, 42rem) minmax(0, 18rem);
+    column-gap: var(--space-2xl);
+    align-items: start;
+  }
+  .article__media { grid-column: 1 / -1; }
+  .article__body { grid-column: 1; grid-row: 2; }
+  .article__toc {
+    grid-column: 2;
+    grid-row: 2;
+    position: sticky;
+    top: var(--space-l);
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+}
+
+/* ---- Tabelle im Beitrag -------------------------------------------------- */
+.article__table-wrap { margin: 0 0 var(--space-l); }
+
+.article__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  line-height: 1.45;
+}
+
+.article__table th,
+.article__table td {
+  padding: 0.7rem var(--space-m);
+  text-align: left;
+  vertical-align: top;
+}
+
+.article__table th {
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.article__table th:first-child { border-top-left-radius: var(--radius-s); }
+.article__table th:last-child { border-top-right-radius: var(--radius-s); }
+
+.article__table td { border-bottom: 1px solid var(--color-sand-300); }
+.article__table tbody tr:nth-child(even) td { background: var(--color-sand-50); }
+.article__table td:first-child { font-weight: 700; color: var(--color-navy-800); }
+
+/* Mobil: Zeilen als Karten mit Label/Wert-Paaren (Label aus data-label) */
+@media (max-width: 39.99em) {
+  .article__table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .article__table,
+  .article__table tbody,
+  .article__table tr,
+  .article__table td { display: block; }
+  .article__table tr {
+    margin-bottom: var(--space-s);
+    border: 1px solid var(--color-sand-300);
+    border-radius: var(--radius-s);
+    overflow: hidden;
+  }
+  .article__table td,
+  .article__table tbody tr:nth-child(even) td { background: var(--color-white); }
+  .article__table td {
+    display: grid;
+    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+    gap: var(--space-s);
+    padding: 0.55rem var(--space-m);
+  }
+  .article__table td:first-child { background: var(--color-sand-100); }
+  .article__table td:last-child { border-bottom: 0; }
+  .article__table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--color-ink-muted);
+  }
+}
+
+/* ---- Themenseite: Passender Ratgeber -------------------------------------- */
+.topic-ratgeber { margin-top: var(--space-2xl); max-width: 40rem; }
+
+.topic-ratgeber__title {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.topic-ratgeber__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
+
+.topic-link__img--wide { width: 6rem; height: 4.5rem; }

@@ -5,7 +5,7 @@ Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Ver
 ## Lokal starten
 
 ```bash
-python3 tools/build.py          # nur nötig nach Änderungen an templates/, partials/, data/
+python3 tools/build.py          # nur nötig nach Änderungen an templates/, partials/, data/, content/
 python3 -m http.server 8000     # → http://localhost:8000
 # oder mit echten Headern/404-Verhalten wie im Deployment:
 npx wrangler dev                # → http://localhost:8787
@@ -21,7 +21,8 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/themen/` | `themen/index.html` | `templates/themen.html` |
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
-| `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` („In Vorbereitung“) |
+| `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
+| `/ratgeber/<slug>/` (3×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
 | unbekannte Pfade | `404.html` | `wrangler.jsonc` → `assets.not_found_handling: "404-page"` |
 
@@ -39,7 +40,27 @@ partials/header.html       Kopf inkl. Hauptnavigation (Platzhalter nav:… → a
 partials/footer.html       Fuß inkl. Themen-/Regionslisten
 data/themen.json           slug, titel, kurztext, einleitung, beispiele[], leistungen[] (5–8), angebote[], hinweis?, bild{datei, alt}
 data/regionen.json         slug, name
+content/ratgeber/<slug>.md Ratgeber-Beiträge: Frontmatter + Markdown-Teilmenge (s. u.)
+data/ratgeber.json         GENERIERT: gesammelte Frontmatter + Anreißer + URL je Beitrag
 ```
+
+### Ratgeber-Beiträge (`content/ratgeber/*.md`)
+
+Frontmatter (`---` … `---`, je Zeile `feld: wert`, Wert ab dem ersten Doppelpunkt):
+
+| Feld | Pflicht | Bedeutung |
+|---|---|---|
+| `titel`, `slug` | ja | H1/`<title>`; Slug = Dateiname = URL `/ratgeber/<slug>/` |
+| `thema` | ja | Slug aus `data/themen.json` (Kicker-Link, CTA-Vorauswahl `/?thema=<thema>#anfrage`, „Passender Ratgeber“ auf der Themenseite) |
+| `bild`, `bild_alt` | ja | Beitragsbild `assets/img/ratgeber/<bild>-800.webp/-1400.webp/-1400.jpg` (3:2) + Teaser `<bild>-teaser-600.webp` (4:3) |
+| `stand` | ja | sichtbarer Stand („November 2026“) unter dem Titel und im Hinweis-Kasten |
+| `geaendert` | ja | Änderungsdatum `JJJJ-MM-TT` (`<time datetime>`, `article:modified_time`, JSON-LD `dateModified`) |
+| `inline_bild`, `inline_bild_alt`, `inline_nach_ueberschrift` | nein | zweites Bild im Text (lazy, 3:2) nach der ersten Liste des `##`-Abschnitts, dessen Überschrift so beginnt |
+| `tabelle_beschriftung` | nein | `<caption>` (visuell verborgen) für Tabellen |
+
+Markdown-Teilmenge (eigener Parser in `build.py`, HTML wird escaped): `##`/`###` Überschriften (`##` erhalten ids → automatisches Inhaltsverzeichnis), Absätze, `- ` Listen, `**fett**`, `> ` Zitat-Blöcke (mehrere Absätze über `>`-Leerzeile → Hinweis-Box; beginnt der Text mit „**Wichtig**“ in Terrakotta, sonst Salbei), Pipe-Tabellen mit Trennzeile (→ `<table>` mit `<th scope="col">`, mobil als Label/Wert-Karten über `data-label`). Anreißer und Meta-Description = erster Absatz, an Wortgrenze auf ~160/155 Zeichen gekürzt. Der Text wird **wörtlich** übernommen; Rahmen (Breadcrumb, Stand, Hinweis-Kasten, CTA, „Weitere Beiträge“) kommt aus der Vorlage.
+
+Bilder: `python3 tools/bilder.py --ratgeber <ordner>` erzeugt aus `<bild>.png/.jpg` die Größen oben (mittiger Zuschnitt; Teaser nur für Titelbilder). Originale danach löschen.
 
 Platzhalter `{{name}}`; unbekannte Platzhalter brechen den Build ab, ebenso fehlende Bilder oder Datenfelder. **Die generierten HTML-Dateien werden eingecheckt** – das Deployment braucht keinen Build. Generierte Dateien tragen den Kommentar „GENERIERT von tools/build.py – nicht direkt bearbeiten“. `templates/`, `tools/`, `partials/` und `data/` stehen in `.assetsignore` (werden nicht ausgeliefert; JS lädt kein JSON mehr).
 
@@ -81,6 +102,9 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | `templates/themen.html` | `page-themen.php` bzw. Archiv der Taxonomie |
 | `templates/fuer-anbieter.html` | `page-fuer-anbieter.php` |
 | `templates/ratgeber.html` | `home.php` (Beitragsarchiv) |
+| `templates/ratgeber-beitrag.html` | `single.php` (Breadcrumb, `the_content()`, Inhaltsverzeichnis per Filter auf `the_content` aus den H2) |
+| Beitragskarte (`article_card()` in build.py) | `template-parts/card-artikel.php` (`the_post_thumbnail('teaser-4-3')`, `get_the_excerpt()`) |
+| „Passender Ratgeber“ auf Themenseiten | `WP_Query` mit `tax_query` `themenbereich` = aktueller Term |
 | `templates/impressum.html`, `datenschutz.html` | `page-impressum.php`, `page-datenschutz.php` (oder Standard-`page.php`) |
 | `templates/404.html` | `404.php` |
 | Themenkarte (`theme_card()` in build.py) | `template-parts/card-thema.php` |
@@ -94,11 +118,26 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 - `helfer` – private Helfer. Meta: Hilfeangebote, Verfügbarkeit, Prüfstatus
 - `anfrage` – eingehende Anliegen. Meta: Für wen, Leistungen, PLZ/Ort, Kontakt, Rückrufwunsch, Einwilligung Bearbeitung (+ Zeitstempel), Newsletter-Einwilligung (separat), Weitergabe-Zustimmungen je Anbieter, Bearbeitungsstatus
 
+**Ratgeber = Standard-Beiträge (`post`)** – Mapping `content/ratgeber/*.md` / `data/ratgeber.json` → WordPress:
+
+| Frontmatter | WordPress |
+|---|---|
+| `titel` | `post_title` |
+| `slug` | `post_name` (Permalink `/ratgeber/%postname%/`) |
+| Markdown-Text | `post_content` (Gutenberg-Blöcke: Überschrift, Absatz, Liste, Tabelle; Zitat-Block → Block-Stil „Hinweis“) |
+| `thema` | Term der Taxonomie `themenbereich` (für `post` registriert; ersetzt die Kategorie) |
+| `bild`, `bild_alt` | Beitragsbild (`_thumbnail_id`, Alt-Text der Mediendatei); Größen `ratgeber-1400` (3:2), `teaser-4-3` (600×450) |
+| `inline_bild`, `inline_bild_alt` | Bild-Block im Inhalt (`loading="lazy"`) |
+| `stand`, `geaendert` | `post_modified` (Anzeige „Stand: “ + `get_the_modified_date('F Y')`) |
+| Anreißer | `post_excerpt` (oder automatisch gekürzt) |
+| Hinweis-Kasten, CTA, „Weitere Beiträge“ | fest in `single.php` (Vorauswahl über `themenbereich`-Slug) |
+
 **Taxonomien:** `themenbereich` (Slugs/Term-Meta wie `data/themen.json`), `region` (wie `data/regionen.json`, hierarchisch möglich).
 
 ## Offene Punkte
 
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).
 - Echte Telefonnummer, Erreichbarkeit, Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
+- Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
 - Ob Anbieterprofile später öffentlich sichtbar sind („Veröffentlichung“) oder nur intern genutzt werden, ist inhaltlich zu klären.
 - Formular-Backend (Spam-Schutz, Bestätigungsmail) und CSP vor Livegang gegen tatsächliche Einbindungen prüfen.

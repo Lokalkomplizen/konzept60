@@ -1,0 +1,45 @@
+{
+  "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
+  "beitraege": [
+    {
+      "slug": "eltern-aus-der-ferne-unterstuetzen",
+      "titel": "Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "eltern-aus-der-ferne-unterstuetzen",
+      "bild_alt": "Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht per Videoanruf auf dem Tablet mit ihrer älteren Mutter und einer Betreuerin.",
+      "stand": "November 2026",
+      "geaendert": "2026-11-20",
+      "anreisser": "Die Eltern werden älter, benötigen zunehmend Unterstützung und wohnen vielleicht mehrere hundert Kilometer entfernt. Für viele Angehörige ist das eine…",
+      "url": "/ratgeber/eltern-aus-der-ferne-unterstuetzen/",
+      "inline_bild": "eltern-aus-der-ferne-tablet-kueche",
+      "inline_bild_alt": "Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.",
+      "inline_nach_ueberschrift": "3. Unterstützung organisieren",
+      "tabelle_beschriftung": "Beispielplan: Aufgaben und Zuständigkeiten"
+    },
+    {
+      "slug": "haushaltshilfe-betrieb-oder-privat",
+      "titel": "Haushaltshilfe: Betrieb oder privat – was passt zu mir?",
+      "thema": "haushalt-reinigung",
+      "thema_titel": "Haushalt und Reinigung",
+      "bild": "haushaltshilfe-betrieb-oder-privat",
+      "bild_alt": "Eine ältere Frau sitzt mit einer Tasse am Tisch und lacht mit einer Haushaltshilfe; im Vordergrund steht ein Putzeimer mit Tüchern und Sprühflasche.",
+      "stand": "November 2026",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
+      "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/"
+    },
+    {
+      "slug": "hausnotruf-auswahl",
+      "titel": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
+      "thema": "technik-sicherheit",
+      "thema_titel": "Technik und Sicherheit",
+      "bild": "hausnotruf-auswahl",
+      "bild_alt": "Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an ihrer Halskette, eine jüngere Frau erklärt ihr die Bedienung.",
+      "stand": "November 2026",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
+      "url": "/ratgeber/hausnotruf-auswahl/"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ Ratgeberbilder: python3 tools/bilder.py --ratgeber <ordner-mit-originalen>
   Erwartet <bild>.png/.jpg je Beitrag (Feld "bild" im Frontmatter von content/ratgeber/*.md),
   schreibt nach assets/img/ratgeber/:
     Beitragsbild 3:2 (mittig):  <bild>-800.webp, <bild>-1400.webp, <bild>-1400.jpg
-    Teaser 4:3 (mittig):        <bild>-teaser-600.webp
+    Teaser 4:3 (mittig):        <bild>-teaser-600.webp  (nur für Titelbilder, nicht für inline_bild)
 Die Originale gehören NICHT ins Repo/Deploy (nach dem Lauf löschen bzw. extern ablegen).
 Benötigt Pillow (nur dieses Hilfsskript; build.py nutzt ausschließlich die Standardbibliothek).
 """
@@ -54,6 +54,12 @@ RATGEBER_OUT = ROOT / "assets" / "img" / "ratgeber"
 
 def main_ratgeber(src_dir):
     RATGEBER_OUT.mkdir(parents=True, exist_ok=True)
+    # Titelbilder = Feld "bild" im Frontmatter der Beiträge (nur diese brauchen den 4:3-Teaser)
+    titelbilder = set()
+    for md in (ROOT / "content" / "ratgeber").glob("*.md"):
+        for line in md.read_text(encoding="utf-8").splitlines():
+            if line.startswith("bild:"):
+                titelbilder.add(line.partition(":")[2].strip())
     files = sorted(p for p in Path(src_dir).iterdir() if p.suffix.lower() in (".png", ".jpg", ".jpeg"))
     if not files:
         raise SystemExit(f"Keine Bilder in {src_dir}")
@@ -65,9 +71,12 @@ def main_ratgeber(src_dir):
             resized.save(RATGEBER_OUT / f"{src.stem}-{width}.webp", "WEBP", quality=QUALITY, method=6)
             if width == 1400:
                 resized.save(RATGEBER_OUT / f"{src.stem}-{width}.jpg", "JPEG", quality=QUALITY, optimize=True, progressive=True)
-        teaser = crop_center(orig, 4 / 3).resize((600, 450), Image.LANCZOS)
-        teaser.save(RATGEBER_OUT / f"{src.stem}-teaser-600.webp", "WEBP", quality=QUALITY, method=6)
-        print(f"{src.stem}: {orig.size[0]}×{orig.size[1]} → 3:2 800/1400 (WebP) + 1400 (JPG), 4:3 600 (WebP)")
+        teaser = ""
+        if src.stem in titelbilder:
+            crop_center(orig, 4 / 3).resize((600, 450), Image.LANCZOS).save(
+                RATGEBER_OUT / f"{src.stem}-teaser-600.webp", "WEBP", quality=QUALITY, method=6)
+            teaser = ", Teaser 4:3 600 (WebP)"
+        print(f"{src.stem}: {orig.size[0]}×{orig.size[1]} → 3:2 800/1400 (WebP) + 1400 (JPG){teaser}")
 
 
 def main(src_dir):

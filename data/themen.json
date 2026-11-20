@@ -1,0 +1,47 @@
+{
+  "_hinweis": "Beispieldaten für den Prototyp. In WordPress: Taxonomie 'themenbereich' (term name = titel, slug = slug, Beschreibung = kurztext, Term-Meta: beispiele, icon).",
+  "themen": [
+    {
+      "slug": "wohnen-haus-handwerk",
+      "titel": "Wohnen, Haus und Handwerk",
+      "kurztext": "Kleine Reparaturen, Garten, Umbau für mehr Komfort oder Hilfe beim Umzug.",
+      "beispiele": ["Kleinreparaturen", "Gartenpflege", "Barrierearmer Umbau", "Umzugshilfe"],
+      "icon": "haus"
+    },
+    {
+      "slug": "haushalt-reinigung",
+      "titel": "Haushalt und Reinigung",
+      "kurztext": "Unterstützung im Haushalt, regelmäßig oder einmalig.",
+      "beispiele": ["Wohnungsreinigung", "Fenster putzen", "Wäsche", "Entrümpelung"],
+      "icon": "haushalt"
+    },
+    {
+      "slug": "pflege-betreuung",
+      "titel": "Pflege und Betreuung",
+      "kurztext": "Wir vermitteln Kontakte zu Pflegediensten und Betreuungsangeboten – und entlasten Angehörige.",
+      "beispiele": ["Ambulante Pflege", "Stundenweise Betreuung", "Entlastung für Angehörige"],
+      "icon": "betreuung"
+    },
+    {
+      "slug": "alltag-persoenliche-hilfe",
+      "titel": "Alltag und persönliche Hilfe",
+      "kurztext": "Begleitung und praktische Hilfe für die kleinen und großen Dinge des Alltags.",
+      "beispiele": ["Einkaufen", "Begleitung zu Terminen", "Fahrdienst", "Post und Formulare"],
+      "icon": "alltag"
+    },
+    {
+      "slug": "technik-sicherheit",
+      "titel": "Technik und Sicherheit",
+      "kurztext": "Geräte einrichten, Fragen klären und sicher zu Hause leben.",
+      "beispiele": ["Smartphone und Tablet", "Hausnotruf", "Rauchmelder", "Fernseher einrichten"],
+      "icon": "technik"
+    },
+    {
+      "slug": "freizeit-lebensqualitaet",
+      "titel": "Freizeit und Lebensqualität",
+      "kurztext": "Gemeinsam unterwegs sein, Neues lernen und Kontakte pflegen.",
+      "beispiele": ["Spaziergänge", "Kurse", "Ausflüge", "Gesellschaft"],
+      "icon": "freizeit"
+    }
+  ]
+}

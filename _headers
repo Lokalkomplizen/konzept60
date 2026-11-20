@@ -1,0 +1,42 @@
+# Cloudflare Pages – HTTP-Header
+# Doku: https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# HTML immer frisch validieren
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS/JS ohne Hash im Dateinamen: 1 Tag + Revalidierung
+/assets/css/*
+  Cache-Control: public, max-age=86400, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Schriften: 1 Jahr (Dateiname enthält Version nicht, bei Update umbenennen)
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000
+
+# Bilder: 30 Tage (bei Änderung Dateinamen ändern)
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+
+# Daten: kurz cachen
+/data/*
+  Cache-Control: public, max-age=300
+  X-Robots-Tag: noindex
+
+# Nur Referenz/Entwicklung – nicht indexieren
+/partials/*
+  X-Robots-Tag: noindex
+/screenshots/*
+  X-Robots-Tag: noindex

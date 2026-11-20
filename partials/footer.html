@@ -1,0 +1,53 @@
+<!--
+  REFERENZKOPIE – FOOTER  →  WordPress: footer.php
+  Quelle der Wahrheit ist index.html (Block zwischen "BEGIN/END partial:footer").
+  Diese Datei wird NICHT per JS eingebunden; sie dient als Vorlage für das Theme.
+  Neu erzeugen: python3 tools/sync-partials.py
+-->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="logo logo--light" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+          <span>KONZEPT</span><span class="logo__plus">60+</span>
+        </a>
+        <p>Kostenlose Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          KONZEPT 60+ erbringt selbst keine Dienstleistungen.</p>
+        <p>
+          <!-- BEISPIEL-Telefonnummer -->
+          <a class="site-footer__phone" href="tel:+4921100000000" data-placeholder="telefon">0211 000 000 00</a>
+        </p>
+      </div>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="#anfrage" data-region="wesel">Wesel</a></li>
+          <li><a href="#anfrage" data-region="rees">Rees</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul>
+          <li><a href="#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="#fuer-anbieter">Für Anbieter</a></li>
+          <li><a href="#impressum" id="impressum">Impressum (Platzhalter)</a></li>
+          <li><a href="#datenschutz" id="datenschutz">Datenschutz (Platzhalter)</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 KONZEPT 60+ (Arbeitstitel)</p>
+      <p><strong>Prototyp mit Beispieldaten.</strong> Telefonnummer, Adresse und Artikel sind Platzhalter.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,13 @@
+{
+  "_hinweis": "In WordPress: Taxonomie 'region' (hierarchisch möglich, z. B. Kreis > Stadt). Neue Regionen einfach ergänzen.",
+  "regionen": [
+    { "slug": "duesseldorf", "name": "Düsseldorf" },
+    { "slug": "wuppertal", "name": "Wuppertal" },
+    { "slug": "hilden", "name": "Hilden" },
+    { "slug": "remscheid", "name": "Remscheid" },
+    { "slug": "langenfeld", "name": "Langenfeld" },
+    { "slug": "haan", "name": "Haan" },
+    { "slug": "wesel", "name": "Wesel" },
+    { "slug": "rees", "name": "Rees" }
+  ]
+}

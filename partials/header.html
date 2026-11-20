@@ -1,0 +1,45 @@
+<!--
+  REFERENZKOPIE – HEADER  →  WordPress: header.php
+  Quelle der Wahrheit ist index.html (Block zwischen "BEGIN/END partial:header").
+  Diese Datei wird NICHT per JS eingebunden; sie dient als Vorlage für das Theme.
+  Neu erzeugen: python3 tools/sync-partials.py
+-->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose Vermittlung für Menschen ab 60 und Angehörige</p>
+      <p>
+        <!-- BEISPIEL-Telefonnummer (Platzhalter, nicht vergeben) – vor Livegang ersetzen -->
+        <a href="tel:+4921100000000" data-placeholder="telefon">
+          <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg>
+          <span><span class="visually-hidden">Telefon: </span>0211 000 000 00</span>
+        </a>
+        <span class="visually-hidden">(Mo–Fr, 9–17 Uhr)</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="./" aria-label="KONZEPT 60+ – zur Startseite">
+      <span>KONZEPT</span><span class="logo__plus">60+</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] ) -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="#anfrage">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="#themen">Themen</a></li>
+        <li><a class="site-nav__link" href="#so-funktionierts">So funktioniert’s</a></li>
+        <li><a class="site-nav__link" href="#ratgeber">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="#fuer-anbieter">Für Anbieter</a></li>
+      </ul>
+      <a class="btn btn--primary site-nav__cta" href="#anfrage">Anliegen beschreiben</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   KONZEPT 60+ – Design-Tokens
+   Alle Farben, Abstände, Schriftgrößen als CSS-Variablen.
+   → WordPress: entspricht später theme.json (settings.color.palette,
+     settings.typography.fontSizes, settings.spacing.spacingSizes).
+     Namensschema bewusst an theme.json angelehnt (--wp--preset--… lässt
+     sich per Alias darauf abbilden).
+   ========================================================================== */
+
+:root {
+  /* ---- Farben (Palette) ------------------------------------------------ */
+  --color-navy-900: #0e1830;   /* tiefster Ton, Footer */
+  --color-navy-800: #14213d;   /* Primärfarbe, Hero-Panel */
+  --color-navy-700: #22325a;
+  --color-navy-100: #e6e9f0;
+
+  --color-white: #ffffff;
+  --color-ink: #161d2f;        /* Fließtext auf Weiß: ~16:1 (AAA) */
+  --color-ink-muted: #3b4458;  /* Sekundärtext auf Weiß: ~9.6:1 (AAA) */
+
+  --color-sand-50: #fbf8f2;
+  --color-sand-100: #f4eee3;   /* Abschnitts-Hintergrund */
+  --color-sand-300: #e3d6bf;   /* Linien, Ränder */
+
+  --color-sage-100: #e5ece4;
+  --color-sage-400: #8fa892;   /* Dekor (Icons auf Navy) */
+  --color-sage-700: #3d5a44;   /* Text-tauglich auf Weiß/Sand: ~7:1 */
+
+  --color-terra-600: #a8471f;  /* Akzent / Primär-CTA: Weiß darauf ~5.9:1 */
+  --color-terra-700: #8a3a19;  /* Hover */
+  --color-terra-100: #f6e4da;
+
+  --color-error: #a31d1d;      /* Fehlertext auf Weiß: ~7.4:1 */
+  --color-error-bg: #fbeaea;
+  --color-success: #2f5a37;
+  --color-success-bg: #e7f1e6;
+
+  --color-focus: #f2b134;      /* Fokusring, auf Navy und Weiß sichtbar (mit Navy-Kontur) */
+
+  /* ---- Typografie -------------------------------------------------------- */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, "Times New Roman", serif;
+
+  --font-size-base: 1.1875rem;  /* 19px mobil */
+  --font-size-sm: 1.0625rem;    /* 17px – nur für Kleingedrucktes/Meta */
+  --font-size-lg: 1.3125rem;
+  --font-size-h3: 1.4375rem;
+  --font-size-h2: clamp(1.875rem, 1.4rem + 2vw, 2.625rem);
+  --font-size-h1: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+
+  --line-height-base: 1.6;
+  --line-height-tight: 1.2;
+
+  /* ---- Abstände ---------------------------------------------------------- */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-s: 0.75rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+
+  /* ---- Form ---------------------------------------------------------------- */
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 20px;
+  --shadow-card: 0 1px 2px rgb(20 33 61 / 0.06), 0 6px 20px rgb(20 33 61 / 0.07);
+
+  --container-max: 75rem;  /* 1200px */
+  --gutter: 1.25rem;
+  --touch-min: 3rem;       /* 48px Mindestgröße für Touch-Ziele */
+
+  --transition: 160ms ease;
+}
+
+@media (min-width: 60em) {
+  :root {
+    --font-size-base: 1.25rem; /* 20px ab Desktop */
+    --gutter: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0ms;
+  }
+}

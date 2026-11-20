@@ -30,6 +30,12 @@
   --color-terra-700: #8a3a19;  /* Hover */
   --color-terra-100: #f6e4da;
 
+  /* Illustrations-Icons (aus den Trust-Icons assets/img/icons/*.webp abgenommen;
+     in assets/img/illus.svg fest eingetragen – bei Änderung dort mitziehen) */
+  --color-olive-600: #75825a;  /* Ring */
+  --color-olive-300: #a4ae8b;  /* Flächen */
+  --color-orange-500: #c0702c; /* Akzentflächen, nur Deko (kein Text) */
+
   --color-error: #a31d1d;      /* Fehlertext auf Weiß: ~7.4:1 */
   --color-error-bg: #fbeaea;
   --color-success: #2f5a37;

@@ -268,14 +268,19 @@ def parse_frontmatter(src, source):
     return meta, "\n".join(lines[end + 1:])
 
 
+# Nur interne Links: [Text](/pfad/) – externe URLs bewusst nicht erlaubt
+LINK_RE = re.compile(r"\[([^\]]+)\]\((/[^)\s\"<>]*)\)")
+
+
 def inline(text):
-    """Escaping zuerst, danach **fett** → <strong> (Sternchen werden nicht escaped)."""
-    return BOLD_RE.sub(r"<strong>\1</strong>", esc(text))
+    """Escaping zuerst, danach **fett** → <strong> und [Text](/pfad/) → <a> (nur interne Pfade)."""
+    html = BOLD_RE.sub(r"<strong>\1</strong>", esc(text))
+    return LINK_RE.sub(r'<a href="\2">\1</a>', html)
 
 
 def plain(text):
     """Markdown-Zeichen entfernen (für Meta-Description, Anreißer, TOC)."""
-    return BOLD_RE.sub(r"\1", text)
+    return LINK_RE.sub(r"\1", BOLD_RE.sub(r"\1", text))
 
 
 def md_blocks(text):

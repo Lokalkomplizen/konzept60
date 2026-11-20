@@ -2,6 +2,19 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "barrierefrei-wohnen",
+      "titel": "Barrierefrei wohnen: Kleine Veränderungen, große Wirkung",
+      "thema": "wohnen-haus-handwerk",
+      "thema_titel": "Wohnen, Haus und Handwerk",
+      "bild": "barrierefrei-wohnen",
+      "bild_alt": "Nahaufnahme eines Fußes in braunem Schuh, der an der hochgeschlagenen Kante eines Teppichs auf glattem Holzboden hängen bleibt.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:15",
+      "geaendert": "2026-11-20",
+      "anreisser": "Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit zunehmendem…",
+      "url": "/ratgeber/barrierefrei-wohnen/"
+    },
+    {
       "slug": "alltag-gut-organisiert",
       "titel": "Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen",
       "thema": "alltag-persoenliche-hilfe",

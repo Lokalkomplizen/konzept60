@@ -1,0 +1,448 @@
+{
+ "_doku": "Zentrale Leistungsdaten. Jede Leistung: Betrag je PG, Zeitraum, Voraussetzungen, Quelle; jedes Paket: Rechtsstatus und Gültigkeit. rechtsstatus ∈ geltend | beschlossen | gesetzentwurf | historisch.",
+ "stand_geprueft": "2026-11-20",
+ "pakete": [
+  {
+   "id": "leistungen_2026",
+   "rechtsstatus": "geltend",
+   "gueltig_ab": "2026-01-01",
+   "gueltig_bis": null,
+   "hinweis": "Beträge gelten seit 01.01.2025 (§ 42a Jahresbetrag seit 01.07.2025); 2026 keine Anpassung. Nach Inkrafttreten des PNOG gueltig_bis setzen.",
+   "leistungen": [
+    {
+     "id": "pflegegeld",
+     "titel": "Pflegegeld",
+     "zeitraum": "monatlich",
+     "betraege": {
+      "1": null,
+      "2": 347,
+      "3": 599,
+      "4": 800,
+      "5": 990
+     },
+     "voraussetzungen": "Häusliche Pflege durch Angehörige oder andere private Pflegepersonen; Beratungsbesuche nach § 37 Abs. 3.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 37 SGB XI",
+     "kombinierbar_mit": [
+      "pflegesachleistung (anteilig, Kombinationsleistung § 38)"
+     ]
+    },
+    {
+     "id": "pflegesachleistung",
+     "titel": "Pflegesachleistungen",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 796,
+      "3": 1497,
+      "4": 1859,
+      "5": 2299
+     },
+     "voraussetzungen": "Leistungen eines zugelassenen ambulanten Pflegedienstes (Vertrag mit der Pflegekasse).",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 36 SGB XI"
+    },
+    {
+     "id": "entlastungsbetrag",
+     "titel": "Entlastungsbetrag",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": 131,
+      "2": 131,
+      "3": 131,
+      "4": 131,
+      "5": 131
+     },
+     "voraussetzungen": "Zweckgebunden: Erstattung für Tages-/Nachtpflege, Kurzzeitpflege, ambulante Pflegedienste (bei PG 2–5 nicht für Selbstversorgung) oder nach Landesrecht anerkannte Angebote zur Unterstützung im Alltag (§ 45a; in NRW AnFöVO). Nicht jeder Anbieter ist abrechnungsfähig.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 45b SGB XI"
+    },
+    {
+     "id": "gemeinsamer_jahresbetrag",
+     "titel": "Gemeinsamer Jahresbetrag Verhinderungs- und Kurzzeitpflege",
+     "zeitraum": "jährlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 3539,
+      "3": 3539,
+      "4": 3539,
+      "5": 3539
+     },
+     "voraussetzungen": "Ab PG 2. Ein Budget für beide Leistungsarten, jeweils bis zu 8 Wochen im Kalenderjahr.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 42a SGB XI",
+     "offen": [
+      "Vorpflegezeit für Verhinderungspflege seit 01.07.2025 entfallen: in der BMG-Übersicht nicht erwähnt, im Original § 39 prüfen."
+     ]
+    },
+    {
+     "id": "tages_nachtpflege",
+     "titel": "Tages- und Nachtpflege",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 721,
+      "3": 1357,
+      "4": 1685,
+      "5": 2085
+     },
+     "voraussetzungen": "Teilstationäre Pflege in einer zugelassenen Einrichtung; zusätzlich zu Pflegegeld/Sachleistung.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 41 SGB XI"
+    },
+    {
+     "id": "vollstationaer",
+     "titel": "Vollstationäre Pflege (Pflegeaufwendungen pauschal)",
+     "zeitraum": "monatlich",
+     "betraege": {
+      "1": 131,
+      "2": 805,
+      "3": 1319,
+      "4": 1855,
+      "5": 2096
+     },
+     "voraussetzungen": "Pflegeheim; zusätzlich Leistungszuschläge zum Eigenanteil nach Verweildauer (15/30/50/75 %).",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 43 SGB XI",
+     "offen": [
+      "PG 1: 131 € als Zuschuss – Spaltenzuordnung in der PDF-Textextraktion uneindeutig, im Original prüfen."
+     ]
+    },
+    {
+     "id": "pflegehilfsmittel_verbrauch",
+     "titel": "Pflegehilfsmittel zum Verbrauch",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": 42,
+      "2": 42,
+      "3": 42,
+      "4": 42,
+      "5": 42
+     },
+     "voraussetzungen": "Z. B. Einmalhandschuhe, Bettschutzeinlagen; häusliche Pflege.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 40 SGB XI"
+    },
+    {
+     "id": "wohnumfeld",
+     "titel": "Maßnahmen zur Verbesserung des Wohnumfelds",
+     "zeitraum": "je Maßnahme, bis zu",
+     "betraege": {
+      "1": 4180,
+      "2": 4180,
+      "3": 4180,
+      "4": 4180,
+      "5": 4180
+     },
+     "voraussetzungen": "Z. B. Badumbau, Treppenlift; Antrag vor Beginn der Maßnahme. Bis zu 16.720 €, wenn mehrere Anspruchsberechtigte zusammenwohnen.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 40 Abs. 4 SGB XI"
+    },
+    {
+     "id": "dipa",
+     "titel": "Digitale Pflegeanwendungen und ergänzende Unterstützung",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": 70,
+      "2": 70,
+      "3": 70,
+      "4": 70,
+      "5": 70
+     },
+     "voraussetzungen": "DiPA 40 € + ergänzende Unterstützungsleistungen 30 €.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 40b SGB XI"
+    },
+    {
+     "id": "wohngruppenzuschlag",
+     "titel": "Wohngruppenzuschlag",
+     "zeitraum": "monatlich",
+     "betraege": {
+      "1": 224,
+      "2": 224,
+      "3": 224,
+      "4": 224,
+      "5": 224
+     },
+     "voraussetzungen": "Ambulant betreute Wohngruppe.",
+     "quellen": [
+      {
+       "titel": "BMG: Leistungsansprüche der Versicherten im Jahr 2026 an die Pflegeversicherung im Kurzüberblick (Stand 04.11.2025)",
+       "url": "https://www.bundesgesundheitsministerium.de/fileadmin/Dateien/3_Downloads/P/Pflegeversicherung_Leistungsbeitraege/Uebersicht_Leistungsbetraege_2026.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "paragraf": "§ 38a SGB XI"
+    }
+   ]
+  },
+  {
+   "id": "leistungen_2027_entwurf",
+   "rechtsstatus": "gesetzentwurf",
+   "gueltig_ab": "2027-01-01",
+   "gesetz": "Pflegeneuordnungsgesetz (PNOG), Regierungsentwurf",
+   "quellenqualitaet": "sekundaer – Beträge NICHT im Original der Drucksache geprüft",
+   "verfahren": {
+    "drucksache": "21/8869 (02.11.2026)",
+    "anhoerung": "2026-11-25",
+    "lesung_2_3_geplant": "2026-12-11",
+    "bundesrat_2_durchgang_geplant": "2026-12-18",
+    "quelle_termine": "Anhörung: bundestag.de; übrige Termine nur sekundär (DCO)"
+   },
+   "leistungen": [
+    {
+     "id": "entlastungsbudget",
+     "titel": "Entlastungsbudget (ersetzt Pflegegeld)",
+     "zeitraum": "monatlich",
+     "betraege": {
+      "1": null,
+      "2": 380,
+      "3": 630,
+      "4": 890,
+      "5": 1080
+     },
+     "voraussetzungen": "Selbst organisierte häusliche Pflege.",
+     "quellen": [
+      {
+       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
+       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20",
+       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
+      },
+      {
+       "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+       "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      },
+      {
+       "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+       "url": "https://dco-care.de/wissen/pnog-radar/",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "ersetzt": "pflegegeld",
+     "verworfen": {
+      "werte": {
+       "1": null,
+       "2": 386,
+       "3": 638,
+       "4": null,
+       "5": null
+      },
+      "herkunft": "Referentenentwurf Juni 2026"
+     }
+    },
+    {
+     "id": "sachleistungsbudget",
+     "titel": "Ambulantes Sachleistungsbudget",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 890,
+      "3": 1590,
+      "4": 2090,
+      "5": 2530
+     },
+     "voraussetzungen": "Professionelle ambulante Pflege, Betreuung, Hilfen bei der Haushaltsführung.",
+     "quellen": [
+      {
+       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
+       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20",
+       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
+      },
+      {
+       "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+       "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      },
+      {
+       "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+       "url": "https://dco-care.de/wissen/pnog-radar/",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "ersetzt": "pflegesachleistung"
+    },
+    {
+     "id": "sozialraumbudget",
+     "titel": "Sozialraumbudget",
+     "zeitraum": "monatlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 175,
+      "3": 175,
+      "4": 175,
+      "5": 175
+     },
+     "voraussetzungen": "Nur PG 2–5. Anerkannte Angebote zur Unterstützung im Alltag. Bis zum vollendeten 25. Lebensjahr 300 €. Keine Ansparung.",
+     "quellen": [
+      {
+       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
+       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20",
+       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
+      },
+      {
+       "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+       "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      },
+      {
+       "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+       "url": "https://dco-care.de/wissen/pnog-radar/",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "ersetzt": "entlastungsbetrag",
+     "sonderwert": {
+      "unter_25": 300
+     }
+    },
+    {
+     "id": "ueberbrueckungsbudget",
+     "titel": "Überbrückungsbudget",
+     "zeitraum": "jährlich, bis zu",
+     "betraege": {
+      "1": null,
+      "2": 2285,
+      "3": 2285,
+      "4": 2285,
+      "5": 2285
+     },
+     "voraussetzungen": "Akute Versorgungslücken (z. B. Ausfall der Pflegeperson), u. a. Kurzzeitpflege.",
+     "quellen": [
+      {
+       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
+       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20",
+       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
+      },
+      {
+       "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+       "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      },
+      {
+       "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+       "url": "https://dco-care.de/wissen/pnog-radar/",
+       "art": "sekundaer",
+       "abgerufen": "2026-11-20"
+      }
+     ],
+     "verworfen": {
+      "werte": {
+       "1": null,
+       "2": 1855,
+       "3": 1855,
+       "4": 2285,
+       "5": 2285
+      },
+      "herkunft": "Briefing Tommy, in keiner geprüften Quelle gefunden"
+     }
+    },
+    {
+     "id": "entlastungsbetrag_pg1",
+     "titel": "Entlastungsbetrag Pflegegrad 1",
+     "zeitraum": "monatlich",
+     "betraege": {
+      "1": 0
+     },
+     "voraussetzungen": "Soll ersatzlos entfallen (Drucksache, Finanztabelle: „Streichung der Leistung Entlastungsbetrag nach § 45b SGB XI in Pflegegrad 1“).",
+     "quellen": [
+      {
+       "titel": "BT-Drucksache 21/8869 (Gesetzentwurf der Bundesregierung, Vorabfassung, 02.11.2026)",
+       "url": "https://dserver.bundestag.de/btd/21/088/2108869.pdf",
+       "art": "amtlich",
+       "abgerufen": "2026-11-20",
+       "hinweis": "Nur bis § 11 SGB XI-E maschinell gelesen; §§ 15, 36, 37, 45b noch nicht im Original geprüft."
+      }
+     ],
+     "ersetzt": "entlastungsbetrag"
+    }
+   ],
+   "gestrichen_gegenueber_referentenentwurf": [
+    "Hälftige Auszahlung des Entlastungsbudgets in den ersten drei Monaten (laut beiden Sekundärquellen nicht mehr im Regierungsentwurf)"
+   ],
+   "weitere": {
+    "pflegebegleitung": "§ 7c SGB XI-E: ab 01.01.2029 (Drucksache)",
+    "dynamisierung": "ab 2029 jeweils zum 01.01.; Dynamisierung 2028 entfällt (Drucksache)"
+   }
+  }
+ ]
+}

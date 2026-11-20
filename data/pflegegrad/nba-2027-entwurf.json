@@ -1,0 +1,48 @@
+{
+ "id": "nba_2027_entwurf",
+ "rechtsstatus": "gesetzentwurf",
+ "basis": "nba_2017",
+ "aenderung": "Nur Pflegegrad-Schwellen, Bewertung der Module unverändert (soweit bekannt)",
+ "pflegegrade": [
+  {
+   "grad": 0,
+   "ab": 0
+  },
+  {
+   "grad": 1,
+   "ab": 15
+  },
+  {
+   "grad": 2,
+   "ab": 30
+  },
+  {
+   "grad": 3,
+   "ab": 50
+  },
+  {
+   "grad": 4,
+   "ab": 70
+  },
+  {
+   "grad": 5,
+   "ab": 90
+  }
+ ],
+ "bestandsschutz": "Bereits festgestellte Pflegegrade sollen geschützt sein (Details im Original prüfen).",
+ "quellen": [
+  {
+   "titel": "AssistenzPlus: Pflegeneuordnungsgesetz 2027 (Stand 01.10.2026, nennt Kabinettsentwurf 30.09.2026)",
+   "url": "https://www.assistenzplus.de/news/pflegereform-2027-pnog-vier-budgets",
+   "art": "sekundaer",
+   "abgerufen": "2026-11-20"
+  },
+  {
+   "titel": "DCO: PNOG-Radar (Stand 18.11.2026, nennt Drucksache 21/8869)",
+   "url": "https://dco-care.de/wissen/pnog-radar/",
+   "art": "sekundaer",
+   "abgerufen": "2026-11-20"
+  }
+ ],
+ "im_rechner": "NICHT zur Berechnung, nur Hinweis bei Ergebnissen zwischen alter und neuer Schwelle, bis das Gesetz verkündet ist."
+}

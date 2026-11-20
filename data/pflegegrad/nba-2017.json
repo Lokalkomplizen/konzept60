@@ -1,0 +1,1190 @@
+{
+ "id": "nba_2017",
+ "titel": "Neues Begutachtungsassessment (NBA) – Erwachsene",
+ "rechtsstatus": "geltend",
+ "gueltig_ab": "2017-01-01",
+ "gueltig_bis": null,
+ "anwendungsbereich": "Erwachsene und Kinder ab 18 Monaten ohne altersbezogenen Vergleich; Kinder (§ 15 Abs. 6/7, Kriterien 4.K, 5.K) sind NICHT abgebildet.",
+ "quellen": [
+  {
+   "titel": "§ 15 SGB XI",
+   "url": "https://www.gesetze-im-internet.de/sgb_11/__15.html",
+   "abgerufen": "2026-11-20"
+  },
+  {
+   "titel": "Anlage 1 zu § 15 SGB XI (Einzelpunkte)",
+   "url": "https://www.gesetze-im-internet.de/sgb_11/anlage_1.html",
+   "abgerufen": "2026-11-20"
+  },
+  {
+   "titel": "Anlage 2 zu § 15 SGB XI (Bewertungssystematik)",
+   "url": "https://www.gesetze-im-internet.de/sgb_11/anlage_2.html",
+   "abgerufen": "2026-11-20"
+  }
+ ],
+ "hinweis_summengrenzen": "summengrenzen = jeweils kleinste Einzelpunkt-Summe der Stufen keine/geringe/erhebliche/schwere/schwerste (Anlage 2).",
+ "stufen": [
+  "keine",
+  "geringe",
+  "erhebliche",
+  "schwere",
+  "schwerste"
+ ],
+ "module": [
+  {
+   "nr": 1,
+   "titel": "Mobilität",
+   "gewicht_prozent": 10,
+   "kriterien": [
+    {
+     "id": "1.1",
+     "titel": "Positionswechsel im Bett",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "1.2",
+     "titel": "Halten einer stabilen Sitzposition",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "1.3",
+     "titel": "Umsetzen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "1.4",
+     "titel": "Fortbewegen innerhalb des Wohnbereichs",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "1.5",
+     "titel": "Treppensteigen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    2,
+    4,
+    6,
+    10
+   ],
+   "gewichtete_punkte": [
+    0,
+    2.5,
+    5,
+    7.5,
+    10
+   ]
+  },
+  {
+   "nr": 2,
+   "titel": "Kognitive und kommunikative Fähigkeiten",
+   "gewicht_prozent": 15,
+   "gemeinsam_mit": 3,
+   "kriterien": [
+    {
+     "id": "2.1",
+     "titel": "Erkennen von Personen aus dem näheren Umfeld",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.2",
+     "titel": "Örtliche Orientierung",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.3",
+     "titel": "Zeitliche Orientierung",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.4",
+     "titel": "Erinnern an wesentliche Ereignisse oder Beobachtungen",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.5",
+     "titel": "Steuern von mehrschrittigen Alltagshandlungen",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.6",
+     "titel": "Treffen von Entscheidungen im Alltag",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.7",
+     "titel": "Verstehen von Sachverhalten und Informationen",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.8",
+     "titel": "Erkennen von Risiken und Gefahren",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.9",
+     "titel": "Mitteilen von elementaren Bedürfnissen",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.10",
+     "titel": "Verstehen von Aufforderungen",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "2.11",
+     "titel": "Beteiligen an einem Gespräch",
+     "typ": "stufen",
+     "stufen": [
+      "vorhanden",
+      "groesstenteils",
+      "gering",
+      "nicht_vorhanden"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    2,
+    6,
+    11,
+    17
+   ],
+   "gewichtete_punkte": [
+    0,
+    3.75,
+    7.5,
+    11.25,
+    15
+   ]
+  },
+  {
+   "nr": 3,
+   "titel": "Verhaltensweisen und psychische Problemlagen",
+   "gewicht_prozent": 15,
+   "gemeinsam_mit": 2,
+   "kriterien": [
+    {
+     "id": "3.1",
+     "titel": "Motorisch geprägte Verhaltensauffälligkeiten",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.2",
+     "titel": "Nächtliche Unruhe",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.3",
+     "titel": "Selbstschädigendes und autoaggressives Verhalten",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.4",
+     "titel": "Beschädigen von Gegenständen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.5",
+     "titel": "Physisch aggressives Verhalten gegenüber anderen Personen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.6",
+     "titel": "Verbale Aggression",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.7",
+     "titel": "Andere pflegerelevante vokale Auffälligkeiten",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.8",
+     "titel": "Abwehr pflegerischer und anderer unterstützender Maßnahmen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.9",
+     "titel": "Wahnvorstellungen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.10",
+     "titel": "Ängste",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.11",
+     "titel": "Antriebslosigkeit bei depressiver Stimmungslage",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.12",
+     "titel": "Sozial inadäquate Verhaltensweisen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    },
+    {
+     "id": "3.13",
+     "titel": "Sonstige pflegerelevante inadäquate Handlungen",
+     "typ": "stufen",
+     "stufen": [
+      "nie",
+      "selten",
+      "haeufig",
+      "taeglich"
+     ],
+     "punkte": [
+      0,
+      1,
+      3,
+      5
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    1,
+    3,
+    5,
+    7
+   ],
+   "gewichtete_punkte": [
+    0,
+    3.75,
+    7.5,
+    11.25,
+    15
+   ]
+  },
+  {
+   "nr": 4,
+   "titel": "Selbstversorgung",
+   "gewicht_prozent": 40,
+   "kriterien": [
+    {
+     "id": "4.1",
+     "titel": "Waschen des vorderen Oberkörpers",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.2",
+     "titel": "Körperpflege im Bereich des Kopfes (Kämmen, Zahnpflege/Prothesenreinigung, Rasieren)",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.3",
+     "titel": "Waschen des Intimbereichs",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.4",
+     "titel": "Duschen und Baden einschließlich Waschen der Haare",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.5",
+     "titel": "An- und Auskleiden des Oberkörpers",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.6",
+     "titel": "An- und Auskleiden des Unterkörpers",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.7",
+     "titel": "Mundgerechtes Zubereiten der Nahrung und Eingießen von Getränken",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "4.8",
+     "titel": "Essen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      3,
+      6,
+      9
+     ]
+    },
+    {
+     "id": "4.9",
+     "titel": "Trinken",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      2,
+      4,
+      6
+     ]
+    },
+    {
+     "id": "4.10",
+     "titel": "Benutzen einer Toilette oder eines Toilettenstuhls",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      2,
+      4,
+      6
+     ]
+    },
+    {
+     "id": "4.11",
+     "titel": "Bewältigen der Folgen einer Harninkontinenz und Umgang mit Dauerkatheter und Urostoma",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "nur_wenn": "harn_relevant"
+    },
+    {
+     "id": "4.12",
+     "titel": "Bewältigen der Folgen einer Stuhlinkontinenz und Umgang mit Stoma",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ],
+     "nur_wenn": "stuhl_relevant"
+    },
+    {
+     "id": "4.13",
+     "titel": "Ernährung parenteral oder über Sonde",
+     "typ": "stufen",
+     "stufen": [
+      "entfaellt",
+      "teilweise",
+      "vollstaendig"
+     ],
+     "punkte": [
+      0,
+      6,
+      3
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    3,
+    8,
+    19,
+    37
+   ],
+   "gewichtete_punkte": [
+    0,
+    10,
+    20,
+    30,
+    40
+   ]
+  },
+  {
+   "nr": 5,
+   "titel": "Bewältigung von und selbstständiger Umgang mit krankheits- oder therapiebedingten Anforderungen und Belastungen",
+   "gewicht_prozent": 20,
+   "kriterien": [
+    {
+     "id": "5.1-5.7",
+     "typ": "haeufigkeit_gruppe",
+     "teile": [
+      [
+       "5.1",
+       "Medikation"
+      ],
+      [
+       "5.2",
+       "Injektionen (subcutan oder intramuskulär)"
+      ],
+      [
+       "5.3",
+       "Versorgung intravenöser Zugänge (Port)"
+      ],
+      [
+       "5.4",
+       "Absaugen und Sauerstoffgabe"
+      ],
+      [
+       "5.5",
+       "Einreibungen sowie Kälte- und Wärmeanwendungen"
+      ],
+      [
+       "5.6",
+       "Messung und Deutung von Körperzuständen"
+      ],
+      [
+       "5.7",
+       "Körpernahe Hilfsmittel"
+      ]
+     ],
+     "umrechnung": "pro_tag = tag + woche/7 + monat/30",
+     "punktgrenzen": [
+      {
+       "min_pro_tag": 0,
+       "punkte": 0,
+       "text": "keine oder seltener als einmal täglich"
+      },
+      {
+       "min_pro_tag": 1,
+       "punkte": 1,
+       "text": "mindestens einmal bis maximal dreimal täglich"
+      },
+      {
+       "ueber_pro_tag": 3,
+       "punkte": 2,
+       "text": "mehr als dreimal bis maximal achtmal täglich"
+      },
+      {
+       "ueber_pro_tag": 8,
+       "punkte": 3,
+       "text": "mehr als achtmal täglich"
+      }
+     ]
+    },
+    {
+     "id": "5.8-5.11",
+     "typ": "haeufigkeit_gruppe",
+     "teile": [
+      [
+       "5.8",
+       "Verbandswechsel und Wundversorgung"
+      ],
+      [
+       "5.9",
+       "Versorgung mit Stoma"
+      ],
+      [
+       "5.10",
+       "Regelmäßige Einmalkatheterisierung und Nutzung von Abführmethoden"
+      ],
+      [
+       "5.11",
+       "Therapiemaßnahmen in häuslicher Umgebung"
+      ]
+     ],
+     "umrechnung": "pro_tag = tag + woche/7 + monat/30",
+     "punktgrenzen": [
+      {
+       "min_pro_tag": 0,
+       "punkte": 0,
+       "text": "keine oder seltener als einmal wöchentlich"
+      },
+      {
+       "min_pro_woche": 1,
+       "punkte": 1,
+       "text": "ein- bis mehrmals wöchentlich"
+      },
+      {
+       "min_pro_tag": 1,
+       "punkte": 2,
+       "text": "ein- bis unter dreimal täglich"
+      },
+      {
+       "min_pro_tag": 3,
+       "punkte": 3,
+       "text": "mindestens dreimal täglich"
+      }
+     ]
+    },
+    {
+     "id": "5.12-5.15",
+     "typ": "gewichtete_besuche",
+     "teile": [
+      [
+       "5.12",
+       "Zeit- und technikintensive Maßnahmen in häuslicher Umgebung",
+       {
+        "taeglich": 60,
+        "woche": 8.6,
+        "monat": 2
+       }
+      ],
+      [
+       "5.13",
+       "Arztbesuche",
+       {
+        "woche": 4.3,
+        "monat": 1
+       }
+      ],
+      [
+       "5.14",
+       "Besuch anderer medizinischer oder therapeutischer Einrichtungen (bis zu drei Stunden)",
+       {
+        "woche": 4.3,
+        "monat": 1
+       }
+      ],
+      [
+       "5.15",
+       "Zeitlich ausgedehnte Besuche anderer medizinischer oder therapeutischer Einrichtungen (länger als drei Stunden)",
+       {
+        "woche": 8.6,
+        "monat": 2
+       }
+      ]
+     ],
+     "punktgrenzen": [
+      {
+       "ab": 0,
+       "punkte": 0
+      },
+      {
+       "ab": 4.3,
+       "punkte": 1
+      },
+      {
+       "ab": 8.6,
+       "punkte": 2
+      },
+      {
+       "ab": 12.9,
+       "punkte": 3
+      },
+      {
+       "ab": 60,
+       "punkte": 6
+      }
+     ],
+     "umrechnung": "Summe der Gewichte: 5.12 täglich = 60; sonst Häufigkeit × Faktor"
+    },
+    {
+     "id": "5.16",
+     "titel": "Einhaltung einer Diät und anderer krankheits- oder therapiebedingter Verhaltensvorschriften",
+     "typ": "stufen",
+     "stufen": [
+      "entfaellt_oder_selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    1,
+    2,
+    4,
+    6
+   ],
+   "gewichtete_punkte": [
+    0,
+    5,
+    10,
+    15,
+    20
+   ]
+  },
+  {
+   "nr": 6,
+   "titel": "Gestaltung des Alltagslebens und sozialer Kontakte",
+   "gewicht_prozent": 15,
+   "kriterien": [
+    {
+     "id": "6.1",
+     "titel": "Gestaltung des Tagesablaufs und Anpassung an Veränderungen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "6.2",
+     "titel": "Ruhen und Schlafen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "6.3",
+     "titel": "Sichbeschäftigen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "6.4",
+     "titel": "Vornehmen von in die Zukunft gerichteten Planungen",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "6.5",
+     "titel": "Interaktion mit Personen im direkten Kontakt",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    },
+    {
+     "id": "6.6",
+     "titel": "Kontaktpflege zu Personen außerhalb des direkten Umfelds",
+     "typ": "stufen",
+     "stufen": [
+      "selbstaendig",
+      "ueberwiegend_selbstaendig",
+      "ueberwiegend_unselbstaendig",
+      "unselbstaendig"
+     ],
+     "punkte": [
+      0,
+      1,
+      2,
+      3
+     ]
+    }
+   ],
+   "summengrenzen": [
+    0,
+    1,
+    4,
+    7,
+    12
+   ],
+   "gewichtete_punkte": [
+    0,
+    3.75,
+    7.5,
+    11.25,
+    15
+   ]
+  }
+ ],
+ "pflegegrade": [
+  {
+   "grad": 0,
+   "ab": 0
+  },
+  {
+   "grad": 1,
+   "ab": 12.5
+  },
+  {
+   "grad": 2,
+   "ab": 27
+  },
+  {
+   "grad": 3,
+   "ab": 47.5
+  },
+  {
+   "grad": 4,
+   "ab": 70
+  },
+  {
+   "grad": 5,
+   "ab": 90
+  }
+ ],
+ "nicht_abgebildet": [
+  "Besondere Bedarfskonstellation (§ 15 Abs. 4): Gebrauchsunfähigkeit beider Arme und Beine → Pflegegrad 5 auch unter 90 Punkten. Kriterien laut Begutachtungsrichtlinien, im Rechner nur als Hinweis.",
+  "Kinder (§ 15 Abs. 6 und 7)"
+ ]
+}

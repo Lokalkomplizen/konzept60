@@ -1047,6 +1047,16 @@ select.form-field__input {
   object-fit: cover;
 }
 
+/* Handy: Kategoriebilder im Querformat, damit sie weniger Höhe brauchen */
+@media (max-width: 39.99em) {
+  .card-grid .card__media { aspect-ratio: 3 / 2; }
+}
+
+@media (max-width: 59.99em) {
+  .topic-hero__media { max-width: none; aspect-ratio: 3 / 2; }
+  .topic-hero__media img { object-position: 50% 35%; }
+}
+
 .topic-hero__phone { color: var(--color-ink-muted); }
 .topic-hero__phone a { color: var(--color-navy-800); }
 .topic-hero__phone a:hover { color: var(--color-terra-700); }

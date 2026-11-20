@@ -8,6 +8,7 @@
    6. Anbieter-Registrierung – Simulation, Felder je Anbieterart
    7. Ratgeber-Übersicht – Themenfilter (?thema=…)
    8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
+   9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'konzept60-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -652,6 +653,103 @@
     root.hidden = false;
   }
 
+
+  /* ------------------------------------------------------------------------
+     9. Scroll-Animationen
+     Ordnet Elementen per Selektor einen Effekt zu (data-anim), damit Templates
+     und später das WordPress-Theme kein Extra-Markup brauchen.
+     Sicherheitsnetz: Ohne JS, ohne IntersectionObserver oder bei
+     prefers-reduced-motion passiert nichts – alles bleibt normal sichtbar.
+     ------------------------------------------------------------------------ */
+  function initScrollAnimationen() {
+    if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
+
+    var GRUPPEN = [
+      // [Selektor, Effekt, Stagger (Kinder zeitversetzt)]
+      ['.section__header, .page-header h1, .article__body > h2, .topic-columns h2', 'up'],
+      ['.article__body > p, .article__body > ul, .article__body > .article__table-wrap, .article__notice, .relatives__panel, .section > .container > .notice', 'up'],
+      ['.grid, .trust__list, .benefits, .steps', 'up', true],
+      ['.split > :first-child, .topic-columns > :nth-child(odd)', 'left'],
+      ['.split > :last-child, .topic-columns > :nth-child(even)', 'right'],
+      ['.article__figure img, .card__media img', 'zoom']
+    ];
+    var STAGGER_MS = 90, STAGGER_SPALTEN = 3; // Verzögerung je Spalte, nicht über die ganze Liste
+    var ziele = [];
+
+    GRUPPEN.forEach(function (g) {
+      document.querySelectorAll(g[0]).forEach(function (el) {
+        if (g[2]) {
+          Array.prototype.forEach.call(el.children, function (kind, i) {
+            if (kind.hasAttribute('data-anim')) return;
+            kind.setAttribute('data-anim', g[1]);
+            kind.style.setProperty('--anim-delay', (i % STAGGER_SPALTEN) * STAGGER_MS + 'ms');
+            ziele.push(kind);
+          });
+        } else if (!el.hasAttribute('data-anim') && !el.closest('[data-anim]:not([data-anim="zoom"])')) {
+          el.setAttribute('data-anim', g[1]);
+          ziele.push(el);
+        }
+      });
+    });
+    // Bilder in bereits animierten Karten trotzdem zoomen lassen
+    document.querySelectorAll('.article__figure img, .card__media img').forEach(function (img) {
+      if (!img.hasAttribute('data-anim')) { img.setAttribute('data-anim', 'zoom'); ziele.push(img); }
+    });
+
+    // Was beim Laden schon im Bild ist, bleibt einfach stehen (kein Aufblitzen).
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    ziele.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.add('is-visible');
+    });
+    document.documentElement.classList.add('js-anim');
+
+    var io = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    ziele.forEach(function (el) { if (!el.classList.contains('is-visible')) io.observe(el); });
+
+    // Drucken: alles zeigen
+    window.addEventListener('beforeprint', function () {
+      ziele.forEach(function (el) { el.classList.add('is-visible'); });
+    });
+
+    initParallax();
+  }
+
+  /* Dezentes Parallax für große Bilder – nur Desktop, nur transform, rAF-gedrosselt */
+  function initParallax() {
+    var desktop = window.matchMedia('(min-width: 60em)');
+    var bilder = Array.prototype.slice.call(document.querySelectorAll('.hero__media img, .topic-hero__media img'));
+    if (!bilder.length) return;
+    var STAERKE = 28; // max. Verschiebung in px nach oben/unten
+    var geplant = false;
+
+    function aktualisieren() {
+      geplant = false;
+      var vh = window.innerHeight;
+      bilder.forEach(function (img) {
+        if (!desktop.matches) { img.classList.remove('has-parallax'); return; }
+        var r = img.parentNode.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var p = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2); // -1 … 1
+        p = Math.max(-1, Math.min(1, p));
+        img.style.setProperty('--parallax-y', (p * -STAERKE).toFixed(1) + 'px');
+        img.classList.add('has-parallax');
+      });
+    }
+    function anfordern() {
+      if (!geplant) { geplant = true; window.requestAnimationFrame(aktualisieren); }
+    }
+    window.addEventListener('scroll', anfordern, { passive: true });
+    window.addEventListener('resize', anfordern, { passive: true });
+    aktualisieren();
+  }
+
   /* ------------------------------------------------------------------------ */
   initNavigation();
   var updateLeistungen = initLeistungen();
@@ -660,4 +758,5 @@
   initProviderForm();
   initRatgeberFilter();
   initVorlesen();
+  initScrollAnimationen();
 })();

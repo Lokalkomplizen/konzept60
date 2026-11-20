@@ -1757,3 +1757,61 @@ select.form-field__input {
   font-size: var(--font-size-sm);
   color: var(--color-ink-muted);
 }
+
+/* ==========================================================================
+   Scroll-Animationen (bewusst dezent, für ältere Nutzer ruhig gehalten)
+   - main.js Abschnitt 9 setzt data-anim + .js-anim; ohne JS ist alles sichtbar.
+   - Nur bei prefers-reduced-motion: no-preference. Kurze Wege, einmalig.
+   - Elemente, die beim Laden schon sichtbar sind, werden nicht animiert.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .js-anim [data-anim] {
+    opacity: 0;
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: var(--anim-delay, 0ms);
+  }
+  .js-anim [data-anim="up"]    { transform: translate3d(0, 16px, 0); }
+  .js-anim [data-anim="left"]  { transform: translate3d(-20px, 0, 0); }
+  .js-anim [data-anim="right"] { transform: translate3d(20px, 0, 0); }
+  /* Zoom: Bild sitzt in einem Rahmen mit overflow: hidden */
+  .js-anim [data-anim="zoom"] {
+    transform: scale(1.05);
+    transition-duration: 0.6s, 1.2s;
+  }
+  .js-anim [data-anim].is-visible { opacity: 1; transform: none; }
+
+  /* Handy: seitliche Bewegungen würden zum Seitenrand drängen → senkrecht */
+  @media (max-width: 47.99em) {
+    .js-anim [data-anim="left"],
+    .js-anim [data-anim="right"] { transform: translate3d(0, 16px, 0); }
+  }
+
+  /* Parallax (nur Desktop, main.js setzt --parallax-y) */
+  .has-parallax {
+    transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.08);
+  }
+}
+
+/* „So funktioniert’s“: Sticky Scroll ab Desktop – Überschrift bleibt stehen,
+   die Schritte laufen rechts daran vorbei. Mobil bleibt alles untereinander. */
+@media (min-width: 64em) {
+  .steps-section .container {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-3xl);
+    align-items: start;
+  }
+  .steps-section .section__header {
+    position: sticky;
+    top: var(--space-2xl);
+    margin-bottom: 0;
+  }
+  .steps-section .steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+  .steps-section .step { padding: var(--space-2xl) var(--space-xl); }
+  .steps-section .notice { grid-column: 2; margin-top: var(--space-xl); }
+}

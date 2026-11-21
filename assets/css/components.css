@@ -1022,14 +1022,48 @@ select.form-field__input {
   object-fit: cover;
 }
 
-/* Große Monitore: Karten werden breiter, Bilder daher quadratisch statt 4:5 */
-@media (min-width: 90em) {
-  .card-grid .card__media { aspect-ratio: 1 / 1; }
+/* Themen-Raster als EIN zusammenhängender Block (Startseite + /themen/):
+   gemeinsame Fläche mit Rand und Schatten, Felder durch feine Linien getrennt
+   (1px-Gap auf Sand-Hintergrund), Bilder eingerückt im Querformat 16:10 –
+   etwa halb so hoch wie die früheren 4:5-Bilder, auch auf dem Handy quer. */
+.card-grid {
+  gap: 1px;
+  background: var(--color-sand-300);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-/* Handy: Kategoriebilder im Querformat, damit sie weniger Höhe brauchen */
+.card-grid > li { background: var(--color-white); }
+
+.card-grid .card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  transition: background-color var(--transition);
+}
+
+.card-grid .card:hover,
+.card-grid .card:focus-within { background: var(--color-sand-50); }
+
+.card-grid .card__media {
+  aspect-ratio: 16 / 10;
+  margin: var(--space-l) var(--space-l) 0;
+  border: 0;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.card-grid .card__body { padding: var(--space-m) var(--space-l) var(--space-s); }
+
+.card-grid .card__examples { margin-bottom: var(--space-m); }
+
 @media (max-width: 39.99em) {
-  .card-grid .card__media { aspect-ratio: 3 / 2; }
+  .card-grid .card__media { aspect-ratio: 2 / 1; margin: var(--space-m) var(--space-m) 0; }
+  .card-grid .card__media img { object-position: 50% 22%; }
+  .card-grid .card__body { padding: var(--space-m) var(--space-m) var(--space-xs); }
 }
 
 @media (max-width: 59.99em) {

@@ -238,6 +238,8 @@ def hinweis_block(t):
 #   inline_bild, inline_bild_alt, inline_nach_ueberschrift  zweites Bild im Text: nach der
 #       ersten Liste des ##-Abschnitts, dessen Überschrift so beginnt (sonst direkt nach der Überschrift)
 #   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag; mehrere Tabellen: „Erste | Zweite“
+#   seo_titel              eigener <title>/og:title statt "titel" (→ WordPress: SEO-Titel, z. B. Yoast/Rank Math)
+#   meta_beschreibung      eigene Meta-Description statt des gekürzten ersten Absatzes
 # --------------------------------------------------------------------------
 FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
@@ -485,7 +487,7 @@ def load_beitraege(themen):
         b = dict(meta)
         b["thema_titel"] = themen_by_slug[meta["thema"]]["titel"]
         b["anreisser"] = kuerzen(plain(first), 160)
-        b["description"] = kuerzen(plain(first), 155)
+        b["description"] = meta.get("meta_beschreibung") or kuerzen(plain(first), 155)
         b["url"] = f"/ratgeber/{meta['slug']}/"
         b["_blocks"] = blocks
         beitraege.append(b)
@@ -523,7 +525,8 @@ def add_asset_versions(page):
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
     keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
-            "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis")
+            "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis",
+            "seo_titel", "meta_beschreibung")
     data = {
         "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
         "beitraege": [{k: b[k] for k in keys if k in b} for b in beitraege],
@@ -675,7 +678,7 @@ def beitrag_ctx(b, beitraege):
         f'Weitere Beiträge zum Thema {esc(b["thema_titel"])}</a></p>'
     ) if gleiches_thema else ""
     return {
-        "meta_titel": b["titel"],
+        "meta_titel": b.get("seo_titel") or b["titel"],
         "meta_description": b["description"],
         "beitrag_jsonld": article_jsonld(b),
         "og_article": b,

@@ -2,6 +2,22 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "fruehstueck-ab-60-eiweiss",
+      "titel": "Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "fruehstueck-ab-60-eiweiss",
+      "bild_alt": "Ausgewogenes Frühstück mit Skyr, Beeren, Haferflocken, Nüssen, Eiern und Vollkornbrot.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-21 19:00",
+      "geaendert": "2026-11-21",
+      "anreisser": "Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln…",
+      "url": "/ratgeber/fruehstueck-ab-60-eiweiss/",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.",
+      "seo_titel": "Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist",
+      "meta_beschreibung": "Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag."
+    },
+    {
       "slug": "ernaehrung-ab-60",
       "titel": "Fit ab 60: Welche Lebensmittel jetzt besonders wertvoll für Ihren Körper sind",
       "thema": "freizeit-lebensqualitaet",

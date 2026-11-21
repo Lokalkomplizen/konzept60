@@ -41,7 +41,7 @@ Bei einem Körpergewicht von 70 Kilogramm entspricht das ungefähr 70 Gramm Eiwe
 
 **Wichtig:** Bei bestimmten Erkrankungen kann der individuelle Bedarf abweichen. Wer beispielsweise an einer Nierenerkrankung leidet, sollte eine höhere Eiweißzufuhr vorher ärztlich abklären.
 
-**Unser Alltagstipp:** Verteilen Sie eiweißreiche Lebensmittel möglichst auf mehrere Mahlzeiten. Ein Joghurt zum Frühstück, ein Linsengericht zum Mittagessen und ein Ei oder etwas Quark am Abend sind ein guter Anfang.
+**Unser Alltagstipp:** Verteilen Sie eiweißreiche Lebensmittel möglichst auf mehrere Mahlzeiten. Ein Joghurt zum Frühstück, ein Linsengericht zum Mittagessen und ein Ei oder etwas Quark am Abend sind ein guter Anfang. Ideen für den Morgen finden Sie in unserem Beitrag [Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört](/ratgeber/fruehstueck-ab-60-eiweiss/).
 
 ## 2. Ballaststoffe: Gut für eine aktive Verdauung
 

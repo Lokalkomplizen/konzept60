@@ -494,7 +494,27 @@ def load_beitraege(themen):
     # Neueste zuerst (→ WordPress: orderby date DESC): Feld "veroeffentlicht" (JJJJ-MM-TT HH:MM),
     # sonst "geaendert"; bei Gleichstand Dateiname absteigend
     beitraege.sort(key=lambda x: (x.get("veroeffentlicht", x["geaendert"]), x["slug"]), reverse=True)
-    return beitraege
+    return themen_streuen(beitraege)
+
+
+ABSTAND = 2   # gleiches Thema frühestens nach 2 anderen Beiträgen (3er-Raster: nie zweimal in einer Zeile)
+
+
+def themen_streuen(beitraege):
+    """Beiträge desselben Themas sollen nicht nebeneinander stehen (Übersicht, Startseite, Handy-Liste).
+    Greedy: Der nächstneuere Beitrag, dessen Thema in den letzten ABSTAND Beiträgen nicht vorkommt,
+    rückt vor. Geht das nicht mehr (nur noch ein Thema übrig), bleibt die Datumsfolge.
+    (→ WordPress: dieselbe Logik in der Query-Schleife bzw. per pre_get_posts/Filter.)"""
+    rest, out = list(beitraege), []
+    while rest:
+        # Zuerst: Thema kommt in den letzten ABSTAND Beiträgen nicht vor; sonst nur nicht direkt davor
+        for fenster in (ABSTAND, 1):
+            zuletzt = {b["thema"] for b in out[-fenster:]}
+            i = next((k for k, b in enumerate(rest) if b["thema"] not in zuletzt), None)
+            if i is not None:
+                break
+        out.append(rest.pop(i or 0))
+    return out
 
 
 # Cache-Busting: CSS/JS-Verweise bekommen ?v=<Inhalts-Hash>, damit Browser nach

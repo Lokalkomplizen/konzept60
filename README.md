@@ -44,6 +44,7 @@ Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (
 templates/_layout.html     Grundgerüst: <head>, Skip-Link, <main>, Skripte
 templates/<seite>.html     Seiteninhalt; Kopf-Kommentar <!--meta title/description/nav -->
 partials/icons.html        SVG-Sprite
+assets/img/illus.svg       Illustrations-Icons (illu-…, 96×96, Stil der Trust-Icons; extern per <use>, ?v=Hash vom Build)
 partials/header.html       Kopf inkl. Hauptnavigation (Platzhalter nav:… → aria-current)
 partials/footer.html       Fuß inkl. Themen-/Regionslisten
 data/themen.json           slug, titel, kurztext, einleitung, beispiele[], leistungen[] (5–8), angebote[], hinweis?, bild{datei, alt}

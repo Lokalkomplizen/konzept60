@@ -58,6 +58,19 @@
     return svg;
   }
 
+  // Illustrations-Icon (dekorativ) aus dem externen Sprite /assets/img/illus.svg
+  function illu(name) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'illu illu--s choice-card__illu');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    var use = document.createElementNS(ns, 'use');
+    use.setAttribute('href', (data.sprite || '/assets/img/illus.svg') + '#illu-' + name);
+    svg.appendChild(use);
+    return svg;
+  }
+
   function button(label, className, onClick, withArrow) {
     var b = el('button', { type: 'button', 'class': 'btn ' + className }, [label]);
     if (withArrow) b.appendChild(icon('arrow'));
@@ -81,11 +94,11 @@
 
   function stepOptions(step) {
     if (step === 'ziel') {
-      return data.ziele.map(function (z) { return { value: z.id, titel: z.titel, hinweis: z.hinweis }; });
+      return data.ziele.map(function (z) { return { value: z.id, titel: z.titel, hinweis: z.hinweis, illu: z.illu }; });
     }
     if (step === 'thema') {
       if (ST.ziel === 'alltag') {
-        return data.alltag.map(function (a) { return { value: a.id, titel: a.titel, hinweis: a.hinweis }; });
+        return data.alltag.map(function (a) { return { value: a.id, titel: a.titel, hinweis: a.hinweis, illu: a.illu }; });
       }
       return data.themen.map(function (t) { return { value: t.slug, titel: t.titel, hinweis: '' }; });
     }
@@ -162,7 +175,7 @@
       if (o.value === selected) input.checked = true;
       var text = el('span', { 'class': 'choice-card__text' }, [el('span', { 'class': 'choice-card__title', text: o.titel })]);
       if (o.hinweis) text.appendChild(el('span', { 'class': 'choice-card__hint', text: o.hinweis }));
-      list.appendChild(el('label', { 'class': 'choice-card' }, [input, text]));
+      list.appendChild(el('label', { 'class': 'choice-card' + (o.illu ? ' choice-card--illu' : '') }, [input, o.illu ? illu(o.illu) : null, text]));
     });
     fieldset.appendChild(list);
 

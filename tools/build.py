@@ -501,6 +501,10 @@ def load_beitraege(themen):
 ASSET_RE = re.compile(r'((?:href|src)="/assets/(?:css|js)/[^"?]+\.(?:css|js))"')
 
 
+ILLU_SPRITE = "/assets/img/illus.svg"
+ILLU_RE = re.compile(r'href="/assets/img/illus\.svg#')
+
+
 def _asset_version(path):
     data = (ROOT / path.lstrip("/")).read_bytes()
     return hashlib.sha256(data).hexdigest()[:10]
@@ -511,7 +515,9 @@ def add_asset_versions(page):
         attr_url = m.group(1)
         url = attr_url.split('"', 1)[1]
         return f'{attr_url}?v={_asset_version(url)}"'
-    return ASSET_RE.sub(repl, page)
+    page = ASSET_RE.sub(repl, page)
+    # Illustrations-Sprite: <use href="/assets/img/illus.svg#illu-…"> → ?v=<Hash> vor dem Fragment
+    return ILLU_RE.sub(lambda m: f'href="{ILLU_SPRITE}?v={_asset_version(ILLU_SPRITE)}#', page)
 
 
 def write_ratgeber_json(beitraege):
@@ -585,11 +591,12 @@ def assistent_data(themen, regionen, beitraege):
     kein Nachladen). Gelesen von assets/js/assistent.js. → WordPress: wp_localize_script bzw. data-Attribut
     im Block-Template; Beiträge per WP_Query nach Taxonomie themenbereich."""
     data = {
+        "sprite": f"{ILLU_SPRITE}?v={_asset_version(ILLU_SPRITE)}",
         "ziele": [
-            {"id": "praktisch", "titel": "Ich brauche praktische Unterstützung", "hinweis": "Zum Beispiel im Haushalt, bei Reparaturen oder im Alltag"},
-            {"id": "informieren", "titel": "Ich möchte mich informieren", "hinweis": "Verständliche Beiträge im Ratgeber"},
-            {"id": "alltag", "titel": "Ich möchte meinen Alltag besser organisieren", "hinweis": "Checklisten und Wohnungs-Check zum Selbermachen"},
-            {"id": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
+            {"id": "praktisch", "illu": "praktisch", "titel": "Ich brauche praktische Unterstützung", "hinweis": "Zum Beispiel im Haushalt, bei Reparaturen oder im Alltag"},
+            {"id": "informieren", "illu": "wissen", "titel": "Ich möchte mich informieren", "hinweis": "Verständliche Beiträge im Ratgeber"},
+            {"id": "alltag", "illu": "alltag", "titel": "Ich möchte meinen Alltag besser organisieren", "hinweis": "Checklisten und Wohnungs-Check zum Selbermachen"},
+            {"id": "angehoerige", "illu": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
         ],
         "themen": [
             {
@@ -601,11 +608,11 @@ def assistent_data(themen, regionen, beitraege):
             for t in themen
         ],
         "alltag": [
-            {"id": "checklisten", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
-            {"id": "wohnungs-check", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
-            {"id": "pflegegrad-rechner", "titel": "Pflegegradrechner", "hinweis": "Welcher Pflegegrad könnte vorliegen?", "url": "/mein-alltag/pflegegrad-rechner/", "bald": False},
-            {"id": "termine", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
-            {"id": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+            {"id": "checklisten", "illu": "checkliste", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
+            {"id": "wohnungs-check", "illu": "wohnungscheck", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
+            {"id": "pflegegrad-rechner", "illu": "pflegegrad", "titel": "Pflegegradrechner", "hinweis": "Welcher Pflegegrad könnte vorliegen?", "url": "/mein-alltag/pflegegrad-rechner/", "bald": False},
+            {"id": "termine", "illu": "erinnerungen", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+            {"id": "plan", "illu": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
         ],
         "orte": [r["name"] for r in regionen],
     }

@@ -2,6 +2,20 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "ernaehrung-ab-60",
+      "titel": "Fit ab 60: Welche Lebensmittel jetzt besonders wertvoll für Ihren Körper sind",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "ernaehrung-ab-60",
+      "bild_alt": "Auf einem Holztisch liegen Lachs, Eier, Haferflocken, Joghurt mit Beeren, Linsen, Nüsse, Vollkornbrot, Käse, Milch, Olivenöl, Äpfel, Brokkoli und weiteres Gemüse.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-21 18:30",
+      "geaendert": "2026-11-21",
+      "anreisser": "Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter…",
+      "url": "/ratgeber/ernaehrung-ab-60/",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026."
+    },
+    {
       "slug": "kurzzeitpflege",
       "titel": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
       "thema": "pflege-betreuung",

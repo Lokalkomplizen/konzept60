@@ -2,8 +2,8 @@
 titel: Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört
 slug: fruehstueck-ab-60-eiweiss
 thema: freizeit-lebensqualitaet
-bild: fruehstueck-ab-60-eiweiss
-bild_alt: Ausgewogenes Frühstück mit Skyr, Beeren, Haferflocken, Nüssen, Eiern und Vollkornbrot.
+bild: fruehstueck-ab-60-garten
+bild_alt: Gedeckter Frühstückstisch im Garten mit Joghurt-Bowl mit Beeren, Rührei, Vollkornbrötchen, gekochtem Ei, Hüttenkäse, Nüssen, Obst und Kaffee.
 stand: November 2026
 veroeffentlicht: 2026-11-21 19:00
 geaendert: 2026-11-21

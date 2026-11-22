@@ -134,6 +134,10 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 - `helfer` – private Helfer. Meta: Hilfeangebote, Verfügbarkeit, Prüfstatus
 - `anfrage` – eingehende Anliegen. Meta: Für wen, Leistungen, PLZ/Ort, Kontakt, Rückrufwunsch, Einwilligung Bearbeitung (+ Zeitstempel), Newsletter-Einwilligung (separat), Weitergabe-Zustimmungen je Anbieter, Bearbeitungsstatus
 
+- `veranstaltung` – Termine. Meta: `datum` (Y-m-d), `beginn`, `ende`, `ort`, `veranstalter`, `kosten`, `anmeldung`, `barrierefrei`, `link` (= `quelle_url`), `geprueft_am`, `status`; interne Meta (nie ausgeben): `kontakt_name`, `kontakt_email`, `kontakt_telefon`, Einwilligung + Zeitstempel. Titel = `post_title`, `kurztext` = `post_excerpt`. Taxonomien: `kategorie` (Bewegung, Kultur, Bildung, Begegnung, Digital, Gesundheit; wie `themenbereich` aufgebaut) und `region` (= Stadt). Anders als die übrigen CPTs öffentlich (`public => true`, Archiv `/veranstaltungen/`).
+  - **Meldung durch Veranstalter:** `/veranstaltungen/melden/` → `POST /wp-json/wirhelfen/v1/veranstaltungen` legt den Beitrag mit `post_status = pending` an (`WirHelfenAPI.veranstaltungMelden`, Payload als JSDoc in `api.js`). Prüfung im WP-Backend über den nativen Status „Ausstehend“ (Listenfilter, Schnellbearbeitung, „Veröffentlichen“) – kein Plugin nötig. Serverseitig: Nonce/Honigtopf (`website` muss leer sein), Sanitizing, Längenlimit 400 Zeichen. Eigene Termine des Teams: direkt `publish`.
+  - **Ablaufdatum:** Archiv/Liste per `WP_Query` mit `meta_query` `datum >= heute`, `orderby meta_value`, `order ASC`; vergangene Termine bleiben im Backend, werden aber nicht ausgegeben (kein Cron nötig).
+
 **Ratgeber = Standard-Beiträge (`post`)** – Mapping `content/ratgeber/*.md` / `data/ratgeber.json` → WordPress:
 
 | Frontmatter | WordPress |

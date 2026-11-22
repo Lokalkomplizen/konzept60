@@ -1,0 +1,390 @@
+<!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/veranstaltungen-melden.html – nicht direkt bearbeiten -->
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veranstaltung melden – Wir helfen</title>
+  <meta name="description" content="Sie organisieren eine Veranstaltung für Menschen ab 60? Melden Sie sie kostenlos bei uns. Unser Team prüft jede Meldung, bevor sie veröffentlicht wird.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <link rel="canonical" href="https://www.example.org/veranstaltungen/melden/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Wir helfen">
+  <meta property="og:title" content="Veranstaltung melden – Wir helfen">
+  <meta property="og:description" content="Sie organisieren eine Veranstaltung für Menschen ab 60? Melden Sie sie kostenlos bei uns. Unser Team prüft jede Meldung, bevor sie veröffentlicht wird.">
+  <meta property="og:url" content="https://www.example.org/veranstaltungen/melden/">
+  <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
+
+  <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
+  <script src="/assets/js/no-js.js?v=cbdd4bffae"></script>
+
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
+       → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=4e56ec12ae">
+  <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
+  <link rel="stylesheet" href="/assets/css/components.css?v=586f95313c">
+  <link rel="stylesheet" href="/assets/css/print.css?v=12d716ffd3" media="print">
+
+</head>
+<body>
+
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/></symbol>
+  <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
+  <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
+  <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="/" aria-label="Wir helfen – zur Startseite">
+      <span class="logo__text">Wir helfen</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/" aria-current="page">Mein Alltag</a></li>
+        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
+      </ul>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
+    </nav>
+  </div>
+</header>
+<!-- END partial:header -->
+
+<main id="inhalt" tabindex="-1">
+  <!-- Veranstaltung melden  (→ WordPress: page-veranstaltung-melden.php; Formular legt per REST
+       POST /wp-json/wirhelfen/v1/veranstaltungen einen Beitrag im CPT "veranstaltung" mit post_status "pending" an.
+       Veröffentlichung erst nach Prüfung im WP-Backend. Validierung: main.js, Abschnitt „Veranstaltung melden“.) -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
+          <li><a href="/veranstaltungen/melden/" aria-current="page">Veranstaltung melden</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Für Veranstalter</span>
+      <h1>Veranstaltung melden</h1>
+      <p class="section__intro">
+        Sie organisieren ein Angebot für Menschen ab 60 – als Seniorenbüro, Verein, Kirchengemeinde, Volkshochschule oder private Gruppe?
+        Melden Sie es uns. Die Meldung ist kostenlos.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--sand" id="melden" aria-labelledby="melden-titel">
+    <div class="container request-layout">
+      <div class="request-layout__aside">
+        <h2 id="melden-titel" tabindex="-1">So läuft es ab</h2>
+        <ul class="check-list">
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kostenlos für Veranstalter</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Unser Team prüft jede Meldung, bevor sie veröffentlicht wird</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kein Anspruch auf Veröffentlichung</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Nur Angebote mit Bezug zu Menschen ab 60 in unserer Region: Düsseldorf, Wuppertal, Hilden, Remscheid, Solingen, Langenfeld, Haan und Wesel</span></li>
+        </ul>
+        <p class="form-field__hint">Wir kürzen und überarbeiten Texte bei Bedarf. Bei Fragen melden wir uns per E-Mail.</p>
+      </div>
+
+      <div class="request-layout__main">
+        <form class="form form--compact" id="melden-formular" action="/veranstaltungen/melden/" method="post" aria-labelledby="melden-formular-titel">
+          <h3 class="form__title" id="melden-formular-titel">Ihre Veranstaltung</h3>
+          <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
+
+          <div class="form-summary" id="melden-fehler" tabindex="-1" hidden>
+            <h3>Bitte prüfen Sie Ihre Angaben</h3>
+            <ul data-fehlerliste></ul>
+          </div>
+
+          <!-- Spamschutz (Honigtopf): für Menschen unsichtbar, wird nicht ausgefüllt. → WordPress: serverseitig prüfen + Nonce -->
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="m-website">Bitte leer lassen</label>
+            <input id="m-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">1</span> Die Veranstaltung</legend>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-titel">Titel <span class="form-field__req">*</span></label>
+              <input class="form-field__input" id="m-titel" name="titel" type="text" maxlength="120" required aria-describedby="m-titel-fehler">
+              <p class="form-field__error" id="m-titel-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-kategorie">Thema <span class="form-field__req">*</span></label>
+              <select class="form-field__input" id="m-kategorie" name="kategorie" required aria-describedby="m-kategorie-fehler">
+                <option value="">Bitte wählen</option>
+                <option value="Bewegung">Bewegung</option>
+                <option value="Kultur">Kultur</option>
+                <option value="Bildung">Bildung</option>
+                <option value="Begegnung">Begegnung</option>
+                <option value="Digital">Digital</option>
+                <option value="Gesundheit">Gesundheit</option>
+              </select>
+              <p class="form-field__error" id="m-kategorie-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form__row form__row--3">
+              <div class="form-field">
+                <label class="form-field__label" for="m-datum">Datum <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="m-datum" name="datum" type="date" required aria-describedby="m-datum-fehler">
+                <p class="form-field__error" id="m-datum-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="m-beginn">Beginn <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="m-beginn" name="beginn" type="time" required aria-describedby="m-beginn-fehler">
+                <p class="form-field__error" id="m-beginn-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="m-ende">Ende <span class="form-field__hint">(optional)</span></label>
+                <input class="form-field__input" id="m-ende" name="ende" type="time" aria-describedby="m-ende-fehler">
+                <p class="form-field__error" id="m-ende-fehler" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-stadt">Stadt <span class="form-field__req">*</span></label>
+              <select class="form-field__input" id="m-stadt" name="stadt" required aria-describedby="m-stadt-fehler">
+                <option value="">Bitte wählen</option>
+                <option value="Düsseldorf">Düsseldorf</option>
+                <option value="Wuppertal">Wuppertal</option>
+                <option value="Hilden">Hilden</option>
+                <option value="Remscheid">Remscheid</option>
+                <option value="Solingen">Solingen</option>
+                <option value="Langenfeld">Langenfeld</option>
+                <option value="Haan">Haan</option>
+                <option value="Wesel">Wesel</option>
+              </select>
+              <p class="form-field__error" id="m-stadt-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-ort">Veranstaltungsort mit Straße <span class="form-field__req">*</span></label>
+              <span class="form-field__hint" id="m-ort-hinweis">Zum Beispiel: Begegnungsstätte Beispiel, Musterstraße 1</span>
+              <input class="form-field__input" id="m-ort" name="ort" type="text" maxlength="160" required aria-describedby="m-ort-hinweis m-ort-fehler">
+              <p class="form-field__error" id="m-ort-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-beschreibung">Kurzbeschreibung <span class="form-field__req">*</span></label>
+              <span class="form-field__hint" id="m-beschreibung-hinweis">Was passiert, für wen ist es gedacht? Höchstens 400 Zeichen. Wir überarbeiten den Text bei Bedarf.</span>
+              <textarea class="form-field__input" id="m-beschreibung" name="beschreibung" rows="5" maxlength="400" required aria-describedby="m-beschreibung-hinweis m-beschreibung-zaehler m-beschreibung-fehler"></textarea>
+              <p class="form-field__hint" id="m-beschreibung-zaehler" data-zaehler>Noch 400 Zeichen</p>
+              <p class="form-field__error" id="m-beschreibung-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-kosten">Kosten <span class="form-field__hint">(optional)</span></label>
+              <input class="form-field__input" id="m-kosten" name="kosten" type="text" maxlength="80" placeholder="z. B. kostenlos oder 3 Euro">
+            </div>
+
+            <fieldset class="form-field" id="m-anmeldung">
+              <legend>Ist eine Anmeldung nötig?</legend>
+              <div class="choice-group choice-group--inline">
+                <label class="choice"><input type="radio" name="anmeldung" value="ja"> <span>Ja</span></label>
+                <label class="choice"><input type="radio" name="anmeldung" value="nein"> <span>Nein</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-field" id="m-barrierefrei">
+              <legend>Ist der Ort barrierefrei zugänglich?</legend>
+              <div class="choice-group choice-group--inline">
+                <label class="choice"><input type="radio" name="barrierefrei" value="ja"> <span>Ja</span></label>
+                <label class="choice"><input type="radio" name="barrierefrei" value="nein"> <span>Nein</span></label>
+                <label class="choice"><input type="radio" name="barrierefrei" value="unbekannt" checked> <span>Weiß ich nicht</span></label>
+              </div>
+            </fieldset>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-link">Internetseite zur Veranstaltung <span class="form-field__hint">(optional)</span></label>
+              <input class="form-field__input" id="m-link" name="link" type="url" inputmode="url" autocomplete="url" placeholder="https://" aria-describedby="m-link-fehler">
+              <p class="form-field__error" id="m-link-fehler" aria-live="polite"></p>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Der Veranstalter</legend>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-veranstalter">Name des Veranstalters <span class="form-field__req">*</span></label>
+              <span class="form-field__hint" id="m-veranstalter-hinweis">Wird mit der Veranstaltung veröffentlicht, zum Beispiel „Seniorenbüro Beispielstadt“.</span>
+              <input class="form-field__input" id="m-veranstalter" name="veranstalter" type="text" maxlength="120" required aria-describedby="m-veranstalter-hinweis m-veranstalter-fehler">
+              <p class="form-field__error" id="m-veranstalter-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="notice notice--privacy" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+              <p><strong>Nur für Rückfragen.</strong> Ansprechperson, E-Mail und Telefon werden nicht veröffentlicht.</p>
+            </div>
+
+            <div class="form-field">
+              <label class="form-field__label" for="m-ansprechperson">Ansprechperson <span class="form-field__req">*</span></label>
+              <input class="form-field__input" id="m-ansprechperson" name="ansprechperson" type="text" autocomplete="name" required aria-describedby="m-ansprechperson-fehler">
+              <p class="form-field__error" id="m-ansprechperson-fehler" aria-live="polite"></p>
+            </div>
+
+            <div class="form__row form__row--2">
+              <div class="form-field">
+                <label class="form-field__label" for="m-email">E-Mail <span class="form-field__req">*</span></label>
+                <input class="form-field__input" id="m-email" name="email" type="email" autocomplete="email" required aria-describedby="m-email-fehler">
+                <p class="form-field__error" id="m-email-fehler" aria-live="polite"></p>
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="m-telefon">Telefon <span class="form-field__hint">(optional)</span></label>
+                <input class="form-field__input" id="m-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="m-telefon-fehler">
+                <p class="form-field__error" id="m-telefon-fehler" aria-live="polite"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__section">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Bestätigung</legend>
+            <div class="form-field" id="m-einwilligung-feld">
+              <label class="choice" for="m-einwilligung">
+                <input type="checkbox" id="m-einwilligung" name="einwilligung" required aria-describedby="m-einwilligung-fehler">
+                <span>Ich bin berechtigt, diese Angaben zu machen, und mit der Veröffentlichung nach Prüfung einverstanden. Meine Kontaktdaten dürfen für Rückfragen verwendet werden. <a href="/datenschutz/">Datenschutz</a> <span class="form-field__req">*</span></span>
+              </label>
+              <p class="form-field__error" id="m-einwilligung-fehler" aria-live="polite"></p>
+            </div>
+          </fieldset>
+
+          <div class="form__actions">
+            <button class="btn btn--primary btn--block" type="submit" data-absenden>Veranstaltung melden</button>
+            <p class="form-field__error" data-sende-fehler role="alert"></p>
+            <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
+          </div>
+        </form>
+
+        <div class="form-success" id="melden-erfolg" tabindex="-1" role="status" hidden>
+          <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
+          <h3>Danke für Ihre Meldung</h3>
+          <p>Danke, wir prüfen Ihre Meldung und melden uns bei Fragen per E-Mail.</p>
+          <p class="form-success__prototype">
+            <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+            <span>Prototyp – es wurden keine Daten gesendet oder gespeichert.</span>
+          </p>
+          <button class="btn btn--secondary" type="button" data-neue-anfrage>Weitere Veranstaltung melden</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="logo logo--light" href="/" aria-label="Wir helfen – zur Startseite">
+          <span class="logo__text">Wir helfen</span>
+        </a>
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          Wir erbringen selbst keine Dienstleistungen.</p>
+      </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/?region=solingen#anfrage" data-region="solingen">Solingen</a></li>
+          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul>
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
+          <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Wir helfen (Arbeitstitel)</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
+    </div>
+  </div>
+</footer>
+<!-- END partial:footer -->
+
+<script src="/assets/js/main.js?v=d0f72c6236" defer></script>
+  <script src="/assets/js/api.js?v=1c515fef75" defer></script>
+</body>
+</html>

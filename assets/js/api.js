@@ -67,5 +67,54 @@
     });
   }
 
-  root.WirHelfenAPI = Object.freeze({ sendeAnfrage: sendeAnfrage });
+  /**
+   * Nutzlast einer Veranstaltungsmeldung (Formular /veranstaltungen/melden/).
+   * Felder wie data/veranstaltungen.json; Veranstalter-Kontakt wird NICHT veröffentlicht.
+   *
+   * Späteres Ziel (WordPress): POST /wp-json/wirhelfen/v1/veranstaltungen
+   * - legt einen Beitrag im CPT `veranstaltung` mit post_status "pending" an (Prüfung im Backend)
+   * - Meta: datum, beginn, ende, ort, veranstalter, kosten, anmeldung, barrierefrei, link,
+   *         kontakt_name, kontakt_email, kontakt_telefon (nur intern), Einwilligung + Zeitstempel
+   * - Taxonomien: kategorie (aus payload.kategorie), region (aus payload.stadt)
+   * - Antwort 201 { "ok": true } | 4xx/5xx { "ok": false, "fehler": "…" }; Nonce/Honigtopf serverseitig
+   *
+   * @typedef {Object} VeranstaltungPayload
+   * @property {string} titel
+   * @property {string} datum           ISO (JJJJ-MM-TT)
+   * @property {string} beginn          HH:MM
+   * @property {string} ende            HH:MM oder leer
+   * @property {string} stadt           Eine der Städte aus data/regionen.json
+   * @property {string} ort             Veranstaltungsort + Straße
+   * @property {string} kategorie       Bewegung|Kultur|Bildung|Begegnung|Digital|Gesundheit
+   * @property {string} beschreibung    Höchstens 400 Zeichen (wird redaktionell zu `kurztext`)
+   * @property {string} kosten          Freitext oder leer
+   * @property {('ja'|'nein'|'')} anmeldung
+   * @property {('ja'|'nein'|'unbekannt')} barrierefrei
+   * @property {string} link            URL oder leer
+   * @property {string} veranstalter    Wird veröffentlicht
+   * @property {string} ansprechperson  Nicht veröffentlicht
+   * @property {string} email           Nicht veröffentlicht
+   * @property {string} telefon         Nicht veröffentlicht, evtl. leer
+   * @property {boolean} einwilligung   Pflicht (Berechtigung + Datenschutz), immer true
+   */
+
+  /**
+   * Meldet eine Veranstaltung (SIMULIERT – es verlässt keine Information das Gerät).
+   * @param {VeranstaltungPayload} payload
+   * @returns {Promise<AnfrageAntwort>}
+   */
+  function veranstaltungMelden(payload) {
+    return new Promise(function (resolve, reject) {
+      if (!payload || typeof payload !== 'object') {
+        reject(new Error('Ungültige Meldung'));
+        return;
+      }
+      // SIMULATION: kein Netzwerkzugriff. Später: fetch('/wp-json/wirhelfen/v1/veranstaltungen', { method: 'POST', … })
+      root.setTimeout(function () {
+        resolve({ ok: true, simuliert: true });
+      }, SIMULATIONSDAUER_MS);
+    });
+  }
+
+  root.WirHelfenAPI = Object.freeze({ sendeAnfrage: sendeAnfrage, veranstaltungMelden: veranstaltungMelden });
 })(window);

@@ -1048,6 +1048,11 @@ def veranstaltungen_html(regionen):
         "ev_opt_stadt": indent(['<option value="">Alle Orte</option>']
                                + [f'<option value="{esc(x)}">{esc(x)}</option>' for x in staedte], 14),
         "ev_chips_thema": indent(chips, 12),
+        # Formular „Veranstaltung melden“: alle Regionen / Kategorien (nicht nur die mit Terminen)
+        "melden_opt_stadt": indent(['<option value="">Bitte wählen</option>']
+                                   + [f'<option value="{esc(r["name"])}">{esc(r["name"])}</option>' for r in regionen], 16),
+        "melden_opt_kategorie": indent(['<option value="">Bitte wählen</option>']
+                                       + [f'<option value="{esc(k)}">{esc(k)}</option>' for k in EV_KATEGORIEN], 16),
     }
 
 
@@ -1236,6 +1241,7 @@ def main():
         ("ratgeber.html", "ratgeber/index.html"),
         ("mein-alltag.html", "mein-alltag/index.html"),
         ("veranstaltungen.html", "veranstaltungen/index.html"),
+        ("veranstaltungen-melden.html", "veranstaltungen/melden/index.html"),
         ("mein-alltag-checklisten.html", "mein-alltag/checklisten/index.html"),
         ("mein-alltag-wohnungs-check.html", "mein-alltag/wohnungs-check/index.html"),
         ("mein-alltag-pflegegrad-rechner.html", "mein-alltag/pflegegrad-rechner/index.html"),

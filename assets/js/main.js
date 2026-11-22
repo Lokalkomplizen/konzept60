@@ -7,6 +7,7 @@
    4. Formular-Validierung (gemeinsamer Baustein für Anfrage + Anbieter-Registrierung)
    5. Anfrageformular – Simulation
    6. Anbieter-Registrierung – Simulation, Felder je Anbieterart
+   6b. Veranstaltung melden – Simulation (api.js)
    7. Ratgeber-Übersicht – Themenfilter (?thema=…)
    8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
    9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
@@ -588,6 +589,143 @@
   }
 
   /* ------------------------------------------------------------------------
+     6b. Veranstaltung melden (/veranstaltungen/melden/) – Simulation über api.js
+     ------------------------------------------------------------------------ */
+  var MSG_V = {
+    titel: 'Bitte geben Sie den Titel der Veranstaltung ein.',
+    kategorie: 'Bitte wählen Sie ein Thema aus.',
+    datumLeer: 'Bitte geben Sie das Datum ein.',
+    datumVergangen: 'Das Datum liegt in der Vergangenheit. Bitte geben Sie ein zukünftiges Datum ein.',
+    beginn: 'Bitte geben Sie die Uhrzeit des Beginns ein.',
+    ende: 'Das Ende muss nach dem Beginn liegen.',
+    stadt: 'Bitte wählen Sie die Stadt aus.',
+    ort: 'Bitte geben Sie den Veranstaltungsort mit Straße ein.',
+    beschreibung: 'Bitte beschreiben Sie die Veranstaltung kurz.',
+    link: 'Bitte prüfen Sie die Internetadresse. Sie sollte mit https:// beginnen.',
+    veranstalter: 'Bitte geben Sie den Namen des Veranstalters ein.',
+    ansprechperson: 'Bitte nennen Sie eine Ansprechperson.',
+    emailLeer: 'Bitte geben Sie Ihre E-Mail-Adresse an, damit wir bei Fragen antworten können.',
+    email: 'Bitte prüfen Sie die E-Mail-Adresse. Sie sollte so aussehen: name@beispiel.de',
+    telefon: 'Die Telefonnummer scheint nicht vollständig zu sein. Bitte nur Ziffern, Leerzeichen und + / - verwenden.',
+    einwilligung: 'Bitte bestätigen Sie, dass Sie berechtigt sind und der Datenschutzerklärung zustimmen.',
+    senden: 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal.'
+  };
+  var BESCHREIBUNG_MAX = 400;
+
+  function initEventForm() {
+    var form = document.getElementById('melden-formular');
+    var success = document.getElementById('melden-erfolg');
+    var summary = document.getElementById('melden-fehler');
+    if (!form || !success || !summary) return;
+
+    var f = form.elements;
+    function val(input) { return input.value.trim(); }
+    function radio(name) {
+      var checked = form.querySelector('input[name="' + name + '"]:checked');
+      return checked ? checked.value : '';
+    }
+    function heuteIso() {
+      var d = new Date();
+      return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    }
+    function urlInvalid(value) {
+      if (!value) return false;
+      try { var u = new URL(value); return !/^https?:$/.test(u.protocol); } catch (e) { return true; }
+    }
+    function required(name, message) {
+      return { error: 'm-' + name + '-fehler', focus: self(f[name]), inputs: one(f[name]),
+        check: function () { return val(f[name]) ? '' : message; } };
+    }
+
+    var fields = [
+      required('titel', MSG_V.titel),
+      required('kategorie', MSG_V.kategorie),
+      { error: 'm-datum-fehler', focus: self(f.datum), inputs: one(f.datum),
+        check: function () {
+          var v = val(f.datum);
+          if (!v) return MSG_V.datumLeer;
+          return v < heuteIso() ? MSG_V.datumVergangen : '';
+        } },
+      required('beginn', MSG_V.beginn),
+      { error: 'm-ende-fehler', focus: self(f.ende), inputs: one(f.ende),
+        when: function () { return Boolean(val(f.ende) && val(f.beginn)); },
+        check: function () { return val(f.ende) <= val(f.beginn) ? MSG_V.ende : ''; } },
+      required('stadt', MSG_V.stadt),
+      required('ort', MSG_V.ort),
+      required('beschreibung', MSG_V.beschreibung),
+      { error: 'm-link-fehler', focus: self(f.link), inputs: one(f.link),
+        check: function () { return urlInvalid(val(f.link)) ? MSG_V.link : ''; } },
+      required('veranstalter', MSG_V.veranstalter),
+      required('ansprechperson', MSG_V.ansprechperson),
+      { error: 'm-email-fehler', focus: self(f.email), inputs: one(f.email),
+        check: function () {
+          var mail = val(f.email);
+          if (!mail) return MSG_V.emailLeer;
+          return EMAIL_RE.test(mail) ? '' : MSG_V.email;
+        } },
+      { error: 'm-telefon-fehler', focus: self(f.telefon), inputs: one(f.telefon),
+        check: function () { return phoneInvalid(val(f.telefon)) ? MSG_V.telefon : ''; } },
+      { error: 'm-einwilligung-fehler', focus: self(f.einwilligung), inputs: one(f.einwilligung),
+        group: document.getElementById('m-einwilligung-feld'),
+        check: function () { return f.einwilligung.checked ? '' : MSG_V.einwilligung; } }
+    ];
+
+    // Zeichenzähler (nur mit JS; ohne JS begrenzt maxlength)
+    var zaehler = form.querySelector('[data-zaehler]');
+    function updateZaehler() {
+      if (!zaehler) return;
+      var rest = BESCHREIBUNG_MAX - f.beschreibung.value.length;
+      zaehler.textContent = 'Noch ' + rest + ' Zeichen';
+    }
+    f.beschreibung.addEventListener('input', updateZaehler);
+
+    // Nutzlast gemäß JSDoc in api.js (VeranstaltungPayload)
+    function buildPayload() {
+      return {
+        titel: val(f.titel), datum: val(f.datum), beginn: val(f.beginn), ende: val(f.ende),
+        stadt: f.stadt.value, ort: val(f.ort), kategorie: f.kategorie.value,
+        beschreibung: val(f.beschreibung).slice(0, BESCHREIBUNG_MAX),
+        kosten: val(f.kosten), anmeldung: radio('anmeldung'), barrierefrei: radio('barrierefrei') || 'unbekannt',
+        link: val(f.link), veranstalter: val(f.veranstalter), ansprechperson: val(f.ansprechperson),
+        email: val(f.email), telefon: val(f.telefon), einwilligung: f.einwilligung.checked
+      };
+    }
+
+    var absenden = form.querySelector('[data-absenden]');
+    var absendenLabel = absenden ? absenden.textContent : '';
+    var sendeFehler = form.querySelector('[data-sende-fehler]');
+
+    var validation = setupValidation(form, summary, fields, function () {
+      // Honigtopf gefüllt: so tun, als wäre es angekommen, aber nichts senden
+      if (val(f.website)) { showSuccess(form, success); return; }
+      var payload = buildPayload();
+      if (absenden) { absenden.disabled = true; absenden.textContent = 'Wird übermittelt …'; }
+      form.setAttribute('aria-busy', 'true');
+      // Schnittstelle: assets/js/api.js – im Prototyp simuliert, es wird nichts gesendet
+      window.WirHelfenAPI.veranstaltungMelden(payload).then(function () {
+        showSuccess(form, success);
+      }).catch(function () {
+        if (sendeFehler) sendeFehler.textContent = MSG_V.senden;
+      }).then(function () {
+        form.removeAttribute('aria-busy');
+        if (absenden) { absenden.disabled = false; absenden.textContent = absendenLabel; }
+      });
+    });
+
+    var again = success.querySelector('[data-neue-anfrage]');
+    if (again) {
+      again.addEventListener('click', function () {
+        validation.reset();
+        updateZaehler();
+        if (sendeFehler) sendeFehler.textContent = '';
+        success.hidden = true;
+        form.hidden = false;
+        f.titel.focus();
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
      7. Ratgeber-Übersicht – Themenfilter
         Markup erzeugt tools/build.py (Buttons mit aria-pressed, Karten mit data-thema).
         Ohne JS ist die Leiste per CSS ausgeblendet und alle Karten sind sichtbar.
@@ -867,6 +1005,7 @@
   initRequestForm(updateLeistungen);
   initPreselect();
   initProviderForm();
+  initEventForm();
   initRatgeberFilter();
   initVorlesen();
   initScrollAnimationen();

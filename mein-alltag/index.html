@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mein Alltag – Wir helfen</title>
-  <meta name="description" content="Mein Alltag: Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause. Ohne Anmeldung, nichts wird gespeichert.">
+  <meta name="description" content="Mein Alltag: Checklisten zum Abhaken, ein Wohnungs-Check und Veranstaltungen in Ihrer Region. Ohne Anmeldung, nichts wird gespeichert.">
   <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
        und JSON-LD vor Livegang auf die echte Domain umstellen. -->
   <link rel="canonical" href="https://www.example.org/mein-alltag/">
@@ -13,7 +13,7 @@
   <meta property="og:locale" content="de_DE">
   <meta property="og:site_name" content="Wir helfen">
   <meta property="og:title" content="Mein Alltag – Wir helfen">
-  <meta property="og:description" content="Mein Alltag: Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause. Ohne Anmeldung, nichts wird gespeichert.">
+  <meta property="og:description" content="Mein Alltag: Checklisten zum Abhaken, ein Wohnungs-Check und Veranstaltungen in Ihrer Region. Ohne Anmeldung, nichts wird gespeichert.">
   <meta property="og:url" content="https://www.example.org/mein-alltag/">
   <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
   <meta property="og:image:width" content="1600">
@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=4e56ec12ae">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
   <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
-  <link rel="stylesheet" href="/assets/css/components.css?v=5133659cdb">
+  <link rel="stylesheet" href="/assets/css/components.css?v=79274c425d">
   <link rel="stylesheet" href="/assets/css/print.css?v=12d716ffd3" media="print">
 
 </head>
@@ -151,6 +151,15 @@
           </article>
         </li>
         <li>
+          <article class="path-card path-card--sage" aria-labelledby="werkzeug-veranstaltungen">
+            <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=9c71a5141c#illu-plan"/></svg>
+            <span class="path-card__tag">Nach Datum, Thema und Ort</span>
+            <h3 class="path-card__title" id="werkzeug-veranstaltungen">Veranstaltungen für Sie</h3>
+            <p class="path-card__text">Gymnastik, Kultur, Kurse und Treffen in Ihrer Region – übersichtlich nach Datum, mit Filter für Ort und Thema.</p>
+            <a class="btn btn--primary" href="/veranstaltungen/">Veranstaltungen ansehen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          </article>
+        </li>
+        <li>
           <article class="path-card path-card--soon" id="erinnerungen" aria-labelledby="werkzeug-erinnerungen">
             <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=9c71a5141c#illu-erinnerungen"/></svg>
             <span class="path-card__tag">In Vorbereitung</span>
@@ -233,6 +242,7 @@
         <h2 id="footer-info">Informationen</h2>
         <ul>
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
           <li><a href="/impressum/">Impressum</a></li>
           <li><a href="/datenschutz/">Datenschutz</a></li>

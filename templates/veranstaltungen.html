@@ -1,0 +1,73 @@
+<!--meta
+title: Veranstaltungen für Sie – {{site_name}}
+description: Veranstaltungskalender für Seniorinnen und Senioren: Bewegung, Kultur, Bildung, Begegnung, Digital und Gesundheit in Ihrer Region – nach Datum geordnet, nach Thema und Ort filterbar.
+nav: alltag
+body_extra: <script src="/assets/js/veranstaltungen.js" defer></script>
+-->
+  <!-- Veranstaltungen  (→ WordPress: Archiv des Beitragstyps "veranstaltung", archive-veranstaltung.php)
+       Liste erzeugt tools/build.py aus data/veranstaltungen.json (nach Tag gruppiert, ohne JS vollständig).
+       Filter/Sortierung: assets/js/veranstaltungen.js, Formular ohne JS per CSS ausgeblendet.
+       Navigation: Karte unter „Mein Alltag“ + Fußzeile „Informationen“; Kopfmenü bleibt unverändert. -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/veranstaltungen/" aria-current="page">Veranstaltungen</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Gemeinsam unterwegs</span>
+      <h1>Veranstaltungen für Sie</h1>
+      <p class="section__intro">
+        Bewegung, Kultur, Begegnung und mehr in Ihrer Nähe. Die Termine sind nach Datum geordnet. Wählen Sie Ort und Thema – oder blättern Sie einfach durch die Liste.
+      </p>
+    </div>
+  </div>
+
+  <section class="section section--tight" aria-labelledby="ev-titel">
+    <div class="container">
+      <h2 class="visually-hidden" id="ev-titel">Alle Veranstaltungen</h2>
+
+      <div class="notice notice--light notice--flush" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Bitte vorher nachfragen.</strong> Wir sammeln die Termine aus öffentlichen Quellen und unser Team prüft sie. Bitte bestätigen Sie vor dem Besuch beim Veranstalter, dass die Veranstaltung stattfindet.</p>
+      </div>
+      <div class="notice notice--important notice--flush ev-demo" role="note">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><span class="demo-label">Beispieldaten</span> {{ev_hinweis}}</p>
+      </div>
+
+      <form class="ev-filter" data-ev-filter aria-labelledby="ev-filter-titel" novalidate>
+        <h3 class="ev-filter__title" id="ev-filter-titel">Veranstaltungen eingrenzen</h3>
+        <div class="form-field">
+          <label class="form-field__label" for="ev-ort">Ort</label>
+          <select class="form-field__input" id="ev-ort" name="ort">
+{{ev_opt_stadt}}
+          </select>
+        </div>
+        <p class="filter__label" id="ev-thema-label">Thema</p>
+        <div class="filter__list" role="group" aria-labelledby="ev-thema-label">
+{{ev_chips_thema}}
+        </div>
+        <div class="ev-filter__bar">
+          <p class="ev-filter__count" aria-live="polite" data-ev-count>{{ev_anzahl}}</p>
+          <button type="button" class="btn btn--secondary ev-filter__reset" data-ev-reset>Filter zurücksetzen</button>
+        </div>
+      </form>
+
+      <div data-ev-list>
+{{ev_liste}}
+      </div>
+      <p class="ev-empty" data-ev-empty hidden>Zu Ihrer Auswahl gibt es keine Veranstaltungen. Bitte ändern Sie die Filter oder setzen Sie sie zurück.</p>
+    </div>
+  </section>
+
+  <section class="section section--sand section--compact" aria-label="Persönliche Hilfe">
+    <div class="container">
+      <div class="notice notice--light notice--flush">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Sie suchen Begleitung zu einer Veranstaltung?</strong> Unser Team hilft Ihnen gern persönlich weiter.
+          <a href="/#anfrage">Zum Anfrageformular</a></p>
+      </div>
+    </div>
+  </section>

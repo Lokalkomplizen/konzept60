@@ -952,6 +952,105 @@ def pflegegrad_seo():
     return "\n".join(items), jsonld, faq["stand"]
 
 
+WOCHENTAGE = ("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag")
+MONATE = ("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
+          "September", "Oktober", "November", "Dezember")
+EV_KATEGORIEN = ("Bewegung", "Kultur", "Bildung", "Begegnung", "Digital", "Gesundheit")
+
+
+def tag_label(d):
+    return f"{WOCHENTAGE[d.weekday()]}, {d.day}. {MONATE[d.month - 1]} {d.year}"
+
+
+def veranstaltungen_html(regionen):
+    """Veranstaltungskalender /veranstaltungen/: statische, nach Tag gruppierte Liste (funktioniert ohne JS),
+    vergangene Termine (vor Build-Datum) entfallen. Filter/Sortierung: assets/js/veranstaltungen.js
+    (liest data-*-Attribute der <li>). → WordPress: CPT 'veranstaltung', Taxonomien thema/region."""
+    import datetime
+    data = json.loads(read(ROOT / "data" / "veranstaltungen.json"))
+    heute = datetime.date.today()
+    events = []
+    for e in data["veranstaltungen"]:
+        for key in ("id", "titel", "datum", "beginn", "stadt", "ort", "veranstalter", "kategorie", "kurztext",
+                    "kosten", "anmeldung", "barrierefrei", "quelle_url", "geprueft_am", "status"):
+            if key not in e:
+                raise SystemExit(f"FEHLER: veranstaltungen.json – '{key}' fehlt bei {e.get('id')}")
+        if e["kategorie"] not in EV_KATEGORIEN:
+            raise SystemExit(f"FEHLER: veranstaltungen.json – unbekannte Kategorie bei {e['id']}")
+        if e["stadt"] not in [r["name"] for r in regionen]:
+            raise SystemExit(f"FEHLER: veranstaltungen.json – unbekannte Stadt bei {e['id']}")
+        if datetime.date.fromisoformat(e["datum"]) >= heute:
+            events.append(e)
+    events.sort(key=lambda e: (e["datum"], e["beginn"]))
+
+    def de_datum(iso):
+        d = datetime.date.fromisoformat(iso)
+        return f"{d.day}. {MONATE[d.month - 1]} {d.year}"
+
+    lines = []
+    aktuell = None
+    for e in events:
+        d = datetime.date.fromisoformat(e["datum"])
+        if e["datum"] != aktuell:
+            if aktuell is not None:
+                lines += ["  </ul>", "</section>"]
+            aktuell = e["datum"]
+            lines += ['<section class="ev-day" data-ev-day>',
+                      f'  <h2 class="ev-day__title">{tag_label(d)}</h2>', '  <ul class="ev-list">']
+        abgesagt = e["status"] == "abgesagt"
+        zeit = e["beginn"] + (f"–{e['ende']}" if e.get("ende") else "") + " Uhr"
+        marker = []
+        marker.append("Anmeldung nötig" if e["anmeldung"] else "Keine Anmeldung nötig")
+        marker.append("Barrierefrei" if e["barrierefrei"] else "Nicht barrierefrei")
+        titel = esc(e["titel"])
+        lines += [
+            f'    <li class="ev-item" data-ev data-datum="{e["datum"]}" data-beginn="{e["beginn"]}" '
+            f'data-stadt="{esc(e["stadt"])}" data-thema="{esc(e["kategorie"])}" data-label="{tag_label(d)}">',
+            f'      <article class="ev-card{" ev-card--abgesagt" if abgesagt else ""}" aria-labelledby="{e["id"]}-titel">',
+            '        <p class="ev-card__meta">',
+            f'          <span class="ev-card__pill">{esc(e["kategorie"])}</span>',
+        ]
+        if abgesagt:
+            lines.append('          <span class="ev-card__status">Abgesagt</span>')
+        lines += [
+            '        </p>',
+            f'        <h3 class="ev-card__title" id="{e["id"]}-titel">{titel}</h3>',
+            f'        <p class="ev-card__when">'
+            f'<time datetime="{e["datum"]}T{e["beginn"]}">{tag_label(d)}, {zeit}</time></p>',
+            f'        <p class="ev-card__where"><strong>{esc(e["stadt"])}</strong> – {esc(e["ort"])}</p>',
+            f'        <p class="ev-card__org">Veranstalter: {esc(e["veranstalter"])}</p>',
+            f'        <p class="ev-card__text">{esc(e["kurztext"])}</p>',
+            '        <ul class="ev-card__facts">',
+            f'          <li><span class="visually-hidden">Kosten: </span><strong>{esc(e["kosten"])}</strong></li>',
+        ] + [f'          <li>{m}</li>' for m in marker] + [
+            '        </ul>',
+            f'        <p class="ev-card__source"><a href="{esc(e["quelle_url"])}">Quelle ansehen<span class="visually-hidden"> zu {titel}</span></a>'
+            f' <span class="ev-card__stand">Stand: geprüft am {de_datum(e["geprueft_am"])}</span></p>',
+            '      </article>',
+            '    </li>',
+        ]
+    if aktuell is not None:
+        lines += ["  </ul>", "</section>"]
+    liste_html = indent(lines, 8) if lines else ""
+
+    staedte = sorted({e["stadt"] for e in events})
+    kats = [(k, sum(1 for e in events if e["kategorie"] == k)) for k in EV_KATEGORIEN]
+    kats = [(k, n) for k, n in kats if n]
+    chips = [f'<button type="button" class="filter__btn" aria-pressed="true" data-ev-thema="">'
+             f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Alle Themen</button>']
+    chips += [f'<button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="{esc(k)}">'
+              f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>{esc(k)}</button>'
+              for k, n in kats]
+    return {
+        "ev_liste": liste_html,
+        "ev_anzahl": f"{len(events)} {'Veranstaltung' if len(events) == 1 else 'Veranstaltungen'}",
+        "ev_hinweis": esc(data["hinweis"]),
+        "ev_opt_stadt": indent(['<option value="">Alle Orte</option>']
+                               + [f'<option value="{esc(x)}">{esc(x)}</option>' for x in staedte], 14),
+        "ev_chips_thema": indent(chips, 12),
+    }
+
+
 def write_sitemap(paths):
     """sitemap.xml + robots.txt (Platzhalter-Domain, vor Livegang ersetzen)."""
     urls = "\n".join(f"  <url><loc>{SITE}{p}</loc></url>" for p in sorted(paths))
@@ -1111,6 +1210,7 @@ def main():
         "pgr_jsonld": pgr_jsonld,
         "pgr_faq_stand": esc(pgr_faq_stand),
         "home_head": home_head(regionen),
+        **veranstaltungen_html(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
@@ -1135,6 +1235,7 @@ def main():
         ("fuer-anbieter.html", "fuer-anbieter/index.html"),
         ("ratgeber.html", "ratgeber/index.html"),
         ("mein-alltag.html", "mein-alltag/index.html"),
+        ("veranstaltungen.html", "veranstaltungen/index.html"),
         ("mein-alltag-checklisten.html", "mein-alltag/checklisten/index.html"),
         ("mein-alltag-wohnungs-check.html", "mein-alltag/wohnungs-check/index.html"),
         ("mein-alltag-pflegegrad-rechner.html", "mein-alltag/pflegegrad-rechner/index.html"),

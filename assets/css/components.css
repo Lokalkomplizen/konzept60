@@ -1874,7 +1874,7 @@ select.form-field__input {
 .js .assistent__app:not([hidden]) { display: block; }
 
 .assistent__card {
-  max-width: 56rem;
+  /* volle Spaltenbreite: Antwortkarten passen auf breiten Bildschirmen in eine Zeile */
   padding: var(--space-l) var(--space-m);
   background: var(--color-white);
   border: 1px solid var(--color-sand-300);
@@ -2025,6 +2025,9 @@ select.form-field__input {
   .assistent__actions .btn { width: 100%; }
 }
 
+.assistent__summary,
+.assistent__extra,
+.assistent__note { max-width: 50rem; } /* Fließtext trotz voller Kartenbreite gut lesbar */
 .assistent__summary { font-size: var(--font-size-lg); margin: var(--space-m) 0 var(--space-s); }
 .assistent__extra { color: var(--color-ink-muted); }
 .assistent__main { margin: var(--space-l) 0; }

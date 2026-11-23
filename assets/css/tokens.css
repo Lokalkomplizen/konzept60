@@ -13,6 +13,9 @@
   --color-navy-800: #14213d;   /* Primärfarbe, Hero-Panel */
   --color-navy-700: #22325a;
   --color-navy-100: #e6e9f0;
+  --color-on-navy: #e3e8f1;        /* heller Text auf Navy (Hero, Footer, Schritte): ~13:1 */
+  --color-on-navy-muted: #d5dbe7;  /* Kleingedrucktes auf Navy: ~11:1 */
+  --color-border-input: #6b7385;   /* Formular- und Auswahlränder: ≥3:1 auf Weiß */
 
   --color-white: #ffffff;
   --color-ink: #161d2f;        /* Fließtext auf Weiß: ~16:1 (AAA) */
@@ -23,12 +26,15 @@
   --color-sand-300: #e3d6bf;   /* Linien, Ränder */
 
   --color-sage-100: #e5ece4;
+  --color-sage-200: #c9d6c8;   /* Rand Hinweisboxen */
   --color-sage-400: #8fa892;   /* Dekor (Icons auf Navy) */
   --color-sage-700: #3d5a44;   /* Text-tauglich auf Weiß/Sand: ~7:1 */
 
   --color-terra-600: #a8471f;  /* Akzent / Primär-CTA: Weiß darauf ~5.9:1 */
   --color-terra-700: #8a3a19;  /* Hover */
   --color-terra-100: #f6e4da;
+  --color-terra-200: #ecc9b6;  /* Rand Angehörigen-Panel */
+  --color-terra-300: #f0c9b4;  /* Terrakotta hell, nur auf Navy: ~10:1 */
 
   /* Illustrations-Icons (aus den Trust-Icons assets/img/icons/*.webp abgenommen;
      in assets/img/illus.svg fest eingetragen – bei Änderung dort mitziehen) */

@@ -49,7 +49,7 @@
   color: var(--color-ink-muted);
 }
 
-.section--navy .section__intro { color: #dfe4ee; }
+.section--navy .section__intro { color: var(--color-on-navy); }
 
 /* Raster ------------------------------------------------------------------ */
 .grid {
@@ -187,12 +187,12 @@
 
 .hero__title span {
   display: block;
-  color: #f0c9b4; /* Terrakotta hell, auf Navy ~10:1 */
+  color: var(--color-terra-300);
 }
 
 .hero__text {
   font-size: var(--font-size-lg);
-  color: #e8ecf3;
+  color: var(--color-on-navy);
   margin-bottom: var(--space-xl);
 }
 
@@ -205,12 +205,12 @@
   white-space: nowrap;
 }
 
-.hero__note a:hover { color: #f0c9b4; }
+.hero__note a:hover { color: var(--color-terra-300); }
 
 .hero__note {
   margin: var(--space-l) 0 0;
   font-size: var(--font-size-sm);
-  color: #d5dbe7;
+  color: var(--color-on-navy-muted);
 }
 
 @media (min-width: 60em) {
@@ -269,7 +269,7 @@
    ========================================================================== */
 .site-footer {
   background: var(--color-navy-900);
-  color: #dfe4ee;
+  color: var(--color-on-navy);
   padding-block: var(--space-3xl) var(--space-xl);
   font-size: var(--font-size-base);
 }
@@ -279,7 +279,7 @@
 }
 
 .site-footer a:hover {
-  color: #f0c9b4;
+  color: var(--color-terra-300);
 }
 
 .site-footer__grid {

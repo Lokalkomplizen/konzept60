@@ -43,6 +43,8 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 | `--color-navy-800` | `#14213d` | Primärfarbe: Überschriften, Links, Hero, `.section--navy`, Fokus-Kontur |
 | `--color-navy-700` | `#22325a` | Zwischenton |
 | `--color-navy-100` | `#e6e9f0` | heller Navy-Tint |
+| `--color-on-navy` | `#e3e8f1` | heller Text auf Navy (Hero, `.section--navy`, Schritte, Footer), ca. 13:1 |
+| `--color-on-navy-muted` | `#d5dbe7` | Kleingedrucktes auf Navy (`.hero__note`), ca. 11.5:1 |
 
 ### 3.2 Weiß und Text
 
@@ -51,6 +53,7 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 | `--color-white` | `#ffffff` | Seitenhintergrund, Karten, Felder |
 | `--color-ink` | `#161d2f` | Fließtext auf Weiß, ca. 16:1 (AAA) |
 | `--color-ink-muted` | `#3b4458` | Sekundärtext auf Weiß, ca. 9.6:1 (AAA) |
+| `--color-border-input` | `#6b7385` | Ränder von Eingabefeldern, Chips und Auswahlkarten, ca. 4.8:1 auf Weiß |
 
 ### 3.3 Sand (natürlicher Hintergrund, Linien)
 
@@ -65,6 +68,7 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 | Token | Wert | Verwendung |
 |---|---|---|
 | `--color-sage-100` | `#e5ece4` | Abschnittshintergrund (`.section--sage`) |
+| `--color-sage-200` | `#c9d6c8` | Rand der Hinweisboxen |
 | `--color-sage-400` | `#8fa892` | nur Dekor, z. B. Eyebrow und Icons auf Navy |
 | `--color-sage-700` | `#3d5a44` | textfähig auf Weiß/Sand, ca. 7:1; Eyebrow, Häkchen, Karten-Hover-Rand |
 
@@ -75,6 +79,8 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 | `--color-terra-600` | `#a8471f` | Primär-Button, Logo-Punkt, Hinweisbox-Rand; Weiß darauf ca. 5.9:1 |
 | `--color-terra-700` | `#8a3a19` | Hover, Badge-Text, wichtige Hinweise |
 | `--color-terra-100` | `#f6e4da` | Badge-Hintergrund, `.notice--important`, Vorlese-Markierung |
+| `--color-terra-200` | `#ecc9b6` | Rand des Angehörigen-Panels |
+| `--color-terra-300` | `#f0c9b4` | helles Terrakotta, nur auf Navy (Hero-Titel, Footer-Hover), ca. 10:1 |
 
 ### 3.6 Illustrations-Icons (nur Dekor)
 
@@ -214,7 +220,7 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 ### 6.4 Formulare
 
 - Struktur: `.form`, `.form__section` mit `.form__legend` und nummeriertem `.form__legend-nr`, `.form__row`, `.form-field` mit `__label`, `__req`, `__hint`, `__input`, `__error`.
-- Eingabe: `min-height: 3.25rem`, Rand 2px `#6b7385` (Kontrast mindestens 3:1), `--radius-s`, Textarea ab 9rem Höhe; Hover Rand Navy; ungültig: Rand `--color-error` und Hintergrund `--color-error-bg` (`aria-invalid="true"`).
+- Eingabe: `min-height: 3.25rem`, Rand 2px `--color-border-input` (Kontrast mindestens 3:1), `--radius-s`, Textarea ab 9rem Höhe; Hover Rand Navy; ungültig: Rand `--color-error` und Hintergrund `--color-error-bg` (`aria-invalid="true"`).
 - Auswahl: `.choice-group`, `.choice` (große Klickfläche), `.segment` / `.segment__option`, `.chip`.
 - Fehler: `.form-summary` mit Sprunglinks, Fokus aufs erste Fehlerfeld, Fehler je Feld über `aria-describedby`. Erfolg: `.form-success`.
 - Einwilligungen getrennt: Pflicht (Bearbeitung) einzeln, Newsletter freiwillig und nicht vorausgewählt. Rückruf nur als Wunsch, Rückruf erfolgt durch uns.
@@ -228,7 +234,7 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 
 ### 6.6 Footer
 
-`.site-footer` (Navy-900, Text `#dfe4ee`, Links weiß, Hover hell-terrakotta). Spalten: Logo mit Kurztext, Drei Wege, Themen, Regionen (2 Spalten), Informationen. Linkzeilen mind. 48px hoch. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
+`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Spalten: Logo mit Kurztext, Drei Wege, Themen, Regionen (2 Spalten), Informationen. Linkzeilen mind. 48px hoch. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
 
 ### 6.7 Weitere Bausteine
 
@@ -359,6 +365,6 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 **Bekannte Abweichungen im Code (Stand der Prüfung):**
 
 - Source Serif 4 ist nur für Überschriften (h1, h2), Logo und Frageüberschriften im Einsatz; der Fließtext nutzt die Systemschrift (`--font-sans`). Es ist nur ein Gewicht (600) eingebunden.
-- Feste Hex-Werte außerhalb der Tokens: `#6b7385` (Formularränder, 3 Stellen in `components.css`), `#c9d6c8` und `#ecc9b6` (Ränder in Hinweisboxen), `#e3e8f1` und `#dfe4ee` (helle Texte auf Navy), in `layout.css` `#f0c9b4` (helles Terrakotta im Hero und Footer-Hover), `#e8ecf3`, `#d5dbe7`, `#dfe4ee` (helle Texte auf Navy). Bei Gelegenheit als Tokens aufnehmen.
-- Einige Schriftgrößen liegen unter 17px: `.demo-label` 0.75rem, Badge und kleine Beschriftungen 0.9 bis 0.95rem, Formular-Nummern 0.875rem. Nur für Kennzeichnungen, nicht für Fließtext.
+- `components.css` und `layout.css` enthalten keine festen Hex-Werte mehr. Einzige Ausnahme sind halbtransparente Weiß-Ränder auf Navy (`rgb(255 255 255 / …)`).
+- Kennzeichnungen (`.demo-label`, `.badge`, `.placeholder-tag`) und Nummern in Kreisen (`.form__legend-nr`, `.wc__q-nr`) haben mindestens 16px (1rem), liegen also noch unter den 17px aus Abschnitt 8. Kleiner sind nur einzelne Symbolzeichen in Icon-Kreisen (+, ✓, !, i; 0.75 bis 0.95rem), die keinen Lesetext tragen.
 - `.card` deklariert `transform` im Übergang, setzt aber keinen Transform-Hover.

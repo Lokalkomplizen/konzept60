@@ -36,7 +36,7 @@ Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (
 
 **Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
 
-**Entscheidung Navigation „Themen“:** verweist auf die eigene Übersichtsseite `/themen/` (entspricht später dem Taxonomie-Archiv). Die Startseite behält zusätzlich den Abschnitt `#themen`. Aktiver Menüpunkt: `aria-current="page"` (Übersicht) bzw. `aria-current="true"` (Unterseiten eines Bereichs).
+**Entscheidung Navigation „Themen“:** verweist auf die eigene Übersichtsseite `/themen/` (entspricht später dem Taxonomie-Archiv). Die Startseite behält zusätzlich den Bereich `#themen` (als Weg 1 im Abschnitt „Drei Wege“, `#drei-wege`). Der frühere Startseiten-Abschnitt „Für Anbieter“ ist ein einzeiliger Hinweis (`#fuer-anbieter`) mit Link auf `/fuer-anbieter/`. Aktiver Menüpunkt: `aria-current="page"` (Übersicht) bzw. `aria-current="true"` (Unterseiten eines Bereichs).
 
 ## Build (`tools/build.py`, nur Python-Standardbibliothek)
 
@@ -47,7 +47,7 @@ partials/icons.html        SVG-Sprite
 assets/img/illus.svg       Illustrations-Icons (illu-…, 96×96, Stil der Trust-Icons; extern per <use>, ?v=Hash vom Build)
 partials/header.html       Kopf inkl. Hauptnavigation (Platzhalter nav:… → aria-current)
 partials/footer.html       Fuß inkl. Themen-/Regionslisten
-data/themen.json           slug, titel, kurztext, einleitung, beispiele[], leistungen[] (5–8), angebote[], hinweis?, bild{datei, alt}
+data/themen.json           slug, titel, kurztext, einleitung, beispiele[], leistungen[] (5–8), angebote[], hinweis?, bild{datei, alt, hoehe?} (hoehe: abweichende Bildhöhe bei 800 px Breite, Standard 1000)
 data/regionen.json         slug, name
 content/ratgeber/<slug>.md Ratgeber-Beiträge: Frontmatter + Markdown-Teilmenge (s. u.)
 data/ratgeber.json         GENERIERT: gesammelte Frontmatter + Anreißer + URL je Beitrag
@@ -97,6 +97,7 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 
 ### Entscheidungen
 
+- **Veranstaltungen:** einspaltige Zeilen je Tag, Zusatzinfos in `<details>` („Mehr erfahren“). `assets/js/veranstaltungen.js` schreibt Ort und Thema in die Adresszeile (`/veranstaltungen/?ort=Hilden&thema=Kultur`, `history.replaceState`) und liest sie beim Laden (unbekannte Werte → „Alle“, Parameter entfernt); vor dem Druck werden alle Zusatzinfos aufgeklappt.
 - **Kein Inline-JS/-CSS** (außer JSON-LD) → CSP ohne `unsafe-inline`; geprüft unter `wrangler dev` mit echten Headern.
 - **Unterstützungs-Assistent** (Startseite, `#assistent`, `assets/js/assistent.js`, nur dort eingebunden über `body_extra` im Template-Kopf): Ziel → Thema → (bei Hilfe/Angehörigen) Stadt → Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Daten rendert `build.py` (`assistent_data()`) als JSON ins Attribut `data-assistent` (kein Inline-Skript, kein Nachladen). Ohne JS zeigt der Abschnitt die drei Säulen-Links. Nichts wird gespeichert; Ergebnis = Link `/?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>#anfrage`.
 - **Vorauswahl:** Links wie `/?thema=pflege-betreuung#anfrage`, `/?wer=angehoerige#anfrage` (älter: `?fuer=`), `/?ort=Hilden#anfrage` (nur Städte aus `data/regionen.json`; älter: `/?region=wesel#anfrage`) funktionieren von jeder Seite (ohne JS: normale Navigation zum Formular). `main.js` übernimmt die Parameter und entfernt sie danach aus der Adresszeile; auf der Startseite selbst werden solche Links ohne Neuladen abgefangen.
@@ -125,7 +126,7 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | `templates/impressum.html`, `datenschutz.html` | `page-impressum.php`, `page-datenschutz.php` (oder Standard-`page.php`) |
 | `templates/404.html` | `404.php` |
 | Themenkarte (`theme_card()` in build.py) | `template-parts/card-thema.php` |
-| Block „Persönliche Vermittlung“ | `template-parts/persoenlich.php` |
+| Block „Persönliche Vermittlung“ (Themenseiten; auf der Startseite in „So funktioniert’s“ aufgegangen) | `template-parts/persoenlich.php` |
 | Formulare | eigener Handler über `admin-post.php` (Nonce, Sanitizing) oder Formular-Plugin |
 | `main.js` | `wp_enqueue_script(..., ['strategy' => 'defer'])` |
 

@@ -2,9 +2,9 @@
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
-      <div>
+      <div class="site-footer__brand">
         <a class="logo logo--light" href="/" aria-label="{{site_name}} – zur Startseite">
-          <span class="logo__text">{{site_name}}</span>
+          <span class="logo__text" translate="no">{{site_name}}</span>
         </a>
         <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
           Wir erbringen selbst keine Dienstleistungen.</p>
@@ -38,7 +38,7 @@
 
       <nav aria-labelledby="footer-info">
         <h2 id="footer-info">Informationen</h2>
-        <ul>
+        <ul class="site-footer__info">
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>© 2026 {{site_name}} (Arbeitstitel)</p>
+      <p>© 2026 <span translate="no">{{site_name}}</span> (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
   </div>

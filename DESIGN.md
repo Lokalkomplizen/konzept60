@@ -104,7 +104,9 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 
 ### 3.8 Abschnittsflächen
 
-`.section` (weiß), `.section--sand`, `.section--sage`, `.section--navy` (Überschriften dann weiß). Abwechselnd einsetzen, nie zwei gleiche direkt untereinander ohne Grund.
+`.section` (weiß), `.section--sand`, `.section--sage`, `.section--navy` (Überschriften dann weiß). Abwechselnd einsetzen, nie zwei gleiche direkt untereinander.
+
+Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (weiß, schmal) → Assistent (Sand) → Drei Wege mit Themen (weiß) → So funktioniert’s (Navy) → Angehörige (weiß) → Anfrage (Sand) → Ratgeber (Salbei) → Hinweis „Für Anbieter“ (weiß, schmal) → Footer (Navy).
 
 ## 4. Typografie
 
@@ -114,6 +116,10 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 |---|---|---|
 | `--font-serif` | "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif | h1, h2, Logo, Frageüberschriften, Hero |
 | `--font-sans` | system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif | Fließtext (`body`), h3, h4, Buttons, Formulare, Kartentitel, Footer-Überschriften |
+
+**Kartentitel (einheitlich):** Sans, Gewicht 700, `--font-size-h3`, `letter-spacing: 0` für Themenkarten (`.card__title`), Ratgeber-Karten (`.article-card__title`, auch mit Bildwelle), Verweiskarten (`.way-card__title`) und Veranstaltungszeilen (`.ev-row__title`, dort `--font-size-lg`). Serif bleibt h1/h2, Logo und Hero vorbehalten.
+
+**Zahlen:** `font-variant-numeric: tabular-nums` für Uhrzeiten (`.ev-row__time`), Tabellenzellen (`.article__table td`, `.pgr-table td`) und Balkenwerte (`.pgr-bar__wert`).
 
 - Source Serif 4 ist selbst gehostet (SIL OFL 1.1) in `assets/fonts/`: `source-serif-4-latin-600-normal.woff2` und `…latin-ext-600-normal.woff2`, `font-display: swap`, Preload des Latin-Schnitts im Layout. Es gibt nur Gewicht 600 (kein Kursiv, kein 400/700).
 - Keine Google-Fonts-CDN, keine weiteren Schriften.
@@ -162,6 +168,7 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 | `--container-max` | `clamp(75rem, 80vw, 120rem)` | 1200px, auf großen Monitoren 80 % der Breite (max. 1920px) |
 | `--gutter` | `1.25rem`; ab 60em `2rem` | seitlicher Innenabstand |
 | `--touch-min` | `3rem` | 48px Mindestgröße für Touch-Ziele |
+| `--touch-compact` | `2.75rem` | 44px, nur für dichte Linklisten (Footer) |
 | `--transition` | `160ms ease`; bei reduzierter Bewegung `0ms` | Standard-Übergang |
 
 ### 5.3 Radien und Schatten
@@ -179,7 +186,7 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 
 - `.grid` ist 1 Spalte. `.grid--2`, `.grid--3`, `.grid--4` zeigen ab 40em 2 Spalten; `.grid--3` ab 64em 3; `.grid--4` ab 75em 4.
 - `.split` (2 Spalten ab 60em), `.request-layout` (4fr/7fr ab 64em, Aside sticky), `.hero` (5fr/6fr ab 60em, Bild rechts).
-- Footer-Raster: 1 Spalte, ab 48em 2, ab 64em 5 Spalten.
+- Footer-Raster: 1 Spalte, ab 48em 2 (Marke über volle Breite), ab 64em Marke als Zeile oben und darunter 4 Linkspalten in Inhaltsbreite (`repeat(4, auto)`, `justify-content: space-between`).
 
 ### 5.5 Breakpoints (alle in `em`)
 
@@ -211,7 +218,9 @@ Namensschema BEM (`block__element--modifier`), WordPress-tauglich (Template-Part
 - `.card`: weiß, 1px Sandrand, `--radius-m`, `--shadow-card`; Hover und `:focus-within` färben den Rand Salbei-700. Ganze Karte klickbar.
 - `.card__media` Bild oben 4:5, `object-fit: cover`. In `.card-grid` mobil (<40em) Querformat 2:1 mit Rand innen.
 - Teile: `.card__body`, `.card__title` (Sans), `.card__text`, `.card__examples`, `.card__actions`, `.card__link`, `.card__more`.
-- `.article-card` (Ratgeber): Bild 4:3, Meta, Titel, Anreißer, `.article-card__pill`, `.article-card__stand`.
+- Themenkarten mobil (<40em, `.card-grid`): kompakte Zeile, quadratisches Vorschaubild (5.5rem) neben dem Titel, Text und Links darunter; Beispiel-Stichworte (`.card__examples`) nur ab 40em.
+- `.article-card` (Ratgeber): Bild 4:3 bzw. 3:2 mit Bildwelle (mobil 2:1, Anreißer auf 3 Zeilen gekürzt), Meta, Titel, Anreißer, `.article-card__pill`, `.article-card__stand`. Fokusring der ganzen Karte nur bei Tastaturfokus (`.article-card:has(a:focus-visible)`), nicht nach Mausklick.
+- `.way-card` (Startseite, Drei Wege 2 und 3): weiß, Sandrand, 6px Oberkante Salbei bzw. Terrakotta, Illustration links (mobil ausgeblendet), ganze Karte über den Titel-Link klickbar, Fokus wie `.article-card`.
 - `.provider-panel`: weiß, Sandrand, `--radius-l`.
 
 ### 6.3 Hinweisboxen (`.notice`)
@@ -235,13 +244,16 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 
 ### 6.6 Footer
 
-`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Spalten: Logo mit Kurztext, Drei Wege, Themen, Regionen (`auto-fill`, Spalten ab 6.5em, Abstand `--space-2xs`/`--space-xl`: 2 Spalten wo Platz ist, in der schmalen 5-Spalten-Ansicht ab 64em eine), Informationen. Linkzeilen mind. 48px hoch. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
+`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Aufbau: `.site-footer__brand` (Logo + Kurztext; ab 64em eine Zeile über den Spalten mit Trennlinie), dann Drei Wege, Themen, Regionen, Informationen. Jede Linkzeile ist mind. 44px hoch (`--touch-compact`) mit `padding-block: --space-2xs` und ohne zusätzlichen Listenabstand, dadurch gleiche Abstände in allen Spalten; mehrzeilige Links mit enger Zeilenhöhe. Regionen und Informationen mobil zweispaltig; Regionen ab 64em einspaltig, ab 75em zweispaltig; Informationen ab 48em einspaltig. Ab 64em Linkgröße `--font-size-md` (18px), damit keine Einträge umbrechen. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
 
 ### 6.7 Weitere Bausteine
 
 - **Hero** (`.hero`): Navy, Bild 16:10 (Desktop rechts, füllend), `.hero__title`, `.hero__text`, `.hero__note`.
 - **Seitenkopf** `.page-header`, **Breadcrumb** `.breadcrumb`, **Check-Liste** `.check-list`, **Badge** `.badge` (Terrakotta-100), **Demo-Label** `.demo-label`.
 - **Assistent** (Startseite, `assets/js/assistent.js`): Ziel, Thema, Stadt, Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Ohne JS: drei Säulen-Links.
+- **Startseite, Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal in „So funktioniert’s“ (`#so-funktionierts`, Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Vertrauensleiste (`.trust`, weiß) nur Stichworte, Formular-Seitenspalte nur zwei kurze Punkte.
+- **Drei Wege** (`#drei-wege`, darin `#themen`): Weg 1 „Hilfe finden“ = Themenraster (Kartentitel h4), Weg 2 und 3 als `.way-card`.
+- **Hinweis „Für Anbieter“** (`.provider-hint`, `#fuer-anbieter`): eine Zeile plus Link auf `/fuer-anbieter/`, direkt vor dem Footer.
 
 ### 6.8 Ratgeber-Elemente
 
@@ -252,6 +264,14 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 - Hinweis-Kasten ("Wichtig" in Terrakotta, sonst Salbei), Quellenblock `.beitrag-quellen`, CTA am Ende, "Weitere Beiträge".
 - Themenfilter `/ratgeber/`: Buttons mit `aria-pressed`; aktiv = Navy-Fläche plus Häkchen; Live-Region meldet die Anzahl.
 - Fördersummen immer mit Quelle; Stand und Änderungsdatum gepflegt.
+
+### 6.8a Veranstaltungen (`/veranstaltungen/`)
+
+- Liste je Tag (`.ev-day`, Überschrift mit Terrakotta-Linie), darin einspaltige Zeilen `.ev-row`: Uhrzeit links (`.ev-row__time`, tabular-nums, 11rem-Spalte ab 48em), Titel und Ort in der Mitte, Thema-Pille rechts (`.ev-card__pill`, ggf. `.ev-card__status` „Abgesagt“). Mobil: Uhrzeit und Pille in einer Zeile, darunter Titel und Ort.
+- Beschreibung, Kosten/Anmeldung/Barrierefreiheit (`.ev-card__facts`), Veranstalter, Quelle und Stand stecken in `<details class="ev-row__more">` mit Summary „Mehr erfahren“ (+/−, 48px). Ohne JS voll nutzbar.
+- Filter (`.ev-filter`, nur mit JS): Ort und Thema nebeneinander ab 48em; Zähler und „Filter zurücksetzen“ (`.link-button`) darunter. Zustand in der Adresszeile (`?ort=…&thema=…`, `history.replaceState`), beim Laden ausgelesen.
+- Hinweis „Bitte vorher nachfragen“ als schmale Zeile `.ev-hinweis` unter dem Filter; Titelbild erst ab 48em.
+- Druck: alle `<details>` werden vor dem Druck geöffnet (JS, `::details-content` als Rückfall), Summary entfällt; Zeilen dürfen umbrechen.
 
 ### 6.9 Seitenwerkzeuge (Vorlesen, Teilen, Drucken)
 
@@ -272,15 +292,17 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Reduzierte Bewegung:** `tokens.css` setzt `--transition: 0ms`; `base.css` setzt `scroll-behavior: auto` und kürzt alle Animationen und Übergänge auf 0.01ms. Fortschrittsbalken `.beitrag-check__balken` schaltet Übergang ebenfalls ab.
 - **Scroll-Einblendung** (`[data-anim]`, nur bei `prefers-reduced-motion: no-preference`, gesetzt durch `main.js` 9. mit `.js-anim`): Einblenden 0.6s `ease-out`, Bewegung 0.6s `cubic-bezier(0.22, 0.61, 0.36, 1)`, optional `--anim-delay`.
   - Varianten: `up` (16px), `left`/`right` (20px; mobil <48em stattdessen senkrecht), `zoom` (Skalierung 1.05, Bild 1.2s). Einmalig, bereits sichtbare Elemente werden nicht animiert.
-  - Parallax nur Desktop (`.has-parallax`, `--parallax-y`), dezent.
+  - Parallax nur Desktop (`.has-parallax`, `--parallax-y`), dezent; bei reduzierter Bewegung werden keine Scroll-Listener registriert.
 - **Smooth Scroll** auf `html`; Anker mit `scroll-margin-top`.
 - Regeln: keine Endlosschleifen, kein Autoplay, keine Bewegung, die Information trägt.
 
 ## 8. Barrierefreiheit
 
 - **Schriftgröße:** Fließtext mindestens 19px; 17px nur für Meta und Kleingedrucktes. Browser-Zoom und Textvergrößerung (`rem`, `em`) bleiben möglich.
-- **Touch-Ziele:** mindestens 48px (`--touch-min`) für Buttons, Logo, Footer-Links; Formularfelder und Werkzeug-Buttons 52px.
-- **Fokus:** global `:focus-visible` = 3px Gelb (`--color-focus`) Kontur, Offset 3px, zusätzlicher 6px Navy-Ring; wirkt auf hell und dunkel. Nie entfernen (Ausnahme: Titel-Link in Karten, dort zeigt `:focus-within` den Rand).
+- **Touch-Ziele:** mindestens 48px (`--touch-min`) für Buttons und Logo, 44px (`--touch-compact`) für die dichten Footer-Linklisten; Formularfelder und Werkzeug-Buttons 52px. `touch-action: manipulation` auf `a, button, label, select, input, summary` (base.css).
+- **Farbschema:** nur hell: `color-scheme: light` in `:root` und `<meta name="color-scheme" content="light">` im Layout.
+- **Markenname:** `translate="no"` am Logo (`.logo__text`), im Copyright und in den Einwilligungstexten.
+- **Fokus:** global `:focus-visible` = 3px Gelb (`--color-focus`) Kontur, Offset 3px, zusätzlicher 6px Navy-Ring; wirkt auf hell und dunkel. Nie entfernen (Ausnahme: Titel-Link in klickbaren Karten, dort zeigt die Karte den Ring per `:has(a:focus-visible)` bzw. bei `.card` `:focus-within` den Rand).
 - **Kontrast:** Textfarben nur aus Abschnitt 3 (mindestens AA, meist AAA). Formularränder mindestens 3:1. Dekorfarben (`sage-400`, `olive-*`, `orange-500`) nie für Text.
 - **Nicht nur Farbe:** Zustände mit Zusatzmerkmal (Häkchen, Icon, Text, Balken).
 - **Semantik:** Landmarken, Skip-Link, `aria-current`, `aria-expanded`, `aria-describedby`, `aria-invalid`, `aria-pressed`, `role="status"` und `aria-live` für Rückmeldungen. `.visually-hidden` für reine Screenreader-Texte.
@@ -292,7 +314,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 
 - **Motive:** fröhliche, aktive, lebensbejahende ältere Menschen (KI-Bilder), echte Begegnungen, Alltag, Gärten, Gemeinschaft.
 - **Nicht zeigen:** Pflege-Klischees (kraftlose Hände, Rollstuhl als Symbol, Bettlägerigkeit), keine staatlichen Hoheitszeichen (z. B. Bundesadler).
-- **Ausnahme:** Das Herz-Logo im Pflege-Bild bleibt.
+- **Ausnahme:** Das Herz-Logo im Pflege-Bild bleibt. Das Pflege-Bild ist unten beschnitten (`pflege-betreuung-v2-*`, 800×880 statt 800×1000), damit der Rollstuhlgriff nicht zu sehen ist; `data/themen.json` trägt dafür `bild.hoehe: 880`, `build.py` setzt width/height danach. Das Krankenfahrten-Bild im Ratgeber bleibt (Rampe ist dort Thema).
 - **Kategoriebilder** (Themenkarten): Hochformat 4:5; **mobil im Querformat** (2:1 in `.card-grid`, unter 40em).
 - **Formate:** Hero 16:10 (`hero-garten-*`), Beitrag 3:2, Teaser 4:3. Ordner: `assets/img/themen/`, `ratgeber/`, `veranstaltungen/`, `pflegegrad/`. Zuschnitt und WebP-Größen über `tools/bilder.py`; Originale nicht ins Repo.
 - **Technik:** WebP mit JPG-Fallback, `object-fit: cover`, Platzhalterfläche Sand-100, Lazy-Loading außer im ersten Sichtbereich.

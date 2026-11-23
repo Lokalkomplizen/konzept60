@@ -1072,6 +1072,8 @@
 
   /* Dezentes Parallax für große Bilder – nur Desktop, nur transform, rAF-gedrosselt */
   function initParallax() {
+    // Bei reduzierter Bewegung gar keine Listener registrieren
+    if (prefersReducedMotion()) return;
     var desktop = window.matchMedia('(min-width: 60em)');
     var bilder = Array.prototype.slice.call(document.querySelectorAll('.hero__media img, .topic-hero__media img'));
     if (!bilder.length) return;

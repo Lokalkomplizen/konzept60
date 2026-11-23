@@ -74,7 +74,8 @@
       ],
       "hinweis": "Pflegeleistungen werden ausschließlich von zugelassenen Pflegediensten und Einrichtungen erbracht. Wir pflegen nicht selbst und bieten keine Pflegeberatung an. Wir stellen lediglich den Kontakt her. Für eine Beratung zu Pflegegrad und Leistungen wenden Sie sich bitte an Ihre Pflegekasse oder eine Pflegeberatungsstelle.",
       "bild": {
-        "datei": "assets/img/themen/pflege-betreuung",
+        "datei": "assets/img/themen/pflege-betreuung-v2",
+        "hoehe": 880,
         "alt": "Eine Betreuerin kniet lächelnd neben einer älteren Frau, die im Garten sitzt, und legt ihr freundlich die Hand auf den Arm."
       }
     },

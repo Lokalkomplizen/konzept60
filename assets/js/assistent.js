@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Wir helfen – assistent.js (Unterstützungs-Assistent, nur auf der Startseite eingebunden)
+   Konzept 60+ – assistent.js (Unterstützungs-Assistent, nur auf der Startseite eingebunden)
    Drei kurze Fragen → Zusammenfassung + passender nächster Schritt.
    - Daten (Themen, Städte, Ratgeber-Beiträge) kommen als JSON im Attribut data-assistent
      (erzeugt von tools/build.py → assistent_data()); kein Inline-Skript, kein Nachladen.

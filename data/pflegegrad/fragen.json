@@ -25,7 +25,7 @@
   "Pflegegrad 5 bedeutet schwerste Beeinträchtigungen mit besonderen Anforderungen an die Pflege."
  ],
  "grenze_naehe": 3,
- "grenze_naehe_doku": "Anzeigeregel von Wir helfen (keine gesetzliche Regel): Hinweis, wenn das Ergebnis höchstens 3 Punkte unter der nächsten oder weniger als 3 Punkte über der eigenen Grenze liegt.",
+ "grenze_naehe_doku": "Anzeigeregel von Konzept 60+ (keine gesetzliche Regel): Hinweis, wenn das Ergebnis höchstens 3 Punkte unter der nächsten oder weniger als 3 Punkte über der eigenen Grenze liegt.",
  "bedingungen": [
   "harn_relevant",
   "stuhl_relevant"

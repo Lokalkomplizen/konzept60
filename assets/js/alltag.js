@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Wir helfen – alltag.js („Mein Alltag“: Checklisten + Wohnungs-Check)
+   Konzept 60+ – alltag.js („Mein Alltag“: Checklisten + Wohnungs-Check)
    1. Checklisten – Fortschritt („3 von 10 erledigt“) und Drucken
    2. Wohnungs-Check – Auswertung aus den Antworten, Drucken
    Es wird NICHTS gespeichert oder gesendet: kein Storage, keine Cookies, kein fetch.

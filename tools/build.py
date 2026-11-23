@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wir helfen – statischer Seitengenerator (nur Python-Standardbibliothek).
+"""Konzept 60+ – statischer Seitengenerator (nur Python-Standardbibliothek).
 
 Aufruf im Projektordner:   python3 tools/build.py
 
@@ -31,7 +31,7 @@ TEMPLATES = ROOT / "templates"
 PARTIALS = ROOT / "partials"
 CONTENT = ROOT / "content" / "ratgeber"
 RATGEBER_IMG = "assets/img/ratgeber"
-SITE_NAME = "Wir helfen"  # Arbeitstitel – hier zentral ändern; Templates nutzen {{site_name}}
+SITE_NAME = "Konzept 60+"  # Arbeitstitel – hier zentral ändern; Templates nutzen {{site_name}}
 SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")

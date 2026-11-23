@@ -4,7 +4,7 @@ Stand: 20.11.2026 · Status: Entwurf zur Freigabe
 
 ## 1. Ziel und Grenzen
 
-Orientierungswerkzeug: Selbsteinschätzung nach dem Neuen Begutachtungsassessment (NBA, § 15 SGB XI), danach Leistungen 2026, geplante Änderungen 2027 und passende Hilfe über „Wir helfen“.
+Orientierungswerkzeug: Selbsteinschätzung nach dem Neuen Begutachtungsassessment (NBA, § 15 SGB XI), danach Leistungen 2026, geplante Änderungen 2027 und passende Hilfe über „Konzept 60+“.
 
 Was der Rechner **nicht** ist: keine Begutachtung, keine Rechtsberatung, keine Leistungszusage. Das Ergebnis wird als „voraussichtlich“ mit Hinweis auf die Unschärfe einer Laien-Selbsteinschätzung gezeigt.
 
@@ -97,7 +97,7 @@ Tests: 22 Fälle, alle Grenzen knapp darunter/darauf, Modul-5-Schwellen, Gleitko
 - Seite `/mein-alltag/pflegegrad-rechner/`, Karte auf `/mein-alltag/`, Eintrag im Assistenten.
 - `data/pflegegrad/fragen.json`: 29 Schritte (bei allen Filtern „Nein“ 13), 64 Kriterien; `build.py` bricht ab, wenn ein Kriterium fehlt oder doppelt ist.
 - Filterfragen für Modul 2, 3, 5 und für 4.11/4.12; übersprungene Kriterien zählen 0 (inhaltlich identisch, weil „keine Einschränkung“).
-- Hinweise im Ergebnis: Nähe zur Grenze (Anzeigeregel von Wir helfen, 3 Punkte, keine Gesetzesregel), besondere Bedarfskonstellation (§ 15 Abs. 4, nur Hinweis), Reform 2027 (nur wenn der Entwurf einen niedrigeren Grad ergäbe).
+- Hinweise im Ergebnis: Nähe zur Grenze (Anzeigeregel von Konzept 60+, 3 Punkte, keine Gesetzesregel), besondere Bedarfskonstellation (§ 15 Abs. 4, nur Hinweis), Reform 2027 (nur wenn der Entwurf einen niedrigeren Grad ergäbe).
 - Tests: `node --test tests/*.test.js` (22 Rechentests) und `tests/rechner.e2e.js` (Durchlauf im Browser, Desktop + Handy: UI-Ergebnis = nba.js, Schrittzahl, Pflichtfelder, keine Netzwerkanfragen, kein Storage).
 - Offen für Etappe 3: Leistungen 2026, Vergleich 2027, „Was bedeutet die Reform für mich?“, Vermittlung nach Themen, PDF-Layout (print.css), SEO/FAQ/JSON-LD.
 

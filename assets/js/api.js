@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Wir helfen – api.js: Schnittstelle zum (späteren) Backend – im Prototyp SIMULIERT
+   Konzept 60+ – api.js: Schnittstelle zum (späteren) Backend – im Prototyp SIMULIERT
    --------------------------------------------------------------------------
    !!! PROTOTYP: Hier wird NICHTS gesendet. Kein fetch, kein XMLHttpRequest, kein Beacon,
    !!! keine Speicherung (kein Storage, keine Cookies). Die Funktion löst nur nach kurzer

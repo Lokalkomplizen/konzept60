@@ -1,4 +1,4 @@
-# Wir helfen – statischer Prototyp (Arbeitstitel)
+# Konzept 60+ – statischer Prototyp (Arbeitstitel)
 
 Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare werden nur simuliert (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
@@ -32,7 +32,7 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 
 Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (`/themen/slug` → 307 auf die Variante mit Slash).
 
-**Name:** „Wir helfen“ ist ein Arbeitstitel und steht zentral in `tools/build.py` (`SITE_NAME`); Templates/Partials nutzen `{{site_name}}`, Meta-Titel, Open Graph und JSON-LD folgen automatisch. Textlogo = Serif + Akzentpunkt (`.logo__text`).
+**Name:** „Konzept 60+“ ist ein Arbeitstitel und steht zentral in `tools/build.py` (`SITE_NAME`); Templates/Partials nutzen `{{site_name}}`, Meta-Titel, Open Graph und JSON-LD folgen automatisch. Textlogo = Serif + Akzentpunkt (`.logo__text`).
 
 **Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
 

@@ -1001,7 +1001,8 @@ def veranstaltungen_html(regionen):
         zeit = e["beginn"] + (f"–{e['ende']}" if e.get("ende") else "") + " Uhr"
         marker = []
         marker.append("Anmeldung nötig" if e["anmeldung"] else "Keine Anmeldung nötig")
-        marker.append("Barrierefrei" if e["barrierefrei"] else "Nicht barrierefrei")
+        marker.append("Barrierefreiheit bitte erfragen" if e["barrierefrei"] is None
+                      else "Barrierefrei" if e["barrierefrei"] else "Nicht barrierefrei")
         titel = esc(e["titel"])
         lines += [
             f'    <li class="ev-item" data-ev data-datum="{e["datum"]}" data-beginn="{e["beginn"]}" '

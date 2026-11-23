@@ -1,5 +1,5 @@
 /*
- * Wir helfen – NBA-Bewertungslogik (Pflegegradrechner)
+ * Konzept 60+ – NBA-Bewertungslogik (Pflegegradrechner)
  *
  * Reine Rechenfunktionen ohne DOM, ohne Netzwerk, ohne Speicherung.
  * Die Regeln stehen NICHT im Code, sondern in data/pflegegrad/nba-*.json

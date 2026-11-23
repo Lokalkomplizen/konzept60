@@ -1,5 +1,5 @@
 /*
- * Wir helfen – Pflegegradrechner: Leistungen, Reform-Erklärung, passende Hilfe
+ * Konzept 60+ – Pflegegradrechner: Leistungen, Reform-Erklärung, passende Hilfe
  *
  * Liest nur die eingebetteten Daten (data/pflegegrad/leistungen.json, hilfe.json
  * über #pgr-daten). Keine Netzwerkanfragen, keine Speicherung.

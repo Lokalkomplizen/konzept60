@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Wir helfen – Pflegegradrechner: Fragebogen und Ergebnis (Oberfläche)
+   Konzept 60+ – Pflegegradrechner: Fragebogen und Ergebnis (Oberfläche)
    Rechnet NICHT selbst: alle Punkte kommen aus nba.js (WirHelfenNBA).
    Daten: <script type="application/json" id="pgr-daten"> (von tools/build.py
    aus data/pflegegrad/*.json eingebettet – kein fetch).

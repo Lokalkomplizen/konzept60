@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Wir helfen – main.js (Vanilla JS, kein Framework, kein Build)
+   Konzept 60+ – main.js (Vanilla JS, kein Framework, kein Build)
    1. Mobile Navigation
    2. Vorauswahl im Anfrageformular (?thema=…, ?wer=…|?fuer=…, ?ort=…|?region=… bzw. Links;
       nur Werte aus den erlaubten Listen werden übernommen)

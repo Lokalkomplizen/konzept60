@@ -158,7 +158,7 @@ Besonders Menschen mit Pflegegrad 1 und Familien, die ihre Angehörigen zu Hause
 
 Da das Gesetzgebungsverfahren noch nicht abgeschlossen ist, können sich einzelne Regelungen bis zum Inkrafttreten noch ändern.
 
-Wir helfen informiert Sie über wichtige Entwicklungen rund um Pflege, Betreuung und Unterstützung im Alltag.
+Konzept 60+ informiert Sie über wichtige Entwicklungen rund um Pflege, Betreuung und Unterstützung im Alltag.
 
 Wenn Sie [Hilfe bei der Suche nach einer Haushaltshilfe, einem Pflegedienst oder einer Alltagsbegleitung benötigen](/?thema=pflege-betreuung#anfrage), unterstützen wir Sie dabei, passende Ansprechpartner in Ihrer Region zu finden.
 

@@ -36,6 +36,10 @@
 
 {{footer}}
 
+<!-- Quellenangabe im Ausdruck: nur beim Drucken sichtbar (print.css). main.js (11.)
+     setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
+<p class="print-url print-only" data-print-url></p>
+
 <script src="/assets/js/main.js" defer></script>
 {{body_extra}}
 </body>

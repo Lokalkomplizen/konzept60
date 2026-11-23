@@ -11,6 +11,8 @@
    7. Ratgeber-Übersicht – Themenfilter (?thema=…)
    8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
    9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
+  10. Seite teilen (navigator.share, sonst Link in die Zwischenablage)
+  11. Ganze Seite drucken ([data-drucken-seite]) + Quellenangabe im Ausdruck
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'wirhelfen-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -904,6 +906,99 @@
 
 
   /* ------------------------------------------------------------------------
+     10. Seite teilen
+     Progressive Enhancement: Die Schaltfläche steht mit "hidden" im HTML und
+     erscheint nur, wenn der Browser teilen (navigator.share, meist auf Handys)
+     oder in die Zwischenablage schreiben kann. Geteilt wird immer die Adresse
+     der aktuellen Seite ohne Sprungmarke – die Abfrage (?thema=…, ?ort=…) bleibt
+     erhalten, weil sie den gezeigten Inhalt bestimmt.
+     Es wird nichts gesendet: navigator.share übergibt nur an das Gerät.
+     ------------------------------------------------------------------------ */
+  function seitenAdresse() {
+    var url = new URL(window.location.href);
+    url.hash = '';                    // Sprungmarke weg, Abfrage behalten
+    return url.href;
+  }
+
+  function initTeilen() {
+    var kannTeilen = typeof navigator.share === 'function';
+    var kannKopieren = !!(navigator.clipboard && typeof navigator.clipboard.writeText === 'function');
+    if (!kannTeilen && !kannKopieren) return;
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-teilen]'), function (button) {
+      var reihe = button.closest('[data-werkzeuge]');
+      var status = reihe && reihe.querySelector('[data-werkzeuge-status]');
+      var timer = null;
+
+      // Meldung am Button: sichtbar und über role="status" angekündigt, nach 3 s wieder weg
+      function melden(text) {
+        if (!status) return;
+        status.textContent = text;
+        if (timer) window.clearTimeout(timer);
+        timer = window.setTimeout(function () { status.textContent = ''; }, 3000);
+      }
+
+      function kopieren() {
+        if (!kannKopieren) { melden('Teilen hat nicht geklappt.'); return; }
+        navigator.clipboard.writeText(seitenAdresse()).then(function () {
+          melden('Link kopiert');
+        }, function () {
+          melden('Kopieren hat nicht geklappt.');
+        });
+      }
+
+      button.addEventListener('click', function () {
+        if (!kannTeilen) { kopieren(); return; }
+        var versuch;
+        try {
+          versuch = navigator.share({
+            title: button.getAttribute('data-teilen-titel') || document.title,
+            url: seitenAdresse()
+          });
+        } catch (e) {
+          kopieren();
+          return;
+        }
+        if (versuch && typeof versuch.catch === 'function') {
+          versuch.catch(function (fehler) {
+            // Abbruch durch die Nutzerin ist kein Fehler – dann keine Meldung
+            if (fehler && fehler.name === 'AbortError') return;
+            kopieren();
+          });
+        }
+      });
+
+      button.hidden = false;
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     11. Ganze Seite drucken + Quellenangabe im Ausdruck
+     [data-drucken-seite] druckt die ganze Seite; print.css lässt nur den Inhalt
+     stehen. Bewusst ein eigenes Attribut: [data-drucken] ist in assets/js/alltag.js
+     der Bereichsdruck (einzelne Checkliste, Auswertung) – die beiden dürfen sich
+     nicht in die Quere kommen.
+     Die Quellenangabe (.print-url aus templates/_layout.html) wird erst beim Drucken
+     gefüllt. Eigener beforeprint-Listener, weil der in Abschnitt 9 bei reduzierter
+     Bewegung oder ohne IntersectionObserver gar nicht angemeldet wird.
+     ------------------------------------------------------------------------ */
+  function initDrucken() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-drucken-seite]'), function (button) {
+      button.addEventListener('click', function () { window.print(); });
+      button.hidden = false;
+    });
+
+    var ziele = document.querySelectorAll('[data-print-url]');
+    if (!ziele.length) return;
+    window.addEventListener('beforeprint', function () {
+      Array.prototype.forEach.call(ziele, function (el) {
+        el.textContent = 'Quelle: ' + seitenAdresse();
+      });
+    });
+  }
+
+
+  /* ------------------------------------------------------------------------
      9. Scroll-Animationen
      Ordnet Elementen per Selektor einen Effekt zu (data-anim), damit Templates
      und später das WordPress-Theme kein Extra-Markup brauchen.
@@ -1008,5 +1103,7 @@
   initEventForm();
   initRatgeberFilter();
   initVorlesen();
+  initTeilen();
+  initDrucken();
   initScrollAnimationen();
 })();

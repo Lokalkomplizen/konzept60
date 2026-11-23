@@ -1535,6 +1535,37 @@ select.form-field__input {
   border-radius: 2px;
 }
 
+/* ---- Seiten-Werkzeuge: Vorlesen / Teilen / Drucken ------------------------- */
+/* Markup: tools/build.py (seiten_werkzeuge), Verhalten: main.js (8., 10., 11.).
+   Alle Schaltflächen brauchen JS und stehen deshalb mit "hidden" im HTML. */
+.seiten-werkzeuge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s);
+  margin-top: var(--space-m);
+}
+
+.seiten-werkzeuge .vorlesen { margin-top: 0; }
+
+.seiten-werkzeuge__btn { min-height: 3.25rem; }
+.seiten-werkzeuge__btn[hidden] { display: none; }
+
+/* Rückmeldung („Link kopiert“) – sichtbar und über role="status" angekündigt */
+.seiten-werkzeuge__status {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-navy-800);
+}
+.seiten-werkzeuge__status:empty { display: none; }
+
+/* Handy: Schaltflächen über die ganze Breite, damit die Ziele groß bleiben */
+@media (max-width: 29.99em) {
+  .seiten-werkzeuge > .btn,
+  .seiten-werkzeuge .vorlesen { width: 100%; }
+  .seiten-werkzeuge .vorlesen__btn { flex: 1 1 10rem; }
+}
+
 /* ---- Beitragskopf ---------------------------------------------------------- */
 .article__kicker { margin-bottom: var(--space-s); }
 .article__kicker a { color: var(--color-sage-700); }

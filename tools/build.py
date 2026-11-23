@@ -198,6 +198,66 @@ def liste(items, n, css="check-list"):
     return indent(lines, n)
 
 
+# --------------------------------------------------------------------------
+# Seiten-Werkzeuge: Vorlesen / Teilen / Drucken
+# (→ WordPress: template-parts/seiten-werkzeuge.php mit denselben Argumenten)
+# Eine gemeinsame Button-Reihe für mehrere Seitentypen – damit das Markup nur hier
+# steht. Alle Schaltflächen brauchen JavaScript und stehen deshalb mit "hidden" im
+# HTML; assets/js/main.js (8., 10., 11.) zeigt sie, wenn der Browser sie unterstützt.
+# Klasse "no-print": im Ausdruck verschwindet die Reihe (assets/css/print.css).
+# --------------------------------------------------------------------------
+VORLESEN_HTML = [
+    '<!-- Vorlesen: Browser-Sprachausgabe (Web Speech API), ohne Drittanbieter.',
+    '     Bleibt verborgen, wenn der Browser keine Sprachausgabe kann (main.js, Abschnitt 8). -->',
+    '<div class="vorlesen" data-vorlesen hidden>',
+    '  <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>',
+    '    <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>',
+    '    <span data-vorlesen-label>Beitrag vorlesen</span>',
+    '  </button>',
+    '  <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>',
+    '    <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>',
+    '    <span>Stopp</span>',
+    '  </button>',
+    '  <p class="vorlesen__status visually-hidden" role="status" aria-live="polite" data-vorlesen-status></p>',
+    '</div>',
+]
+
+
+def seiten_werkzeuge(teilen_aria, n, vorlesen=False, drucken=None, teilen_titel=None,
+                     teilen_label="Seite teilen"):
+    """teilen_aria  aria-label der Teilen-Schaltfläche (sagt, was geteilt wird)
+    n            Einrückung im Template (der Platzhalter steht in Spalte 0)
+    vorlesen     Vorlesen-Schaltflächen voranstellen (nur Ratgeber-Beiträge)
+    drucken      Beschriftung der Druck-Schaltfläche ([data-drucken-seite] → window.print());
+                 None = keine Druck-Schaltfläche. Bewusst NICHT [data-drucken]: das ist in
+                 assets/js/alltag.js der Bereichsdruck (Checkliste, Auswertung).
+    teilen_titel eigener Titel zum Teilen statt document.title
+    """
+    lines = ['<div class="seiten-werkzeuge no-print" data-werkzeuge>']
+    if vorlesen:
+        lines += ["  " + line for line in VORLESEN_HTML]
+    titel_attr = f' data-teilen-titel="{esc(teilen_titel)}"' if teilen_titel else ""
+    lines += [
+        f'  <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen{titel_attr}',
+        f'          aria-label="{esc(teilen_aria)}" hidden>',
+        '    <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>',
+        f'    <span>{esc(teilen_label)}</span>',
+        "  </button>",
+    ]
+    if drucken:
+        lines += [
+            '  <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>',
+            '    <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>',
+            f"    <span>{esc(drucken)}</span>",
+            "  </button>",
+        ]
+    lines += [
+        '  <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>',
+        "</div>",
+    ]
+    return indent(lines, n)
+
+
 def andere_themen(themen, aktuell):
     lines = []
     for t in themen:
@@ -753,6 +813,9 @@ def beitrag_ctx(b, beitraege):
             "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. "
             f"Beträge und Voraussetzungen können sich ändern – maßgeblich sind die Angaben Ihrer Pflegekasse. Stand: {esc(b['stand'])}."),
         "beitrag_quellen": quellen_block(b),
+        "werkzeuge_beitrag": seiten_werkzeuge(
+            "Beitrag teilen: Link zu diesem Ratgeber-Beitrag", 10, vorlesen=True,
+            drucken="Beitrag drucken oder als PDF speichern", teilen_titel=b["titel"]),
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung"), b["slug"]).splitlines(), 8),
@@ -1256,6 +1319,22 @@ def main():
         "pgr_faq": pgr_faq,
         "pgr_jsonld": pgr_jsonld,
         "pgr_faq_stand": esc(pgr_faq_stand),
+        # Seiten-Werkzeuge (Vorlesen/Teilen/Drucken) – je Seitentyp eine Zusammenstellung
+        "werkzeuge_ratgeber": seiten_werkzeuge("Ratgeber-Übersicht teilen: Link zu dieser Seite", 6),
+        "werkzeuge_thema": seiten_werkzeuge("Themenseite teilen: Link zu dieser Seite", 10),
+        "werkzeuge_themen": seiten_werkzeuge("Themenübersicht teilen: Link zu dieser Seite", 6),
+        "werkzeuge_veranstaltungen": seiten_werkzeuge(
+            "Veranstaltungen teilen: Link zu dieser Seite", 8,
+            drucken="Liste drucken oder als PDF speichern"),
+        "werkzeuge_pflegegrad": seiten_werkzeuge(
+            "Pflegegradrechner teilen: Link zum Rechner (ohne Ihre Angaben)", 12,
+            teilen_titel="Pflegegradrechner"),
+        "werkzeuge_alltag": seiten_werkzeuge("Mein Alltag teilen: Link zu dieser Seite", 6),
+        "werkzeuge_checklisten": seiten_werkzeuge(
+            "Checklisten teilen: Link zu dieser Seite (ohne Ihre Haken)", 6),
+        "werkzeuge_wohnungs_check": seiten_werkzeuge(
+            "Wohnungs-Check teilen: Link zu dieser Seite (ohne Ihre Antworten)", 6),
+        "werkzeuge_anbieter": seiten_werkzeuge("Seite für Anbieter teilen: Link zu dieser Seite", 6),
         "home_head": home_head(regionen),
         **veranstaltungen_html(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),

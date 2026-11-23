@@ -90,7 +90,8 @@ assets/css/layout.css      Container, Sektionen, Header, Hero, Raster, Footer
 assets/css/components.css  BEM-Komponenten (.card, .personal, .relatives, .benefits, .path-card,
                            .page-header, .breadcrumb, .topic-*, .form__section, .notice--*, .demo-label …)
 assets/js/no-js.js         setzt html.js (Mobilmenü klappt nur mit JS zu)
-assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen, Ratgeber-Themenfilter
+assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen, Ratgeber-Themenfilter,
+                           Seiten-Werkzeuge: Vorlesen (8.), Seite teilen (10.), ganze Seite drucken (11.)
 _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Cache-Regeln
 ```
 

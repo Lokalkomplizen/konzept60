@@ -76,3 +76,72 @@ a { color: #000; text-decoration: none; }
 .pgr-fin { border: 0; background: none; padding: 0; }
 .pgr-fin::before { content: "• "; }
 .pgr-bar__fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+/* ==========================================================================
+   Ratgeber-Beiträge, Veranstaltungsliste und Quellenangabe
+   Druck-Schaltfläche: [data-drucken-seite] → window.print() (main.js, 11.)
+   ========================================================================== */
+
+/* Nur Inhalt: Inhaltsverzeichnis, Bilder, Werkzeug-Reihe weg (sparsam mit Tinte).
+   Der CTA-Abschnitt und „Weitere Beiträge“ tragen no-print im Template. */
+.article__toc,
+.article__media,
+.article__figure,
+.seiten-werkzeuge,
+.vorlesen,
+.pgr-start__media,
+.ev-filter,
+.ev-empty {
+  display: none !important;
+}
+
+/* Fließtext in lesbarer Breite statt über die ganze Seite */
+.article__layout { display: block; }
+.article__body { max-width: 16cm; }
+
+h1, h2, h3, h4,
+.ev-day__title,
+.ev-card__title { break-after: avoid; }
+
+p, li { orphans: 3; widows: 3; }
+
+.article__table-wrap, .article__table { break-inside: avoid; }
+.article__table th, .article__table td { border: 1px solid #999; padding: 0.2rem 0.4rem; }
+.beitrag-quellen { break-inside: avoid; }
+
+/* Nur externe Quellen mit Adresse mitdrucken – interne Links (/…) nicht */
+.article__body a[href^="http"]::after,
+.beitrag-quellen a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 9pt;
+  word-break: break-all;
+}
+
+/* Veranstaltungen: gedruckt wird die Liste, wie sie gerade gefiltert ist */
+.ev-day { break-inside: auto; }
+.ev-item { break-inside: avoid; }
+.ev-card {
+  box-shadow: none;
+  border: 0;
+  border-bottom: 1px solid #999;
+  background: #fff;
+  padding: 0 0 0.4rem;
+  margin-bottom: 0.4rem;
+}
+.ev-card__pill, .ev-card__status {
+  border: 1px solid #000;
+  background: none;
+  color: #000;
+}
+
+/* Quellenangabe am Ende des Ausdrucks (templates/_layout.html) */
+.print-url {
+  display: block !important;
+  margin-top: 1rem;
+  padding-top: 0.3rem;
+  border-top: 1px solid #999;
+  font-size: 9pt;
+  color: #333;
+  word-break: break-all;
+}
+.print-url:empty { border: 0; }

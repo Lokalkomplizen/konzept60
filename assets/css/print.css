@@ -101,7 +101,7 @@ a { color: #000; text-decoration: none; }
 
 h1, h2, h3, h4,
 .ev-day__title,
-.ev-card__title { break-after: avoid; }
+.ev-row__title { break-after: avoid; }
 
 p, li { orphans: 3; widows: 3; }
 
@@ -119,15 +119,23 @@ p, li { orphans: 3; widows: 3; }
 
 /* Veranstaltungen: gedruckt wird die Liste, wie sie gerade gefiltert ist */
 .ev-day { break-inside: auto; }
-.ev-item { break-inside: avoid; }
-.ev-card {
-  box-shadow: none;
-  border: 0;
+/* break-inside: avoid an den Zeilen ließ Chrome halbe Seiten leer stehen – Zeilen dürfen umbrechen */
+.ev-item { break-inside: auto; }
+.ev-row {
+  display: grid;
+  grid-template-columns: 3.2cm 1fr auto;
+  grid-template-areas: "time main thema";
+  gap: 0 0.4cm;
   border-bottom: 1px solid #999;
   background: #fff;
-  padding: 0 0 0.4rem;
-  margin-bottom: 0.4rem;
+  padding: 0.2rem 0 0.4rem;
 }
+/* „Mehr erfahren“: im Druck immer aufgeklappt (veranstaltungen.js öffnet die <details>
+   vor dem Druck; ::details-content als Rückfall), Summary selbst entfällt */
+.ev-row__more summary { display: none; }
+.ev-row__more::details-content { content-visibility: visible; display: block; }
+.ev-row__details { padding: 0.1rem 0 0; gap: 0.1rem; }
+.ev-card__facts li { border: 0; background: none; padding: 0 0.6em 0 0; }
 .ev-card__pill, .ev-card__status {
   border: 1px solid #000;
   background: none;

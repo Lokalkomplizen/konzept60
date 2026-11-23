@@ -98,6 +98,16 @@ textarea {
   color: inherit;
 }
 
+/* Kein Doppeltipp-Zoom-Verzug auf Bedienelementen (Pinch-Zoom bleibt möglich) */
+a,
+button,
+label,
+select,
+input,
+summary {
+  touch-action: manipulation;
+}
+
 /* Sichtbarer Fokus für alle interaktiven Elemente (gelb + Navy-Kontur,
    funktioniert auf hellen wie dunklen Flächen) */
 :focus-visible {

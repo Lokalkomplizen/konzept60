@@ -259,7 +259,7 @@ nav: anbieter
             <div class="form__row form__row--2">
               <div class="form-field">
                 <label class="form-field__label" for="a-email">E-Mail <span class="form-field__req">*</span></label>
-                <input class="form-field__input" id="a-email" name="email" type="email" autocomplete="email" required aria-describedby="a-email-fehler">
+                <input class="form-field__input" id="a-email" name="email" type="email" autocomplete="email" spellcheck="false" required aria-describedby="a-email-fehler">
                 <p class="form-field__error" id="a-email-fehler" aria-live="polite"></p>
               </div>
               <div class="form-field">
@@ -279,7 +279,7 @@ nav: anbieter
             <div class="form-field" id="a-einwilligung-feld">
               <label class="choice" for="a-einwilligung">
                 <input type="checkbox" id="a-einwilligung" name="einwilligung" required aria-describedby="a-einwilligung-fehler">
-                <span>Ich bin einverstanden, dass das Team von „{{site_name}}“ meine Angaben zur Prüfung meiner Registrierung und zur Kontaktaufnahme verwendet. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
+                <span>Ich bin einverstanden, dass das Team von „<span translate="no">{{site_name}}</span>“ meine Angaben zur Prüfung meiner Registrierung und zur Kontaktaufnahme verwendet. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>. <span class="form-field__req">*</span></span>
               </label>
               <p class="form-field__error" id="a-einwilligung-fehler" aria-live="polite"></p>
             </div>

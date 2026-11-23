@@ -37,29 +37,24 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
     </div>
   </section>
 
-  <!-- Vertrauensleiste -->
+  <!-- Vertrauensleiste: nur Stichworte. Die volle Botschaft (persönlich, kostenlos, keine anonyme
+       Datenbank, Zustimmung) steht einmal ausführlich in „So funktioniert’s“. -->
   <section class="trust" aria-label="Unsere Grundsätze">
     <div class="container">
       <ul class="trust__list">
         <li class="trust__item">
           <img class="trust__icon" src="/assets/img/icons/kostenlos-96.webp" srcset="/assets/img/icons/kostenlos-96.webp 1x, /assets/img/icons/kostenlos-192.webp 2x" width="96" height="96" alt="" decoding="async">
-          <span>
-            <strong class="trust__title">Kostenlos und unverbindlich</strong>
-            <span class="trust__text">Unsere Vermittlung kostet Sie nichts. Sie entscheiden selbst, ob Sie ein Angebot annehmen.</span>
-          </span>
+          <strong class="trust__title">Kostenlos und unverbindlich</strong>
         </li>
         <li class="trust__item">
           <img class="trust__icon" src="/assets/img/icons/persoenlich-96.webp" srcset="/assets/img/icons/persoenlich-96.webp 1x, /assets/img/icons/persoenlich-192.webp 2x" width="96" height="96" alt="" decoding="async">
-          <span>
-            <strong class="trust__title">Persönlich statt anonym</strong>
-            <span class="trust__text">Jede Anfrage liest ein Mensch aus unserem Team – keine anonyme Datenbank, kein Automat.</span>
-          </span>
+          <strong class="trust__title">Persönlich statt anonym</strong>
         </li>
         <li class="trust__item">
           <img class="trust__icon" src="/assets/img/icons/regional-96.webp" srcset="/assets/img/icons/regional-96.webp 1x, /assets/img/icons/regional-192.webp 2x" width="96" height="96" alt="" decoding="async">
           <span>
             <strong class="trust__title">Regional</strong>
-            <span class="trust__text">Wir suchen in Ihrer Nähe – zunächst im Rheinland, am Niederrhein und im Bergischen Land.</span>
+            <span class="trust__text">Rheinland, Niederrhein und Bergisches Land</span>
           </span>
         </li>
       </ul>
@@ -94,106 +89,60 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
 
   <!-- ======================================================================
        Drei Wege, wie wir helfen  (→ template-parts/saeulen.php)
-       Säulen: Hilfe finden · Wissen bekommen (Ratgeber) · Alltag erleichtern (Mein Alltag)
+       Weg 1 „Hilfe finden“ = Themenbereiche (get_terms( 'themenbereich' ) + template-parts/card-thema.php,
+       Karten erzeugt tools/build.py aus data/themen.json); Weg 2 und 3 als kompakte Verweiskarten.
        ====================================================================== -->
   <section class="section" id="drei-wege" aria-labelledby="drei-wege-titel">
     <div class="container">
       <div class="section__header">
         <span class="section__eyebrow">Unser Angebot</span>
         <h2 id="drei-wege-titel">Drei Wege, wie wir helfen</h2>
-        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten. Alles ist kostenlos und unverbindlich.</p>
+        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten.</p>
       </div>
 
-      <div class="paths paths--3">
-        <article class="path-card" aria-labelledby="weg-hilfe">
-          <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-hilfe"/></svg>
-          <span class="path-card__tag">Hilfe finden</span>
-          <h3 class="path-card__title" id="weg-hilfe">Wir suchen für Sie</h3>
-          <p class="path-card__text">Sie beschreiben, wobei Sie Unterstützung brauchen. Ein Mensch aus unserem Team sucht passende Dienstleister oder private Helfer in Ihrer Region.</p>
-          <a class="btn btn--secondary" href="/themen/">Hilfe finden <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
-        </article>
-
-        <article class="path-card path-card--sage" aria-labelledby="weg-wissen">
-          <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-wissen"/></svg>
-          <span class="path-card__tag">Wissen bekommen</span>
-          <h3 class="path-card__title" id="weg-wissen">Verständlich erklärt</h3>
-          <p class="path-card__text">Im Ratgeber finden Sie Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit – ohne Fachchinesisch.</p>
-          <a class="btn btn--secondary" href="/ratgeber/">Zum Ratgeber <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
-        </article>
-
-        <article class="path-card path-card--terra" aria-labelledby="weg-alltag">
-          <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-alltag"/></svg>
-          <span class="path-card__tag">Alltag erleichtern</span>
-          <h3 class="path-card__title" id="weg-alltag">Mein Alltag</h3>
-          <p class="path-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause – ohne Anmeldung, ohne Speicherung.</p>
-          <a class="btn btn--secondary" href="/mein-alltag/">Zu Mein Alltag <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       Themenbereiche
-       → WordPress: get_terms( 'themenbereich' ) + template-parts/card-thema.php
-       Karten erzeugt tools/build.py aus data/themen.json
-       ====================================================================== -->
-  <section class="section" id="themen" aria-labelledby="themen-titel">
-    <div class="container">
-      <div class="section__header">
-        <span class="section__eyebrow">Themen</span>
-        <h2 id="themen-titel">Wobei dürfen wir helfen?</h2>
-        <p class="section__intro">
+      <div class="ways__help" id="themen">
+        <h3 class="ways__title" id="themen-titel"><span class="path-card__tag">Hilfe finden</span> Wobei dürfen wir helfen?</h3>
+        <p class="ways__intro">
           Ob kleine Reparatur, Hilfe im Haushalt oder Begleitung zum Arzt:
           Wählen Sie einen Bereich – oder beschreiben Sie Ihr Anliegen einfach in eigenen Worten.
         </p>
+        <ul class="grid grid--3 card-grid">
+{{themen_karten_h4}}
+        </ul>
       </div>
 
-      <ul class="grid grid--3 card-grid">
-{{themen_karten_h3}}
-      </ul>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       Persönliche Vermittlung  (→ template-parts/persoenlich.php, auch auf Themenseiten)
-       ====================================================================== -->
-  <section class="section section--sage personal" aria-labelledby="persoenlich-titel">
-    <div class="container personal__inner">
-      <div class="personal__lead">
-        <span class="section__eyebrow">Persönliche Vermittlung</span>
-        <h2 id="persoenlich-titel">Bei uns landen Sie nicht in einer anonymen Datenbank.</h2>
-        <p class="section__intro">
-          Echte Menschen aus unserem Team kümmern sich persönlich um Ihr Anliegen. Wir lesen,
-          was Sie uns schreiben, fragen bei Bedarf nach und suchen dann gezielt nach passenden
-          Ansprechpartnern in Ihrer Region.
-        </p>
-      </div>
-      <ul class="personal__list">
-        <li>
-          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-team"/></svg>
-          <span><strong>Ein Mensch liest mit.</strong> Kein Algorithmus entscheidet über Ihre Anfrage.</span>
+      <ul class="ways">
+        <li class="way-card way-card--sage">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-wissen"/></svg>
+          <div>
+            <span class="path-card__tag">Wissen bekommen</span>
+            <h3 class="way-card__title"><a href="/ratgeber/">Verständlich erklärt: der Ratgeber</a></h3>
+            <p class="way-card__text">Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit, ohne Fachchinesisch.</p>
+          </div>
         </li>
-        <li>
-          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-kontakt"/></svg>
-          <span><strong>Wir melden uns persönlich</strong> – so, wie Sie es wünschen: telefonisch oder per E-Mail.</span>
-        </li>
-        <li>
-          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-datenschutz"/></svg>
-          <span><strong>Sie behalten die Kontrolle.</strong> Ihre Kontaktdaten geben wir nur mit Ihrer ausdrücklichen Zustimmung weiter.</span>
+        <li class="way-card way-card--terra">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-alltag"/></svg>
+          <div>
+            <span class="path-card__tag">Alltag erleichtern</span>
+            <h3 class="way-card__title"><a href="/mein-alltag/">Mein Alltag</a></h3>
+            <p class="way-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause, ohne Anmeldung, ohne Speicherung.</p>
+          </div>
         </li>
       </ul>
     </div>
   </section>
 
   <!-- ======================================================================
-       So funktioniert's
+       So funktioniert's + Persönliche Vermittlung  (→ template-parts/persoenlich.php)
+       Einzige Stelle mit der vollen Botschaft: persönlich, kostenlos, keine anonyme Datenbank,
+       Weitergabe nur mit Zustimmung, keine Erfolgsgarantie.
        ====================================================================== -->
   <section class="section section--navy steps-section" id="so-funktionierts" aria-labelledby="ablauf-titel">
     <div class="container">
       <div class="section__header">
         <span class="section__eyebrow">So funktioniert’s</span>
         <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
-        <p class="section__intro">Wir sind selbst kein Dienstleister. Unser Team hört zu, sucht und stellt den Kontakt her – persönlich und kostenlos.</p>
+        <p class="section__intro">Bei uns landen Sie nicht in einer anonymen Datenbank. Wir sind selbst kein Dienstleister: Echte Menschen aus unserem Team hören zu, suchen und stellen den Kontakt her, persönlich und kostenlos.</p>
       </div>
 
       <ol class="steps">
@@ -203,18 +152,19 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
         </li>
         <li class="step">
           <h3 class="step__title">Unser Team sucht für Sie</h3>
-          <p class="step__text">Ein Mensch aus unserem Team liest Ihre Anfrage, fragt bei Bedarf nach und sucht passende Betriebe oder private Helfer in Ihrer Region.</p>
+          <p class="step__text">Ein Mensch aus unserem Team liest Ihre Anfrage, fragt bei Bedarf nach und sucht passende Betriebe oder private Helfer in Ihrer Region. Kein Algorithmus entscheidet.</p>
         </li>
         <li class="step">
           <h3 class="step__title">Sie erhalten Rückmeldung</h3>
-          <p class="step__text">Wir melden uns persönlich mit einem oder mehreren Kontakten. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
+          <p class="step__text">Wir melden uns persönlich mit einem oder mehreren Kontakten, so, wie Sie es wünschen: telefonisch oder per E-Mail. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
         </li>
       </ol>
 
       <div class="notice">
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-        <p><strong>Ehrlich gesagt:</strong> Wir können nicht garantieren, dass wir immer jemanden finden.
-          Wenn wir niemanden finden, sagen wir Ihnen das offen – und nennen Ihnen, wenn möglich, andere Anlaufstellen.</p>
+        <p><strong>Sie behalten die Kontrolle.</strong> Ihre Kontaktdaten geben wir nur mit Ihrer ausdrücklichen Zustimmung weiter.
+          <strong>Ehrlich gesagt:</strong> Wir können nicht garantieren, dass wir immer jemanden finden.
+          Wenn wir niemanden finden, sagen wir Ihnen das offen und nennen Ihnen, wenn möglich, andere Anlaufstellen.</p>
       </div>
     </div>
   </section>
@@ -265,9 +215,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
 
         <ul class="check-list">
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Kostenlos und unverbindlich</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Persönlich bearbeitet – keine anonyme Datenbank</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Auch für Angehörige, die für andere suchen</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Weitergabe Ihrer Kontaktdaten nur mit Ihrer Zustimmung</span></li>
         </ul>
       </div>
 
@@ -367,7 +315,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
                 </div>
                 <div class="form-field">
                   <label class="form-field__label" for="f-email">E-Mail</label>
-                  <input class="form-field__input" id="f-email" name="email" type="email" autocomplete="email"
+                  <input class="form-field__input" id="f-email" name="email" type="email" autocomplete="email" spellcheck="false"
                          aria-describedby="f-kontakt-fehler f-email-fehler">
                   <p class="form-field__error" id="f-email-fehler" aria-live="polite"></p>
                 </div>
@@ -403,7 +351,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             <div class="form-field" id="f-datenschutz-feld">
               <label class="choice" for="f-datenschutz">
                 <input type="checkbox" id="f-datenschutz" name="einwilligung_bearbeitung" required aria-describedby="f-datenschutz-fehler">
-                <span>Ich bin einverstanden, dass das Team von „{{site_name}}“ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
+                <span>Ich bin einverstanden, dass das Team von „<span translate="no">{{site_name}}</span>“ meine Angaben zur Bearbeitung der Anfrage nutzt und mich kontaktiert. <span class="form-field__req">*</span></span>
               </label>
               <p class="form-field__error" id="f-datenschutz-fehler" aria-live="polite"></p>
             </div>
@@ -447,53 +395,6 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
   </section>
 
   <!-- ======================================================================
-       Für Anbieter (Teaser)  → Seite /fuer-anbieter/ (page-fuer-anbieter.php)
-       ====================================================================== -->
-  <section class="section" id="fuer-anbieter" aria-labelledby="anbieter-titel">
-    <div class="container split split--top">
-      <div>
-        <span class="section__eyebrow">Für Anbieter</span>
-        <h2 id="anbieter-titel">Für Dienstleister und private Helfer</h2>
-        <p class="section__intro">
-          Sie bieten Leistungen für Menschen ab 60 an – als Betrieb oder als Privatperson mit Zeit und Erfahrung?
-          Werden Sie Teil unseres regionalen Netzwerks.
-        </p>
-        <ul class="benefits">
-          <li class="benefits__item">
-            <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-region"/></svg>
-            <span><strong>Neue Kunden aus der Region erreichen</strong> Menschen ab 60 und ihre Familien in Ihrer Nähe.</span>
-          </li>
-          <li class="benefits__item">
-            <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-anfragen"/></svg>
-            <span><strong>Passende Vermittlungsanfragen erhalten</strong> Unser Team gleicht jede Anfrage persönlich ab.</span>
-          </li>
-          <li class="benefits__item">
-            <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-netzwerk"/></svg>
-            <span><strong>Teil eines regionalen Netzwerks werden</strong> Gemeinsam mit Betrieben und Helfern vor Ort.</span>
-          </li>
-          <li class="benefits__item">
-            <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-kostenlos"/></svg>
-            <span><strong>Kostenlos mit Basisprofil starten</strong> Registrierung und Basisprofil kosten nichts.</span>
-          </li>
-        </ul>
-        <div class="btn-group">
-          <a class="btn btn--secondary" href="/fuer-anbieter/#registrierung">Als Anbieter registrieren</a>
-          <a class="btn btn--secondary" href="/fuer-anbieter/">Mehr für Anbieter</a>
-        </div>
-      </div>
-      <div class="provider-panel">
-        <h3>Worauf wir achten</h3>
-        <ul class="check-list">
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Jedes Profil wird vor der Freischaltung persönlich von unserem Team geprüft.</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Genehmigungspflichtige Tätigkeiten – etwa Pflegeleistungen oder bestimmte Handwerksarbeiten – vermitteln wir nur an entsprechend qualifizierte und berechtigte Betriebe.</span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>Private Helfer unterstützen bei alltäglichen Dingen, nicht bei Tätigkeiten, die eine Fachausbildung erfordern.</span></li>
-        </ul>
-        <p class="form-field__hint">Wir sind kein Branchenverzeichnis: Wir vermitteln gezielt einzelne, passende Anfragen.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
        Ratgeber-Teaser → Beiträge aus content/ratgeber/*.md (erzeugt von tools/build.py)
        → WordPress: WP_Query( post_type 'post', posts_per_page 3 ) + template-parts/card-artikel.php
        ====================================================================== -->
@@ -508,5 +409,15 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
 {{ratgeber_karten}}
       </ul>
       <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       Für Anbieter: nur ein schmaler Hinweis, alles Weitere auf /fuer-anbieter/ (page-fuer-anbieter.php)
+       ====================================================================== -->
+  <section class="provider-hint" id="fuer-anbieter" aria-labelledby="anbieter-titel">
+    <div class="container provider-hint__inner">
+      <p><strong id="anbieter-titel">Für Dienstleister und private Helfer:</strong> Werden Sie Teil unseres regionalen Netzwerks.</p>
+      <a class="provider-hint__link" href="/fuer-anbieter/">Mehr für Anbieter <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
     </div>
   </section>

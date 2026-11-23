@@ -88,13 +88,15 @@ def indent(lines, n):
 # Bausteine (→ WordPress: template-parts/*.php)
 # --------------------------------------------------------------------------
 def picture(thema, sizes, css_class, loading="lazy", priority=False):
-    """<picture> mit WebP 480/800 + JPG-Fallback 800 (4:5, 800×1000)."""
+    """<picture> mit WebP 480/800 + JPG-Fallback 800 (4:5, 800×1000; abweichende Höhe über bild.hoehe,
+    z. B. Pflege-Bild 800×880 ohne Rollstuhlgriff – CSS schneidet per object-fit auf 4:5 zu)."""
     base = "/" + thema["bild"]["datei"]
+    hoehe = thema["bild"].get("hoehe", 1000)
     extra = ' fetchpriority="high"' if priority else ""
     return (
         f'<picture class="{css_class}">\n'
         f'  <source type="image/webp" srcset="{base}-480.webp 480w, {base}-800.webp 800w" sizes="{sizes}">\n'
-        f'  <img src="{base}-800.jpg" width="800" height="1000" alt="{esc(thema["bild"]["alt"])}"\n'
+        f'  <img src="{base}-800.jpg" width="800" height="{hoehe}" alt="{esc(thema["bild"]["alt"])}"\n'
         f'       loading="{loading}" decoding="async"{extra}>\n'
         f"</picture>"
     )
@@ -278,7 +280,7 @@ def andere_themen(themen, aktuell):
             continue
         lines.append(
             f'<li><a class="topic-link" href="/themen/{t["slug"]}/">'
-            f'<img class="topic-link__img" src="/{t["bild"]["datei"]}-480.webp" width="480" height="600" alt="" loading="lazy" decoding="async">'
+            f'<img class="topic-link__img" src="/{t["bild"]["datei"]}-480.webp" width="480" height="{t["bild"].get("hoehe", 1000) * 480 // 800}" alt="" loading="lazy" decoding="async">'
             f'<span class="topic-link__title">{esc(t["titel"])}</span>'
             f'<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></li>'
         )
@@ -1138,29 +1140,33 @@ def veranstaltungen_html(regionen):
         marker.append("Barrierefreiheit bitte erfragen" if e["barrierefrei"] is None
                       else "Barrierefrei" if e["barrierefrei"] else "Nicht barrierefrei")
         titel = esc(e["titel"])
+        # Kompakte Zeile: Uhrzeit links, Titel + Ort in der Mitte, Thema rechts;
+        # Beschreibung, Veranstalter, Fakten, Quelle und Stand im <details> („Mehr erfahren“).
         lines += [
             f'    <li class="ev-item" data-ev data-datum="{e["datum"]}" data-beginn="{e["beginn"]}" '
             f'data-stadt="{esc(e["stadt"])}" data-thema="{esc(e["kategorie"])}" data-label="{tag_label(d)}">',
-            f'      <article class="ev-card{" ev-card--abgesagt" if abgesagt else ""}" aria-labelledby="{e["id"]}-titel">',
-            '        <p class="ev-card__meta">',
-            f'          <span class="ev-card__pill">{esc(e["kategorie"])}</span>',
-        ]
-        if abgesagt:
-            lines.append('          <span class="ev-card__status">Abgesagt</span>')
-        lines += [
-            '        </p>',
-            f'        <h3 class="ev-card__title" id="{e["id"]}-titel">{titel}</h3>',
-            f'        <p class="ev-card__when">'
-            f'<time datetime="{e["datum"]}T{e["beginn"]}">{tag_label(d)}, {zeit}</time></p>',
-            f'        <p class="ev-card__where"><strong>{esc(e["stadt"])}</strong> – {esc(e["ort"])}</p>',
-            f'        <p class="ev-card__org">Veranstalter: {esc(e["veranstalter"])}</p>',
-            f'        <p class="ev-card__text">{esc(e["kurztext"])}</p>',
-            '        <ul class="ev-card__facts">',
-            f'          <li><span class="visually-hidden">Kosten: </span><strong>{esc(e["kosten"])}</strong></li>',
-        ] + [f'          <li>{m}</li>' for m in marker] + [
-            '        </ul>',
-            f'        <p class="ev-card__source"><a href="{esc(e["quelle_url"])}">Quelle ansehen<span class="visually-hidden"> zu {titel}</span></a>'
-            f' <span class="ev-card__stand">Stand: geprüft am {de_datum(e["geprueft_am"])}</span></p>',
+            f'      <article class="ev-row{" ev-row--abgesagt" if abgesagt else ""}" aria-labelledby="{e["id"]}-titel">',
+            f'        <p class="ev-row__time"><time datetime="{e["datum"]}T{e["beginn"]}">{zeit}</time>'
+            f'</p>',
+            f'        <p class="ev-row__thema"><span class="ev-card__pill">{esc(e["kategorie"])}</span>'
+            + ('<span class="ev-card__status">Abgesagt</span>' if abgesagt else "") + '</p>',
+            '        <div class="ev-row__main">',
+            f'          <h3 class="ev-row__title" id="{e["id"]}-titel">{titel}</h3>',
+            f'          <p class="ev-row__where"><strong>{esc(e["stadt"])}</strong>, {esc(e["ort"])}</p>',
+            '          <details class="ev-row__more">',
+            f'            <summary>Mehr erfahren<span class="visually-hidden"> zu {titel}</span></summary>',
+            '            <div class="ev-row__details">',
+            f'              <p class="ev-row__text">{esc(e["kurztext"])}</p>',
+            '              <ul class="ev-card__facts">',
+            f'                <li><span class="visually-hidden">Kosten: </span><strong>{esc(e["kosten"])}</strong></li>',
+        ] + [f'                <li>{m}</li>' for m in marker] + [
+            '              </ul>',
+            f'              <p class="ev-row__org">Veranstalter: {esc(e["veranstalter"])}</p>',
+            f'              <p class="ev-row__source"><a href="{esc(e["quelle_url"])}">Quelle ansehen<span class="visually-hidden"> zu {titel}</span></a>'
+            f' <span class="ev-row__stand">Stand: geprüft am {de_datum(e["geprueft_am"])}</span></p>',
+            '            </div>',
+            '          </details>',
+            '        </div>',
             '      </article>',
             '    </li>',
         ]
@@ -1270,7 +1276,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
     image = None
     if "thema_slug" in ctx:
         t = next(t for t in themen if t["slug"] == ctx["thema_slug"])
-        image = (f'/{t["bild"]["datei"]}-800.jpg', 800, 1000, t["bild"]["alt"])
+        image = (f'/{t["bild"]["datei"]}-800.jpg', 800, t["bild"].get("hoehe", 1000), t["bild"]["alt"])
     article = ctx.get("og_article")
     if article:
         image = (f'/{RATGEBER_IMG}/{article["bild"]}-1400.jpg', 1400, 933, article["bild_alt"])
@@ -1368,7 +1374,7 @@ def main():
         "home_head": home_head(regionen),
         **veranstaltungen_html(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),
-        "themen_karten_h3": theme_cards(themen, "h3", 8),
+        "themen_karten_h4": theme_cards(themen, "h4", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
         "kategorie_optionen": kategorie_optionen(themen),
         "leistungen_gruppen": leistungen_gruppen(themen),

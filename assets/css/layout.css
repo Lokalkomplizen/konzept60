@@ -270,8 +270,12 @@
 .site-footer {
   background: var(--color-navy-900);
   color: var(--color-on-navy);
-  padding-block: var(--space-3xl) var(--space-xl);
+  padding-block: var(--space-2xl) var(--space-l);
   font-size: var(--font-size-base);
+}
+
+@media (min-width: 48em) {
+  .site-footer { padding-block: var(--space-3xl) var(--space-xl); }
 }
 
 .site-footer a {
@@ -284,15 +288,34 @@
 
 .site-footer__grid {
   display: grid;
-  gap: var(--space-2xl);
+  gap: var(--space-xl);
 }
+
+.site-footer__brand p { margin: var(--space-xs) 0 0; max-width: 34rem; }
 
 @media (min-width: 48em) {
-  .site-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2xl) var(--space-xl); }
+  .site-footer__brand { grid-column: 1 / -1; }
 }
 
+/* Desktop: Marke als schmale Zeile oben, darunter vier Linkspalten in Inhaltsbreite
+   (keine Umbrüche in „Ratgeber – Wissen bekommen“ oder den Themen) */
 @media (min-width: 64em) {
-  .site-footer__grid { grid-template-columns: 1.3fr 1fr 1.2fr 1.1fr 0.9fr; }
+  .site-footer__grid {
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    gap: var(--space-xl) var(--space-xl);
+  }
+  .site-footer__brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2xs) var(--space-xl);
+    padding-bottom: var(--space-l);
+    border-bottom: 1px solid rgb(255 255 255 / 0.18);
+  }
+  .site-footer__brand p { margin: 0; max-width: 46rem; }
+  .site-footer nav { font-size: var(--font-size-md); }
 }
 
 .site-footer h2 {
@@ -301,7 +324,7 @@
   font-weight: 700;
   color: var(--color-white);
   letter-spacing: 0.02em;
-  margin-bottom: var(--space-s);
+  margin-bottom: var(--space-xs);
 }
 
 .site-footer ul {
@@ -310,24 +333,40 @@
   margin: 0;
 }
 
-.site-footer__regions {
-  /* zwei Spalten, wo Platz ist; in schmalen Footer-Spalten (64em+) eine –
-     Städtenamen stoßen so nie aneinander („DüsseldorfWuppertal“) */
+/* Regionen und Informationen: zwei Spalten, wo Platz ist (Handy), Städtenamen stoßen nie
+   aneinander; in der schmalen Vier-Spalten-Ansicht ab 64em eine, ab 75em wieder zwei */
+.site-footer__regions,
+.site-footer__info {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 6.5em), 1fr));
-  gap: var(--space-2xs) var(--space-xl);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-l);
+}
+
+@media (min-width: 48em) {
+  .site-footer__info { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (min-width: 64em) {
+  .site-footer__regions { grid-template-columns: max-content; }
+}
+
+@media (min-width: 75em) {
+  .site-footer__regions { grid-template-columns: repeat(2, max-content); column-gap: var(--space-xl); }
 }
 
 .site-footer__prototype .demo-label { margin-right: var(--space-xs); }
 
+/* Gleichmäßige Abstände in allen Spalten: jede Linkzeile mind. 44px, Umbrüche mit enger Zeilenhöhe */
 .site-footer li a {
   display: inline-flex;
   align-items: center;
-  min-height: var(--touch-min);
+  min-height: var(--touch-compact);
+  padding-block: var(--space-2xs);
+  line-height: var(--line-height-tight);
 }
 
 .site-footer__bottom {
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
   padding-top: var(--space-l);
   border-top: 1px solid rgb(255 255 255 / 0.18);
   display: flex;

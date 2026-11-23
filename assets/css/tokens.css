@@ -8,6 +8,8 @@
    ========================================================================== */
 
 :root {
+  color-scheme: light; /* nur helles Farbschema: Formularelemente, Scrollleisten */
+
   /* ---- Farben (Palette) ------------------------------------------------ */
   --color-navy-900: #0e1830;   /* tiefster Ton, Footer */
   --color-navy-800: #14213d;   /* Primärfarbe, Hero-Panel */
@@ -85,6 +87,7 @@
   --container-max: clamp(75rem, 80vw, 120rem);  /* 1200px, auf großen Monitoren 80 % der Breite (max. 1920px) */
   --gutter: 1.25rem;
   --touch-min: 3rem;       /* 48px Mindestgröße für Touch-Ziele */
+  --touch-compact: 2.75rem; /* 44px: dichte Linklisten (Footer), WCAG 2.5.5 */
 
   --transition: 160ms ease;
 }

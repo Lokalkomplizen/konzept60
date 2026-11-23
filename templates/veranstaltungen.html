@@ -21,11 +21,11 @@ body_extra: <script src="/assets/js/veranstaltungen.js" defer></script>
         <span class="section__eyebrow">Gemeinsam unterwegs</span>
         <h1>Veranstaltungen für Sie</h1>
         <p class="section__intro">
-          Bewegung, Kultur, Begegnung und mehr in Ihrer Nähe. Die Termine sind nach Datum geordnet. Wählen Sie Ort und Thema – oder blättern Sie einfach durch die Liste.
+          Bewegung, Kultur, Begegnung und mehr in Ihrer Nähe, nach Datum geordnet.
         </p>
 {{werkzeuge_veranstaltungen}}
         </div>
-        <picture class="pgr-start__media">
+        <picture class="pgr-start__media ev-start__media">
           <source type="image/webp" srcset="/assets/img/veranstaltungen/titelbild-800.webp 800w, /assets/img/veranstaltungen/titelbild-1536.webp 1536w" sizes="(min-width: 60em) 40vw, 92vw">
           <img src="/assets/img/veranstaltungen/titelbild-800.jpg" srcset="/assets/img/veranstaltungen/titelbild-800.jpg 800w, /assets/img/veranstaltungen/titelbild-1536.jpg 1536w" sizes="(min-width: 60em) 40vw, 92vw"
                width="1536" height="864" alt="Ein Tischkalender mit bunten Haftnotizen und Symbolen für Theater, Wandern, Musik, Treffen, Kaffee, Malen, Radfahren und Entspannung, daneben Kaffeetasse, Brille, Hortensien und Strohhut." loading="eager">
@@ -38,28 +38,30 @@ body_extra: <script src="/assets/js/veranstaltungen.js" defer></script>
     <div class="container">
       <h2 class="visually-hidden" id="ev-titel">Alle Veranstaltungen</h2>
 
-      <div class="notice notice--light notice--flush" role="note">
-        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-        <p><strong>Bitte vorher nachfragen.</strong> {{ev_hinweis}}</p>
-      </div>
-
       <form class="ev-filter" data-ev-filter aria-labelledby="ev-filter-titel" novalidate>
-        <h3 class="ev-filter__title" id="ev-filter-titel">Veranstaltungen eingrenzen</h3>
-        <div class="form-field">
-          <label class="form-field__label" for="ev-ort">Ort</label>
-          <select class="form-field__input" id="ev-ort" name="ort">
+        <h3 class="visually-hidden" id="ev-filter-titel">Veranstaltungen eingrenzen</h3>
+        <div class="ev-filter__fields">
+          <div class="form-field">
+            <label class="form-field__label" for="ev-ort">Ort</label>
+            <select class="form-field__input" id="ev-ort" name="ort">
 {{ev_opt_stadt}}
-          </select>
-        </div>
-        <p class="filter__label" id="ev-thema-label">Thema</p>
-        <div class="filter__list" role="group" aria-labelledby="ev-thema-label">
+            </select>
+          </div>
+          <div class="ev-filter__thema">
+            <p class="filter__label" id="ev-thema-label">Thema</p>
+            <div class="filter__list" role="group" aria-labelledby="ev-thema-label">
 {{ev_chips_thema}}
+            </div>
+          </div>
         </div>
         <div class="ev-filter__bar">
           <p class="ev-filter__count" aria-live="polite" data-ev-count>{{ev_anzahl}}</p>
-          <button type="button" class="btn btn--secondary ev-filter__reset" data-ev-reset>Filter zurücksetzen</button>
+          <button type="button" class="link-button ev-filter__reset" data-ev-reset>Filter zurücksetzen</button>
         </div>
       </form>
+
+      <p class="ev-hinweis" role="note"><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <span><strong>Bitte vorher nachfragen.</strong> {{ev_hinweis}}</span></p>
 
       <div data-ev-list>
 {{ev_liste}}

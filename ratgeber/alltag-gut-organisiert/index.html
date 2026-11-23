@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
   <title>Gut organisiert und selbstbestimmt: 5 Dinge, die den Alltag leichter machen – Ratgeber – Konzept 60+</title>
   <meta name="description" content="Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche…">
   <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
@@ -31,11 +32,11 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
-  <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
-  <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=55584cd5c9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=ee8ad8012e">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=1ccaf226f3">
+  <link rel="stylesheet" href="/assets/css/components.css?v=128a43005a">
+  <link rel="stylesheet" href="/assets/css/print.css?v=75481f14bd" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
@@ -94,7 +95,7 @@
 
   <div class="container site-header__bar">
     <a class="logo" href="/" aria-label="Konzept 60+ – zur Startseite">
-      <span class="logo__text">Konzept 60+</span>
+      <span class="logo__text" translate="no">Konzept 60+</span>
     </a>
 
     <button class="btn btn--menu site-header__nav-toggle" type="button"
@@ -327,9 +328,9 @@
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
-      <div>
+      <div class="site-footer__brand">
         <a class="logo logo--light" href="/" aria-label="Konzept 60+ – zur Startseite">
-          <span class="logo__text">Konzept 60+</span>
+          <span class="logo__text" translate="no">Konzept 60+</span>
         </a>
         <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
           Wir erbringen selbst keine Dienstleistungen.</p>
@@ -375,7 +376,7 @@
 
       <nav aria-labelledby="footer-info">
         <h2 id="footer-info">Informationen</h2>
-        <ul>
+        <ul class="site-footer__info">
           <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
@@ -387,7 +388,7 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>© 2026 Konzept 60+ (Arbeitstitel)</p>
+      <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
   </div>
@@ -398,7 +399,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
+<script src="/assets/js/main.js?v=3e48828213" defer></script>
 
 </body>
 </html>

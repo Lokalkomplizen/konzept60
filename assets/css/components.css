@@ -1633,8 +1633,16 @@ select.form-field__input {
 .article__body > ul li::marker, .article__body > ol li::marker { color: var(--color-sage-700); }
 
 /* Aufgabenliste im Beitrag: interaktive Checkliste */
-.article__body > .beitrag-checkliste { list-style: none; padding-left: 0; margin: 0 0 var(--space-l); display: grid; gap: var(--space-xs); }
-.article__body > .beitrag-checkliste li { margin: 0; padding: 0; }
+.article__body .beitrag-checkliste { list-style: none; padding-left: 0; margin: 0 0 var(--space-l); display: grid; gap: var(--space-xs); }
+.article__body .beitrag-checkliste li { margin: 0; padding: 0; }
+.beitrag-check { margin: 0 0 var(--space-l); }
+.beitrag-check__status { margin-bottom: var(--space-m); }
+.beitrag-check__text { display: flex; justify-content: space-between; gap: var(--space-s); margin: 0 0 var(--space-xs); font-weight: 700; color: var(--color-sage-700); }
+.beitrag-check__balken { height: 10px; border-radius: 5px; background: var(--color-sand-100); overflow: hidden; }
+.beitrag-check__balken > span { display: block; height: 100%; width: 0; background: var(--color-sage-700); transition: width var(--transition); }
+.beitrag-check .choice:has(input:checked) span { text-decoration: line-through; text-decoration-thickness: 1px; }
+.beitrag-check .beitrag-checkliste { margin-bottom: var(--space-m); }
+@media (prefers-reduced-motion: reduce) { .beitrag-check__balken > span { transition: none; } }
 .beitrag-checkliste .choice { align-items: center; padding-block: var(--space-s); }
 
 /* Quellen und offizielle Formulare (nur mit Frontmatter "quellen") */

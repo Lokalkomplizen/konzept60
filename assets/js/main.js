@@ -1094,6 +1094,43 @@
     aktualisieren();
   }
 
+  /* ------------------------------------------------------------------------
+     12. Checklisten in Ratgeber-Beiträgen: Fortschritt + Zurücksetzen
+     (Markup: tools/build.py render_blocks; Haken werden nicht gespeichert)
+     ------------------------------------------------------------------------ */
+  function initBeitragCheck() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-beitrag-check]'), function (wrap) {
+      var boxes = Array.prototype.slice.call(wrap.querySelectorAll('input[type="checkbox"]'));
+      var status = wrap.querySelector('[data-check-status]');
+      var text = wrap.querySelector('[data-check-text]');
+      var prozent = wrap.querySelector('[data-check-prozent]');
+      var balken = wrap.querySelector('[data-check-balken]');
+      var leiste = wrap.querySelector('[role="progressbar"]');
+      var reset = wrap.querySelector('[data-check-reset]');
+      if (!boxes.length || !status) return;
+      function update() {
+        var done = boxes.filter(function (b) { return b.checked; }).length;
+        var pct = Math.round(done / boxes.length * 100);
+        text.textContent = done + ' von ' + boxes.length + ' Punkten geklärt';
+        prozent.textContent = pct + ' %';
+        balken.style.width = pct + '%';
+        leiste.setAttribute('aria-valuenow', String(done));
+        leiste.setAttribute('aria-valuetext', done + ' von ' + boxes.length);
+      }
+      status.hidden = false;
+      if (reset) {
+        reset.hidden = false;
+        reset.addEventListener('click', function () {
+          boxes.forEach(function (b) { b.checked = false; });
+          update();
+          boxes[0].focus();
+        });
+      }
+      wrap.addEventListener('change', update);
+      update();
+    });
+  }
+
   /* ------------------------------------------------------------------------ */
   initNavigation();
   var updateLeistungen = initLeistungen();
@@ -1106,4 +1143,5 @@
   initTeilen();
   initDrucken();
   initScrollAnimationen();
+  initBeitragCheck();
 })();

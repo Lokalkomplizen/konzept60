@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=4e56ec12ae">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
   <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
-  <link rel="stylesheet" href="/assets/css/components.css?v=faf15bcf91">
+  <link rel="stylesheet" href="/assets/css/components.css?v=9e089ab8d9">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -363,19 +363,26 @@
         <p>Informieren Sie Ihre Vertrauensperson über die Aufbewahrung und überlegen Sie eine Registrierung im Zentralen Vorsorgeregister.</p>
         <h2 id="praktische-checkliste-bin-ich-gut-vorbereitet">10. Praktische Checkliste: Bin ich gut vorbereitet?</h2>
         <p>Mit dieser Checkliste können Sie überprüfen, ob Sie bereits an die wichtigsten Punkte gedacht haben.</p>
-        <ul class="beitrag-checkliste">
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-1"> <span>Ich habe mich mit dem Thema Patientenverfügung beschäftigt.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-2"> <span>Meine Patientenverfügung beschreibt konkrete medizinische Situationen und Behandlungswünsche.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-3"> <span>Ich habe eine Vertrauensperson für meine Vorsorgevollmacht ausgewählt.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-4"> <span>Die Person weiß, dass ich sie bevollmächtigen möchte.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-5"> <span>Ich habe festgelegt, welche Aufgabenbereiche die Vollmacht umfasst.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-6"> <span>Ich habe über eine Ersatzperson nachgedacht.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-7"> <span>Meine Bank kennt gegebenenfalls meine gewünschte Kontovollmacht.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-8"> <span>Meine Vorsorgedokumente sind unterschrieben und auffindbar.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-9"> <span>Meine Vertrauensperson weiß, wo die Dokumente liegen.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-10"> <span>Ich habe über eine Registrierung im Zentralen Vorsorgeregister nachgedacht.</span></label></li>
-          <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-11"> <span>Ich überprüfe meine Dokumente gelegentlich und passe sie bei Bedarf an.</span></label></li>
-        </ul>
+        <div class="beitrag-check" data-beitrag-check>
+          <div class="beitrag-check__status" data-check-status hidden>
+            <p class="beitrag-check__text" aria-live="polite"><span data-check-text>0 von 11 Punkten geklärt</span><span class="beitrag-check__prozent" data-check-prozent>0 %</span></p>
+            <div class="beitrag-check__balken" role="progressbar" aria-label="Fortschritt der Checkliste" aria-valuemin="0" aria-valuemax="11" aria-valuenow="0"><span data-check-balken></span></div>
+          </div>
+          <ul class="beitrag-checkliste">
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-1"> <span>Ich habe mich mit dem Thema Patientenverfügung beschäftigt.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-2"> <span>Meine Patientenverfügung beschreibt konkrete medizinische Situationen und Behandlungswünsche.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-3"> <span>Ich habe eine Vertrauensperson für meine Vorsorgevollmacht ausgewählt.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-4"> <span>Die Person weiß, dass ich sie bevollmächtigen möchte.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-5"> <span>Ich habe festgelegt, welche Aufgabenbereiche die Vollmacht umfasst.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-6"> <span>Ich habe über eine Ersatzperson nachgedacht.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-7"> <span>Meine Bank kennt gegebenenfalls meine gewünschte Kontovollmacht.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-8"> <span>Meine Vorsorgedokumente sind unterschrieben und auffindbar.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-9"> <span>Meine Vertrauensperson weiß, wo die Dokumente liegen.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-10"> <span>Ich habe über eine Registrierung im Zentralen Vorsorgeregister nachgedacht.</span></label></li>
+            <li><label class="choice"><input type="checkbox" id="patientenverfuegung-vorsorgevollmacht-check-11"> <span>Ich überprüfe meine Dokumente gelegentlich und passe sie bei Bedarf an.</span></label></li>
+          </ul>
+          <button type="button" class="btn btn--secondary beitrag-check__reset no-print" data-check-reset hidden>Checkliste zurücksetzen</button>
+        </div>
         <p>Sie müssen nicht alles an einem Tag erledigen. Wichtig ist, überhaupt anzufangen.</p>
         <h2 id="fazit-vorsorge-ist-ein-stueck-selbstbestimmung">Fazit: Vorsorge ist ein Stück Selbstbestimmung</h2>
         <p>Niemand beschäftigt sich gerne mit der Vorstellung, eines Tages nicht mehr selbst entscheiden zu können. Trotzdem gehört diese Möglichkeit zum Leben.</p>
@@ -556,7 +563,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=047d3deb21" defer></script>
+<script src="/assets/js/main.js?v=d6e053bfd2" defer></script>
 
 </body>
 </html>

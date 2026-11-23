@@ -459,14 +459,24 @@ def render_blocks(blocks, ids=None, caption=None, slug="beitrag"):
         elif kind == "p":
             out.append(f"<p>{inline(data)}</p>")
         elif kind == "ul" and all(item.startswith("[ ] ") for item in data):
-            # Aufgabenliste: interaktive Checkliste (ids pro Seite eindeutig)
-            out.append('<ul class="beitrag-checkliste">')
+            # Aufgabenliste: interaktive Checkliste (ids pro Seite eindeutig).
+            # Fortschritt + Zurücksetzen: main.js (initBeitragCheck), ohne JS verborgen.
+            out.append('<div class="beitrag-check" data-beitrag-check>')
+            out.append('  <div class="beitrag-check__status" data-check-status hidden>')
+            out.append(f'    <p class="beitrag-check__text" aria-live="polite"><span data-check-text>0 von {len(data)} Punkten geklärt</span>'
+                       '<span class="beitrag-check__prozent" data-check-prozent>0 %</span></p>')
+            out.append(f'    <div class="beitrag-check__balken" role="progressbar" aria-label="Fortschritt der Checkliste" '
+                       f'aria-valuemin="0" aria-valuemax="{len(data)}" aria-valuenow="0"><span data-check-balken></span></div>')
+            out.append('  </div>')
+            out.append('  <ul class="beitrag-checkliste">')
             for item in data:
                 n_check += 1
                 out.append(
-                    f'  <li><label class="choice"><input type="checkbox" id="{slug}-check-{n_check}"> '
+                    f'    <li><label class="choice"><input type="checkbox" id="{slug}-check-{n_check}"> '
                     f'<span>{inline(item[4:].strip())}</span></label></li>')
-            out.append("</ul>")
+            out.append("  </ul>")
+            out.append('  <button type="button" class="btn btn--secondary beitrag-check__reset no-print" data-check-reset hidden>Checkliste zurücksetzen</button>')
+            out.append("</div>")
         elif kind == "ul":
             out.append("<ul>")
             out += [f"  <li>{inline(item)}</li>" for item in data]
@@ -523,15 +533,20 @@ def inline_bilder(meta):
 
 
 def insert_inline_bild(blocks, meta, source):
-    """Fügt jedes weitere Bild nach der ersten Liste des passenden ##-Abschnitts ein."""
+    """Fügt jedes weitere Bild nach der ersten Liste des passenden Abschnitts ein.
+    ##-Überschrift: ohne Liste direkt nach der Überschrift (wie bisher).
+    ###-Überschrift: ohne Liste am Ende des Unterabschnitts (vor der nächsten Überschrift)."""
     for bild, alt, ueberschrift in inline_bilder(meta):
         start = next((i for i, (k, d) in enumerate(blocks)
-                      if k == "h2" and plain(d).startswith(ueberschrift)), None)
+                      if k in ("h2", "h3") and plain(d).startswith(ueberschrift)), None)
         if start is None:
             raise SystemExit(f"FEHLER: {source} – Überschrift für inline_bild nicht gefunden: {ueberschrift!r}")
+        ende = ("h2",) if blocks[start][0] == "h2" else ("h2", "h3")
         pos = start + 1
-        for i in range(start + 1, len(blocks)):
-            if blocks[i][0] == "h2":
+        for i in range(start + 1, len(blocks) + 1):
+            if i == len(blocks) or blocks[i][0] in ende:
+                if blocks[start][0] == "h3":
+                    pos = i
                 break
             if blocks[i][0] == "ul":
                 pos = i + 1

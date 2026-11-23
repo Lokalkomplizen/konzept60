@@ -2,6 +2,27 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "mobilitaet-im-alter-ohne-auto",
+      "titel": "Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "mobilitaet-haltestelle",
+      "bild_alt": "Eine lächelnde ältere Dame mit weißen Haaren, dunkelblauer Jacke und gestreiftem Shirt steht mit ihrem Rollator an einer überdachten Bushaltestelle, im Hintergrund eine Anzeigetafel und Bäume.",
+      "stand": "November 2026 (Zuzahlung 2027: angekündigt)",
+      "veroeffentlicht": "2026-11-23 15:00",
+      "geaendert": "2026-11-23",
+      "anreisser": "Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…",
+      "url": "/ratgeber/mobilitaet-im-alter-ohne-auto/",
+      "inline_bild": "mobilitaet-fahrdienst-rampe | mobilitaet-rollator | mobilitaet-pedelec",
+      "inline_bild_alt": "Ein Mann im Rollstuhl fährt vor einem Einfamilienhaus auf die ausgeklappte Rampe eines weißen Kleinbusses mit geöffneter Heckklappe zu. | Ein gut gelaunter älterer Herr mit grauem Bart und Cordjacke tritt mit seinem Rollator aus der Haustür auf die sonnige Terrasse. | Eine fröhliche ältere Frau in rosa Jacke fährt auf einem Fahrrad mit tiefem Einstieg über einen Weg zwischen Wiesen und Feldern.",
+      "inline_nach_ueberschrift": "Spezielle Fahrdienste | Rollator | 9. Fahrrad",
+      "tabelle_beschriftung": "Beispiel für eine Wochenplanung der Wege | Beispiel: monatliche Kosten eines eigenen Autos | Beispiel: monatliche Kosten für Mobilität ohne eigenes Auto",
+      "hinweis": "Dieser Ratgeber bietet eine allgemeine Orientierung und ersetzt keine individuelle Beratung. Insbesondere die Kostenübernahme von Krankenfahrten hängt von den persönlichen Voraussetzungen, der medizinischen Notwendigkeit und den geltenden Regelungen der jeweiligen Krankenkasse ab. Regionale Mobilitätsangebote, Tarife und Fördermöglichkeiten können sich unterscheiden. Bitte informieren Sie sich vor der Nutzung direkt beim zuständigen Verkehrsunternehmen, der Kommune oder Ihrer Krankenkasse.",
+      "quellen": "Bundesregierung: Deutschlandticket, Preise und Gültigkeit | https://www.bundesregierung.de/breg-de/service/fragen-und-anworten/deutschlandticket-2134074 ;; Mobil.NRW: Informationen zum Nahverkehr in Nordrhein-Westfalen | https://www.mobil.nrw ;; Gemeinsamer Bundesausschuss: Krankenbeförderung und Krankentransport-Richtlinie | https://www.g-ba.de/themen/veranlasste-leistungen/krankenbefoerderung/ ;; Bundesministerium für Gesundheit: Fahrkosten | https://www.bundesgesundheitsministerium.de/fahrkosten/seite ;; Gesundheitsportal des Bundes: Fahrkosten zu medizinischen Behandlungen | https://gesund.bund.de/fahrkosten ;; § 228 SGB IX: Unentgeltliche Beförderung (Gesetze im Internet) | https://www.gesetze-im-internet.de/sgb_9_2018/__228.html ;; Mobil.NRW: Vergünstigungen für schwerbehinderte Fahrgäste | https://infoportal.mobil.nrw/nrw-tarif/nrw-tarif-von-a-z/schwerbehinderte.html ;; Deutsche Bahn: Barrierefreies Reisen und Mobilitätsservice-Zentrale | https://www.bahn.de/service/individuelle-reise/barrierefrei/ ;; Deutsche Bahn: Reiseplanung und Beratung für barrierefreies Reisen | https://www.bahn.de/p/view/service/barrierefrei/reiseplanung-und-beratung.shtml ;; Techniker Krankenkasse: Gesundheitsreform 2026/2027, Zusammenfassung | https://www.tk.de/techniker/versicherung/tk-leistungen/gesundheitsreform-2026-2027-zusammenfassung-2221204 ;; Deutsche Bahn: DB Navigator | https://www.bahn.de/service/mobile/db-navigator ;; Deutsches Seniorenportal: Mobilität im Alter | https://www.seniorenportal.de/ratgeber/mobilitaet-barrierefreiheit/alltagshilfen/mobil-im-alter",
+      "seo_titel": "Mobilität im Alter: Unabhängig ohne eigenes Auto",
+      "meta_beschreibung": "Ohne Auto mobil bleiben: Bus und Bahn, Bürgerbus, Rufbus, Fahrdienste, Krankenfahrten, Vergünstigungen und finanzielle Hilfen für Menschen ab 60 erklärt."
+    },
+    {
       "slug": "mehrgenerationenhaus-mehrgenerationenwohnen",
       "titel": "Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen",
       "thema": "wohnen-haus-handwerk",
@@ -21,6 +42,25 @@
       "quellen": "§ 35a EStG: Haushaltsnahe Dienstleistungen, Pflege- und Betreuungsleistungen, Handwerkerleistungen (Gesetze im Internet) | https://www.gesetze-im-internet.de/estg/__35a.html ;; § 33 EStG: Außergewöhnliche Belastungen (Gesetze im Internet) | https://www.gesetze-im-internet.de/estg/__33.html ;; § 33b EStG: Behinderten-Pauschbetrag und Pflege-Pauschbetrag (Gesetze im Internet) | https://www.gesetze-im-internet.de/estg/__33b.html ;; § 13 ErbStG: Steuerbefreiungen, insbesondere Familienheim (Gesetze im Internet) | https://www.gesetze-im-internet.de/erbstg_1974/__13.html ;; § 16 ErbStG: Persönliche Freibeträge (Gesetze im Internet) | https://www.gesetze-im-internet.de/erbstg_1974/__16.html ;; Deutscher Bundestag: Einkommensteuerreformgesetz 2027, Regierungsentwurf (hib 757/2026) | https://www.bundestag.de/presse/hib/kurzmeldungen-1221672 ;; Bundesministerium der Finanzen: Amtliches Einkommensteuer-Handbuch | https://esth.bundesfinanzministerium.de ;; ELSTER: Haushaltsnahe Beschäftigungen, Dienstleistungen und Handwerkerleistungen | https://www.elster.de ;; Minijob-Zentrale: Haushaltsscheckverfahren | https://www.minijob-zentrale.de ;; Bundesfamilienministerium: Bundesprogramm Mehrgenerationenhaus | https://www.bmbfsfj.bund.de/bmbfsfj/themen/engagement-und-gesellschaft/mehrgenerationenhaeuser/mehrgenerationenhaeuser-74018 ;; KfW: Meldung zum Antragsstopp 455-B vom 31.07.2026 | https://www.kfw.de/%C3%9Cber-die-KfW/Newsroom/Aktuelles/News-Details_903232.html ;; KfW: Kredit Altersgerecht Umbauen (159) | https://www.kfw.de/159 ;; BAFA: Bundesförderung für effiziente Gebäude | https://www.bafa.de ;; Bauordnung Nordrhein-Westfalen (recht.nrw.de) | https://recht.nrw.de ;; pflege.de: Mehrgenerationenhaus | https://www.pflege.de/leben-im-alter/wohnen-im-alter/mehrgenerationenhaus/",
       "seo_titel": "Mehrgenerationenhaus: Kosten, Steuern und Vorteile",
       "meta_beschreibung": "Mehrgenerationenwohnen richtig planen: Voraussetzungen, Kostenverteilung, steuerliche Vorteile, Fördermittel, Pflege und rechtliche Fragen verständlich erklärt."
+    },
+    {
+      "slug": "fruehstueck-ab-60-eiweiss",
+      "titel": "Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "fruehstueck-ab-60-garten",
+      "bild_alt": "Gedeckter Frühstückstisch im Garten mit Joghurt-Bowl mit Beeren, Rührei, Vollkornbrötchen, gekochtem Ei, Hüttenkäse, Nüssen, Obst und Kaffee.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-21 19:00",
+      "geaendert": "2026-11-21",
+      "anreisser": "Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln…",
+      "url": "/ratgeber/fruehstueck-ab-60-eiweiss/",
+      "inline_bild": "fruehstueck-ab-60-nordic-walking",
+      "inline_bild_alt": "Ein älteres Paar mit Rucksäcken und Walking-Stöcken ist gut gelaunt auf einem sonnigen Waldweg unterwegs, im Hintergrund Hügel und ein See.",
+      "inline_nach_ueberschrift": "Bewegung macht den Unterschied",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.",
+      "seo_titel": "Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist",
+      "meta_beschreibung": "Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag."
     },
     {
       "slug": "rente-reicht-nicht-finanzielle-hilfen",
@@ -44,25 +84,6 @@
       "meta_beschreibung": "Rente zu niedrig? Erfahren Sie, welche Hilfen Ihnen zustehen: Grundsicherung, Wohngeld, Hilfe zur Pflege, Zuschüsse und Befreiungen verständlich erklärt."
     },
     {
-      "slug": "fruehstueck-ab-60-eiweiss",
-      "titel": "Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört",
-      "thema": "freizeit-lebensqualitaet",
-      "thema_titel": "Freizeit und Lebensqualität",
-      "bild": "fruehstueck-ab-60-garten",
-      "bild_alt": "Gedeckter Frühstückstisch im Garten mit Joghurt-Bowl mit Beeren, Rührei, Vollkornbrötchen, gekochtem Ei, Hüttenkäse, Nüssen, Obst und Kaffee.",
-      "stand": "November 2026",
-      "veroeffentlicht": "2026-11-21 19:00",
-      "geaendert": "2026-11-21",
-      "anreisser": "Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln…",
-      "url": "/ratgeber/fruehstueck-ab-60-eiweiss/",
-      "inline_bild": "fruehstueck-ab-60-nordic-walking",
-      "inline_bild_alt": "Ein älteres Paar mit Rucksäcken und Walking-Stöcken ist gut gelaunt auf einem sonnigen Waldweg unterwegs, im Hintergrund Hügel und ein See.",
-      "inline_nach_ueberschrift": "Bewegung macht den Unterschied",
-      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.",
-      "seo_titel": "Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist",
-      "meta_beschreibung": "Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag."
-    },
-    {
       "slug": "kurzzeitpflege",
       "titel": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
       "thema": "pflege-betreuung",
@@ -81,6 +102,23 @@
       "hinweis": "Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung."
     },
     {
+      "slug": "ernaehrung-ab-60",
+      "titel": "Fit ab 60: Welche Lebensmittel jetzt besonders wertvoll für Ihren Körper sind",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "ernaehrung-ab-60",
+      "bild_alt": "Auf einem Holztisch liegen Lachs, Eier, Haferflocken, Joghurt mit Beeren, Linsen, Nüsse, Vollkornbrot, Käse, Milch, Olivenöl, Äpfel, Brokkoli und weiteres Gemüse.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-21 18:30",
+      "geaendert": "2026-11-21",
+      "anreisser": "Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter…",
+      "url": "/ratgeber/ernaehrung-ab-60/",
+      "inline_bild": "ernaehrung-ab-60-kochen",
+      "inline_bild_alt": "Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.",
+      "inline_nach_ueberschrift": "7. So könnte ein ausgewogener Tag aussehen",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026."
+    },
+    {
       "slug": "patientenverfuegung-vorsorgevollmacht",
       "titel": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
       "thema": "alltag-persoenliche-hilfe",
@@ -97,23 +135,6 @@
       "quellen": "§ 1827 BGB: Patientenverfügung (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1827.html ;; § 1358 BGB: Gegenseitige Vertretung von Ehegatten in Angelegenheiten der Gesundheitssorge (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1358.html ;; Bundesministerium für Gesundheit: Patientenverfügung | https://www.bundesgesundheitsministerium.de/themen/praevention/patientenrechte/patientenverfuegung.html ;; Bundesministerium der Justiz: Vorsorgevollmacht | https://www.bmj.de/DE/Themen/VorsorgeUndBetreuungsrecht/Vorsorgevollmacht/Vorsorgevollmacht_node.html ;; Bundesministerium der Justiz: Broschüre „Betreuungsrecht“ | https://www.bmj.de/SharedDocs/Publikationen/DE/Broschueren/Betreuungsrecht.html ;; Bundesministerium der Justiz: Formular Vorsorgevollmacht (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Formular/Vorsorgevollmacht.pdf ;; Bundesministerium der Justiz: Textbausteine Patientenverfügung (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Service/Formulare/Patientenverfuegung_Textbausteine_pdf.pdf ;; Bundesnotarkammer: Zentrales Vorsorgeregister | https://www.vorsorgeregister.de/ ;; gesund.bund.de: Vorsorge für den Ernstfall | https://gesund.bund.de/vorsorge-fuer-den-ernstfall ;; Verbraucherzentrale: Patientenverfügung | https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/aerzte-und-kliniken/patientenverfuegung-so-aeussern-sie-eindeutige-und-wirksame-wuensche-13102 ;; Verbraucherzentrale: Patientenverfügung online erstellen | https://www.verbraucherzentrale.de/patientenverfuegung-online ;; Bundesärztekammer: Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung | https://www.bundesaerztekammer.de/patienten/patientenverfuegung/",
       "seo_titel": "Patientenverfügung und Vorsorgevollmacht: Das sollten Sie wissen",
       "meta_beschreibung": "Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge."
-    },
-    {
-      "slug": "ernaehrung-ab-60",
-      "titel": "Fit ab 60: Welche Lebensmittel jetzt besonders wertvoll für Ihren Körper sind",
-      "thema": "freizeit-lebensqualitaet",
-      "thema_titel": "Freizeit und Lebensqualität",
-      "bild": "ernaehrung-ab-60",
-      "bild_alt": "Auf einem Holztisch liegen Lachs, Eier, Haferflocken, Joghurt mit Beeren, Linsen, Nüsse, Vollkornbrot, Käse, Milch, Olivenöl, Äpfel, Brokkoli und weiteres Gemüse.",
-      "stand": "November 2026",
-      "veroeffentlicht": "2026-11-21 18:30",
-      "geaendert": "2026-11-21",
-      "anreisser": "Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter…",
-      "url": "/ratgeber/ernaehrung-ab-60/",
-      "inline_bild": "ernaehrung-ab-60-kochen",
-      "inline_bild_alt": "Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.",
-      "inline_nach_ueberschrift": "7. So könnte ein ausgewogener Tag aussehen",
-      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026."
     },
     {
       "slug": "pflegereform-2027",

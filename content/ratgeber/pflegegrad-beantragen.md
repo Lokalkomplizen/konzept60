@@ -9,6 +9,9 @@ veroeffentlicht: 2026-11-20 17:10
 geaendert: 2026-11-20
 tabelle_beschriftung: Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung
 hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung.
+inline_bild: pflegegrad-antrag-schreibtisch
+inline_bild_alt: Ein ordentlicher Stapel Formulare auf einem Klemmbrett mit Kugelschreiber liegt auf einem Holztisch, daneben Aktenordner, eine Tasse und eine Grünpflanze.
+inline_nach_ueberschrift: 2. Antrag bei der Pflegekasse stellen
 ---
 
 Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu organisieren und finanzielle Leistungen der Pflegeversicherung zu erhalten.

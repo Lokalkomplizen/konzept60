@@ -7,6 +7,9 @@ bild_alt: Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine 
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:55
 geaendert: 2026-11-20
+inline_bild: gesund-und-fit-wandern
+inline_bild_alt: Ein älterer Mann mit Kappe, Rucksack und Wanderstöcken steht lächelnd auf einem Aussichtspunkt, hinter ihm bewaldete Hügel und ein See.
+inline_nach_ueberschrift: 1. Bewegung hält Körper und Geist in Schwung
 ---
 
 Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert manchmal länger und manche gesundheitlichen Beschwerden treten häufiger auf.

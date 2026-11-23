@@ -8,6 +8,9 @@ stand: November 2026
 veroeffentlicht: 2026-11-20 17:00
 geaendert: 2026-11-20
 hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall. Die Angaben zur Kostenübernahme orientieren sich an § 60 SGB V und der Krankentransport-Richtlinie des Gemeinsamen Bundesausschusses, Stand 2026.
+inline_bild: krankenfahrten-verordnung
+inline_bild_alt: Eine ältere Frau mit Brille liest lächelnd ein Schreiben am Küchentisch, vor ihr ein Blutdruckmessgerät und Medikamente.
+inline_nach_ueberschrift: 3. Brauche ich eine ärztliche Verordnung?
 ---
 
 Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein bewältigt werden kann?

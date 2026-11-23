@@ -10,6 +10,9 @@ geaendert: 2026-11-21
 seo_titel: Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist
 meta_beschreibung: Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag.
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.
+inline_bild: fruehstueck-ab-60-nordic-walking
+inline_bild_alt: Ein älteres Paar mit Rucksäcken und Walking-Stöcken ist gut gelaunt auf einem sonnigen Waldweg unterwegs, im Hintergrund Hügel und ein See.
+inline_nach_ueberschrift: Bewegung macht den Unterschied
 ---
 
 Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln unterstützen und einen wichtigen Beitrag zur täglichen Nährstoffversorgung leisten.

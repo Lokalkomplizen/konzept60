@@ -17,7 +17,8 @@
       "inline_bild_alt": "Gestapelte Münzen, ein kleines Hausmodell, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner auf einem sonnigen Holztisch. | Ein älteres Paar sitzt entspannt auf dem Sofa und schaut gemeinsam fern, der Mann hält die Fernbedienung. | Eine ältere Frau liest am Küchentisch ein Schreiben, vor ihr liegen Tablettenpackungen, eine Medikamentendose und ein Blutdruckmessgerät. | Helles Badezimmer mit bodengleicher Dusche hinter Glas, Haltegriffen, Klappsitz und Waschtisch. | Bettschutzeinlagen, Desinfektionsmittel, Feuchttücher, Einmalhandschuhe, eine Greifzange und ein Notrufknopf liegen auf einem Holztisch, dahinter ein Rollator. | Ein rosa Sparschwein, Münzstapel, ein Taschenrechner und Rechnungen auf einem Holztisch. | Ein ordentlicher Schreibtisch mit einem Stapel Formulare auf einem Klemmbrett, einem Kugelschreiber, Aktenordnern und einer Tasse.",
       "inline_nach_ueberschrift": "2. Wohngeld | 5. Befreiung vom Rundfunkbeitrag | 6. Befreiung von Zuzahlungen | 7. Zuschüsse für einen altersgerechten Umbau | 8. Pflegehilfsmittel | 9. Weitere finanzielle Entlastungen | 12. So gehen Sie vor",
       "tabelle_beschriftung": "Vereinfachte Beispielrechnung zur Grundsicherung im Alter | Überblick über finanzielle Hilfen und zuständige Stellen",
-      "hinweis": "Dieser Ratgeber bietet eine allgemeine Orientierung und ersetzt keine individuelle Sozial-, Rechts- oder Steuerberatung. Ob und in welcher Höhe ein Anspruch besteht, hängt immer von der persönlichen Lebens- und Einkommenssituation ab, die zuständige Behörde entscheidet im Einzelfall. Die Rechenbeispiele sind vereinfachte Modellrechnungen. Beträge mit Stand November 2026; der Regelbedarf und der Rundfunkbeitrag für 2027 standen bei Redaktionsschluss noch nicht fest, die Angaben zur Pflegereform 2027 beruhen auf dem Gesetzentwurf (Pflegeneuordnungsgesetz) und können sich bis zum Beschluss ändern. Quellen: Bundesministerium für Arbeit und Soziales (bmas.de), Deutsche Rentenversicherung (deutsche-rentenversicherung.de), Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen (bmwsb.bund.de), gesund.bund.de, Bundesministerium für Gesundheit (bundesgesundheitsministerium.de), Beitragsservice (rundfunkbeitrag.de), KfW (kfw.de), Verbraucherzentrale NRW (verbraucherzentrale.nrw), Verwaltungsportal des Bundes (verwaltung.bund.de).",
+      "hinweis": "Dieser Ratgeber bietet eine allgemeine Orientierung und ersetzt keine individuelle Sozial-, Rechts- oder Steuerberatung. Ob und in welcher Höhe ein Anspruch besteht, hängt immer von der persönlichen Lebens- und Einkommenssituation ab, die zuständige Behörde entscheidet im Einzelfall. Die Rechenbeispiele sind vereinfachte Modellrechnungen. Beträge mit Stand November 2026; der Regelbedarf und der Rundfunkbeitrag für 2027 standen bei Redaktionsschluss noch nicht fest, die Angaben zur Pflegereform 2027 beruhen auf dem Gesetzentwurf (Pflegeneuordnungsgesetz) und können sich bis zum Beschluss ändern.",
+      "quellen": "Bundesministerium für Arbeit und Soziales: Grundsicherung und Sozialhilfe | https://www.bmas.de ;; Deutsche Rentenversicherung: Grundsicherung, Grundrentenzuschlag und Beratung | https://www.deutsche-rentenversicherung.de ;; Bundesministerium für Wohnen, Stadtentwicklung und Bauwesen: Wohngeld und Wohngeldrechner | https://www.bmwsb.bund.de ;; gesund.bund.de: Hilfe zur Pflege | https://gesund.bund.de/hilfe-zur-pflege ;; Bundesministerium für Gesundheit: Pflegeleistungen, Wohnumfeld und Zuzahlungen | https://www.bundesgesundheitsministerium.de ;; Beitragsservice: Befreiung und Ermäßigung vom Rundfunkbeitrag | https://www.rundfunkbeitrag.de ;; Verwaltungsportal des Bundes: Befreiung von Zuzahlungen | https://verwaltung.bund.de ;; KfW: Meldung zum Antragsstopp 455-B vom 31.07.2026 | https://www.kfw.de/%C3%9Cber-die-KfW/Newsroom/Aktuelles/News-Details_903232.html ;; KfW: Zuschuss Barrierereduzierung (455-B) | https://www.kfw.de/455-B ;; KfW: Kredit Altersgerecht Umbauen (159) | https://www.kfw.de/159 ;; Verbraucherzentrale NRW: Pflegewohngeld in NRW | https://www.verbraucherzentrale.nrw/wissen/gesundheit-pflege/pflege-im-heim/pflegewohngeld-in-nrw-finanzielle-hilfe-in-stationaeren-einrichtungen-86793 ;; Verbraucherzentrale: Wohngeld und finanzielle Ansprüche | https://www.verbraucherzentrale.de",
       "seo_titel": "Rente reicht nicht? Diese finanziellen Hilfen gibt es",
       "meta_beschreibung": "Rente zu niedrig? Erfahren Sie, welche Hilfen Ihnen zustehen: Grundsicherung, Wohngeld, Hilfe zur Pflege, Zuschüsse und Befreiungen verständlich erklärt."
     },
@@ -33,6 +34,9 @@
       "geaendert": "2026-11-21",
       "anreisser": "Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln…",
       "url": "/ratgeber/fruehstueck-ab-60-eiweiss/",
+      "inline_bild": "fruehstueck-ab-60-nordic-walking",
+      "inline_bild_alt": "Ein älteres Paar mit Rucksäcken und Walking-Stöcken ist gut gelaunt auf einem sonnigen Waldweg unterwegs, im Hintergrund Hügel und ein See.",
+      "inline_nach_ueberschrift": "Bewegung macht den Unterschied",
       "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.",
       "seo_titel": "Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist",
       "meta_beschreibung": "Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag."
@@ -49,22 +53,29 @@
       "geaendert": "2026-11-20",
       "anreisser": "Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…",
       "url": "/ratgeber/kurzzeitpflege/",
+      "inline_bild": "kurzzeitpflege-vorbereiten",
+      "inline_bild_alt": "Auf einem Tisch liegen Pflegeutensilien bereit: Handtuch, Feuchttücher, Handschuhe, Desinfektionsmittel, eine Greifzange und ein Notrufknopf, im Hintergrund ein Rollator.",
+      "inline_nach_ueberschrift": "Was sollte man vor dem Aufenthalt vorbereiten?",
       "tabelle_beschriftung": "Geplantes Überbrückungsbudget ab 2027 nach Pflegegrad (Regierungsentwurf)",
       "hinweis": "Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung."
     },
     {
-      "slug": "altersgerechter-umbau",
-      "titel": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
-      "thema": "wohnen-haus-handwerk",
-      "thema_titel": "Wohnen, Haus und Handwerk",
-      "bild": "altersgerechter-umbau",
-      "bild_alt": "Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriffen, einem Klappsitz, wandhängender Toilette und Waschbecken.",
+      "slug": "patientenverfuegung-vorsorgevollmacht",
+      "titel": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "patientenverfuegung-vorsorgevollmacht",
+      "bild_alt": "Auf einem sonnigen Holztisch liegen Unterlagen mit den Überschriften Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung, daneben ein Stift, eine Brille, ein Notizzettel mit abgehakten Schritten, eine Tasse und ein gerahmtes Foto eines lächelnden älteren Paares.",
       "stand": "November 2026",
-      "veroeffentlicht": "2026-11-20 17:05",
-      "geaendert": "2026-11-20",
-      "anreisser": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne…",
-      "url": "/ratgeber/altersgerechter-umbau/",
-      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026."
+      "veroeffentlicht": "2026-11-23 10:00",
+      "geaendert": "2026-11-23",
+      "anreisser": "Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…",
+      "url": "/ratgeber/patientenverfuegung-vorsorgevollmacht/",
+      "tabelle_beschriftung": "Patientenverfügung und Vorsorgevollmacht im Vergleich",
+      "hinweis": "Dieser Beitrag vermittelt allgemeine Informationen zum deutschen Recht (Stand November 2026, für 2027 sind in diesem Bereich keine Änderungen bekannt). Er ersetzt keine individuelle Rechtsberatung. Bei besonderen Vermögensverhältnissen, Immobilien, komplexen Familienkonstellationen oder Unsicherheiten bei medizinischen Formulierungen empfiehlt sich eine fachkundige Beratung.",
+      "quellen": "§ 1827 BGB: Patientenverfügung (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1827.html ;; § 1358 BGB: Gegenseitige Vertretung von Ehegatten in Angelegenheiten der Gesundheitssorge (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1358.html ;; Bundesministerium für Gesundheit: Patientenverfügung | https://www.bundesgesundheitsministerium.de/themen/praevention/patientenrechte/patientenverfuegung.html ;; Bundesministerium der Justiz: Vorsorgevollmacht | https://www.bmj.de/DE/Themen/VorsorgeUndBetreuungsrecht/Vorsorgevollmacht/Vorsorgevollmacht_node.html ;; Bundesministerium der Justiz: Broschüre „Betreuungsrecht“ | https://www.bmj.de/SharedDocs/Publikationen/DE/Broschueren/Betreuungsrecht.html ;; Bundesministerium der Justiz: Formular Vorsorgevollmacht (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Formular/Vorsorgevollmacht.pdf ;; Bundesministerium der Justiz: Textbausteine Patientenverfügung (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Service/Formulare/Patientenverfuegung_Textbausteine_pdf.pdf ;; Bundesnotarkammer: Zentrales Vorsorgeregister | https://www.vorsorgeregister.de/ ;; gesund.bund.de: Vorsorge für den Ernstfall | https://gesund.bund.de/vorsorge-fuer-den-ernstfall ;; Verbraucherzentrale: Patientenverfügung | https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/aerzte-und-kliniken/patientenverfuegung-so-aeussern-sie-eindeutige-und-wirksame-wuensche-13102 ;; Verbraucherzentrale: Patientenverfügung online erstellen | https://www.verbraucherzentrale.de/patientenverfuegung-online ;; Bundesärztekammer: Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung | https://www.bundesaerztekammer.de/patienten/patientenverfuegung/",
+      "seo_titel": "Patientenverfügung und Vorsorgevollmacht: Das sollten Sie wissen",
+      "meta_beschreibung": "Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge."
     },
     {
       "slug": "ernaehrung-ab-60",
@@ -78,6 +89,9 @@
       "geaendert": "2026-11-21",
       "anreisser": "Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter…",
       "url": "/ratgeber/ernaehrung-ab-60/",
+      "inline_bild": "ernaehrung-ab-60-kochen",
+      "inline_bild_alt": "Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.",
+      "inline_nach_ueberschrift": "7. So könnte ein ausgewogener Tag aussehen",
       "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026."
     },
     {
@@ -96,6 +110,23 @@
       "hinweis": "Dieser Beitrag beschreibt einen Gesetzentwurf (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung."
     },
     {
+      "slug": "altersgerechter-umbau",
+      "titel": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
+      "thema": "wohnen-haus-handwerk",
+      "thema_titel": "Wohnen, Haus und Handwerk",
+      "bild": "altersgerechter-umbau",
+      "bild_alt": "Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriffen, einem Klappsitz, wandhängender Toilette und Waschbecken.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 17:05",
+      "geaendert": "2026-11-20",
+      "anreisser": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne…",
+      "url": "/ratgeber/altersgerechter-umbau/",
+      "inline_bild": "altersgerechter-umbau-foerderung",
+      "inline_bild_alt": "Auf einem sonnigen Holztisch stehen ein kleines Hausmodell mit rotem Dach, mehrere Münzstapel, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner, daneben rosa Hortensien.",
+      "inline_nach_ueberschrift": "5. Welche Fördermöglichkeiten gibt es?",
+      "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026."
+    },
+    {
       "slug": "krankenfahrten",
       "titel": "Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie",
       "thema": "alltag-persoenliche-hilfe",
@@ -107,20 +138,10 @@
       "geaendert": "2026-11-20",
       "anreisser": "Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…",
       "url": "/ratgeber/krankenfahrten/",
+      "inline_bild": "krankenfahrten-verordnung",
+      "inline_bild_alt": "Eine ältere Frau mit Brille liest lächelnd ein Schreiben am Küchentisch, vor ihr ein Blutdruckmessgerät und Medikamente.",
+      "inline_nach_ueberschrift": "3. Brauche ich eine ärztliche Verordnung?",
       "hinweis": "Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall. Die Angaben zur Kostenübernahme orientieren sich an § 60 SGB V und der Krankentransport-Richtlinie des Gemeinsamen Bundesausschusses, Stand 2026."
-    },
-    {
-      "slug": "gesund-und-fit-im-alter",
-      "titel": "Gesund und fit im Alter: Was Sie selbst für Ihr Wohlbefinden tun können",
-      "thema": "freizeit-lebensqualitaet",
-      "thema_titel": "Freizeit und Lebensqualität",
-      "bild": "gesund-und-fit-im-alter",
-      "bild_alt": "Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine Schale Müsli mit Beeren, ein grüner Apfel, Mandeln, zwei blaue Hanteln, ein Handtuch und ein Blutdruckmessgerät.",
-      "stand": "November 2026",
-      "veroeffentlicht": "2026-11-20 16:55",
-      "geaendert": "2026-11-20",
-      "anreisser": "Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert…",
-      "url": "/ratgeber/gesund-und-fit-im-alter/"
     },
     {
       "slug": "pflegegrad-beantragen",
@@ -134,8 +155,27 @@
       "geaendert": "2026-11-20",
       "anreisser": "Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…",
       "url": "/ratgeber/pflegegrad-beantragen/",
+      "inline_bild": "pflegegrad-antrag-schreibtisch",
+      "inline_bild_alt": "Ein ordentlicher Stapel Formulare auf einem Klemmbrett mit Kugelschreiber liegt auf einem Holztisch, daneben Aktenordner, eine Tasse und eine Grünpflanze.",
+      "inline_nach_ueberschrift": "2. Antrag bei der Pflegekasse stellen",
       "tabelle_beschriftung": "Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung",
       "hinweis": "Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung."
+    },
+    {
+      "slug": "gesund-und-fit-im-alter",
+      "titel": "Gesund und fit im Alter: Was Sie selbst für Ihr Wohlbefinden tun können",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "gesund-und-fit-im-alter",
+      "bild_alt": "Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine Schale Müsli mit Beeren, ein grüner Apfel, Mandeln, zwei blaue Hanteln, ein Handtuch und ein Blutdruckmessgerät.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:55",
+      "geaendert": "2026-11-20",
+      "anreisser": "Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert…",
+      "url": "/ratgeber/gesund-und-fit-im-alter/",
+      "inline_bild": "gesund-und-fit-wandern",
+      "inline_bild_alt": "Ein älterer Mann mit Kappe, Rucksack und Wanderstöcken steht lächelnd auf einem Aussichtspunkt, hinter ihm bewaldete Hügel und ein See.",
+      "inline_nach_ueberschrift": "1. Bewegung hält Körper und Geist in Schwung"
     },
     {
       "slug": "haushaltshilfe-im-alter",
@@ -151,19 +191,6 @@
       "url": "/ratgeber/haushaltshilfe-im-alter/"
     },
     {
-      "slug": "gemeinsam-statt-einsam",
-      "titel": "Gemeinsam statt einsam: Warum soziale Kontakte im Alter so wichtig sind",
-      "thema": "freizeit-lebensqualitaet",
-      "thema_titel": "Freizeit und Lebensqualität",
-      "bild": "gemeinsam-statt-einsam",
-      "bild_alt": "Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.",
-      "stand": "November 2026",
-      "veroeffentlicht": "2026-11-20 16:50",
-      "geaendert": "2026-11-20",
-      "anreisser": "Ein gutes Gespräch, ein gemeinsamer Spaziergang oder eine Tasse Kaffee mit Freunden: Oft sind es die kleinen Begegnungen, die den Alltag besonders machen.",
-      "url": "/ratgeber/gemeinsam-statt-einsam/"
-    },
-    {
       "slug": "betrug-telefon-haustuer",
       "titel": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
       "thema": "technik-sicherheit",
@@ -177,6 +204,19 @@
       "url": "/ratgeber/betrug-telefon-haustuer/"
     },
     {
+      "slug": "gemeinsam-statt-einsam",
+      "titel": "Gemeinsam statt einsam: Warum soziale Kontakte im Alter so wichtig sind",
+      "thema": "freizeit-lebensqualitaet",
+      "thema_titel": "Freizeit und Lebensqualität",
+      "bild": "gemeinsam-statt-einsam",
+      "bild_alt": "Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-20 16:50",
+      "geaendert": "2026-11-20",
+      "anreisser": "Ein gutes Gespräch, ein gemeinsamer Spaziergang oder eine Tasse Kaffee mit Freunden: Oft sind es die kleinen Begegnungen, die den Alltag besonders machen.",
+      "url": "/ratgeber/gemeinsam-statt-einsam/"
+    },
+    {
       "slug": "barrierefrei-wohnen",
       "titel": "Barrierefrei wohnen: Kleine Veränderungen, große Wirkung",
       "thema": "wohnen-haus-handwerk",
@@ -187,7 +227,10 @@
       "veroeffentlicht": "2026-11-20 16:15",
       "geaendert": "2026-11-20",
       "anreisser": "Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit zunehmendem…",
-      "url": "/ratgeber/barrierefrei-wohnen/"
+      "url": "/ratgeber/barrierefrei-wohnen/",
+      "inline_bild": "barrierefrei-wohnen-bad",
+      "inline_bild_alt": "Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriff und hochklappbarem Duschsitz, daneben ein Waschtisch mit Blumen.",
+      "inline_nach_ueberschrift": "3. Badezimmer sicherer gestalten"
     },
     {
       "slug": "alltag-gut-organisiert",
@@ -200,7 +243,10 @@
       "veroeffentlicht": "2026-11-20 15:30",
       "geaendert": "2026-11-20",
       "anreisser": "Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche Aufgaben…",
-      "url": "/ratgeber/alltag-gut-organisiert/"
+      "url": "/ratgeber/alltag-gut-organisiert/",
+      "inline_bild": "alltag-medikamente-wochenbox",
+      "inline_bild_alt": "Eine Medikamenten-Wochenbox mit Tablettenfächern von Montag bis Sonntag liegt auf einem Holztisch neben einem Blutdruckmessgerät, einem Glas Wasser und einem Notizblock mit abgehakter Liste: Medikamente, Blutdruck, Arzttermin, Rezept.",
+      "inline_nach_ueberschrift": "2. Gesundheit und Termine organisieren"
     },
     {
       "slug": "hausnotruf-auswahl",
@@ -226,7 +272,10 @@
       "veroeffentlicht": "2026-11-20 12:00",
       "geaendert": "2026-11-20",
       "anreisser": "Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…",
-      "url": "/ratgeber/treppenlift-einbau/"
+      "url": "/ratgeber/treppenlift-einbau/",
+      "inline_bild": "treppenlift-kosten-planen",
+      "inline_bild_alt": "Ein älteres Paar sitzt am Tisch und schaut gemeinsam auf ein Blatt Papier, vor ihnen stehen mehrere Münzstapel.",
+      "inline_nach_ueberschrift": "4. Welche Kosten entstehen?"
     },
     {
       "slug": "haushaltshilfe-betrieb-oder-privat",
@@ -239,7 +288,10 @@
       "veroeffentlicht": "2026-11-20 10:01",
       "geaendert": "2026-11-20",
       "anreisser": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
-      "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/"
+      "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/",
+      "inline_bild": "haushaltshilfe-kosten-sparschwein",
+      "inline_bild_alt": "Ein rosa Sparschwein steht neben Münzstapeln, einem Taschenrechner und einer Nebenkostenabrechnung auf einem hellen Holztisch.",
+      "inline_nach_ueberschrift": "3. Was kostet eine Haushaltshilfe?"
     },
     {
       "slug": "eltern-aus-der-ferne-unterstuetzen",

@@ -225,7 +225,11 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
   <section class="section relatives" id="angehoerige" aria-labelledby="angehoerige-titel">
     <div class="container">
       <div class="relatives__panel">
-        <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-angehoerige"/></svg>
+        <picture class="relatives__media">
+          <source type="image/webp" srcset="/assets/img/angehoerige-familie-480.webp 480w, /assets/img/angehoerige-familie-800.webp 800w, /assets/img/angehoerige-familie-1200.webp 1200w" sizes="(min-width: 68em) 20rem, (min-width: 48em) 15rem, 92vw">
+          <img src="/assets/img/angehoerige-familie-800.jpg" width="800" height="533" alt="Eine ältere Frau sitzt lächelnd zwischen ihrer Tochter und ihrem Sohn im sonnigen Garten, die Tochter hat ihr die Hand auf die Schulter gelegt."
+               loading="lazy" decoding="async">
+        </picture>
         <div class="relatives__text">
           <span class="section__eyebrow">Für Angehörige</span>
           <h2 id="angehoerige-titel">Sie suchen Unterstützung für Ihre Eltern oder Angehörigen?</h2>

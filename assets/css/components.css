@@ -862,13 +862,24 @@ select.form-field__input {
   border: 1px solid #ecc9b6;
 }
 
+.relatives__media { display: block; margin: 0; }
+.relatives__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-m, 12px);
+}
+
 .relatives__text h2 { font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.125rem); }
 .relatives__text p { margin-bottom: 0; }
 .relatives .section__eyebrow { color: var(--color-terra-700); }
 
 @media (min-width: 48em) {
   .relatives__panel {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: 15rem minmax(0, 1fr);
+    align-items: start;
     padding: var(--space-2xl);
     column-gap: var(--space-xl);
   }
@@ -877,7 +888,7 @@ select.form-field__input {
 
 @media (min-width: 68em) {
   .relatives__panel {
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: 20rem minmax(0, 1fr) auto;
     align-items: center;
   }
   .relatives__action { grid-column: 3; }

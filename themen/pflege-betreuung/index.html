@@ -32,8 +32,8 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=4e56ec12ae">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
   <link rel="stylesheet" href="/assets/css/layout.css?v=9747724341">
-  <link rel="stylesheet" href="/assets/css/components.css?v=241ab033c9">
-  <link rel="stylesheet" href="/assets/css/print.css?v=12d716ffd3" media="print">
+  <link rel="stylesheet" href="/assets/css/components.css?v=faf15bcf91">
+  <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
 
 </head>
 <body>
@@ -55,6 +55,8 @@
   <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
   <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
   <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+  <symbol id="icon-teilen" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-3.8M8.2 13.2l7.6 3.8"/></symbol>
+  <symbol id="icon-drucken" viewBox="0 0 24 24"><path d="M7.5 8.5v-5h9v5"/><path d="M7.5 18.5h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3"/><rect x="7.5" y="14.5" width="9" height="6" rx="1.5"/></symbol>
 </svg>
 
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -117,6 +119,14 @@
               Anliegen zu diesem Thema beschreiben
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
             </a>
+          </div>
+          <div class="seiten-werkzeuge no-print" data-werkzeuge>
+            <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen
+                    aria-label="Themenseite teilen: Link zu dieser Seite" hidden>
+              <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
+              <span>Seite teilen</span>
+            </button>
+            <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
         </div>
       <picture class="topic-hero__media">
@@ -286,7 +296,11 @@
 </footer>
 <!-- END partial:footer -->
 
-<script src="/assets/js/main.js?v=d0f72c6236" defer></script>
+<!-- Quellenangabe im Ausdruck: nur beim Drucken sichtbar (print.css). main.js (11.)
+     setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
+<p class="print-url print-only" data-print-url></p>
+
+<script src="/assets/js/main.js?v=047d3deb21" defer></script>
 
 </body>
 </html>

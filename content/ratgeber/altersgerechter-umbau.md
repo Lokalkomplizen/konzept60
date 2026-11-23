@@ -8,6 +8,9 @@ stand: November 2026
 veroeffentlicht: 2026-11-20 17:05
 geaendert: 2026-11-20
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026.
+inline_bild: altersgerechter-umbau-foerderung
+inline_bild_alt: Auf einem sonnigen Holztisch stehen ein kleines Hausmodell mit rotem Dach, mehrere Münzstapel, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner, daneben rosa Hortensien.
+inline_nach_ueberschrift: 5. Welche Fördermöglichkeiten gibt es?
 ---
 
 Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne zu echten Hindernissen werden.

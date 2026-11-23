@@ -7,6 +7,9 @@ bild_alt: Eine ältere Frau sitzt lächelnd mit Stift und Notizbuch an einem Hol
 stand: November 2026
 veroeffentlicht: 2026-11-20 15:30
 geaendert: 2026-11-20
+inline_bild: alltag-medikamente-wochenbox
+inline_bild_alt: Eine Medikamenten-Wochenbox mit Tablettenfächern von Montag bis Sonntag liegt auf einem Holztisch neben einem Blutdruckmessgerät, einem Glas Wasser und einem Notizblock mit abgehakter Liste: Medikamente, Blutdruck, Arzttermin, Rezept.
+inline_nach_ueberschrift: 2. Gesundheit und Termine organisieren
 ---
 
 Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche Aufgaben vereinfachen und wichtige Dinge rechtzeitig regeln. Wir zeigen fünf Bereiche, bei denen sich ein genauerer Blick lohnt.

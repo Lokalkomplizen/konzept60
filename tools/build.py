@@ -263,6 +263,11 @@ def parse_frontmatter(src, source):
     for key in FRONTMATTER_KEYS:
         if not meta.get(key):
             raise SystemExit(f"FEHLER: {source} – Frontmatter-Feld '{key}' fehlt")
+    if meta.get("quellen"):
+        for entry in meta["quellen"].split(" ;; "):
+            label, _, url = (x.strip() for x in entry.rpartition("|"))
+            if not label or not url.startswith("https://") or " " in url:
+                raise SystemExit(f"FEHLER: {source} – ungültige Quelle (Format 'Label | https://url'): {entry!r}")
     inline_keys = ("inline_bild", "inline_bild_alt", "inline_nach_ueberschrift")
     if any(meta.get(k) for k in inline_keys) and not all(meta.get(k) for k in inline_keys):
         raise SystemExit(f"FEHLER: {source} – inline_bild braucht inline_bild_alt und inline_nach_ueberschrift")
@@ -283,6 +288,7 @@ def inline(text):
 
 def plain(text):
     """Markdown-Zeichen entfernen (für Meta-Description, Anreißer, TOC)."""
+    text = re.sub(r"^\[ \]\s+", "", text)   # Aufgabenlisten-Marker
     return LINK_RE.sub(r"\1", BOLD_RE.sub(r"\1", text))
 
 
@@ -375,8 +381,9 @@ def heading_ids(blocks):
     return ids
 
 
-def render_blocks(blocks, ids=None, caption=None):
+def render_blocks(blocks, ids=None, caption=None, slug="beitrag"):
     ids = ids or {}
+    n_check = 0
     # mehrere Tabellen: Beschriftungen mit „ | “ trennen (eine Angabe gilt für alle Tabellen)
     captions = [c.strip() for c in caption.split(" | ")] if caption else []
     n_table = 0
@@ -388,6 +395,15 @@ def render_blocks(blocks, ids=None, caption=None):
             out.append(f"<h3>{inline(data)}</h3>")
         elif kind == "p":
             out.append(f"<p>{inline(data)}</p>")
+        elif kind == "ul" and all(item.startswith("[ ] ") for item in data):
+            # Aufgabenliste: interaktive Checkliste (ids pro Seite eindeutig)
+            out.append('<ul class="beitrag-checkliste">')
+            for item in data:
+                n_check += 1
+                out.append(
+                    f'  <li><label class="choice"><input type="checkbox" id="{slug}-check-{n_check}"> '
+                    f'<span>{inline(item[4:].strip())}</span></label></li>')
+            out.append("</ul>")
         elif kind == "ul":
             out.append("<ul>")
             out += [f"  <li>{inline(item)}</li>" for item in data]
@@ -546,7 +562,7 @@ def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
     keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
             "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis",
-            "seo_titel", "meta_beschreibung")
+            "quellen", "seo_titel", "meta_beschreibung")
     data = {
         "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
         "beitraege": [{k: b[k] for k in keys if k in b} for b in beitraege],
@@ -687,6 +703,19 @@ def article_picture(b):
     ]
 
 
+def quellen_block(b):
+    """Quellen/offizielle Formulare (Frontmatter 'quellen'); leer ohne Angabe."""
+    if not b.get("quellen"):
+        return ""
+    lines = ['<section class="beitrag-quellen" aria-labelledby="quellen-titel">',
+             '  <h2 id="quellen-titel">Quellen und offizielle Formulare</h2>', "  <ol>"]
+    for entry in b["quellen"].split(" ;; "):
+        label, _, url = entry.rpartition("|")
+        lines.append(f'    <li><a href="{esc(url.strip())}" rel="noopener">{esc(label.strip())}</a></li>')
+    lines += ["  </ol>", "</section>"]
+    return indent(lines, 10) + "\n"
+
+
 def beitrag_ctx(b, beitraege):
     blocks = b["_blocks"]
     ids = heading_ids(blocks)
@@ -712,9 +741,10 @@ def beitrag_ctx(b, beitraege):
         "beitrag_hinweis": inline(b["hinweis"]) if b.get("hinweis") else (
             "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. "
             f"Beträge und Voraussetzungen können sich ändern – maßgeblich sind die Angaben Ihrer Pflegekasse. Stand: {esc(b['stand'])}."),
+        "beitrag_quellen": quellen_block(b),
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
-        "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung")).splitlines(), 8),
+        "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung"), b["slug"]).splitlines(), 8),
         # Beiträge zum selben Thema zuerst, dann die neuesten übrigen; max. 3 Karten
         "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in (gleiches_thema + [x for x in andere if x["thema"] != b["thema"]])[:3]),
         "weitere_zum_thema": thema_link,

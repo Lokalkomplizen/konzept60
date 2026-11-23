@@ -2,6 +2,24 @@
   "_hinweis": "GENERIERT von tools/build.py aus content/ratgeber/*.md – nicht direkt bearbeiten",
   "beitraege": [
     {
+      "slug": "patientenverfuegung-vorsorgevollmacht",
+      "titel": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
+      "thema": "alltag-persoenliche-hilfe",
+      "thema_titel": "Alltag und persönliche Hilfe",
+      "bild": "patientenverfuegung-vorsorgevollmacht",
+      "bild_alt": "Auf einem sonnigen Holztisch liegen Unterlagen mit den Überschriften Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung, daneben ein Stift, eine Brille, ein Notizzettel mit abgehakten Schritten, eine Tasse und ein gerahmtes Foto eines lächelnden älteren Paares.",
+      "stand": "November 2026",
+      "veroeffentlicht": "2026-11-23 10:00",
+      "geaendert": "2026-11-23",
+      "anreisser": "Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…",
+      "url": "/ratgeber/patientenverfuegung-vorsorgevollmacht/",
+      "tabelle_beschriftung": "Patientenverfügung und Vorsorgevollmacht im Vergleich",
+      "hinweis": "Dieser Beitrag vermittelt allgemeine Informationen zum deutschen Recht (Stand November 2026, für 2027 sind in diesem Bereich keine Änderungen bekannt). Er ersetzt keine individuelle Rechtsberatung. Bei besonderen Vermögensverhältnissen, Immobilien, komplexen Familienkonstellationen oder Unsicherheiten bei medizinischen Formulierungen empfiehlt sich eine fachkundige Beratung.",
+      "quellen": "§ 1827 BGB: Patientenverfügung (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1827.html ;; § 1358 BGB: Gegenseitige Vertretung von Ehegatten in Angelegenheiten der Gesundheitssorge (Gesetze im Internet) | https://www.gesetze-im-internet.de/bgb/__1358.html ;; Bundesministerium für Gesundheit: Patientenverfügung | https://www.bundesgesundheitsministerium.de/themen/praevention/patientenrechte/patientenverfuegung.html ;; Bundesministerium der Justiz: Vorsorgevollmacht | https://www.bmj.de/DE/Themen/VorsorgeUndBetreuungsrecht/Vorsorgevollmacht/Vorsorgevollmacht_node.html ;; Bundesministerium der Justiz: Broschüre „Betreuungsrecht“ | https://www.bmj.de/SharedDocs/Publikationen/DE/Broschueren/Betreuungsrecht.html ;; Bundesministerium der Justiz: Formular Vorsorgevollmacht (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Formular/Vorsorgevollmacht.pdf ;; Bundesministerium der Justiz: Textbausteine Patientenverfügung (PDF) | https://www.bmj.de/SharedDocs/Downloads/DE/Service/Formulare/Patientenverfuegung_Textbausteine_pdf.pdf ;; Bundesnotarkammer: Zentrales Vorsorgeregister | https://www.vorsorgeregister.de/ ;; gesund.bund.de: Vorsorge für den Ernstfall | https://gesund.bund.de/vorsorge-fuer-den-ernstfall ;; Verbraucherzentrale: Patientenverfügung | https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/aerzte-und-kliniken/patientenverfuegung-so-aeussern-sie-eindeutige-und-wirksame-wuensche-13102 ;; Verbraucherzentrale: Patientenverfügung online erstellen | https://www.verbraucherzentrale.de/patientenverfuegung-online ;; Bundesärztekammer: Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung | https://www.bundesaerztekammer.de/patienten/patientenverfuegung/",
+      "seo_titel": "Patientenverfügung und Vorsorgevollmacht: Das sollten Sie wissen",
+      "meta_beschreibung": "Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge."
+    },
+    {
       "slug": "fruehstueck-ab-60-eiweiss",
       "titel": "Frühstück ab 60: Warum Eiweiß jetzt schon morgens auf den Teller gehört",
       "thema": "freizeit-lebensqualitaet",

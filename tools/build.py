@@ -212,7 +212,8 @@ VORLESEN_HTML = [
     '<div class="vorlesen" data-vorlesen hidden>',
     '  <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>',
     '    <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>',
-    '    <span data-vorlesen-label>Beitrag vorlesen</span>',
+    '    <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>',
+    '    <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>',
     '  </button>',
     '  <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>',
     '    <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>',
@@ -224,7 +225,7 @@ VORLESEN_HTML = [
 
 
 def seiten_werkzeuge(teilen_aria, n, vorlesen=False, drucken=None, teilen_titel=None,
-                     teilen_label="Seite teilen"):
+                     teilen_label="Seite teilen", dezent=True):
     """teilen_aria  aria-label der Teilen-Schaltfläche (sagt, was geteilt wird)
     n            Einrückung im Template (der Platzhalter steht in Spalte 0)
     vorlesen     Vorlesen-Schaltflächen voranstellen (nur Ratgeber-Beiträge)
@@ -232,23 +233,35 @@ def seiten_werkzeuge(teilen_aria, n, vorlesen=False, drucken=None, teilen_titel=
                  None = keine Druck-Schaltfläche. Bewusst NICHT [data-drucken]: das ist in
                  assets/js/alltag.js der Bereichsdruck (Checkliste, Auswertung).
     teilen_titel eigener Titel zum Teilen statt document.title
+    dezent       True (Übersichtsseiten): Textlinks mit Symbol statt Pillenbuttons.
+                 False (Ratgeber-Beitrag): Buttons; auf dem Handy nebeneinander mit
+                 Kurzbeschriftung (lange Beschriftung bleibt im Namen, visuell verborgen)
     """
-    lines = ['<div class="seiten-werkzeuge no-print" data-werkzeuge>']
+    mod = " seiten-werkzeuge--dezent" if dezent else ""
+    btn = "seiten-werkzeuge__link" if dezent else "btn btn--secondary seiten-werkzeuge__btn"
+
+    def label(lang, kurz):
+        if dezent:
+            return [f"    <span>{esc(lang)}</span>"]
+        return [f'    <span class="seiten-werkzeuge__lang">{esc(lang)}</span>',
+                f'    <span class="seiten-werkzeuge__kurz" aria-hidden="true">{esc(kurz)}</span>']
+
+    lines = [f'<div class="seiten-werkzeuge{mod} no-print" data-werkzeuge>']
     if vorlesen:
         lines += ["  " + line for line in VORLESEN_HTML]
     titel_attr = f' data-teilen-titel="{esc(teilen_titel)}"' if teilen_titel else ""
     lines += [
-        f'  <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen{titel_attr}',
+        f'  <button type="button" class="{btn}" data-teilen{titel_attr}',
         f'          aria-label="{esc(teilen_aria)}" hidden>',
         '    <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>',
-        f'    <span>{esc(teilen_label)}</span>',
+        *label(teilen_label, "Teilen"),
         "  </button>",
     ]
     if drucken:
         lines += [
-            '  <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>',
+            f'  <button type="button" class="{btn}" data-drucken-seite hidden>',
             '    <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>',
-            f"    <span>{esc(drucken)}</span>",
+            *label(drucken, "Drucken"),
             "  </button>",
         ]
     lines += [
@@ -747,13 +760,15 @@ def assistent_data(themen, regionen, beitraege):
 def article_toc(blocks, ids):
     lines = [
         '<nav class="toc article__toc" aria-labelledby="toc-titel">',
-        '  <h2 id="toc-titel">Inhalt</h2>',
-        '  <ul class="article__toc-list">',
+        # Handy/Tablet eingeklappt, ab 64em offen (main.js 13.; CSS ::details-content ohne JS)
+        '  <details class="toc__details" data-toc>',
+        '    <summary><h2 id="toc-titel">Inhalt</h2></summary>',
+        '    <ul class="article__toc-list">',
     ]
     for i, (kind, data) in enumerate(blocks):
         if kind == "h2":
-            lines.append(f'    <li><a href="#{ids[i]}">{esc(plain(data))}</a></li>')
-    lines += ["  </ul>", "</nav>"]
+            lines.append(f'      <li><a href="#{ids[i]}">{esc(plain(data))}</a></li>')
+    lines += ["    </ul>", "  </details>", "</nav>"]
     return lines
 
 
@@ -830,7 +845,7 @@ def beitrag_ctx(b, beitraege):
         "beitrag_quellen": quellen_block(b),
         "werkzeuge_beitrag": seiten_werkzeuge(
             "Beitrag teilen: Link zu diesem Ratgeber-Beitrag", 10, vorlesen=True,
-            drucken="Beitrag drucken oder als PDF speichern", teilen_titel=b["titel"]),
+            drucken="Beitrag drucken oder als PDF speichern", teilen_titel=b["titel"], dezent=False),
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung"), b["slug"]).splitlines(), 8),
@@ -910,7 +925,7 @@ def checklisten_html(checklisten, beitraege, site_name):
   <p class="print-only">{esc(site_name)} – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
   <div class="checklist__actions no-print">
     <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-    <a class="btn btn--primary" href="/?thema={c["thema"]}#anfrage" data-thema="{c["thema"]}">Unterstützung anfragen</a>
+    <a class="btn btn--secondary" href="/?thema={c["thema"]}#anfrage" data-thema="{c["thema"]}">Unterstützung anfragen</a>
   </div>
   <p class="checklist__more no-print">Mehr dazu: <a href="{r["url"]}">{esc(r["titel"])}</a></p>
 </section>""")
@@ -1002,7 +1017,7 @@ def wohnungs_check_html(check, beitraege, site_name):
   </div>
 
   <div class="btn-group no-print">
-    <a class="btn btn--primary" href="/?thema={check["thema"]}#anfrage" data-thema="{check["thema"]}">Unterstützung anfragen</a>
+    <a class="btn btn--secondary" href="/?thema={check["thema"]}#anfrage" data-thema="{check["thema"]}">Unterstützung anfragen</a>
     <button class="btn btn--secondary" type="button" data-drucken>Drucken / als PDF speichern</button>
     <button class="btn btn--secondary" type="button" data-neu-starten>Antworten ändern</button>
   </div>

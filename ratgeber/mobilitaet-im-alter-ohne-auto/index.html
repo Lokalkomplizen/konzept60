@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,29 +178,31 @@
           <img src="/assets/img/ratgeber/mobilitaet-haltestelle-1400.jpg" width="1400" height="933" alt="Eine lächelnde ältere Dame mit weißen Haaren, dunkelblauer Jacke und gestreiftem Shirt steht mit ihrem Rollator an einer überdachten Bushaltestelle, im Hintergrund eine Anzeigetafel und Bäume." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#warum-mobilitaet-im-alter-so-wichtig-ist">1. Warum Mobilität im Alter so wichtig ist</a></li>
-            <li><a href="#wann-ist-es-sinnvoll-das-autofahren-aufzugeben">2. Wann ist es sinnvoll, das Autofahren aufzugeben?</a></li>
-            <li><a href="#bus-und-bahn-die-wichtigste-alternative-zum-eigenen-auto">3. Bus und Bahn: Die wichtigste Alternative zum eigenen Auto</a></li>
-            <li><a href="#buergerbus-rufbus-und-taxibus-mobilitaet-auch-auf-dem-land">4. Bürgerbus, Rufbus und TaxiBus: Mobilität auch auf dem Land</a></li>
-            <li><a href="#taxi-und-private-fahrdienste-wenn-es-direkt-und-bequem-sein-soll">5. Taxi und private Fahrdienste: Wenn es direkt und bequem sein soll</a></li>
-            <li><a href="#krankenfahrten-wann-uebernimmt-die-krankenkasse-die-kosten">6. Krankenfahrten: Wann übernimmt die Krankenkasse die Kosten?</a></li>
-            <li><a href="#schwerbehindertenausweis-verguenstigungen-bei-bus-und-bahn">7. Schwerbehindertenausweis: Vergünstigungen bei Bus und Bahn</a></li>
-            <li><a href="#zu-fuss-unterwegs-die-unterschaetzte-form-der-mobilitaet">8. Zu Fuß unterwegs: Die unterschätzte Form der Mobilität</a></li>
-            <li><a href="#fahrrad-e-bike-und-pedelec-auch-im-alter-mobil-bleiben">9. Fahrrad, E-Bike und Pedelec: Auch im Alter mobil bleiben</a></li>
-            <li><a href="#nachbarschaftshilfe-und-ehrenamtliche-fahrdienste">10. Nachbarschaftshilfe und ehrenamtliche Fahrdienste</a></li>
-            <li><a href="#angehoerige-unterstuetzen-gemeinsam-mobilitaet-organisieren">11. Angehörige unterstützen: Gemeinsam Mobilität organisieren</a></li>
-            <li><a href="#mobilitaets-apps-und-digitale-fahrplaene-hilfe-oder-hindernis">12. Mobilitäts-Apps und digitale Fahrpläne: Hilfe oder Hindernis?</a></li>
-            <li><a href="#barrierefrei-mit-der-deutschen-bahn-reisen">13. Barrierefrei mit der Deutschen Bahn reisen</a></li>
-            <li><a href="#was-kostet-mobilitaet-ohne-eigenes-auto">14. Was kostet Mobilität ohne eigenes Auto?</a></li>
-            <li><a href="#welche-finanzielle-unterstuetzung-gibt-es">15. Welche finanzielle Unterstützung gibt es?</a></li>
-            <li><a href="#wie-finde-ich-passende-mobilitaetsangebote-in-meiner-naehe">16. Wie finde ich passende Mobilitätsangebote in meiner Nähe?</a></li>
-            <li><a href="#praktischer-mobilitaetsplan-so-bleiben-sie-unabhaengig">17. Praktischer Mobilitätsplan: So bleiben Sie unabhängig</a></li>
-            <li><a href="#haeufige-fragen-zur-mobilitaet-im-alter">18. Häufige Fragen zur Mobilität im Alter</a></li>
-            <li><a href="#fazit-unabhaengig-bleiben-auch-ohne-eigenes-auto">19. Fazit: Unabhängig bleiben, auch ohne eigenes Auto</a></li>
-            <li><a href="#wir-helfen-gemeinsam-passende-mobilitaetsangebote-finden">Wir helfen: Gemeinsam passende Mobilitätsangebote finden</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#warum-mobilitaet-im-alter-so-wichtig-ist">1. Warum Mobilität im Alter so wichtig ist</a></li>
+              <li><a href="#wann-ist-es-sinnvoll-das-autofahren-aufzugeben">2. Wann ist es sinnvoll, das Autofahren aufzugeben?</a></li>
+              <li><a href="#bus-und-bahn-die-wichtigste-alternative-zum-eigenen-auto">3. Bus und Bahn: Die wichtigste Alternative zum eigenen Auto</a></li>
+              <li><a href="#buergerbus-rufbus-und-taxibus-mobilitaet-auch-auf-dem-land">4. Bürgerbus, Rufbus und TaxiBus: Mobilität auch auf dem Land</a></li>
+              <li><a href="#taxi-und-private-fahrdienste-wenn-es-direkt-und-bequem-sein-soll">5. Taxi und private Fahrdienste: Wenn es direkt und bequem sein soll</a></li>
+              <li><a href="#krankenfahrten-wann-uebernimmt-die-krankenkasse-die-kosten">6. Krankenfahrten: Wann übernimmt die Krankenkasse die Kosten?</a></li>
+              <li><a href="#schwerbehindertenausweis-verguenstigungen-bei-bus-und-bahn">7. Schwerbehindertenausweis: Vergünstigungen bei Bus und Bahn</a></li>
+              <li><a href="#zu-fuss-unterwegs-die-unterschaetzte-form-der-mobilitaet">8. Zu Fuß unterwegs: Die unterschätzte Form der Mobilität</a></li>
+              <li><a href="#fahrrad-e-bike-und-pedelec-auch-im-alter-mobil-bleiben">9. Fahrrad, E-Bike und Pedelec: Auch im Alter mobil bleiben</a></li>
+              <li><a href="#nachbarschaftshilfe-und-ehrenamtliche-fahrdienste">10. Nachbarschaftshilfe und ehrenamtliche Fahrdienste</a></li>
+              <li><a href="#angehoerige-unterstuetzen-gemeinsam-mobilitaet-organisieren">11. Angehörige unterstützen: Gemeinsam Mobilität organisieren</a></li>
+              <li><a href="#mobilitaets-apps-und-digitale-fahrplaene-hilfe-oder-hindernis">12. Mobilitäts-Apps und digitale Fahrpläne: Hilfe oder Hindernis?</a></li>
+              <li><a href="#barrierefrei-mit-der-deutschen-bahn-reisen">13. Barrierefrei mit der Deutschen Bahn reisen</a></li>
+              <li><a href="#was-kostet-mobilitaet-ohne-eigenes-auto">14. Was kostet Mobilität ohne eigenes Auto?</a></li>
+              <li><a href="#welche-finanzielle-unterstuetzung-gibt-es">15. Welche finanzielle Unterstützung gibt es?</a></li>
+              <li><a href="#wie-finde-ich-passende-mobilitaetsangebote-in-meiner-naehe">16. Wie finde ich passende Mobilitätsangebote in meiner Nähe?</a></li>
+              <li><a href="#praktischer-mobilitaetsplan-so-bleiben-sie-unabhaengig">17. Praktischer Mobilitätsplan: So bleiben Sie unabhängig</a></li>
+              <li><a href="#haeufige-fragen-zur-mobilitaet-im-alter">18. Häufige Fragen zur Mobilität im Alter</a></li>
+              <li><a href="#fazit-unabhaengig-bleiben-auch-ohne-eigenes-auto">19. Fazit: Unabhängig bleiben, auch ohne eigenes Auto</a></li>
+              <li><a href="#wir-helfen-gemeinsam-passende-mobilitaetsangebote-finden">Wir helfen: Gemeinsam passende Mobilitätsangebote finden</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu bleiben. Vom öffentlichen Nahverkehr über Bürgerbusse und Fahrdienste bis hin zu Krankenfahrten, Rufbussen und ehrenamtlicher Unterstützung. Welche Angebote gibt es, wer übernimmt die Kosten und welche finanziellen Hilfen können genutzt werden?</p>
@@ -1010,7 +1015,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

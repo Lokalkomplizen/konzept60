@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,16 +178,18 @@
           <img src="/assets/img/ratgeber/altersgerechter-umbau-1400.jpg" width="1400" height="933" alt="Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriffen, einem Klappsitz, wandhängender Toilette und Waschbecken." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#das-badezimmer-sicher-und-komfortabel-gestalten">1. Das Badezimmer sicher und komfortabel gestalten</a></li>
-            <li><a href="#treppen-und-eingaenge-ueberwinden">2. Treppen und Eingänge überwinden</a></li>
-            <li><a href="#tueren-flure-und-wohnraeume-anpassen">3. Türen, Flure und Wohnräume anpassen</a></li>
-            <li><a href="#die-kueche-praktischer-gestalten">4. Die Küche praktischer gestalten</a></li>
-            <li><a href="#welche-foerdermoeglichkeiten-gibt-es">5. Welche Fördermöglichkeiten gibt es?</a></li>
-            <li><a href="#gute-planung-spart-geld-und-aerger">6. Gute Planung spart Geld und Ärger</a></li>
-            <li><a href="#heute-planen-morgen-selbststaendig-wohnen">Heute planen, morgen selbstständig wohnen</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#das-badezimmer-sicher-und-komfortabel-gestalten">1. Das Badezimmer sicher und komfortabel gestalten</a></li>
+              <li><a href="#treppen-und-eingaenge-ueberwinden">2. Treppen und Eingänge überwinden</a></li>
+              <li><a href="#tueren-flure-und-wohnraeume-anpassen">3. Türen, Flure und Wohnräume anpassen</a></li>
+              <li><a href="#die-kueche-praktischer-gestalten">4. Die Küche praktischer gestalten</a></li>
+              <li><a href="#welche-foerdermoeglichkeiten-gibt-es">5. Welche Fördermöglichkeiten gibt es?</a></li>
+              <li><a href="#gute-planung-spart-geld-und-aerger">6. Gute Planung spart Geld und Ärger</a></li>
+              <li><a href="#heute-planen-morgen-selbststaendig-wohnen">Heute planen, morgen selbstständig wohnen</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne zu echten Hindernissen werden.</p>
@@ -398,7 +403,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

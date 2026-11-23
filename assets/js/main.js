@@ -13,6 +13,8 @@
    9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
   10. Seite teilen (navigator.share, sonst Link in die Zwischenablage)
   11. Ganze Seite drucken ([data-drucken-seite]) + Quellenangabe im Ausdruck
+  12. Checklisten in Ratgeber-Beiträgen
+  13. Inhaltsverzeichnis im Beitrag: Handy/Tablet eingeklappt, ab 64em offen
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'wirhelfen-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -801,6 +803,7 @@
     var startBtn = root.querySelector('[data-vorlesen-start]');
     var stoppBtn = root.querySelector('[data-vorlesen-stopp]');
     var label = root.querySelector('[data-vorlesen-label]');
+    var kurz = root.querySelector('[data-vorlesen-kurz]');
     var icon = root.querySelector('[data-vorlesen-icon]');
     var status = root.querySelector('[data-vorlesen-status]');
 
@@ -837,6 +840,8 @@
     function setUi() {
       var text = state === 'playing' ? 'Pause' : state === 'paused' ? 'Weiterlesen' : 'Beitrag vorlesen';
       label.textContent = text;
+      // Kurzbeschriftung (nur Handy sichtbar, aria-hidden) – im Namen enthalten
+      if (kurz) kurz.textContent = state === 'playing' ? 'Pause' : state === 'paused' ? 'Weiter' : 'Vorlesen';
       icon.setAttribute('href', state === 'playing' ? '#icon-pause' : '#icon-vorlesen');
       stoppBtn.hidden = state === 'idle';
     }
@@ -1131,6 +1136,28 @@
     });
   }
 
+  /* ------------------------------------------------------------------------
+     13. Inhaltsverzeichnis im Ratgeber-Beitrag (<details data-toc>)
+     Unter 64em eingeklappt (spart Höhe über dem ersten Absatz), ab 64em offen und
+     nicht einklappbar (Spalte rechts, wie bisher). Ohne JS: zu, ab 64em zeigt
+     CSS (::details-content) den Inhalt trotzdem.
+     ------------------------------------------------------------------------ */
+  function initToc() {
+    var details = document.querySelector('[data-toc]');
+    if (!details || !window.matchMedia) return;
+    var summary = details.querySelector('summary');
+    var mq = window.matchMedia('(min-width: 64em)');
+    function sync() {
+      details.open = mq.matches;
+      if (mq.matches) summary.setAttribute('tabindex', '-1');
+      else summary.removeAttribute('tabindex');
+    }
+    summary.addEventListener('click', function (e) { if (mq.matches) e.preventDefault(); });
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    else if (mq.addListener) mq.addListener(sync);
+    sync();
+  }
+
   /* ------------------------------------------------------------------------ */
   initNavigation();
   var updateLeistungen = initLeistungen();
@@ -1144,4 +1171,5 @@
   initDrucken();
   initScrollAnimationen();
   initBeitragCheck();
+  initToc();
 })();

@@ -57,6 +57,7 @@
 
   --font-size-base: 1.1875rem;  /* 19px mobil */
   --font-size-sm: 1.0625rem;    /* 17px – nur für Kleingedrucktes/Meta */
+  --font-size-md: 1.125rem;     /* 18px – Hauptnavigation (Desktop) */
   --font-size-lg: 1.3125rem;
   --font-size-h3: 1.4375rem;
   --font-size-h2: clamp(1.875rem, 1.4rem + 2vw, 2.625rem);

@@ -85,11 +85,11 @@
     gap: var(--space-2xs);
   }
   .site-nav__item--minor { margin-left: var(--space-s); }
-  .site-nav__link--minor { font-size: 1rem; }
+  .site-nav__link--minor { font-size: var(--font-size-sm); }
   .site-nav__link {
     border-bottom: 0;
     padding-inline: var(--space-s);
-    font-size: 1.0625rem;
+    font-size: var(--font-size-md);
     white-space: nowrap;
   }
   .site-nav__cta { white-space: nowrap; }
@@ -1180,7 +1180,7 @@ select.form-field__input {
   border-radius: var(--radius-s);
 }
 
-.topic-link__title { flex: 1; line-height: 1.3; }
+.topic-link__title { flex: 1; min-width: 0; line-height: 1.3; overflow-wrap: break-word; hyphens: auto; }
 .topic-link .icon { flex-shrink: 0; color: var(--color-terra-700); }
 
 /* ---- Formular: Abschnitte, Spalten ------------------------------------------ */
@@ -1411,7 +1411,7 @@ select.form-field__input {
 
 .toc h2 { margin-top: 0; font-size: var(--font-size-lg); font-family: var(--font-sans); font-weight: 700; }
 .toc ol { margin: 0; }
-.toc a { display: inline-block; padding-block: 0.3rem; }
+.toc a { display: inline-flex; align-items: center; min-height: var(--touch-min); padding-block: 0.3rem; }
 
 /* ---- Ratgeber-Vorschau ------------------------------------------------------- */
 .article-card--preview .article-card__title { font-family: var(--font-sans); font-weight: 700; letter-spacing: 0; }
@@ -1570,12 +1570,61 @@ select.form-field__input {
 }
 .seiten-werkzeuge__status:empty { display: none; }
 
-/* Handy: Schaltflächen über die ganze Breite, damit die Ziele groß bleiben */
+/* Kurzbeschriftung: nur auf dem Handy sichtbar (aria-hidden); die lange Beschriftung
+   bleibt im Namen der Schaltfläche (visuell verborgen) – sichtbarer Text ist darin enthalten */
+.seiten-werkzeuge__kurz { display: none; }
+
+/* Handy: Schaltflächen nebeneinander in einer Zeile (Symbol über Kurztext),
+   jede mind. 48px hoch – spart Höhe über dem Beitrag */
 @media (max-width: 29.99em) {
+  .seiten-werkzeuge .vorlesen:not([hidden]) { display: contents; }
   .seiten-werkzeuge > .btn,
-  .seiten-werkzeuge .vorlesen { width: 100%; }
-  .seiten-werkzeuge .vorlesen__btn { flex: 1 1 10rem; }
+  .seiten-werkzeuge .vorlesen__btn {
+    flex: 1 1 0;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-xs) var(--space-2xs);
+    border-radius: var(--radius-m);
+    font-size: var(--font-size-sm);
+  }
+  .seiten-werkzeuge__status { flex-basis: 100%; }
+  .seiten-werkzeuge__lang {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .seiten-werkzeuge__kurz { display: inline; }
 }
+
+/* Übersichtsseiten: Teilen/Drucken zurückgenommen als Textlink mit Symbol
+   (kein Pillenbutton direkt unter der H1); Ziel bleibt 48px hoch */
+.seiten-werkzeuge--dezent { gap: 0 var(--space-l); margin-top: var(--space-s); }
+.seiten-werkzeuge__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--touch-min);
+  padding: 0 var(--space-2xs);
+  margin-inline: calc(-1 * var(--space-2xs));
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-navy-800);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.seiten-werkzeuge__link:hover { color: var(--color-terra-700); }
+.seiten-werkzeuge__link[hidden] { display: none; }
 
 /* ---- Beitragskopf ---------------------------------------------------------- */
 .article__kicker { margin-bottom: var(--space-s); }
@@ -1600,13 +1649,8 @@ select.form-field__input {
   gap: var(--space-xl);
 }
 
-/* Beitrag mittig auf der Seite: Kopf und Inhalt teilen sich dieselbe Breite (Text 42rem + Inhaltsverzeichnis) */
-.page-header--article .breadcrumb,
-.page-header--article .article__header,
-.container.article__layout {
-  max-width: calc(64rem + 2 * var(--gutter));
-  margin-inline: auto;
-}
+/* Beitrag an derselben Containerkante wie alle Seiten (nicht zentriert);
+   Kopf und Inhalt teilen sich dieselbe Breite (Text 42rem + Inhaltsverzeichnis) */
 .page-header--article .breadcrumb,
 .page-header--article .article__header { max-width: 64rem; }
 
@@ -1629,7 +1673,44 @@ select.form-field__input {
 }
 
 .article__toc-list li + li { border-top: 1px solid var(--color-sand-300); }
-.article__toc-list a { display: block; padding-block: 0.6rem; }
+.article__toc-list a { display: flex; align-items: center; min-height: var(--touch-min); padding-block: var(--space-xs); }
+
+/* Inhaltsverzeichnis im Beitrag: <details>; Handy/Tablet eingeklappt, ab 64em offen
+   (main.js 13. setzt "open" je nach Breite; ohne JS zeigt ::details-content es ab 64em trotzdem) */
+.toc__details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-height: var(--touch-min);
+  cursor: pointer;
+  list-style: none;
+}
+.toc__details > summary::-webkit-details-marker { display: none; }
+.toc__details > summary h2 { margin: 0; }
+.toc__details > summary::after {
+  content: "+";
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-navy-800);
+  border-radius: 50%;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-navy-800);
+}
+.toc__details[open] > summary::after { content: "−"; }
+.toc__details[open] > summary { margin-bottom: var(--space-s); }
+.article__toc.toc { padding-block: var(--space-s); }
+@media (min-width: 64em) {
+  .article__toc.toc { padding-block: var(--space-l); }
+  .toc__details > summary { cursor: default; min-height: 0; }
+  .toc__details > summary::after { display: none; }
+  .toc__details::details-content { content-visibility: visible; block-size: auto; }
+}
 
 /* Fließtext: max. ~42rem ≈ 65–70 Zeichen bei 19–20px */
 .article__body { max-width: 42rem; min-width: 0; }
@@ -2159,7 +2240,12 @@ select.form-field__input {
 .no-js .no-js-note { display: block; margin-bottom: var(--space-l); }
 
 /* ---- Checklisten ------------------------------------------------------------------ */
-.checklist-page { display: grid; gap: var(--space-2xl); max-width: 52rem; margin-inline: 0; }
+.checklist-page {
+  /* Container bleibt volle Breite (Kante bündig mit H1/Logo), nur die Spalte ist begrenzt */
+  display: grid;
+  grid-template-columns: minmax(0, 52rem);
+  gap: var(--space-2xl);
+}
 .checklist-nav ul {
   list-style: none;
   margin: 0;
@@ -2214,7 +2300,11 @@ select.form-field__input {
 .checklist__more { margin: var(--space-m) 0 0; font-size: var(--font-size-sm); }
 
 /* ---- Wohnungs-Check ---------------------------------------------------------------- */
-.wc-page { display: grid; gap: var(--space-xl); max-width: 52rem; margin-inline: 0; }
+.wc-page {
+  display: grid;
+  grid-template-columns: minmax(0, 52rem);
+  gap: var(--space-xl);
+}
 .wc { display: grid; gap: var(--space-xl); }
 .wc__group { margin: 0; padding: 0; border: 0; min-width: 0; display: grid; gap: var(--space-m); }
 .wc__group-title {
@@ -2453,7 +2543,8 @@ select.form-field__input {
 .pgr-fin--zuschuss { background: var(--color-sand-100); border-color: var(--color-sage-400); }
 .pgr-fin--privat { background: var(--color-terra-100); border-color: var(--color-terra-600); }
 .pgr-hilfe__link { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 600; }
-.pgr-faq { max-width: 48rem; }
+/* Kante bündig mit H1 (Container volle Breite), Lesebreite nur für den Inhalt */
+.pgr-faq > * { max-width: 48rem; }
 .faq { display: grid; gap: var(--space-s); margin-top: var(--space-l); }
 .faq__item { border: 1px solid var(--color-sand-300); border-radius: var(--radius-m); background: var(--color-white); padding: 0 var(--space-l); }
 .faq__item summary { cursor: pointer; min-height: var(--touch-min); display: flex; align-items: center; padding: var(--space-s) 0; }

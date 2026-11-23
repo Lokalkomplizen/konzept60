@@ -29,10 +29,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
 
 </head>
@@ -112,8 +112,8 @@
         Kleine Helfer für mehr Überblick und Sicherheit im Alltag: Checklisten zum Abhaken und ein Wohnungs-Check.
         Sie können sie einfach ausprobieren – ganz ohne Anmeldung.
       </p>
-      <div class="seiten-werkzeuge no-print" data-werkzeuge>
-        <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen
+      <div class="seiten-werkzeuge seiten-werkzeuge--dezent no-print" data-werkzeuge>
+        <button type="button" class="seiten-werkzeuge__link" data-teilen
                 aria-label="Mein Alltag teilen: Link zu dieser Seite" hidden>
           <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
           <span>Seite teilen</span>
@@ -139,7 +139,7 @@
             <span class="path-card__tag">Zum Abhaken</span>
             <h3 class="path-card__title" id="werkzeug-checklisten">Meine Checklisten</h3>
             <p class="path-card__text">Vier Checklisten für typische Situationen: Arzttermin, Wohnung altersgerecht gestalten, Pflegegrad beantragen und Handwerkertermin.</p>
-            <a class="btn btn--primary" href="/mein-alltag/checklisten/">Checklisten öffnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a class="btn btn--secondary" href="/mein-alltag/checklisten/">Checklisten öffnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           </article>
         </li>
         <li>
@@ -148,7 +148,7 @@
             <span class="path-card__tag">In wenigen Minuten</span>
             <h3 class="path-card__title" id="werkzeug-wohnungscheck">Mein Wohnungs-Check</h3>
             <p class="path-card__text">Zwölf kurze Fragen zu Eingang, Flur, Bad, Küche und Licht. Am Ende sehen Sie, was schon gut ist und wo sich ein Blick lohnt.</p>
-            <a class="btn btn--primary" href="/mein-alltag/wohnungs-check/">Wohnungs-Check starten <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a class="btn btn--secondary" href="/mein-alltag/wohnungs-check/">Wohnungs-Check starten <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           </article>
         </li>
         <li>
@@ -157,7 +157,7 @@
             <span class="path-card__tag">Etwa 10 bis 15 Minuten</span>
             <h3 class="path-card__title" id="werkzeug-pflegegrad">Pflegegradrechner</h3>
             <p class="path-card__text">Fragen zum Alltag beantworten und einschätzen, welcher Pflegegrad infrage kommen könnte – nach dem offiziellen Begutachtungsverfahren.</p>
-            <a class="btn btn--primary" href="/mein-alltag/pflegegrad-rechner/">Pflegegrad berechnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a class="btn btn--secondary" href="/mein-alltag/pflegegrad-rechner/">Pflegegrad berechnen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           </article>
         </li>
         <li>
@@ -166,7 +166,7 @@
             <span class="path-card__tag">Nach Datum, Thema und Ort</span>
             <h3 class="path-card__title" id="werkzeug-veranstaltungen">Veranstaltungen für Sie</h3>
             <p class="path-card__text">Gymnastik, Kultur, Kurse und Treffen in Ihrer Region – übersichtlich nach Datum, mit Filter für Ort und Thema.</p>
-            <a class="btn btn--primary" href="/veranstaltungen/">Veranstaltungen ansehen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+            <a class="btn btn--secondary" href="/veranstaltungen/">Veranstaltungen ansehen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           </article>
         </li>
         <li>
@@ -273,7 +273,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

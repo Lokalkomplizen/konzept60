@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,20 +178,22 @@
           <img src="/assets/img/ratgeber/kurzzeitpflege-1400.jpg" width="1400" height="933" alt="Tochter und Pflegerin im Gespräch mit lächelnder älterer Frau im hellen Aufenthaltsraum einer Pflegeeinrichtung." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#was-ist-kurzzeitpflege">Was ist Kurzzeitpflege?</a></li>
-            <li><a href="#wer-hat-anspruch-auf-kurzzeitpflege">Wer hat Anspruch auf Kurzzeitpflege?</a></li>
-            <li><a href="#wie-lange-kann-kurzzeitpflege-genutzt-werden">Wie lange kann Kurzzeitpflege genutzt werden?</a></li>
-            <li><a href="#wie-viel-zahlt-die-pflegekasse-ab-2027">Wie viel zahlt die Pflegekasse ab 2027?</a></li>
-            <li><a href="#welche-kosten-uebernimmt-die-pflegekasse">Welche Kosten übernimmt die Pflegekasse?</a></li>
-            <li><a href="#was-passiert-mit-den-laufenden-leistungen-waehrend-der-kurzzeitpflege">Was passiert mit den laufenden Leistungen während der Kurzzeitpflege?</a></li>
-            <li><a href="#wie-findet-man-einen-passenden-kurzzeitpflegeplatz">Wie findet man einen passenden Kurzzeitpflegeplatz?</a></li>
-            <li><a href="#was-sollte-man-vor-dem-aufenthalt-vorbereiten">Was sollte man vor dem Aufenthalt vorbereiten?</a></li>
-            <li><a href="#kurzzeitpflege-oder-ersatzpflege-zu-hause-was-ist-der-unterschied">Kurzzeitpflege oder Ersatzpflege zu Hause: Was ist der Unterschied?</a></li>
-            <li><a href="#wie-geht-es-nach-der-kurzzeitpflege-weiter">Wie geht es nach der Kurzzeitpflege weiter?</a></li>
-            <li><a href="#wir-helfen-unterstuetzung-finden-und-den-alltag-organisieren">Wir helfen: Unterstützung finden und den Alltag organisieren</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#was-ist-kurzzeitpflege">Was ist Kurzzeitpflege?</a></li>
+              <li><a href="#wer-hat-anspruch-auf-kurzzeitpflege">Wer hat Anspruch auf Kurzzeitpflege?</a></li>
+              <li><a href="#wie-lange-kann-kurzzeitpflege-genutzt-werden">Wie lange kann Kurzzeitpflege genutzt werden?</a></li>
+              <li><a href="#wie-viel-zahlt-die-pflegekasse-ab-2027">Wie viel zahlt die Pflegekasse ab 2027?</a></li>
+              <li><a href="#welche-kosten-uebernimmt-die-pflegekasse">Welche Kosten übernimmt die Pflegekasse?</a></li>
+              <li><a href="#was-passiert-mit-den-laufenden-leistungen-waehrend-der-kurzzeitpflege">Was passiert mit den laufenden Leistungen während der Kurzzeitpflege?</a></li>
+              <li><a href="#wie-findet-man-einen-passenden-kurzzeitpflegeplatz">Wie findet man einen passenden Kurzzeitpflegeplatz?</a></li>
+              <li><a href="#was-sollte-man-vor-dem-aufenthalt-vorbereiten">Was sollte man vor dem Aufenthalt vorbereiten?</a></li>
+              <li><a href="#kurzzeitpflege-oder-ersatzpflege-zu-hause-was-ist-der-unterschied">Kurzzeitpflege oder Ersatzpflege zu Hause: Was ist der Unterschied?</a></li>
+              <li><a href="#wie-geht-es-nach-der-kurzzeitpflege-weiter">Wie geht es nach der Kurzzeitpflege weiter?</a></li>
+              <li><a href="#wir-helfen-unterstuetzung-finden-und-den-alltag-organisieren">Wir helfen: Unterstützung finden und den Alltag organisieren</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem Krankenhausaufenthalt noch keine ausreichende Versorgung zu Hause bereit. Oder die bisherige Pflegeperson fällt aus und eine andere Lösung wird benötigt.</p>
@@ -445,7 +450,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

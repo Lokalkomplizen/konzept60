@@ -123,7 +123,8 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 | Token | Wert | Hinweis |
 |---|---|---|
 | `--font-size-base` | `1.1875rem` (19px); ab 60em `1.25rem` (20px) | Fließtext |
-| `--font-size-sm` | `1.0625rem` (17px) | nur Kleingedrucktes und Meta |
+| `--font-size-sm` | `1.0625rem` (17px) | nur Kleingedrucktes und Meta; „Für Anbieter“ in der Navigation |
+| `--font-size-md` | `1.125rem` (18px) | Hauptnavigation ab 68em |
 | `--font-size-lg` | `1.3125rem` | Einleitungen (`.section__intro`, `.hero__text`) |
 | `--font-size-h3` | `1.4375rem` | h3, Gewicht 700, Sans |
 | `--font-size-h2` | `clamp(1.875rem, 1.4rem + 2vw, 2.625rem)` | Serif, 600 |
@@ -184,7 +185,7 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 
 | Breite | Wirkung |
 |---|---|
-| `30em` / `<30em` | Kleinster Handy-Bereich: Werkzeug-Buttons volle Breite |
+| `30em` / `<30em` | Kleinster Handy-Bereich: Werkzeug-Buttons im Beitrag nebeneinander mit Kurzbeschriftung |
 | `40em` / `<40em` | 2-Spalten-Raster; mobile Kartenbilder 2:1 |
 | `48em` / `<48em` | Topbar sichtbar, Footer 2 Spalten; viele Komponenten-Anpassungen |
 | `56em` | Beitragslayout |
@@ -202,7 +203,7 @@ Namensschema BEM (`block__element--modifier`), WordPress-tauglich (Template-Part
 ### 6.1 Buttons (`.btn`)
 
 - Pille (`border-radius: 999px`), `min-height: 48px`, Padding `0.7rem 1.4rem`, Rand 2px, fett, `1.0625em`, Übergang `--transition`.
-- Varianten: `.btn--primary` (Terrakotta-600, Weiß; Hover Terrakotta-700) für die eine Hauptaktion; `.btn--secondary` (Weiß, Navy-Rand; Hover Navy-Fläche); `.btn--outline-light` (transparent, weißer Rand, auf Navy); `.btn--block` (volle Breite); `.btn--menu` (Radius 6px, für Menü-Toggle, `aria-expanded` füllt Navy).
+- Varianten: `.btn--primary` (Terrakotta-600, Weiß; Hover Terrakotta-700) nur für „Anfrage stellen“ (Header-CTA), den Hero-/Seitenkopf-CTA und Formular-Absenden; Karten-, Kachel- und Raster-Buttons (Drei Wege, Mein Alltag, Checklisten, Angehörigen-Panel der Startseite, Assistent „Weiter“) sind `.btn--secondary`; `.btn--secondary` (Weiß, Navy-Rand; Hover Navy-Fläche); `.btn--outline-light` (transparent, weißer Rand, auf Navy); `.btn--block` (volle Breite); `.btn--menu` (Radius 6px, für Menü-Toggle, `aria-expanded` füllt Navy).
 - `.btn-group` ordnet mehrere Buttons.
 
 ### 6.2 Karten
@@ -228,13 +229,13 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 ### 6.5 Header und Navigation
 
 - `.site-header`: weiß, 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt nur einen Hinweistext.
-- Ab 68em horizontale `.site-nav` mit `.site-nav__link`, "Für Anbieter" kleiner (`--minor`) und CTA `.btn--primary` "Anfrage stellen". Darunter: `.btn--menu` klappt `#hauptnavigation` nur mit JS (`.js`) zu; ohne JS steht die Navigation offen.
+- Ab 68em horizontale `.site-nav` mit `.site-nav__link` (18px, `--font-size-md`; bricht 68em–1440px nicht um), "Für Anbieter" kleiner (`--minor`, 17px) und CTA `.btn--primary` "Anfrage stellen". Darunter: `.btn--menu` klappt `#hauptnavigation` nur mit JS (`.js`) zu; ohne JS steht die Navigation offen.
 - Aktiver Punkt: `aria-current="page"` (Übersicht) oder `aria-current="true"` (Unterseite).
 - Skip-Link `.skip-link` oben.
 
 ### 6.6 Footer
 
-`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Spalten: Logo mit Kurztext, Drei Wege, Themen, Regionen (2 Spalten), Informationen. Linkzeilen mind. 48px hoch. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
+`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Spalten: Logo mit Kurztext, Drei Wege, Themen, Regionen (`auto-fill`, Spalten ab 6.5em, Abstand `--space-2xs`/`--space-xl`: 2 Spalten wo Platz ist, in der schmalen 5-Spalten-Ansicht ab 64em eine), Informationen. Linkzeilen mind. 48px hoch. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
 
 ### 6.7 Weitere Bausteine
 
@@ -245,7 +246,8 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 ### 6.8 Ratgeber-Elemente
 
 - Kopf: Kicker-Link zum Thema (`.article__kicker`), H1, **Stand-Pille** `.article__stand` ("Stand: Monat Jahr"). Beiträge ohne Autor.
-- Layout `.article__layout`: Titelbild 3:2, Inhaltsverzeichnis `.toc`, Fließtext; zweites Bild optional (lazy, 3:2).
+- Layout `.article__layout`: Titelbild 3:2, Inhaltsverzeichnis `.toc`, Fließtext; zweites Bild optional (lazy, 3:2). Beitrag steht an derselben Containerkante wie alle Seiten (nicht zentriert); Text 42rem, Kopf max. 64rem.
+- Inhaltsverzeichnis als `<details class="toc__details" data-toc>`: unter 64em eingeklappt (Summary „Inhalt“ mit +/−), ab 64em offen und nicht einklappbar (`main.js` 13.; ohne JS über `::details-content`). Links mind. 48px (`--touch-min`).
 - Tabellen: mobil als Label/Wert-Karten (`data-label`), `<caption>` visuell verborgen.
 - Hinweis-Kasten ("Wichtig" in Terrakotta, sonst Salbei), Quellenblock `.beitrag-quellen`, CTA am Ende, "Weitere Beiträge".
 - Themenfilter `/ratgeber/`: Buttons mit `aria-pressed`; aktiv = Navy-Fläche plus Häkchen; Live-Region meldet die Anzahl.
@@ -257,7 +259,8 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 - Alle Buttons haben `hidden`, bis JS sie freischaltet (`main.js` 8., 10., 11.).
 - Rückmeldung `.seiten-werkzeuge__status` (`role="status"`, z. B. "Link kopiert").
 - Gerade vorgelesener Abschnitt: `.vorlesen-aktiv` (Terrakotta-100 mit Ring).
-- Unter 30em Buttons volle Breite.
+- Unter 30em (nur Beitrag): Buttons nebeneinander in einer Zeile, Symbol über Kurzbeschriftung (`.seiten-werkzeuge__kurz`, `aria-hidden`: Vorlesen/Pause/Weiter, Teilen, Drucken); die lange Beschriftung (`.seiten-werkzeuge__lang`) bleibt visuell verborgen im Namen.
+- Übersichtsseiten (Themen, Ratgeber, Mein Alltag, Checklisten, Wohnungs-Check, Pflegegradrechner, Veranstaltungen, Für Anbieter): `.seiten-werkzeuge--dezent` mit `.seiten-werkzeuge__link` (Textlink mit Symbol, unterstrichen, 48px hoch) statt Pillenbutton (`seiten_werkzeuge(..., dezent=True)` in `build.py`).
 
 ### 6.10 Druck (`print.css`, nur `media="print"`)
 
@@ -311,7 +314,8 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 **Do**
 
 - Farben, Abstände, Größen, Radien, Schatten immer über Tokens aus `tokens.css`.
-- Genau einen Terrakotta-Primärbutton pro Bereich.
+- Genau einen Terrakotta-Primärbutton pro Bereich; Terrakotta nur für Header-CTA, Hero-/Seitenkopf-CTA und Formular-Absenden.
+- Container nie mit `margin-inline: 0` und eigener `max-width` überschreiben (verschiebt die Kante): Lesebreite über Grid-Spalte (`grid-template-columns: minmax(0, 52rem)`) oder Kind-Elemente begrenzen.
 - Navy für Struktur, Sand und Salbei für Flächen, Terrakotta nur als Akzent.
 - Mobil zuerst entwerfen, dann mit `min-width` erweitern.
 - Ziele mindestens 48px, Text mindestens 17px (Fließtext 19px und mehr).

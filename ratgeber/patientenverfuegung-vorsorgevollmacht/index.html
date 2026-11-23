@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,21 +178,23 @@
           <img src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-1400.jpg" width="1400" height="933" alt="Auf einem sonnigen Holztisch liegen Unterlagen mit den Überschriften Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung, daneben ein Stift, eine Brille, ein Notizzettel mit abgehakten Schritten, eine Tasse und ein gerahmtes Foto eines lächelnden älteren Paares." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#warum-rechtzeitige-vorsorge-so-wichtig-ist">1. Warum rechtzeitige Vorsorge so wichtig ist</a></li>
-            <li><a href="#die-patientenverfuegung-sie-bestimmen-welche-behandlung-sie-wuenschen">2. Die Patientenverfügung: Sie bestimmen, welche Behandlung Sie wünschen</a></li>
-            <li><a href="#die-vorsorgevollmacht-sie-bestimmen-wer-fuer-sie-handeln-darf">3. Die Vorsorgevollmacht: Sie bestimmen, wer für Sie handeln darf</a></li>
-            <li><a href="#patientenverfuegung-und-vorsorgevollmacht-wo-liegt-der-unterschied">4. Patientenverfügung und Vorsorgevollmacht: Wo liegt der Unterschied?</a></li>
-            <li><a href="#die-betreuungsverfuegung-eine-wichtige-dritte-moeglichkeit">5. Die Betreuungsverfügung: Eine wichtige dritte Möglichkeit</a></li>
-            <li><a href="#was-passiert-wenn-ich-keine-vorsorge-getroffen-habe">6. Was passiert, wenn ich keine Vorsorge getroffen habe?</a></li>
-            <li><a href="#die-haeufigsten-fehler-bei-der-vorsorge">7. Die häufigsten Fehler bei der Vorsorge</a></li>
-            <li><a href="#wo-und-wie-bewahre-ich-meine-dokumente-auf">8. Wo und wie bewahre ich meine Dokumente auf?</a></li>
-            <li><a href="#wie-erstelle-ich-meine-vorsorgedokumente">9. Wie erstelle ich meine Vorsorgedokumente?</a></li>
-            <li><a href="#praktische-checkliste-bin-ich-gut-vorbereitet">10. Praktische Checkliste: Bin ich gut vorbereitet?</a></li>
-            <li><a href="#fazit-vorsorge-ist-ein-stueck-selbstbestimmung">Fazit: Vorsorge ist ein Stück Selbstbestimmung</a></li>
-            <li><a href="#gut-vorbereitet-in-die-zukunft">Gut vorbereitet in die Zukunft</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#warum-rechtzeitige-vorsorge-so-wichtig-ist">1. Warum rechtzeitige Vorsorge so wichtig ist</a></li>
+              <li><a href="#die-patientenverfuegung-sie-bestimmen-welche-behandlung-sie-wuenschen">2. Die Patientenverfügung: Sie bestimmen, welche Behandlung Sie wünschen</a></li>
+              <li><a href="#die-vorsorgevollmacht-sie-bestimmen-wer-fuer-sie-handeln-darf">3. Die Vorsorgevollmacht: Sie bestimmen, wer für Sie handeln darf</a></li>
+              <li><a href="#patientenverfuegung-und-vorsorgevollmacht-wo-liegt-der-unterschied">4. Patientenverfügung und Vorsorgevollmacht: Wo liegt der Unterschied?</a></li>
+              <li><a href="#die-betreuungsverfuegung-eine-wichtige-dritte-moeglichkeit">5. Die Betreuungsverfügung: Eine wichtige dritte Möglichkeit</a></li>
+              <li><a href="#was-passiert-wenn-ich-keine-vorsorge-getroffen-habe">6. Was passiert, wenn ich keine Vorsorge getroffen habe?</a></li>
+              <li><a href="#die-haeufigsten-fehler-bei-der-vorsorge">7. Die häufigsten Fehler bei der Vorsorge</a></li>
+              <li><a href="#wo-und-wie-bewahre-ich-meine-dokumente-auf">8. Wo und wie bewahre ich meine Dokumente auf?</a></li>
+              <li><a href="#wie-erstelle-ich-meine-vorsorgedokumente">9. Wie erstelle ich meine Vorsorgedokumente?</a></li>
+              <li><a href="#praktische-checkliste-bin-ich-gut-vorbereitet">10. Praktische Checkliste: Bin ich gut vorbereitet?</a></li>
+              <li><a href="#fazit-vorsorge-ist-ein-stueck-selbstbestimmung">Fazit: Vorsorge ist ein Stück Selbstbestimmung</a></li>
+              <li><a href="#gut-vorbereitet-in-die-zukunft">Gut vorbereitet in die Zukunft</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer darf dann mit Ärzten sprechen, medizinischen Maßnahmen zustimmen oder Bankgeschäfte erledigen? Mit einer Patientenverfügung und einer Vorsorgevollmacht können Sie frühzeitig festlegen, was in solchen Situationen gelten soll und wem Sie vertrauen.</p>
@@ -563,7 +568,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

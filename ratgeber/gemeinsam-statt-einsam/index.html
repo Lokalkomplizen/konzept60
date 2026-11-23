@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Gemeinsam statt einsam: Warum soziale Kontakte im Alter so wichtig sind"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,15 +178,17 @@
           <img src="/assets/img/ratgeber/gemeinsam-statt-einsam-1400.jpg" width="1400" height="933" alt="Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#freundschaften-bewusst-pflegen">1. Freundschaften bewusst pflegen</a></li>
-            <li><a href="#neue-menschen-kennenlernen">2. Neue Menschen kennenlernen</a></li>
-            <li><a href="#gemeinsam-aktiv-bleiben">3. Gemeinsam aktiv bleiben</a></li>
-            <li><a href="#auch-digitale-kontakte-nutzen">4. Auch digitale Kontakte nutzen</a></li>
-            <li><a href="#hilfe-annehmen-und-auf-andere-zugehen">5. Hilfe annehmen und auf andere zugehen</a></li>
-            <li><a href="#kleine-begegnungen-machen-einen-grossen-unterschied">Kleine Begegnungen machen einen großen Unterschied</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#freundschaften-bewusst-pflegen">1. Freundschaften bewusst pflegen</a></li>
+              <li><a href="#neue-menschen-kennenlernen">2. Neue Menschen kennenlernen</a></li>
+              <li><a href="#gemeinsam-aktiv-bleiben">3. Gemeinsam aktiv bleiben</a></li>
+              <li><a href="#auch-digitale-kontakte-nutzen">4. Auch digitale Kontakte nutzen</a></li>
+              <li><a href="#hilfe-annehmen-und-auf-andere-zugehen">5. Hilfe annehmen und auf andere zugehen</a></li>
+              <li><a href="#kleine-begegnungen-machen-einen-grossen-unterschied">Kleine Begegnungen machen einen großen Unterschied</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Ein gutes Gespräch, ein gemeinsamer Spaziergang oder eine Tasse Kaffee mit Freunden: Oft sind es die kleinen Begegnungen, die den Alltag besonders machen.</p>
@@ -363,7 +368,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

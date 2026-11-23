@@ -8,6 +8,9 @@ stand: November 2026
 veroeffentlicht: 2026-11-21 18:30
 geaendert: 2026-11-21
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026.
+inline_bild: ernaehrung-ab-60-kochen
+inline_bild_alt: Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.
+inline_nach_ueberschrift: 7. So könnte ein ausgewogener Tag aussehen
 ---
 
 Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter gezielt unterstützen.

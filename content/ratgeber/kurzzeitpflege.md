@@ -9,6 +9,9 @@ veroeffentlicht: 2026-11-20 22:00
 geaendert: 2026-11-20
 tabelle_beschriftung: Geplantes Überbrückungsbudget ab 2027 nach Pflegegrad (Regierungsentwurf)
 hinweis: Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung.
+inline_bild: kurzzeitpflege-vorbereiten
+inline_bild_alt: Auf einem Tisch liegen Pflegeutensilien bereit: Handtuch, Feuchttücher, Handschuhe, Desinfektionsmittel, eine Greifzange und ein Notrufknopf, im Hintergrund ein Rollator.
+inline_nach_ueberschrift: Was sollte man vor dem Aufenthalt vorbereiten?
 ---
 
 Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem Krankenhausaufenthalt noch keine ausreichende Versorgung zu Hause bereit. Oder die bisherige Pflegeperson fällt aus und eine andere Lösung wird benötigt.

@@ -13,6 +13,9 @@
       "geaendert": "2026-11-21",
       "anreisser": "Ein guter Start in den Tag beginnt nicht nur mit einer Tasse Kaffee. Wer ab 60 auf ein ausgewogenes Frühstück mit ausreichend Eiweiß achtet, kann seine Muskeln…",
       "url": "/ratgeber/fruehstueck-ab-60-eiweiss/",
+      "inline_bild": "fruehstueck-ab-60-nordic-walking",
+      "inline_bild_alt": "Ein älteres Paar mit Rucksäcken und Walking-Stöcken ist gut gelaunt auf einem sonnigen Waldweg unterwegs, im Hintergrund Hügel und ein See.",
+      "inline_nach_ueberschrift": "Bewegung macht den Unterschied",
       "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.",
       "seo_titel": "Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist",
       "meta_beschreibung": "Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag."
@@ -29,6 +32,9 @@
       "geaendert": "2026-11-20",
       "anreisser": "Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…",
       "url": "/ratgeber/kurzzeitpflege/",
+      "inline_bild": "kurzzeitpflege-vorbereiten",
+      "inline_bild_alt": "Auf einem Tisch liegen Pflegeutensilien bereit: Handtuch, Feuchttücher, Handschuhe, Desinfektionsmittel, eine Greifzange und ein Notrufknopf, im Hintergrund ein Rollator.",
+      "inline_nach_ueberschrift": "Was sollte man vor dem Aufenthalt vorbereiten?",
       "tabelle_beschriftung": "Geplantes Überbrückungsbudget ab 2027 nach Pflegegrad (Regierungsentwurf)",
       "hinweis": "Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung."
     },
@@ -44,6 +50,9 @@
       "geaendert": "2026-11-20",
       "anreisser": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne…",
       "url": "/ratgeber/altersgerechter-umbau/",
+      "inline_bild": "altersgerechter-umbau-foerderung",
+      "inline_bild_alt": "Auf einem sonnigen Holztisch stehen ein kleines Hausmodell mit rotem Dach, mehrere Münzstapel, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner, daneben rosa Hortensien.",
+      "inline_nach_ueberschrift": "5. Welche Fördermöglichkeiten gibt es?",
       "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026."
     },
     {
@@ -58,6 +67,9 @@
       "geaendert": "2026-11-21",
       "anreisser": "Muskeln erhalten, die Verdauung unterstützen und mit ausreichend Energie durch den Tag gehen: Mit der richtigen Ernährung können Sie Ihren Körper auch im Alter…",
       "url": "/ratgeber/ernaehrung-ab-60/",
+      "inline_bild": "ernaehrung-ab-60-kochen",
+      "inline_bild_alt": "Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.",
+      "inline_nach_ueberschrift": "7. So könnte ein ausgewogener Tag aussehen",
       "hinweis": "Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026."
     },
     {
@@ -87,6 +99,9 @@
       "geaendert": "2026-11-20",
       "anreisser": "Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…",
       "url": "/ratgeber/krankenfahrten/",
+      "inline_bild": "krankenfahrten-verordnung",
+      "inline_bild_alt": "Eine ältere Frau mit Brille liest lächelnd ein Schreiben am Küchentisch, vor ihr ein Blutdruckmessgerät und Medikamente.",
+      "inline_nach_ueberschrift": "3. Brauche ich eine ärztliche Verordnung?",
       "hinweis": "Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall. Die Angaben zur Kostenübernahme orientieren sich an § 60 SGB V und der Krankentransport-Richtlinie des Gemeinsamen Bundesausschusses, Stand 2026."
     },
     {
@@ -100,7 +115,10 @@
       "veroeffentlicht": "2026-11-20 16:55",
       "geaendert": "2026-11-20",
       "anreisser": "Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert…",
-      "url": "/ratgeber/gesund-und-fit-im-alter/"
+      "url": "/ratgeber/gesund-und-fit-im-alter/",
+      "inline_bild": "gesund-und-fit-wandern",
+      "inline_bild_alt": "Ein älterer Mann mit Kappe, Rucksack und Wanderstöcken steht lächelnd auf einem Aussichtspunkt, hinter ihm bewaldete Hügel und ein See.",
+      "inline_nach_ueberschrift": "1. Bewegung hält Körper und Geist in Schwung"
     },
     {
       "slug": "pflegegrad-beantragen",
@@ -114,6 +132,9 @@
       "geaendert": "2026-11-20",
       "anreisser": "Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…",
       "url": "/ratgeber/pflegegrad-beantragen/",
+      "inline_bild": "pflegegrad-antrag-schreibtisch",
+      "inline_bild_alt": "Ein ordentlicher Stapel Formulare auf einem Klemmbrett mit Kugelschreiber liegt auf einem Holztisch, daneben Aktenordner, eine Tasse und eine Grünpflanze.",
+      "inline_nach_ueberschrift": "2. Antrag bei der Pflegekasse stellen",
       "tabelle_beschriftung": "Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung",
       "hinweis": "Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung."
     },
@@ -167,7 +188,10 @@
       "veroeffentlicht": "2026-11-20 16:15",
       "geaendert": "2026-11-20",
       "anreisser": "Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit zunehmendem…",
-      "url": "/ratgeber/barrierefrei-wohnen/"
+      "url": "/ratgeber/barrierefrei-wohnen/",
+      "inline_bild": "barrierefrei-wohnen-bad",
+      "inline_bild_alt": "Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriff und hochklappbarem Duschsitz, daneben ein Waschtisch mit Blumen.",
+      "inline_nach_ueberschrift": "3. Badezimmer sicherer gestalten"
     },
     {
       "slug": "alltag-gut-organisiert",
@@ -180,7 +204,10 @@
       "veroeffentlicht": "2026-11-20 15:30",
       "geaendert": "2026-11-20",
       "anreisser": "Den Alltag selbstbestimmt gestalten und den Überblick behalten: Das wünschen sich viele Menschen. Mit ein wenig Organisation lassen sich alltägliche Aufgaben…",
-      "url": "/ratgeber/alltag-gut-organisiert/"
+      "url": "/ratgeber/alltag-gut-organisiert/",
+      "inline_bild": "alltag-medikamente-wochenbox",
+      "inline_bild_alt": "Eine Medikamenten-Wochenbox mit Tablettenfächern von Montag bis Sonntag liegt auf einem Holztisch neben einem Blutdruckmessgerät, einem Glas Wasser und einem Notizblock mit abgehakter Liste: Medikamente, Blutdruck, Arzttermin, Rezept.",
+      "inline_nach_ueberschrift": "2. Gesundheit und Termine organisieren"
     },
     {
       "slug": "hausnotruf-auswahl",
@@ -206,7 +233,10 @@
       "veroeffentlicht": "2026-11-20 12:00",
       "geaendert": "2026-11-20",
       "anreisser": "Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…",
-      "url": "/ratgeber/treppenlift-einbau/"
+      "url": "/ratgeber/treppenlift-einbau/",
+      "inline_bild": "treppenlift-kosten-planen",
+      "inline_bild_alt": "Ein älteres Paar sitzt am Tisch und schaut gemeinsam auf ein Blatt Papier, vor ihnen stehen mehrere Münzstapel.",
+      "inline_nach_ueberschrift": "4. Welche Kosten entstehen?"
     },
     {
       "slug": "haushaltshilfe-betrieb-oder-privat",
@@ -219,7 +249,10 @@
       "veroeffentlicht": "2026-11-20 10:01",
       "geaendert": "2026-11-20",
       "anreisser": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
-      "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/"
+      "url": "/ratgeber/haushaltshilfe-betrieb-oder-privat/",
+      "inline_bild": "haushaltshilfe-kosten-sparschwein",
+      "inline_bild_alt": "Ein rosa Sparschwein steht neben Münzstapeln, einem Taschenrechner und einer Nebenkostenabrechnung auf einem hellen Holztisch.",
+      "inline_nach_ueberschrift": "3. Was kostet eine Haushaltshilfe?"
     },
     {
       "slug": "eltern-aus-der-ferne-unterstuetzen",

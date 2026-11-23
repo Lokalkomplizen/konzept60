@@ -129,11 +129,7 @@
 
       <div class="notice notice--light notice--flush" role="note">
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-        <p><strong>Bitte vorher nachfragen.</strong> Wir sammeln die Termine aus öffentlichen Quellen und unser Team prüft sie. Bitte bestätigen Sie vor dem Besuch beim Veranstalter, dass die Veranstaltung stattfindet.</p>
-      </div>
-      <div class="notice notice--important notice--flush ev-demo" role="note">
-        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-        <p><span class="demo-label">Beispieldaten</span> Beispieldaten: Alle Veranstaltungen auf dieser Seite sind frei erfunden und dienen nur der Demonstration.</p>
+        <p><strong>Bitte vorher nachfragen.</strong> Wir sammeln die Termine aus öffentlichen Quellen. Bitte bestätigen Sie vor dem Besuch beim Veranstalter, dass die Veranstaltung stattfindet.</p>
       </div>
 
       <form class="ev-filter" data-ev-filter aria-labelledby="ev-filter-titel" novalidate>
@@ -143,9 +139,7 @@
           <select class="form-field__input" id="ev-ort" name="ort">
               <option value="">Alle Orte</option>
               <option value="Düsseldorf">Düsseldorf</option>
-              <option value="Haan">Haan</option>
               <option value="Hilden">Hilden</option>
-              <option value="Langenfeld">Langenfeld</option>
               <option value="Remscheid">Remscheid</option>
               <option value="Solingen">Solingen</option>
               <option value="Wesel">Wesel</option>
@@ -155,7 +149,6 @@
         <p class="filter__label" id="ev-thema-label">Thema</p>
         <div class="filter__list" role="group" aria-labelledby="ev-thema-label">
             <button type="button" class="filter__btn" aria-pressed="true" data-ev-thema=""><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Alle Themen</button>
-            <button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="Bewegung"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Bewegung</button>
             <button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="Kultur"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Kultur</button>
             <button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="Bildung"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Bildung</button>
             <button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="Begegnung"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Begegnung</button>
@@ -163,354 +156,489 @@
             <button type="button" class="filter__btn" aria-pressed="false" data-ev-thema="Gesundheit"><svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>Gesundheit</button>
         </div>
         <div class="ev-filter__bar">
-          <p class="ev-filter__count" aria-live="polite" data-ev-count>15 Veranstaltungen</p>
+          <p class="ev-filter__count" aria-live="polite" data-ev-count>22 Veranstaltungen</p>
           <button type="button" class="btn btn--secondary ev-filter__reset" data-ev-reset>Filter zurücksetzen</button>
         </div>
       </form>
 
       <div data-ev-list>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Montag, 11. Januar 2027</h2>
+          <h2 class="ev-day__title">Montag, 23. November 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-11" data-beginn="10:00" data-stadt="Düsseldorf" data-thema="Bewegung" data-label="Montag, 11. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-01-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Bewegung</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-01-titel">Sitzgymnastik am Morgen</h3>
-                <p class="ev-card__when"><time datetime="2027-01-11T10:00">Montag, 11. Januar 2027, 10:00–11:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Düsseldorf</strong> – Begegnungsstätte Beispiel, Musterstraße 1</p>
-                <p class="ev-card__org">Veranstalter: Begegnungsstätte Beispiel</p>
-                <p class="ev-card__text">Sanfte Übungen im Sitzen für Arme, Beine und Rücken. Geeignet für alle, auch mit Rollator.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Sitzgymnastik am Morgen</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Mittwoch, 13. Januar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-13" data-beginn="14:00" data-stadt="Wuppertal" data-thema="Digital" data-label="Mittwoch, 13. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-02-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Digital</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-02-titel">Smartphone-Sprechstunde</h3>
-                <p class="ev-card__when"><time datetime="2027-01-13T14:00">Mittwoch, 13. Januar 2027, 14:00–16:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Wuppertal</strong> – Stadtteiltreff Beispielhöhe, Probeweg 12</p>
-                <p class="ev-card__org">Veranstalter: Stadtteiltreff Beispielhöhe</p>
-                <p class="ev-card__text">Bringen Sie Ihr Handy mit: Freiwillige beantworten Ihre Fragen zu Nachrichten, Fotos und Videotelefonie.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Smartphone-Sprechstunde</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Freitag, 15. Januar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-15" data-beginn="15:00" data-stadt="Hilden" data-thema="Begegnung" data-label="Freitag, 15. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-03-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Begegnung</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-03-titel">Spielenachmittag mit Kaffee und Kuchen</h3>
-                <p class="ev-card__when"><time datetime="2027-01-15T15:00">Freitag, 15. Januar 2027, 15:00–17:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Hilden</strong> – Seniorentreff Beispielgarten, Gartenallee 5</p>
-                <p class="ev-card__org">Veranstalter: Seniorentreff Beispielgarten</p>
-                <p class="ev-card__text">Gesellschaftsspiele, Kartenspiele und Gespräche in gemütlicher Runde.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>3 €</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Spielenachmittag mit Kaffee und Kuchen</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 19. Januar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-19" data-beginn="18:00" data-stadt="Remscheid" data-thema="Gesundheit" data-label="Dienstag, 19. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-04-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Gesundheit</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-04-titel">Vortrag: Gesund durch den Winter</h3>
-                <p class="ev-card__when"><time datetime="2027-01-19T18:00">Dienstag, 19. Januar 2027, 18:00–19:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Remscheid</strong> – Beispielhaus der Gesundheit, Kurvenstraße 8</p>
-                <p class="ev-card__org">Veranstalter: Gesundheitsforum Beispielstadt</p>
-                <p class="ev-card__text">Eine Ärztin gibt Tipps zu Ernährung, Bewegung und Impfungen in der kalten Jahreszeit.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
-                  <li>Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Vortrag: Gesund durch den Winter</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Donnerstag, 21. Januar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-21" data-beginn="11:00" data-stadt="Solingen" data-thema="Kultur" data-label="Donnerstag, 21. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-05-titel">
+            <li class="ev-item" data-ev data-datum="2026-11-23" data-beginn="09:00" data-stadt="Hilden" data-thema="Kultur" data-label="Montag, 23. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261123-01-titel">
                 <p class="ev-card__meta">
                   <span class="ev-card__pill">Kultur</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-05-titel">Führung durch das Beispiel-Museum</h3>
-                <p class="ev-card__when"><time datetime="2027-01-21T11:00">Donnerstag, 21. Januar 2027, 11:00–12:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Solingen</strong> – Beispiel-Museum, Klingenplatz 3</p>
-                <p class="ev-card__org">Veranstalter: Museumsverein Beispiel</p>
-                <p class="ev-card__text">Eine ruhige Führung mit Sitzpausen durch die Dauerausstellung. Maximal zwölf Personen.</p>
+                <h3 class="ev-card__title" id="ve-20261123-01-titel">Fotoausstellung „Gesichter der Nachbarschaft“</h3>
+                <p class="ev-card__when"><time datetime="2026-11-23T09:00">Montag, 23. November 2026, 09:00–17:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Hilden</strong> – Nachbarschaftszentrum Haus im Süden, St.-Konrad-Allee 76a</p>
+                <p class="ev-card__org">Veranstalter: Diakonie im Kirchenkreis Düsseldorf-Mettmann, Haus im Süden</p>
+                <p class="ev-card__text">Porträts von Menschen aus dem Viertel. Die Ausstellung ist montags bis freitags noch bis zum 30. November zu sehen.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>6 €</strong></li>
-                  <li>Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Führung durch das Beispiel-Museum</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.diakonie-kreis-mettmann.de/26-10-30-11-2026-gesichter-der-nachbarschaft-fotoausstellung-im-haus-im-sueden/">Quelle ansehen<span class="visually-hidden"> zu Fotoausstellung „Gesichter der Nachbarschaft“</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>
         </section>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 26. Januar 2027</h2>
+          <h2 class="ev-day__title">Dienstag, 24. November 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-26" data-beginn="09:30" data-stadt="Langenfeld" data-thema="Bildung" data-label="Dienstag, 26. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-06-titel">
+            <li class="ev-item" data-ev data-datum="2026-11-24" data-beginn="14:30" data-stadt="Düsseldorf" data-thema="Bildung" data-label="Dienstag, 24. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261124-02-titel">
                 <p class="ev-card__meta">
                   <span class="ev-card__pill">Bildung</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-06-titel">Computerkurs für Einsteiger, Teil 1</h3>
-                <p class="ev-card__when"><time datetime="2027-01-26T09:30">Dienstag, 26. Januar 2027, 09:30–11:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Langenfeld</strong> – Bildungswerk Beispiel, Lernweg 4</p>
-                <p class="ev-card__org">Veranstalter: Bildungswerk Beispiel</p>
-                <p class="ev-card__text">Maus, Tastatur und E-Mail Schritt für Schritt kennenlernen. Der Kurs umfasst vier Termine.</p>
+                <h3 class="ev-card__title" id="ve-20261124-02-titel">Vortrag: Plastik und Mikroplastik im Alltag</h3>
+                <p class="ev-card__when"><time datetime="2026-11-24T14:30">Dienstag, 24. November 2026, 14:30 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Flingern, Flurstraße 57c</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Flingern</p>
+                <p class="ev-card__text">Die Verbraucherzentrale NRW erklärt, wo Plastik im Alltag steckt und wie Sie es leichter vermeiden. Dazu gibt es Kaffee und Kuchen.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>12 €</strong></li>
-                  <li>Anmeldung nötig</li>
-                  <li>Nicht barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Computerkurs für Einsteiger, Teil 1</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Donnerstag, 28. Januar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-01-28" data-beginn="10:00" data-stadt="Haan" data-thema="Bewegung" data-label="Donnerstag, 28. Januar 2027">
-              <article class="ev-card" aria-labelledby="ve-07-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Bewegung</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-07-titel">Spaziergruppe am Teich</h3>
-                <p class="ev-card__when"><time datetime="2027-01-28T10:00">Donnerstag, 28. Januar 2027, 10:00–11:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Haan</strong> – Treffpunkt Beispielteich, Teichweg 1</p>
-                <p class="ev-card__org">Veranstalter: Nachbarschaftshilfe Beispieltal</p>
-                <p class="ev-card__text">Gemütliche Runde von rund drei Kilometern auf ebenem Weg. Bei starkem Regen fällt der Termin aus.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Nicht barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Spaziergruppe am Teich</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 2. Februar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-02" data-beginn="15:00" data-stadt="Wesel" data-thema="Kultur" data-label="Dienstag, 2. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-08-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Kultur</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-08-titel">Singkreis „Alte Lieder“</h3>
-                <p class="ev-card__when"><time datetime="2027-02-02T15:00">Dienstag, 2. Februar 2027, 15:00–16:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Wesel</strong> – Gemeindesaal Beispielkirche, Kirchgasse 9</p>
-                <p class="ev-card__org">Veranstalter: Gemeinde Beispielkirche</p>
-                <p class="ev-card__text">Gemeinsam bekannte Volkslieder singen, Liedtexte liegen in großer Schrift bereit.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Singkreis „Alte Lieder“</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Freitag, 5. Februar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-05" data-beginn="15:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Freitag, 5. Februar 2027">
-              <article class="ev-card ev-card--abgesagt" aria-labelledby="ve-09-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Begegnung</span>
-                  <span class="ev-card__status">Abgesagt</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-09-titel">Tanztee im Winter</h3>
-                <p class="ev-card__when"><time datetime="2027-02-05T15:00">Freitag, 5. Februar 2027, 15:00–18:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Düsseldorf</strong> – Café Beispielhof, Tanzstraße 22</p>
-                <p class="ev-card__org">Veranstalter: Café Beispielhof</p>
-                <p class="ev-card__text">Live-Musik, Kaffee und Tanzfläche. Sie müssen keinen Partner mitbringen.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>8 €</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
-                </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Tanztee im Winter</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
-              </article>
-            </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 9. Februar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-09" data-beginn="16:00" data-stadt="Wuppertal" data-thema="Digital" data-label="Dienstag, 9. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-10-titel">
-                <p class="ev-card__meta">
-                  <span class="ev-card__pill">Digital</span>
-                </p>
-                <h3 class="ev-card__title" id="ve-10-titel">Sicher online: Betrug erkennen</h3>
-                <p class="ev-card__when"><time datetime="2027-02-09T16:00">Dienstag, 9. Februar 2027, 16:00–17:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Wuppertal</strong> – Bürgerzentrum Beispielplatz, Platzweg 7</p>
-                <p class="ev-card__org">Veranstalter: Verbraucherrunde Beispiel</p>
-                <p class="ev-card__text">Wie erkenne ich falsche Nachrichten und Anrufe? Beispiele aus dem Alltag und einfache Regeln.</p>
-                <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
                   <li>Anmeldung nötig</li>
                   <li>Barrierefrei</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Sicher online: Betrug erkennen</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/Programmheft_zpf_Okt_Nov_Dez_2026_B.pdf">Quelle ansehen<span class="visually-hidden"> zu Vortrag: Plastik und Mikroplastik im Alltag</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>
         </section>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 16. Februar 2027</h2>
+          <h2 class="ev-day__title">Mittwoch, 25. November 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-16" data-beginn="10:00" data-stadt="Hilden" data-thema="Gesundheit" data-label="Dienstag, 16. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-11-titel">
+            <li class="ev-item" data-ev data-datum="2026-11-25" data-beginn="14:00" data-stadt="Wesel" data-thema="Gesundheit" data-label="Mittwoch, 25. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261125-03-titel">
                 <p class="ev-card__meta">
                   <span class="ev-card__pill">Gesundheit</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-11-titel">Gedächtnistraining</h3>
-                <p class="ev-card__when"><time datetime="2027-02-16T10:00">Dienstag, 16. Februar 2027, 10:00–11:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Hilden</strong> – Seniorentreff Beispielgarten, Gartenallee 5</p>
-                <p class="ev-card__org">Veranstalter: Seniorentreff Beispielgarten</p>
-                <p class="ev-card__text">Kleine Denkspiele und Übungen, die Spaß machen und den Kopf fit halten.</p>
+                <h3 class="ev-card__title" id="ve-20261125-03-titel">Tipps aus dem ThEO: Aromapflege bei Magen- und Darmbeschwerden</h3>
+                <p class="ev-card__when"><time datetime="2026-11-25T14:00">Mittwoch, 25. November 2026, 14:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Wesel</strong> – ThEO, Gesundheitscampus Wesel (EVK), Schermbecker Landstraße 88</p>
+                <p class="ev-card__org">Veranstalter: Gesundheitscampus Wesel / EVK Wesel</p>
+                <p class="ev-card__text">Sie erfahren, wie Düfte und Öle bei Beschwerden im Bauch unterstützen können, mit praktischen Tipps für zu Hause.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>2 €</strong></li>
-                  <li>Keine Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Gedächtnistraining</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://gesundheitscampuswesel.de/veranstaltungen/detail/tipps-und-tricks-aus-dem-theo-3">Quelle ansehen<span class="visually-hidden"> zu Tipps aus dem ThEO: Aromapflege bei Magen- und Darmbeschwerden</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
-          </ul>
-        </section>
-        <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Donnerstag, 18. Februar 2027</h2>
-          <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-18" data-beginn="09:00" data-stadt="Remscheid" data-thema="Bewegung" data-label="Donnerstag, 18. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-12-titel">
+            <li class="ev-item" data-ev data-datum="2026-11-25" data-beginn="14:30" data-stadt="Düsseldorf" data-thema="Gesundheit" data-label="Mittwoch, 25. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261125-04-titel">
                 <p class="ev-card__meta">
-                  <span class="ev-card__pill">Bewegung</span>
+                  <span class="ev-card__pill">Gesundheit</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-12-titel">Wassergymnastik für Seniorinnen und Senioren</h3>
-                <p class="ev-card__when"><time datetime="2027-02-18T09:00">Donnerstag, 18. Februar 2027, 09:00–10:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Remscheid</strong> – Beispiel-Bad, Badeweg 2</p>
-                <p class="ev-card__org">Veranstalter: Sportverein Beispiel</p>
-                <p class="ev-card__text">Schonende Bewegung im warmen Wasser unter Anleitung einer Trainerin.</p>
+                <h3 class="ev-card__title" id="ve-20261125-04-titel">Polizei-Sprechstunde und Sicherheitstipps</h3>
+                <p class="ev-card__when"><time datetime="2026-11-25T14:30">Mittwoch, 25. November 2026, 14:30–16:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Bilk, Suitbertusplatz 1a</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Bilk</p>
+                <p class="ev-card__text">Der Bezirksbeamte beantwortet Ihre Fragen und gibt Tipps für mehr Sicherheit im Alltag, zum Beispiel beim Umgang mit dem Rollator.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>5 €</strong></li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/04_Programmheft_zpBilk_4.Quartal.pdf">Quelle ansehen<span class="visually-hidden"> zu Polizei-Sprechstunde und Sicherheitstipps</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+            <li class="ev-item" data-ev data-datum="2026-11-25" data-beginn="16:00" data-stadt="Solingen" data-thema="Digital" data-label="Mittwoch, 25. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261125-05-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Digital</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261125-05-titel">KI und ich: Einstieg für Menschen ab 60</h3>
+                <p class="ev-card__when"><time datetime="2026-11-25T16:00">Mittwoch, 25. November 2026, 16:00–18:30 Uhr</time></p>
+                <p class="ev-card__where"><strong>Solingen</strong> – VHS Solingen, Raum 320, Mummstraße 10</p>
+                <p class="ev-card__org">Veranstalter: Bergische VHS</p>
+                <p class="ev-card__text">Ein Kurs in kleiner Gruppe, der zeigt, wie Sie Künstliche Intelligenz sicher für Texte und Bilder nutzen. Vier Termine, derzeit ausgebucht mit Warteliste.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>83 € (4 Termine)</strong></li>
                   <li>Anmeldung nötig</li>
                   <li>Barrierefrei</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Wassergymnastik für Seniorinnen und Senioren</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.bergische-vhs.de/kurse/berufliche-bildung-it-digitales/kurs/NEU-KI-und-ich-Einstieg-in-Kuenstliche-Intelligenz-fuer-Personen-60/262S194007">Quelle ansehen<span class="visually-hidden"> zu KI und ich: Einstieg für Menschen ab 60</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>
         </section>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Dienstag, 23. Februar 2027</h2>
+          <h2 class="ev-day__title">Donnerstag, 26. November 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-23" data-beginn="15:00" data-stadt="Solingen" data-thema="Begegnung" data-label="Dienstag, 23. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-13-titel">
+            <li class="ev-item" data-ev data-datum="2026-11-26" data-beginn="14:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Donnerstag, 26. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261126-06-titel">
                 <p class="ev-card__meta">
                   <span class="ev-card__pill">Begegnung</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-13-titel">Erzählcafé: Früher und heute</h3>
-                <p class="ev-card__when"><time datetime="2027-02-23T15:00">Dienstag, 23. Februar 2027, 15:00–16:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Solingen</strong> – Begegnungsstätte Beispielhain, Hainstraße 14</p>
-                <p class="ev-card__org">Veranstalter: Begegnungsstätte Beispielhain</p>
-                <p class="ev-card__text">Erinnerungen austauschen bei Kaffee und Gebäck. Jede Geschichte ist willkommen.</p>
+                <h3 class="ev-card__title" id="ve-20261126-06-titel">Adventsbasar vor dem Kaufhaus Wertvoll</h3>
+                <p class="ev-card__when"><time datetime="2026-11-26T14:00">Donnerstag, 26. November 2026, 14:00–20:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – Caritas Kaufhaus Wertvoll, Harffstraße 40</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Flingern</p>
+                <p class="ev-card__text">Ein kleiner Basar mit Selbstgemachtem, Essen und Getränken stimmt Sie auf die Adventszeit ein.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/Programmheft_zpf_Okt_Nov_Dez_2026_B.pdf">Quelle ansehen<span class="visually-hidden"> zu Adventsbasar vor dem Kaufhaus Wertvoll</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Freitag, 27. November 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-11-27" data-beginn="13:00" data-stadt="Düsseldorf" data-thema="Kultur" data-label="Freitag, 27. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261127-07-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Kultur</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261127-07-titel">Adventskranz binden</h3>
+                <p class="ev-card__when"><time datetime="2026-11-27T13:00">Freitag, 27. November 2026, 13:00–15:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Bilk, Suitbertusplatz 1a</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Bilk</p>
+                <p class="ev-card__text">Gemeinsam binden Sie Ihren eigenen Adventskranz aus frischem Grün. Das Material ist im Preis enthalten.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>10 € inkl. Material</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/04_Programmheft_zpBilk_4.Quartal.pdf">Quelle ansehen<span class="visually-hidden"> zu Adventskranz binden</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+            <li class="ev-item" data-ev data-datum="2026-11-27" data-beginn="14:00" data-stadt="Hilden" data-thema="Begegnung" data-label="Freitag, 27. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261127-08-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Begegnung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261127-08-titel">Singkreis mit Kaffee und Kuchen</h3>
+                <p class="ev-card__when"><time datetime="2026-11-27T14:00">Freitag, 27. November 2026, 14:00–16:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Hilden</strong> – Nachbarschaftszentrum Haus im Süden, St.-Konrad-Allee 76a</p>
+                <p class="ev-card__org">Veranstalter: Diakonie im Kirchenkreis Düsseldorf-Mettmann, Haus im Süden</p>
+                <p class="ev-card__text">Gemeinsam singen Sie bekannte Lieder mit Gitarrenbegleitung, danach gibt es Kaffee und Kuchen.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.diakonie-kreis-mettmann.de/wp-content/uploads/2026/10/2026-10-16-Flyer_November_2026_Programm_Haus_i_Sueden_Hilden_Acht_Seiter.pdf">Quelle ansehen<span class="visually-hidden"> zu Singkreis mit Kaffee und Kuchen</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Samstag, 28. November 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-11-28" data-beginn="16:00" data-stadt="Hilden" data-thema="Kultur" data-label="Samstag, 28. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261128-09-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Kultur</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261128-09-titel">Orgelkonzert: Mit Bach in den Advent</h3>
+                <p class="ev-card__when"><time datetime="2026-11-28T16:00">Samstag, 28. November 2026, 16:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Hilden</strong> – JAC, Hochdahler Straße 1</p>
+                <p class="ev-card__org">Veranstalter: Katholische Kirchengemeinde St. Jacobus Hilden</p>
+                <p class="ev-card__text">Orgelmusik von Johann Sebastian Bach zum Beginn der Adventszeit. Der Eintritt ist frei, Spenden sind willkommen.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.kath-hilden.de/m-event-ext/Orgelkonzert-2026.11.28/?instancedate=1795878000000">Quelle ansehen<span class="visually-hidden"> zu Orgelkonzert: Mit Bach in den Advent</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Montag, 30. November 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-11-30" data-beginn="16:00" data-stadt="Hilden" data-thema="Gesundheit" data-label="Montag, 30. November 2026">
+              <article class="ev-card" aria-labelledby="ve-20261130-10-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Gesundheit</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261130-10-titel">Kurs „Leben mit Demenz“</h3>
+                <p class="ev-card__when"><time datetime="2026-11-30T16:00">Montag, 30. November 2026, 16:00–19:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Hilden</strong> – Nachbarschaftszentrum Haus im Süden, St.-Konrad-Allee 76a</p>
+                <p class="ev-card__org">Veranstalter: Diakonie im Kirchenkreis Düsseldorf-Mettmann, Haus im Süden</p>
+                <p class="ev-card__text">Ein Kurstermin für Angehörige mit Informationen und Austausch, wie der Alltag mit Demenz besser gelingt.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.diakonie-kreis-mettmann.de/wp-content/uploads/2026/10/2026-10-16-Flyer_November_2026_Programm_Haus_i_Sueden_Hilden_Acht_Seiter.pdf">Quelle ansehen<span class="visually-hidden"> zu Kurs „Leben mit Demenz“</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Dienstag, 1. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-01" data-beginn="15:00" data-stadt="Hilden" data-thema="Begegnung" data-label="Dienstag, 1. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261201-11-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Begegnung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261201-11-titel">Seniorensingen</h3>
+                <p class="ev-card__when"><time datetime="2026-12-01T15:00">Dienstag, 1. Dezember 2026, 15:00–16:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Hilden</strong> – Pfarrsaal St. Konrad, St.-Konrad-Allee 41</p>
+                <p class="ev-card__org">Veranstalter: Katholische Kirchengemeinde St. Jacobus Hilden</p>
+                <p class="ev-card__text">Eine offene Singrunde für Seniorinnen und Senioren. Sie können einfach dazukommen.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.kath-hilden.de/m-event-ext/Seniorensingen-2026.12.01/?instancedate=1796133600000">Quelle ansehen<span class="visually-hidden"> zu Seniorensingen</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Samstag, 5. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-05" data-beginn="10:00" data-stadt="Wuppertal" data-thema="Gesundheit" data-label="Samstag, 5. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261205-12-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Gesundheit</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261205-12-titel">Flusen im Kopf: Alltag mit Demenz gestalten</h3>
+                <p class="ev-card__when"><time datetime="2026-12-05T10:00">Samstag, 5. Dezember 2026, 10:00–11:30 Uhr</time></p>
+                <p class="ev-card__where"><strong>Wuppertal</strong> – VHS Auer Schulstraße, Raum A310, Auer Schulstraße 20</p>
+                <p class="ev-card__org">Veranstalter: Bergische VHS</p>
+                <p class="ev-card__text">Ein Vormittag für Angehörige und Interessierte: Wie lässt sich der Alltag mit Demenz so gestalten, dass sich alle wohlfühlen?</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefrei</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.bergische-vhs.de/kurse/gesundheit/kurs/Flusen-im-Kopf-Den-Alltag-mit-Demenz-gestalten/262W144556">Quelle ansehen<span class="visually-hidden"> zu Flusen im Kopf: Alltag mit Demenz gestalten</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Montag, 7. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-07" data-beginn="12:00" data-stadt="Düsseldorf" data-thema="Digital" data-label="Montag, 7. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261207-13-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Digital</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261207-13-titel">Handy- und Smartphone-Sprechstunde</h3>
+                <p class="ev-card__when"><time datetime="2026-12-07T12:00">Montag, 7. Dezember 2026, 12:00–14:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Bilk, Suitbertusplatz 1a</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Bilk</p>
+                <p class="ev-card__text">Sie bringen Ihr Handy mit und bekommen persönliche Hilfe bei Ihren Fragen rund um Smartphone und Internet.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/04_Programmheft_zpBilk_4.Quartal.pdf">Quelle ansehen<span class="visually-hidden"> zu Handy- und Smartphone-Sprechstunde</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Dienstag, 8. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-08" data-beginn="14:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Dienstag, 8. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261208-14-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Begegnung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261208-14-titel">Adventslieder singen und Adventsfeier</h3>
+                <p class="ev-card__when"><time datetime="2026-12-08T14:00">Dienstag, 8. Dezember 2026, 14:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Flingern, Flurstraße 57c</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Flingern</p>
+                <p class="ev-card__text">Ein gemütlicher Nachmittag mit bekannten Adventsliedern, Kuchen und Getränken in froher Runde.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>5 € (Getränke und Kuchen)</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefrei</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/Programmheft_zpf_Okt_Nov_Dez_2026_B.pdf">Quelle ansehen<span class="visually-hidden"> zu Adventslieder singen und Adventsfeier</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+            <li class="ev-item" data-ev data-datum="2026-12-08" data-beginn="17:00" data-stadt="Düsseldorf" data-thema="Kultur" data-label="Dienstag, 8. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261208-15-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Kultur</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261208-15-titel">Adventskonzert des Chors Ton-Art</h3>
+                <p class="ev-card__when"><time datetime="2026-12-08T17:00">Dienstag, 8. Dezember 2026, 17:00–18:30 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Mörsenbroich, Eugen-Richter-Straße 10</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Mörsenbroich</p>
+                <p class="ev-card__text">Ein interkultureller Chor singt Advents- und Weihnachtslieder. Die Anmeldefrist ist vorbei, fragen Sie bitte nach freien Plätzen.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefrei</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/ZPM_Programmheft-_-November-Dezember_2026-.pdf">Quelle ansehen<span class="visually-hidden"> zu Adventskonzert des Chors Ton-Art</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Mittwoch, 9. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-09" data-beginn="16:15" data-stadt="Wesel" data-thema="Bildung" data-label="Mittwoch, 9. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261209-16-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Bildung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261209-16-titel">Patientenverfügung und Vorsorgevollmacht</h3>
+                <p class="ev-card__when"><time datetime="2026-12-09T16:15">Mittwoch, 9. Dezember 2026, 16:15–17:45 Uhr</time></p>
+                <p class="ev-card__where"><strong>Wesel</strong> – Campus Cube, Gesundheitscampus Wesel, Schermbecker Landstraße 88</p>
+                <p class="ev-card__org">Veranstalter: Gesundheitscampus Wesel / EVK Wesel</p>
+                <p class="ev-card__text">Das Ethikkomitee erklärt, wie Sie mit Patientenverfügung und Vollmacht vorsorgen, und beantwortet Fragen zum Ausfüllen.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://gesundheitscampuswesel.de/veranstaltungen/detail/patientenverfuegung-und-vorsorgevollmacht-21">Quelle ansehen<span class="visually-hidden"> zu Patientenverfügung und Vorsorgevollmacht</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+            <li class="ev-item" data-ev data-datum="2026-12-09" data-beginn="18:00" data-stadt="Solingen" data-thema="Gesundheit" data-label="Mittwoch, 9. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261209-17-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Gesundheit</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261209-17-titel">Vortrag: Schmerzen bei Demenz erkennen</h3>
+                <p class="ev-card__when"><time datetime="2026-12-09T18:00">Mittwoch, 9. Dezember 2026, 18:00–20:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Solingen</strong> – VHS Solingen, Raum 322 Forum, Mummstraße 10</p>
+                <p class="ev-card__org">Veranstalter: Busch-Stiftung mit der Bergischen VHS</p>
+                <p class="ev-card__text">Fachleute erklären, woran Sie Schmerzen bei Menschen mit Demenz erkennen und was hilft. Mit Zeit für Ihre Fragen.</p>
                 <ul class="ev-card__facts">
                   <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
                   <li>Keine Anmeldung nötig</li>
                   <li>Barrierefrei</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Erzählcafé: Früher und heute</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.bergische-vhs.de/kurse/gesundheit/kurs/Schmerzen-bei-Demenz-Hinsehen-Verstehen-Lindern/262S145012">Quelle ansehen<span class="visually-hidden"> zu Vortrag: Schmerzen bei Demenz erkennen</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>
         </section>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Donnerstag, 25. Februar 2027</h2>
+          <h2 class="ev-day__title">Freitag, 11. Dezember 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-25" data-beginn="14:00" data-stadt="Langenfeld" data-thema="Bildung" data-label="Donnerstag, 25. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-14-titel">
+            <li class="ev-item" data-ev data-datum="2026-12-11" data-beginn="17:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Freitag, 11. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261211-18-titel">
                 <p class="ev-card__meta">
-                  <span class="ev-card__pill">Bildung</span>
+                  <span class="ev-card__pill">Begegnung</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-14-titel">Fotokurs: Mit dem Handy bessere Bilder</h3>
-                <p class="ev-card__when"><time datetime="2027-02-25T14:00">Donnerstag, 25. Februar 2027, 14:00–16:00 Uhr</time></p>
-                <p class="ev-card__where"><strong>Langenfeld</strong> – Bildungswerk Beispiel, Lernweg 4</p>
-                <p class="ev-card__org">Veranstalter: Bildungswerk Beispiel</p>
-                <p class="ev-card__text">Tipps zu Licht, Bildaufbau und zum Sortieren Ihrer Fotos auf dem Smartphone.</p>
+                <h3 class="ev-card__title" id="ve-20261211-18-titel">Weihnachtsfeier mit Adventsbasar</h3>
+                <p class="ev-card__when"><time datetime="2026-12-11T17:00">Freitag, 11. Dezember 2026, 17:00–19:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Bilk, Suitbertusplatz 1a</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Bilk</p>
+                <p class="ev-card__text">Feiern Sie mit Nachbarinnen und Nachbarn bei Musik, Waffeln und Glühwein. Ein kleiner Basar lädt zum Stöbern ein.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>10 €</strong></li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
                   <li>Anmeldung nötig</li>
-                  <li>Barrierefrei</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Fotokurs: Mit dem Handy bessere Bilder</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/04_Programmheft_zpBilk_4.Quartal.pdf">Quelle ansehen<span class="visually-hidden"> zu Weihnachtsfeier mit Adventsbasar</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>
         </section>
         <section class="ev-day" data-ev-day>
-          <h2 class="ev-day__title">Samstag, 27. Februar 2027</h2>
+          <h2 class="ev-day__title">Sonntag, 13. Dezember 2026</h2>
           <ul class="ev-list">
-            <li class="ev-item" data-ev data-datum="2027-02-27" data-beginn="15:00" data-stadt="Wesel" data-thema="Kultur" data-label="Samstag, 27. Februar 2027">
-              <article class="ev-card" aria-labelledby="ve-15-titel">
+            <li class="ev-item" data-ev data-datum="2026-12-13" data-beginn="17:00" data-stadt="Remscheid" data-thema="Kultur" data-label="Sonntag, 13. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261213-19-titel">
                 <p class="ev-card__meta">
                   <span class="ev-card__pill">Kultur</span>
                 </p>
-                <h3 class="ev-card__title" id="ve-15-titel">Konzert: Klassik am Nachmittag</h3>
-                <p class="ev-card__when"><time datetime="2027-02-27T15:00">Samstag, 27. Februar 2027, 15:00–16:30 Uhr</time></p>
-                <p class="ev-card__where"><strong>Wesel</strong> – Beispiel-Stadthalle, Konzertplatz 1</p>
-                <p class="ev-card__org">Veranstalter: Kulturkreis Beispiel</p>
-                <p class="ev-card__text">Ein Kammerorchester spielt bekannte Stücke. Es gibt Plätze mit guter Sicht und Hörschleife.</p>
+                <h3 class="ev-card__title" id="ve-20261213-19-titel">Konzert des Gospel- und Kirchenchors</h3>
+                <p class="ev-card__when"><time datetime="2026-12-13T17:00">Sonntag, 13. Dezember 2026, 17:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Remscheid</strong> – Evangelische Kirche Lüttringhausen, Ludwig-Steil-Platz</p>
+                <p class="ev-card__org">Veranstalter: Evangelische Kirchengemeinde Lüttringhausen</p>
+                <p class="ev-card__text">Advents- und Weihnachtsmusik mit Chor in der Lüttringhauser Kirche. Der Eintritt ist frei, um eine Kollekte wird gebeten.</p>
                 <ul class="ev-card__facts">
-                  <li><span class="visually-hidden">Kosten: </span><strong>9 €</strong></li>
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://luettringhausen.ekir.de/inhalt/2026-konzert-des-gospel-und-kirchenchors/">Quelle ansehen<span class="visually-hidden"> zu Konzert des Gospel- und Kirchenchors</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Montag, 14. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-14" data-beginn="14:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Montag, 14. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261214-20-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Begegnung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261214-20-titel">Weihnachtsdisco mit Musik und Tanz</h3>
+                <p class="ev-card__when"><time datetime="2026-12-14T14:00">Montag, 14. Dezember 2026, 14:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Flingern, Flurstraße 57c</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Flingern</p>
+                <p class="ev-card__text">Ein Tanznachmittag mit Musik zum Mitmachen oder Zuhören, passend zur Vorweihnachtszeit.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>bitte erfragen</strong></li>
                   <li>Anmeldung nötig</li>
                   <li>Barrierefrei</li>
                 </ul>
-                <p class="ev-card__source"><a href="#">Quelle ansehen<span class="visually-hidden"> zu Konzert: Klassik am Nachmittag</span></a> <span class="ev-card__stand">Stand: geprüft am 20. November 2026</span></p>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/Programmheft_zpf_Okt_Nov_Dez_2026_B.pdf">Quelle ansehen<span class="visually-hidden"> zu Weihnachtsdisco mit Musik und Tanz</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Mittwoch, 16. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-16" data-beginn="16:00" data-stadt="Wesel" data-thema="Gesundheit" data-label="Mittwoch, 16. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261216-21-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Gesundheit</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261216-21-titel">Gerontopsychiatrische Sprechstunde für Angehörige</h3>
+                <p class="ev-card__when"><time datetime="2026-12-16T16:00">Mittwoch, 16. Dezember 2026, 16:00–18:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Wesel</strong> – Konferenzraum UG, Gesundheitscampus Wesel (EVK), Schermbecker Landstraße 88</p>
+                <p class="ev-card__org">Veranstalter: Gerontopsychiatrische Beratungsstelle des Kreises Wesel</p>
+                <p class="ev-card__text">Angehörige erhalten Rat zu Demenz und anderen Erkrankungen im Alter sowie zu Hilfen aus der Pflegeversicherung.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>kostenlos</strong></li>
+                  <li>Keine Anmeldung nötig</li>
+                  <li>Barrierefreiheit bitte erfragen</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://gesundheitscampuswesel.de/veranstaltungen/detail/gerontopsychiatrische-sprechstunde-16">Quelle ansehen<span class="visually-hidden"> zu Gerontopsychiatrische Sprechstunde für Angehörige</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="ev-day" data-ev-day>
+          <h2 class="ev-day__title">Donnerstag, 24. Dezember 2026</h2>
+          <ul class="ev-list">
+            <li class="ev-item" data-ev data-datum="2026-12-24" data-beginn="15:00" data-stadt="Düsseldorf" data-thema="Begegnung" data-label="Donnerstag, 24. Dezember 2026">
+              <article class="ev-card" aria-labelledby="ve-20261224-22-titel">
+                <p class="ev-card__meta">
+                  <span class="ev-card__pill">Begegnung</span>
+                </p>
+                <h3 class="ev-card__title" id="ve-20261224-22-titel">Heiligabend gemeinsam feiern</h3>
+                <p class="ev-card__when"><time datetime="2026-12-24T15:00">Donnerstag, 24. Dezember 2026, 15:00–20:00 Uhr</time></p>
+                <p class="ev-card__where"><strong>Düsseldorf</strong> – zentrum plus Flingern, Flurstraße 57c</p>
+                <p class="ev-card__org">Veranstalter: Caritasverband Düsseldorf, zentrum plus Flingern</p>
+                <p class="ev-card__text">Für alle, die Heiligabend nicht allein verbringen möchten: Kaffee, Weihnachtsessen und Singen. Die Taxi-Rückfahrt ist im Preis enthalten. Anmeldung bis 10. Dezember.</p>
+                <ul class="ev-card__facts">
+                  <li><span class="visually-hidden">Kosten: </span><strong>10 € inkl. Essen und Rückfahrt</strong></li>
+                  <li>Anmeldung nötig</li>
+                  <li>Barrierefrei</li>
+                </ul>
+                <p class="ev-card__source"><a href="https://www.caritas-duesseldorf.de/export/sites/caritas-duesseldorf/.content/.galleries/downloads/Programmheft_zpf_Okt_Nov_Dez_2026_B.pdf">Quelle ansehen<span class="visually-hidden"> zu Heiligabend gemeinsam feiern</span></a> <span class="ev-card__stand">Stand: geprüft am 23. November 2026</span></p>
               </article>
             </li>
           </ul>

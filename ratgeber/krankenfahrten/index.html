@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,16 +178,18 @@
           <img src="/assets/img/ratgeber/krankenfahrten-1400.jpg" width="1400" height="933" alt="Ein silberner Kleinbus mit geöffneter Heckklappe und ausgeklappter Rampe steht vor einem Praxiseingang, daneben ein Rollstuhl." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#was-ist-eine-krankenfahrt">1. Was ist eine Krankenfahrt?</a></li>
-            <li><a href="#wann-uebernimmt-die-krankenkasse-die-kosten">2. Wann übernimmt die Krankenkasse die Kosten?</a></li>
-            <li><a href="#brauche-ich-eine-aerztliche-verordnung">3. Brauche ich eine ärztliche Verordnung?</a></li>
-            <li><a href="#welche-kosten-muessen-selbst-getragen-werden">4. Welche Kosten müssen selbst getragen werden?</a></li>
-            <li><a href="#krankenfahrt-oder-krankentransport-was-ist-der-unterschied">5. Krankenfahrt oder Krankentransport: Was ist der Unterschied?</a></li>
-            <li><a href="#worauf-sollte-man-bei-der-buchung-achten">6. Worauf sollte man bei der Buchung achten?</a></li>
-            <li><a href="#gut-ankommen-und-entspannt-behandelt-werden">Gut ankommen und entspannt behandelt werden</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#was-ist-eine-krankenfahrt">1. Was ist eine Krankenfahrt?</a></li>
+              <li><a href="#wann-uebernimmt-die-krankenkasse-die-kosten">2. Wann übernimmt die Krankenkasse die Kosten?</a></li>
+              <li><a href="#brauche-ich-eine-aerztliche-verordnung">3. Brauche ich eine ärztliche Verordnung?</a></li>
+              <li><a href="#welche-kosten-muessen-selbst-getragen-werden">4. Welche Kosten müssen selbst getragen werden?</a></li>
+              <li><a href="#krankenfahrt-oder-krankentransport-was-ist-der-unterschied">5. Krankenfahrt oder Krankentransport: Was ist der Unterschied?</a></li>
+              <li><a href="#worauf-sollte-man-bei-der-buchung-achten">6. Worauf sollte man bei der Buchung achten?</a></li>
+              <li><a href="#gut-ankommen-und-entspannt-behandelt-werden">Gut ankommen und entspannt behandelt werden</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein bewältigt werden kann?</p>
@@ -403,7 +408,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

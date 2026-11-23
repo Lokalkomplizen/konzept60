@@ -29,10 +29,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
 
 </head>
@@ -112,8 +112,8 @@
       <p class="section__intro">
         Haken Sie ab, was erledigt ist. Zum Aufheben können Sie die Liste drucken oder als PDF speichern.
       </p>
-      <div class="seiten-werkzeuge no-print" data-werkzeuge>
-        <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen
+      <div class="seiten-werkzeuge seiten-werkzeuge--dezent no-print" data-werkzeuge>
+        <button type="button" class="seiten-werkzeuge__link" data-teilen
                 aria-label="Checklisten teilen: Link zu dieser Seite (ohne Ihre Haken)" hidden>
           <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
           <span>Seite teilen</span>
@@ -158,7 +158,7 @@
         <p class="print-only">Konzept 60+ – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
         <div class="checklist__actions no-print">
           <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-          <a class="btn btn--primary" href="/?thema=alltag-persoenliche-hilfe#anfrage" data-thema="alltag-persoenliche-hilfe">Unterstützung anfragen</a>
+          <a class="btn btn--secondary" href="/?thema=alltag-persoenliche-hilfe#anfrage" data-thema="alltag-persoenliche-hilfe">Unterstützung anfragen</a>
         </div>
         <p class="checklist__more no-print">Mehr dazu: <a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></p>
       </section>
@@ -184,7 +184,7 @@
         <p class="print-only">Konzept 60+ – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
         <div class="checklist__actions no-print">
           <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-          <a class="btn btn--primary" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Unterstützung anfragen</a>
+          <a class="btn btn--secondary" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Unterstützung anfragen</a>
         </div>
         <p class="checklist__more no-print">Mehr dazu: <a href="/ratgeber/altersgerechter-umbau/">Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</a></p>
       </section>
@@ -209,7 +209,7 @@
         <p class="print-only">Konzept 60+ – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
         <div class="checklist__actions no-print">
           <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-          <a class="btn btn--primary" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Unterstützung anfragen</a>
+          <a class="btn btn--secondary" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Unterstützung anfragen</a>
         </div>
         <p class="checklist__more no-print">Mehr dazu: <a href="/ratgeber/pflegegrad-beantragen/">Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad</a></p>
       </section>
@@ -234,7 +234,7 @@
         <p class="print-only">Konzept 60+ – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
         <div class="checklist__actions no-print">
           <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-          <a class="btn btn--primary" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Unterstützung anfragen</a>
+          <a class="btn btn--secondary" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Unterstützung anfragen</a>
         </div>
         <p class="checklist__more no-print">Mehr dazu: <a href="/ratgeber/altersgerechter-umbau/">Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</a></p>
       </section>
@@ -317,7 +317,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
   <script src="/assets/js/alltag.js?v=8fed9d1055" defer></script>
 </body>
 </html>

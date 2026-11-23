@@ -208,7 +208,7 @@
     if (ST.schritt > 0) {
       actions.appendChild(button('Zurück', 'btn--secondary', function () { ST.schritt -= 1; render(true); }));
     }
-    var next = el('button', { type: 'submit', 'class': 'btn btn--primary' }, [isLast ? 'Ergebnis anzeigen' : 'Weiter']);
+    var next = el('button', { type: 'submit', 'class': 'btn btn--secondary' }, [isLast ? 'Ergebnis anzeigen' : 'Weiter']);
     next.appendChild(icon('arrow'));
     actions.appendChild(next);
     form.appendChild(actions);

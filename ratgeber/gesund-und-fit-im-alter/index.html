@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Gesund und fit im Alter: Was Sie selbst für Ihr Wohlbefinden tun können"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,16 +178,18 @@
           <img src="/assets/img/ratgeber/gesund-und-fit-im-alter-1400.jpg" width="1400" height="933" alt="Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine Schale Müsli mit Beeren, ein grüner Apfel, Mandeln, zwei blaue Hanteln, ein Handtuch und ein Blutdruckmessgerät." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#bewegung-haelt-koerper-und-geist-in-schwung">1. Bewegung hält Körper und Geist in Schwung</a></li>
-            <li><a href="#ausgewogen-essen-und-ausreichend-trinken">2. Ausgewogen essen und ausreichend trinken</a></li>
-            <li><a href="#vorsorgeuntersuchungen-wahrnehmen">3. Vorsorgeuntersuchungen wahrnehmen</a></li>
-            <li><a href="#auf-ausreichend-schlaf-und-erholung-achten">4. Auf ausreichend Schlaf und Erholung achten</a></li>
-            <li><a href="#kontakte-und-geistige-aktivitaet-pflegen">5. Kontakte und geistige Aktivität pflegen</a></li>
-            <li><a href="#sicherheit-im-alltag-nicht-vergessen">6. Sicherheit im Alltag nicht vergessen</a></li>
-            <li><a href="#gesundheit-ist-keine-frage-des-alters-allein">Gesundheit ist keine Frage des Alters allein</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#bewegung-haelt-koerper-und-geist-in-schwung">1. Bewegung hält Körper und Geist in Schwung</a></li>
+              <li><a href="#ausgewogen-essen-und-ausreichend-trinken">2. Ausgewogen essen und ausreichend trinken</a></li>
+              <li><a href="#vorsorgeuntersuchungen-wahrnehmen">3. Vorsorgeuntersuchungen wahrnehmen</a></li>
+              <li><a href="#auf-ausreichend-schlaf-und-erholung-achten">4. Auf ausreichend Schlaf und Erholung achten</a></li>
+              <li><a href="#kontakte-und-geistige-aktivitaet-pflegen">5. Kontakte und geistige Aktivität pflegen</a></li>
+              <li><a href="#sicherheit-im-alltag-nicht-vergessen">6. Sicherheit im Alltag nicht vergessen</a></li>
+              <li><a href="#gesundheit-ist-keine-frage-des-alters-allein">Gesundheit ist keine Frage des Alters allein</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Gesundheit ist in jedem Lebensalter wichtig. Mit zunehmendem Alter verändert sich der Körper jedoch. Die Beweglichkeit kann nachlassen, die Regeneration dauert manchmal länger und manche gesundheitlichen Beschwerden treten häufiger auf.</p>
@@ -378,7 +383,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

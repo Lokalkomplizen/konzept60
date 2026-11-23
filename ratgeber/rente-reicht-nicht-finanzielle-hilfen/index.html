@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,24 +178,26 @@
           <img src="/assets/img/ratgeber/rente-reicht-nicht-planung-1400.jpg" width="1400" height="933" alt="Ein älteres Ehepaar sitzt lächelnd am Tisch und schaut gemeinsam auf ein Schreiben, davor liegen gestapelte Münzen und ein Taschenrechner." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#grundsicherung-im-alter-wenn-die-rente-nicht-zum-leben-reicht">1. Grundsicherung im Alter: Wenn die Rente nicht zum Leben reicht</a></li>
-            <li><a href="#wohngeld-ein-zuschuss-zur-miete-oder-zum-eigenen-haus">2. Wohngeld: Ein Zuschuss zur Miete oder zum eigenen Haus</a></li>
-            <li><a href="#hilfe-zur-pflege-wenn-die-pflegekosten-die-rente-uebersteigen">3. Hilfe zur Pflege: Wenn die Pflegekosten die Rente übersteigen</a></li>
-            <li><a href="#grundrente-ein-zuschlag-fuer-menschen-mit-langjaehriger-versicherungszeit">4. Grundrente: Ein Zuschlag für Menschen mit langjähriger Versicherungszeit</a></li>
-            <li><a href="#befreiung-vom-rundfunkbeitrag">5. Befreiung vom Rundfunkbeitrag</a></li>
-            <li><a href="#befreiung-von-zuzahlungen-bei-medikamenten-und-medizinischen-leistungen">6. Befreiung von Zuzahlungen bei Medikamenten und medizinischen Leistungen</a></li>
-            <li><a href="#zuschuesse-fuer-einen-altersgerechten-umbau-der-wohnung">7. Zuschüsse für einen altersgerechten Umbau der Wohnung</a></li>
-            <li><a href="#pflegehilfsmittel-und-unterstuetzung-im-alltag-zusaetzliche-leistungen-nicht-verschenken">8. Pflegehilfsmittel und Unterstützung im Alltag: Zusätzliche Leistungen nicht verschenken</a></li>
-            <li><a href="#weitere-finanzielle-entlastungen-die-viele-aeltere-menschen-nicht-kennen">9. Weitere finanzielle Entlastungen, die viele ältere Menschen nicht kennen</a></li>
-            <li><a href="#pflegewohngeld-in-nordrhein-westfalen-eine-besondere-unterstuetzung">10. Pflegewohngeld in Nordrhein-Westfalen: Eine besondere Unterstützung</a></li>
-            <li><a href="#welche-leistung-ist-die-richtige-die-wichtigsten-unterschiede-im-ueberblick">11. Welche Leistung ist die richtige? Die wichtigsten Unterschiede im Überblick</a></li>
-            <li><a href="#so-gehen-sie-vor-in-fuenf-schritten-zu-moeglichen-anspruechen">12. So gehen Sie vor: In fünf Schritten zu möglichen Ansprüchen</a></li>
-            <li><a href="#wo-bekomme-ich-hilfe-und-beratung">13. Wo bekomme ich Hilfe und Beratung?</a></li>
-            <li><a href="#fazit-wer-seine-ansprueche-kennt-kann-im-alter-finanziell-entlastet-werden">14. Fazit: Wer seine Ansprüche kennt, kann im Alter finanziell entlastet werden</a></li>
-            <li><a href="#wir-helfen-unterstuetzung-in-ihrer-naehe-finden">Wir helfen: Unterstützung in Ihrer Nähe finden</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#grundsicherung-im-alter-wenn-die-rente-nicht-zum-leben-reicht">1. Grundsicherung im Alter: Wenn die Rente nicht zum Leben reicht</a></li>
+              <li><a href="#wohngeld-ein-zuschuss-zur-miete-oder-zum-eigenen-haus">2. Wohngeld: Ein Zuschuss zur Miete oder zum eigenen Haus</a></li>
+              <li><a href="#hilfe-zur-pflege-wenn-die-pflegekosten-die-rente-uebersteigen">3. Hilfe zur Pflege: Wenn die Pflegekosten die Rente übersteigen</a></li>
+              <li><a href="#grundrente-ein-zuschlag-fuer-menschen-mit-langjaehriger-versicherungszeit">4. Grundrente: Ein Zuschlag für Menschen mit langjähriger Versicherungszeit</a></li>
+              <li><a href="#befreiung-vom-rundfunkbeitrag">5. Befreiung vom Rundfunkbeitrag</a></li>
+              <li><a href="#befreiung-von-zuzahlungen-bei-medikamenten-und-medizinischen-leistungen">6. Befreiung von Zuzahlungen bei Medikamenten und medizinischen Leistungen</a></li>
+              <li><a href="#zuschuesse-fuer-einen-altersgerechten-umbau-der-wohnung">7. Zuschüsse für einen altersgerechten Umbau der Wohnung</a></li>
+              <li><a href="#pflegehilfsmittel-und-unterstuetzung-im-alltag-zusaetzliche-leistungen-nicht-verschenken">8. Pflegehilfsmittel und Unterstützung im Alltag: Zusätzliche Leistungen nicht verschenken</a></li>
+              <li><a href="#weitere-finanzielle-entlastungen-die-viele-aeltere-menschen-nicht-kennen">9. Weitere finanzielle Entlastungen, die viele ältere Menschen nicht kennen</a></li>
+              <li><a href="#pflegewohngeld-in-nordrhein-westfalen-eine-besondere-unterstuetzung">10. Pflegewohngeld in Nordrhein-Westfalen: Eine besondere Unterstützung</a></li>
+              <li><a href="#welche-leistung-ist-die-richtige-die-wichtigsten-unterschiede-im-ueberblick">11. Welche Leistung ist die richtige? Die wichtigsten Unterschiede im Überblick</a></li>
+              <li><a href="#so-gehen-sie-vor-in-fuenf-schritten-zu-moeglichen-anspruechen">12. So gehen Sie vor: In fünf Schritten zu möglichen Ansprüchen</a></li>
+              <li><a href="#wo-bekomme-ich-hilfe-und-beratung">13. Wo bekomme ich Hilfe und Beratung?</a></li>
+              <li><a href="#fazit-wer-seine-ansprueche-kennt-kann-im-alter-finanziell-entlastet-werden">14. Fazit: Wer seine Ansprüche kennt, kann im Alter finanziell entlastet werden</a></li>
+              <li><a href="#wir-helfen-unterstuetzung-in-ihrer-naehe-finden">Wir helfen: Unterstützung in Ihrer Nähe finden</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum bestreiten kann, hat unter bestimmten Voraussetzungen Anspruch auf staatliche Unterstützung. Dazu gehören die <strong>Grundsicherung im Alter, Wohngeld, Hilfe zur Pflege und verschiedene Befreiungen und Zuschüsse</strong>.</p>
@@ -785,7 +790,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

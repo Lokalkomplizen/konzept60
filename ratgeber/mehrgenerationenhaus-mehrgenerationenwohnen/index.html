@@ -31,10 +31,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0cb6db2a3f">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=cef98f2e2e">
   <link rel="stylesheet" href="/assets/css/base.css?v=939a89730d">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=ed58096f53">
-  <link rel="stylesheet" href="/assets/css/components.css?v=f616d33157">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=43c4d5f241">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b699f6b27a">
   <link rel="stylesheet" href="/assets/css/print.css?v=149040576f" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
@@ -145,7 +145,8 @@
             <div class="vorlesen" data-vorlesen hidden>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-start>
                 <svg class="icon" aria-hidden="true"><use href="#icon-vorlesen" data-vorlesen-icon/></svg>
-                <span data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__lang" data-vorlesen-label>Beitrag vorlesen</span>
+                <span class="seiten-werkzeuge__kurz" aria-hidden="true" data-vorlesen-kurz>Vorlesen</span>
               </button>
               <button type="button" class="btn btn--secondary vorlesen__btn" data-vorlesen-stopp hidden>
                 <svg class="icon" aria-hidden="true"><use href="#icon-stopp"/></svg>
@@ -156,11 +157,13 @@
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-teilen data-teilen-titel="Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen"
                     aria-label="Beitrag teilen: Link zu diesem Ratgeber-Beitrag" hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
-              <span>Seite teilen</span>
+              <span class="seiten-werkzeuge__lang">Seite teilen</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Teilen</span>
             </button>
             <button type="button" class="btn btn--secondary seiten-werkzeuge__btn" data-drucken-seite hidden>
               <svg class="icon" aria-hidden="true"><use href="#icon-drucken"/></svg>
-              <span>Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__lang">Beitrag drucken oder als PDF speichern</span>
+              <span class="seiten-werkzeuge__kurz" aria-hidden="true">Drucken</span>
             </button>
             <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
           </div>
@@ -175,23 +178,25 @@
           <img src="/assets/img/ratgeber/mehrgenerationenhaus-garten-1400.jpg" width="1400" height="933" alt="Modernes Mehrgenerationenhaus mit getrennten Wohnbereichen und gemeinsam genutztem Garten." decoding="async" fetchpriority="high">
         </picture>
         <nav class="toc article__toc" aria-labelledby="toc-titel">
-          <h2 id="toc-titel">Inhalt</h2>
-          <ul class="article__toc-list">
-            <li><a href="#was-bedeutet-mehrgenerationenwohnen-eigentlich">1. Was bedeutet Mehrgenerationenwohnen eigentlich?</a></li>
-            <li><a href="#warum-entscheiden-sich-familien-fuer-ein-mehrgenerationenhaus">2. Warum entscheiden sich Familien für ein Mehrgenerationenhaus?</a></li>
-            <li><a href="#welche-voraussetzungen-sollte-ein-mehrgenerationenhaus-erfuellen">3. Welche Voraussetzungen sollte ein Mehrgenerationenhaus erfüllen?</a></li>
-            <li><a href="#aufgaben-und-kostenverteilung-der-wichtigste-punkt-fuer-ein-harmonisches-zusammenleben">4. Aufgaben- und Kostenverteilung: Der wichtigste Punkt für ein harmonisches Zusammenleben</a></li>
-            <li><a href="#steuerliche-vorteile-beim-mehrgenerationenwohnen">5. Steuerliche Vorteile beim Mehrgenerationenwohnen</a></li>
-            <li><a href="#welche-foerdermittel-gibt-es-fuer-ein-mehrgenerationenhaus">6. Welche Fördermittel gibt es für ein Mehrgenerationenhaus?</a></li>
-            <li><a href="#rechtliche-gestaltung-wem-gehoert-das-haus-und-wer-darf-dort-wohnen">7. Rechtliche Gestaltung: Wem gehört das Haus und wer darf dort wohnen?</a></li>
-            <li><a href="#was-passiert-wenn-ein-bewohner-pflegebeduerftig-wird">8. Was passiert, wenn ein Bewohner pflegebedürftig wird?</a></li>
-            <li><a href="#welche-nachteile-und-risiken-gibt-es">9. Welche Nachteile und Risiken gibt es?</a></li>
-            <li><a href="#so-planen-sie-ein-mehrgenerationenhaus-richtig">10. So planen Sie ein Mehrgenerationenhaus richtig</a></li>
-            <li><a href="#beispiel-wie-koennte-ein-mehrgenerationenhaus-in-der-praxis-aussehen">11. Beispiel: Wie könnte ein Mehrgenerationenhaus in der Praxis aussehen?</a></li>
-            <li><a href="#checkliste-ist-ein-mehrgenerationenhaus-das-richtige-fuer-uns">12. Checkliste: Ist ein Mehrgenerationenhaus das Richtige für uns?</a></li>
-            <li><a href="#fazit-ein-zuhause-fuer-mehrere-generationen-braucht-gute-planung">13. Fazit: Ein Zuhause für mehrere Generationen braucht gute Planung</a></li>
-            <li><a href="#wir-helfen-die-passende-unterstuetzung-rund-ums-wohnen-finden">Wir helfen: Die passende Unterstützung rund ums Wohnen finden</a></li>
-          </ul>
+          <details class="toc__details" data-toc>
+            <summary><h2 id="toc-titel">Inhalt</h2></summary>
+            <ul class="article__toc-list">
+              <li><a href="#was-bedeutet-mehrgenerationenwohnen-eigentlich">1. Was bedeutet Mehrgenerationenwohnen eigentlich?</a></li>
+              <li><a href="#warum-entscheiden-sich-familien-fuer-ein-mehrgenerationenhaus">2. Warum entscheiden sich Familien für ein Mehrgenerationenhaus?</a></li>
+              <li><a href="#welche-voraussetzungen-sollte-ein-mehrgenerationenhaus-erfuellen">3. Welche Voraussetzungen sollte ein Mehrgenerationenhaus erfüllen?</a></li>
+              <li><a href="#aufgaben-und-kostenverteilung-der-wichtigste-punkt-fuer-ein-harmonisches-zusammenleben">4. Aufgaben- und Kostenverteilung: Der wichtigste Punkt für ein harmonisches Zusammenleben</a></li>
+              <li><a href="#steuerliche-vorteile-beim-mehrgenerationenwohnen">5. Steuerliche Vorteile beim Mehrgenerationenwohnen</a></li>
+              <li><a href="#welche-foerdermittel-gibt-es-fuer-ein-mehrgenerationenhaus">6. Welche Fördermittel gibt es für ein Mehrgenerationenhaus?</a></li>
+              <li><a href="#rechtliche-gestaltung-wem-gehoert-das-haus-und-wer-darf-dort-wohnen">7. Rechtliche Gestaltung: Wem gehört das Haus und wer darf dort wohnen?</a></li>
+              <li><a href="#was-passiert-wenn-ein-bewohner-pflegebeduerftig-wird">8. Was passiert, wenn ein Bewohner pflegebedürftig wird?</a></li>
+              <li><a href="#welche-nachteile-und-risiken-gibt-es">9. Welche Nachteile und Risiken gibt es?</a></li>
+              <li><a href="#so-planen-sie-ein-mehrgenerationenhaus-richtig">10. So planen Sie ein Mehrgenerationenhaus richtig</a></li>
+              <li><a href="#beispiel-wie-koennte-ein-mehrgenerationenhaus-in-der-praxis-aussehen">11. Beispiel: Wie könnte ein Mehrgenerationenhaus in der Praxis aussehen?</a></li>
+              <li><a href="#checkliste-ist-ein-mehrgenerationenhaus-das-richtige-fuer-uns">12. Checkliste: Ist ein Mehrgenerationenhaus das Richtige für uns?</a></li>
+              <li><a href="#fazit-ein-zuhause-fuer-mehrere-generationen-braucht-gute-planung">13. Fazit: Ein Zuhause für mehrere Generationen braucht gute Planung</a></li>
+              <li><a href="#wir-helfen-die-passende-unterstuetzung-rund-ums-wohnen-finden">Wir helfen: Die passende Unterstützung rund ums Wohnen finden</a></li>
+            </ul>
+          </details>
         </nav>
         <div class="article__body">
         <p>Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht aufteilen, welche steuerlichen Vorteile gibt es und worauf sollte man rechtlich achten?</p>
@@ -936,7 +941,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=9cfa39eb0c" defer></script>
+<script src="/assets/js/main.js?v=f055ccc46a" defer></script>
 
 </body>
 </html>

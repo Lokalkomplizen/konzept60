@@ -235,8 +235,9 @@ def hinweis_block(t):
 # Pipe-Tabellen ("| a | b |" + Trennzeile "| --- | --- |", erste Zeile = Kopf).
 # Alles andere wird als normaler Absatz-Text (HTML-escaped) ausgegeben.
 # Optionale Frontmatter-Felder:
-#   inline_bild, inline_bild_alt, inline_nach_ueberschrift  zweites Bild im Text: nach der
-#       ersten Liste des ##-Abschnitts, dessen Überschrift so beginnt (sonst direkt nach der Überschrift)
+#   inline_bild, inline_bild_alt, inline_nach_ueberschrift  weiteres Bild im Text: nach der
+#       ersten Liste des ##-Abschnitts, dessen Überschrift so beginnt (sonst direkt nach der Überschrift);
+#       mehrere Bilder: alle drei Felder mit „ | “ trennen (gleiche Anzahl, Reihenfolge beliebig)
 #   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag; mehrere Tabellen: „Erste | Zweite“
 #   seo_titel              eigener <title>/og:title statt "titel" (→ WordPress: SEO-Titel, z. B. Yoast/Rank Math)
 #   meta_beschreibung      eigene Meta-Description statt des gekürzten ersten Absatzes
@@ -266,6 +267,8 @@ def parse_frontmatter(src, source):
     inline_keys = ("inline_bild", "inline_bild_alt", "inline_nach_ueberschrift")
     if any(meta.get(k) for k in inline_keys) and not all(meta.get(k) for k in inline_keys):
         raise SystemExit(f"FEHLER: {source} – inline_bild braucht inline_bild_alt und inline_nach_ueberschrift")
+    if meta.get("inline_bild") and len({len(meta[k].split(" | ")) for k in inline_keys}) != 1:
+        raise SystemExit(f"FEHLER: {source} – inline_bild, inline_bild_alt und inline_nach_ueberschrift brauchen gleich viele Einträge")
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["geaendert"]):
         raise SystemExit(f"FEHLER: {source} – 'geaendert' muss JJJJ-MM-TT sein")
     return meta, "\n".join(lines[end + 1:])
@@ -436,21 +439,29 @@ def render_blocks(blocks, ids=None, caption=None):
     return "\n".join(out)
 
 
+def inline_bilder(meta):
+    """[(bild, alt, überschrift), …] aus den inline_*-Feldern (mehrere mit „ | “ getrennt)."""
+    if not meta.get("inline_bild"):
+        return []
+    return list(zip(*(meta[k].split(" | ") for k in ("inline_bild", "inline_bild_alt", "inline_nach_ueberschrift"))))
+
+
 def insert_inline_bild(blocks, meta, source):
-    """Fügt das zweite Bild nach der ersten Liste des passenden ##-Abschnitts ein."""
-    start = next((i for i, (k, d) in enumerate(blocks)
-                  if k == "h2" and plain(d).startswith(meta["inline_nach_ueberschrift"])), None)
-    if start is None:
-        raise SystemExit(f"FEHLER: {source} – Überschrift für inline_bild nicht gefunden: {meta['inline_nach_ueberschrift']!r}")
-    pos = start + 1
-    for i in range(start + 1, len(blocks)):
-        if blocks[i][0] == "h2":
-            break
-        if blocks[i][0] == "ul":
-            pos = i + 1
-            break
-    img = ("img", {"bild": meta["inline_bild"], "alt": meta["inline_bild_alt"]})
-    return blocks[:pos] + [img] + blocks[pos:]
+    """Fügt jedes weitere Bild nach der ersten Liste des passenden ##-Abschnitts ein."""
+    for bild, alt, ueberschrift in inline_bilder(meta):
+        start = next((i for i, (k, d) in enumerate(blocks)
+                      if k == "h2" and plain(d).startswith(ueberschrift)), None)
+        if start is None:
+            raise SystemExit(f"FEHLER: {source} – Überschrift für inline_bild nicht gefunden: {ueberschrift!r}")
+        pos = start + 1
+        for i in range(start + 1, len(blocks)):
+            if blocks[i][0] == "h2":
+                break
+            if blocks[i][0] == "ul":
+                pos = i + 1
+                break
+        blocks = blocks[:pos] + [("img", {"bild": bild, "alt": alt})] + blocks[pos:]
+    return blocks
 
 
 def kuerzen(text, limit=160):
@@ -472,8 +483,8 @@ def load_beitraege(themen):
         if meta["thema"] not in themen_by_slug:
             raise SystemExit(f"FEHLER: {source} – unbekanntes Thema '{meta['thema']}'")
         bilder = [(meta["bild"], ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
-        if meta.get("inline_bild"):
-            bilder.append((meta["inline_bild"], ("-800.webp", "-1400.webp", "-1400.jpg")))
+        for name, _alt, _h in inline_bilder(meta):
+            bilder.append((name, ("-800.webp", "-1400.webp", "-1400.jpg")))
         for name, suffixes in bilder:
             for suffix in suffixes:
                 if not (ROOT / RATGEBER_IMG / (name + suffix)).exists():

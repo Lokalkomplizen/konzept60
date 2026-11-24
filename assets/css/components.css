@@ -208,7 +208,7 @@
 
 /* ---- Vertrauensleiste (nur Stichworte; volle Botschaft in „So funktioniert’s“) ---- */
 .trust {
-  background: var(--color-white);
+  background: var(--color-page);
   border-bottom: 1px solid var(--color-sand-300);
 }
 
@@ -2248,7 +2248,7 @@ select.form-field__input {
 
 /* ---- Hinweis „Für Anbieter“ (Startseite, schmal vor dem Footer) ---------------- */
 .provider-hint {
-  background: var(--color-white);
+  background: var(--color-page);
   border-top: 1px solid var(--color-sand-300);
   padding-block: var(--space-l);
 }
@@ -2901,3 +2901,25 @@ select.form-field__input {
 .ev-row--abgesagt { background: var(--color-error-bg); padding-inline: var(--space-s); }
 .ev-row--abgesagt .ev-row__title { text-decoration: line-through; text-decoration-thickness: 2px; }
 .ev-empty { margin: var(--space-xl) 0; padding: var(--space-l); border-radius: var(--radius-m); background: var(--color-sand-100); font-size: var(--font-size-lg); }
+
+/* ---- Bildband über volle Breite (Startseite) ------------------------------
+   Großes Stimmungsfoto zwischen zwei Abschnitten (Idee aus der Oura-Analyse):
+   randlos, ohne Text auf dem Bild, Höhe begrenzt. Mobil 3:2, ab 48em 21:9. */
+.photo-band {
+  margin: 0;
+  background: var(--color-sand-100);
+}
+
+.photo-band img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  max-height: 36rem;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+
+@media (min-width: 48em) {
+  .photo-band img { aspect-ratio: 21 / 9; }
+}

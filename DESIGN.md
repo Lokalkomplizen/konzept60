@@ -62,8 +62,9 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 
 | Token | Wert | Verwendung / Kontrast |
 |---|---|---|
-| `--color-white` | `#ffffff` | Seitenhintergrund, Karten, Felder |
-| `--color-ink` | `#161d2f` | Fließtext auf Weiß, ca. 16:1 (AAA) |
+| `--color-page` | `var(--color-sand-50)` | Seitenhintergrund (warmes Papier statt Reinweiß): `body`, Header, Vertrauensleiste, Hinweis „Für Anbieter“, `.section` ohne Modifier |
+| `--color-white` | `#ffffff` | Karten, Felder, Panels, Hinweisboxen: heben sich hell vom Papiergrund ab |
+| `--color-ink` | `#161d2f` | Fließtext auf Weiß, ca. 16:1; auf Sand-50 ca. 15.5:1 (AAA) |
 | `--color-ink-muted` | `#3b4458` | Sekundärtext auf Weiß, ca. 9.6:1 (AAA) |
 | `--color-border-input` | `#6b7385` | Ränder von Eingabefeldern, Chips und Auswahlkarten, ca. 4.8:1 auf Weiß |
 
@@ -71,7 +72,7 @@ Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger 
 
 | Token | Wert | Verwendung |
 |---|---|---|
-| `--color-sand-50` | `#fbf8f2` | sehr heller Sandton |
+| `--color-sand-50` | `#fbf8f2` | Papiergrund der Seite (über `--color-page`), Hover-Fläche auf weißen Karten |
 | `--color-sand-100` | `#f4eee3` | Abschnittshintergrund (`.section--sand`), Bild-Platzhalter |
 | `--color-sand-300` | `#e3d6bf` | Linien, Kartenränder, Header-Unterkante |
 
@@ -116,9 +117,9 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 
 ### 3.8 Abschnittsflächen
 
-`.section` (weiß), `.section--sand`, `.section--sage`, `.section--navy` (Überschriften dann weiß). Abwechselnd einsetzen, nie zwei gleiche direkt untereinander.
+`.section` (Papiergrund Sand-50), `.section--sand`, `.section--sage`, `.section--navy` (Überschriften dann weiß). Abwechselnd einsetzen, nie zwei gleiche direkt untereinander. Weiß ist keine Abschnittsfläche mehr, sondern Kartenfarbe: Karten auf Papiergrund brauchen dadurch kaum Schatten (Idee aus der Oura-Analyse, 2026-11).
 
-Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (weiß, schmal) → Assistent (Sand) → Drei Wege mit Themen (weiß) → So funktioniert’s (Navy) → Angehörige (weiß) → Anfrage (Sand) → Ratgeber (Salbei) → Hinweis „Für Anbieter“ (weiß, schmal) → Footer (Navy).
+Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (Papier, schmal) → Assistent (Sand) → Drei Wege mit Themen (Papier) → Bildband (Foto, volle Breite) → So funktioniert’s (Navy) → Angehörige (Papier) → Anfrage (Sand) → Ratgeber (Salbei) → Hinweis „Für Anbieter“ (Papier, schmal) → Footer (Navy).
 
 ## 4. Typografie
 
@@ -188,7 +189,7 @@ Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (weiß, schmal) → As
 | Token | Wert | Einsatz |
 |---|---|---|
 | `--radius-s` | `6px` | Eingabefelder, Skip-Link, Menü-Button |
-| `--radius-m` | `12px` | Karten, Hinweisboxen |
+| `--radius-m` | `16px` | Karten, Hinweisboxen (vorher 12px; weicher, aber nicht verspielt) |
 | `--radius-l` | `20px` | große Panels (`.provider-panel`) |
 | (fest) | `999px` | Buttons, Badges, Pills, Stand-Hinweis |
 | (fest) | `50%` | runde Marker, Logo-Punkt |
@@ -261,7 +262,7 @@ Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind
 
 ### 6.5 Header und Navigation
 
-- `.site-header`: weiß, 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt nur einen Hinweistext.
+- `.site-header`: Papiergrund (`--color-page`), 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt nur einen Hinweistext.
 - Ab 68em horizontale `.site-nav` mit `.site-nav__link` (18px, `--font-size-md`; bricht 68em–1440px nicht um), "Für Anbieter" kleiner (`--minor`, 17px) und CTA `.btn--primary` "Anfrage stellen". Darunter: `.btn--menu` klappt `#hauptnavigation` nur mit JS (`.js`) zu; ohne JS steht die Navigation offen.
 - Aktiver Punkt: `aria-current="page"` (Übersicht) oder `aria-current="true"` (Unterseite).
 - Skip-Link `.skip-link` oben.
@@ -275,8 +276,9 @@ Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind
 - **Hero** (`.hero`): Navy, Bild 16:10 (Desktop rechts, füllend), `.hero__title`, `.hero__text`, `.hero__note`.
 - **Seitenkopf** `.page-header`, **Breadcrumb** `.breadcrumb`, **Check-Liste** `.check-list`, **Badge** `.badge` (Terrakotta-100), **Demo-Label** `.demo-label`.
 - **Assistent** (Startseite, `assets/js/assistent.js`): Ziel, Thema, Stadt, Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Ohne JS: drei Säulen-Links.
-- **Startseite, Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal in „So funktioniert’s“ (`#so-funktionierts`, Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Vertrauensleiste (`.trust`, weiß) nur Stichworte, Formular-Seitenspalte nur zwei kurze Punkte.
+- **Startseite, Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal in „So funktioniert’s“ (`#so-funktionierts`, Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Vertrauensleiste (`.trust`, Papiergrund) nur Stichworte, Formular-Seitenspalte nur zwei kurze Punkte.
 - **Drei Wege** (`#drei-wege`, darin `#themen`): Weg 1 „Hilfe finden“ = Themenraster (Kartentitel h4), Weg 2 und 3 als `.way-card`.
+- **Bildband** (`.photo-band`, Startseite zwischen „Drei Wege“ und „So funktioniert’s“): ein Stimmungsfoto über die volle Breite, kein Text auf dem Bild, echter Alt-Text, `loading="lazy"`. Mobil 3:2, ab 48em 21:9, höchstens 36rem hoch, `object-position: 50% 35%` (Gesichter bleiben im Bild). Höchstens ein Bildband pro Seite. Aktuell `ratgeber/gemeinsam-statt-einsam-*` (3:2-Zuschnitt aus `tools/bilder.py`).
 - **Hinweis „Für Anbieter“** (`.provider-hint`, `#fuer-anbieter`): eine Zeile plus Link auf `/fuer-anbieter/`, direkt vor dem Footer.
 
 ### 6.8 Ratgeber-Elemente
@@ -340,7 +342,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Nicht zeigen:** Pflege-Klischees (kraftlose Hände, Rollstuhl als Symbol, Bettlägerigkeit), keine staatlichen Hoheitszeichen (z. B. Bundesadler).
 - **Ausnahme:** Das Herz-Logo im Pflege-Bild bleibt. Das Pflege-Bild ist unten beschnitten (`pflege-betreuung-v2-*`, 800×880 statt 800×1000), damit der Rollstuhlgriff nicht zu sehen ist; `data/themen.json` trägt dafür `bild.hoehe: 880`, `build.py` setzt width/height danach. Das Krankenfahrten-Bild im Ratgeber bleibt (Rampe ist dort Thema).
 - **Kategoriebilder** (Themenkarten): Hochformat 4:5; **mobil im Querformat** (2:1 in `.card-grid`, unter 40em).
-- **Formate:** Hero 16:10 (`hero-garten-*`), Beitrag 3:2, Teaser 4:3. Ordner: `assets/img/themen/`, `ratgeber/`, `veranstaltungen/`, `pflegegrad/`. Zuschnitt und WebP-Größen über `tools/bilder.py`; Originale nicht ins Repo.
+- **Formate:** Hero 16:10 (`hero-garten-*`), Beitrag 3:2, Teaser 4:3, Bildband 21:9 bzw. mobil 3:2 (per CSS aus einem 3:2-Bild). Ordner: `assets/img/themen/`, `ratgeber/`, `veranstaltungen/`, `pflegegrad/`. Zuschnitt und WebP-Größen über `tools/bilder.py`; Originale nicht ins Repo.
 - **Technik:** WebP mit JPG-Fallback, `object-fit: cover`, Platzhalterfläche Sand-100, Lazy-Loading außer im ersten Sichtbereich.
 - **Icons:** SVG-Sprite `partials/icons.html` (Linien-Icons, `aria-hidden`), Illustrationen in `assets/img/illus.svg` (96×96, Farben Olive/Orange).
 

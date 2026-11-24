@@ -10,8 +10,8 @@ partials/
 screenshots/
 node_modules/
 .wrangler/
-data/
-content/
+/data/
+/content/
 assets/img/hero-garten.png
 docs/
 tests/

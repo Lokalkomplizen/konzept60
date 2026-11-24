@@ -1,0 +1,252 @@
+{
+ "_hinweis": "Kategorie-ID -> Thema-Slug aus data/themen.json (null = nicht anzeigen: Beratungsstellen, Recht, Trauer, Haustiere ...). 'leistungen': je Thema und Leistung die passenden Kategorie-IDs (Treffer zuerst).",
+ "kategorien": {
+  "01.01": "wohnen-haus-handwerk",
+  "01.02": "wohnen-haus-handwerk",
+  "01.03": "wohnen-haus-handwerk",
+  "01.04": "wohnen-haus-handwerk",
+  "01.05": "wohnen-haus-handwerk",
+  "01.06": "wohnen-haus-handwerk",
+  "02.01": "haushalt-reinigung",
+  "02.02": "haushalt-reinigung",
+  "02.03": "alltag-persoenliche-hilfe",
+  "02.04": "haushalt-reinigung",
+  "02.05": "alltag-persoenliche-hilfe",
+  "03.01": "pflege-betreuung",
+  "03.02": "pflege-betreuung",
+  "03.03": "pflege-betreuung",
+  "03.04": "pflege-betreuung",
+  "03.05": "pflege-betreuung",
+  "03.06": null,
+  "03.07": "pflege-betreuung",
+  "03.08": "pflege-betreuung",
+  "04.01": "alltag-persoenliche-hilfe",
+  "04.02": "alltag-persoenliche-hilfe",
+  "04.03": "freizeit-lebensqualitaet",
+  "04.04": "alltag-persoenliche-hilfe",
+  "04.05": "alltag-persoenliche-hilfe",
+  "04.06": "alltag-persoenliche-hilfe",
+  "04.07": "freizeit-lebensqualitaet",
+  "05.01": "pflege-betreuung",
+  "05.02": "alltag-persoenliche-hilfe",
+  "05.03": "alltag-persoenliche-hilfe",
+  "05.04": null,
+  "05.05": null,
+  "05.06": null,
+  "05.07": null,
+  "05.08": "freizeit-lebensqualitaet",
+  "06.01": "alltag-persoenliche-hilfe",
+  "06.02": "alltag-persoenliche-hilfe",
+  "06.03": "alltag-persoenliche-hilfe",
+  "06.04": null,
+  "06.05": null,
+  "07.01": "technik-sicherheit",
+  "07.02": "technik-sicherheit",
+  "07.03": "technik-sicherheit",
+  "07.04": null,
+  "07.05": null,
+  "08.01": "technik-sicherheit",
+  "08.02": "technik-sicherheit",
+  "08.03": "technik-sicherheit",
+  "08.04": "technik-sicherheit",
+  "08.05": "technik-sicherheit",
+  "09.01": null,
+  "09.02": null,
+  "09.03": null,
+  "09.04": null,
+  "09.05": null,
+  "09.06": null,
+  "09.07": null,
+  "09.08": null,
+  "10.01": null,
+  "10.02": null,
+  "10.03": null,
+  "10.04": null,
+  "10.05": null,
+  "10.06": null,
+  "11.01": null,
+  "11.02": null,
+  "11.03": null,
+  "11.04": "wohnen-haus-handwerk",
+  "11.05": "haushalt-reinigung",
+  "11.06": null,
+  "12.01": "freizeit-lebensqualitaet",
+  "12.02": "freizeit-lebensqualitaet",
+  "12.03": "freizeit-lebensqualitaet",
+  "12.04": "freizeit-lebensqualitaet",
+  "12.05": "freizeit-lebensqualitaet",
+  "12.06": "freizeit-lebensqualitaet",
+  "12.07": null,
+  "12.08": null,
+  "12.09": "freizeit-lebensqualitaet",
+  "13.01": null,
+  "13.02": null,
+  "13.03": "pflege-betreuung",
+  "13.04": null,
+  "13.05": null,
+  "13.06": null,
+  "14.01": null,
+  "14.02": null,
+  "14.03": null,
+  "14.04": null,
+  "14.05": null,
+  "15.01": null,
+  "15.02": null,
+  "15.03": null,
+  "15.04": null
+ },
+ "leistungen": {
+  "wohnen-haus-handwerk": {
+   "Kleinreparaturen im Haus": [
+    "01.05",
+    "01.03"
+   ],
+   "Gartenpflege und Heckenschnitt": [
+    "01.04"
+   ],
+   "Barrierearmer Umbau (z. B. Bad, Haltegriffe)": [
+    "01.01",
+    "01.02"
+   ],
+   "Maler- und Tapezierarbeiten": [
+    "01.03"
+   ],
+   "Möbel aufbauen oder umstellen": [
+    "01.05"
+   ],
+   "Umzugshilfe": [
+    "11.04"
+   ],
+   "Winterdienst": [
+    "01.04",
+    "01.05"
+   ]
+  },
+  "haushalt-reinigung": {
+   "Regelmäßige Wohnungsreinigung": [
+    "02.01"
+   ],
+   "Fenster putzen": [
+    "02.01"
+   ],
+   "Wäsche waschen und bügeln": [
+    "02.02"
+   ],
+   "Großputz oder Frühjahrsputz": [
+    "02.01"
+   ],
+   "Entrümpelung und Haushaltsauflösung": [
+    "11.05"
+   ],
+   "Hilfe beim Kochen und Vorräte auffüllen": [
+    "02.04"
+   ]
+  },
+  "pflege-betreuung": {
+   "Ambulante Pflege durch einen Pflegedienst": [
+    "03.01"
+   ],
+   "Stundenweise Betreuung zu Hause": [
+    "03.01",
+    "03.03"
+   ],
+   "Entlastung für pflegende Angehörige": [
+    "13.03",
+    "03.04"
+   ],
+   "Verhinderungspflege": [
+    "03.04",
+    "03.01"
+   ],
+   "Tagespflege": [
+    "03.04"
+   ],
+   "Betreuung bei Demenz": [
+    "03.05"
+   ]
+  },
+  "alltag-persoenliche-hilfe": {
+   "Einkaufen und Besorgungen": [
+    "02.03",
+    "04.01",
+    "02.05"
+   ],
+   "Begleitung zu Arztterminen": [
+    "04.04",
+    "06.02"
+   ],
+   "Begleitung zu Behörden und Banken": [
+    "04.04",
+    "04.02"
+   ],
+   "Fahrdienst": [
+    "06.02",
+    "06.01",
+    "06.03"
+   ],
+   "Hilfe bei Post und Formularen": [
+    "04.02",
+    "04.01"
+   ],
+   "Botengänge, zum Beispiel zur Apotheke": [
+    "02.05",
+    "02.03"
+   ]
+  },
+  "technik-sicherheit": {
+   "Smartphone und Tablet einrichten und erklären": [
+    "08.01",
+    "08.02"
+   ],
+   "Computer, Internet und E-Mail": [
+    "08.01",
+    "08.02"
+   ],
+   "Fernseher und Receiver einrichten": [
+    "08.04"
+   ],
+   "Hausnotruf": [
+    "07.01"
+   ],
+   "Rauchmelder anbringen": [
+    "07.02"
+   ],
+   "Einbruchschutz und Türsicherung": [
+    "07.03"
+   ],
+   "Seniorentelefon einrichten": [
+    "08.04",
+    "08.01"
+   ]
+  },
+  "freizeit-lebensqualitaet": {
+   "Spaziergänge in Begleitung": [
+    "12.01",
+    "04.03"
+   ],
+   "Begleitung zu Veranstaltungen": [
+    "12.03",
+    "12.01"
+   ],
+   "Ausflüge und Tagesfahrten": [
+    "12.05",
+    "04.07"
+   ],
+   "Kurse, zum Beispiel Bewegung oder Kreatives": [
+    "12.04",
+    "12.06",
+    "05.08",
+    "12.03"
+   ],
+   "Gesellschaft leisten und Vorlesen": [
+    "04.03",
+    "12.01",
+    "12.09"
+   ],
+   "Gemeinsame Hobbys und Spiele": [
+    "12.02",
+    "12.01"
+   ]
+  }
+ }
+}

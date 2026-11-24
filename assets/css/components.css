@@ -2929,3 +2929,141 @@ select.form-field__input {
 @media (min-width: 48em) {
   .photo-band img { aspect-ratio: 21 / 9; }
 }
+
+/* ---- Anbieter-Trefferliste im Anfrageformular (assets/js/anbieter.js) ----------
+   Schritt „Passende Anbieter in Ihrer Nähe“: Karten mit großer Auswahlfläche (ganze Karte = label),
+   Zähler, zwei Wege darunter. Ausgewählt = Rand + Fläche + Häkchen im Kästchen (nie nur Farbe). */
+.anbieter__intro { margin-bottom: var(--space-m); }
+.anbieter__quelle { margin-bottom: var(--space-l); }
+.anbieter__quelle p { font-size: var(--font-size-sm); max-width: none; }
+.anbieter__laedt { color: var(--color-ink-muted); }
+.anbieter__liste {
+  display: grid;
+  gap: var(--space-s);
+  margin: 0 0 var(--space-m);
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 60em) {
+  .anbieter__liste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.anbieter-karte-item { display: flex; }
+.anbieter-karte {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-s);
+  width: 100%;
+  padding: var(--space-m);
+  border: 2px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+}
+.anbieter-karte:hover { border-color: var(--color-navy-800); }
+.anbieter-karte:has(input:checked) {
+  border-color: var(--color-navy-800);
+  background: var(--color-navy-100);
+}
+.anbieter-karte:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.anbieter-karte__inhalt, .anbieter-karte__info { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.anbieter-karte__name {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-tight);
+  overflow-wrap: anywhere;
+}
+.anbieter-karte__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.anbieter-karte__meta { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+.anbieter-karte__passt { font-size: var(--font-size-sm); font-weight: 700; color: var(--color-sage-700); }
+.anbieter-karte__kasse { align-self: flex-start; font-size: var(--font-size-sm); }
+.anbieter-karte__wahl {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: var(--touch-min);
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--color-sand-300);
+  font-weight: 700;
+}
+.anbieter-karte__wahl input {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: 0;
+  accent-color: var(--color-navy-800);
+}
+.anbieter__mehr { margin: 0 0 var(--space-l); }
+.anbieter__zaehler { margin: 0 0 var(--space-s); font-weight: 700; }
+.anbieter__fehler { margin-bottom: var(--space-s); }
+.anbieter__aktionen { margin-bottom: var(--space-l); }
+.anbieter__aktionen .btn[aria-disabled="true"] {
+  border-style: dashed;
+  color: var(--color-ink-muted);
+}
+.anbieter__leer {
+  margin-bottom: var(--space-l);
+  padding: var(--space-l);
+  border: 2px solid var(--color-sage-200);
+  border-radius: var(--radius-m);
+  background: var(--color-sage-100);
+}
+.anbieter__leer-titel { margin: 0 0 var(--space-xs); font-size: var(--font-size-h3); }
+.anbieter__leer p { margin: 0; }
+.anbieter__persoenlich {
+  padding-top: var(--space-l);
+  border-top: 2px solid var(--color-sand-300);
+}
+.anbieter__persoenlich p { margin-bottom: var(--space-s); }
+
+/* Kontaktfenster (natives <dialog>, am Ende von <body>) */
+.kontakt-dialog {
+  width: min(44rem, calc(100% - 1rem));
+  max-height: calc(100dvh - 1rem);
+  padding: 0;
+  border: 2px solid var(--color-navy-800);
+  border-radius: var(--radius-l);
+  background: var(--color-white);
+  color: var(--color-ink);
+  overflow: auto;
+}
+.kontakt-dialog::backdrop { background: rgb(14 24 48 / 0.7); }
+.kontakt-dialog__innen { padding: var(--space-l) var(--gutter) var(--space-xl); }
+.kontakt-dialog__titel { margin: 0 0 var(--space-m); font-size: var(--font-size-h2); }
+.kontakt-dialog__titel:focus { outline: none; }
+.kontakt-dialog__hinweis {
+  margin-bottom: var(--space-l);
+  padding: var(--space-m);
+  border-left: 6px solid var(--color-sage-700);
+  background: var(--color-sage-100);
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-sm);
+}
+.kontakt-dialog__hinweis p { margin: 0 0 var(--space-xs); max-width: none; }
+.kontakt-dialog__hinweis p:last-child { margin-bottom: 0; }
+.kontakt-dialog__preise { font-weight: 700; }
+.kontakt-dialog__liste { display: grid; gap: var(--space-m); margin: 0 0 var(--space-l); padding: 0; list-style: none; }
+.kontakt {
+  padding: var(--space-m);
+  border: 2px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  break-inside: avoid;
+}
+.kontakt__name { margin: 0 0 var(--space-xs); font-size: var(--font-size-h3); overflow-wrap: anywhere; }
+.kontakt__zeile { margin: 0 0 var(--space-2xs); overflow-wrap: anywhere; }
+.kontakt__label { font-weight: 700; }
+.kontakt__anruf { width: 100%; margin: var(--space-xs) 0; min-height: 3.5rem; font-size: var(--font-size-lg); }
+.kontakt-dialog__aktionen { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-bottom: var(--space-s); }
+.kontakt-dialog__aktionen .btn { flex: 1 1 12rem; }
+.kontakt-dialog__meldung { min-height: 1.5em; margin: 0 0 var(--space-m); font-weight: 700; color: var(--color-success); }
+.kontakt-dialog__schliessen { width: 100%; min-height: 3.25rem; }
+body:has(dialog[open]) { overflow: hidden; }

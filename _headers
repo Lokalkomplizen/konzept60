@@ -36,6 +36,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /assets/js/*
   Cache-Control: public, max-age=0, must-revalidate
+/assets/data/*
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Schriften: 1 Jahr (Dateiname enthält Version nicht, bei Update umbenennen)
 /assets/fonts/*

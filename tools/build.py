@@ -659,6 +659,33 @@ def add_asset_versions(page):
     return ILLU_RE.sub(lambda m: f'href="{ILLU_SPRITE}?v={_asset_version(ILLU_SPRITE)}#', page)
 
 
+ANBIETER_ASSET = "assets/data/anbieter.json"
+
+
+def write_anbieter_assets(themen):
+    """data/anbieter.json (Konverter tools/kontakte.py) -> assets/data/anbieter.json (ausgeliefert, per fetch geladen
+    von assets/js/anbieter.js, erst wenn der Anbieter-Schritt im Anfrageformular erreicht wird).
+    Leere Felder entfallen; 'leistungen' = Leistungs-Slug (wie value der Checkbox) -> passende Kategorie-IDs.
+    → WordPress: CPT 'anbieter' + REST-Endpunkt, der dieselbe Struktur liefert.
+    Gibt die URL mit ?v=<Hash> zurück (Cache-Busting wie bei CSS/JS)."""
+    daten = json.loads(read(ROOT / "data" / "anbieter.json"))
+    zuordnung = json.loads(read(ROOT / "data" / "kategorie-zuordnung.json"))
+    slugs = {t["slug"] for t in themen}
+    for e in daten["anbieter"]:
+        if e["thema"] not in slugs:
+            raise SystemExit(f"FEHLER: anbieter.json – unbekanntes Thema {e['thema']} bei {e['id']}")
+    leistungen = {}
+    for thema, liste in zuordnung["leistungen"].items():
+        for text, ids in liste.items():
+            leistungen[slugify(text)] = ids
+    kompakt = [{k: v for k, v in e.items() if v not in ("", [], None, False) or k == "id"} for e in daten["anbieter"]]
+    out = {"modus": daten["modus"], "stand": daten["stand"], "leistungen": leistungen, "anbieter": kompakt}
+    ziel = ROOT / ANBIETER_ASSET
+    ziel.parent.mkdir(parents=True, exist_ok=True)
+    ziel.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    return "/" + ANBIETER_ASSET + "?v=" + _asset_version("/" + ANBIETER_ASSET)
+
+
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
     keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
@@ -1335,6 +1362,7 @@ def main():
 
     beitraege = load_beitraege(themen)
     write_ratgeber_json(beitraege)
+    anbieter_url = write_anbieter_assets(themen)
 
     checklisten, wohnungs_check = load_alltag(themen, beitraege)
     pgr_faq, pgr_jsonld, pgr_faq_stand = pflegegrad_seo()
@@ -1371,6 +1399,7 @@ def main():
         "werkzeuge_wohnungs_check": seiten_werkzeuge(
             "Wohnungs-Check teilen: Link zu dieser Seite (ohne Ihre Antworten)", 6),
         "werkzeuge_anbieter": seiten_werkzeuge("Seite für Anbieter teilen: Link zu dieser Seite", 6),
+        "anbieter_url": anbieter_url,
         "home_head": home_head(regionen),
         **veranstaltungen_html(regionen),
         "assistent_daten": assistent_data(themen, regionen, beitraege),
@@ -1430,7 +1459,7 @@ def main():
         built.append(build_page("ratgeber-beitrag.html", f"ratgeber/{b['slug']}/index.html", ctx, partials, themen, regionen))
 
     write_sitemap(["/" + p.removesuffix("index.html") for p in built if p != "404.html"])
-    print("  ✓ data/ratgeber.json, sitemap.xml, robots.txt")
+    print("  ✓ data/ratgeber.json, assets/data/anbieter.json, sitemap.xml, robots.txt")
     for path in built:
         print(f"  ✓ {path}")
     print(f"{len(built)} Seiten erzeugt.")

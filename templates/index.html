@@ -2,7 +2,7 @@
 title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
 description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
-body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/schritte.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
+body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/schritte.js" defer></script> <script src="/assets/js/anbieter-logik.js" defer></script> <script src="/assets/js/anbieter.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -307,7 +307,41 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
-          <!-- 4 · Kontakt -->
+          <!-- 4 · Passende Anbieter (nur mit JS; assets/js/anbieter.js lädt die Daten erst hier und füllt die Liste).
+               Ohne JS bleibt der Schritt verborgen, das Formular läuft wie bisher.
+               → WordPress: template-parts/anbieter-treffer.php (Daten aus CPT 'anbieter') -->
+          <section class="form__section anbieter" data-schritt data-schritt-anbieter data-eigene-navigation data-nur-js hidden
+                   aria-labelledby="anbieter-titel" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
+            <h4 class="form__legend" id="anbieter-titel"><span class="form__legend-nr" aria-hidden="true">4</span> Passende Anbieter in Ihrer Nähe</h4>
+            <p class="anbieter__intro" data-anbieter-intro></p>
+            <div class="notice notice--light anbieter__quelle" data-anbieter-quelle hidden>
+              <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+              <p data-anbieter-quelle-text></p>
+            </div>
+            <p class="visually-hidden" role="status" aria-live="polite" data-anbieter-status></p>
+            <p class="anbieter__laedt" data-anbieter-laedt>Passende Anbieter werden gesucht …</p>
+            <ul class="anbieter__liste" data-anbieter-liste></ul>
+            <p class="anbieter__mehr" data-anbieter-mehr-zeile hidden>
+              <button class="btn btn--secondary" type="button" data-anbieter-mehr>Weitere anzeigen</button>
+            </p>
+            <div class="anbieter__leer" data-anbieter-leer hidden>
+              <h5 class="anbieter__leer-titel">Dafür suchen wir persönlich für Sie</h5>
+              <p data-anbieter-leer-text></p>
+            </div>
+            <div class="anbieter__aktionen" data-anbieter-aktionen hidden>
+              <p class="anbieter__zaehler" role="status" aria-live="polite" data-anbieter-zaehler>Noch kein Anbieter ausgewählt</p>
+              <p class="form-field__error anbieter__fehler" role="alert" data-anbieter-fehler></p>
+              <button class="btn btn--secondary btn--block" type="button" aria-disabled="true" data-anbieter-kontakt>
+                <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg> Kontaktdaten anzeigen</button>
+            </div>
+            <div class="anbieter__persoenlich">
+              <p><strong>Lieber persönlich vermitteln lassen?</strong> Dann schicken Sie uns Ihre Anfrage. Wir suchen für Sie, kostenlos und ohne Verpflichtung.</p>
+              <button class="btn btn--primary btn--block" type="button" data-anbieter-persoenlich>
+                Lieber persönlich vermitteln lassen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 4 · Kontakt (mit JS Schritt 5) -->
           <fieldset class="form__section" data-schritt>
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Ihre Kontaktdaten</legend>
 

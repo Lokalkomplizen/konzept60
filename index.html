@@ -33,8 +33,8 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=0738e96f5d">
   <link rel="stylesheet" href="/assets/css/base.css?v=0e91fd6f69">
   <link rel="stylesheet" href="/assets/css/layout.css?v=336ceb280e">
-  <link rel="stylesheet" href="/assets/css/components.css?v=6cd1e6f545">
-  <link rel="stylesheet" href="/assets/css/print.css?v=75481f14bd" media="print">
+  <link rel="stylesheet" href="/assets/css/components.css?v=3beb4ce084">
+  <link rel="stylesheet" href="/assets/css/print.css?v=8506f8690f" media="print">
   <link rel="preload" as="image" type="image/webp"
         imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
         imagesizes="(min-width: 60em) 55vw, 100vw">
@@ -623,7 +623,41 @@
             </div>
           </fieldset>
 
-          <!-- 4 · Kontakt -->
+          <!-- 4 · Passende Anbieter (nur mit JS; assets/js/anbieter.js lädt die Daten erst hier und füllt die Liste).
+               Ohne JS bleibt der Schritt verborgen, das Formular läuft wie bisher.
+               → WordPress: template-parts/anbieter-treffer.php (Daten aus CPT 'anbieter') -->
+          <section class="form__section anbieter" data-schritt data-schritt-anbieter data-eigene-navigation data-nur-js hidden
+                   aria-labelledby="anbieter-titel" data-anbieter-url="/assets/data/anbieter.json?v=c58707d74b" data-seitenname="Konzept 60+">
+            <h4 class="form__legend" id="anbieter-titel"><span class="form__legend-nr" aria-hidden="true">4</span> Passende Anbieter in Ihrer Nähe</h4>
+            <p class="anbieter__intro" data-anbieter-intro></p>
+            <div class="notice notice--light anbieter__quelle" data-anbieter-quelle hidden>
+              <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+              <p data-anbieter-quelle-text></p>
+            </div>
+            <p class="visually-hidden" role="status" aria-live="polite" data-anbieter-status></p>
+            <p class="anbieter__laedt" data-anbieter-laedt>Passende Anbieter werden gesucht …</p>
+            <ul class="anbieter__liste" data-anbieter-liste></ul>
+            <p class="anbieter__mehr" data-anbieter-mehr-zeile hidden>
+              <button class="btn btn--secondary" type="button" data-anbieter-mehr>Weitere anzeigen</button>
+            </p>
+            <div class="anbieter__leer" data-anbieter-leer hidden>
+              <h5 class="anbieter__leer-titel">Dafür suchen wir persönlich für Sie</h5>
+              <p data-anbieter-leer-text></p>
+            </div>
+            <div class="anbieter__aktionen" data-anbieter-aktionen hidden>
+              <p class="anbieter__zaehler" role="status" aria-live="polite" data-anbieter-zaehler>Noch kein Anbieter ausgewählt</p>
+              <p class="form-field__error anbieter__fehler" role="alert" data-anbieter-fehler></p>
+              <button class="btn btn--secondary btn--block" type="button" aria-disabled="true" data-anbieter-kontakt>
+                <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg> Kontaktdaten anzeigen</button>
+            </div>
+            <div class="anbieter__persoenlich">
+              <p><strong>Lieber persönlich vermitteln lassen?</strong> Dann schicken Sie uns Ihre Anfrage. Wir suchen für Sie, kostenlos und ohne Verpflichtung.</p>
+              <button class="btn btn--primary btn--block" type="button" data-anbieter-persoenlich>
+                Lieber persönlich vermitteln lassen <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+            </div>
+          </section>
+
+          <!-- 4 · Kontakt (mit JS Schritt 5) -->
           <fieldset class="form__section" data-schritt>
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Ihre Kontaktdaten</legend>
 
@@ -889,6 +923,6 @@
 <p class="print-url print-only" data-print-url></p>
 
 <script src="/assets/js/main.js?v=4fe9cfe999" defer></script>
-  <script src="/assets/js/api.js?v=0c06c9fa2a" defer></script> <script src="/assets/js/schritte.js?v=488549de1d" defer></script> <script src="/assets/js/assistent.js?v=ad666ff082" defer></script>
+  <script src="/assets/js/api.js?v=0c06c9fa2a" defer></script> <script src="/assets/js/schritte.js?v=70c3faa056" defer></script> <script src="/assets/js/anbieter-logik.js?v=d3ef692386" defer></script> <script src="/assets/js/anbieter.js?v=a29775d9dc" defer></script> <script src="/assets/js/assistent.js?v=ad666ff082" defer></script>
 </body>
 </html>

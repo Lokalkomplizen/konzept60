@@ -10,6 +10,9 @@
        <fieldset data-schritt>…</fieldset>       ein Schritt (Überschrift: .form__legend)
        <fieldset data-schritt="x">…</fieldset>   gleicher Wert = derselbe Schritt; gezeigt wird nur,
        <fieldset data-schritt="x">…</fieldset>   was nicht [hidden] ist (z. B. je Anbieterart)
+       <section data-schritt data-nur-js hidden>   Schritt nur mit JS (bleibt sonst verborgen)
+                                                 data-eigene-navigation: Schritt bringt eigene Weiter-Schaltflächen mit
+                                                 (löst bei Bedarf Ereignis schritte:weiter am <form> aus)
        <section data-schritt data-schritt-versand hidden>   letzter Schritt: Zusammenfassung + Versand
          <dl data-zusammenfassung></dl>
          <a data-versand="email">…</a> <a data-versand="whatsapp">…</a>
@@ -27,7 +30,8 @@
      schritte:wechsel  detail { index, anzahl, schritt: Element[] }
      schritte:versand  detail { zeilen: [[Bezeichnung, Wert], …], betreff, einleitung, gruss }
                        → Listener füllt die Zusammenfassung; ohne Listener werden Felder generisch gelesen.
-   Eingehend:  schritte:start (zurück zu Schritt 1), form.reset() → Schritt 1.
+   Eingehend:  schritte:start (zurück zu Schritt 1), schritte:weiter (wie „Weiter“), form.reset() → Schritt 1.
+   Die Nummern in .form__legend-nr werden mit JS durchnummeriert (Schritte mit data-nur-js fehlen ohne JS).
 
    Versand: Links baut WirHelfenAPI.versandLinks() in api.js (Empfänger nur dort).
    Es wird nichts gespeichert: kein Storage, keine Cookies, kein Netzwerkzugriff.
@@ -119,6 +123,12 @@
         if (node.hasAttribute('data-schritt-versand')) { versandIndex = i; node.hidden = false; }
       });
     });
+    form.querySelectorAll('[data-nur-js]').forEach(function (node) { node.hidden = false; });
+    schritte.forEach(function (schritt, i) {
+      schritt.forEach(function (node) {
+        node.querySelectorAll('.form__legend-nr').forEach(function (nr) { nr.textContent = String(i + 1); });
+      });
+    });
     var erfolg = document.getElementById(form.getAttribute('data-schritte-erfolg') || '');
     form.classList.add('form--schritte');
 
@@ -196,8 +206,11 @@
       var titelText = textOhneLeerraum(titel).replace(/^\d+\s*/, '');
       stand.textContent = 'Schritt ' + (aktuell + 1) + ' von ' + anzahl;
       zurueck.hidden = aktuell === 0;
-      weiter.hidden = aktuell === versandIndex;
-      nav.classList.toggle('schritte__nav--nur-zurueck', aktuell === versandIndex);
+      var eigeneNavigation = aktuell === versandIndex || schritte[aktuell].some(function (node) {
+        return node.hasAttribute('data-eigene-navigation');
+      });
+      weiter.hidden = eigeneNavigation;
+      nav.classList.toggle('schritte__nav--nur-zurueck', eigeneNavigation);
       form.dispatchEvent(new CustomEvent('schritte:wechsel', {
         detail: { index: aktuell, anzahl: anzahl, schritt: schritte[aktuell] }
       }));
@@ -292,6 +305,7 @@
       weiterKlick();
     }, true);
 
+    form.addEventListener('schritte:weiter', weiterKlick);
     form.addEventListener('schritte:start', function () { zeige(0, false); });
     form.addEventListener('reset', function () {
       if (erfolg) erfolg.hidden = true;

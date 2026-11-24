@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=55584cd5c9">
   <link rel="stylesheet" href="/assets/css/base.css?v=ee8ad8012e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=1ccaf226f3">
-  <link rel="stylesheet" href="/assets/css/components.css?v=128a43005a">
+  <link rel="stylesheet" href="/assets/css/components.css?v=30abab79e1">
   <link rel="stylesheet" href="/assets/css/print.css?v=75481f14bd" media="print">
 
 </head>
@@ -51,6 +51,8 @@
   <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
   <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
   <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-3.9A8 8 0 1 1 20 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
   <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
@@ -239,7 +241,12 @@
       </div>
 
       <div class="request-layout__main">
-        <form class="form" id="anbieter-formular" action="/fuer-anbieter/#registrierung" method="post" aria-labelledby="anbieter-formular-titel">
+        <!-- Schritt-Formular (assets/js/schritte.js). Schritte 2 und 3 gibt es je Anbieterart:
+             gleicher Wert in data-schritt = derselbe Schritt, sichtbar ist nur der Teil der gewählten Art. -->
+        <form class="form" id="anbieter-formular" action="/fuer-anbieter/#registrierung" method="post" aria-labelledby="anbieter-formular-titel"
+              data-schritte data-schritte-erfolg="anbieter-erfolg"
+              data-versand-betreff="Registrierung über Konzept 60+"
+              data-versand-einleitung="Guten Tag, ich möchte mich im Netzwerk registrieren. Hier sind meine Angaben:">
           <h3 class="form__title" id="anbieter-formular-titel">Ihre Registrierung</h3>
           <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
 
@@ -248,7 +255,7 @@
             <ul data-fehlerliste></ul>
           </div>
 
-          <fieldset class="form__section">
+          <fieldset class="form__section" data-schritt>
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">1</span> Art des Angebots</legend>
             <fieldset class="form-field" id="a-art" aria-describedby="a-art-fehler">
               <legend>Wie möchten Sie sich registrieren? <span class="form-field__req">*</span></legend>
@@ -261,9 +268,9 @@
             <p class="form-field__hint form-hint-js" data-art-hinweis>Nach Ihrer Auswahl zeigen wir Ihnen die passenden Felder.</p>
           </fieldset>
 
-          <!-- Gewerblich -->
-          <fieldset class="form__section" data-art-bereich="gewerblich">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zum Betrieb</legend>
+          <!-- Gewerblich (Schritte 2 und 3) -->
+          <fieldset class="form__section" data-art-bereich="gewerblich" data-schritt="angaben">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zum Betrieb <span class="form__legend-zusatz form-hint-ohne-js">(nur für Betriebe)</span></legend>
 
             <div class="form-field">
               <label class="form-field__label" for="a-firma">Firmenname <span class="form-field__req">*</span></label>
@@ -275,7 +282,10 @@
               <input class="form-field__input" id="a-ansprechpartner" name="ansprechpartner" type="text" autocomplete="name" aria-required="true" aria-describedby="a-ansprechpartner-fehler">
               <p class="form-field__error" id="a-ansprechpartner-fehler" aria-live="polite"></p>
             </div>
+          </fieldset>
 
+          <fieldset class="form__section" data-art-bereich="gewerblich" data-schritt="leistungen">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Leistungen und Einsatzorte <span class="form__legend-zusatz form-hint-ohne-js">(nur für Betriebe)</span></legend>
             <fieldset class="form-field" id="a-bereiche" aria-describedby="a-bereiche-fehler">
               <legend>Leistungsbereiche <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
               <div class="choice-group choice-group--cols">
@@ -316,10 +326,9 @@
             </div>
           </fieldset>
 
-          <!-- Privat -->
-          <fieldset class="form__section" data-art-bereich="privat">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zu Ihnen</legend>
-
+          <!-- Privat (Schritte 2 und 3) -->
+          <fieldset class="form__section" data-art-bereich="privat" data-schritt="angaben">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Angaben zu Ihnen <span class="form__legend-zusatz form-hint-ohne-js">(nur für private Helfer)</span></legend>
             <div class="form__row form__row--2">
               <div class="form-field">
                 <label class="form-field__label" for="a-vorname">Vorname <span class="form-field__req">*</span></label>
@@ -332,6 +341,10 @@
                 <p class="form-field__error" id="a-nachname-fehler" aria-live="polite"></p>
               </div>
             </div>
+          </fieldset>
+
+          <fieldset class="form__section" data-art-bereich="privat" data-schritt="leistungen">
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Ihr Angebot <span class="form__legend-zusatz form-hint-ohne-js">(nur für private Helfer)</span></legend>
 
             <fieldset class="form-field" id="a-hilfe" aria-describedby="a-hilfe-hinweis a-hilfe-fehler">
               <legend>Wobei möchten Sie helfen? <span class="form-field__req">*</span> <span class="form-field__hint">(mehrere möglich)</span></legend>
@@ -376,8 +389,8 @@
             </fieldset>
           </fieldset>
 
-          <fieldset class="form__section">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Kontakt</legend>
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Kontakt</legend>
             <div class="form__row form__row--2">
               <div class="form-field">
                 <label class="form-field__label" for="a-email">E-Mail <span class="form-field__req">*</span></label>
@@ -396,8 +409,8 @@
             </div>
           </fieldset>
 
-          <fieldset class="form__section">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Einwilligung</legend>
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">5</span> Einwilligung</legend>
             <div class="form-field" id="a-einwilligung-feld">
               <label class="choice" for="a-einwilligung">
                 <input type="checkbox" id="a-einwilligung" name="einwilligung" required aria-describedby="a-einwilligung-fehler">
@@ -407,6 +420,29 @@
             </div>
           </fieldset>
 
+          <!-- 6 · Versand (nur mit JS; schritte.js füllt Zusammenfassung und Links) -->
+          <section class="form__section versand" data-schritt data-schritt-versand aria-labelledby="anbieter-versand-titel" hidden>
+            <h4 class="form__legend" id="anbieter-versand-titel"><span class="form__legend-nr" aria-hidden="true">6</span> Prüfen und absenden</h4>
+            <p class="versand__intro">Bitte prüfen Sie Ihre Angaben. Mit „Zurück“ können Sie alles noch ändern.</p>
+            <dl class="versand__zusammenfassung" data-zusammenfassung></dl>
+            <h5 class="versand__frage">Wie möchten Sie uns Ihre Registrierung schicken?</h5>
+            <div class="versand__wege">
+              <div class="versand__weg">
+                <a class="btn versand__btn" data-versand="email" aria-describedby="anbieter-versand-email-text">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg> Per E-Mail senden</a>
+                <p class="versand__text" id="anbieter-versand-email-text">Öffnet Ihr E-Mail-Programm mit dem fertigen Text.</p>
+              </div>
+              <div class="versand__weg">
+                <a class="btn versand__btn" data-versand="whatsapp" target="_blank" rel="noopener noreferrer" aria-describedby="anbieter-versand-wa-text anbieter-versand-wa-datenschutz">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg> Per WhatsApp senden</a>
+                <p class="versand__text" id="anbieter-versand-wa-text">Öffnet WhatsApp mit dem fertigen Text.</p>
+                <p class="versand__datenschutz" id="anbieter-versand-wa-datenschutz"><svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+                  <span>WhatsApp ist ein Dienst von Meta. Ihre Angaben werden dabei über WhatsApp übertragen. Wenn Sie das nicht möchten, nutzen Sie bitte die E-Mail. <a href="/datenschutz/#whatsapp">Mehr zum Datenschutz</a></span></p>
+              </div>
+            </div>
+            <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Die Empfänger sind Platzhalter. Diese Seite selbst speichert keine Daten.</p>
+          </section>
+
           <div class="form__actions">
             <button class="btn btn--primary btn--block" type="submit">Kostenlos registrieren</button>
             <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
@@ -415,11 +451,12 @@
 
         <div class="form-success" id="anbieter-erfolg" tabindex="-1" role="status" hidden>
           <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
-          <h3>Vielen Dank für Ihr Interesse!</h3>
-          <p>So würde es weitergehen: Unser Team prüft Ihre Angaben persönlich und meldet sich per E-Mail bei Ihnen<span data-erfolg-art></span>.</p>
+          <h3>Fast geschafft: Bitte noch auf „Senden“ tippen</h3>
+          <p>Ihre Nachricht wurde in <span data-erfolg-kanal>Ihrem E-Mail-Programm</span> geöffnet. Bitte tippen Sie dort noch auf „Senden“. Unser Team prüft Ihre Angaben persönlich und meldet sich bei Ihnen<span data-erfolg-art></span>.</p>
+          <p class="form-success__nochmal">Hat sich nichts geöffnet? <button class="link-button" type="button" data-schritte-auswahl>Anderen Weg zum Senden wählen</button></p>
           <p class="form-success__prototype">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-            <span>Prototyp – keine Registrierung verarbeitet. Es wurden keine Daten gesendet oder gespeichert.</span>
+            <span>Prototyp – die Empfänger sind Platzhalter. Diese Seite selbst speichert keine Daten.</span>
           </p>
           <button class="btn btn--secondary" type="button" data-neue-anfrage>Neue Registrierung beginnen</button>
         </div>
@@ -503,7 +540,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=3e48828213" defer></script>
-
+<script src="/assets/js/main.js?v=4fe9cfe999" defer></script>
+  <script src="/assets/js/api.js?v=0c06c9fa2a" defer></script> <script src="/assets/js/schritte.js?v=488549de1d" defer></script>
 </body>
 </html>

@@ -1397,6 +1397,140 @@ select.form-field__input {
 
 .form-hint-js { display: none; }
 .js .form-hint-js { display: block; }
+.js .form-hint-ohne-js { display: none; }
+.form__legend-zusatz { font-family: var(--font-sans); font-size: var(--font-size-sm); font-weight: 400; color: var(--color-ink-muted); }
+
+/* ---- Schritt-Formulare (assets/js/schritte.js) ---------------------------------
+   Nur mit JS aktiv (.form--schritte setzt schritte.js). Ohne JS bleibt das ganze
+   Formular sichtbar. Fortschritt = Text PLUS Balken; Zurück/Weiter mind. 52px hoch. */
+.form--schritte .is-schritt-inaktiv { display: none; }
+.form--schritte .form__actions { display: none; }
+.form--schritte .form__section {
+  margin-bottom: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.form--schritte .form__legend { scroll-margin-top: var(--space-l); }
+.form--schritte .form__legend:focus:not(:focus-visible) { outline: none; }
+
+.schritte__kopf {
+  margin: 0 0 var(--space-l);
+  padding-bottom: var(--space-m);
+  border-bottom: 2px solid var(--color-sand-300);
+  scroll-margin-top: var(--space-l);
+}
+.schritte__stand {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-sage-700);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.schritte__balken {
+  display: flex;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.schritte__segment {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-sand-300);
+  transition: background-color var(--transition);
+}
+.schritte__segment.is-erledigt,
+.schritte__segment.is-aktuell { background: var(--color-navy-800); }
+
+.schritte__nav {
+  display: flex;
+  gap: var(--space-s);
+  margin-top: var(--space-l);
+  padding-top: var(--space-l);
+  border-top: 2px solid var(--color-sand-300);
+}
+.schritte__nav .btn {
+  flex: 1 1 0;
+  min-height: 3.25rem;
+  padding-inline: var(--space-m);
+}
+.schritte__nav .btn[hidden] { display: none; }
+.schritte__zurueck .icon { transform: scaleX(-1); }
+.schritte__weiter { margin-left: auto; }
+@media (min-width: 40em) {
+  .schritte__nav .btn { flex: 0 1 auto; min-width: 11rem; }
+}
+
+/* Versand-Schritt: Zusammenfassung + zwei gleichwertige Versandwege */
+.versand__intro { margin-bottom: var(--space-m); }
+.versand__zusammenfassung {
+  margin: 0 0 var(--space-l);
+  padding: var(--space-m);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  background: var(--color-sand-50);
+}
+.versand__zeile { padding: var(--space-xs) 0; }
+.versand__zeile + .versand__zeile { border-top: 1px solid var(--color-sand-300); }
+.versand__zeile dt { font-weight: 700; color: var(--color-navy-800); }
+.versand__zeile dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+@container (min-width: 34rem) {
+  .versand__zeile { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: var(--space-m); }
+}
+@media (min-width: 48em) {
+  .form:not(.form--compact) .versand__zeile { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: var(--space-m); }
+}
+
+.versand__frage {
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-navy-800);
+}
+/* bewusst untereinander: volle Breite, kein Umbruch im Button, Hinweis direkt bei WhatsApp */
+.versand__wege { display: grid; gap: var(--space-m); }
+.versand__weg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-m);
+  border: 2px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+}
+.versand__btn {
+  width: 100%;
+  min-height: 3.5rem;
+  background: var(--color-navy-800);
+  border-color: var(--color-navy-800);
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  padding-inline: var(--space-m);
+}
+.versand__btn:hover {
+  background: var(--color-navy-700);
+  border-color: var(--color-navy-700);
+  color: var(--color-white);
+}
+.versand__text { margin: 0; font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+.versand__datenschutz {
+  display: flex;
+  gap: var(--space-xs);
+  margin: var(--space-2xs) 0 0;
+  padding: var(--space-s);
+  border-radius: var(--radius-s);
+  background: var(--color-sage-100);
+  font-size: var(--font-size-sm);
+  color: var(--color-ink);
+}
+.versand__datenschutz .icon { flex-shrink: 0; color: var(--color-sage-700); }
+.versand .form__privacy-hint { margin-top: var(--space-l); }
+
+.form-success__nochmal { margin-top: var(--space-m); }
+.form-success__nochmal .link-button { font-size: inherit; padding-inline: 0; }
 
 /* ---- Seitenkopf Unterseiten --------------------------------------------- */
 .page-header {

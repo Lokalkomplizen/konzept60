@@ -4,10 +4,11 @@
    2. Vorauswahl im Anfrageformular (?thema=…, ?wer=…|?fuer=…, ?ort=…|?region=… bzw. Links;
       nur Werte aus den erlaubten Listen werden übernommen)
    3. Abhängige Leistungen je Themenbereich (Markup erzeugt tools/build.py aus data/themen.json)
-   4. Formular-Validierung (gemeinsamer Baustein für Anfrage + Anbieter-Registrierung)
-   5. Anfrageformular – Simulation
-   6. Anbieter-Registrierung – Simulation, Felder je Anbieterart
-   6b. Veranstaltung melden – Simulation (api.js)
+   4. Formular-Validierung (gemeinsamer Baustein für Anfrage, Anbieter-Registrierung, Veranstaltung melden;
+      prüft im Schritt-Modus nur den aktuellen Schritt, siehe assets/js/schritte.js)
+   5. Anfrageformular – Feldregeln, Zusammenfassung für den Versand-Schritt
+   6. Anbieter-Registrierung – Feldregeln, Felder je Anbieterart, Zusammenfassung
+   6b. Veranstaltung melden – Feldregeln, Zusammenfassung
    7. Ratgeber-Übersicht – Themenfilter (?thema=…)
    8. Ratgeber-Beitrag – Vorlesen (Web Speech API des Browsers, kein Drittanbieter)
    9. Scroll-Animationen (IntersectionObserver + CSS, dezent; aus bei reduzierter Bewegung)
@@ -135,6 +136,7 @@
         if (again) again.click();
         applyPreselect(form, url.searchParams);
       }
+      form.dispatchEvent(new CustomEvent('schritte:start')); // Schritt-Formular: zurück zu Schritt 1
       if (section) scrollToEl(section);
       if (heading) heading.focus({ preventScroll: true });
     });
@@ -177,6 +179,14 @@
     // Eigene Validierung statt Browser-Bubbles (ohne JS greift die native Validierung)
     form.setAttribute('novalidate', '');
     var submitted = false;
+    // Schritt-Modus (schritte.js): nur Felder des aktuellen Schritts prüfen; null = alle
+    var scope = null;
+
+    function inScope(field) {
+      if (!scope) return true;
+      var errorEl = document.getElementById(field.error);
+      return scope.some(function (node) { return node.contains(errorEl); });
+    }
 
     // Fehlertext + Gruppenrahmen je Feld; aria-invalid je Eingabe (ein Eingabefeld kann
     // von mehreren Regeln betroffen sein, z. B. Telefon: "Telefon oder E-Mail" + Format)
@@ -197,7 +207,7 @@
     }
 
     function validateAll() {
-      var results = fields.map(function (field) {
+      var results = fields.filter(inScope).map(function (field) {
         var active = !field.when || field.when();
         return { field: field, message: active ? field.check() : '' };
       });
@@ -235,6 +245,7 @@
     form.addEventListener('submit', function (event) {
       event.preventDefault(); // Prototyp: kein Versand, kein fetch, keine Speicherung
       submitted = true;
+      scope = null;
       var errors = validateAll();
       renderSummary(errors);
       if (errors.length) {
@@ -242,6 +253,24 @@
         return;
       }
       onValid();
+    });
+
+    // Schritt-Modus: schritte.js fragt vor „Weiter“ nach (detail.schritt = Elemente des Schritts, null = alle)
+    form.addEventListener('schritte:pruefen', function (event) {
+      event.detail.geprueft = true;
+      scope = event.detail.schritt;
+      submitted = true;
+      var errors = validateAll();
+      renderSummary(errors);
+      if (errors.length) {
+        event.detail.fehlerFeld = errors[0].field.focus();
+        event.preventDefault();
+      }
+    });
+    form.addEventListener('schritte:wechsel', function (event) {
+      submitted = false;
+      scope = event.detail.schritt;
+      summary.hidden = true;
     });
 
     return {
@@ -262,11 +291,26 @@
   function self(el) { return function () { return el; }; }
   function anyChecked(form, name) { return Boolean(form.querySelector('input[name="' + name + '"]:checked')); }
 
-  function showSuccess(form, success) {
-    form.hidden = true;
-    success.hidden = false;
-    success.focus();
-    scrollToEl(success);
+  // Zusammenfassung für den Versand-Schritt (schritte.js): sichtbare Beschriftungen statt Kürzel
+  function labelText(input) {
+    var label = input && input.closest('label');
+    return label ? label.textContent.replace(/\s+/g, ' ').trim() : '';
+  }
+  function checkedLabels(form, name) {
+    return Array.prototype.slice.call(form.querySelectorAll('input[name="' + name + '"]:checked'))
+      .filter(function (i) { return !i.disabled; }).map(labelText).join(', ');
+  }
+  function selectText(select) {
+    return select.value ? select.options[select.selectedIndex].text : '';
+  }
+  // Zeile nur aufnehmen, wenn ein Wert vorhanden ist
+  function addRow(rows, label, value) {
+    if (value) rows.push([label, value]);
+  }
+
+  // Ohne Schritt-Modul (schritte.js nicht geladen): normal absenden wie ohne JS
+  function submitNative(form) {
+    HTMLFormElement.prototype.submit.call(form);
   }
 
   /* ------------------------------------------------------------------------
@@ -409,45 +453,32 @@
       };
     }
 
-    var absenden = form.querySelector('[data-absenden]');
-    var absendenLabel = absenden ? absenden.textContent : '';
-    var sendeFehler = form.querySelector('[data-sende-fehler]');
-
-    function zeigeErfolg(payload) {
-      var nameEl = success.querySelector('[data-erfolg-name]');
-      var kontaktEl = success.querySelector('[data-erfolg-kontakt]');
-      var rueckrufEl = success.querySelector('[data-erfolg-rueckruf]');
-      var rueckrufText = success.querySelector('[data-erfolg-rueckruf-text]');
-      var mailEl = success.querySelector('[data-erfolg-email]');
-      if (nameEl) nameEl.textContent = ', ' + payload.vorname + ' ' + payload.nachname;
-      if (kontaktEl) kontaktEl.textContent = payload.telefon ? ' – telefonisch unter ' + payload.telefon : ' – per E-Mail an ' + payload.email;
-      if (rueckrufEl && rueckrufText) {
-        rueckrufEl.hidden = !payload.rueckruf;
-        if (payload.rueckruf) {
-          rueckrufText.textContent = payload.rueckruf.fenster === 'eigen'
-            ? 'Eigenes Zeitfenster – ' + payload.rueckruf.eigenes
-            : RUECKRUF_TEXT[payload.rueckruf.fenster];
-        }
-      }
-      // Hinweis auf die E-Mail-Bestätigung nur, wenn eine E-Mail-Adresse angegeben wurde
-      if (mailEl) mailEl.hidden = !payload.email;
-      showSuccess(form, success);
+    function rueckrufText(rueckruf) {
+      if (!rueckruf) return '';
+      return rueckruf.fenster === 'eigen' ? rueckruf.eigenes : RUECKRUF_TEXT[rueckruf.fenster];
     }
 
-    var validation = setupValidation(form, summary, fields, function () {
-      var payload = buildPayload();
-      if (absenden) { absenden.disabled = true; absenden.textContent = 'Wird übermittelt …'; }
-      form.setAttribute('aria-busy', 'true');
-      // Schnittstelle: assets/js/api.js – im Prototyp simuliert, es wird nichts gesendet
-      window.WirHelfenAPI.sendeAnfrage(payload).then(function () {
-        zeigeErfolg(payload);
-      }).catch(function () {
-        if (sendeFehler) { sendeFehler.textContent = MSG.senden; }
-      }).then(function () {
-        form.removeAttribute('aria-busy');
-        if (absenden) { absenden.disabled = false; absenden.textContent = absendenLabel; }
-      });
+    // Versand-Schritt: Zusammenfassung und Nachrichtentext aus der Nutzlast (Schema AnfragePayload in api.js)
+    form.addEventListener('schritte:versand', function (event) {
+      var p = buildPayload();
+      var d = event.detail;
+      var rows = d.zeilen;
+      addRow(rows, 'Für wen', labelText(form.querySelector('input[name="wer"]:checked')));
+      addRow(rows, 'Themenbereich', selectText(f.thema));
+      addRow(rows, 'Gewünschte Hilfe', checkedLabels(form, 'leistungen'));
+      addRow(rows, 'Anliegen', p.beschreibung);
+      addRow(rows, 'Wo', (p.plz + ' ' + p.ort).trim());
+      addRow(rows, 'Name', (p.vorname + ' ' + p.nachname).trim());
+      addRow(rows, 'Telefon', p.telefon);
+      addRow(rows, 'E-Mail', p.email);
+      addRow(rows, 'Rückruf', rueckrufText(p.rueckruf));
+      addRow(rows, 'Einwilligung zur Bearbeitung', p.einwilligung_bearbeitung ? 'Ja' : '');
+      addRow(rows, 'Newsletter', p.newsletter ? 'Ja, bitte' : 'Nein');
+      if (f.thema.value) d.betreff += ': ' + selectText(f.thema);
+      d.gruss = 'Viele Grüße\n' + (p.vorname + ' ' + p.nachname).trim();
     });
+
+    var validation = setupValidation(form, summary, fields, function () { submitNative(form); });
 
     var again = success.querySelector('[data-neue-anfrage]');
     if (again) {
@@ -455,7 +486,6 @@
         validation.reset();
         if (updateLeistungen) updateLeistungen();
         updateRueckruf();
-        if (sendeFehler) sendeFehler.textContent = '';
         success.hidden = true;
         form.hidden = false;
         var firstRadio = radiosWer()[0];
@@ -521,6 +551,7 @@
       var radio = form.querySelector('input[name="art"][value="' + CSS.escape(link.getAttribute('data-anbieterart')) + '"]');
       if (!radio || form.hidden) return;
       event.preventDefault();
+      form.dispatchEvent(new CustomEvent('schritte:start')); // Schritt-Formular: Auswahl steht in Schritt 1
       radio.checked = true;
       updateArt();
       history.replaceState(null, '', window.location.pathname + '#registrierung');
@@ -572,13 +603,39 @@
         check: function () { return f.einwilligung.checked ? '' : MSG_A.einwilligung; } }
     ];
 
-    var validation = setupValidation(form, summary, fields, function () {
+    // Versand-Schritt: Zusammenfassung je Anbieterart
+    form.addEventListener('schritte:versand', function (event) {
+      var d = event.detail;
+      var rows = d.zeilen;
+      var gewerblich = art() === 'gewerblich';
+      addRow(rows, 'Art', gewerblich ? 'Gewerblicher Dienstleister' : 'Privater Helfer');
+      if (gewerblich) {
+        addRow(rows, 'Firma', val(f.firma));
+        addRow(rows, 'Ansprechpartner', val(f.ansprechpartner));
+        addRow(rows, 'Leistungsbereiche', checkedLabels(form, 'bereiche'));
+        addRow(rows, 'Einsatzorte', checkedLabels(form, 'einsatzorte'));
+        addRow(rows, 'Weitere Orte', val(f.weitere_orte));
+      } else {
+        addRow(rows, 'Name', (val(f.vorname) + ' ' + val(f.nachname)).trim());
+        addRow(rows, 'Hilfe bei', checkedLabels(form, 'hilfe'));
+        addRow(rows, 'Region', selectText(f.region));
+        addRow(rows, 'Zeit', checkedLabels(form, 'verfuegbarkeit'));
+      }
+      addRow(rows, 'E-Mail', val(f.email));
+      addRow(rows, 'Telefon', val(f.telefon));
+      addRow(rows, 'Nachricht', val(f.nachricht));
+      addRow(rows, 'Einwilligung', f.einwilligung.checked ? 'Ja' : '');
+      var name = gewerblich ? val(f.firma) : (val(f.vorname) + ' ' + val(f.nachname)).trim();
+      if (name) d.betreff += ': ' + name;
+      d.gruss = 'Viele Grüße\n' + (gewerblich ? val(f.ansprechpartner) : name);
+
       var artEl = success.querySelector('[data-erfolg-art]');
-      if (artEl) artEl.textContent = art() === 'gewerblich'
-        ? ' – bei Bedarf bitten wir dann um passende Nachweise'
-        : ' – gern auch zu einem kurzen persönlichen Kennenlernen';
-      showSuccess(form, success);
+      if (artEl) artEl.textContent = gewerblich
+        ? '. Bei Bedarf bitten wir dann um passende Nachweise'
+        : ', gern auch zu einem kurzen persönlichen Kennenlernen';
     });
+
+    var validation = setupValidation(form, summary, fields, function () { submitNative(form); });
 
     var again = success.querySelector('[data-neue-anfrage]');
     if (again) {
@@ -695,25 +752,42 @@
       };
     }
 
-    var absenden = form.querySelector('[data-absenden]');
-    var absendenLabel = absenden ? absenden.textContent : '';
-    var sendeFehler = form.querySelector('[data-sende-fehler]');
+    function datumText(iso) {
+      if (!iso) return '';
+      var d = new Date(iso + 'T12:00:00');
+      return isNaN(d) ? iso : d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+    var JA_NEIN = { ja: 'Ja', nein: 'Nein', unbekannt: 'Weiß ich nicht' };
+
+    // Versand-Schritt: Zusammenfassung (Schema VeranstaltungPayload in api.js)
+    form.addEventListener('schritte:versand', function (event) {
+      var p = buildPayload();
+      var d = event.detail;
+      var rows = d.zeilen;
+      addRow(rows, 'Titel', p.titel);
+      addRow(rows, 'Thema', selectText(f.kategorie));
+      addRow(rows, 'Beschreibung', p.beschreibung);
+      addRow(rows, 'Datum', datumText(p.datum));
+      addRow(rows, 'Uhrzeit', p.beginn ? p.beginn + (p.ende ? ' bis ' + p.ende : '') + ' Uhr' : '');
+      addRow(rows, 'Stadt', selectText(f.stadt));
+      addRow(rows, 'Ort', p.ort);
+      addRow(rows, 'Barrierefrei', JA_NEIN[p.barrierefrei]);
+      addRow(rows, 'Anmeldung nötig', JA_NEIN[p.anmeldung]);
+      addRow(rows, 'Kosten', p.kosten);
+      addRow(rows, 'Internetseite', p.link);
+      addRow(rows, 'Veranstalter', p.veranstalter);
+      addRow(rows, 'Ansprechperson (nicht veröffentlichen)', p.ansprechperson);
+      addRow(rows, 'E-Mail (nicht veröffentlichen)', p.email);
+      addRow(rows, 'Telefon (nicht veröffentlichen)', p.telefon);
+      addRow(rows, 'Bestätigung', p.einwilligung ? 'Ja' : '');
+      if (p.titel) d.betreff += ': ' + p.titel;
+      d.gruss = 'Viele Grüße\n' + p.ansprechperson;
+    });
 
     var validation = setupValidation(form, summary, fields, function () {
-      // Honigtopf gefüllt: so tun, als wäre es angekommen, aber nichts senden
-      if (val(f.website)) { showSuccess(form, success); return; }
-      var payload = buildPayload();
-      if (absenden) { absenden.disabled = true; absenden.textContent = 'Wird übermittelt …'; }
-      form.setAttribute('aria-busy', 'true');
-      // Schnittstelle: assets/js/api.js – im Prototyp simuliert, es wird nichts gesendet
-      window.WirHelfenAPI.veranstaltungMelden(payload).then(function () {
-        showSuccess(form, success);
-      }).catch(function () {
-        if (sendeFehler) sendeFehler.textContent = MSG_V.senden;
-      }).then(function () {
-        form.removeAttribute('aria-busy');
-        if (absenden) { absenden.disabled = false; absenden.textContent = absendenLabel; }
-      });
+      // Honigtopf gefüllt: nichts senden
+      if (val(f.website)) return;
+      submitNative(form);
     });
 
     var again = success.querySelector('[data-neue-anfrage]');
@@ -721,7 +795,6 @@
       again.addEventListener('click', function () {
         validation.reset();
         updateZaehler();
-        if (sendeFehler) sendeFehler.textContent = '';
         success.hidden = true;
         form.hidden = false;
         f.titel.focus();

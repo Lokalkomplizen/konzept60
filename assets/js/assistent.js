@@ -265,7 +265,7 @@
         : 'Sie suchen praktische Unterstützung') +
         ' beim Thema „' + t.titel + '“' + (ST.ort ? ' in ' + ST.ort : '') + '.';
       extra = el('p', { 'class': 'assistent__extra',
-        text: 'Ein Mensch aus unserem Team liest Ihre Anfrage persönlich. Ihre Auswahl übernehmen wir ins Formular – dort können Sie alles noch ändern oder ergänzen.' });
+        text: 'Jemand aus unserem Team liest Ihre Anfrage persönlich. Ihre Auswahl übernehmen wir ins Formular – dort können Sie alles noch ändern oder ergänzen.' });
       var href = '/?thema=' + encodeURIComponent(t.slug) + '&wer=' + wer +
         (ST.ort ? '&ort=' + encodeURIComponent(ST.ort) : '') + '#anfrage';
       main = { href: href, label: 'Anfrage mit diesen Angaben stellen' };

@@ -80,7 +80,7 @@
    Header
    ========================================================================== */
 .site-header {
-  background: var(--color-white);
+  background: var(--color-page);
   border-bottom: 1px solid var(--color-sand-300);
   position: relative;
   z-index: 20;

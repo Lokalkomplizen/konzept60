@@ -1,6 +1,6 @@
 /* ==========================================================================
    Konzept 60+ – assistent.js (Unterstützungs-Assistent, nur auf der Startseite eingebunden)
-   Drei kurze Fragen → Zusammenfassung + passender nächster Schritt.
+   Drei Tipps (ein Tipp pro Frage, kein „Weiter“) → Zusammenfassung + passender nächster Schritt.
    - Daten (Themen, Städte, Ratgeber-Beiträge) kommen als JSON im Attribut data-assistent
      (erzeugt von tools/build.py → assistent_data()); kein Inline-Skript, kein Nachladen.
    - Ohne JS zeigt der Abschnitt stattdessen die drei Säulen-Links (progressive enhancement).
@@ -28,8 +28,7 @@
   if (!data || !data.ziele || !data.themen) return;
 
   var ST = { schritt: 0, ziel: '', thema: '', ort: null, andereStadt: false };
-  var uid = 0;
-
+  
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
@@ -158,12 +157,11 @@
     return r.top >= 0 && r.top < window.innerHeight * 0.6;
   }
 
+  /* Ein Tipp pro Frage: Optionen sind <button>-Karten, ein Klick/Enter wählt aus und geht sofort weiter.
+     aria-pressed markiert die vorherige Wahl (beim Zurückgehen). Keine „Weiter“-Schaltfläche, keine Pflichtfehler. */
   function renderStep(step) {
-    uid += 1;
-    var name = 'assistent-' + step;
-    var errorId = 'assistent-fehler-' + uid;
-    var form = el('form', { 'class': 'assistent__form', novalidate: '' });
-    var fieldset = el('fieldset', { 'class': 'assistent__fieldset', 'aria-describedby': errorId });
+    var wrapper = el('div', { 'class': 'assistent__form' });
+    var fieldset = el('fieldset', { 'class': 'assistent__fieldset' });
     var heading = el('h3', { 'class': 'assistent__heading', tabindex: '-1', 'data-assistent-heading': '', text: TITEL[step] });
     fieldset.appendChild(el('legend', { 'class': 'assistent__legend' }, [heading]));
 
@@ -171,71 +169,40 @@
     var wide = step === 'ziel' || (step === 'thema' && ST.ziel === 'alltag');
     var list = el('div', { 'class': 'assistent__choices' + (wide ? ' assistent__choices--wide' : '') + (step === 'ort' ? ' assistent__choices--chips' : '') });
     var selected = current(step);
-    options.forEach(function (o, idx) {
-      var input = el('input', { type: 'radio', name: name, value: o.value, id: name + '-' + idx });
-      if (o.value === selected) input.checked = true;
+    options.forEach(function (o) {
       var text = el('span', { 'class': 'choice-card__text' }, [el('span', { 'class': 'choice-card__title', text: o.titel })]);
       if (o.hinweis) text.appendChild(el('span', { 'class': 'choice-card__hint', text: o.hinweis }));
-      list.appendChild(el('label', { 'class': 'choice-card' + (o.illu ? ' choice-card--illu' : '') }, [input, o.illu ? illu(o.illu) : null, text]));
+      var btn = el('button', {
+        type: 'button',
+        'class': 'choice-card choice-card--tap' + (o.illu ? ' choice-card--illu' : ''),
+        'aria-pressed': o.value === selected ? 'true' : 'false'
+      }, [o.illu ? illu(o.illu) : null, text]);
+      btn.addEventListener('click', function () { waehle(step, o.value); });
+      list.appendChild(btn);
     });
     fieldset.appendChild(list);
+    wrapper.appendChild(fieldset);
 
-    // Hinweis bei „Andere Stadt“ (Live-Bereich)
-    var note = null;
-    if (step === 'ort') {
-      note = el('p', { 'class': 'assistent__note', 'aria-live': 'polite' });
-      fieldset.appendChild(note);
-    }
-    var error = el('p', { 'class': 'form-field__error', id: errorId, 'aria-live': 'polite' });
-    fieldset.appendChild(error);
-    form.appendChild(fieldset);
-
-    function updateNote() {
-      if (!note) return;
-      var chosen = form.querySelector('input[name="' + name + '"]:checked');
-      note.textContent = chosen && chosen.value === '__andere'
-        ? 'Wir starten zunächst in ' + listNames(data.orte) + '. Ihre Anfrage können Sie trotzdem stellen – wir schauen, was möglich ist.'
-        : '';
-    }
-    form.addEventListener('change', function () {
-      error.textContent = '';
-      fieldset.removeAttribute('aria-invalid');
-      updateNote();
-    });
-    updateNote();
-
-    var isLast = ST.schritt === flow().length - 1;
     var actions = el('div', { 'class': 'assistent__actions' });
     if (ST.schritt > 0) {
       actions.appendChild(button('Zurück', 'btn--secondary', function () { ST.schritt -= 1; render(true); }));
+      wrapper.appendChild(actions);
     }
-    var next = el('button', { type: 'submit', 'class': 'btn btn--secondary' }, [isLast ? 'Ergebnis anzeigen' : 'Weiter']);
-    next.appendChild(icon('arrow'));
-    actions.appendChild(next);
-    form.appendChild(actions);
+    return wrapper;
+  }
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      var chosen = form.querySelector('input[name="' + name + '"]:checked');
-      if (!chosen) {
-        error.textContent = 'Bitte wählen Sie eine Antwort aus, damit wir weitermachen können.';
-        fieldset.setAttribute('aria-invalid', 'true');
-        form.querySelector('input[name="' + name + '"]').focus();
-        return;
-      }
-      if (step === 'ziel') {
-        if (ST.ziel !== chosen.value) { ST.thema = ''; ST.ort = null; ST.andereStadt = false; }
-        ST.ziel = chosen.value;
-      } else if (step === 'thema') {
-        ST.thema = chosen.value;
-      } else {
-        ST.andereStadt = chosen.value === '__andere';
-        ST.ort = ST.andereStadt ? null : chosen.value;
-      }
-      ST.schritt += 1;
-      render(true);
-    });
-    return form;
+  function waehle(step, value) {
+    if (step === 'ziel') {
+      if (ST.ziel !== value) { ST.thema = ''; ST.ort = null; ST.andereStadt = false; }
+      ST.ziel = value;
+    } else if (step === 'thema') {
+      ST.thema = value;
+    } else {
+      ST.andereStadt = value === '__andere';
+      ST.ort = ST.andereStadt ? null : value;
+    }
+    ST.schritt += 1;
+    render(true);
   }
 
   function listNames(names) {

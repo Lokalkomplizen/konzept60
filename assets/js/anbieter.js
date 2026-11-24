@@ -59,6 +59,16 @@
     return (daten && daten.modus === 'beispiel') ? 'Beispieldaten: Namen und Nummern sind erfunden.' : L.HINWEIS_QUELLE;
   }
 
+  function googleLink(a, cls) {
+    var g = node('a', cls, 'Bewertungen bei Google ansehen');
+    g.href = L.googleMapsLink(a);
+    g.target = '_blank';
+    g.rel = 'noopener noreferrer';
+    g.appendChild(node('span', 'visually-hidden', ' (öffnet Google Maps)'));
+    return g;
+  }
+
+
   /* ---- Baustein: Liste ---- */
   function baue(opt) {
     instanz += 1;
@@ -97,8 +107,8 @@
     var kontakt = node('button', 'btn btn--secondary btn--block');
     kontakt.type = 'button';
     kontakt.setAttribute('aria-disabled', 'true');
-    kontakt.appendChild(icon('icon-phone'));
-    kontakt.appendChild(document.createTextNode(' Kontaktdaten anzeigen'));
+    kontakt.appendChild(icon('icon-teilen'));
+    kontakt.appendChild(document.createTextNode(' Ausgewählte drucken oder weiterleiten'));
     aktionen.appendChild(zaehler);
     aktionen.appendChild(fehler);
     aktionen.appendChild(kontakt);
@@ -111,12 +121,15 @@
 
     function ansage(text) { status.textContent = text; }
 
+    /* Karte: kein Gesamt-<label> (sonst verschluckt es die Links). Inhalt, direkter „Anrufen“-Button,
+       Google-Link und ein eigenes großes Label für die Auswahl-Checkbox. */
     function karte(a) {
       var li = node('li', 'anbieter-karte-item');
-      var label = node('label', 'anbieter-karte');
+      var box0 = node('div', 'anbieter-karte');
       var idName = prefix + '-' + a.id + '-name';
       var idInfo = prefix + '-' + a.id + '-info';
-      var inhalt = node('span', 'anbieter-karte__inhalt');
+      var idWahl = prefix + '-' + a.id + '-wahl';
+      var inhalt = node('div', 'anbieter-karte__inhalt');
       var name = node('span', 'anbieter-karte__name', a.name);
       name.id = idName;
       inhalt.appendChild(name);
@@ -129,18 +142,32 @@
       if (a._passt) info.appendChild(node('span', 'anbieter-karte__passt', 'Passt zu Ihrer Auswahl'));
       if (a.kassenabrechnung === 'ja') info.appendChild(node('span', 'badge anbieter-karte__kasse', 'Rechnet mit der Pflegekasse ab'));
       inhalt.appendChild(info);
-      label.appendChild(inhalt);
-      var wahl = node('span', 'anbieter-karte__wahl');
+      box0.appendChild(inhalt);
+
+      var tel = L.telLink(a.telefon);
+      if (tel) {
+        var anruf = node('a', 'btn btn--secondary anbieter-karte__anruf');
+        anruf.href = tel;
+        anruf.appendChild(icon('icon-phone'));
+        anruf.appendChild(document.createTextNode(' Anrufen'));
+        anruf.appendChild(node('span', 'visually-hidden', ': ' + a.name));
+        box0.appendChild(anruf);
+      }
+      box0.appendChild(googleLink(a, 'anbieter-karte__google'));
+
+      var wahl = node('label', 'anbieter-karte__wahl');
       var box = document.createElement('input');
       box.type = 'checkbox';
       box.setAttribute('data-anbieter-id', a.id);
-      box.setAttribute('aria-labelledby', idName);
+      box.setAttribute('aria-labelledby', idWahl + ' ' + idName);
       box.setAttribute('aria-describedby', idInfo);
       box.checked = Boolean(gewaehlt[a.id]);
       wahl.appendChild(box);
-      wahl.appendChild(node('span', 'anbieter-karte__wahl-text', 'Auswählen'));
-      label.appendChild(wahl);
-      li.appendChild(label);
+      var wt = node('span', 'anbieter-karte__wahl-text', 'Auswählen');
+      wt.id = idWahl;
+      wahl.appendChild(wt);
+      box0.appendChild(wahl);
+      li.appendChild(box0);
       return li;
     }
 
@@ -233,7 +260,7 @@
     });
     kontakt.addEventListener('click', function () {
       if (Object.keys(gewaehlt).length === 0) {
-        fehler.textContent = 'Bitte wählen Sie zuerst mindestens einen Anbieter aus (Kästchen „Auswählen“ an der Karte).';
+        fehler.textContent = 'Bitte wählen Sie zuerst mindestens einen Anbieter aus (Kästchen „Auswählen“ an der Karte). Zum Anrufen genügt der Knopf „Anrufen“ an der Karte.';
         return;
       }
       oeffneDialog(treffer.filter(function (a) { return gewaehlt[a.id]; }), kontakt, seitenname);
@@ -318,6 +345,9 @@
       w.appendChild(node('span', 'visually-hidden', ' (öffnet in neuem Tab)'));
       li.appendChild(zeile('Website', w));
     }
+    var gl = node('p', 'kontakt__zeile no-print');
+    gl.appendChild(googleLink(a, 'kontakt__google'));
+    li.appendChild(gl);
     if (!a.telefon && !a.email && !a.website) li.appendChild(node('p', '', 'Keine Kontaktdaten hinterlegt.'));
     return li;
   }

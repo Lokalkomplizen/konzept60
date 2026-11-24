@@ -272,22 +272,9 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
-          <!-- 2 · Beschreibung -->
+          <!-- 2 · Wo -->
           <fieldset class="form__section" data-schritt>
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Worum geht es genau?</legend>
-
-            <div class="form-field">
-              <label class="form-field__label" for="f-beschreibung">Beschreiben Sie Ihr Anliegen <span class="form-field__req">*</span></label>
-              <span class="form-field__hint" id="f-beschreibung-hinweis">Was, wie oft, ab wann? Ein paar Sätze genügen.</span>
-              <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="4" required minlength="20"
-                        aria-describedby="f-beschreibung-hinweis f-beschreibung-fehler"></textarea>
-              <p class="form-field__error" id="f-beschreibung-fehler" aria-live="polite"></p>
-            </div>
-          </fieldset>
-
-          <!-- 3 · Wo -->
-          <fieldset class="form__section" data-schritt>
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Wo wird Hilfe benötigt?</legend>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Wo wird Hilfe benötigt?</legend>
             <div class="form__row form__row--plz">
               <div class="form-field">
                 <label class="form-field__label" for="f-plz">PLZ <span class="form-field__req">*</span></label>
@@ -307,12 +294,12 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
-          <!-- 4 · Passende Anbieter (nur mit JS; assets/js/anbieter.js lädt die Daten erst hier und füllt die Liste).
+          <!-- 3 · Passende Anbieter (nur mit JS; assets/js/anbieter.js lädt die Daten erst hier und füllt die Liste).
                Ohne JS bleibt der Schritt verborgen, das Formular läuft wie bisher.
                → WordPress: template-parts/anbieter-treffer.php (Daten aus CPT 'anbieter') -->
           <section class="form__section anbieter" data-schritt data-schritt-anbieter data-eigene-navigation data-nur-js hidden
                    aria-labelledby="anbieter-titel" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
-            <h4 class="form__legend" id="anbieter-titel"><span class="form__legend-nr" aria-hidden="true">4</span> Passende Anbieter in Ihrer Nähe</h4>
+            <h4 class="form__legend" id="anbieter-titel"><span class="form__legend-nr" aria-hidden="true">3</span> Passende Anbieter in Ihrer Nähe</h4>
             <!-- Liste, Zähler und Kontakt-Button erzeugt assets/js/anbieter.js (AnbieterListe.baue) -->
             <div data-anbieter-mount></div>
             <div class="anbieter__persoenlich">
@@ -322,7 +309,20 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </section>
 
-          <!-- 4 · Kontakt (mit JS Schritt 5) -->
+          <!-- 4 · Beschreibung (mit JS nach der Trefferliste; wird für die persönliche Vermittlung gebraucht) -->
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Worum geht es genau?</legend>
+
+            <div class="form-field">
+              <label class="form-field__label" for="f-beschreibung">Beschreiben Sie Ihr Anliegen <span class="form-field__req">*</span></label>
+              <span class="form-field__hint" id="f-beschreibung-hinweis">Was, wie oft, ab wann? Ein paar Sätze genügen.</span>
+              <textarea class="form-field__input" id="f-beschreibung" name="beschreibung" rows="4" required minlength="20"
+                        aria-describedby="f-beschreibung-hinweis f-beschreibung-fehler"></textarea>
+              <p class="form-field__error" id="f-beschreibung-fehler" aria-live="polite"></p>
+            </div>
+          </fieldset>
+
+          <!-- 5 · Kontakt (mit JS Schritt 5) -->
           <fieldset class="form__section" data-schritt>
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Ihre Kontaktdaten</legend>
 

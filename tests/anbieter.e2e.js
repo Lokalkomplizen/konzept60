@@ -15,8 +15,6 @@ async function bisAnbieter(page, thema, ort, plz) {
   await page.check("#f-wer-selbst");
   await page.selectOption("#f-thema", thema);
   await page.click(".schritte__weiter");
-  await page.fill("#f-beschreibung", "Ich suche Unterstützung für meine Mutter, mehrmals pro Woche.");
-  await page.click(".schritte__weiter");
   await page.fill("#f-plz", plz);
   await page.fill("#f-ort", ort);
   await page.click(".schritte__weiter");
@@ -40,21 +38,31 @@ async function keinHorizontalesScrollen(page, label) {
 
     await bisAnbieter(page, "pflege-betreuung", "Wuppertal", "42103");
     const stand = await page.textContent(".schritte__stand");
-    assert.equal(stand.trim(), "Schritt 4 von 7");
+    assert.equal(stand.trim(), "Schritt 3 von 7");
     assert.equal(await page.locator(".schritte__weiter").isHidden(), true, "generisches Weiter im Anbieter-Schritt verborgen");
     assert.equal(await page.locator(".anbieter-karte").count(), 6, "zunächst 6 Karten");
+    const anruf = page.locator("[data-schritt-anbieter] .anbieter-karte__anruf").first();
+    assert.match(await anruf.getAttribute("href"), /^tel:\+?\d+$/, "Anrufen-Button mit tel:-Link");
+    assert.ok((await anruf.boundingBox()).height >= 48, "Anrufen mind. 48 px hoch");
+    const g = page.locator("[data-schritt-anbieter] .anbieter-karte__google").first();
+    assert.match(await g.getAttribute("href"), /^https:\/\/www\.google\.com\/maps\/search\/\?api=1&query=/);
+    assert.equal(await g.getAttribute("target"), "_blank");
+    assert.equal(await g.getAttribute("rel"), "noopener noreferrer");
+    assert.equal(await page.locator("[data-schritt-anbieter] .anbieter-karte__wahl").first().evaluate((e) => e.getBoundingClientRect().height >= 48), true);
+    assert.doesNotMatch(await page.locator("[data-schritt-anbieter]").textContent(), /Sterne|★/);
     assert.match(await page.textContent("[data-schritt-anbieter] .anbieter__quelle p"), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
     assert.equal(await page.locator("[data-schritt-anbieter] .anbieter__aktionen button").getAttribute("aria-disabled"), "true");
     await page.dispatchEvent("[data-schritt-anbieter] .anbieter__aktionen button", "click");
     assert.match(await page.textContent("[data-schritt-anbieter] .anbieter__fehler"), /mindestens einen Anbieter/);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/anbieter-liste-${name}.png`, fullPage: false });
+    if (SHOTS && name === "mobil") await page.locator("#anfrage-formular").screenshot({ path: `${SHOTS}/formular-treffer-mobil.png` });
 
     await page.click("[data-schritt-anbieter] .anbieter__mehr button");
     assert.equal(await page.locator(".anbieter-karte").count(), 12, "Weitere anzeigen: 12 Karten");
 
     // Mehrfachauswahl über die ganze Karte (label)
-    await page.locator(".anbieter-karte").nth(0).click();
-    await page.locator(".anbieter-karte").nth(2).click();
+    await page.locator(".anbieter-karte__wahl").nth(0).click();
+    await page.locator(".anbieter-karte__wahl").nth(2).click();
     assert.equal((await page.textContent("[data-schritt-anbieter] .anbieter__zaehler")).trim(), "2 ausgewählt");
     await keinHorizontalesScrollen(page, name + " Liste");
     if (SHOTS) {
@@ -88,8 +96,11 @@ async function keinHorizontalesScrollen(page, label) {
     await dlg.waitFor({ state: "hidden" });
     assert.equal(await page.evaluate(() => !!document.activeElement.closest(".anbieter__aktionen")), true, "Fokus zurück");
 
-    // persönlicher Weg -> Kontaktdaten (Schritt 5)
+    // persönlicher Weg -> Beschreibung (Schritt 4) -> Kontaktdaten (Schritt 5)
     await page.click("[data-anbieter-persoenlich]");
+    assert.equal((await page.textContent(".schritte__stand")).trim(), "Schritt 4 von 7");
+    await page.fill("#f-beschreibung", "Ich suche Unterstützung für meine Mutter, mehrmals pro Woche.");
+    await page.click(".schritte__weiter");
     assert.equal((await page.textContent(".schritte__stand")).trim(), "Schritt 5 von 7");
     await page.waitForSelector("#f-vorname", { state: "visible" });
     await ctx.close();
@@ -131,28 +142,29 @@ async function keinHorizontalesScrollen(page, label) {
     page.on("pageerror", (e) => fehler.push(`assistent ${name}: ${e.message}`));
     await page.goto(BASE + "/");
     const app = page.locator("[data-assistent-app]");
-    await app.getByLabel("Praktische Hilfe", { exact: false }).first().check().catch(async () => {
-      await app.locator("input[name=assistent-ziel]").first().check();
-    });
-    await app.getByRole("button", { name: "Weiter" }).click();
-    await app.getByLabel("Haushalt und Reinigung").check();
-    await app.getByRole("button", { name: "Weiter" }).click();
-    await app.getByLabel("Düsseldorf", { exact: true }).check();
-    await app.getByRole("button", { name: "Ergebnis anzeigen" }).click();
+    let tipps = 0;
+    const tippe = async (locator) => { await locator.click(); tipps += 1; };
+    await tippe(app.locator("button.choice-card--tap").first());   // Ziel: praktische Hilfe
+    assert.equal(await app.locator("button:has-text('Weiter')").count(), 0, "kein Weiter-Button");
+    if (SHOTS && name === "mobil") await page.locator("#assistent").screenshot({ path: `${SHOTS}/assistent-frage-mobil.png` });
+    await tippe(app.getByRole("button", { name: "Haushalt und Reinigung" }));
+    await tippe(app.getByRole("button", { name: "Düsseldorf", exact: true }));
+    assert.equal(tipps, 3, "3 Tipps bis zum Ergebnis");
     assert.equal(await page.evaluate(() => document.activeElement.textContent), "Das haben wir für Sie gefunden", "Fokus auf Ergebnis-Überschrift");
     await app.locator(".anbieter-karte").first().waitFor();
     const karten = await app.locator(".anbieter-karte").count();
     assert.ok(karten >= 2 && karten <= 6, "Karten im Assistenten: " + karten);
     assert.match(await app.textContent(), /Diese Anbieter passen zu Ihrer Suche/);
     assert.match(await app.textContent(), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
+    assert.ok(await app.locator(".anbieter-karte__anruf").count() > 0, "Anrufen auf Karten im Assistenten");
     assert.equal(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).count(), 1);
     assert.match(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).getAttribute("href"), /thema=haushalt-reinigung.*ort=D%C3%BCsseldorf#anfrage/);
-    await app.locator(".anbieter-karte").nth(0).click();
-    await app.locator(".anbieter-karte").nth(1).click();
+    await app.locator(".anbieter-karte__wahl").nth(0).click();
+    await app.locator(".anbieter-karte__wahl").nth(1).click();
     assert.equal((await app.locator(".anbieter__zaehler").textContent()).trim(), "2 ausgewählt");
     await keinHorizontalesScrollen(page, "Assistent " + name);
     if (SHOTS) await page.locator("#assistent").screenshot({ path: `${SHOTS}/assistent-treffer-${name}.png` });
-    await app.getByRole("button", { name: "Kontaktdaten anzeigen" }).click();
+    await app.getByRole("button", { name: "Ausgewählte drucken oder weiterleiten" }).click();
     const dlg = page.locator("dialog.kontakt-dialog");
     await dlg.waitFor({ state: "visible" });
     assert.equal(await page.locator("dialog.kontakt-dialog").count(), 1, "nur ein Dialog");
@@ -164,9 +176,8 @@ async function keinHorizontalesScrollen(page, label) {
 
     // Leerzustand: Wesel -> keine Liste, direkter Weg zur Anfrage
     await app.getByRole("button", { name: "Zurück" }).click();
-    await app.getByLabel("Wesel", { exact: true }).check().catch(() => {});
-    if (await app.getByLabel("Wesel", { exact: true }).count()) {
-      await app.getByRole("button", { name: "Ergebnis anzeigen" }).click();
+    if (await app.getByRole("button", { name: "Wesel", exact: true }).count()) {
+      await app.getByRole("button", { name: "Wesel", exact: true }).click();
       await page.waitForFunction(() => /sucht für Sie/.test(document.querySelector("[data-assistent-app]").textContent));
       assert.equal(await app.locator(".anbieter-karte").count(), 0);
       assert.equal(await app.locator(".anbieter__leer").isVisible(), false, "kein leerer Kasten");

@@ -1,52 +1,30 @@
 /* ==========================================================================
-   Konzept 60+ – anbieter.js: „Passende Anbieter in Ihrer Nähe“ (Anfrageformular, Schritt 4)
+   Konzept 60+ – anbieter.js: Anbieter-Trefferliste (wiederverwendbarer Baustein)
    --------------------------------------------------------------------------
-   - Wird aktiv, sobald schritte.js den Schritt [data-schritt-anbieter] zeigt (Ereignis schritte:wechsel).
-   - Lädt die Anbieterdaten erst dann per fetch (nur lesend, gleiche Herkunft, keine Eingaben werden gesendet):
-     data-anbieter-url (assets/data/anbieter.json, erzeugt von tools/build.py aus data/anbieter.json).
-   - Filter/Sortierung: AnbieterLogik (anbieter-logik.js): Themenbereich + Ort (Ort zuerst, dann Einzugsgebiet),
-     zur gewählten Leistung passende Kategorien zuerst. Zunächst 6 Karten, „Weitere anzeigen“ je 6.
-   - Mehrfachauswahl (nur im Speicher der Seite, nichts wird gespeichert oder übertragen) →
-     Kontaktfenster (<dialog>): Anrufen, E-Mail, Website, Drucken, Weiterleiten.
-   - Ohne JS bleibt der Schritt verborgen; das Formular läuft wie bisher.
+   AnbieterListe.baue(optionen) erzeugt Liste + Zähler + Kontakt-Button und liefert { wurzel, zeige, zuruecksetzen }.
+   Verwendet an zwei Stellen: Anfrageformular (Schritt 4, [data-schritt-anbieter] / [data-anbieter-mount]) und
+   Ergebnis des Assistenten (assets/js/assistent.js). Es gibt nur EINEN Kontaktdialog (<dialog>) und EINEN Datenabruf.
+   - Lädt die Anbieterdaten erst beim ersten Anzeigen per fetch (nur lesend, gleiche Herkunft):
+     assets/data/anbieter.json (erzeugt von tools/build.py aus data/anbieter.json).
+   - Filter/Sortierung: AnbieterLogik (anbieter-logik.js). Zunächst 6 Karten, „Weitere anzeigen“ je 6.
+   - Mehrfachauswahl nur im Speicher der Seite (nichts wird gespeichert oder übertragen) → Kontaktfenster.
+   - Ohne JS bleibt der Formular-Schritt verborgen; das Formular läuft wie bisher.
    → WordPress: Liste aus CPT 'anbieter' (REST), Dialog als Template-Part.
    ========================================================================== */
 (function () {
   'use strict';
 
   var L = window.AnbieterLogik;
-  var form = document.getElementById('anfrage-formular');
-  var schritt = form && form.querySelector('[data-schritt-anbieter]');
-  if (!L || !form || !schritt) return;
+  if (!L) return;
 
   var SEITE = 6;
-  var q = function (sel) { return schritt.querySelector(sel); };
-  var el = {
-    intro: q('[data-anbieter-intro]'),
-    quelle: q('[data-anbieter-quelle]'),
-    quelleText: q('[data-anbieter-quelle-text]'),
-    status: q('[data-anbieter-status]'),
-    laedt: q('[data-anbieter-laedt]'),
-    liste: q('[data-anbieter-liste]'),
-    mehrZeile: q('[data-anbieter-mehr-zeile]'),
-    mehr: q('[data-anbieter-mehr]'),
-    leer: q('[data-anbieter-leer]'),
-    leerText: q('[data-anbieter-leer-text]'),
-    aktionen: q('[data-anbieter-aktionen]'),
-    zaehler: q('[data-anbieter-zaehler]'),
-    fehler: q('[data-anbieter-fehler]'),
-    kontakt: q('[data-anbieter-kontakt]'),
-    persoenlich: q('[data-anbieter-persoenlich]')
-  };
-  var url = schritt.getAttribute('data-anbieter-url');
-  var seitenname = schritt.getAttribute('data-seitenname') || 'Konzept 60+';
-
-  var daten = null;          // { modus, stand, leistungen, anbieter }
+  var instanz = 0;
+  var daten = null;          // { modus, stand, leistungen, anbieter } – geteilt
   var ladeFehler = false;
-  var treffer = [];          // aktuelle Trefferliste (sortiert)
-  var sichtbar = SEITE;
-  var gewaehlt = {};         // id -> true (nur im Speicher)
-  var schluessel = '';       // Themenbereich|Ort|Leistungen der letzten Darstellung
+  var ladeVersprechen = null;
+  var dialog = null;
+  var dialogTeile = null;
+  var vorherFokus = null;
 
   function node(tag, cls, text) {
     var n = document.createElement(tag);
@@ -64,184 +42,207 @@
     svg.appendChild(use);
     return svg;
   }
-  function reduced() {
-    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
 
-  /* ---- Eingaben aus Schritt 1–3 ---- */
-  function eingaben() {
-    var thema = form.elements.thema ? form.elements.thema.value : '';
-    var ort = form.elements.ort ? form.elements.ort.value.trim() : '';
-    var leistungen = Array.prototype.filter.call(
-      form.querySelectorAll('input[name="leistungen"]:checked'), function (i) { return !i.disabled; })
-      .map(function (i) { return i.value; });
-    return { thema: thema, ort: ort, leistungen: leistungen };
-  }
-  function ansage(text) { el.status.textContent = text; }
-  function wortAnbieter(n) { return n === 1 ? 'passender Anbieter' : 'passende Anbieter'; }
-
-  function laden() {
+  function laden(url) {
     if (daten || ladeFehler) return Promise.resolve();
+    if (ladeVersprechen) return ladeVersprechen;
     if (!url || !window.fetch) { ladeFehler = true; return Promise.resolve(); }
-    return window.fetch(url, { credentials: 'same-origin' })
+    ladeVersprechen = window.fetch(url, { credentials: 'same-origin' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) { daten = d; })
       .catch(function () { ladeFehler = true; });
+    return ladeVersprechen;
   }
 
-  /* ---- Darstellung ---- */
-  function karte(a, index) {
-    var li = node('li', 'anbieter-karte-item');
-    var label = node('label', 'anbieter-karte');
-    var idName = 'anbieter-' + a.id + '-name';
-    var idInfo = 'anbieter-' + a.id + '-info';
-    var inhalt = node('span', 'anbieter-karte__inhalt');
-    var name = node('span', 'anbieter-karte__name', a.name);
-    name.id = idName;
-    inhalt.appendChild(name);
-    var info = node('span', 'anbieter-karte__info');
-    info.id = idInfo;
-    if (a.schwerpunkt) info.appendChild(node('span', 'anbieter-karte__text', a.schwerpunkt));
-    var ort = a._gruppe === 1 ? 'Sitz in ' + a.stadt + ', auch für Ihren Ort tätig' : a.stadt;
-    info.appendChild(node('span', 'anbieter-karte__meta', 'Ort: ' + ort));
-    if (a.angebotsform) info.appendChild(node('span', 'anbieter-karte__meta', 'Angebot: ' + a.angebotsform));
-    if (a._passt) info.appendChild(node('span', 'anbieter-karte__passt', 'Passt zu Ihrer Auswahl'));
-    if (a.kassenabrechnung === 'ja') info.appendChild(node('span', 'badge anbieter-karte__kasse', 'Rechnet mit der Pflegekasse ab'));
-    inhalt.appendChild(info);
-    label.appendChild(inhalt);
-
-    var wahl = node('span', 'anbieter-karte__wahl');
-    var box = document.createElement('input');
-    box.type = 'checkbox';
-    box.setAttribute('data-anbieter-id', a.id);
-    box.setAttribute('aria-labelledby', idName);
-    box.setAttribute('aria-describedby', idInfo);
-    box.checked = Boolean(gewaehlt[a.id]);
-    wahl.appendChild(box);
-    wahl.appendChild(node('span', 'anbieter-karte__wahl-text', 'Auswählen'));
-    label.appendChild(wahl);
-    li.appendChild(label);
-    return li;
+  function wortAnbieter(n) { return n === 1 ? 'passender Anbieter' : 'passende Anbieter'; }
+  function quellenHinweis() {
+    return (daten && daten.modus === 'beispiel') ? 'Beispieldaten: Namen und Nummern sind erfunden.' : L.HINWEIS_QUELLE;
   }
 
-  function zeichneListe(fokusIndex) {
-    el.liste.replaceChildren();
-    treffer.slice(0, sichtbar).forEach(function (a, i) { el.liste.appendChild(karte(a, i)); });
-    el.mehrZeile.hidden = sichtbar >= treffer.length;
-    if (!el.mehrZeile.hidden) {
-      var rest = treffer.length - sichtbar;
-      el.mehr.textContent = 'Weitere anzeigen (' + rest + ' weitere)';
+  /* ---- Baustein: Liste ---- */
+  function baue(opt) {
+    instanz += 1;
+    var prefix = (opt.prefix || 'anb') + instanz;
+    var seitenname = opt.seitenname || 'Konzept 60+';
+    var wurzel = node('div', 'anbieter-liste-baustein');
+    var intro = node('p', 'anbieter__intro');
+    var quelle = node('div', 'notice notice--light anbieter__quelle');
+    quelle.hidden = true;
+    quelle.appendChild(icon('icon-info'));
+    var quelleText = node('p');
+    quelle.appendChild(quelleText);
+    var status = node('p', 'visually-hidden');
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    var laedt = node('p', 'anbieter__laedt', 'Passende Anbieter werden gesucht …');
+    laedt.hidden = true;
+    var liste = node('ul', 'anbieter__liste');
+    var mehrZeile = node('p', 'anbieter__mehr');
+    mehrZeile.hidden = true;
+    var mehr = node('button', 'btn btn--secondary', 'Weitere anzeigen');
+    mehr.type = 'button';
+    mehrZeile.appendChild(mehr);
+    var leer = node('div', 'anbieter__leer');
+    leer.hidden = true;
+    leer.appendChild(node('h5', 'anbieter__leer-titel', 'Dafür suchen wir persönlich für Sie'));
+    var leerText = node('p');
+    leer.appendChild(leerText);
+    var aktionen = node('div', 'anbieter__aktionen');
+    aktionen.hidden = true;
+    var zaehler = node('p', 'anbieter__zaehler', 'Noch kein Anbieter ausgewählt');
+    zaehler.setAttribute('role', 'status');
+    zaehler.setAttribute('aria-live', 'polite');
+    var fehler = node('p', 'form-field__error anbieter__fehler');
+    fehler.setAttribute('role', 'alert');
+    var kontakt = node('button', 'btn btn--secondary btn--block');
+    kontakt.type = 'button';
+    kontakt.setAttribute('aria-disabled', 'true');
+    kontakt.appendChild(icon('icon-phone'));
+    kontakt.appendChild(document.createTextNode(' Kontaktdaten anzeigen'));
+    aktionen.appendChild(zaehler);
+    aktionen.appendChild(fehler);
+    aktionen.appendChild(kontakt);
+    [intro, quelle, status, laedt, liste, mehrZeile, leer, aktionen].forEach(function (n) { wurzel.appendChild(n); });
+
+    var treffer = [];
+    var sichtbar = SEITE;
+    var gewaehlt = {};
+    var schluessel = '';
+
+    function ansage(text) { status.textContent = text; }
+
+    function karte(a) {
+      var li = node('li', 'anbieter-karte-item');
+      var label = node('label', 'anbieter-karte');
+      var idName = prefix + '-' + a.id + '-name';
+      var idInfo = prefix + '-' + a.id + '-info';
+      var inhalt = node('span', 'anbieter-karte__inhalt');
+      var name = node('span', 'anbieter-karte__name', a.name);
+      name.id = idName;
+      inhalt.appendChild(name);
+      var info = node('span', 'anbieter-karte__info');
+      info.id = idInfo;
+      if (a.schwerpunkt) info.appendChild(node('span', 'anbieter-karte__text', a.schwerpunkt));
+      var ort = a._gruppe === 1 ? 'Sitz in ' + a.stadt + ', auch für Ihren Ort tätig' : a.stadt;
+      info.appendChild(node('span', 'anbieter-karte__meta', 'Ort: ' + ort));
+      if (a.angebotsform) info.appendChild(node('span', 'anbieter-karte__meta', 'Angebot: ' + a.angebotsform));
+      if (a._passt) info.appendChild(node('span', 'anbieter-karte__passt', 'Passt zu Ihrer Auswahl'));
+      if (a.kassenabrechnung === 'ja') info.appendChild(node('span', 'badge anbieter-karte__kasse', 'Rechnet mit der Pflegekasse ab'));
+      inhalt.appendChild(info);
+      label.appendChild(inhalt);
+      var wahl = node('span', 'anbieter-karte__wahl');
+      var box = document.createElement('input');
+      box.type = 'checkbox';
+      box.setAttribute('data-anbieter-id', a.id);
+      box.setAttribute('aria-labelledby', idName);
+      box.setAttribute('aria-describedby', idInfo);
+      box.checked = Boolean(gewaehlt[a.id]);
+      wahl.appendChild(box);
+      wahl.appendChild(node('span', 'anbieter-karte__wahl-text', 'Auswählen'));
+      label.appendChild(wahl);
+      li.appendChild(label);
+      return li;
     }
-    if (typeof fokusIndex === 'number') {
-      var boxen = el.liste.querySelectorAll('input[type="checkbox"]');
-      if (boxen[fokusIndex]) boxen[fokusIndex].focus();
+
+    function zeichneListe(fokusIndex) {
+      liste.replaceChildren();
+      treffer.slice(0, sichtbar).forEach(function (a) { liste.appendChild(karte(a)); });
+      mehrZeile.hidden = sichtbar >= treffer.length;
+      if (!mehrZeile.hidden) mehr.textContent = 'Weitere anzeigen (' + (treffer.length - sichtbar) + ' weitere)';
+      if (typeof fokusIndex === 'number') {
+        var boxen = liste.querySelectorAll('input[type="checkbox"]');
+        if (boxen[fokusIndex]) boxen[fokusIndex].focus();
+      }
     }
+
+    function aktualisiereZaehler() {
+      var n = Object.keys(gewaehlt).length;
+      zaehler.textContent = n === 0 ? 'Noch kein Anbieter ausgewählt' : n + ' ausgewählt';
+      kontakt.setAttribute('aria-disabled', n === 0 ? 'true' : 'false');
+      if (n > 0) fehler.textContent = '';
+    }
+
+    function leeren() {
+      liste.replaceChildren();
+      leer.hidden = true;
+      aktionen.hidden = true;
+      mehrZeile.hidden = true;
+      intro.textContent = '';
+      quelle.hidden = true;
+    }
+
+    function zuruecksetzen() { gewaehlt = {}; schluessel = ''; sichtbar = SEITE; aktualisiereZaehler(); }
+
+    /* eing: { thema, themaTitel, ort, leistungen[] }; Ergebnis: Promise mit Trefferzahl */
+    function zeige(eing) {
+      leeren();
+      laedt.hidden = false;
+      return laden(opt.url).then(function () {
+        laedt.hidden = true;
+        fehler.textContent = '';
+        var ortText = eing.ort || 'Ihrer Nähe';
+        treffer = (ladeFehler || !daten || !eing.ort || !eing.thema) ? [] : L.filtere(daten.anbieter, eing, daten.leistungen);
+        var neu = [eing.thema, eing.ort, (eing.leistungen || []).join(',')].join('|');
+        if (neu !== schluessel) { gewaehlt = {}; sichtbar = SEITE; schluessel = neu; }
+        else {
+          var ids = {};
+          treffer.forEach(function (a) { ids[a.id] = true; });
+          Object.keys(gewaehlt).forEach(function (id) { if (!ids[id]) delete gewaehlt[id]; });
+        }
+        if (treffer.length) {
+          quelle.hidden = false;
+          quelleText.replaceChildren();
+          var q = quellenHinweis() + ' ';
+          if (!daten || daten.modus !== 'beispiel') q += L.HINWEIS_PREISE + ' ';
+          quelleText.appendChild(document.createTextNode(q));
+          var link = node('a', '', 'Angaben falsch oder Eintrag entfernen lassen?');
+          link.href = '/impressum/';
+          quelleText.appendChild(link);
+          intro.textContent = opt.introText ? opt.introText(treffer.length, eing, ortText)
+            : treffer.length + ' ' + wortAnbieter(treffer.length) + ' in ' + ortText + '.';
+          aktionen.hidden = false;
+          zeichneListe();
+          ansage(treffer.length + ' ' + wortAnbieter(treffer.length) + ' gefunden.');
+        } else {
+          if (opt.leerKasten) {
+            leerText.textContent = ladeFehler
+              ? 'Die Liste konnte gerade nicht geladen werden. Das ist kein Problem: Schicken Sie uns Ihre Anfrage, dann suchen wir persönlich für Sie.'
+              : 'In ' + ortText + (eing.themaTitel ? ' haben wir zu „' + eing.themaTitel + '“' : ' haben wir') +
+                ' noch keinen Anbieter in unserer Liste. Das ist kein Problem: Wir suchen persönlich für Sie. Schicken Sie uns einfach Ihre Anfrage.';
+            leer.hidden = false;
+          }
+          ansage('Keine Anbieter in der Liste. Wir suchen persönlich für Sie.');
+        }
+        aktualisiereZaehler();
+        return treffer.length;
+      });
+    }
+
+    liste.addEventListener('change', function (event) {
+      var box = event.target.closest('input[data-anbieter-id]');
+      if (!box) return;
+      var id = box.getAttribute('data-anbieter-id');
+      if (box.checked) gewaehlt[id] = true; else delete gewaehlt[id];
+      aktualisiereZaehler();
+    });
+    mehr.addEventListener('click', function () {
+      var alt = sichtbar;
+      sichtbar += SEITE;
+      zeichneListe(alt);
+      ansage(Math.min(sichtbar, treffer.length) + ' von ' + treffer.length + ' Anbietern werden angezeigt.');
+    });
+    kontakt.addEventListener('click', function () {
+      if (Object.keys(gewaehlt).length === 0) {
+        fehler.textContent = 'Bitte wählen Sie zuerst mindestens einen Anbieter aus (Kästchen „Auswählen“ an der Karte).';
+        return;
+      }
+      oeffneDialog(treffer.filter(function (a) { return gewaehlt[a.id]; }), kontakt, seitenname);
+    });
+
+    return { wurzel: wurzel, zeige: zeige, zuruecksetzen: zuruecksetzen };
   }
-
-  function aktualisiereZaehler() {
-    var n = Object.keys(gewaehlt).length;
-    el.zaehler.textContent = n === 0 ? 'Noch kein Anbieter ausgewählt' : n + ' ausgewählt';
-    el.kontakt.setAttribute('aria-disabled', n === 0 ? 'true' : 'false');
-    if (n > 0) el.fehler.textContent = '';
-  }
-
-  function zeigeSchritt() {
-    var eing = eingaben();
-    var neu = [eing.thema, eing.ort, eing.leistungen.join(',')].join('|');
-    var themaTitel = form.elements.thema && form.elements.thema.value
-      ? form.elements.thema.options[form.elements.thema.selectedIndex].text : '';
-    var ortText = eing.ort || 'Ihrer Nähe';
-    el.laedt.hidden = true;
-    el.fehler.textContent = '';
-    el.quelle.hidden = false;
-
-    var quelle = (daten && daten.modus === 'beispiel')
-      ? 'Beispieldaten: Namen und Nummern sind erfunden.'
-      : L.HINWEIS_QUELLE;
-    el.quelleText.textContent = quelle + ' ';
-    if (!daten || daten.modus !== 'beispiel') {
-      el.quelleText.appendChild(document.createTextNode(L.HINWEIS_PREISE + ' '));
-    }
-    var link = node('a', '', 'Angaben falsch oder Eintrag entfernen lassen?');
-    link.href = '/impressum/';
-    el.quelleText.appendChild(link);
-
-    if (ladeFehler || !daten) {
-      treffer = [];
-    } else {
-      treffer = L.filtere(daten.anbieter, eing, daten.leistungen);
-    }
-    if (neu !== schluessel) {      // Eingaben geändert: Auswahl zurücksetzen, ab Anfang zeigen
-      gewaehlt = {};
-      sichtbar = SEITE;
-      schluessel = neu;
-    } else {
-      var ids = {};
-      treffer.forEach(function (a) { ids[a.id] = true; });
-      Object.keys(gewaehlt).forEach(function (id) { if (!ids[id]) delete gewaehlt[id]; });
-    }
-
-    var hatListe = treffer.length > 0;
-    el.leer.hidden = hatListe;
-    el.aktionen.hidden = !hatListe;
-    el.liste.hidden = !hatListe;
-    if (hatListe) {
-      el.intro.textContent = treffer.length + ' ' + wortAnbieter(treffer.length) + ' für „' + themaTitel +
-        '“ in ' + ortText + '. Wählen Sie einen oder mehrere aus und lassen Sie sich die Kontaktdaten anzeigen.';
-      zeichneListe();
-      ansage(treffer.length + ' ' + wortAnbieter(treffer.length) + ' gefunden.');
-    } else {
-      el.liste.replaceChildren();
-      el.mehrZeile.hidden = true;
-      el.intro.textContent = '';
-      el.leerText.textContent = ladeFehler
-        ? 'Die Liste konnte gerade nicht geladen werden. Das ist kein Problem: Schicken Sie uns Ihre Anfrage, dann suchen wir persönlich für Sie.'
-        : 'In ' + ortText + (themaTitel ? ' haben wir zu „' + themaTitel + '“' : ' haben wir') +
-          ' noch keinen Anbieter in unserer Liste. Das ist kein Problem: Wir suchen persönlich für Sie. Schicken Sie uns einfach Ihre Anfrage.';
-      ansage('Keine Anbieter in der Liste. Wir suchen persönlich für Sie.');
-    }
-    aktualisiereZaehler();
-  }
-
-  form.addEventListener('schritte:wechsel', function (event) {
-    var aktiv = event.detail.schritt.indexOf(schritt) !== -1;
-    if (!aktiv) return;
-    el.laedt.hidden = false;
-    el.liste.replaceChildren();
-    el.leer.hidden = true;
-    el.aktionen.hidden = true;
-    el.mehrZeile.hidden = true;
-    laden().then(zeigeSchritt);
-  });
-
-  function zuruecksetzen() { gewaehlt = {}; schluessel = ''; sichtbar = SEITE; aktualisiereZaehler(); }
-  form.addEventListener('reset', zuruecksetzen);
-  form.addEventListener('schritte:start', zuruecksetzen);
-
-  el.liste.addEventListener('change', function (event) {
-    var box = event.target.closest('input[data-anbieter-id]');
-    if (!box) return;
-    var id = box.getAttribute('data-anbieter-id');
-    if (box.checked) gewaehlt[id] = true; else delete gewaehlt[id];
-    aktualisiereZaehler();
-  });
-
-  el.mehr.addEventListener('click', function () {
-    var alt = sichtbar;
-    sichtbar += SEITE;
-    zeichneListe(alt);
-    ansage(Math.min(sichtbar, treffer.length) + ' von ' + treffer.length + ' Anbietern werden angezeigt.');
-  });
-
-  el.persoenlich.addEventListener('click', function () {
-    form.dispatchEvent(new CustomEvent('schritte:weiter'));
-  });
 
   /* ---- Kontaktfenster (<dialog>) ---- */
-  var dialog = null;
-  var dialogTeile = null;
-  var vorherFokus = null;
-
   function baueDialog() {
     if (dialog) return;
     dialog = node('dialog', 'kontakt-dialog');
@@ -360,13 +361,11 @@
     if (ok) fertig(); else misslungen();
   }
 
-  function oeffneDialog() {
+  function oeffneDialog(auswahl, ausloeser, seitenname) {
     baueDialog();
-    var auswahl = treffer.filter(function (a) { return gewaehlt[a.id]; });
     var t = dialogTeile;
     t.hinweis.replaceChildren();
-    var quelle = (daten && daten.modus === 'beispiel') ? 'Beispieldaten: Namen und Nummern sind erfunden.' : L.HINWEIS_QUELLE;
-    t.hinweis.appendChild(node('p', '', quelle));
+    t.hinweis.appendChild(node('p', '', quellenHinweis()));
     var korrektur = node('a', '', 'Angaben falsch oder Eintrag entfernen lassen?');
     korrektur.href = '/impressum/';
     var korrekturZeile = node('p', 'no-print');
@@ -396,17 +395,50 @@
     }
     t.aktionen.appendChild(aktionKnopf('Text kopieren', null, function () { kopiere(text); }));
 
-    vorherFokus = el.kontakt;
+    vorherFokus = ausloeser;
     dialog.showModal();
     t.titel.focus();
     dialog.scrollTop = 0;
   }
 
-  el.kontakt.addEventListener('click', function () {
-    if (Object.keys(gewaehlt).length === 0) {
-      el.fehler.textContent = 'Bitte wählen Sie zuerst mindestens einen Anbieter aus (Kästchen „Auswählen“ an der Karte).';
-      return;
-    }
-    oeffneDialog();
-  });
+
+  /* ---- Formular-Schritt (Anfrage) ---- */
+  function initFormular() {
+    var form = document.getElementById('anfrage-formular');
+    var schritt = form && form.querySelector('[data-schritt-anbieter]');
+    var mount = schritt && schritt.querySelector('[data-anbieter-mount]');
+    if (!mount) return;
+    var baustein = baue({
+      url: schritt.getAttribute('data-anbieter-url'),
+      seitenname: schritt.getAttribute('data-seitenname'),
+      prefix: 'f-anb',
+      leerKasten: true,
+      introText: function (n, eing, ortText) {
+        return n + ' ' + wortAnbieter(n) + ' für „' + eing.themaTitel + '“ in ' + ortText +
+          '. Wählen Sie einen oder mehrere aus und lassen Sie sich die Kontaktdaten anzeigen.';
+      }
+    });
+    mount.appendChild(baustein.wurzel);
+    var persoenlich = schritt.querySelector('[data-anbieter-persoenlich]');
+
+    form.addEventListener('schritte:wechsel', function (event) {
+      if (event.detail.schritt.indexOf(schritt) === -1) return;
+      var sel = form.elements.thema;
+      baustein.zeige({
+        thema: sel ? sel.value : '',
+        themaTitel: sel && sel.value ? sel.options[sel.selectedIndex].text : '',
+        ort: form.elements.ort ? form.elements.ort.value.trim() : '',
+        leistungen: Array.prototype.filter.call(form.querySelectorAll('input[name="leistungen"]:checked'),
+          function (i) { return !i.disabled; }).map(function (i) { return i.value; })
+      });
+    });
+    form.addEventListener('reset', baustein.zuruecksetzen);
+    form.addEventListener('schritte:start', baustein.zuruecksetzen);
+    if (persoenlich) persoenlich.addEventListener('click', function () {
+      form.dispatchEvent(new CustomEvent('schritte:weiter'));
+    });
+  }
+
+  window.AnbieterListe = Object.freeze({ baue: baue });
+  initFormular();
 })();

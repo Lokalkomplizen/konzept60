@@ -4,7 +4,8 @@
    - Daten (Themen, Städte, Ratgeber-Beiträge) kommen als JSON im Attribut data-assistent
      (erzeugt von tools/build.py → assistent_data()); kein Inline-Skript, kein Nachladen.
    - Ohne JS zeigt der Abschnitt stattdessen die drei Säulen-Links (progressive enhancement).
-   - Es wird NICHTS gespeichert oder gesendet: kein Storage, keine Cookies, kein fetch.
+   - Es wird NICHTS gespeichert oder gesendet: kein Storage, keine Cookies. Einziger Abruf: lesend die statische
+     Anbieterliste (anbieter.js, nur im Ergebnis „praktisch/Angehörige“) für die Trefferliste unter dem Ergebnistext.
      Das Ergebnis ist nur ein Link auf das vorausgefüllte Anfrageformular
      (?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>#anfrage), das main.js (2.) auswertet.
    - Barrierearm: echte Radio-Buttons in fieldset/legend, Fokus beim Schrittwechsel auf die
@@ -256,6 +257,7 @@
     var extra = null;
     var main = null;
     var side = [];
+    var treffer = null;   // nur praktisch/Angehörige: Trefferliste unter dem Ergebnistext
 
     if (ST.ziel === 'praktisch' || ST.ziel === 'angehoerige') {
       var t = themaById(ST.thema);
@@ -264,15 +266,17 @@
         ? 'Sie suchen Unterstützung für Ihre Angehörigen'
         : 'Sie suchen praktische Unterstützung') +
         ' beim Thema „' + t.titel + '“' + (ST.ort ? ' in ' + ST.ort : '') + '.';
-      extra = el('p', { 'class': 'assistent__extra',
-        text: 'Jemand aus unserem Team liest Ihre Anfrage persönlich. Ihre Auswahl übernehmen wir ins Formular – dort können Sie alles noch ändern oder ergänzen.' });
+      extra = el('p', { 'class': 'assistent__extra' });
+      var extraRest = '';
+      if (ST.andereStadt) {
+        extraRest = ' Ihre Stadt gehört noch nicht zu unseren ersten Städten (' + listNames(data.orte) +
+          '). Die Anfrage können Sie trotzdem stellen.';
+      }
+      extra.textContent = 'Wir suchen passende Anbieter für Sie …';
+      treffer = { thema: t, ort: ST.ort, extra: extra, rest: extraRest };
       var href = '/?thema=' + encodeURIComponent(t.slug) + '&wer=' + wer +
         (ST.ort ? '&ort=' + encodeURIComponent(ST.ort) : '') + '#anfrage';
       main = { href: href, label: 'Anfrage mit diesen Angaben stellen' };
-      if (ST.andereStadt) {
-        extra.textContent += ' Ihre Stadt gehört noch nicht zu unseren ersten Städten (' + listNames(data.orte) +
-          '). Die Anfrage können Sie trotzdem stellen.';
-      }
       side.push({ href: t.url, label: 'Mehr zum Thema „' + t.titel + '“' });
       if (t.ratgeber && t.ratgeber[0]) side.push({ href: t.ratgeber[0].url, label: 'Ratgeber: ' + t.ratgeber[0].titel });
     } else if (ST.ziel === 'informieren') {
@@ -302,9 +306,42 @@
     wrap.appendChild(summary);
     if (extra) wrap.appendChild(extra);
 
+    var liste = null;
+    if (treffer && window.AnbieterListe) {
+      liste = window.AnbieterListe.baue({
+        url: root.getAttribute('data-anbieter-url'),
+        seitenname: root.getAttribute('data-seitenname'),
+        prefix: 'a-anb',
+        leerKasten: false,
+        introText: function (n) { return n + (n === 1 ? ' passender Anbieter gefunden.' : ' passende Anbieter gefunden.'); }
+      });
+      wrap.appendChild(liste.wurzel);
+    }
+
     var mainLink = el('a', { href: main.href, 'class': 'btn btn--primary btn--block-mobile' }, [main.label]);
     mainLink.appendChild(icon('arrow'));
-    wrap.appendChild(el('p', { 'class': 'assistent__main' }, [mainLink]));
+    var mainWrap = el('div', { 'class': 'assistent__main' });
+    wrap.appendChild(mainWrap);
+    function setzeMain(persoenlich) {
+      mainWrap.replaceChildren();
+      if (persoenlich) {
+        mainWrap.appendChild(el('p', { 'class': 'assistent__persoenlich', text: 'Lieber persönlich vermitteln lassen? Dann schicken Sie uns Ihre Anfrage. Wir suchen für Sie, kostenlos und ohne Verpflichtung.' }));
+      }
+      mainLink.firstChild.nodeValue = persoenlich ? 'Lieber persönlich vermitteln lassen' : main.label;
+      mainWrap.appendChild(mainLink);
+    }
+    setzeMain(false);
+    if (treffer && liste) {
+      liste.zeige({ thema: treffer.thema.slug, themaTitel: treffer.thema.titel, ort: treffer.ort || '', leistungen: [] })
+        .then(function (n) {
+          treffer.extra.textContent = n > 0
+            ? 'Diese Anbieter passen zu Ihrer Suche. Wählen Sie einen oder mehrere aus und lassen Sie sich die Kontaktdaten anzeigen. Oder lassen Sie uns persönlich suchen: Ihre Angaben übernehmen wir ins Formular, dort können Sie alles noch ändern.' + treffer.rest
+            : 'Jemand aus unserem Team liest Ihre Anfrage persönlich und sucht für Sie. Ihre Auswahl übernehmen wir ins Formular – dort können Sie alles noch ändern oder ergänzen.' + treffer.rest;
+          setzeMain(n > 0);
+        });
+    } else if (treffer) {
+      treffer.extra.textContent = 'Jemand aus unserem Team liest Ihre Anfrage persönlich. Ihre Auswahl übernehmen wir ins Formular – dort können Sie alles noch ändern oder ergänzen.' + treffer.rest;
+    }
 
     if (side.length) {
       var ul = el('ul', { 'class': 'assistent__links', 'aria-label': 'Weitere passende Angebote' });

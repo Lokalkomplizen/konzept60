@@ -67,7 +67,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
        Ohne JS: nur die drei Säulen-Links. Es wird nichts gespeichert oder gesendet – das Ergebnis
        ist ein Link auf das vorausgefüllte Anfrageformular (?thema=…&wer=…&ort=…#anfrage).
        ====================================================================== -->
-  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent="{{assistent_daten}}">
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent="{{assistent_daten}}" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
     <div class="container">
       <div class="section__header">
         <span class="section__eyebrow">Assistent</span>
@@ -313,27 +313,8 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
           <section class="form__section anbieter" data-schritt data-schritt-anbieter data-eigene-navigation data-nur-js hidden
                    aria-labelledby="anbieter-titel" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
             <h4 class="form__legend" id="anbieter-titel"><span class="form__legend-nr" aria-hidden="true">4</span> Passende Anbieter in Ihrer Nähe</h4>
-            <p class="anbieter__intro" data-anbieter-intro></p>
-            <div class="notice notice--light anbieter__quelle" data-anbieter-quelle hidden>
-              <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-              <p data-anbieter-quelle-text></p>
-            </div>
-            <p class="visually-hidden" role="status" aria-live="polite" data-anbieter-status></p>
-            <p class="anbieter__laedt" data-anbieter-laedt>Passende Anbieter werden gesucht …</p>
-            <ul class="anbieter__liste" data-anbieter-liste></ul>
-            <p class="anbieter__mehr" data-anbieter-mehr-zeile hidden>
-              <button class="btn btn--secondary" type="button" data-anbieter-mehr>Weitere anzeigen</button>
-            </p>
-            <div class="anbieter__leer" data-anbieter-leer hidden>
-              <h5 class="anbieter__leer-titel">Dafür suchen wir persönlich für Sie</h5>
-              <p data-anbieter-leer-text></p>
-            </div>
-            <div class="anbieter__aktionen" data-anbieter-aktionen hidden>
-              <p class="anbieter__zaehler" role="status" aria-live="polite" data-anbieter-zaehler>Noch kein Anbieter ausgewählt</p>
-              <p class="form-field__error anbieter__fehler" role="alert" data-anbieter-fehler></p>
-              <button class="btn btn--secondary btn--block" type="button" aria-disabled="true" data-anbieter-kontakt>
-                <svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg> Kontaktdaten anzeigen</button>
-            </div>
+            <!-- Liste, Zähler und Kontakt-Button erzeugt assets/js/anbieter.js (AnbieterListe.baue) -->
+            <div data-anbieter-mount></div>
             <div class="anbieter__persoenlich">
               <p><strong>Lieber persönlich vermitteln lassen?</strong> Dann schicken Sie uns Ihre Anfrage. Wir suchen für Sie, kostenlos und ohne Verpflichtung.</p>
               <button class="btn btn--primary btn--block" type="button" data-anbieter-persoenlich>

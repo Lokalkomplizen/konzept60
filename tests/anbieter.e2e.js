@@ -21,7 +21,7 @@ async function bisAnbieter(page, thema, ort, plz) {
   await page.fill("#f-ort", ort);
   await page.click(".schritte__weiter");
   await page.waitForSelector("[data-schritt-anbieter]:not(.is-schritt-inaktiv)");
-  await page.waitForSelector("[data-anbieter-laedt][hidden]", { state: "attached" });
+  await page.waitForSelector("[data-schritt-anbieter] .anbieter__laedt[hidden]", { state: "attached" });
 }
 
 async function keinHorizontalesScrollen(page, label) {
@@ -43,25 +43,25 @@ async function keinHorizontalesScrollen(page, label) {
     assert.equal(stand.trim(), "Schritt 4 von 7");
     assert.equal(await page.locator(".schritte__weiter").isHidden(), true, "generisches Weiter im Anbieter-Schritt verborgen");
     assert.equal(await page.locator(".anbieter-karte").count(), 6, "zunächst 6 Karten");
-    assert.match(await page.textContent("[data-anbieter-quelle-text]"), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
-    assert.equal(await page.locator("[data-anbieter-kontakt]").getAttribute("aria-disabled"), "true");
-    await page.dispatchEvent("[data-anbieter-kontakt]", "click");
-    assert.match(await page.textContent("[data-anbieter-fehler]"), /mindestens einen Anbieter/);
+    assert.match(await page.textContent("[data-schritt-anbieter] .anbieter__quelle p"), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
+    assert.equal(await page.locator("[data-schritt-anbieter] .anbieter__aktionen button").getAttribute("aria-disabled"), "true");
+    await page.dispatchEvent("[data-schritt-anbieter] .anbieter__aktionen button", "click");
+    assert.match(await page.textContent("[data-schritt-anbieter] .anbieter__fehler"), /mindestens einen Anbieter/);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/anbieter-liste-${name}.png`, fullPage: false });
 
-    await page.click("[data-anbieter-mehr]");
+    await page.click("[data-schritt-anbieter] .anbieter__mehr button");
     assert.equal(await page.locator(".anbieter-karte").count(), 12, "Weitere anzeigen: 12 Karten");
 
     // Mehrfachauswahl über die ganze Karte (label)
     await page.locator(".anbieter-karte").nth(0).click();
     await page.locator(".anbieter-karte").nth(2).click();
-    assert.equal((await page.textContent("[data-anbieter-zaehler]")).trim(), "2 ausgewählt");
+    assert.equal((await page.textContent("[data-schritt-anbieter] .anbieter__zaehler")).trim(), "2 ausgewählt");
     await keinHorizontalesScrollen(page, name + " Liste");
     if (SHOTS) {
       await page.locator("[data-schritt-anbieter]").screenshot({ path: `${SHOTS}/anbieter-auswahl-${name}.png` });
     }
 
-    await page.click("[data-anbieter-kontakt]");
+    await page.click("[data-schritt-anbieter] .anbieter__aktionen button");
     const dlg = page.locator("dialog.kontakt-dialog");
     await dlg.waitFor({ state: "visible" });
     assert.equal(await page.evaluate(() => document.activeElement.id), "kontakt-dialog-titel", "Fokus auf Überschrift");
@@ -86,7 +86,7 @@ async function keinHorizontalesScrollen(page, label) {
     // Esc schließt, Fokus zurück
     await page.keyboard.press("Escape");
     await dlg.waitFor({ state: "hidden" });
-    assert.equal(await page.evaluate(() => document.activeElement.hasAttribute("data-anbieter-kontakt")), true, "Fokus zurück");
+    assert.equal(await page.evaluate(() => !!document.activeElement.closest(".anbieter__aktionen")), true, "Fokus zurück");
 
     // persönlicher Weg -> Kontaktdaten (Schritt 5)
     await page.click("[data-anbieter-persoenlich]");
@@ -101,8 +101,8 @@ async function keinHorizontalesScrollen(page, label) {
   page.on("console", (m) => { if (m.type() === "error") fehler.push(`wesel: ${m.text()}`); });
   await bisAnbieter(page, "pflege-betreuung", "Wesel", "46483");
   assert.equal(await page.locator(".anbieter-karte").count(), 0);
-  assert.equal(await page.locator("[data-anbieter-leer]").isVisible(), true);
-  assert.match(await page.textContent("[data-anbieter-leer-text]"), /suchen persönlich/);
+  assert.equal(await page.locator("[data-schritt-anbieter] .anbieter__leer").isVisible(), true);
+  assert.match(await page.textContent("[data-schritt-anbieter] .anbieter__leer p"), /suchen persönlich/);
   await keinHorizontalesScrollen(page, "Wesel");
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/anbieter-leer-mobil.png` });
   await ctx.close();
@@ -118,4 +118,63 @@ async function keinHorizontalesScrollen(page, label) {
   await browser.close();
   assert.deepEqual(fehler, [], "Konsolenfehler: " + fehler.join("; "));
   console.log("OK: Anbieter-Ablauf, Auswahl, Dialog, Druck, Leerzustand, ohne JS, mobil + desktop");
+})().catch((e) => { console.error(e); process.exit(1); });
+
+// ---- Assistent: Ergebnis mit Trefferliste (Haushalt und Reinigung, Düsseldorf) ----
+(async () => {
+  const browser = await chromium.launch();
+  const fehler = [];
+  for (const [name, vp] of [["mobil", { width: 390, height: 844 }], ["desktop", { width: 1440, height: 900 }]]) {
+    const ctx = await browser.newContext({ viewport: vp, deviceScaleFactor: 2 });
+    const page = await ctx.newPage();
+    page.on("console", (m) => { if (m.type() === "error") fehler.push(`assistent ${name}: ${m.text()}`); });
+    page.on("pageerror", (e) => fehler.push(`assistent ${name}: ${e.message}`));
+    await page.goto(BASE + "/");
+    const app = page.locator("[data-assistent-app]");
+    await app.getByLabel("Praktische Hilfe", { exact: false }).first().check().catch(async () => {
+      await app.locator("input[name=assistent-ziel]").first().check();
+    });
+    await app.getByRole("button", { name: "Weiter" }).click();
+    await app.getByLabel("Haushalt und Reinigung").check();
+    await app.getByRole("button", { name: "Weiter" }).click();
+    await app.getByLabel("Düsseldorf", { exact: true }).check();
+    await app.getByRole("button", { name: "Ergebnis anzeigen" }).click();
+    assert.equal(await page.evaluate(() => document.activeElement.textContent), "Das haben wir für Sie gefunden", "Fokus auf Ergebnis-Überschrift");
+    await app.locator(".anbieter-karte").first().waitFor();
+    const karten = await app.locator(".anbieter-karte").count();
+    assert.ok(karten >= 2 && karten <= 6, "Karten im Assistenten: " + karten);
+    assert.match(await app.textContent(), /Diese Anbieter passen zu Ihrer Suche/);
+    assert.match(await app.textContent(), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
+    assert.equal(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).count(), 1);
+    assert.match(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).getAttribute("href"), /thema=haushalt-reinigung.*ort=D%C3%BCsseldorf#anfrage/);
+    await app.locator(".anbieter-karte").nth(0).click();
+    await app.locator(".anbieter-karte").nth(1).click();
+    assert.equal((await app.locator(".anbieter__zaehler").textContent()).trim(), "2 ausgewählt");
+    await keinHorizontalesScrollen(page, "Assistent " + name);
+    if (SHOTS) await page.locator("#assistent").screenshot({ path: `${SHOTS}/assistent-treffer-${name}.png` });
+    await app.getByRole("button", { name: "Kontaktdaten anzeigen" }).click();
+    const dlg = page.locator("dialog.kontakt-dialog");
+    await dlg.waitFor({ state: "visible" });
+    assert.equal(await page.locator("dialog.kontakt-dialog").count(), 1, "nur ein Dialog");
+    assert.equal(await dlg.locator(".kontakt").count(), 2);
+    await keinHorizontalesScrollen(page, "Assistent-Dialog " + name);
+    if (SHOTS && name === "mobil") await page.screenshot({ path: `${SHOTS}/assistent-dialog-mobil.png` });
+    await page.keyboard.press("Escape");
+    await dlg.waitFor({ state: "hidden" });
+
+    // Leerzustand: Wesel -> keine Liste, direkter Weg zur Anfrage
+    await app.getByRole("button", { name: "Zurück" }).click();
+    await app.getByLabel("Wesel", { exact: true }).check().catch(() => {});
+    if (await app.getByLabel("Wesel", { exact: true }).count()) {
+      await app.getByRole("button", { name: "Ergebnis anzeigen" }).click();
+      await page.waitForFunction(() => /sucht für Sie/.test(document.querySelector("[data-assistent-app]").textContent));
+      assert.equal(await app.locator(".anbieter-karte").count(), 0);
+      assert.equal(await app.locator(".anbieter__leer").isVisible(), false, "kein leerer Kasten");
+      assert.equal(await app.getByRole("link", { name: "Anfrage mit diesen Angaben stellen" }).count(), 1);
+    }
+    await ctx.close();
+  }
+  await browser.close();
+  assert.deepEqual(fehler, [], "Konsolenfehler: " + fehler.join("; "));
+  console.log("OK: Assistent-Ergebnis mit Trefferliste, Dialog, Leerzustand, mobil + desktop");
 })().catch((e) => { console.error(e); process.exit(1); });

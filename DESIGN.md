@@ -31,6 +31,18 @@ Quelle der Wahrheit für Werte: `assets/css/tokens.css`. Hier nie abweichende We
 7. **Dezent:** Ruhige Animationen, nur einmalig, abschaltbar.
 8. **Persönlich:** Vermittlung wird von einem Team geprüft, nicht automatisch.
 
+**Markenpersönlichkeit:** modern, hochwertig, warm, vertrauenswürdig (aus der Projektbeschreibung). Die Seite soll sich anfühlen wie ein freundlicher, kompetenter Mensch aus der Nachbarschaft, der zuhört und sich kümmert. Nicht wie ein Amt, ein Callcenter oder ein Verkaufsportal.
+
+**Emotionales Ziel:** Wer die Seite verlässt, fühlt sich ernst genommen und entlastet, nicht bevormundet oder bedrängt. Angehörige sollen das Gefühl haben, die Sache ist in guten Händen.
+
+**Anti-Referenzen (so soll es nicht aussehen):**
+
+- **Behördenportal:** graue Formularwüsten, Hoheitszeichen, Paragrafensprache.
+- **Pflegedienst-Prospekt:** Händchen halten, Rollstuhl als Symbol, Mitleidsoptik, Pastell-Blau-Grün.
+- **Vergleichs- oder Branchenportal:** Anbieterlisten, Sternebewertungen, Preis-Badges, "Jetzt vergleichen", Werbebanner. Wir vermitteln persönlich, wir listen nicht.
+- **Seniorenmarkt-Klischee:** übergroße Comic-Icons, Kinderbuchfarben, "Oma und Opa"-Ton. Groß heißt nicht kindlich.
+- **Generische Startup-Landingpage:** Verläufe, Glas-Effekte, Neon-Akzente, englische Schlagworte, Dauer-Animationen.
+
 ## 3. Farben
 
 Palette: tiefes Navy, Weiß, dezente Naturtöne (Sand, Salbei) und ein einziger warmer Akzent (Terrakotta). Alle Werte aus `tokens.css`.
@@ -323,7 +335,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 ## 10. Tonalität und Texte
 
 - **Sprache:** einfaches, warmes, nicht technisches Deutsch. Ansprache mit "Sie". Kurze Sätze, keine Fachwörter ohne Erklärung.
-- **Vermittlung ist persönlich:** Das Team prüft jede Anfrage. Keine Erfolgsgarantie. Keine Zusage einer Antwortzeit (nicht "so schnell wie möglich").
+- **Vermittlung ist persönlich:** Das Team prüft jede Anfrage. Keine Erfolgsgarantie. Keine konkrete Antwortfrist (kein "innerhalb von 24 Stunden"); stattdessen "so schnell wie möglich" (Entscheidung Tommy, 20.11.2026).
 - **Kontakt:** keine eigene Telefonnummer auf der Seite, keine Aufforderung, uns anzurufen. Ein Rückruf durch uns darf angeboten werden. Telefon **oder** E-Mail genügt im Formular.
 - **Anbieterprofile** sind nicht öffentlich.
 - **Ratgeber:** ohne Autor, mit sichtbarem "Stand"; Förderbeträge immer mit Quelle. Inhalte gehen vom Rechtsstand 2027 aus.
@@ -352,7 +364,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - Keine zusätzlichen Schriften, keine Google-Fonts oder andere CDNs.
 - Keine Frameworks, kein Elementor, keine unnötigen Plugins.
 - Kein Inline-CSS und kein Inline-JS (strikte CSP, nur JSON-LD inline).
-- Keine eigene Telefonnummer, kein "Rufen Sie uns an", keine Antwortzeit-Versprechen.
+- Keine eigene Telefonnummer, kein "Rufen Sie uns an", keine konkrete Antwortfrist ("so schnell wie möglich" ist erlaubt).
 - Keine Pflege-Klischeebilder, keine Hoheitszeichen.
 - Kein Autoplay, keine Dauer-Animation.
 - Keine Schatten außer `--shadow-card`, keine Verläufe, keine Glas-Effekte.

@@ -3067,3 +3067,7 @@ select.form-field__input {
 .kontakt-dialog__meldung { min-height: 1.5em; margin: 0 0 var(--space-m); font-weight: 700; color: var(--color-success); }
 .kontakt-dialog__schliessen { width: 100%; min-height: 3.25rem; }
 body:has(dialog[open]) { overflow: hidden; }
+
+/* Assistent-Ergebnis: Trefferliste (anbieter.js) und persönlicher Weg darunter */
+.assistent__result .anbieter-liste-baustein { margin: var(--space-l) 0; }
+.assistent__persoenlich { margin: 0 0 var(--space-s); }

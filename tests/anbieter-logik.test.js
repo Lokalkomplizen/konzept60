@@ -51,3 +51,8 @@ test("Textfassung enthält alle Kontakte und beide Hinweise; Links kodiert", () 
   assert.ok(L.mailtoLink("Betreff & mehr", t).startsWith("mailto:?subject=Betreff%20%26%20mehr&body="));
   assert.equal(decodeURIComponent(L.whatsappLink("a b\nc").split("text=")[1]), "a b\nc");
 });
+
+test("Google-Maps-Link: Name + Stadt kodiert, keine Bewertungsdaten", () => {
+  const u = L.googleMapsLink({ name: "Pflege & Co", stadt: "Mülheim an der Ruhr" });
+  assert.equal(u, "https://www.google.com/maps/search/?api=1&query=Pflege%20%26%20Co%20M%C3%BClheim%20an%20der%20Ruhr");
+});

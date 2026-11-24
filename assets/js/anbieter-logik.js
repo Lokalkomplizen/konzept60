@@ -72,6 +72,11 @@
     return ziffern.replace(/\+/g, '').length >= 5 ? 'tel:' + ziffern : '';
   }
 
+  /* Link zur Google-Maps-Suche (keine Bewertungen/Sterne kopieren – nur verlinken) */
+  function googleMapsLink(a) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(String(a.name || '') + ' ' + String(a.stadt || ''));
+  }
+
   function websiteAnzeige(url) {
     return String(url || '').replace(/^https?:\/\//i, '').replace(/\/$/, '');
   }
@@ -107,6 +112,7 @@
     filtere: filtere,
     telefonErste: telefonErste,
     telLink: telLink,
+    googleMapsLink: googleMapsLink,
     websiteAnzeige: websiteAnzeige,
     kontaktText: kontaktText,
     mailtoLink: mailtoLink,

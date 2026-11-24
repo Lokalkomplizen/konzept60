@@ -2951,7 +2951,6 @@ select.form-field__input {
 .anbieter-karte {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: var(--space-s);
   width: 100%;
   padding: var(--space-m);
@@ -2959,18 +2958,13 @@ select.form-field__input {
   border-radius: var(--radius-m);
   background: var(--color-white);
   box-shadow: var(--shadow-card);
-  cursor: pointer;
 }
-.anbieter-karte:hover { border-color: var(--color-navy-800); }
 .anbieter-karte:has(input:checked) {
   border-color: var(--color-navy-800);
   background: var(--color-navy-100);
 }
-.anbieter-karte:has(input:focus-visible) {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
-}
 .anbieter-karte__inhalt, .anbieter-karte__info { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.anbieter-karte__inhalt { flex: 1 1 auto; }
 .anbieter-karte__name {
   font-weight: 700;
   font-size: var(--font-size-h3);
@@ -2986,14 +2980,29 @@ select.form-field__input {
 .anbieter-karte__meta { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
 .anbieter-karte__passt { font-size: var(--font-size-sm); font-weight: 700; color: var(--color-sage-700); }
 .anbieter-karte__kasse { align-self: flex-start; font-size: var(--font-size-sm); }
+.anbieter-karte__anruf { width: 100%; min-height: 3.25rem; }
+.anbieter-karte__google, .kontakt__google {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  font-size: var(--font-size-sm);
+}
 .anbieter-karte__wahl {
   display: flex;
   align-items: center;
   gap: var(--space-s);
-  min-height: var(--touch-min);
-  padding-top: var(--space-s);
-  border-top: 1px solid var(--color-sand-300);
+  min-height: 3.25rem;
+  padding: var(--space-xs) var(--space-s);
+  border: 2px solid var(--color-border-input);
+  border-radius: var(--radius-s);
+  background: var(--color-white);
   font-weight: 700;
+  cursor: pointer;
+}
+.anbieter-karte__wahl:hover { border-color: var(--color-navy-800); }
+.anbieter-karte__wahl:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
 }
 .anbieter-karte__wahl input {
   flex-shrink: 0;
@@ -3071,3 +3080,30 @@ body:has(dialog[open]) { overflow: hidden; }
 /* Assistent-Ergebnis: Trefferliste (anbieter.js) und persönlicher Weg darunter */
 .assistent__result .anbieter-liste-baustein { margin: var(--space-l) 0; }
 .assistent__persoenlich { margin: 0 0 var(--space-s); }
+
+/* Assistent: Antwort-Karten als <button> (ein Tipp = Auswahl + weiter) */
+.choice-card--tap {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  appearance: none;
+}
+.choice-card--tap::before { display: none; }
+.choice-card--tap[aria-pressed="true"] {
+  border-color: var(--color-navy-800);
+  background: var(--color-navy-800);
+  color: var(--color-white);
+}
+.choice-card--tap[aria-pressed="true"]::before {
+  display: grid;
+  content: "\2713";
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-navy-800);
+}
+.choice-card--tap[aria-pressed="true"] .choice-card__hint { color: var(--color-on-navy); }
+.choice-card--tap:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800);
+}

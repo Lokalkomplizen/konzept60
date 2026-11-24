@@ -247,6 +247,18 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 - Fehler: `.form-summary` mit Sprunglinks, Fokus aufs erste Fehlerfeld, Fehler je Feld über `aria-describedby`. Erfolg: `.form-success`.
 - Einwilligungen getrennt: Pflicht (Bearbeitung) einzeln, Newsletter freiwillig und nicht vorausgewählt. Rückruf nur als Wunsch, Rückruf erfolgt durch uns.
 
+### 6.4a Schritt-Formulare (`assets/js/schritte.js`)
+
+Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind Schritt-für-Schritt-Formulare: je Schritt eine Frage oder kleine Gruppe (je 5 Schritte plus Versand-Schritt).
+
+- **Deklarativ:** `form[data-schritte]`, Schritte `[data-schritt]` (meist `.form__section`; gleicher Wert = derselbe Schritt, z. B. Betrieb/Privat), letzter Schritt `[data-schritt-versand]` (ohne JS `hidden`). Bestätigung: `data-schritte-erfolg="<id>"` (`.form-success`).
+- **Kopf** `.schritte__kopf`: „Schritt 2 von 6“ (`.schritte__stand`, Eyebrow-Stil) plus Segmentbalken `.schritte__balken` (Navy = erledigt/aktuell, Sand-300 = offen; Information steht immer auch im Text).
+- **Navigation** `.schritte__nav`: „Zurück“ (`.btn--secondary`) links, „Weiter“ (`.btn--primary`) rechts, je mind. 52px hoch; mobil nebeneinander je halbe Breite. Enter in einem Feld = Weiter.
+- **Prüfung je Schritt** mit dem bestehenden Baustein (main.js 4.): nur Felder des aktuellen Schritts, `.form-summary`, Fokus aufs erste Fehlerfeld. Beim Wechsel Fokus auf die Schritt-Überschrift, Ansage per `role="status"`.
+- **Versand-Schritt** `.versand`: Zusammenfassung (`.versand__zusammenfassung`, `dl`), darunter zwei gleichwertige Wege untereinander (`.versand__weg` mit Navy-Button `.versand__btn`): „Per E-Mail senden“ (mailto) und „Per WhatsApp senden“ (wa.me, neues Fenster). Datenschutz-Hinweis `.versand__datenschutz` direkt bei WhatsApp. Empfänger nur in `api.js` (`KONTAKT`), die Nummer erscheint nie als Text.
+- Danach `.form-success`: „Ihre Nachricht wurde in … geöffnet. Bitte tippen Sie dort noch auf „Senden“.“ Ohne Antwortzeit; Link „Anderen Weg zum Senden wählen“.
+- **Ohne JS:** ganzes Formular sichtbar, normales Absenden. Kein Storage. Bewegung nur über `--transition`.
+
 ### 6.5 Header und Navigation
 
 - `.site-header`: weiß, 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt nur einen Hinweistext.
@@ -384,7 +396,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 | `assets/css/components.css` | BEM-Komponenten (ca. 77 KB; gezielt per `grep` suchen) |
 | `assets/css/print.css` | Druckansicht (nur `media="print"`) |
 | `assets/fonts/` | selbst gehostete WOFF2-Dateien |
-| `assets/js/` | `main.js`, `no-js.js`, `api.js`, `assistent.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
+| `assets/js/` | `main.js`, `no-js.js`, `api.js` (Versandwege, `KONTAKT`), `schritte.js` (Schritt-Formulare), `assistent.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
 | `templates/`, `partials/`, `data/`, `content/ratgeber/` | Quellen; HTML wird per `python3 tools/build.py` generiert |
 | `README.md` | Struktur, Build, WordPress-Mapping |
 

@@ -1,10 +1,15 @@
 /* ==========================================================================
-   Konzept 60+ – api.js: Schnittstelle zum (späteren) Backend – im Prototyp SIMULIERT
+   Konzept 60+ – api.js: alle Wege, auf denen Formulardaten die Seite verlassen
    --------------------------------------------------------------------------
-   !!! PROTOTYP: Hier wird NICHTS gesendet. Kein fetch, kein XMLHttpRequest, kein Beacon,
-   !!! keine Speicherung (kein Storage, keine Cookies). Die Funktion löst nur nach kurzer
-   !!! Zeit auf, damit die Oberfläche ein realistisches „Wird übermittelt …“ zeigen kann.
+   1. Versandwege der Schritt-Formulare (AKTIV): E-Mail (mailto:) und WhatsApp (wa.me).
+      Die Seite baut nur einen Link mit vorbefülltem Text; gesendet wird erst, wenn die
+      Person im E-Mail-Programm bzw. in WhatsApp selbst auf „Senden“ tippt. Die Empfänger
+      stehen NUR hier in KONTAKT. Genutzt von assets/js/schritte.js (Versand-Schritt).
+      Projektregel: Die WhatsApp-Nummer erscheint nie als sichtbarer Text auf der Seite.
 
+   2. Späteres Backend (im Prototyp SIMULIERT, derzeit nicht aufgerufen):
+   !!! Hier wird NICHTS gesendet. Kein fetch, kein XMLHttpRequest, kein Beacon,
+   !!! keine Speicherung (kein Storage, keine Cookies).
    Späteres Ziel (WordPress): REST-Endpunkt
        POST /wp-json/wirhelfen/v1/anfragen        (Content-Type: application/json)
    - legt einen Beitrag im Custom Post Type `anfrage` an (nicht öffentlich: public => false)
@@ -13,8 +18,9 @@
    - Eingangsbestätigung per wp_mail() an payload.email – nur wenn eine E-Mail angegeben wurde
    - Antwort 201 { "ok": true }  |  Fehler 4xx/5xx { "ok": false, "fehler": "…" }
    - Serverseitig: Nonce/Spam-Schutz, Sanitizing, Zeitstempel der Einwilligung
-   Das Formular (main.js, 5.) ruft nur WirHelfenAPI.sendeAnfrage(payload) auf – beim
-   Umstieg wird ausschließlich diese Datei ersetzt (fetch statt Simulation).
+   Die Nutzlast-Schemata unten (AnfragePayload, VeranstaltungPayload) beschreiben die Felder,
+   die main.js heute für die Zusammenfassung im Versand-Schritt sammelt. Beim Umstieg auf
+   das Backend wird nur diese Datei angepasst (fetch statt Simulation).
    ========================================================================== */
 (function (root) {
   'use strict';
@@ -48,6 +54,31 @@
    */
 
   var SIMULATIONSDAUER_MS = 900;
+
+  /* ---- 1. Versandwege ------------------------------------------------------ */
+
+  // Platzhalter, vor Livegang ersetzen! Einzige Stelle für die Empfänger.
+  // whatsapp: internationale Nummer nur aus Ziffern, ohne +, ohne führende 0 (Format für wa.me).
+  var KONTAKT = Object.freeze({ email: 'hallo@example.org', whatsapp: '490000000000' });
+
+  /**
+   * Baut die Versand-Links mit vorbefülltem Betreff und Text.
+   * @param {string} betreff
+   * @param {string} text  Zeilen mit \n getrennt
+   * @returns {{email: string, whatsapp: string}}
+   */
+  function versandLinks(betreff, text) {
+    betreff = String(betreff || '');
+    text = String(text || '');
+    // mailto (RFC 6068): Zeilenumbrüche als CRLF, alles mit encodeURIComponent kodiert
+    var mailText = text.replace(/\r?\n/g, '\r\n');
+    return {
+      email: 'mailto:' + KONTAKT.email + '?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(mailText),
+      whatsapp: 'https://wa.me/' + KONTAKT.whatsapp + '?text=' + encodeURIComponent(betreff + '\n\n' + text)
+    };
+  }
+
+  /* ---- 2. Späteres Backend (simuliert) ------------------------------------- */
 
   /**
    * Sendet eine Anfrage (SIMULIERT – es verlässt keine Information das Gerät).
@@ -116,5 +147,11 @@
     });
   }
 
-  root.WirHelfenAPI = Object.freeze({ sendeAnfrage: sendeAnfrage, veranstaltungMelden: veranstaltungMelden });
-})(window);
+  root.WirHelfenAPI = Object.freeze({
+    versandLinks: versandLinks,
+    sendeAnfrage: sendeAnfrage,
+    veranstaltungMelden: veranstaltungMelden
+  });
+  // Für Unit-Tests unter Node (node --test tests/)
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.WirHelfenAPI;
+})(typeof window !== 'undefined' ? window : globalThis);

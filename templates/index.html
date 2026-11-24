@@ -2,7 +2,7 @@
 title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
 description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
-body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
+body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/schritte.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -220,7 +220,12 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
       </div>
 
       <div class="request-layout__main">
-        <form class="form form--compact" id="anfrage-formular" action="/#anfrage" method="post" aria-labelledby="formular-titel">
+        <!-- Schritt-Formular (assets/js/schritte.js): mit JS ein Abschnitt je Schritt plus Versand-Schritt;
+             ohne JS bleibt das ganze Formular sichtbar. → WordPress: template-parts/form-anfrage.php -->
+        <form class="form form--compact" id="anfrage-formular" action="/#anfrage" method="post" aria-labelledby="formular-titel"
+              data-schritte data-schritte-erfolg="anfrage-erfolg"
+              data-versand-betreff="Hilfe-Anfrage über {{site_name}}"
+              data-versand-einleitung="Guten Tag, ich suche Hilfe und sende Ihnen meine Anfrage:">
           <h3 class="form__title" id="formular-titel">Ihre Anfrage</h3>
           <p class="form__required-note">Pflichtfelder sind mit <span class="form-field__req">*</span> markiert.</p>
 
@@ -230,7 +235,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
           </div>
 
           <!-- 1 · Anliegen -->
-          <fieldset class="form__section">
+          <fieldset class="form__section" data-schritt>
             <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">1</span> Ihr Anliegen</legend>
 
             <fieldset class="form-field" id="f-wer" aria-describedby="f-wer-fehler">
@@ -254,6 +259,11 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             <div data-leistungen-bereich>
 {{leistungen_gruppen}}
             </div>
+          </fieldset>
+
+          <!-- 2 · Beschreibung -->
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Worum geht es genau?</legend>
 
             <div class="form-field">
               <label class="form-field__label" for="f-beschreibung">Beschreiben Sie Ihr Anliegen <span class="form-field__req">*</span></label>
@@ -264,9 +274,9 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
-          <!-- 2 · Wo -->
-          <fieldset class="form__section">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">2</span> Wo wird Hilfe benötigt?</legend>
+          <!-- 3 · Wo -->
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Wo wird Hilfe benötigt?</legend>
             <div class="form__row form__row--plz">
               <div class="form-field">
                 <label class="form-field__label" for="f-plz">PLZ <span class="form-field__req">*</span></label>
@@ -286,9 +296,9 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
-          <!-- 3 · Kontakt -->
-          <fieldset class="form__section">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">3</span> Ihre Kontaktdaten</legend>
+          <!-- 4 · Kontakt -->
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Ihre Kontaktdaten</legend>
 
             <div class="form__row form__row--name">
               <div class="form-field">
@@ -344,9 +354,9 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
 
           </fieldset>
 
-          <!-- 4 · Einwilligung -->
-          <fieldset class="form__section">
-            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">4</span> Einwilligung</legend>
+          <!-- 5 · Einwilligung -->
+          <fieldset class="form__section" data-schritt>
+            <legend class="form__legend"><span class="form__legend-nr" aria-hidden="true">5</span> Einwilligung</legend>
 
             <div class="form-field" id="f-datenschutz-feld">
               <label class="choice" for="f-datenschutz">
@@ -370,23 +380,44 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
             </div>
           </fieldset>
 
+          <!-- 6 · Versand (nur mit JS; schritte.js füllt Zusammenfassung und Links) -->
+          <section class="form__section versand" data-schritt data-schritt-versand aria-labelledby="anfrage-versand-titel" hidden>
+            <h4 class="form__legend" id="anfrage-versand-titel"><span class="form__legend-nr" aria-hidden="true">6</span> Prüfen und absenden</h4>
+            <p class="versand__intro">Bitte prüfen Sie Ihre Angaben. Mit „Zurück“ können Sie alles noch ändern.</p>
+            <dl class="versand__zusammenfassung" data-zusammenfassung></dl>
+            <h5 class="versand__frage">Wie möchten Sie uns Ihre Anfrage schicken?</h5>
+            <div class="versand__wege">
+              <div class="versand__weg">
+                <a class="btn versand__btn" data-versand="email" aria-describedby="anfrage-versand-email-text">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg> Per E-Mail senden</a>
+                <p class="versand__text" id="anfrage-versand-email-text">Öffnet Ihr E-Mail-Programm mit dem fertigen Text.</p>
+              </div>
+              <div class="versand__weg">
+                <a class="btn versand__btn" data-versand="whatsapp" target="_blank" rel="noopener noreferrer" aria-describedby="anfrage-versand-wa-text anfrage-versand-wa-datenschutz">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-chat"/></svg> Per WhatsApp senden</a>
+                <p class="versand__text" id="anfrage-versand-wa-text">Öffnet WhatsApp mit dem fertigen Text.</p>
+                <p class="versand__datenschutz" id="anfrage-versand-wa-datenschutz"><svg class="icon" aria-hidden="true"><use href="#icon-schloss"/></svg>
+                  <span>WhatsApp ist ein Dienst von Meta. Ihre Angaben werden dabei über WhatsApp übertragen. Wenn Sie das nicht möchten, nutzen Sie bitte die E-Mail. <a href="/datenschutz/#whatsapp">Mehr zum Datenschutz</a></span></p>
+              </div>
+            </div>
+            <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Die Empfänger sind Platzhalter. Diese Seite selbst speichert keine Daten.</p>
+          </section>
+
           <div class="form__actions">
-            <button class="btn btn--primary btn--block" type="submit" data-absenden>Anfrage kostenlos absenden</button>
-            <p class="form-field__error" data-sende-fehler role="alert"></p>
+            <button class="btn btn--primary btn--block" type="submit">Anfrage kostenlos absenden</button>
             <p class="form__privacy-hint"><span class="demo-label">Prototyp</span> Dieses Formular sendet und speichert keine Daten.</p>
           </div>
         </form>
 
         <div class="form-success" id="anfrage-erfolg" tabindex="-1" role="status" hidden>
           <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></div>
-          <h3>Ihre Anfrage ist bei uns eingegangen</h3>
-          <p>Vielen Dank<span data-erfolg-name></span>! So würde es weitergehen: Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich so schnell wie möglich<span data-erfolg-kontakt></span>.</p>
-          <p data-erfolg-rueckruf hidden><strong>Ihr Rückrufwunsch:</strong> <span data-erfolg-rueckruf-text></span></p>
-          <p data-erfolg-email hidden>Sie erhalten zusätzlich eine Bestätigung per E-Mail.</p>
+          <h3>Fast geschafft: Bitte noch auf „Senden“ tippen</h3>
+          <p>Ihre Nachricht wurde in <span data-erfolg-kanal>Ihrem E-Mail-Programm</span> geöffnet. Bitte tippen Sie dort noch auf „Senden“. Ein Mensch aus unserem Team liest Ihre Anfrage persönlich und meldet sich bei Ihnen.</p>
           <p>Ihre Kontaktdaten geben wir erst weiter, wenn Sie einem konkreten Anbieter ausdrücklich zugestimmt haben.</p>
+          <p class="form-success__nochmal">Hat sich nichts geöffnet? <button class="link-button" type="button" data-schritte-auswahl>Anderen Weg zum Senden wählen</button></p>
           <p class="form-success__prototype">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-            <span>Prototyp – es wurden keine Daten gesendet oder gespeichert.</span>
+            <span>Prototyp – die Empfänger sind Platzhalter. Diese Seite selbst speichert keine Daten.</span>
           </p>
           <button class="btn btn--secondary" type="button" data-neue-anfrage>Neue Anfrage beginnen</button>
         </div>

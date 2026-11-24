@@ -1,6 +1,6 @@
 # Konzept 60+ – statischer Prototyp (Arbeitstitel)
 
-Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung: Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
+Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung (einziger `fetch`: lesender Abruf der statischen Anbieterliste `assets/data/anbieter.json`): Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
 ## Lokal starten
 
@@ -80,6 +80,26 @@ Titelbild später ersetzen (zuletzt `treppenlift-einbau`, November 2026): neues 
 Platzhalter `{{name}}`; unbekannte Platzhalter brechen den Build ab, ebenso fehlende Bilder oder Datenfelder. **Die generierten HTML-Dateien werden eingecheckt** – das Deployment braucht keinen Build. Generierte Dateien tragen den Kommentar „GENERIERT von tools/build.py – nicht direkt bearbeiten“. `templates/`, `tools/`, `partials/` und `data/` stehen in `.assetsignore` (werden nicht ausgeliefert; JS lädt kein JSON mehr).
 
 `tools/bilder.py <ordner>` (Pillow) erzeugt aus Originalen `<slug>.png` die Themenbilder: Zuschnitt 4:5 (mittig, leicht nach oben gewichtet), WebP 480/800 (q78) + JPG 800 nach `assets/img/themen/`. Originale gehören nicht ins Repo.
+
+## Anbieter-Trefferliste (Anfrageformular, Schritt 4)
+
+Nach „3 Wo“ zeigt die Startseiten-Anfrage (nur mit JS) „Passende Anbieter in Ihrer Nähe“, bevor Kontaktdaten abgefragt werden. Filter: Themenbereich + Ort (Treffer im Ort zuerst, dann Einzugsgebiet), zur gewählten Leistung passende Kategorien zuerst; zunächst 6 Karten, „Weitere anzeigen“. Mehrfachauswahl → Kontaktfenster (`<dialog>`: Anrufen, E-Mail, Website, Drucken, Weiterleiten per Web Share bzw. E-Mail/WhatsApp/Kopieren). Die Auswahl lebt nur im Speicher der Seite. „Lieber persönlich vermitteln lassen“ führt unverändert zu den Kontaktdaten (Schritt 5); ohne JS bleibt der Schritt verborgen. Schrittnummern vergibt `schritte.js` mit JS neu (`data-nur-js`, `data-eigene-navigation`).
+
+```
+Excel (nicht im Repo) ──tools/kontakte.py──▶ data/anbieter.json + data/kategorie-zuordnung.json
+                       data/anbieter.json ──tools/build.py──▶ assets/data/anbieter.json   (ausgeliefert, mit ?v=Hash)
+assets/js/anbieter-logik.js   reine Filter-/Sortierlogik (Test: tests/anbieter-logik.test.js)
+assets/js/anbieter.js         Liste + Dialog; lädt assets/data/anbieter.json erst beim Erreichen des Schritts (fetch, nur lesend)
+```
+
+- Konverter: `python3 tools/kontakte.py [PFAD.xlsx] [--modus echt|beispiel]` (braucht `openpyxl`; nur dieses Skript; Standardpfad `/mnt/project-files/kontaktliste/Konzept60plus_Kontaktliste_2026-11-23.xlsx`). Danach `python3 tools/build.py`.
+- **`echt` (Standard, ausgeliefert):** nur Prüfstatus „ok“; Trägerart privat/ehrenamtlich entfällt; Ansprechpartner wird nie gelesen oder ausgegeben; E-Mail nur mit generischem lokalen Teil (info, kontakt, pflege …; sonst weggelassen); Klammerzusätze mit Personennamen und Einträge mit erkennbarem Personennamen (Vorname + Nachname) entfallen; Hinweise wie „(Quelle … prüfen)“ im Schwerpunkt entfernt; Einträge mit „2013“/„veraltet“ in Quelle/Schwerpunkt entfallen; Dubletten nach Name+Telefon+Thema+Stadt zusammengeführt; Einträge ohne jeden Kontaktweg entfallen.
+- **`beispiel` (Option):** gleiche Verteilung, höchstens 5 je Thema×Stadt, erfundene Namen/Nummern (`0211 00000-NN`), nur `example.org`, `"beispiel": true`; die Liste zeigt dann „Beispieldaten: Namen und Nummern sind erfunden.“
+- Zuordnung Kategorie-ID → Themenbereich und Leistung → Kategorie-IDs steht im Kopf von `tools/kontakte.py` (`ZUORDNUNG`, `LEISTUNGEN`) und wird als `data/kategorie-zuordnung.json` ausgegeben. `null` = nicht anzeigen (Beratung 09.x/10.x, Trauer 14.x, Haustiere 15.x, Heim/Wohnformen u. a.).
+- Hinweis in Liste und Dialog: „Angaben aus öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr.“ plus Link zu `/impressum/` (Korrektur/Entfernung); Datenschutz Abschnitt 2.6.
+- Umschalten Beispiel ↔ echt: Konverter mit dem gewünschten `--modus` laufen lassen, `build.py` ausführen, beide JSON-Dateien und `assets/data/anbieter.json` einchecken.
+- WordPress: `data/anbieter.json` entspricht dem CPT `anbieter` (Taxonomien `themenbereich` = `thema`, `region` = `stadt` + `einzugsgebiet`).
+- E2E: `python3 -m http.server 8765 &  node tests/anbieter.e2e.js` (Playwright).
 
 ## Weitere Struktur
 

@@ -153,3 +153,29 @@ p, li { orphans: 3; widows: 3; }
   word-break: break-all;
 }
 .print-url:empty { border: 0; }
+
+/* ==========================================================================
+   Kontaktfenster der Anbieter-Trefferliste (assets/js/anbieter.js)
+   „Drucken“ im Dialog setzt body.is-printing-kontakte: gedruckt wird NUR der Dialoginhalt.
+   Der Dialog hängt direkt an <body>; alle anderen Kinder entfallen.
+   ========================================================================== */
+.is-printing-kontakte > *:not(dialog):not(svg) { display: none !important; }
+.is-printing-kontakte dialog.kontakt-dialog {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.is-printing-kontakte .kontakt-dialog__innen { padding: 0; }
+.is-printing-kontakte .kontakt-dialog__titel { font-size: 20pt; }
+.is-printing-kontakte .kontakt-dialog__hinweis { border: 1px solid #999; background: #fff; }
+.is-printing-kontakte .kontakt { border: 1px solid #999; break-inside: avoid; margin-bottom: 0.4rem; }
+.is-printing-kontakte .kontakt__name { font-size: 14pt; }
+.is-printing-kontakte .kontakt a { text-decoration: none; color: #000; }
+.is-printing-kontakte .kontakt a[href^="mailto:"]::after,
+.is-printing-kontakte .kontakt a[href^="http"]::after { content: none; }

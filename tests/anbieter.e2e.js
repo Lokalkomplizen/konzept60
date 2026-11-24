@@ -45,7 +45,7 @@ async function keinHorizontalesScrollen(page, label) {
     assert.equal(await page.locator(".anbieter-karte").count(), 6, "zunächst 6 Karten");
     assert.match(await page.textContent("[data-anbieter-quelle-text]"), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
     assert.equal(await page.locator("[data-anbieter-kontakt]").getAttribute("aria-disabled"), "true");
-    await page.click("[data-anbieter-kontakt]", { force: true });
+    await page.dispatchEvent("[data-anbieter-kontakt]", "click");
     assert.match(await page.textContent("[data-anbieter-fehler]"), /mindestens einen Anbieter/);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/anbieter-liste-${name}.png`, fullPage: false });
 

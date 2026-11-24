@@ -863,7 +863,7 @@ def thema_ratgeber(t, beitraege):
     if not passend:
         return ""
     lines = [
-        '<aside class="topic-ratgeber" aria-labelledby="ratgeber-hinweis-titel">',
+        '<section class="topic-ratgeber" aria-labelledby="ratgeber-hinweis-titel">',
         '  <h2 class="topic-ratgeber__title" id="ratgeber-hinweis-titel">Passender Ratgeber</h2>',
         '  <ul class="topic-ratgeber__list">',
     ]
@@ -874,7 +874,7 @@ def thema_ratgeber(t, beitraege):
             f'<span class="topic-link__title">{esc(b["titel"])}</span>'
             f'<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></li>'
         )
-    lines += ["  </ul>", "</aside>"]
+    lines += ["  </ul>", "</section>"]
     return indent(lines, 6)
 
 
@@ -1346,7 +1346,7 @@ def main():
         "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
-        "ratgeber_karten_h2": "\n".join(article_card(b, "h2", 8, filter_attr=True) for b in beitraege),
+        "ratgeber_karten_h2": "\n".join(article_card(b, "h3", 8, filter_attr=True) for b in beitraege),
         "ratgeber_filter": ratgeber_filter(themen, beitraege),
         "checklisten_inhalt": checklisten_html(checklisten, beitraege, SITE_NAME),
         "wc_formular": wc_form,

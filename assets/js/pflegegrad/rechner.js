@@ -92,6 +92,9 @@
 
   function zeige(name) {
     Object.keys(el).forEach(function (k) { el[k].hidden = k !== name; });
+    // genau eine h1 je Ansicht (A11Y-05): außerhalb des Starts die visuell verborgene h1 „Pflegegradrechner“
+    var h1 = app.querySelector('[data-pgr-h1]');
+    if (h1) h1.hidden = name === 'start';
     var ziel = el[name].querySelector('[data-pgr-fokus]') || el[name];
     ziel.setAttribute('tabindex', '-1');
     ziel.focus({ preventScroll: true });

@@ -929,7 +929,11 @@ select.form-field__input {
 .benefits__item strong {
   display: block;
   color: var(--color-navy-800);
+  hyphens: auto;
 }
+/* A11Y-01: Flex-Kinder dürfen schrumpfen („Vermittlungsanfragen“ wurde bei 320 px abgeschnitten) */
+.benefits__item > *,
+.path-card { min-width: 0; }
 
 .benefits--grid { margin: 0; gap: var(--space-l); }
 
@@ -948,6 +952,7 @@ select.form-field__input {
 /* ---- Zwei Wege (Anbieterarten) --------------------------------------------- */
 .paths {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* A11Y-01 */
   gap: var(--space-l);
 }
 
@@ -1142,6 +1147,7 @@ select.form-field__input {
 
 .topic-columns {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* A11Y-01 */
   gap: var(--space-2xl);
 }
 
@@ -2493,6 +2499,7 @@ select.form-field__input {
   margin: 0 0 var(--space-xl);
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* A11Y-01 */
   gap: var(--space-l);
 }
 @media (min-width: 48em) {
@@ -3234,3 +3241,321 @@ body:has(dialog[open]) { overflow: hidden; }
 .assistent__melden-zeile { margin: var(--space-m) 0 0; }
 .assistent__neu { margin-left: auto; }
 @media (max-width: 29.99em) { .assistent__neu { margin-left: 0; } }
+
+/* ==========================================================================
+   Relaunch 3.2: Startseite A–F, /anfrage/, /so-funktioniert-es/, feste Leiste
+   (docs/relaunch/startseite-ia.md; → WordPress: Template-Parts hero-suche, themen,
+   ablauf, ratgeber-auswahl, vertrauen)
+   ========================================================================== */
+
+/* ---- Feste Leiste „Anbieter suchen“ (nur Handy, nicht auf /hilfe-finden/) -------------
+   Verdeckt nichts: body.hat-leiste bekommt unten Innenabstand in Leistenhöhe, html scroll-padding,
+   damit fokussierte Elemente nie unter der Leiste liegen (WCAG 2.4.11). Solange ein Textfeld den
+   Fokus hat (Bildschirmtastatur offen), ist die Leiste ausgeblendet. */
+.leiste { display: none; }
+@media (max-width: 47.99em) {
+  body.hat-leiste { padding-bottom: calc(var(--leiste-hoehe) + env(safe-area-inset-bottom, 0px)); }
+  html:has(body.hat-leiste) { scroll-padding-bottom: calc(var(--leiste-hoehe) + var(--space-s)); }
+  .leiste {
+    display: block;
+    position: fixed;
+    z-index: 30;
+    inset-inline: 0;
+    bottom: 0;
+    padding: var(--space-xs) var(--gutter) calc(var(--space-xs) + env(safe-area-inset-bottom, 0px));
+    background: var(--color-page);
+    border-top: 1px solid var(--color-sand-300);
+  }
+  .leiste__knopf { width: 100%; justify-content: center; gap: var(--space-xs); }
+  body:has(input:not([type="checkbox"]):not([type="radio"]):focus, textarea:focus, select:focus) .leiste,
+  .leiste.is-verborgen { display: none; }
+}
+
+/* ---- A · Hero mit Suche -------------------------------------------------------------- */
+.hero--suche .hero__title { font-size: var(--font-size-h1); margin-bottom: var(--space-m); }
+.hero--suche .hero__text { margin-bottom: var(--space-l); }
+@media (max-width: 59.99em) {
+  .hero--suche .hero__media { aspect-ratio: 2 / 1; }
+  .hero--suche .hero__content { padding-top: var(--space-xl); padding-bottom: var(--space-2xl); }
+}
+@media (min-width: 60em) {
+  .hero--suche { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+}
+.suche--hero .suche__label { color: var(--color-white); }
+.suche--hero .suche__knopf { gap: var(--space-xs); }
+.hero-suche__titel {
+  margin: var(--space-l) 0 var(--space-s);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-white);
+}
+.hero-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: var(--space-xs) var(--space-m);
+  border: 2px solid rgb(255 255 255 / 0.7);
+  border-radius: 999px;
+  color: var(--color-white);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  text-decoration: none;
+  transition: background-color var(--transition), color var(--transition);
+}
+.hero-chip:hover { background: var(--color-white); color: var(--color-navy-800); }
+.hero__vertrauen {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--space-l) 0 0;
+  padding: 0;
+  color: var(--color-on-navy);
+  font-weight: 700;
+}
+.hero__vertrauen li:not(:last-child)::after { content: "·" / ""; margin-inline: 0.6em; color: var(--color-terra-300); }
+
+/* ---- B · Themen mit Unterthemen-Links (anders als das Kartenraster auf /themen/) ---------- */
+.themen-start {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-m);
+}
+@media (min-width: 64em) {
+  .themen-start { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-l); }
+}
+.thema-start {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-areas: "bild titel" "links links" "alle alle";
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  min-width: 0;
+  padding: var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+}
+@media (min-width: 48em) {
+  .thema-start {
+    grid-template-columns: 10rem minmax(0, 1fr);
+    grid-template-areas: "bild titel" "bild links" "bild alle";
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+    gap: var(--space-s) var(--space-l);
+    padding: var(--space-l);
+  }
+}
+.thema-start__media { grid-area: bild; display: block; margin: 0; }
+.thema-start__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-s);
+  background: var(--color-sand-100);
+}
+@media (min-width: 48em) {
+  .thema-start__media img { aspect-ratio: 4 / 5; }
+}
+.thema-start__title { grid-area: titel; margin: 0; font-family: var(--font-sans); font-size: var(--font-size-h3); font-weight: 700; letter-spacing: 0; }
+.thema-start__title a { color: var(--color-navy-800); text-decoration: none; }
+.thema-start__title a:hover { text-decoration: underline; }
+.thema-start__links {
+  grid-area: links;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+.thema-start__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-compact);
+  padding: var(--space-2xs) var(--space-s);
+  border: 2px solid var(--color-border-input);
+  border-radius: 999px;
+  color: var(--color-navy-800);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+.thema-start__link:hover { border-color: var(--color-navy-800); background: var(--color-navy-100); }
+.thema-start__alle { grid-area: alle; margin: 0; }
+.thema-start__alle a { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 700; }
+
+/* Themenseite: Sprungziele der Leistungen (/themen/<slug>/#<leistung>) mit Link in den Assistenten */
+.check-list--leistungen li { scroll-margin-top: var(--space-l); border-radius: var(--radius-s); }
+.check-list--leistungen li:target { background: var(--color-terra-100); box-shadow: 0 0 0 var(--space-xs) var(--color-terra-100); }
+.check-list__link { display: inline-flex; align-items: center; min-height: var(--touch-compact); font-weight: 700; white-space: nowrap; }
+
+/* ---- D · Ablauf und Rückfall-Kasten „Bei uns melden“ --------------------------------- */
+.ablauf__schritte {
+  list-style: none;
+  counter-reset: schritt;
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  display: grid;
+  gap: var(--space-l);
+}
+@media (min-width: 48em) {
+  .ablauf__schritte { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xl); }
+}
+.ablauf__schritt { counter-increment: schritt; position: relative; min-width: 0; padding-left: 3.5rem; }
+.ablauf__schritt::before {
+  content: counter(schritt) / "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  font-weight: 700;
+}
+.ablauf__titel { margin: 0.35rem 0 var(--space-2xs); font-size: var(--font-size-lg); }
+.ablauf__schritt p { margin: 0; color: var(--color-ink-muted); }
+.ablauf .btn-group { margin-top: 0; }
+
+.rueckfall {
+  display: grid;
+  gap: var(--space-l);
+  padding: var(--space-l);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-left: 6px solid var(--color-terra-600);
+  border-radius: var(--radius-m);
+  scroll-margin-top: var(--space-l);
+}
+@media (min-width: 48em) {
+  .rueckfall { grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: var(--space-xl); }
+}
+.rueckfall__titel { margin: 0 0 var(--space-xs); font-size: var(--font-size-h3); }
+.rueckfall__satz { font-family: var(--font-serif); font-size: var(--font-size-lg); font-weight: 600; color: var(--color-navy-800); }
+.rueckfall__text p:last-child { margin-bottom: 0; }
+.rueckfall__knopf { justify-self: start; }
+.ablauf__angehoerige { margin: var(--space-xl) 0 0; }
+.ablauf__angehoerige a { font-weight: 700; }
+.ablauf__mehr { margin: var(--space-s) 0 0; }
+.ablauf__mehr a { display: inline-flex; align-items: center; min-height: var(--touch-min); }
+
+/* ---- E · Ratgeber-Auswahl und Werkzeuge ---------------------------------------------- */
+.werkzeuge-start { margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--color-sage-200); }
+.werkzeuge-start__titel { margin: 0 0 var(--space-2xs); }
+.werkzeuge-start__intro { margin: 0 0 var(--space-l); color: var(--color-ink-muted); }
+.werkzeuge-start__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-s);
+}
+@media (min-width: 48em) { .werkzeuge-start__liste { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64em) { .werkzeuge-start__liste { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.werkzeug-kachel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "titel pfeil" "text pfeil";
+  align-items: center;
+  gap: 0 var(--space-s);
+  height: 100%;
+  min-height: 4.5rem;
+  padding: var(--space-s) var(--space-m);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: border-color var(--transition);
+}
+.werkzeug-kachel:hover { border-color: var(--color-sage-700); }
+.werkzeug-kachel__titel { grid-area: titel; font-weight: 700; color: var(--color-navy-800); text-decoration: underline; text-underline-offset: 0.18em; }
+.werkzeug-kachel__text { grid-area: text; color: var(--color-ink-muted); font-size: var(--font-size-sm); }
+.werkzeug-kachel .icon { grid-area: pfeil; color: var(--color-navy-800); }
+
+/* ---- F · Vertrauen + Anbieter-Hinweis ------------------------------------------------ */
+.vertrauen {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-l);
+}
+@media (min-width: 48em) {
+  .vertrauen { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl) var(--space-2xl); }
+}
+.vertrauen__item { display: flex; gap: var(--space-m); align-items: flex-start; min-width: 0; }
+.vertrauen__item p { margin: 0; min-width: 0; }
+.vertrauen__icon { flex-shrink: 0; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--color-sand-100); }
+.vertrauen__icon--zeichen { display: grid; place-items: center; color: var(--color-sage-700); }
+.vertrauen__icon--zeichen .icon { width: 1.75rem; height: 1.75rem; }
+.vertrauen__titel { display: block; margin-bottom: var(--space-2xs); color: var(--color-navy-800); font-size: var(--font-size-lg); }
+.anbieter-hinweis { margin: var(--space-2xl) 0 0; padding-top: var(--space-m); border-top: 1px solid var(--color-sand-300); color: var(--color-ink-muted); }
+.anbieter-hinweis a { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 700; }
+
+/* ---- /anfrage/ und /so-funktioniert-es/ ---------------------------------------------- */
+.request-layout__aside h1 { font-size: var(--font-size-h2); }
+.request-layout__alt { margin-top: var(--space-l); }
+.request-layout__alt a { font-weight: 700; }
+.steps-section__aktion { margin-top: var(--space-xl); }
+@media (min-width: 64em) {
+  .steps-section .steps-section__aktion { grid-column: 2; }
+}
+.way-card--navy { border-top-color: var(--color-navy-800); }
+@media (min-width: 64em) {
+  .ways--drei { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Ratgeber-Auswahl der Startseite: auf dem Handy kompakte Zeilen (Bild links, Thema und Titel rechts),
+   der Anreißer erst ab 40em – sonst wären sechs Karten allein drei Bildschirmhöhen lang. */
+@media (max-width: 39.99em) {
+  .ratgeber-start { gap: var(--space-s); }
+  .ratgeber-start .article-card {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-m);
+    padding: var(--space-s);
+  }
+  .ratgeber-start .article-card__media { aspect-ratio: 1; border-radius: var(--radius-s); }
+  .ratgeber-start .article-card__body { padding: 0; }
+  .ratgeber-start .article-card__body::before { display: none; }
+  .ratgeber-start .article-card__meta { margin-bottom: var(--space-2xs); }
+  .ratgeber-start .article-card__title { font-size: var(--font-size-lg); margin: 0; hyphens: auto; }
+  .ratgeber-start .article-card__text,
+  .ratgeber-start .article-card__more { display: none; }
+}
+
+/* ---- A11Y-01/02 (WCAG-Audit 24.11.2026): Umbruch bei 320 px und erhöhten Textabständen ----------
+   Flex-/Grid-Kinder dürfen schrumpfen, lange Wörter werden getrennt statt seitlich überzulaufen. */
+.tool-grid > li { min-width: 0; }
+.notice > p,
+.notice > .notice__body,
+.check-list li > span,
+.choice > span { min-width: 0; hyphens: auto; overflow-wrap: anywhere; }
+.path-card__title,
+.path-card__text { hyphens: auto; overflow-wrap: anywhere; }
+.placeholder-tag { display: inline; white-space: normal; overflow-wrap: anywhere; }
+.path-card .btn { max-width: 100%; hyphens: auto; overflow-wrap: anywhere; }

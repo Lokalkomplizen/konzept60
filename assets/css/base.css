@@ -59,6 +59,15 @@ h4 {
   text-wrap: balance;
 }
 
+/* A11Y-01/02 (WCAG-Audit 24.11.2026): lange Wörter in Überschriften trennen statt seitlich überlaufen
+   (320 px = 400 % Zoom, erhöhte Textabstände); lang="de" ist gesetzt */
+h1,
+h2,
+h3 {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
 h1,
 h2 {
   font-family: var(--font-serif);

@@ -89,6 +89,7 @@
   --gutter: 1.25rem;
   --touch-min: 3rem;       /* 48px Mindestgröße für Touch-Ziele */
   --touch-compact: 2.75rem; /* 44px: dichte Linklisten (Footer), WCAG 2.5.5 */
+  --leiste-hoehe: 4.25rem;   /* feste Leiste „Anbieter suchen“ unten auf dem Handy (48px Knopf + Rand) */
 
   --transition: 160ms ease;
 }

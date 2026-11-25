@@ -1,6 +1,16 @@
 {
   "_hinweis": "Anliegen-Katalog für Freitextsuche und Assistent (Konzept docs/relaunch/konzept-assistent-suche.md, Abschnitt 2 und 3). kategorien sind STRENG: nur Anbieter mit genau diesen Kategorie-IDs sind Treffer. Leere kategorien = Ratgeber-Anliegen (kein Anbieter-Abgleich). leistungen = Wortlaut aus data/themen.json (jede Leistung kommt mindestens einmal vor, build.py prüft das). fragen: Filterfragen (ändern die Liste) plus 'ort'; notizfragen: ändern die Liste nicht, erscheinen auf dem Notizzettel. → WordPress: Taxonomie 'anliegen' mit Term-Meta.",
   "haeufig": ["pflegedienst", "haushaltshilfe", "treppenlift", "gruppe:badezimmer", "hausnotruf", "essen"],
+  "_startseite": "Startseite, Teil A „Häufig gesucht“ (docs/relaunch/startseite-ia.md): Wortlaut der Knöpfe, Anliegen und optionale Vorwahl (f-<Filterfrage>, n-<Notizfrage>), damit der Assistent auf /hilfe-finden/ direkt bei der Frage nach der Stadt beginnt.",
+  "startseite": [
+    {"titel": "Haushaltshilfe", "anliegen": "haushaltshilfe", "vorwahl": {"f-haushalt-art": "reinigung"}},
+    {"titel": "Treppenlift", "anliegen": "treppenlift"},
+    {"titel": "Pflege zu Hause", "anliegen": "pflegedienst", "vorwahl": {"f-pflege-art": "zuhause"}},
+    {"titel": "Gartenhilfe", "anliegen": "garten"},
+    {"titel": "Bad umbauen", "anliegen": "bad-umbau"},
+    {"titel": "Hausnotruf", "anliegen": "hausnotruf"},
+    {"titel": "Hilfe am Computer", "anliegen": "smartphone-computer", "vorwahl": {"f-digital-art": "einzeln", "n-geraet": "computer"}}
+  ],
   "gruppen": [
     {
       "id": "badezimmer",

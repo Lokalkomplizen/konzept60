@@ -61,6 +61,9 @@
   list-style: none;
 }
 
+/* A11Y-01: Rasterzellen dürfen schmaler werden als ihr Inhalt (Kartenbilder drückten die Spalte bei 320 px um 21 px) */
+.grid > li { min-width: 0; }
+
 @media (min-width: 40em) {
   .grid--2,
   .grid--3,
@@ -127,15 +130,13 @@
 
 .site-header__bar .site-header__nav-toggle { display: none; }
 
-/* Knopf „Anbieter suchen“ (→ /hilfe-finden/): immer sichtbar, auch auf dem Handy */
+/* Knopf „Anbieter suchen“ (→ /hilfe-finden/): Hauptaktion im Kopf (Terrakotta). Auf dem Handy (< 48em)
+   steht er stattdessen als feste Leiste unten (.leiste, components.css), im Kopf bleiben Logo und „Menü“. */
 .site-header__bar .logo { flex-shrink: 0; white-space: nowrap; }
 .btn.site-header__suche { gap: var(--space-xs); padding-inline: 1rem; white-space: nowrap; }
-.site-header__suche[aria-current="page"] { background: var(--color-navy-800); color: var(--color-white); }
-/* Handy: eigene volle Zeile unter Logo und „Menü“ (passt so auch bei 320 px) */
+.site-header__suche[aria-current="page"] { background: var(--color-navy-800); border-color: var(--color-navy-800); color: var(--color-white); }
 @media (max-width: 47.99em) {
-  .btn.site-header__suche { order: 2; flex-basis: 100%; justify-content: center; }
-  .site-header__nav-toggle { order: 1; }
-  .site-nav { order: 3; }
+  .btn.site-header__suche { display: none; }
 }
 @media (min-width: 48em) and (max-width: 67.99em) {
   .site-header__suche { margin-left: auto; }
@@ -145,7 +146,7 @@
   .site-nav { order: 2; margin-left: auto; }
 }
 @media (min-width: 68em) {
-  /* Platz für Logo, Navigation, „Anfrage stellen“ und „Anbieter suchen“ in einer Zeile */
+  /* Platz für Logo, vier Menüpunkte und „Anbieter suchen“ in einer Zeile */
   .site-header__bar .site-nav { gap: var(--space-m); }
   .btn.site-header__suche { font-size: var(--font-size-md); }
 }
@@ -388,7 +389,11 @@
 .site-footer__prototype .demo-label { margin-right: var(--space-xs); }
 
 /* Gleichmäßige Abstände in allen Spalten: jede Linkzeile mind. 44px, Umbrüche mit enger Zeilenhöhe */
+.site-footer li { min-width: 0; }
 .site-footer li a {
+  max-width: 100%;
+  hyphens: auto;
+  overflow-wrap: anywhere; /* A11Y-02: „Veranstaltungen“ bei 320 px + Textabstand */
   display: inline-flex;
   align-items: center;
   min-height: var(--touch-compact);

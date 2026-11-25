@@ -28,8 +28,11 @@
 .section--navy h3 { color: var(--color-white); }
 
 .section__header {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-l);
   max-width: 46rem;
+}
+@media (min-width: 48em) {
+  .section__header { margin-bottom: var(--space-xl); }
 }
 
 .section__eyebrow {
@@ -41,12 +44,20 @@
   color: var(--color-sage-700);
   margin-bottom: var(--space-xs);
 }
+/* Startseite Handy (Relaunch 3.4): die Kennzeile wiederholt nur den Navigationsnamen über der h2 –
+   unter 48em ausgeblendet (spart Höhe, h2 trägt die Aussage); ab 48em sichtbar. */
+@media (max-width: 47.99em) {
+  .section__eyebrow--ab-tablet { display: none; }
+}
 
 .section--navy .section__eyebrow { color: var(--color-sage-400); }
 
 .section__intro {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base); /* Handy: Grundgröße (19px), ab 48em etwas größer */
   color: var(--color-ink-muted);
+}
+@media (min-width: 48em) {
+  .section__intro { font-size: var(--font-size-lg); }
 }
 
 .section--navy .section__intro { color: var(--color-on-navy); }
@@ -323,7 +334,45 @@
   gap: var(--space-xl);
 }
 
-.site-footer__brand p { margin: var(--space-xs) 0 0; max-width: 34rem; }
+/* Linkspalten als <details> (Relaunch 3.4): Handy zugeklappt, je Spalte eine 48px-Zeile mit +/−
+   und Trennlinie; ab 48em offen und nicht einklappbar (main.js 13.; ohne JS über ::details-content). */
+@media (max-width: 47.99em) {
+  .site-footer__grid { gap: 0; }
+  .site-footer__brand { margin-bottom: var(--space-l); }
+  .site-footer__spalte { border-top: 1px solid var(--color-line-on-navy); }
+  .site-footer nav:last-of-type .site-footer__spalte { border-bottom: 1px solid var(--color-line-on-navy); }
+  .site-footer__spalte[open] { padding-bottom: var(--space-s); }
+}
+.site-footer__spalte > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-height: var(--touch-min);
+  cursor: pointer;
+  list-style: none;
+}
+.site-footer__spalte > summary::-webkit-details-marker { display: none; }
+.site-footer__spalte > summary h2 { margin: 0; }
+.site-footer__spalte > summary::after {
+  content: "+" / "";
+  flex-shrink: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-white);
+}
+.site-footer__spalte[open] > summary::after { content: "−" / ""; }
+@media (min-width: 48em) {
+  .site-footer__spalte > summary { cursor: default; min-height: 0; margin-bottom: var(--space-xs); }
+  .site-footer__spalte > summary::after { display: none; }
+  .site-footer__spalte::details-content { content-visibility: visible; block-size: auto; }
+}
+
+.site-footer__brand p { margin: var(--space-xs) 0 0; max-width: 34rem; font-size: var(--font-size-sm); }
+@media (min-width: 48em) {
+  .site-footer__brand p { font-size: inherit; }
+}
 
 @media (min-width: 48em) {
   .site-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2xl) var(--space-xl); }
@@ -344,7 +393,7 @@
     align-items: baseline;
     gap: var(--space-2xs) var(--space-xl);
     padding-bottom: var(--space-l);
-    border-bottom: 1px solid rgb(255 255 255 / 0.18);
+    border-bottom: 1px solid var(--color-line-on-navy);
   }
   .site-footer__brand p { margin: 0; max-width: 46rem; }
   .site-footer nav { font-size: var(--font-size-md); }
@@ -404,7 +453,7 @@
 .site-footer__bottom {
   margin-top: var(--space-xl);
   padding-top: var(--space-l);
-  border-top: 1px solid rgb(255 255 255 / 0.18);
+  border-top: 1px solid var(--color-line-on-navy);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s) var(--space-xl);
@@ -412,4 +461,9 @@
   font-size: var(--font-size-sm);
 }
 
-.site-footer__bottom p { margin: 0; }
+.site-footer__bottom p { margin: 0; line-height: 1.45; }
+@media (max-width: 47.99em) {
+  .site-footer__bottom { margin-top: 0; padding-top: var(--space-xs); border-top: 0; }
+}
+.site-footer__recht { display: flex; flex-wrap: wrap; gap: 0 var(--space-l); width: 100%; }
+.site-footer__recht a { font-size: var(--font-size-base); }

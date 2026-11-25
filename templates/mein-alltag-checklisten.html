@@ -4,6 +4,7 @@ description: Vier Checklisten zum Abhaken und Ausdrucken: Arzttermin, Wohnung al
 nav: alltag
 nav_level: section
 body_extra: <script src="/assets/js/alltag.js" defer></script>
+daten: checklisten.json
 -->
   <!-- Checklisten  (→ WordPress: Seite "Checklisten" bzw. CPT "checkliste"; Inhalte aus data/checklisten.json,
        gerendert von tools/build.py). Abhaken wird NICHT gespeichert. Drucken: alltag.js (1.) + print.css -->
@@ -28,7 +29,7 @@ body_extra: <script src="/assets/js/alltag.js" defer></script>
   <section class="section section--tight" aria-label="Checklisten">
     <div class="container checklist-page">
       <div class="notice notice--light notice--flush no-print" role="note">
-        <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-datenschutz"/></svg>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-schloss"/></svg>
         <p><strong>Ohne Anmeldung.</strong> Wir speichern nichts – Ihre Haken bleiben nur, solange diese Seite geöffnet ist. Zum Aufheben drucken oder als PDF speichern.</p>
       </div>
 {{checklisten_inhalt}}

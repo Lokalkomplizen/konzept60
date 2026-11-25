@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Konzept 60+ – Hilfe finden. Einfach und kostenlos.</title>
   <meta name="description" content="Hilfe finden, einfach und kostenlos: Anbieter aus Ihrer Region für Haushalt, Handwerk, Pflege, Alltag, Technik und Freizeit. Sie wählen selbst, wir helfen, wenn Sie nicht weiterkommen.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -30,25 +29,57 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
-  <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=5b397a5c3b">
+  <link rel="stylesheet" href="/assets/css/base.css?v=a799227ee4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
-<script src="/assets/js/weiterleitung.js?v=6c74c62537"></script>   <link rel="preload" as="image" type="image/webp"
+<script src="/assets/js/weiterleitung.js?v=6c74c62537"></script>   <link rel="preload" as="image" type="image/webp" fetchpriority="high"
         imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
-        imagesizes="(min-width: 60em) 55vw, 100vw">
+        imagesizes="(min-width: 60em) 45vw, 100vw">
 
-  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain)
-       (Demo-Nummer, nicht vergeben) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen. -->
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen, keine Telefonnummer. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Konzept 60+",
     "url": "https://www.example.org/",
-    "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
-    "areaServed": ["Düsseldorf", "Wuppertal", "Hilden", "Remscheid", "Solingen", "Langenfeld", "Haan", "Wesel"]
+    "description": "Kostenloses Portal für Menschen ab 60 und Angehörige: regionale Anbieter selbst finden oder persönlich vermitteln lassen. Wir erbringen selbst keine Dienstleistungen.",
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Düsseldorf"
+      },
+      {
+        "@type": "City",
+        "name": "Wuppertal"
+      },
+      {
+        "@type": "City",
+        "name": "Hilden"
+      },
+      {
+        "@type": "City",
+        "name": "Remscheid"
+      },
+      {
+        "@type": "City",
+        "name": "Solingen"
+      },
+      {
+        "@type": "City",
+        "name": "Langenfeld"
+      },
+      {
+        "@type": "City",
+        "name": "Haan"
+      },
+      {
+        "@type": "City",
+        "name": "Wesel"
+      }
+    ]
   }
   </script>
 </head>
@@ -191,7 +222,7 @@
   <section class="section" id="themen" aria-labelledby="themen-titel">
     <div class="container">
       <div class="section__header">
-        <span class="section__eyebrow">Hilfe finden</span>
+        <span class="section__eyebrow section__eyebrow--ab-tablet">Hilfe finden</span>
         <h2 id="themen-titel">Wobei dürfen wir helfen?</h2>
         <p class="section__intro">
           Ob kleine Reparatur, Hilfe im Haushalt oder Begleitung zum Arzt:
@@ -201,7 +232,7 @@
       <ul class="themen-start">
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/wohnen-haus-handwerk-480.webp 480w, /assets/img/themen/wohnen-haus-handwerk-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/wohnen-haus-handwerk-160.webp 160w, /assets/img/themen/wohnen-haus-handwerk-480.webp 480w, /assets/img/themen/wohnen-haus-handwerk-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/wohnen-haus-handwerk-800.jpg" width="800" height="1000" alt="Ein Handwerker mit Werkzeugkoffer steht lächelnd vor der Haustür eines älteren Herrn, der ihn freundlich empfängt."
                  loading="lazy" decoding="async">
           </picture>
@@ -216,7 +247,7 @@
         </li>
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/haushalt-reinigung-480.webp 480w, /assets/img/themen/haushalt-reinigung-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/haushalt-reinigung-160.webp 160w, /assets/img/themen/haushalt-reinigung-480.webp 480w, /assets/img/themen/haushalt-reinigung-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/haushalt-reinigung-800.jpg" width="800" height="1000" alt="Eine Haushaltshilfe mit gelben Handschuhen wischt den Tisch, während eine ältere Frau mit einer Tasse in der Hand daneben sitzt und lacht."
                  loading="lazy" decoding="async">
           </picture>
@@ -231,7 +262,7 @@
         </li>
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/pflege-betreuung-v2-480.webp 480w, /assets/img/themen/pflege-betreuung-v2-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/pflege-betreuung-v2-160.webp 160w, /assets/img/themen/pflege-betreuung-v2-480.webp 480w, /assets/img/themen/pflege-betreuung-v2-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/pflege-betreuung-v2-800.jpg" width="800" height="880" alt="Eine Betreuerin kniet lächelnd neben einer älteren Frau, die im Garten sitzt, und legt ihr freundlich die Hand auf den Arm."
                  loading="lazy" decoding="async">
           </picture>
@@ -245,7 +276,7 @@
         </li>
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/alltag-persoenliche-hilfe-480.webp 480w, /assets/img/themen/alltag-persoenliche-hilfe-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/alltag-persoenliche-hilfe-160.webp 160w, /assets/img/themen/alltag-persoenliche-hilfe-480.webp 480w, /assets/img/themen/alltag-persoenliche-hilfe-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/alltag-persoenliche-hilfe-800.jpg" width="800" height="1000" alt="Ein Mann trägt eine Einkaufstüte und geht lächelnd mit einer älteren Dame untergehakt die Straße entlang."
                  loading="lazy" decoding="async">
           </picture>
@@ -260,7 +291,7 @@
         </li>
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/technik-sicherheit-480.webp 480w, /assets/img/themen/technik-sicherheit-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/technik-sicherheit-160.webp 160w, /assets/img/themen/technik-sicherheit-480.webp 480w, /assets/img/themen/technik-sicherheit-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/technik-sicherheit-800.jpg" width="800" height="1000" alt="Ein jüngerer Mann zeigt einem älteren Herrn am Tisch etwas auf dem Tablet, beide lachen."
                  loading="lazy" decoding="async">
           </picture>
@@ -275,7 +306,7 @@
         </li>
         <li class="thema-start">
           <picture class="thema-start__media">
-            <source type="image/webp" srcset="/assets/img/themen/freizeit-lebensqualitaet-480.webp 480w, /assets/img/themen/freizeit-lebensqualitaet-800.webp 800w" sizes="(min-width: 48em) 10rem, 4.5rem">
+            <source type="image/webp" srcset="/assets/img/themen/freizeit-lebensqualitaet-160.webp 160w, /assets/img/themen/freizeit-lebensqualitaet-480.webp 480w, /assets/img/themen/freizeit-lebensqualitaet-800.webp 800w" sizes="(min-width: 48em) 10rem, 3rem">
             <img src="/assets/img/themen/freizeit-lebensqualitaet-800.jpg" width="800" height="1000" alt="Eine Gruppe älterer Menschen ist gut gelaunt mit Wanderstöcken in der Natur unterwegs."
                  loading="lazy" decoding="async">
           </picture>
@@ -297,7 +328,7 @@
   <section class="section section--sand" id="so-funktionierts" aria-labelledby="ablauf-titel">
     <div class="container ablauf">
       <div class="section__header">
-        <span class="section__eyebrow">So funktioniert es</span>
+        <span class="section__eyebrow section__eyebrow--ab-tablet">So funktioniert es</span>
         <h2 id="ablauf-titel">In drei Schritten zum passenden Anbieter</h2>
       </div>
 
@@ -342,14 +373,14 @@
   <section class="section section--sage" id="ratgeber" aria-labelledby="ratgeber-titel">
     <div class="container">
       <div class="section__header">
-        <span class="section__eyebrow">Ratgeber</span>
+        <span class="section__eyebrow section__eyebrow--ab-tablet">Ratgeber</span>
         <h2 id="ratgeber-titel">Wissen, das weiterhilft</h2>
         <p class="section__intro">Verständlich erklärt, ohne Fachchinesisch.</p>
       </div>
       <ul class="grid grid--3 ratgeber-start">
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/pflegegrad-beantragen-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/pflegegrad-beantragen-800.webp" srcset="/assets/img/ratgeber/pflegegrad-beantragen-400.webp 400w, /assets/img/ratgeber/pflegegrad-beantragen-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Pflege und Betreuung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/pflegegrad-beantragen/">Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad</a></h3>
@@ -360,7 +391,7 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" srcset="/assets/img/ratgeber/haushaltshilfe-im-alter-400.webp 400w, /assets/img/ratgeber/haushaltshilfe-im-alter-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Haushalt und Reinigung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/haushaltshilfe-im-alter/">Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht</a></h3>
@@ -371,7 +402,7 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/treppenlift-einbau-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/treppenlift-einbau-800.webp" srcset="/assets/img/ratgeber/treppenlift-einbau-400.webp 400w, /assets/img/ratgeber/treppenlift-einbau-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/treppenlift-einbau/">Treppenlift: Was Sie vor dem Einbau wissen sollten</a></h3>
@@ -382,7 +413,7 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/hausnotruf-auswahl-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/hausnotruf-auswahl-800.webp" srcset="/assets/img/ratgeber/hausnotruf-auswahl-400.webp 400w, /assets/img/ratgeber/hausnotruf-auswahl-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Technik und Sicherheit</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/hausnotruf-auswahl/">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></h3>
@@ -393,7 +424,7 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/barrierefrei-wohnen-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/barrierefrei-wohnen-800.webp" srcset="/assets/img/ratgeber/barrierefrei-wohnen-400.webp 400w, /assets/img/ratgeber/barrierefrei-wohnen-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/barrierefrei-wohnen/">Barrierefrei wohnen: Kleine Veränderungen, große Wirkung</a></h3>
@@ -404,7 +435,7 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/eltern-aus-der-ferne-unterstuetzen-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/eltern-aus-der-ferne-unterstuetzen-800.webp" srcset="/assets/img/ratgeber/eltern-aus-der-ferne-unterstuetzen-400.webp 400w, /assets/img/ratgeber/eltern-aus-der-ferne-unterstuetzen-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
               <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/eltern-aus-der-ferne-unterstuetzen/">Eltern aus der Ferne unterstützen: Ein Leitfaden für Angehörige</a></h3>
@@ -433,7 +464,7 @@
   <section class="section" id="vertrauen" aria-labelledby="vertrauen-titel">
     <div class="container">
       <div class="section__header">
-        <span class="section__eyebrow">Vertrauen</span>
+        <span class="section__eyebrow section__eyebrow--ab-tablet">Vertrauen</span>
         <h2 id="vertrauen-titel">Darauf können Sie sich verlassen</h2>
       </div>
       <ul class="vertrauen">
@@ -459,7 +490,9 @@
   </section>
 </main>
 
-<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py)
+     Relaunch 3.4: Linkspalten als <details>: unter 48em zugeklappt (spart Höhe auf dem Handy), ab 48em
+     offen und nicht einklappbar (main.js 13., ohne JS über ::details-content). -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -472,17 +505,20 @@
       </div>
 
       <nav aria-labelledby="footer-saeulen">
-        <h2 id="footer-saeulen">Drei Wege</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-saeulen">Drei Wege</h2></summary>
         <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
         <ul>
           <li><a href="/hilfe-finden/">Hilfe finden</a></li>
           <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
           <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-themen">
-        <h2 id="footer-themen">Themen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-themen">Themen</h2></summary>
         <!-- → WordPress: get_terms( 'themenbereich' ) -->
         <ul>
           <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
@@ -493,10 +529,12 @@
           <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
           <li><a href="/themen/">Alle Themen</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-regionen">
-        <h2 id="footer-regionen">Regionen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-regionen">Regionen</h2></summary>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
           <li><a href="/anfrage/?region=duesseldorf" data-region="duesseldorf">Düsseldorf</a></li>
@@ -508,23 +546,29 @@
           <li><a href="/anfrage/?region=haan" data-region="haan">Haan</a></li>
           <li><a href="/anfrage/?region=wesel" data-region="wesel">Wesel</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-info">
-        <h2 id="footer-info">Informationen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-info">Informationen</h2></summary>
         <ul class="site-footer__info">
           <li><a href="/so-funktioniert-es/">So funktioniert es</a></li>
           <li><a href="/anfrage/">Bei uns melden</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/impressum/">Impressum</a></li>
-          <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
+        </details>
       </nav>
     </div>
 
     <div class="site-footer__bottom">
+      <!-- Impressum und Datenschutz stehen immer sichtbar (nicht in einer zugeklappten Spalte) -->
+      <ul class="site-footer__recht" aria-label="Rechtliches">
+        <li><a href="/impressum/">Impressum</a></li>
+        <li><a href="/datenschutz/">Datenschutz</a></li>
+      </ul>
       <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
@@ -543,7 +587,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=300342804c" defer></script>
+<script src="/assets/js/main.js?v=b97206791a" defer></script>
   <script src="/assets/js/suche-logik.js?v=72eae2ddda" defer></script> <script src="/assets/js/assistent.js?v=cdc309fbee" defer></script>
 </body>
 </html>

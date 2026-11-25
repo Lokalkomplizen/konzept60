@@ -123,7 +123,7 @@ summary {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
   box-shadow: 0 0 0 6px var(--color-navy-800);
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 
 [id] {

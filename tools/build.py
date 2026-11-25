@@ -26,7 +26,9 @@ import hashlib
 import html
 import json
 import re
+import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,7 +37,9 @@ PARTIALS = ROOT / "partials"
 CONTENT = ROOT / "content" / "ratgeber"
 RATGEBER_IMG = "assets/img/ratgeber"
 SITE_NAME = "Konzept 60+"  # Arbeitstitel – hier zentral ändern; Templates nutzen {{site_name}}
-SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen
+SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Livegang ersetzen. Einzige Stelle der Domain:
+                                  # Canonical, Open Graph, JSON-LD, sitemap.xml und robots.txt nutzen nur SITE.
+PLATZHALTER = "PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen"
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
 META_RE = re.compile(r"\A<!--meta\n(.*?)\n-->\n", re.S)
@@ -102,7 +106,7 @@ def picture(thema, sizes, css_class, loading="lazy", priority=False):
     extra = ' fetchpriority="high"' if priority else ""
     return (
         f'<picture class="{css_class}">\n'
-        f'  <source type="image/webp" srcset="{base}-480.webp 480w, {base}-800.webp 800w" sizes="{sizes}">\n'
+        f'  <source type="image/webp" srcset="{base}-160.webp 160w, {base}-480.webp 480w, {base}-800.webp 800w" sizes="{sizes}">\n'
         f'  <img src="{base}-800.jpg" width="800" height="{hoehe}" alt="{esc(thema["bild"]["alt"])}"\n'
         f'       loading="{loading}" decoding="async"{extra}>\n'
         f"</picture>"
@@ -266,7 +270,7 @@ def unterthemen(t):
     return out
 
 
-START_SIZES = "(min-width: 48em) 10rem, 4.5rem"
+START_SIZES = "(min-width: 48em) 10rem, 3rem"
 
 
 def themen_start(themen, n):
@@ -304,7 +308,9 @@ def ratgeber_start(beitraege, n):
     """Teil E: sechs ausgewählte Beiträge (Frontmatter startseite: 1–6) statt der drei neuesten;
     Karte wie überall (Bild, Thema, Titel, automatischer Anreißer)."""
     auswahl = sorted((b for b in beitraege if b.get("startseite")), key=lambda b: int(b["startseite"]))
-    return "\n".join(article_card(b, "h3", n) for b in auswahl)
+    # Handy (< 40em): Zeilen mit 4rem-Vorschaubild → 400er-Variante genügt (tools/bilder.py --vorschau)
+    sizes = "(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem"
+    return "\n".join(article_card(b, "h3", n, sizes=sizes) for b in auswahl)
 
 
 def werkzeug_kacheln(n):
@@ -775,7 +781,7 @@ def load_beitraege(themen):
             raise SystemExit(f"FEHLER: {source} – slug '{meta['slug']}' passt nicht zum Dateinamen")
         if meta["thema"] not in themen_by_slug:
             raise SystemExit(f"FEHLER: {source} – unbekanntes Thema '{meta['thema']}'")
-        bilder = [(meta["bild"], ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
+        bilder = [(meta["bild"], ("-400.webp", "-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
         for name, _alt, _h in inline_bilder(meta):
             bilder.append((name, ("-800.webp", "-1400.webp", "-1400.jpg")))
         for name, suffixes in bilder:
@@ -905,14 +911,19 @@ def write_ratgeber_json(beitraege):
     (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def article_card(b, heading="h3", n=0, pill=None):
+ARTICLE_SIZES = "(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw"
+
+
+def article_card(b, heading="h3", n=0, pill=None, sizes=ARTICLE_SIZES):
     """Beitragskarte mit Bild 3:2, geschwungener Textfläche und Pill (→ template-parts/card-artikel.php).
     pill: Text der Pill (Standard: Themenbereich; „Verwandte Ratgeber“ zeigen die Ratgeber-Kategorie)."""
     title = esc(b["titel"])
     lines = [
         "<li>",
         '  <article class="article-card article-card--image">',
-        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">',
+        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" '
+        f'srcset="/{RATGEBER_IMG}/{b["bild"]}-400.webp 400w, /{RATGEBER_IMG}/{b["bild"]}-800.webp 800w" sizes="{sizes}" '
+        'width="800" height="533" alt="" loading="lazy" decoding="async">',
         '    <div class="article-card__body">',
         f'      <p class="article-card__meta"><span class="article-card__pill">{esc(pill or b["thema_titel"])}</span></p>',
         f'      <{heading} class="article-card__title"><a href="{b["url"]}">{title}</a></{heading}>',
@@ -1114,8 +1125,8 @@ def article_jsonld(b, fragen):
     if fragen:
         data.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": f, "acceptedAnswer": {"@type": "Answer", "text": a}} for f, a, _x in fragen]})
-    return jsonld_script(data, "JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang\n"
-                               "       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor.")
+    return jsonld_script(data, f"JSON-LD: {PLATZHALTER}; Logo erst mit echten Daten ergänzen.\n"
+                               "       Kein author: Ratgeber erscheinen ohne Autor.")
 
 
 def article_picture(b):
@@ -1484,7 +1495,7 @@ def kategorie_ctx(k, rk):
         "kategorie_nav": indent(nav, 10),
         "kategorie_abschnitte": indent(abschnitte, 6),
         "kategorie_andere": indent(andere, 8),
-        "kategorie_jsonld": jsonld_script([breadcrumb_jsonld(stufen)], "JSON-LD: PLATZHALTER-Domain example.org vor Livegang ersetzen."),
+        "kategorie_jsonld": jsonld_script([breadcrumb_jsonld(stufen)], f"JSON-LD: {PLATZHALTER}."),
         "werkzeuge_kategorie": seiten_werkzeuge(f"Ratgeber-Bereich {k['titel']} teilen: Link zu dieser Seite", 6),
     }
 
@@ -1818,9 +1829,7 @@ def pflegegrad_seo():
             {"@type": "ListItem", "position": 2, "name": "Mein Alltag", "item": f"{SITE}/mein-alltag/"},
             {"@type": "ListItem", "position": 3, "name": "Pflegegradrechner", "item": url}]},
     ]
-    body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
-    jsonld = ("  <!-- JSON-LD: PLATZHALTER-Domain example.org vor Livegang ersetzen. FAQ-Antworten = sichtbarer Text. -->\n"
-              '  <script type="application/ld+json">\n' + indent(body.splitlines(), 2) + "\n  </script>")
+    jsonld = jsonld_script(data, f"JSON-LD: {PLATZHALTER}. FAQ-Antworten = sichtbarer Text.")
     return "\n".join(items), jsonld, faq["stand"]
 
 
@@ -1933,12 +1942,13 @@ def veranstaltungen_html(regionen):
     }
 
 
-def write_sitemap(paths):
-    """sitemap.xml + robots.txt (Platzhalter-Domain, vor Livegang ersetzen)."""
-    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc></url>" for p in sorted(paths))
+def write_sitemap(lastmod):
+    """sitemap.xml + robots.txt (Platzhalter-Domain, vor Livegang ersetzen).
+    lastmod: Pfad → Datum JJJJ-MM-TT (Beiträge: geaendert; sonst Datum des letzten Commits der Quellen)."""
+    urls = "\n".join(f"  <url><loc>{SITE}{p}</loc><lastmod>{lastmod[p]}</lastmod></url>" for p in sorted(lastmod))
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        "<!-- GENERIERT von tools/build.py – example.org ist ein Platzhalter -->\n"
+        "<!-- GENERIERT von tools/build.py – Domain ist ein Platzhalter (SITE) -->\n"
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "\n</urlset>\n",
         encoding="utf-8")
     (ROOT / "robots.txt").write_text(
@@ -1946,25 +1956,48 @@ def write_sitemap(paths):
         f"Sitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
 
-def home_head(regionen):
-    """Hero-Preload + JSON-LD der Startseite (Platzhalterwerte)."""
-    area = ", ".join(json.dumps(r["name"], ensure_ascii=False) for r in regionen)
-    return f"""  <link rel="preload" as="image" type="image/webp"
-        imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
-        imagesizes="(min-width: 60em) 55vw, 100vw">
+def area_served(regionen):
+    """Start-Städte aus data/regionen.json als schema.org-City (Organisation, Themen-Services)."""
+    return [{"@type": "City", "name": r["name"]} for r in regionen]
 
-  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain)
-       (Demo-Nummer, nicht vergeben) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen. -->
-  <script type="application/ld+json">
-  {{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "{SITE_NAME}",
-    "url": "{SITE}/",
-    "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
-    "areaServed": [{area}]
-  }}
-  </script>"""
+
+def organisation(regionen=None):
+    """Organisation ohne Telefonnummer und ohne Adresse (beides gibt es nicht bzw. ist nicht festgelegt)."""
+    org = {"@type": "Organization", "name": SITE_NAME, "url": f"{SITE}/"}
+    if regionen:
+        org = {"@context": "https://schema.org", **org,
+               "description": "Kostenloses Portal für Menschen ab 60 und Angehörige: regionale Anbieter selbst finden "
+                              "oder persönlich vermitteln lassen. Wir erbringen selbst keine Dienstleistungen.",
+               "areaServed": area_served(regionen)}
+    return org
+
+
+def home_head(regionen):
+    """Hero-Preload + JSON-LD der Startseite (Organization; ohne Telefon, ohne Adresse, ohne Logo)."""
+    return f"""  <link rel="preload" as="image" type="image/webp" fetchpriority="high"
+        imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
+        imagesizes="(min-width: 60em) 45vw, 100vw">
+
+{jsonld_script(organisation(regionen), f"JSON-LD: {PLATZHALTER}; Adresse/Logo erst mit echten Daten ergänzen, keine Telefonnummer.")}"""
+
+
+def thema_jsonld(t, regionen):
+    """Themenseite: Service (Vermittlung im Themenbereich, kostenlos, Start-Städte) + BreadcrumbList."""
+    url = f"{SITE}/themen/{t['slug']}/"
+    service = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": t["titel"],
+        "serviceType": f"Vermittlung regionaler Anbieter: {t['titel']}",
+        "description": t["kurztext"],
+        "url": url,
+        "provider": organisation(),
+        "areaServed": area_served(regionen),
+        "audience": {"@type": "PeopleAudience", "suggestedMinAge": 60},
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR",
+                   "description": "Suche und persönliche Vermittlung sind kostenlos."},
+    }
+    return [service]
 
 
 def meta_seo(path, title, description, image=None, noindex=False, article=None):
@@ -1979,8 +2012,7 @@ def meta_seo(path, title, description, image=None, noindex=False, article=None):
             f'\n  <meta property="article:modified_time" content="{article["geaendert"]}">'
             f'\n  <meta property="article:section" content="{esc(article["thema_titel"])}">'
         )
-    return f"""  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+    return f"""  <!-- PROTOTYP: {PLATZHALTER} (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="{SITE}{path}">
   <meta property="og:type" content="{"article" if article else "website"}">{article_tags}
   <meta property="og:locale" content="de_DE">
@@ -2006,7 +2038,46 @@ MOBIL_LEISTE = """<nav class="leiste no-print" aria-label="Schnellzugriff">
 </nav>"""
 
 
-SEITEN_META = {}   # output → {title, description} (Prüfung auf Eindeutigkeit am Ende von main)
+SEITEN_META = {}   # output → {title, description, lastmod} (Prüfung auf Eindeutigkeit am Ende von main)
+
+# Seiten ohne sichtbare Brotkrümelnavigation: Name der zweiten Stufe für die BreadcrumbList (JSON-LD)
+BREADCRUMB_NAMEN = {
+    "anfrage/index.html": "Bei uns melden",
+    "hilfe-finden/index.html": "Hilfe finden",
+    "ratgeber/index.html": "Ratgeber",
+    "so-funktioniert-es/index.html": "So funktioniert es",
+}
+BREADCRUMB_RE = re.compile(r'<nav class="breadcrumb"[^>]*>(.*?)</nav>', re.S)
+BREADCRUMB_LI_RE = re.compile(r"<li>(.*?)</li>", re.S)
+TAG_RE = re.compile(r"<[^>]+>")
+
+
+def breadcrumb_aus_seite(output, path, content):
+    """BreadcrumbList für jede Seite außer Start und 404: aus der sichtbaren Brotkrümelnavigation
+    (Name = Linktext, Ziel = href bzw. die Seite selbst), sonst Startseite › BREADCRUMB_NAMEN[output]."""
+    m = BREADCRUMB_RE.search(content)
+    stufen = []
+    if m:
+        for li in BREADCRUMB_LI_RE.findall(m.group(1)):
+            href = re.search(r'href="([^"#?]+)"', li)
+            name = html.unescape(TAG_RE.sub("", li)).strip()
+            stufen.append((name, href.group(1) if href else path))
+    elif output in BREADCRUMB_NAMEN:
+        stufen = [("Startseite", "/"), (BREADCRUMB_NAMEN[output], path)]
+    if len(stufen) < 2 or stufen[-1][1] != path:
+        raise SystemExit(f"FEHLER: {output} – Brotkrümel fehlen oder enden nicht bei {path}: {stufen}")
+    return breadcrumb_jsonld(stufen)
+
+
+def git_datum(pfade):
+    """Datum (JJJJ-MM-TT) des letzten Commits, der eine der Quellen ändert (sitemap.xml lastmod).
+    Ohne Git oder für neue Dateien: heutiges Datum."""
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", *pfade], cwd=ROOT,
+                             capture_output=True, text=True, check=True).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        out = ""
+    return out or date.today().isoformat()
 
 
 def build_page(template, output, ctx, partials, themen, regionen):
@@ -2038,11 +2109,20 @@ def build_page(template, output, ctx, partials, themen, regionen):
         image = (f'/{RATGEBER_IMG}/{article["bild"]}-1400.jpg', 1400, 933, article["bild_alt"])
 
     content = render(body, page_ctx, template)
+    if meta.get("erstes_bild") == "eager":
+        # Das erste Bild steht im ersten Sichtbereich (LCP-Kandidat): nicht lazy laden, alle weiteren schon
+        content = content.replace('loading="lazy"', 'loading="eager"', 1)
+    head_extra = render(meta.get("head_extra", ""), page_ctx, template)
+    if path not in (None, "/") and "BreadcrumbList" not in head_extra:
+        daten = [breadcrumb_aus_seite(output, path, content)]
+        if "thema_slug" in ctx:
+            daten = thema_jsonld(t, regionen) + daten
+        head_extra = (head_extra + "\n" if head_extra else "") + jsonld_script(daten, f"JSON-LD: {PLATZHALTER}.")
     layout_ctx = {
         "title": esc(title),
         "description": esc(description),
         "meta_seo": meta_seo(path, title, description, image, noindex=path is None, article=article),
-        "head_extra": render(meta.get("head_extra", ""), page_ctx, template),
+        "head_extra": head_extra,
         "body_extra": ("  " + render(meta["body_extra"], page_ctx, template)) if meta.get("body_extra") else "",
         "icons": partials["icons"].rstrip(),
         "header": render(partials["header"], nav_ctx, "partials/header.html").rstrip(),
@@ -2055,7 +2135,9 @@ def build_page(template, output, ctx, partials, themen, regionen):
         "body_klasse": ' class="hat-leiste"' if leiste else "",
         "mobil_leiste": MOBIL_LEISTE if leiste else "",
     }
-    SEITEN_META[output] = {"title": title, "description": description}
+    quellen = [f"templates/{template}"] + [f"data/{d}" for d in meta.get("daten", "").split()]
+    lastmod = article["geaendert"] if article else git_datum(quellen)
+    SEITEN_META[output] = {"title": title, "description": description, "lastmod": lastmod, "path": path}
     page = render(partials["layout"], layout_ctx, "templates/_layout.html")
     page = page.replace(
         "<!doctype html>\n",
@@ -2081,7 +2163,7 @@ def main():
                 raise SystemExit(f"FEHLER: themen.json – '{key}' fehlt bei {t.get('slug')}")
         if not 5 <= len(t["leistungen"]) <= 8:
             raise SystemExit(f"FEHLER: themen.json – {t['slug']} braucht 5–8 Leistungen")
-        for suffix in ("-480.webp", "-800.webp", "-800.jpg"):
+        for suffix in ("-160.webp", "-480.webp", "-800.webp", "-800.jpg"):
             if not (ROOT / (t["bild"]["datei"] + suffix)).exists():
                 raise SystemExit(f"FEHLER: Bild fehlt: {t['bild']['datei']}{suffix}")
 
@@ -2225,7 +2307,7 @@ def main():
                 raise SystemExit(f"FEHLER: doppelte {feld} in {gesehen[werte[feld]]} und {output}: {werte[feld]!r}")
             gesehen[werte[feld]] = output
 
-    write_sitemap(["/" + p.removesuffix("index.html") for p in built if p != "404.html"])
+    write_sitemap({SEITEN_META[p]["path"]: SEITEN_META[p]["lastmod"] for p in built if p != "404.html"})
     print("  ✓ data/ratgeber.json, assets/data/anbieter.json, assets/data/assistent.json, sitemap.xml, robots.txt")
     for path in built:
         print(f"  ✓ {path}")

@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Veranstaltungen für Sie – Konzept 60+</title>
   <meta name="description" content="Veranstaltungskalender für Seniorinnen und Senioren: Bewegung, Kultur, Bildung, Begegnung, Digital und Gesundheit in Ihrer Region – nach Datum geordnet, nach Thema und Ort filterbar.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/veranstaltungen/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -30,12 +29,34 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
-  <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=5b397a5c3b">
+  <link rel="stylesheet" href="/assets/css/base.css?v=a799227ee4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
-
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen. -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Veranstaltungen",
+          "item": "https://www.example.org/veranstaltungen/"
+        }
+      ]
+    }
+  ]
+  </script>
 </head>
 <body class="hat-leiste">
 
@@ -142,9 +163,11 @@
         </div>
         </div>
         <picture class="pgr-start__media ev-start__media">
+          <!-- Titelbild erst ab 48em sichtbar: unter 48em ein 1×1-Platzhalter, damit Handys das Bild nicht laden -->
+          <source media="(max-width: 47.99em)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           <source type="image/webp" srcset="/assets/img/veranstaltungen/titelbild-800.webp 800w, /assets/img/veranstaltungen/titelbild-1536.webp 1536w" sizes="(min-width: 60em) 40vw, 92vw">
           <img src="/assets/img/veranstaltungen/titelbild-800.jpg" srcset="/assets/img/veranstaltungen/titelbild-800.jpg 800w, /assets/img/veranstaltungen/titelbild-1536.jpg 1536w" sizes="(min-width: 60em) 40vw, 92vw"
-               width="1536" height="864" alt="Ein Tischkalender mit bunten Haftnotizen und Symbolen für Theater, Wandern, Musik, Treffen, Kaffee, Malen, Radfahren und Entspannung, daneben Kaffeetasse, Brille, Hortensien und Strohhut." loading="eager">
+               width="1536" height="864" alt="Ein Tischkalender mit bunten Haftnotizen und Symbolen für Theater, Wandern, Musik, Treffen, Kaffee, Malen, Radfahren und Entspannung, daneben Kaffeetasse, Brille, Hortensien und Strohhut." loading="eager" decoding="async" fetchpriority="high">
         </picture>
       </div>
     </div>
@@ -747,7 +770,9 @@
   </section>
 </main>
 
-<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py)
+     Relaunch 3.4: Linkspalten als <details>: unter 48em zugeklappt (spart Höhe auf dem Handy), ab 48em
+     offen und nicht einklappbar (main.js 13., ohne JS über ::details-content). -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -760,17 +785,20 @@
       </div>
 
       <nav aria-labelledby="footer-saeulen">
-        <h2 id="footer-saeulen">Drei Wege</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-saeulen">Drei Wege</h2></summary>
         <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
         <ul>
           <li><a href="/hilfe-finden/">Hilfe finden</a></li>
           <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
           <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-themen">
-        <h2 id="footer-themen">Themen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-themen">Themen</h2></summary>
         <!-- → WordPress: get_terms( 'themenbereich' ) -->
         <ul>
           <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
@@ -781,10 +809,12 @@
           <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
           <li><a href="/themen/">Alle Themen</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-regionen">
-        <h2 id="footer-regionen">Regionen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-regionen">Regionen</h2></summary>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
           <li><a href="/anfrage/?region=duesseldorf" data-region="duesseldorf">Düsseldorf</a></li>
@@ -796,23 +826,29 @@
           <li><a href="/anfrage/?region=haan" data-region="haan">Haan</a></li>
           <li><a href="/anfrage/?region=wesel" data-region="wesel">Wesel</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-info">
-        <h2 id="footer-info">Informationen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-info">Informationen</h2></summary>
         <ul class="site-footer__info">
           <li><a href="/so-funktioniert-es/">So funktioniert es</a></li>
           <li><a href="/anfrage/">Bei uns melden</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/impressum/">Impressum</a></li>
-          <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
+        </details>
       </nav>
     </div>
 
     <div class="site-footer__bottom">
+      <!-- Impressum und Datenschutz stehen immer sichtbar (nicht in einer zugeklappten Spalte) -->
+      <ul class="site-footer__recht" aria-label="Rechtliches">
+        <li><a href="/impressum/">Impressum</a></li>
+        <li><a href="/datenschutz/">Datenschutz</a></li>
+      </ul>
       <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
@@ -831,7 +867,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=300342804c" defer></script>
+<script src="/assets/js/main.js?v=b97206791a" defer></script>
   <script src="/assets/js/veranstaltungen.js?v=cf6fb21036" defer></script>
 </body>
 </html>

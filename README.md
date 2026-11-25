@@ -1,6 +1,6 @@
 # Konzept 60+ – statischer Prototyp (Arbeitstitel)
 
-Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung (einzige `fetch`-Aufrufe: lesender Abruf der statischen Dateien `assets/data/anbieter.json` und `assets/data/assistent.json`): Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
+Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung (einzige `fetch`-Aufrufe: lesender Abruf der statischen Dateien `assets/data/anbieter.json`, `assets/data/assistent.json` und `assets/data/ratgeber-suche.json`): Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
 ## Lokal starten
 
@@ -28,8 +28,9 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 | `/mein-alltag/checklisten/` | `mein-alltag/checklisten/index.html` | `templates/mein-alltag-checklisten.html` + `data/checklisten.json` (4 Listen, nur allgemeine Punkte ohne Beträge/Fristen) |
 | `/mein-alltag/wohnungs-check/` | `mein-alltag/wohnungs-check/index.html` | `templates/mein-alltag-wohnungs-check.html` + `data/wohnungs-check.json` (12 Fragen, Priorität 1 = Sturzgefahr) |
 | `/mein-alltag/pflegegrad-rechner/` | `mein-alltag/pflegegrad-rechner/index.html` | `templates/mein-alltag-pflegegrad-rechner.html` + `data/pflegegrad/*.json` (eingebettet), Logik `assets/js/pflegegrad/`; Konzept: `docs/pflegegradrechner-konzept.md` |
-| `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht, Karten aus `content/ratgeber/`) |
-| `/ratgeber/<slug>/` (4×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
+| `/ratgeber/` | `ratgeber/index.html` | `templates/ratgeber.html` (Übersicht 3.3: Suche, Häufig gesucht, Empfohlen, Themen mit Unterthemen, Aktuell, A–Z) |
+| `/ratgeber/<kategorie>/` (5×) | `ratgeber/<kategorie>/index.html` | `templates/ratgeber-kategorie.html` + `data/ratgeber-kategorien.json` |
+| `/ratgeber/<slug>/` (21×) | `ratgeber/<slug>/index.html` | `templates/ratgeber-beitrag.html` + `content/ratgeber/<slug>.md` |
 | `/impressum/`, `/datenschutz/` | `…/index.html` | Platzhalter-Gliederung, **muss rechtlich geprüft werden** |
 | unbekannte Pfade | `404.html` | `wrangler.jsonc` → `assets.not_found_handling: "404-page"` |
 
@@ -72,14 +73,27 @@ Frontmatter (`---` … `---`, je Zeile `feld: wert`, Wert ab dem ersten Doppelpu
 | `inline_bild`, `inline_bild_alt`, `inline_nach_ueberschrift` | nein | zweites Bild im Text (lazy, 3:2) nach der ersten Liste des `##`-Abschnitts, dessen Überschrift so beginnt |
 | `tabelle_beschriftung` | nein | `<caption>` (visuell verborgen) für Tabellen |
 | `startseite` | nein | Position 1–6 im Ratgeber-Teil der Startseite; jede Zahl genau einmal (prüft `build.py`) |
+| `kategorie` | ja | Kategorie-Slug aus `data/ratgeber-kategorien.json` (Breadcrumb, Kicker, Kategorieseite) |
+| `unterkategorien` | ja | kommagetrennte Unterkategorie-Slugs; mindestens eine aus der eigenen Kategorie, weitere auch aus anderen (Mehrfachzuordnung) |
+| `hervorgehoben` | nein | Position 1–3 in „Empfohlen für den Einstieg“ auf `/ratgeber/`; jede Zahl höchstens einmal |
+| `anliegen` | nein | Anliegen-ID aus `data/anliegen.json` → Kasten „Passende Hilfe finden“ mit Link `/hilfe-finden/?anliegen=<id>` (ohne Feld kein Kasten) |
+| `kurz` | nein | Liste (`kurz:` + Zeilen `  - …`) mit 3–5 Punkten → Kasten „Das Wichtigste in Kürze“. Nur Zusammenfassungen von Sätzen des Beitrags; jede Zahl eines Punkts muss wörtlich im Beitragstext stehen (prüft `build.py`) |
 
 Markdown-Teilmenge (eigener Parser in `build.py`, HTML wird escaped): `##`/`###` Überschriften (`##` erhalten ids → automatisches Inhaltsverzeichnis), Absätze, `- ` Listen, `**fett**`, `> ` Zitat-Blöcke (mehrere Absätze über `>`-Leerzeile → Hinweis-Box; beginnt der Text mit „**Wichtig**“ in Terrakotta, sonst Salbei), Pipe-Tabellen mit Trennzeile (→ `<table>` mit `<th scope="col">`, mobil als Label/Wert-Karten über `data-label`). Anreißer und Meta-Description = erster Absatz, an Wortgrenze auf ~160/155 Zeichen gekürzt. Der Text wird **wörtlich** übernommen; Rahmen (Breadcrumb, Stand, Hinweis-Kasten, CTA, „Weitere Beiträge“) kommt aus der Vorlage.
 
 Bilder: `python3 tools/bilder.py --ratgeber <ordner>` erzeugt aus `<bild>.png/.jpg` die Größen oben (mittiger Zuschnitt; Teaser nur für Titelbilder). Originale danach löschen.
 
-Reihenfolge: neueste zuerst nach `geaendert` (bei gleichem Datum Dateiname absteigend). Die Startseite zeigt die sechs Beiträge mit `startseite: 1–6` (in dieser Reihenfolge; unter 40em als kompakte Zeilen ohne Anreißer), die Übersicht `/ratgeber/` alle ohne Begrenzung (Raster 1 → 2 → 4 Spalten), „Weitere Beiträge“ alle übrigen.
+Reihenfolge: neueste zuerst nach `geaendert` (bei gleichem Datum Dateiname absteigend). Die Startseite zeigt die sechs Beiträge mit `startseite: 1–6` (in dieser Reihenfolge; unter 40em als kompakte Zeilen ohne Anreißer).
 
-**Themenfilter `/ratgeber/`:** `ratgeber_filter()` in `build.py` erzeugt „Alle“ + nur Themenbereiche mit mindestens einem Beitrag (Reihenfolge `data/themen.json`, mit Anzahl) als `<button type="button" aria-pressed>` in einer Gruppe „Beiträge nach Thema filtern“; Karten tragen `data-thema`. `main.js` (7.) blendet Karten per `hidden` ein/aus, meldet die Anzahl in einer `aria-live`-Zeile und schreibt `?thema=<slug>` per `history.replaceState` in die Adresszeile – Links wie `/ratgeber/?thema=technik-sicherheit` filtern beim Laden (unbekannte/leere Themen → „Alle“). Ohne JS ist die Leiste ausgeblendet (`.js .filter`), alle Karten sind sichtbar. Aktiv = Navy-Fläche **plus** Häkchen. Die Übersicht hat bewusst keine Breadcrumb (Hauptnavigation markiert „Ratgeber“; `page-header--plain`); Beitragsseiten behalten sie. Gibt es zum Thema eines Beitrags weitere Beiträge, erscheint unter „Weitere Beiträge“ der Link „Weitere Beiträge zum Thema …“ auf die gefilterte Übersicht (derzeit je Thema nur ein Beitrag → nicht ausgegeben).
+**Ratgeber-Struktur (Relaunch 3.3):** `data/ratgeber-kategorien.json` enthält fünf Kategorien mit Unterkategorien (`slug`, `titel`, `begriffe` = Suchwörter), `themen` (alte Themenbereiche → Kategorie[#Unterkategorie]) und `haeufig` (Chips „Häufig gesucht“). `load_ratgeber_kategorien()` in `build.py` bricht ab bei unbekannten Slugs, Kollision eines Kategorie-Slugs mit einem Beitrags-Slug (beide liegen unter `/ratgeber/`), Beiträgen ohne Unterkategorie der eigenen Kategorie, doppelten `hervorgehoben`-Positionen und ungültigen Zielen. Unterkategorien ohne Beitrag erscheinen nirgends. Beitrags-URLs sind unverändert.
+
+- **Übersicht `/ratgeber/`:** Suche (mit JS sichtbar), „Häufig gesucht“, „Empfohlen für den Einstieg“ (`hervorgehoben` 1–3, ein großer Eintrag plus Zeilen), „Themen im Ratgeber“ (Kategorien mit Anzahl und Unterthemen mit Anzahl, Links auf `/ratgeber/<kat>/#<unter>`), „Aktuell“ (Beiträge mit Entwurfsstand in `stand` zuerst, dann nach `geaendert`, höchstens 5) und „Alle N Beiträge von A bis Z“ (`<details>`). Kein Kartenraster.
+- **Suche:** `build.py` (`write_ratgeber_suche`) schreibt `assets/data/ratgeber-suche.json` (Titel, Anreißer, Zwischenüberschriften, `kurz`, Begriffe der Unterkategorien je Beitrag). `assets/js/ratgeber.js` lädt die Datei beim ersten Fokus (lesender `fetch`), sucht mit `SucheLogik.sucheRatgeber` (Gewichte Titel > Begriffe > Überschriften > Kurz/Anreißer; Stamm, Wortteile, Tippfehler wie die Assistenten-Suche; ab drei Wörtern darf eines fehlen; höchstens 8 Treffer) und schreibt `?q=` per `history.replaceState`. Ohne JS bleibt das Suchfeld verborgen.
+- **Kategorieseiten `/ratgeber/<kat>/`:** Breadcrumb, Unterthemen als Sprunglinks, je Unterkategorie ein Abschnitt (ein Beitrag kann in mehreren stehen), weitere Kategorien, BreadcrumbList-JSON-LD.
+- **Alte Adresse `/ratgeber/?thema=…`:** `weiterleitung.js` (auf `/ratgeber/` im `<head>`, Zuordnung aus `themen` im Attribut `data-ratgeber-themen`) leitet per `location.replace` auf die Kategorieseite; unbekannte Themen werden aus der Adresse entfernt. Ohne JS bleibt man auf der Übersicht.
+- **Beitrag:** „Das Wichtigste in Kürze“ (nur mit `kurz`), Inhaltsverzeichnis, Text wörtlich, „Häufige Fragen“ (nur aus `###`-Überschriften mit „?“ am Ende plus dem folgenden Text bis zur nächsten Überschrift; dieselben Antworten als FAQPage-JSON-LD; die Fragen erhalten ids), „Stand und Quellen“, Hinweis-Kasten, „Passende Hilfe finden“ (nur mit `anliegen`), „Verwandte Ratgeber“ (höchstens 3: gemeinsame Unterkategorien, dann gleiche Kategorie). JSON-LD: `Article` (headline, description, image, datePublished aus `veroeffentlicht`, dateModified, publisher = Organisation, **kein author**), `BreadcrumbList` (Startseite › Ratgeber › Kategorie › Beitrag), ggf. `FAQPage`.
+- **Eindeutigkeit:** `build.py` bricht ab, wenn zwei Seiten denselben `<title>` oder dieselbe Meta-Description haben (404 ausgenommen).
+- **Textabgleich:** `python3 tools/ratgeber_textabgleich.py [--basis origin/main]` prüft je Beitrag Markdown-Text, sichtbaren Text, Sprungmarken und Bilder gegen einen Git-Stand und schreibt `docs/relaunch/ratgeber-textabgleich.md`.
 
 Titelbild später ersetzen (zuletzt `treppenlift-einbau`, November 2026): neues Original im Seitenverhältnis 3:2, mind. 1400 px breit, als `assets/img/ratgeber-original/<bild>.png` ablegen (Dateiname = Feld `bild`), `python3 tools/bilder.py --ratgeber assets/img/ratgeber-original` ausführen (überschreibt alle Größen inkl. Teaser), `bild_alt` im Frontmatter an das neue Motiv anpassen, `geaendert` pflegen, `python3 tools/build.py` ausführen und `assets/img/ratgeber-original/` wieder löschen.
 
@@ -125,7 +139,7 @@ assets/js/assistent.js       Oberfläche: Combobox, Schritte, Ergebnis, Notizzet
 - **Zustand in der Adresszeile** (`history.pushState`, kein Storage): `anliegen`, `bereich` (Thema), `gruppe`, `ziel` (`informieren|alltag`), `werkzeug`, `person=angehoerige`, `stadt`, `f-<frage>` (Filter, `-` = übersprungen), `n-<frage>` (Notiz), `notizen=1`, `q` (Suchbegriff). Beispiel: `/hilfe-finden/?anliegen=treppenlift&stadt=Solingen&n-treppe-form=kurvig`. Die Namen überschneiden sich bewusst nicht mit den Formular-Parametern.
 - **„Bei uns melden“** = `/anfrage/?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>&leistung=<slug,…>&notiz=<Notizzettel als Text>`; `main.js` (2.) übernimmt `leistung` (Kästchen) und `notiz` (nur in ein leeres Beschreibungsfeld) und entfernt die Parameter danach.
 - **Ohne JS** (oder wenn `assistent.json` nicht lädt): Liste mit Links auf die sechs Themenseiten und das Anfrageformular.
-- Tests: `node --test tests/*.test.js`; E2E (Server auf 8765): `node tests/assistent.e2e.js` (Szenarien Haushaltshilfe in Solingen, Treppenlift kurvige Treppe, Pflegedienst für Mutter in Düsseldorf, Zuschüsse Badumbau/„dusche statt badewanne“; `SHOTS=<ordner/>` speichert Screenshots), `node tests/anbieter.e2e.js`, `node tests/rechner.e2e.js`, `node tests/startseite.e2e.js` (Startseite 3.2: kein horizontales Scrollen bei 320/390/768/1440, Aufbau A–F, Chips und Hero-Suche öffnen den Assistenten, alte Adressen leiten um, Handy-Leiste; mit `SHOTS=<ordner/>` ganzseitige Bilder bei 390 und 1440).
+- Tests: `node --test tests/*.test.js`; E2E (Server auf 8765): `node tests/assistent.e2e.js` (Szenarien Haushaltshilfe in Solingen, Treppenlift kurvige Treppe, Pflegedienst für Mutter in Düsseldorf, Zuschüsse Badumbau/„dusche statt badewanne“; `SHOTS=<ordner/>` speichert Screenshots), `node tests/anbieter.e2e.js`, `node tests/rechner.e2e.js`, `node tests/startseite.e2e.js` (Startseite 3.2: kein horizontales Scrollen bei 320/390/768/1440, Aufbau A–F, Chips und Hero-Suche öffnen den Assistenten, alte Adressen leiten um, Handy-Leiste; mit `SHOTS=<ordner/>` ganzseitige Bilder bei 390 und 1440), `node tests/ratgeber.e2e.js` (Ratgeber 3.3: Suche „Pflegegrad“/„Zuschuss Bad“, Kategorieseiten, JSON-LD aller Beiträge, Weiterleitung `?thema=`, ohne JS, 320/390/1440, Szenario Badumbau-Zuschüsse in ≤ 3 Klicks; mit `SHOTS=<ordner/>` Übersicht und Beitrag bei 390 und 1440).
 - **WordPress:** `anliegen` = Taxonomie mit Term-Meta (`begriffe`, `kategorien`, `fragen`, `notizfragen`, `verwandt`, `ratgeber`), Fragen als Optionsseite oder JSON im Theme; `assistent.json` = REST-Endpunkt `/wp-json/wirhelfen/v1/assistent`; Trefferliste später `/wp-json/wirhelfen/v1/anbieter?anliegen=&stadt=` mit derselben Logik wie `filtereAnliegen` (PHP-Vorlage). Seite `/hilfe-finden/` = `page-hilfe-finden.php` mit Template-Part `assistent`.
 
 ## Weitere Struktur
@@ -137,8 +151,9 @@ assets/css/layout.css      Container, Sektionen, Header, Hero, Raster, Footer
 assets/css/components.css  BEM-Komponenten (.card, .personal, .relatives, .benefits, .path-card,
                            .page-header, .breadcrumb, .topic-*, .form__section, .notice--*, .demo-label …)
 assets/js/no-js.js         setzt html.js (Mobilmenü klappt nur mit JS zu)
-assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen, Ratgeber-Themenfilter,
+assets/js/main.js          Mobilmenü, Vorauswahl, abhängige Leistungen, Validierung, Simulationen,
                            Seiten-Werkzeuge: Vorlesen (8.), Seite teilen (10.), ganze Seite drucken (11.)
+assets/js/ratgeber.js      Suche auf /ratgeber/ (Index assets/data/ratgeber-suche.json, Logik suche-logik.js)
 _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Cache-Regeln
 ```
 
@@ -171,7 +186,8 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | `templates/themen.html` | `page-themen.php` bzw. Archiv der Taxonomie |
 | `templates/hilfe-finden.html` | `page-hilfe-finden.php` (Template-Part `assistent`, Taxonomie `anliegen`) |
 | `templates/fuer-anbieter.html` | `page-fuer-anbieter.php` |
-| `templates/ratgeber.html` | `home.php` (Beitragsarchiv) |
+| `templates/ratgeber.html` | `home.php` (Beitragsarchiv; Suche über REST-Endpunkt oder statische JSON-Datei im Theme) |
+| `templates/ratgeber-kategorie.html` | `taxonomy-ratgeber_kategorie.php` (Term der obersten Ebene, Abschnitte je Unterterm) |
 | `templates/ratgeber-beitrag.html` | `single.php` (Breadcrumb, `the_content()`, Inhaltsverzeichnis per Filter auf `the_content` aus den H2) |
 | Beitragskarte (`article_card()` in build.py) | `template-parts/card-artikel.php` (`the_post_thumbnail('teaser-4-3')`, `get_the_excerpt()`) |
 | „Passender Ratgeber“ auf Themenseiten | `WP_Query` mit `tax_query` `themenbereich` = aktueller Term |
@@ -199,7 +215,9 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | `titel` | `post_title` |
 | `slug` | `post_name` (Permalink `/ratgeber/%postname%/`) |
 | Markdown-Text | `post_content` (Gutenberg-Blöcke: Überschrift, Absatz, Liste, Tabelle; Zitat-Block → Block-Stil „Hinweis“) |
-| `thema` | Term der Taxonomie `themenbereich` (für `post` registriert; ersetzt die Kategorie) |
+| `thema` | Term der Taxonomie `themenbereich` (für `post` registriert) |
+| `kategorie`, `unterkategorien` | Terme der hierarchischen Taxonomie `ratgeber_kategorie` (Eltern = Kategorie, Kinder = Unterkategorien; `begriffe` als Term-Meta); Permalink der Terme `/ratgeber/%term%/` |
+| `hervorgehoben`, `anliegen`, `kurz` | Post-Meta (`kurz` als Liste bzw. eigener Block) |
 | `bild`, `bild_alt` | Beitragsbild (`_thumbnail_id`, Alt-Text der Mediendatei); Größen `ratgeber-1400` (3:2), `teaser-4-3` (600×450) |
 | `inline_bild`, `inline_bild_alt` | Bild-Block im Inhalt (`loading="lazy"`) |
 | `stand`, `geaendert` | `post_modified` (Anzeige „Stand: “ + `get_the_modified_date('F Y')`) |
@@ -228,7 +246,7 @@ Ohne Anmeldung, **ohne Speicherung**: Haken und Antworten leben nur im geöffnet
 
 - Impressum und Datenschutz ausformulieren und **rechtlich prüfen** lassen (inkl. Art. 9 DSGVO bei Gesundheitsangaben im Freitext, Ablauf der Weitergabe-Zustimmung, Double-Opt-in Newsletter).
 - Domain (Canonical, OG, JSON-LD), ggf. Adresse/Logo im JSON-LD.
-- Ratgeber: `datePublished`/Autor im JSON-LD erst mit echten Daten; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss, Treppenlift: Pflegekassen-Zuschuss, KfW-Status) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
+- Ratgeber: `datePublished` stammt aus `veroeffentlicht` (Prototyp-Daten), vor Livegang mit echten Veröffentlichungsdaten abgleichen; Autor bleibt bewusst weg; Beträge (Entlastungsbetrag, Hausnotruf-Zuschuss, Treppenlift: Pflegekassen-Zuschuss, KfW-Status) vor Veröffentlichung fachlich prüfen und `stand`/`geaendert` pflegen.
 - Treppenlift-Titelbild: Original nur 1199 px breit → `-1400`-Varianten sind leicht hochskaliert; bei Gelegenheit Original ≥ 1400 px nachliefern.
 - Ob Anbieterprofile später öffentlich sichtbar sind („Veröffentlichung“) oder nur intern genutzt werden, ist inhaltlich zu klären.
 - Formular-Backend (Spam-Schutz, Bestätigungsmail) und CSP vor Livegang gegen tatsächliche Einbindungen prüfen.

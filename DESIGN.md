@@ -288,12 +288,14 @@ Anfrage (`/anfrage/`), Anbieter-Registrierung und „Veranstaltung melden“ sin
 
 ### 6.8 Ratgeber-Elemente
 
-- Kopf: Kicker-Link zum Thema (`.article__kicker`), H1, **Stand-Pille** `.article__stand` ("Stand: Monat Jahr"). Beiträge ohne Autor.
+- Kopf: Breadcrumb Startseite › Ratgeber › Kategorie, Kicker-Link zur Kategorie (`.article__kicker`), H1, **Stand-Pille** `.article__stand` ("Stand: Monat Jahr"). Beiträge ohne Autor.
 - Layout `.article__layout`: Titelbild 3:2, Inhaltsverzeichnis `.toc`, Fließtext; zweites Bild optional (lazy, 3:2). Beitrag steht an derselben Containerkante wie alle Seiten (nicht zentriert); Text 42rem, Kopf max. 64rem.
 - Inhaltsverzeichnis als `<details class="toc__details" data-toc>`: unter 64em eingeklappt (Summary „Inhalt“ mit +/−), ab 64em offen und nicht einklappbar (`main.js` 13.; ohne JS über `::details-content`). Links mind. 48px (`--touch-min`).
 - Tabellen: mobil als Label/Wert-Karten (`data-label`), `<caption>` visuell verborgen.
-- Hinweis-Kasten ("Wichtig" in Terrakotta, sonst Salbei), Quellenblock `.beitrag-quellen`, CTA am Ende, "Weitere Beiträge".
-- Themenfilter `/ratgeber/`: Buttons mit `aria-pressed`; aktiv = Navy-Fläche plus Häkchen; Live-Region meldet die Anzahl.
+- Rahmen im Beitrag (Relaunch 3.3): `.beitrag-kurz` "Das Wichtigste in Kürze" (Salbei-Fläche, nur mit `kurz`), Fließtext, `.beitrag-fragen` "Häufige Fragen" (Fragen als h3 mit Antwort sichtbar, kein Akkordeon), `.beitrag-quellen` "Stand und Quellen", Hinweis-Kasten ("Wichtig" in Terrakotta, sonst Salbei). Daneben/darunter "Passende Hilfe finden" (`.relatives__action`, nur mit `anliegen`), CTA, "Verwandte Ratgeber" (höchstens 3).
+- Übersicht `/ratgeber/` (3.3): Suchfeld `.ratgeber-suche` (nur mit JS), Chips `.ratgeber-chips` ("Häufig gesucht", Unterthemen), `.ratgeber-empfohlen` (ein großer Eintrag mit Bild + Zeilen), `.ratgeber-themen` (Kategorien als Liste mit Unterthemen-Links, je 48px hoch, Anzahl `.ratgeber-thema__zahl`), `.ratgeber-aktuell` mit Marke `.ratgeber-aktuell__marke`, A–Z in `<details class="ratgeber-az">`. Zeilen `.ratgeber-zeile` (Bild links, Text rechts; `--ohne-bild` für Suchtreffer). Keine Verläufe, kein reines Kartenraster; alle Spalten mit `minmax(0,1fr)`.
+- Kategorieseite `/ratgeber/<kat>/`: `.kategorie-nav` (Unterthemen-Chips als Sprunglinks), `.kategorie-abschnitt` je Unterkategorie mit `.ratgeber-liste`, `.kategorie-andere`.
+- Fokus wie überall: Navy-Saum; Zeilen mit Link zeigen ihn auf der ganzen Zeile (`:has(a:focus-visible)`).
 - Fördersummen immer mit Quelle; Stand und Änderungsdatum gepflegt.
 
 ### 6.8a Veranstaltungen (`/veranstaltungen/`)
@@ -405,8 +407,9 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 | `assets/css/components.css` | BEM-Komponenten (ca. 77 KB; gezielt per `grep` suchen) |
 | `assets/css/print.css` | Druckansicht (nur `media="print"`) |
 | `assets/fonts/` | selbst gehostete WOFF2-Dateien |
-| `assets/js/` | `main.js`, `no-js.js`, `api.js` (Versandwege, `KONTAKT`), `schritte.js` (Schritt-Formulare), `assistent.js` + `suche-logik.js` (Assistent und Freitextsuche), `anbieter.js` + `anbieter-logik.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
+| `assets/js/` | `main.js`, `no-js.js`, `api.js` (Versandwege, `KONTAKT`), `schritte.js` (Schritt-Formulare), `assistent.js` + `suche-logik.js` (Assistent und Freitextsuche), `ratgeber.js` (Ratgeber-Suche), `weiterleitung.js` (alte Adressen), `anbieter.js` + `anbieter-logik.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
 | `data/anliegen.json` | Anliegen-Katalog (Suche, Assistent); Pflege siehe README |
+| `data/ratgeber-kategorien.json` | Ratgeber-Kategorien, Unterkategorien, Häufig gesucht, alte Themen-Adressen |
 | `templates/`, `partials/`, `data/`, `content/ratgeber/` | Quellen; HTML wird per `python3 tools/build.py` generiert |
 | `README.md` | Struktur, Build, WordPress-Mapping |
 

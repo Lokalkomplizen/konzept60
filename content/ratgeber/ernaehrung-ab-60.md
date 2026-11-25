@@ -7,6 +7,14 @@ bild_alt: Auf einem Holztisch liegen Lachs, Eier, Haferflocken, Joghurt mit Beer
 stand: November 2026
 veroeffentlicht: 2026-11-21 18:30
 geaendert: 2026-11-21
+kategorie: gesundheit-lebensqualitaet
+unterkategorien: ernaehrung, bewegung
+anliegen: essen
+kurz:
+  - Ab 60 kommt es nicht unbedingt darauf an, weniger zu essen. Viel wichtiger ist die Qualität der Lebensmittel.
+  - Für gesunde Menschen ab 65 Jahren empfiehlt die Deutsche Gesellschaft für Ernährung einen Schätzwert von etwa einem Gramm Eiweiß pro Kilogramm Körpergewicht täglich.
+  - Die DGE empfiehlt Erwachsenen mindestens 30 Gramm Ballaststoffe am Tag. Die Menge sollte langsam gesteigert werden.
+  - Der Energiebedarf sinkt im Alter häufig, der Bedarf an vielen Vitaminen und Mineralstoffen bleibt dagegen weitgehend bestehen.
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zu Eiweiß, Ballaststoffen und Trinkmenge orientieren sich an den Referenzwerten und Empfehlungen der Deutschen Gesellschaft für Ernährung (DGE), Stand 2026.
 inline_bild: ernaehrung-ab-60-kochen
 inline_bild_alt: Ein älterer Mann mit Brille und Schürze schneidet lächelnd frische Kräuter in einer hellen Küche, vor ihm Tomaten, Paprika und Gurke.

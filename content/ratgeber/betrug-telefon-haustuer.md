@@ -7,6 +7,14 @@ bild_alt: Ein Festnetztelefon und ein Schlüsselbund liegen auf einem Holztisch 
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:30
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: sicherheit
+kurz:
+  - Betrüger setzen häufig auf Zeitdruck, Angst oder Vertrauen. Lassen Sie sich nicht hetzen und beenden Sie im Zweifel das Gespräch.
+  - Die Polizei fordert Sie niemals dazu auf, Bargeld oder Wertsachen zur Übergabe bereitzulegen.
+  - Lassen Sie niemanden unangekündigt in Ihre Wohnung und prüfen Sie Angaben über eine selbst recherchierte Telefonnummer.
+  - Banken und seriöse Unternehmen fragen Sie nicht nach Ihrer PIN oder Ihrem Passwort.
+  - Ein persönliches Kennwort in der Familie hilft, falsche Schockanrufe zu entlarven.
 ---
 
 Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu gelangen. Dabei setzen sie häufig auf Zeitdruck, Angst oder das Vertrauen ihrer Gesprächspartner.

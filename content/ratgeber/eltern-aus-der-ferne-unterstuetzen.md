@@ -7,6 +7,16 @@ bild_alt: Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht
 stand: November 2026
 veroeffentlicht: 2026-11-20 10:00
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: angehoerige, persoenliche-betreuung, ambulante-pflege, einkaufen
+hervorgehoben: 3
+anliegen: stundenweise-betreuung
+kurz:
+  - Oft sind es zunächst kleine Veränderungen, die darauf hindeuten, dass die Eltern im Alltag Hilfe gebrauchen könnten.
+  - Versuchen Sie, mindestens eine feste Kontaktperson in der Nähe Ihrer Eltern zu finden, die im Notfall erreichbar ist.
+  - Vieles lässt sich telefonisch oder digital organisieren, etwa mit festen Gesprächszeiten, einem gemeinsamen Kalender oder Einkaufsdiensten.
+  - Die Pflegekasse bietet kostenlose Pflegeberatung an. Auch Pflegestützpunkte beraten unabhängig.
+  - Sprechen Sie rechtzeitig über Vorsorgevollmacht, Patientenverfügung, Schweigepflichtentbindung und Notfallkontakte.
 startseite: 6
 inline_bild: eltern-aus-der-ferne-tablet-kueche
 inline_bild_alt: Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.

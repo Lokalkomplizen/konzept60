@@ -10,6 +10,14 @@ inline_nach_ueberschrift: Wohnform 2 | Wohnform 3 | Soziale Nähe | Barrierefrei
 stand: November 2026 (Steueränderungen 2027: Regierungsentwurf)
 veroeffentlicht: 2026-11-23 11:00
 geaendert: 2026-11-23
+kategorie: wohnen-umbauen
+unterkategorien: wohnformen, steuern, foerderprogramme
+kurz:
+  - Damit das Zusammenleben dauerhaft funktioniert, müssen Wohnraum, Privatsphäre, Aufgaben, Finanzen und rechtliche Fragen sorgfältig geregelt werden.
+  - Einen pauschalen Steuervorteil allein für das Zusammenwohnen gibt es nicht. Je nach Gestaltung lassen sich aber zum Beispiel haushaltsnahe Dienstleistungen, Handwerkerleistungen oder Pflegekosten steuerlich berücksichtigen.
+  - Für haushaltsnahe Dienstleistungen gilt: 20 Prozent der begünstigten Aufwendungen, höchstens 4.000 Euro Steuerermäßigung jährlich.
+  - Für Handwerkerleistungen sollen es nach dem Regierungsentwurf ab dem 1. Januar 2027 nur noch 15 Prozent sein, höchstens 900 Euro jährlich (bisher 20 Prozent und höchstens 1.200 Euro).
+  - Die Pflegekasse kann wohnumfeldverbessernde Maßnahmen mit bis zu 4.180 Euro je Maßnahme und anspruchsberechtigter Person bezuschussen.
 seo_titel: Mehrgenerationenhaus: Kosten, Steuern und Vorteile
 meta_beschreibung: Mehrgenerationenwohnen richtig planen: Voraussetzungen, Kostenverteilung, steuerliche Vorteile, Fördermittel, Pflege und rechtliche Fragen verständlich erklärt.
 tabelle_beschriftung: Mögliche Aufteilung der Aufgaben im Mehrgenerationenhaus | Beispiel für eine Kostenverteilung nach Wohnfläche | Beispiel für monatliche Gesamtkosten eines Hauses mit drei Wohneinheiten | Beispielrechnung Handwerkerleistungen beim Badumbau | Pflege-Pauschbetrag nach Pflegegrad

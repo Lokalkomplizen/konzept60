@@ -7,6 +7,16 @@ bild_alt: Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer 
 stand: November 2026
 veroeffentlicht: 2026-11-20 17:05
 geaendert: 2026-11-20
+kategorie: wohnen-umbauen
+unterkategorien: wohnraumanpassung, badumbau, foerderung-umbau, zuschuesse
+hervorgehoben: 2
+anliegen: wohnung-umbauen
+kurz:
+  - Oft reichen schon einzelne Anpassungen, um den Alltag deutlich sicherer und komfortabler zu machen.
+  - Das Badezimmer gehört zu den Bereichen mit einem besonders hohen Sturzrisiko.
+  - Mit einem anerkannten Pflegegrad von 1 bis 5 ist unter bestimmten Voraussetzungen ein Zuschuss der Pflegekasse von bis zu 4.180 Euro für wohnumfeldverbessernde Maßnahmen möglich, zum Beispiel für einen Badumbau.
+  - Über das KfW-Programm „Altersgerecht Umbauen“ (Kredit 159) ist ein Kredit von bis zu 50.000 Euro je Wohneinheit möglich. Der KfW-Zuschuss 455-B ist seit dem 31. Juli 2026 nicht mehr für neue Anträge verfügbar.
+  - Beginnen Sie keine geförderte Maßnahme, bevor Sie die Antrags- und Förderbedingungen geklärt haben.
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. Die Förderangaben beziehen sich auf die aktuellen Informationen des Bundesgesundheitsministeriums und der KfW, Stand 2026.
 inline_bild: altersgerechter-umbau-foerderung
 inline_bild_alt: Auf einem sonnigen Holztisch stehen ein kleines Hausmodell mit rotem Dach, mehrere Münzstapel, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner, daneben rosa Hortensien.

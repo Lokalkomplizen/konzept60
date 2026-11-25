@@ -7,6 +7,14 @@ bild_alt: Eine ältere Frau sitzt lächelnd mit Stift und Notizbuch an einem Hol
 stand: November 2026
 veroeffentlicht: 2026-11-20 15:30
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: alltag-organisieren, selbststaendigkeit
+anliegen: alltagsbegleitung
+kurz:
+  - Mit ein wenig Organisation lassen sich alltägliche Aufgaben vereinfachen und wichtige Dinge rechtzeitig regeln.
+  - Ein einfacher Kalender hilft, Arzttermine, Medikamente und wichtige Untersuchungen im Blick zu behalten.
+  - Bewahren Sie wichtige Unterlagen an einem sicheren und bekannten Ort auf und sagen Sie einer Vertrauensperson, wo sie zu finden sind.
+  - Sie müssen nicht alles auf einmal erledigen: Nehmen Sie sich einen Bereich nach dem anderen vor.
 inline_bild: alltag-medikamente-wochenbox
 inline_bild_alt: Eine Medikamenten-Wochenbox mit Tablettenfächern von Montag bis Sonntag liegt auf einem Holztisch neben einem Blutdruckmessgerät, einem Glas Wasser und einem Notizblock mit abgehakter Liste: Medikamente, Blutdruck, Arzttermin, Rezept.
 inline_nach_ueberschrift: 2. Gesundheit und Termine organisieren

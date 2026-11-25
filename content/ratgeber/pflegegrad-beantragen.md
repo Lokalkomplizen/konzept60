@@ -7,6 +7,16 @@ bild_alt: Ein Klemmbrett mit der Überschrift „Pflegegrad“ und abgehakten Sc
 stand: November 2026
 veroeffentlicht: 2026-11-20 17:10
 geaendert: 2026-11-20
+kategorie: pflege-betreuung
+unterkategorien: pflegegrade, pflegekasse
+hervorgehoben: 1
+anliegen: pflegedienst
+kurz:
+  - Ein Pflegegrad kommt infrage, wenn die Selbstständigkeit gesundheitlich bedingt beeinträchtigt ist und voraussichtlich mindestens sechs Monate Unterstützung benötigt wird.
+  - Der Antrag bei der Pflegekasse kann zunächst formlos gestellt werden, zum Beispiel telefonisch, per E-Mail oder per Brief.
+  - Leistungen werden grundsätzlich ab dem Monat der Antragstellung gewährt, sofern die Voraussetzungen erfüllt sind.
+  - Die Pflegekasse hat grundsätzlich 25 Arbeitstage Zeit, um über den Antrag zu entscheiden.
+  - Für einen Widerspruch gilt grundsätzlich eine Frist von einem Monat nach Erhalt des Bescheids.
 startseite: 1
 tabelle_beschriftung: Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung
 hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung.

@@ -7,6 +7,14 @@ bild_alt: Ein Putzeimer mit Sprühflasche, Bürste und gelben Handschuhen, gefal
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:45
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: haushaltshilfe, einkaufen
+anliegen: haushaltshilfe
+kurz:
+  - Eine Haushaltshilfe kann zum Beispiel putzen, Wäsche waschen, einkaufen, einfache Mahlzeiten zubereiten und leichte Gartenarbeiten übernehmen.
+  - Eine Haushaltshilfe kümmert sich vor allem um praktische Aufgaben. Pflegefachliche Tätigkeiten gehören in die Hände qualifizierter Pflegekräfte.
+  - Eine Haushaltshilfe wird häufig privat bezahlt. Wer einen anerkannten Pflegegrad hat, kann beispielsweise den Entlastungsbetrag nutzen.
+  - Erkundigen Sie sich am besten bei Ihrer Pflegekasse oder einer Pflegeberatungsstelle, bevor Sie eine Unterstützung beauftragen.
 startseite: 2
 ---
 

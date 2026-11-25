@@ -7,6 +7,15 @@ bild_alt: Eine ältere Frau sitzt mit einer Tasse am Tisch und lacht mit einer H
 stand: November 2026
 veroeffentlicht: 2026-11-20 10:01
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: haushaltshilfe
+anliegen: haushaltshilfe
+kurz:
+  - Betrieb und private Haushaltshilfe haben beide Vorteile. Entscheidend ist, was zu Ihrer persönlichen Situation passt.
+  - Ein Betrieb kann bei Ausfällen häufig für Ersatz sorgen. Bei einer privaten Haushaltshilfe gibt es bei Krankheit oder Urlaub meistens keinen Ersatz.
+  - Auch eine private Haushaltshilfe muss korrekt angemeldet werden, bei einer geringfügigen Beschäftigung zum Beispiel über das Haushaltsscheck-Verfahren der Minijob-Zentrale.
+  - Wer einen Pflegegrad hat, kann beispielsweise den monatlichen Entlastungsbetrag von bis zu 131 Euro für anerkannte Angebote zur Unterstützung im Alltag nutzen.
+  - Ein persönliches Kennenlernen vor dem ersten regelmäßigen Einsatz ist in jedem Fall empfehlenswert.
 inline_bild: haushaltshilfe-kosten-sparschwein
 inline_bild_alt: Ein rosa Sparschwein steht neben Münzstapeln, einem Taschenrechner und einer Nebenkostenabrechnung auf einem hellen Holztisch.
 inline_nach_ueberschrift: 3. Was kostet eine Haushaltshilfe?

@@ -11,8 +11,10 @@ Erzeugt alle HTML-Seiten aus
   partials/footer.html            Fußbereich ({{footer_themen}}, {{footer_regionen}})
   data/themen.json, data/regionen.json, data/checklisten.json, data/wohnungs-check.json
   data/anliegen.json              Anliegen-Katalog (Suche + Assistent, geprüft in load_anliegen())
+  data/ratgeber-kategorien.json   Ratgeber-Kategorien/Unterkategorien (geprüft in load_ratgeber_kategorien())
   content/ratgeber/*.md           Ratgeber-Beiträge (Frontmatter + Markdown-Teilmenge)
-                                  → ratgeber/<slug>/index.html, ratgeber/index.html,
+                                  → ratgeber/<slug>/index.html, ratgeber/index.html, ratgeber/<kategorie>/index.html,
+                                    assets/data/ratgeber-suche.json,
                                     data/ratgeber.json (gesammelte Frontmatter, generiert)
 
 Die erzeugten Dateien (index.html, themen/…, fuer-anbieter/…, 404.html …) werden
@@ -470,8 +472,15 @@ def hinweis_block(t):
 #   seo_titel              eigener <title>/og:title statt "titel" (→ WordPress: SEO-Titel, z. B. Yoast/Rank Math)
 #   meta_beschreibung      eigene Meta-Description statt des gekürzten ersten Absatzes
 #   startseite             1–6: Platz in der Ratgeber-Auswahl der Startseite (jede Zahl genau einmal)
+# Relaunch 3.3 (Ratgeber-Struktur, data/ratgeber-kategorien.json):
+#   kategorie              Pflicht: Slug der Kategorie (Breadcrumb, Kicker, Kategorieseite)
+#   unterkategorien        Pflicht: Slugs, mit Komma getrennt (Mehrfachzuordnung, auch aus anderen Kategorien)
+#   hervorgehoben          1–3: Platz unter „Empfohlen“ auf /ratgeber/ (2–3 Beiträge, jede Zahl einmal)
+#   anliegen               id aus data/anliegen.json → Knopf „Passende Hilfe finden“ (/hilfe-finden/?anliegen=…)
+#   kurz                   Liste (Zeilen „  - Punkt“): Kasten „Das Wichtigste in Kürze“, 3–5 Punkte,
+#                          nur Aussagen aus dem Beitrag (Zahlen prüft load_beitraege gegen den Text)
 # --------------------------------------------------------------------------
-FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
+FRONTMATTER_KEYS = ("titel", "slug", "thema", "kategorie", "unterkategorien", "bild", "bild_alt", "stand", "geaendert")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 
 
@@ -484,12 +493,21 @@ def parse_frontmatter(src, source):
     except ValueError:
         raise SystemExit(f"FEHLER: {source} – Frontmatter nicht abgeschlossen (---)")
     meta = {}
+    key = None
     for line in lines[1:end]:
-        if line.strip():
-            key, sep, value = line.partition(":")
-            if not sep:
-                raise SystemExit(f"FEHLER: {source} – ungültige Frontmatter-Zeile: {line!r}")
-            meta[key.strip()] = value.strip()
+        if not line.strip():
+            continue
+        # Liste (nur für Felder ohne Wert in der Kopfzeile, z. B. „kurz:“ + Zeilen „  - Punkt“)
+        if line.startswith((" ", "\t")) and line.strip().startswith("- "):
+            if key is None or not isinstance(meta.get(key), list):
+                raise SystemExit(f"FEHLER: {source} – Listenpunkt ohne Listenfeld: {line!r}")
+            meta[key].append(line.strip()[2:].strip())
+            continue
+        key, sep, value = line.partition(":")
+        if not sep:
+            raise SystemExit(f"FEHLER: {source} – ungültige Frontmatter-Zeile: {line!r}")
+        key = key.strip()
+        meta[key] = value.strip() if value.strip() else []
     for key in FRONTMATTER_KEYS:
         if not meta.get(key):
             raise SystemExit(f"FEHLER: {source} – Frontmatter-Feld '{key}' fehlt")
@@ -598,6 +616,11 @@ def md_blocks(text):
     return blocks
 
 
+# ids, die die Beitragsvorlage selbst vergibt (Inhaltsverzeichnis, Kästen) – nie für Überschriften
+RESERVIERTE_IDS = ("inhalt", "toc-titel", "kurz-titel", "fragen-titel", "quellen-titel",
+                   "anfrage-cta-titel", "weitere-beitraege-titel", "hauptnavigation")
+
+
 def heading_ids(blocks):
     """Eindeutige ids für ##-Überschriften (Sprungziele des Inhaltsverzeichnisses)."""
     ids, seen = {}, set()
@@ -606,7 +629,17 @@ def heading_ids(blocks):
             # führende Nummerierung („1. “) weglassen → ids beginnen mit Buchstaben (CSS-/JS-Selektoren)
             base = slugify(re.sub(r"^\d+\.\s*", "", plain(data))) or "abschnitt"
             anchor, n = base, 2
-            while anchor in seen or anchor in ("inhalt", "toc-titel"):
+            while anchor in seen or anchor in RESERVIERTE_IDS:
+                anchor, n = f"{base}-{n}", n + 1
+            seen.add(anchor)
+            ids[i] = anchor
+    # ###-Überschriften, die als Frage formuliert sind, bekommen ebenfalls eine id (Sprungziel der
+    # „Häufigen Fragen“, Relaunch 3.3). ##-ids bleiben dadurch unverändert (zuerst vergeben).
+    for i, (kind, data) in enumerate(blocks):
+        if kind == "h3" and plain(data).rstrip().endswith("?"):
+            base = slugify(re.sub(r"^\d+(\.\d+)*\.?\s*", "", plain(data))) or "frage"
+            anchor, n = base, 2
+            while anchor in seen or anchor in RESERVIERTE_IDS:
                 anchor, n = f"{base}-{n}", n + 1
             seen.add(anchor)
             ids[i] = anchor
@@ -624,7 +657,7 @@ def render_blocks(blocks, ids=None, caption=None, slug="beitrag"):
         if kind == "h2":
             out.append(f'<h2 id="{ids[i]}">{inline(data)}</h2>')
         elif kind == "h3":
-            out.append(f"<h3>{inline(data)}</h3>")
+            out.append(f'<h3 id="{ids[i]}">{inline(data)}</h3>' if i in ids else f"<h3>{inline(data)}</h3>")
         elif kind == "p":
             out.append(f"<p>{inline(data)}</p>")
         elif kind == "ul" and all(item.startswith("[ ] ") for item in data):
@@ -761,6 +794,19 @@ def load_beitraege(themen):
         b["description"] = meta.get("meta_beschreibung") or kuerzen(plain(first), 155)
         b["url"] = f"/ratgeber/{meta['slug']}/"
         b["_blocks"] = blocks
+        # „Das Wichtigste in Kürze“ (Relaunch 3.3): 3–5 Punkte, nur Aussagen aus dem Beitrag.
+        # Grobe Absicherung: Jede Zahl eines Punkts muss genau so im Beitragstext stehen.
+        if "kurz" in meta:
+            if not isinstance(meta["kurz"], list) or not 3 <= len(meta["kurz"]) <= 5:
+                raise SystemExit(f"FEHLER: {source} – 'kurz' braucht 3–5 Listenpunkte („  - …“)")
+            text = plain(body)
+            for punkt in meta["kurz"]:
+                for zahl in re.findall(r"\d+(?:[.,]\d+)*", punkt):
+                    if not re.search(r"(?<![\d.,])" + re.escape(zahl) + r"(?![\d]|[.,]\d)", text):
+                        raise SystemExit(f"FEHLER: {source} – Zahl „{zahl}“ aus 'kurz' steht nicht im Beitrag: {punkt!r}")
+        for key, value in meta.items():
+            if isinstance(value, list) and key != "kurz":
+                raise SystemExit(f"FEHLER: {source} – Feld '{key}' darf keine Liste sein")
         beitraege.append(b)
     # Startseiten-Auswahl (Relaunch 3.2): Frontmatter "startseite: 1" … "startseite: 6", jede Zahl genau einmal
     # (→ WordPress: Meta-Feld bzw. „Beitrag oben halten“ + menu_order)
@@ -848,7 +894,8 @@ def write_anbieter_assets(themen):
 
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
-    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "startseite", "anreisser", "url",
+    keys = ("slug", "titel", "thema", "thema_titel", "kategorie", "kategorie_titel", "unterkategorien", "hervorgehoben",
+            "anliegen", "kurz", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "startseite", "anreisser", "url",
             "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis",
             "quellen", "seo_titel", "meta_beschreibung")
     data = {
@@ -858,16 +905,16 @@ def write_ratgeber_json(beitraege):
     (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def article_card(b, heading="h3", n=0, filter_attr=False):
-    """Beitragskarte mit Bild 3:2, geschwungener Textfläche und Themen-Pill (→ template-parts/card-artikel.php).
-    filter_attr: data-thema am <li> für die Themenfilter der Übersicht /ratgeber/."""
+def article_card(b, heading="h3", n=0, pill=None):
+    """Beitragskarte mit Bild 3:2, geschwungener Textfläche und Pill (→ template-parts/card-artikel.php).
+    pill: Text der Pill (Standard: Themenbereich; „Verwandte Ratgeber“ zeigen die Ratgeber-Kategorie)."""
     title = esc(b["titel"])
     lines = [
-        f'<li data-thema="{b["thema"]}">' if filter_attr else "<li>",
+        "<li>",
         '  <article class="article-card article-card--image">',
         f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">',
         '    <div class="article-card__body">',
-        f'      <p class="article-card__meta"><span class="article-card__pill">{esc(b["thema_titel"])}</span></p>',
+        f'      <p class="article-card__meta"><span class="article-card__pill">{esc(pill or b["thema_titel"])}</span></p>',
         f'      <{heading} class="article-card__title"><a href="{b["url"]}">{title}</a></{heading}>',
         f'      <p class="article-card__text">{esc(b["anreisser"])}</p>',
         '      <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>',
@@ -876,41 +923,6 @@ def article_card(b, heading="h3", n=0, filter_attr=False):
         "</li>",
     ]
     return indent(lines, n)
-
-
-def ratgeber_filter(themen, beitraege):
-    """Themenfilter der Übersicht /ratgeber/: „Alle“ + nur Themenbereiche mit Beiträgen
-    (Reihenfolge wie data/themen.json), je mit Anzahl. Ohne JS per CSS ausgeblendet (.js),
-    main.js blendet Karten über das hidden-Attribut ein/aus (→ WordPress: get_terms('themenbereich',
-    hide_empty) + Zählung aus term->count)."""
-    counts = {}
-    for b in beitraege:
-        counts[b["thema"]] = counts.get(b["thema"], 0) + 1
-    gesamt = len(beitraege)
-    wort = "Beitrag" if gesamt == 1 else "Beiträge"
-    lines = [
-        '<div class="filter" data-filter>',
-        '  <p class="filter__label" id="filter-label">Beiträge nach Thema filtern</p>',
-        '  <div class="filter__list" role="group" aria-labelledby="filter-label">',
-        f'    <button type="button" class="filter__btn" aria-pressed="true" data-filter-thema="">'
-        f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>'
-        f'Alle <span class="filter__count">({gesamt})</span></button>',
-    ]
-    for t in themen:
-        n = counts.get(t["slug"])
-        if not n:
-            continue
-        lines.append(
-            f'    <button type="button" class="filter__btn" aria-pressed="false" data-filter-thema="{t["slug"]}">'
-            f'<svg class="icon filter__check" aria-hidden="true"><use href="#icon-check"/></svg>'
-            f'{esc(t["titel"])} <span class="filter__count">({n})</span></button>'
-        )
-    lines += [
-        "  </div>",
-        f'  <p class="filter__status" aria-live="polite" data-filter-status>{gesamt} {wort}</p>',
-        "</div>",
-    ]
-    return indent(lines, 6)
 
 
 ALLTAG_WERKZEUGE = [
@@ -1079,26 +1091,31 @@ def article_toc(blocks, ids):
     return lines
 
 
-def article_jsonld(b):
-    data = {
+def article_jsonld(b, fragen):
+    """Article (ohne author: Beiträge ohne Autor; publisher = Organisation) + BreadcrumbList,
+    dazu FAQPage, wenn der Beitrag Zwischenüberschriften als Fragen hat (Antwort = sichtbarer Text)."""
+    tag, _, zeit = b.get("veroeffentlicht", b["geaendert"]).partition(" ")
+    published = f"{tag}T{zeit}:00+01:00" if zeit else tag   # Europe/Berlin, November = MEZ
+    article = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": b["titel"],
         "description": b["description"],
         "image": [f'{SITE}/{RATGEBER_IMG}/{b["bild"]}-1400.jpg'],
+        "datePublished": published,
         "dateModified": b["geaendert"],
         "inLanguage": "de-DE",
-        "articleSection": b["thema_titel"],
+        "articleSection": b["kategorie_titel"],
         "mainEntityOfPage": f'{SITE}{b["url"]}',
         "publisher": {"@type": "Organization", "name": SITE_NAME, "url": f"{SITE}/"},
     }
-    body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
-    return (
-        "  <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang\n"
-        "       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->\n"
-        '  <script type="application/ld+json">\n'
-        + indent(body.splitlines(), 2) + "\n  </script>"
-    )
+    data = [article, breadcrumb_jsonld([("Startseite", "/"), ("Ratgeber", "/ratgeber/"),
+                                        (b["kategorie_titel"], b["kategorie_url"]), (b["titel"], b["url"])])]
+    if fragen:
+        data.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": f, "acceptedAnswer": {"@type": "Answer", "text": a}} for f, a, _x in fragen]})
+    return jsonld_script(data, "JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang\n"
+                               "       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor.")
 
 
 def article_picture(b):
@@ -1111,54 +1128,41 @@ def article_picture(b):
     ]
 
 
-def quellen_block(b):
-    """Quellen/offizielle Formulare (Frontmatter 'quellen'); leer ohne Angabe."""
-    if not b.get("quellen"):
-        return ""
-    lines = ['<section class="beitrag-quellen" aria-labelledby="quellen-titel">',
-             '  <h2 id="quellen-titel">Quellen und offizielle Formulare</h2>', "  <ol>"]
-    for entry in b["quellen"].split(" ;; "):
-        label, _, url = entry.rpartition("|")
-        lines.append(f'    <li><a href="{esc(url.strip())}" rel="noopener">{esc(label.strip())}</a></li>')
-    lines += ["  </ol>", "</section>"]
-    return indent(lines, 10) + "\n"
-
-
 def beitrag_ctx(b, beitraege):
     blocks = b["_blocks"]
     ids = heading_ids(blocks)
-    andere = [x for x in beitraege if x["slug"] != b["slug"]]
-    # Link auf die gefilterte Übersicht nur, wenn es weitere Beiträge zum selben Thema gibt
-    gleiches_thema = [x for x in andere if x["thema"] == b["thema"]]
-    thema_link = (
-        f'      <p class="article-list__all"><a href="/ratgeber/?thema={b["thema"]}">'
-        f'Weitere Beiträge zum Thema {esc(b["thema_titel"])}</a></p>'
-    ) if gleiches_thema else ""
+    fragen = beitrag_fragen(blocks, ids)
+    b["_fragen"] = fragen
+    nah = verwandte(b, beitraege)
     return {
         "meta_titel": b.get("seo_titel") or b["titel"],
         "meta_description": b["description"],
-        "beitrag_jsonld": article_jsonld(b),
+        "beitrag_jsonld": article_jsonld(b, fragen),
         "og_article": b,
         "beitrag_slug": b["slug"],
         "beitrag_titel": esc(b["titel"]),
         "beitrag_thema": b["thema"],
         "beitrag_thema_titel": esc(b["thema_titel"]),
+        "beitrag_kategorie_titel": esc(b["kategorie_titel"]),
+        "beitrag_kategorie_url": b["kategorie_url"],
         "beitrag_stand": esc(b["stand"]),
         "beitrag_geaendert": b["geaendert"],
         # Hinweisbox am Beitragsende: eigener Text über Frontmatter "hinweis", sonst Standardtext
         "beitrag_hinweis": inline(b["hinweis"]) if b.get("hinweis") else (
             "Dieser Beitrag dient der allgemeinen Information und ersetzt keine individuelle Beratung. "
             f"Beträge und Voraussetzungen können sich ändern – maßgeblich sind die Angaben Ihrer Pflegekasse. Stand: {esc(b['stand'])}."),
-        "beitrag_quellen": quellen_block(b),
+        "beitrag_kurz": kurz_block(b),
+        "beitrag_fragen": fragen_block(fragen),
+        "beitrag_quellen": stand_quellen_block(b),
+        "beitrag_hilfe": hilfe_block(b),
         "werkzeuge_beitrag": seiten_werkzeuge(
             "Beitrag teilen: Link zu diesem Ratgeber-Beitrag", 10, vorlesen=True,
             drucken="Beitrag drucken oder als PDF speichern", teilen_titel=b["titel"], dezent=False),
         "beitrag_bild": indent(article_picture(b), 8),
         "beitrag_toc": indent(article_toc(blocks, ids), 8),
         "beitrag_inhalt": indent(render_blocks(blocks, ids, b.get("tabelle_beschriftung"), b["slug"]).splitlines(), 8),
-        # Beiträge zum selben Thema zuerst, dann die neuesten übrigen; max. 3 Karten
-        "weitere_beitraege": "\n".join(article_card(x, "h3", 8) for x in (gleiches_thema + [x for x in andere if x["thema"] != b["thema"]])[:3]),
-        "weitere_zum_thema": thema_link,
+        # Verwandte Ratgeber: gleiche Unterkategorie, dann gleiche Kategorie; höchstens 3 Karten
+        "weitere_beitraege": "\n".join(article_card(x, "h3", 8, pill=x["kategorie_titel"]) for x in nah),
     }
 
 
@@ -1181,6 +1185,433 @@ def thema_ratgeber(t, beitraege):
         )
     lines += ["  </ul>", "</section>"]
     return indent(lines, 6)
+
+
+# --------------------------------------------------------------------------
+# Ratgeber-Struktur (Relaunch 3.3): Kategorien + Unterkategorien, Übersicht mit Suche,
+# Kategorieseiten, Beitragsbausteine (Kurz-Kasten, Häufige Fragen, Stand und Quellen,
+# Verwandte Ratgeber, Passende Hilfe). Daten: data/ratgeber-kategorien.json + Frontmatter.
+# → WordPress: hierarchische Taxonomie 'ratgeber_kategorie' (Kategorie = Term, Unterkategorie
+#   = Kind-Term), Archiv taxonomy-ratgeber_kategorie.php; Kurz-Kasten/FAQ/Quellen als Felder bzw.
+#   Filter auf the_content.
+# --------------------------------------------------------------------------
+RATGEBER_SUCHE_ASSET = "assets/data/ratgeber-suche.json"
+# Unterseiten unter /ratgeber/, die es außer Beiträgen und Kategorien gibt (heute keine) –
+# Kategorie-Slugs dürfen weder Beitrags-Slugs noch diesen Namen entsprechen.
+RATGEBER_RESERVIERT = {"index", "assets", "suche", "seite", "page", "feed"}
+
+
+def de_datum(iso):
+    j, m, t = (int(x) for x in iso.split("-"))
+    return f"{t}. {MONATE[m - 1]} {j}"
+
+
+def stand_hinweis(b):
+    """Zusatz im Stand („Gesetzentwurf“, „Regierungsentwurf“ …) = Text in Klammern; '' ohne Zusatz."""
+    m = re.search(r"\((.+)\)\s*$", b["stand"])
+    return m.group(1).strip() if m else ""
+
+
+def load_ratgeber_kategorien(themen, beitraege):
+    """data/ratgeber-kategorien.json prüfen und mit den Beiträgen verknüpfen.
+    Bricht ab bei: doppelten Slugs, Kategorie-Slug = Beitrags-Slug (beide wären /ratgeber/<slug>/),
+    unbekannter Kategorie/Unterkategorie im Frontmatter, Beitrag ohne Unterkategorie seiner Kategorie,
+    ungültigen Verweisen in themen/haeufig, falsch vergebenem 'hervorgehoben'.
+    Ergebnis: Liste der Kategorien mit 'unter' (nur Unterkategorien mit Beiträgen) und 'beitraege'."""
+    daten = json.loads(read(ROOT / "data" / "ratgeber-kategorien.json"))
+    slugs_b = {b["slug"] for b in beitraege}
+    kats, unter = {}, {}
+    for k in daten["kategorien"]:
+        for key in ("slug", "titel", "kurztext", "unterkategorien"):
+            if not k.get(key):
+                raise SystemExit(f"FEHLER: ratgeber-kategorien.json – '{key}' fehlt bei {k.get('slug')}")
+        if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", k["slug"]):
+            raise SystemExit(f"FEHLER: ratgeber-kategorien.json – ungültiger Slug {k['slug']!r}")
+        if k["slug"] in slugs_b:
+            raise SystemExit(f"FEHLER: Namenskollision – Kategorie und Beitrag heißen beide '{k['slug']}' "
+                             f"(/ratgeber/{k['slug']}/). Kategorie-Slug ändern, Beitrags-URLs bleiben fest.")
+        if k["slug"] in RATGEBER_RESERVIERT or k["slug"] in kats:
+            raise SystemExit(f"FEHLER: ratgeber-kategorien.json – Slug '{k['slug']}' reserviert oder doppelt")
+        kats[k["slug"]] = k
+        for u in k["unterkategorien"]:
+            if not u.get("slug") or not u.get("titel"):
+                raise SystemExit(f"FEHLER: ratgeber-kategorien.json – Unterkategorie unvollständig in {k['slug']}")
+            if u["slug"] in unter or u["slug"] in RESERVIERTE_IDS:
+                raise SystemExit(f"FEHLER: ratgeber-kategorien.json – Unterkategorie '{u['slug']}' doppelt/reserviert")
+            unter[u["slug"]] = (k, u)
+    for k in kats:
+        if k in unter:
+            raise SystemExit(f"FEHLER: ratgeber-kategorien.json – '{k}' ist Kategorie und Unterkategorie")
+    plaetze = []
+    for b in beitraege:
+        if b["kategorie"] not in kats:
+            raise SystemExit(f"FEHLER: {b['slug']} – unbekannte Kategorie '{b['kategorie']}'")
+        us = [x.strip() for x in b["unterkategorien"].split(",") if x.strip()]
+        for x in us:
+            if x not in unter:
+                raise SystemExit(f"FEHLER: {b['slug']} – unbekannte Unterkategorie '{x}'")
+        if len(us) != len(set(us)):
+            raise SystemExit(f"FEHLER: {b['slug']} – Unterkategorie doppelt")
+        if not any(unter[x][0]["slug"] == b["kategorie"] for x in us):
+            raise SystemExit(f"FEHLER: {b['slug']} – mindestens eine Unterkategorie muss zur Kategorie '{b['kategorie']}' gehören")
+        b["unter_liste"] = us
+        b["kategorie_titel"] = kats[b["kategorie"]]["titel"]
+        b["kategorie_url"] = f"/ratgeber/{b['kategorie']}/"
+        if b.get("hervorgehoben"):
+            plaetze.append(b["hervorgehoben"])
+    if sorted(plaetze) not in (["1", "2"], ["1", "2", "3"]):
+        raise SystemExit(f"FEHLER: Frontmatter 'hervorgehoben' muss 1–2 oder 1–3 je einmal vergeben (gefunden: {sorted(plaetze)})")
+    struktur = []
+    for k in daten["kategorien"]:
+        eigene = {u["slug"] for u in k["unterkategorien"]}
+        subs = []
+        for u in k["unterkategorien"]:
+            arts = [b for b in beitraege if u["slug"] in b["unter_liste"]]
+            if arts:   # Unterkategorien ohne Beitrag werden nicht angezeigt
+                subs.append(dict(u, beitraege=arts))
+        alle = [b for b in beitraege if b["kategorie"] == k["slug"] or eigene & set(b["unter_liste"])]
+        alle.sort(key=lambda b: b["kategorie"] != k["slug"])   # eigene Beiträge zuerst, sonst Reihenfolge der Übersicht
+        if not alle:
+            raise SystemExit(f"FEHLER: Kategorie '{k['slug']}' hat keinen Beitrag (keine leeren Seiten)")
+        struktur.append(dict(k, unter=subs, beitraege=alle, url=f"/ratgeber/{k['slug']}/"))
+    sichtbar = {u["slug"] for k in struktur for u in k["unter"]}
+
+    def ziel_url(ziel):
+        kat, _, sub = ziel.partition("#")
+        if kat not in kats or (sub and sub not in sichtbar):
+            raise SystemExit(f"FEHLER: ratgeber-kategorien.json – Ziel '{ziel}' unbekannt oder ohne Beitrag")
+        return f"/ratgeber/{kat}/" + (f"#{sub}" if sub else "")
+
+    slugs_t = {t["slug"] for t in themen}
+    weiterleitung = {}
+    for thema, ziel in daten["themen"].items():
+        if thema.startswith("_"):
+            continue
+        if thema not in slugs_t:
+            raise SystemExit(f"FEHLER: ratgeber-kategorien.json – themen: unbekanntes Thema '{thema}'")
+        weiterleitung[thema] = ziel_url(ziel)
+    if set(weiterleitung) != slugs_t:
+        raise SystemExit("FEHLER: ratgeber-kategorien.json – themen muss jedes Thema aus themen.json umleiten")
+    by_slug = {b["slug"]: b for b in beitraege}
+    haeufig = []
+    for h in daten["haeufig"]:
+        if h.get("beitrag"):
+            if h["beitrag"] not in by_slug:
+                raise SystemExit(f"FEHLER: ratgeber-kategorien.json – haeufig: Beitrag '{h['beitrag']}' unbekannt")
+            haeufig.append((h["titel"], by_slug[h["beitrag"]]["url"]))
+        else:
+            haeufig.append((h["titel"], ziel_url(h["ziel"])))
+    return {"kategorien": struktur, "unter": unter, "weiterleitung": weiterleitung, "haeufig": haeufig}
+
+
+def pruefe_anliegen_verweise(beitraege, anliegen):
+    ids = {a["id"]: a for a in anliegen["anliegen"]}
+    for b in beitraege:
+        if b.get("anliegen") and b["anliegen"] not in ids:
+            raise SystemExit(f"FEHLER: {b['slug']} – Anliegen '{b['anliegen']}' fehlt in data/anliegen.json")
+        if b.get("anliegen"):
+            b["anliegen_titel"] = ids[b["anliegen"]]["titel"]
+
+
+def ratgeber_zeile(b, heading="h3", n=0, anreisser=True, meta=None):
+    """Kompakte Beitragszeile: kleines Vorschaubild 4:3, Kategorie/Stand, Titel, optional Anreißer.
+    Ganze Zeile über den Titel-Link klickbar (→ template-parts/zeile-artikel.php)."""
+    meta = meta if meta is not None else f'{esc(b["kategorie_titel"])} · Stand: {esc(b["stand"])}'
+    lines = [
+        '<li class="ratgeber-zeile">',
+        f'  <img class="ratgeber-zeile__bild" src="/{RATGEBER_IMG}/{b["bild"]}-teaser-600.webp" width="600" height="450" alt="" loading="lazy" decoding="async">',
+        '  <div class="ratgeber-zeile__text">',
+        f'    <p class="ratgeber-zeile__meta">{meta}</p>',
+        f'    <{heading} class="ratgeber-zeile__titel"><a href="{b["url"]}">{esc(b["titel"])}</a></{heading}>',
+    ]
+    if anreisser:
+        lines.append(f'    <p class="ratgeber-zeile__anreisser">{esc(b["anreisser"])}</p>')
+    lines += ["  </div>", "</li>"]
+    return indent(lines, n)
+
+
+def ratgeber_haeufig(rk, n):
+    return indent([f'<li><a class="ratgeber-chip" href="{esc(url)}">{esc(titel)}</a></li>'
+                   for titel, url in rk["haeufig"]], n)
+
+
+def ratgeber_empfohlen(beitraege, n):
+    """„Empfohlen“: 2–3 Beiträge (Frontmatter hervorgehoben). Der erste groß mit Bild, die übrigen als Zeilen."""
+    auswahl = sorted((b for b in beitraege if b.get("hervorgehoben")), key=lambda b: b["hervorgehoben"])
+    haupt, rest = auswahl[0], auswahl[1:]
+    base = f'/{RATGEBER_IMG}/{haupt["bild"]}'
+    lines = [
+        '<article class="ratgeber-empfohlen__haupt">',
+        '  <picture>',
+        f'    <source type="image/webp" srcset="{base}-800.webp 800w, {base}-1400.webp 1400w" sizes="(min-width: 64em) 40rem, calc(100vw - 2.5rem)">',
+        f'    <img class="ratgeber-empfohlen__bild" src="{base}-1400.jpg" width="1400" height="933" alt="" loading="lazy" decoding="async">',
+        '  </picture>',
+        '  <div class="ratgeber-empfohlen__text">',
+        f'    <p class="ratgeber-zeile__meta">{esc(haupt["kategorie_titel"])} · Stand: {esc(haupt["stand"])}</p>',
+        f'    <h3 class="ratgeber-empfohlen__titel"><a href="{haupt["url"]}">{esc(haupt["titel"])}</a></h3>',
+        f'    <p>{esc(haupt["anreisser"])}</p>',
+        '  </div>',
+        '</article>',
+        '<ul class="ratgeber-liste ratgeber-empfohlen__weitere">',
+    ]
+    out = indent(lines, n) + "\n" + "\n".join(ratgeber_zeile(b, "h3", n + 2) for b in rest)
+    return out + "\n" + indent(["</ul>"], n)
+
+
+def ratgeber_themen(rk, n):
+    """Kategorien mit Unterkategorien und Anzahl (Index statt Kartenraster)."""
+    lines = []
+    for k in rk["kategorien"]:
+        anzahl = len(k["beitraege"])
+        lines += [
+            '<li class="ratgeber-thema">',
+            '  <div class="ratgeber-thema__kopf">',
+            f'    <h3 class="ratgeber-thema__titel"><a href="{k["url"]}">{esc(k["titel"])}</a></h3>',
+            f'    <p class="ratgeber-thema__anzahl">{anzahl} {"Beitrag" if anzahl == 1 else "Beiträge"}</p>',
+            f'    <p class="ratgeber-thema__text">{esc(k["kurztext"])}</p>',
+            '  </div>',
+            f'  <ul class="ratgeber-thema__unter" aria-label="Unterthemen: {esc(k["titel"])}">',
+        ]
+        for u in k["unter"]:
+            c = len(u["beitraege"])
+            lines.append(f'    <li><a href="{k["url"]}#{u["slug"]}">{esc(u["titel"])}'
+                         f'<span class="ratgeber-thema__zahl"> ({c}<span class="visually-hidden"> {"Beitrag" if c == 1 else "Beiträge"}</span>)</span></a></li>')
+        lines += ["  </ul>", "</li>"]
+    return indent(lines, n)
+
+
+def ratgeber_aktuell(beitraege, n, limit=5):
+    """„Aktuell“: Beiträge mit Entwurfs-/Gesetzesstand (Zusatz in Klammern im Feld stand), danach die
+    zuletzt geänderten; neueste Änderung zuerst."""
+    sortiert = sorted(beitraege, key=lambda b: (bool(stand_hinweis(b)), b["geaendert"], b.get("veroeffentlicht", "")), reverse=True)
+    lines = []
+    for b in sortiert[:limit]:
+        hinweis = stand_hinweis(b)
+        marke = (f'<span class="ratgeber-aktuell__marke">{esc(hinweis)}</span>' if hinweis
+                 else '<span class="ratgeber-aktuell__marke ratgeber-aktuell__marke--neu">Aktualisiert</span>')
+        lines += [
+            '<li class="ratgeber-aktuell__eintrag">',
+            f'  {marke}',
+            f'  <a class="ratgeber-aktuell__link" href="{b["url"]}">{esc(b["titel"])}</a>',
+            f'  <span class="ratgeber-aktuell__datum">Geändert am <time datetime="{b["geaendert"]}">{de_datum(b["geaendert"])}</time></span>',
+            "</li>",
+        ]
+    return indent(lines, n)
+
+
+def _sortkey(text):
+    t = text.lower()
+    for a, b in (("ä", "a"), ("ö", "o"), ("ü", "u"), ("ß", "ss")):
+        t = t.replace(a, b)
+    return t
+
+
+def ratgeber_az(beitraege, n):
+    lines = []
+    for b in sorted(beitraege, key=lambda b: _sortkey(b["titel"])):
+        lines.append(f'<li><a href="{b["url"]}">{esc(b["titel"])}</a> <span class="ratgeber-az__kat">{esc(b["kategorie_titel"])}</span></li>')
+    return indent(lines, n)
+
+
+def write_ratgeber_suche(beitraege, rk):
+    """Suchindex der Ratgeber-Übersicht → assets/data/ratgeber-suche.json (fetch, ?v=Hash).
+    Volltext über Titel, Anreißer, Zwischenüberschriften (##/###) und „Das Wichtigste in Kürze“,
+    dazu Kategorie-/Unterkategorie-Titel und deren Suchbegriffe. Logik: SucheLogik.sucheRatgeber."""
+    eintraege = []
+    for b in beitraege:
+        begriffe = [b["kategorie_titel"]]
+        for x in b["unter_liste"]:
+            _k, u = rk["unter"][x]
+            begriffe += [u["titel"]] + u.get("begriffe", [])
+        eintraege.append({
+            "slug": b["slug"],
+            "titel": b["titel"],
+            "url": b["url"],
+            "kategorie": b["kategorie_titel"],
+            "stand": b["stand"],
+            "anreisser": b["anreisser"],
+            "ueberschriften": [re.sub(r"^\d+(\.\d+)*\.?\s*", "", plain(d)) for k, d in b["_blocks"] if k in ("h2", "h3")],
+            "kurz": b.get("kurz", []),
+            "begriffe": list(dict.fromkeys(begriffe)),
+        })
+    ziel = ROOT / RATGEBER_SUCHE_ASSET
+    ziel.parent.mkdir(parents=True, exist_ok=True)
+    ziel.write_text(json.dumps({"beitraege": eintraege}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    return "/" + RATGEBER_SUCHE_ASSET + "?v=" + _asset_version("/" + RATGEBER_SUCHE_ASSET)
+
+
+def breadcrumb_jsonld(stufen):
+    """stufen: [(name, pfad), …] → BreadcrumbList."""
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i, "name": name, "item": f"{SITE}{pfad}"}
+        for i, (name, pfad) in enumerate(stufen, 1)]}
+
+
+def jsonld_script(data, kommentar):
+    body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
+    return (f"  <!-- {kommentar} -->\n"
+            '  <script type="application/ld+json">\n' + indent(body.splitlines(), 2) + "\n  </script>")
+
+
+def weiterleitung_skript(rk):
+    """Alte Filter-Adressen /ratgeber/?thema=… → Kategorieseite (assets/js/weiterleitung.js, im <head>)."""
+    ziele = json.dumps(rk["weiterleitung"], ensure_ascii=False, separators=(",", ":"))
+    return f'<script src="/assets/js/weiterleitung.js" data-ratgeber-themen="{esc(ziele)}"></script>'
+
+
+def kategorie_ctx(k, rk):
+    stufen = [("Startseite", "/"), ("Ratgeber", "/ratgeber/"), (k["titel"], k["url"])]
+    anzahl = len(k["beitraege"])
+    nav = [f'<li><a class="ratgeber-chip" href="#{u["slug"]}">{esc(u["titel"])}'
+           f'<span class="ratgeber-chip__zahl"> ({len(u["beitraege"])})</span></a></li>' for u in k["unter"]]
+    abschnitte = []
+    for u in k["unter"]:
+        abschnitte += [
+            f'<section class="kategorie-abschnitt" aria-labelledby="{u["slug"]}">',
+            f'  <h2 class="kategorie-abschnitt__titel" id="{u["slug"]}">{esc(u["titel"])}</h2>',
+            '  <ul class="ratgeber-liste">',
+            "\n".join(ratgeber_zeile(b, "h3", 4, meta=f'Stand: {esc(b["stand"])}') for b in u["beitraege"]),
+            "  </ul>",
+            "</section>",
+        ]
+    andere = [f'<li><a href="{x["url"]}">{esc(x["titel"])}</a></li>' for x in rk["kategorien"] if x["slug"] != k["slug"]]
+    return {
+        "kategorie_slug": k["slug"],
+        "kategorie_titel": esc(k["titel"]),
+        "kategorie_kurztext": esc(k["kurztext"]),
+        "kategorie_meta_beschreibung": esc(f'{k["titel"]} im Ratgeber: {k["kurztext"]}'),
+        "kategorie_anzahl": f'{anzahl} {"Beitrag" if anzahl == 1 else "Beiträge"}',
+        "kategorie_nav": indent(nav, 10),
+        "kategorie_abschnitte": indent(abschnitte, 6),
+        "kategorie_andere": indent(andere, 8),
+        "kategorie_jsonld": jsonld_script([breadcrumb_jsonld(stufen)], "JSON-LD: PLATZHALTER-Domain example.org vor Livegang ersetzen."),
+        "werkzeuge_kategorie": seiten_werkzeuge(f"Ratgeber-Bereich {k['titel']} teilen: Link zu dieser Seite", 6),
+    }
+
+
+def antwort_text(blocks):
+    """Sichtbarer Text der Blöcke als ein Absatz (für FAQPage); Bilder und Tabellen bleiben außen vor."""
+    teile = []
+    for kind, data in blocks:
+        if kind == "p":
+            teile.append(plain(data))
+        elif kind in ("ul", "ol"):
+            teile.append(" ".join(plain(x).rstrip() for x in data))
+        elif kind == "quote":
+            teile.append(antwort_text(data))
+    return " ".join(t for t in teile if t).strip()
+
+
+def beitrag_fragen(blocks, ids):
+    """Häufige Fragen = vorhandene Zwischenüberschriften (## oder ###), die mit „?“ enden, mit dem Text bis
+    zur nächsten Überschrift als Antwort. Nichts wird ergänzt; ohne Text darunter keine Frage."""
+    fragen = []
+    for i, (kind, data) in enumerate(blocks):
+        if kind not in ("h2", "h3") or not plain(data).rstrip().endswith("?"):
+            continue
+        j = i + 1
+        while j < len(blocks) and blocks[j][0] not in ("h2", "h3"):
+            j += 1
+        antwort = antwort_text(blocks[i + 1:j])
+        if antwort:
+            frage = re.sub(r"^\d+(\.\d+)*\.?\s+", "", plain(data)).strip()
+            fragen.append((frage, antwort, ids[i]))
+    return fragen
+
+
+def kurz_block(b):
+    if not b.get("kurz"):
+        return ""
+    lines = ['<section class="beitrag-kurz" aria-labelledby="kurz-titel">',
+             '  <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>',
+             '  <ul class="beitrag-kurz__liste">']
+    lines += [f"    <li>{inline(p)}</li>" for p in b["kurz"]]
+    lines += ["  </ul>", "</section>"]
+    return indent(lines, 10) + "\n"
+
+
+def fragen_block(fragen):
+    if not fragen:
+        return ""
+    lines = ['<nav class="beitrag-fragen" aria-labelledby="fragen-titel">',
+             '  <h2 id="fragen-titel">Häufige Fragen</h2>',
+             '  <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>',
+             '  <ul class="beitrag-fragen__liste">']
+    lines += [f'    <li><a href="#{anker}">{esc(frage)}</a></li>' for frage, _a, anker in fragen]
+    lines += ["  </ul>", "</nav>"]
+    return indent(lines, 10) + "\n"
+
+
+def stand_quellen_block(b):
+    """Block „Stand und Quellen“: Stand + Änderungsdatum, dazu die vorhandenen Quellen (Frontmatter
+    'quellen'; es wird nichts ergänzt)."""
+    titel = "Stand und Quellen" if b.get("quellen") else "Stand"
+    lines = ['<section class="beitrag-quellen" aria-labelledby="quellen-titel">',
+             f'  <h2 id="quellen-titel">{titel}</h2>',
+             f'  <p class="beitrag-quellen__stand">Stand: {esc(b["stand"])}. Zuletzt geändert am '
+             f'<time datetime="{b["geaendert"]}">{de_datum(b["geaendert"])}</time>.</p>']
+    if b.get("quellen"):
+        lines += ['  <h3 class="beitrag-quellen__titel">Quellen und offizielle Stellen</h3>', "  <ol>"]
+        for entry in b["quellen"].split(" ;; "):
+            label, _, url = entry.rpartition("|")
+            lines.append(f'    <li><a href="{esc(url.strip())}" rel="noopener">{esc(label.strip())}</a></li>')
+        lines.append("  </ol>")
+    lines.append("</section>")
+    return indent(lines, 10) + "\n"
+
+
+def verwandte(b, beitraege, limit=3):
+    """Verwandte Ratgeber: gemeinsame Unterkategorien zählen doppelt, gleiche Kategorie einfach; höchstens 3."""
+    eigene = set(b["unter_liste"])
+    kandidaten = []
+    for pos, x in enumerate(beitraege):
+        if x["slug"] == b["slug"]:
+            continue
+        punkte = 2 * len(eigene & set(x["unter_liste"])) + (x["kategorie"] == b["kategorie"])
+        if punkte:
+            kandidaten.append((-punkte, pos, x))
+    return [x for _p, _pos, x in sorted(kandidaten, key=lambda t: (t[0], t[1]))][:limit]
+
+
+def hilfe_block(b):
+    """„Passende Hilfe finden“: Link in den Assistenten mit passendem Anliegen (nur mit Frontmatter
+    'anliegen'), sonst wie bisher „Anliegen beschreiben“ (persönliche Vermittlung)."""
+    if b.get("anliegen"):
+        lines = [
+            '<div class="relatives__text">',
+            '  <span class="section__eyebrow">Passende Hilfe finden</span>',
+            f'  <h2 id="anfrage-cta-titel">Anbieter für „{esc(b["anliegen_titel"])}“ in Ihrer Nähe</h2>',
+            '  <p>',
+            '    Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.',
+            '    Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.',
+            '  </p>',
+            '</div>',
+            '<div class="relatives__action">',
+            f'  <a class="btn btn--primary" href="/hilfe-finden/?anliegen={esc(b["anliegen"])}">',
+            '    Passende Hilfe finden',
+            '    <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>',
+            '  </a>',
+            f'  <a class="relatives__link" href="/anfrage/?thema={b["thema"]}" data-thema="{b["thema"]}">Bei uns melden</a>',
+            '</div>',
+        ]
+    else:
+        lines = [
+            '<div class="relatives__text">',
+            '  <span class="section__eyebrow">Persönliche Vermittlung</span>',
+            f'  <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema {esc(b["thema_titel"])}?</h2>',
+            '  <p>',
+            '    Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden',
+            '    Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.',
+            '  </p>',
+            '</div>',
+            '<div class="relatives__action">',
+            f'  <a class="btn btn--primary" href="/anfrage/?thema={b["thema"]}" data-thema="{b["thema"]}">',
+            '    Anliegen beschreiben',
+            '    <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>',
+            '  </a>',
+            '</div>',
+        ]
+    return indent(lines, 8)
 
 
 # --------------------------------------------------------------------------
@@ -1575,6 +2006,9 @@ MOBIL_LEISTE = """<nav class="leiste no-print" aria-label="Schnellzugriff">
 </nav>"""
 
 
+SEITEN_META = {}   # output → {title, description} (Prüfung auf Eindeutigkeit am Ende von main)
+
+
 def build_page(template, output, ctx, partials, themen, regionen):
     meta, body = parse_template(template)
     page_ctx = dict(ctx)
@@ -1621,6 +2055,7 @@ def build_page(template, output, ctx, partials, themen, regionen):
         "body_klasse": ' class="hat-leiste"' if leiste else "",
         "mobil_leiste": MOBIL_LEISTE if leiste else "",
     }
+    SEITEN_META[output] = {"title": title, "description": description}
     page = render(partials["layout"], layout_ctx, "templates/_layout.html")
     page = page.replace(
         "<!doctype html>\n",
@@ -1658,11 +2093,13 @@ def main():
     }
 
     beitraege = load_beitraege(themen)
+    rk = load_ratgeber_kategorien(themen, beitraege)
     write_ratgeber_json(beitraege)
     anbieter_url = write_anbieter_assets(themen)
 
     checklisten, wohnungs_check = load_alltag(themen, beitraege)
     anliegen = load_anliegen(themen, beitraege)
+    pruefe_anliegen_verweise(beitraege, anliegen)
     pgr_faq, pgr_jsonld, pgr_faq_stand = pflegegrad_seo()
     wc_form, wc_result = wohnungs_check_html(wohnungs_check, beitraege, SITE_NAME)
     region_items = [(r["slug"], r["name"]) for r in regionen]
@@ -1678,8 +2115,14 @@ def main():
         "werkzeuge_so": seiten_werkzeuge("Seite „So funktioniert es“ teilen: Link zu dieser Seite", 6),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
-        "ratgeber_karten_h2": "\n".join(article_card(b, "h3", 8, filter_attr=True) for b in beitraege),
-        "ratgeber_filter": ratgeber_filter(themen, beitraege),
+        # Ratgeber-Übersicht (Relaunch 3.3): Suche, Häufig gesucht, Empfohlen, Kategorien, Aktuell, A–Z
+        "ratgeber_suche_url": write_ratgeber_suche(beitraege, rk),
+        "ratgeber_haeufig": ratgeber_haeufig(rk, 10),
+        "ratgeber_empfohlen": ratgeber_empfohlen(beitraege, 8),
+        "ratgeber_themen": ratgeber_themen(rk, 8),
+        "ratgeber_aktuell": ratgeber_aktuell(beitraege, 8),
+        "ratgeber_az": ratgeber_az(beitraege, 12),
+        "ratgeber_weiterleitung": weiterleitung_skript(rk),
         "checklisten_inhalt": checklisten_html(checklisten, beitraege, SITE_NAME),
         "wc_formular": wc_form,
         "wc_ergebnis": wc_result,
@@ -1762,10 +2205,25 @@ def main():
         })
         built.append(build_page("thema.html", f"themen/{t['slug']}/index.html", ctx, partials, themen, regionen))
 
+    for k in rk["kategorien"]:
+        ctx = dict(common)
+        ctx.update(kategorie_ctx(k, rk))
+        built.append(build_page("ratgeber-kategorie.html", f"ratgeber/{k['slug']}/index.html", ctx, partials, themen, regionen))
+
     for b in beitraege:
         ctx = dict(common)
         ctx.update(beitrag_ctx(b, beitraege))
         built.append(build_page("ratgeber-beitrag.html", f"ratgeber/{b['slug']}/index.html", ctx, partials, themen, regionen))
+
+    # Eindeutige <title> und Meta-Descriptions (SEO, Relaunch 3.3)
+    for feld in ("title", "description"):
+        gesehen = {}
+        for output, werte in SEITEN_META.items():
+            if output == "404.html":
+                continue
+            if werte[feld] in gesehen:
+                raise SystemExit(f"FEHLER: doppelte {feld} in {gesehen[werte[feld]]} und {output}: {werte[feld]!r}")
+            gesehen[werte[feld]] = output
 
     write_sitemap(["/" + p.removesuffix("index.html") for p in built if p != "404.html"])
     print("  ✓ data/ratgeber.json, assets/data/anbieter.json, assets/data/assistent.json, sitemap.xml, robots.txt")

@@ -7,6 +7,15 @@ bild_alt: Tochter und Pflegerin im Gespräch mit lächelnder älterer Frau im he
 stand: November 2026 (geplant ab 2027, Regierungsentwurf)
 veroeffentlicht: 2026-11-20 22:00
 geaendert: 2026-11-20
+kategorie: pflege-betreuung
+unterkategorien: kurzzeitpflege, verhinderungspflege, pflegeleistungen
+anliegen: tages-kurzzeitpflege
+kurz:
+  - Kurzzeitpflege ist eine zeitlich begrenzte stationäre Versorgung in einer geeigneten Pflegeeinrichtung.
+  - Anspruch über die Pflegeversicherung haben grundsätzlich Menschen mit Pflegegrad 2 bis 5, für bis zu acht Wochen pro Kalenderjahr.
+  - Nach dem Regierungsentwurf sollen Kurzzeitpflege und Ersatzpflege ab 2027 aus einem gemeinsamen Überbrückungsbudget von bis zu 2.285 Euro je Kalenderjahr bezahlt werden.
+  - Unterkunft, Verpflegung und Investitionskosten müssen häufig selbst getragen werden. Fordern Sie vorab einen Kostenvoranschlag an.
+  - Ein freier Kurzzeitpflegeplatz ist nicht immer kurzfristig verfügbar. Beginnen Sie möglichst frühzeitig mit der Suche.
 tabelle_beschriftung: Geplantes Überbrückungsbudget ab 2027 nach Pflegegrad (Regierungsentwurf)
 hinweis: Dieser Beitrag beschreibt die ab 1. Januar 2027 geplanten Regeln nach dem Regierungsentwurf zum Pflegeneuordnungsgesetz (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung.
 inline_bild: kurzzeitpflege-vorbereiten

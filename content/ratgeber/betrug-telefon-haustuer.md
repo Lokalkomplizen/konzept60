@@ -5,7 +5,7 @@ thema: technik-sicherheit
 bild: betrug-telefon-haustuer
 bild_alt: Ein Festnetztelefon und ein Schlüsselbund liegen auf einem Holztisch neben einem kleinen Holzhaus mit Schloss-Symbol, im Hintergrund eine Wohnungstür.
 stand: November 2026
-veroeffentlicht: 2026-11-20 16:30
+veroeffentlicht: 2026-11-03 17:00
 geaendert: 2026-11-20
 kategorie: alltag-unterstuetzung
 unterkategorien: sicherheit

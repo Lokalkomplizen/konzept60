@@ -5,7 +5,7 @@ thema: pflege-betreuung
 bild: pflegegrad-beantragen
 bild_alt: Ein Klemmbrett mit der Überschrift „Pflegegrad“ und abgehakten Schritten – Antrag stellen, Begutachtung, Einstufung, Leistungen nutzen – liegt auf einem Holztisch neben einem Kugelschreiber, einer Kaffeetasse und einem Holzherz.
 stand: November 2026
-veroeffentlicht: 2026-11-20 17:10
+veroeffentlicht: 2026-11-13 00:00
 geaendert: 2026-11-20
 kategorie: pflege-betreuung
 unterkategorien: pflegegrade, pflegekasse

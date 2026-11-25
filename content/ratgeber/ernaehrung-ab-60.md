@@ -5,7 +5,7 @@ thema: freizeit-lebensqualitaet
 bild: ernaehrung-ab-60
 bild_alt: Auf einem Holztisch liegen Lachs, Eier, Haferflocken, Joghurt mit Beeren, Linsen, Nüsse, Vollkornbrot, Käse, Milch, Olivenöl, Äpfel, Brokkoli und weiteres Gemüse.
 stand: November 2026
-veroeffentlicht: 2026-11-21 18:30
+veroeffentlicht: 2026-11-17 16:00
 geaendert: 2026-11-21
 kategorie: gesundheit-lebensqualitaet
 unterkategorien: ernaehrung, bewegung

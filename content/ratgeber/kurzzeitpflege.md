@@ -5,7 +5,7 @@ thema: pflege-betreuung
 bild: kurzzeitpflege
 bild_alt: Tochter und Pflegerin im Gespräch mit lächelnder älterer Frau im hellen Aufenthaltsraum einer Pflegeeinrichtung.
 stand: November 2026 (geplant ab 2027, Regierungsentwurf)
-veroeffentlicht: 2026-11-20 22:00
+veroeffentlicht: 2026-11-16 02:00
 geaendert: 2026-11-20
 kategorie: pflege-betreuung
 unterkategorien: kurzzeitpflege, verhinderungspflege, pflegeleistungen

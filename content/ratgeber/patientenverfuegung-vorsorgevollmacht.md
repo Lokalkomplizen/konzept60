@@ -5,7 +5,7 @@ thema: alltag-persoenliche-hilfe
 bild: patientenverfuegung-vorsorgevollmacht
 bild_alt: Auf einem sonnigen Holztisch liegen Unterlagen mit den Überschriften Patientenverfügung, Vorsorgevollmacht und Betreuungsverfügung, daneben ein Stift, eine Brille, ein Notizzettel mit abgehakten Schritten, eine Tasse und ein gerahmtes Foto eines lächelnden älteren Paares.
 stand: November 2026
-veroeffentlicht: 2026-11-23 10:00
+veroeffentlicht: 2026-11-20 18:00
 geaendert: 2026-11-23
 kategorie: alltag-unterstuetzung
 unterkategorien: vorsorge

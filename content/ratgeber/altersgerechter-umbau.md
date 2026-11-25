@@ -5,7 +5,7 @@ thema: wohnen-haus-handwerk
 bild: altersgerechter-umbau
 bild_alt: Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriffen, einem Klappsitz, wandhängender Toilette und Waschbecken.
 stand: November 2026
-veroeffentlicht: 2026-11-20 17:05
+veroeffentlicht: 2026-11-11 11:00
 geaendert: 2026-11-20
 kategorie: wohnen-umbauen
 unterkategorien: wohnraumanpassung, badumbau, foerderung-umbau, zuschuesse

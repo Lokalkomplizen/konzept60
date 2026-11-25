@@ -5,7 +5,7 @@ thema: freizeit-lebensqualitaet
 bild: gemeinsam-statt-einsam
 bild_alt: Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.
 stand: November 2026
-veroeffentlicht: 2026-11-20 16:50
+veroeffentlicht: 2026-11-06 19:00
 geaendert: 2026-11-20
 kategorie: gesundheit-lebensqualitaet
 unterkategorien: soziale-kontakte, freizeit

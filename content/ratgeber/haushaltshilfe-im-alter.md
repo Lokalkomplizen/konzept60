@@ -5,7 +5,7 @@ thema: haushalt-reinigung
 bild: haushaltshilfe-im-alter
 bild_alt: Ein Putzeimer mit Sprühflasche, Bürste und gelben Handschuhen, gefaltete Handtücher und eine Einkaufstüte mit Obst, Gemüse und Brot stehen auf einem Holztisch.
 stand: November 2026
-veroeffentlicht: 2026-11-20 16:45
+veroeffentlicht: 2026-11-05 06:00
 geaendert: 2026-11-20
 kategorie: alltag-unterstuetzung
 unterkategorien: haushaltshilfe, einkaufen

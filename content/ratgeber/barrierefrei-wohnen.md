@@ -5,7 +5,7 @@ thema: wohnen-haus-handwerk
 bild: barrierefrei-wohnen
 bild_alt: Nahaufnahme eines Fußes in braunem Schuh, der an der hochgeschlagenen Kante eines Teppichs auf glattem Holzboden hängen bleibt.
 stand: November 2026
-veroeffentlicht: 2026-11-20 16:15
+veroeffentlicht: 2026-11-02 04:00
 geaendert: 2026-11-20
 kategorie: wohnen-umbauen
 unterkategorien: barrierefreies-wohnen, badumbau, wohnraumanpassung

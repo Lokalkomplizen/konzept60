@@ -5,7 +5,7 @@ thema: freizeit-lebensqualitaet
 bild: gesund-und-fit-im-alter
 bild_alt: Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine Schale Müsli mit Beeren, ein grüner Apfel, Mandeln, zwei blaue Hanteln, ein Handtuch und ein Blutdruckmessgerät.
 stand: November 2026
-veroeffentlicht: 2026-11-20 16:55
+veroeffentlicht: 2026-11-08 08:00
 geaendert: 2026-11-20
 kategorie: gesundheit-lebensqualitaet
 unterkategorien: bewegung, ernaehrung, selbststaendigkeit

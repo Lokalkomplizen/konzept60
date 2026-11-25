@@ -104,6 +104,61 @@
     return 'https://wa.me/?text=' + encodeURIComponent(text);
   }
 
+
+  /* ---- Anliegen (data/anliegen.json): strenger Kategorie-Abgleich ------------------------------
+     Treffer = kategorie_id steht in auswahl.kategorien (streng; das Thema spielt keine Rolle) UND
+     (Stadt gleich ODER Ort im Einzugsgebiet) UND (falls gewählt) die Angebotsform passt.
+     Ohne Umkreissuche: kein Abgleich über Entfernungen (Konzept Abschnitt 4 zurückgestellt).
+     Reihenfolge „Passend zuerst“: 1. Stadt vor Einzugsgebiet, 2. Position der Kategorie in
+     auswahl.kategorien (erste = Hauptkategorie), 3. Name. */
+  function angebotsformPasst(a, form) {
+    if (!form) return true;
+    var f = String(a.angebotsform || '').toLowerCase();
+    if (!f) return true; // unbekannt: nicht ausschließen
+    if (form === 'hausbesuch') return f.indexOf('hausbesuch') !== -1 || f.indexOf('ambulant') !== -1;
+    if (form === 'vor-ort') return f.indexOf('vor ort') !== -1 || f.indexOf('stationär') !== -1;
+    return true;
+  }
+
+  function filtereAnliegen(liste, auswahl) {
+    var kat = auswahl.kategorien || [];
+    if (!kat.length) return [];
+    return (liste || [])
+      .filter(function (a) { return kat.indexOf(a.kategorie_id) !== -1 && angebotsformPasst(a, auswahl.angebotsform); })
+      .map(function (a) {
+        var kopie = Object.assign({}, a);
+        kopie._gruppe = ortsGruppe(a, auswahl.ort);
+        kopie._rang = kat.indexOf(a.kategorie_id);
+        kopie._passt = false;
+        return kopie;
+      })
+      .filter(function (a) { return a._gruppe !== -1; })
+      .sort(function (x, y) {
+        if (x._gruppe !== y._gruppe) return x._gruppe - y._gruppe;
+        if (x._rang !== y._rang) return x._rang - y._rang;
+        return String(x.name).localeCompare(String(y.name), 'de', { sensitivity: 'base' });
+      });
+  }
+
+  /* Trefferzahl je Anliegen für einen Ort (verwandte Anliegen im Null-Treffer-Fall): { id: Anzahl } */
+  function zaehleAnliegen(liste, anliegenListe, ort) {
+    var n = {};
+    (anliegenListe || []).forEach(function (an) {
+      n[an.id] = filtereAnliegen(liste, { kategorien: an.kategorien, ort: ort }).length;
+    });
+    return n;
+  }
+
+  /* Notizzettel als Text (Drucken, E-Mail, WhatsApp, Anfrage-Beschreibung).
+     zeilen: [{ label, wert }] */
+  function notizText(titel, zeilen) {
+    var teile = [titel || 'Das sollten Sie am Telefon sagen', ''];
+    (zeilen || []).forEach(function (z) {
+      if (z && z.wert) teile.push('- ' + (z.label ? z.label + ': ' : '') + z.wert);
+    });
+    return teile.join('\n');
+  }
+
   var api = {
     HINWEIS_QUELLE: HINWEIS_QUELLE,
     HINWEIS_PREISE: HINWEIS_PREISE,
@@ -116,7 +171,11 @@
     websiteAnzeige: websiteAnzeige,
     kontaktText: kontaktText,
     mailtoLink: mailtoLink,
-    whatsappLink: whatsappLink
+    whatsappLink: whatsappLink,
+    angebotsformPasst: angebotsformPasst,
+    filtereAnliegen: filtereAnliegen,
+    zaehleAnliegen: zaehleAnliegen,
+    notizText: notizText
   };
   root.AnbieterLogik = Object.freeze(api);
   if (typeof module !== 'undefined' && module.exports) module.exports = root.AnbieterLogik;

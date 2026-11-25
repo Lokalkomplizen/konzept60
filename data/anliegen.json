@@ -1,0 +1,826 @@
+{
+  "_hinweis": "Anliegen-Katalog für Freitextsuche und Assistent (Konzept docs/relaunch/konzept-assistent-suche.md, Abschnitt 2 und 3). kategorien sind STRENG: nur Anbieter mit genau diesen Kategorie-IDs sind Treffer. Leere kategorien = Ratgeber-Anliegen (kein Anbieter-Abgleich). leistungen = Wortlaut aus data/themen.json (jede Leistung kommt mindestens einmal vor, build.py prüft das). fragen: Filterfragen (ändern die Liste) plus 'ort'; notizfragen: ändern die Liste nicht, erscheinen auf dem Notizzettel. → WordPress: Taxonomie 'anliegen' mit Term-Meta.",
+  "haeufig": ["pflegedienst", "haushaltshilfe", "treppenlift", "gruppe:badezimmer", "hausnotruf", "essen"],
+  "gruppen": [
+    {
+      "id": "badezimmer",
+      "titel": "Badezimmer umbauen",
+      "thema": "wohnen-haus-handwerk",
+      "frage": "Was möchten Sie im Bad ändern?",
+      "hinweis": "Sechs Möglichkeiten, von der Dusche bis zum Zuschuss",
+      "begriffe": ["bad", "badezimmer", "badumbau", "bad umbauen", "bad renovieren", "bad sanieren"]
+    }
+  ],
+  "fragen": {
+    "haushalt-art": {
+      "art": "filter",
+      "titel": "Welche Unterstützung brauchen Sie im Haushalt?",
+      "notiz": "Unterstützung",
+      "optionen": [
+        { "id": "reinigung", "titel": "Putzen und Reinigung", "kategorien": ["02.01"] },
+        { "id": "waesche", "titel": "Wäsche waschen und bügeln", "kategorien": ["02.02"] },
+        { "id": "essen", "titel": "Kochen und Essen", "kategorien": ["02.04"] },
+        { "id": "einkaufen", "titel": "Einkaufen", "kategorien": ["02.03"] }
+      ]
+    },
+    "pflege-art": {
+      "art": "filter",
+      "titel": "Welche Art von Pflege suchen Sie?",
+      "notiz": "Art der Pflege",
+      "optionen": [
+        { "id": "zuhause", "titel": "Pflege zu Hause durch einen Pflegedienst", "kategorien": ["03.01"] },
+        { "id": "tages-kurzzeit", "titel": "Tages- oder Kurzzeitpflege", "kategorien": ["03.04"] },
+        { "id": "demenz", "titel": "Betreuung bei Demenz", "kategorien": ["03.05"] },
+        { "id": "palliativ", "titel": "Begleitung am Lebensende (Palliativ)", "kategorien": ["03.07"] },
+        { "id": "intensiv", "titel": "Intensivpflege", "kategorien": ["03.02"] }
+      ]
+    },
+    "angebotsform": {
+      "art": "filter",
+      "titel": "Wo soll es stattfinden?",
+      "notiz": "Ort der Behandlung",
+      "optionen": [
+        { "id": "hausbesuch", "titel": "Bei mir zu Hause (Hausbesuch)", "angebotsform": "hausbesuch" },
+        { "id": "vor-ort", "titel": "In der Praxis oder vor Ort", "angebotsform": "vor-ort" }
+      ]
+    },
+    "digital-art": {
+      "art": "filter",
+      "titel": "Wie möchten Sie Hilfe bekommen?",
+      "notiz": "Art der Hilfe",
+      "optionen": [
+        { "id": "einzeln", "titel": "Jemand hilft mir persönlich", "kategorien": ["08.01"] },
+        { "id": "kurs", "titel": "In einem Kurs oder bei Digitalpaten", "kategorien": ["08.02"] }
+      ]
+    },
+    "sicherheit-art": {
+      "art": "filter",
+      "titel": "Worum geht es?",
+      "notiz": "Thema",
+      "optionen": [
+        { "id": "einbruch", "titel": "Einbruchschutz und Türsicherung", "kategorien": ["07.03"] },
+        { "id": "rauchmelder", "titel": "Rauchmelder", "kategorien": ["07.02"] }
+      ]
+    },
+    "treppe-form": {
+      "art": "notiz",
+      "titel": "Wie verläuft die Treppe?",
+      "notiz": "Treppe",
+      "optionen": [
+        { "id": "gerade", "titel": "Gerade", "begriffe": ["gerade"] },
+        { "id": "kurvig", "titel": "Mit Kurve oder Wendel", "begriffe": ["kurvig", "kurvige", "kurve", "wendel", "wendeltreppe", "gewendelt"] },
+        { "id": "unbekannt", "titel": "Weiß ich nicht genau" }
+      ]
+    },
+    "treppe-lage": {
+      "art": "notiz",
+      "titel": "Liegt die Treppe innen oder außen?",
+      "notiz": "Lage der Treppe",
+      "optionen": [
+        { "id": "innen", "titel": "Im Haus", "begriffe": ["innen"] },
+        { "id": "aussen", "titel": "Draußen, zum Beispiel am Hauseingang", "begriffe": ["aussen", "außen", "draussen", "draußen", "hauseingang"] }
+      ]
+    },
+    "treppe-etagen": {
+      "art": "notiz",
+      "titel": "Wie viele Etagen soll der Lift überwinden?",
+      "notiz": "Etagen",
+      "optionen": [
+        { "id": "1", "titel": "Eine Etage" },
+        { "id": "2", "titel": "Zwei Etagen" },
+        { "id": "3", "titel": "Drei oder mehr" }
+      ]
+    },
+    "haushalt-haeufigkeit": {
+      "art": "notiz",
+      "titel": "Wie oft wird Hilfe gebraucht?",
+      "notiz": "Häufigkeit",
+      "optionen": [
+        { "id": "woechentlich", "titel": "Einmal pro Woche" },
+        { "id": "mehrmals", "titel": "Mehrmals pro Woche" },
+        { "id": "14-taegig", "titel": "Alle zwei Wochen" },
+        { "id": "einmalig", "titel": "Einmalig oder ab und zu" }
+      ]
+    },
+    "wohnung-groesse": {
+      "art": "notiz",
+      "titel": "Wie groß ist die Wohnung ungefähr?",
+      "notiz": "Wohnungsgröße",
+      "optionen": [
+        { "id": "klein", "titel": "Bis 50 m²" },
+        { "id": "mittel", "titel": "50 bis 80 m²" },
+        { "id": "gross", "titel": "Über 80 m² oder Haus" }
+      ]
+    },
+    "bad-zustand": {
+      "art": "notiz",
+      "titel": "Was gibt es im Bad bisher?",
+      "notiz": "Im Bad vorhanden",
+      "optionen": [
+        { "id": "wanne", "titel": "Eine Badewanne" },
+        { "id": "dusche-stufe", "titel": "Eine Dusche mit hohem Einstieg" },
+        { "id": "beides", "titel": "Badewanne und Dusche" }
+      ]
+    },
+    "wohnen-eigentum": {
+      "art": "notiz",
+      "titel": "Wohnen Sie zur Miete oder im Eigentum?",
+      "notiz": "Wohnsituation",
+      "hinweis": "Bei Mietwohnungen muss der Vermieter einem Umbau meist zustimmen.",
+      "optionen": [
+        { "id": "miete", "titel": "Zur Miete" },
+        { "id": "eigentum", "titel": "Im Eigentum" }
+      ]
+    },
+    "pflegegrad-stand": {
+      "art": "notiz",
+      "titel": "Gibt es schon einen Pflegegrad?",
+      "notiz": "Pflegegrad",
+      "optionen": [
+        { "id": "ja", "titel": "Ja" },
+        { "id": "beantragt", "titel": "Ist beantragt" },
+        { "id": "nein", "titel": "Nein" },
+        { "id": "unbekannt", "titel": "Weiß ich nicht" }
+      ]
+    },
+    "hilfe-umfang": {
+      "art": "notiz",
+      "titel": "Wie oft wird Unterstützung gebraucht?",
+      "notiz": "Umfang",
+      "optionen": [
+        { "id": "taeglich", "titel": "Täglich" },
+        { "id": "mehrmals", "titel": "Mehrmals pro Woche" },
+        { "id": "gelegentlich", "titel": "Ab und zu" }
+      ]
+    },
+    "ab-wann": {
+      "art": "notiz",
+      "titel": "Ab wann wird Hilfe gebraucht?",
+      "notiz": "Ab wann",
+      "optionen": [
+        { "id": "sofort", "titel": "So bald wie möglich" },
+        { "id": "wochen", "titel": "In den nächsten Wochen" },
+        { "id": "spaeter", "titel": "Später, ich plane voraus" }
+      ]
+    },
+    "mobilitaet": {
+      "art": "notiz",
+      "titel": "Welche Hilfsmittel kommen mit?",
+      "notiz": "Hilfsmittel",
+      "optionen": [
+        { "id": "keine", "titel": "Keine" },
+        { "id": "rollator", "titel": "Rollator oder Gehstock" },
+        { "id": "rollstuhl", "titel": "Rollstuhl" }
+      ]
+    },
+    "garten-groesse": {
+      "art": "notiz",
+      "titel": "Wie groß ist der Garten?",
+      "notiz": "Gartengröße",
+      "optionen": [
+        { "id": "klein", "titel": "Klein, zum Beispiel Vorgarten" },
+        { "id": "mittel", "titel": "Mittel" },
+        { "id": "gross", "titel": "Groß" }
+      ]
+    },
+    "notruf-wo": {
+      "art": "notiz",
+      "titel": "Wo soll der Notruf funktionieren?",
+      "notiz": "Notruf",
+      "optionen": [
+        { "id": "zuhause", "titel": "Zu Hause" },
+        { "id": "unterwegs", "titel": "Auch unterwegs (Mobilnotruf)", "begriffe": ["mobil", "unterwegs", "mobilnotruf"] }
+      ]
+    },
+    "geraet": {
+      "art": "notiz",
+      "titel": "Um welches Gerät geht es?",
+      "notiz": "Gerät",
+      "optionen": [
+        { "id": "smartphone", "titel": "Smartphone", "begriffe": ["smartphone", "handy", "iphone"] },
+        { "id": "tablet", "titel": "Tablet", "begriffe": ["tablet", "ipad"] },
+        { "id": "computer", "titel": "Computer oder Laptop", "begriffe": ["computer", "laptop", "pc"] },
+        { "id": "fernseher", "titel": "Fernseher oder Telefon", "begriffe": ["fernseher", "tv", "telefon"] }
+      ]
+    },
+    "umfang-raeume": {
+      "art": "notiz",
+      "titel": "Wie viel ist zu tun?",
+      "notiz": "Umfang",
+      "optionen": [
+        { "id": "ein-raum", "titel": "Ein Raum oder Keller" },
+        { "id": "wohnung", "titel": "Eine ganze Wohnung" },
+        { "id": "haus", "titel": "Ein ganzes Haus" }
+      ]
+    }
+  },
+  "anliegen": [
+    {
+      "id": "bad-dusche",
+      "titel": "Badewanne durch Dusche ersetzen",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": ["01.01"],
+      "leistungen": ["Barrierearmer Umbau (z. B. Bad, Haltegriffe)"],
+      "verwandt": ["bad-umbau", "haltegriffe", "bad-zuschuss"],
+      "begriffe": ["dusche statt badewanne", "wanne raus", "badewanne raus", "bodengleiche dusche", "ebenerdige dusche", "walk in dusche", "duschtasse", "badewanne ausbauen", "wanne zur dusche", "wanne gegen dusche", "dusche einbauen", "barrierefreie dusche", "dusche ohne stufe", "dusche badewanne"],
+      "fragen": ["ort"],
+      "notizfragen": ["bad-zustand", "wohnen-eigentum"],
+      "ratgeber": ["barrierefrei-wohnen", "altersgerechter-umbau"]
+    },
+    {
+      "id": "bad-umbau",
+      "titel": "Bad barrierefrei umbauen",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": ["01.01"],
+      "leistungen": ["Barrierearmer Umbau (z. B. Bad, Haltegriffe)"],
+      "verwandt": ["bad-dusche", "haltegriffe", "bad-zuschuss"],
+      "begriffe": ["badumbau", "bad umbau", "bad umbauen", "barrierefreies bad", "seniorengerechtes bad", "altersgerechtes bad", "bad renovieren", "bad sanieren", "badsanierung", "sanitär"],
+      "fragen": ["ort"],
+      "notizfragen": ["bad-zustand", "wohnen-eigentum"],
+      "ratgeber": ["barrierefrei-wohnen", "altersgerechter-umbau"]
+    },
+    {
+      "id": "haltegriffe",
+      "titel": "Haltegriffe und Stützen anbringen",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": ["01.01"],
+      "leistungen": ["Barrierearmer Umbau (z. B. Bad, Haltegriffe)"],
+      "verwandt": ["bad-umbau", "kleinreparaturen"],
+      "begriffe": ["haltegriff", "haltegriffe", "stützgriff", "griff an der wand", "griff dusche", "griff toilette", "festhalten", "sturz vermeiden", "handlauf"],
+      "fragen": ["ort"],
+      "notizfragen": ["wohnen-eigentum"],
+      "ratgeber": ["barrierefrei-wohnen"]
+    },
+    {
+      "id": "bad-toilette",
+      "titel": "Toilette erhöhen oder Waschtisch anpassen",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": ["01.01"],
+      "leistungen": ["Barrierearmer Umbau (z. B. Bad, Haltegriffe)"],
+      "verwandt": ["haltegriffe", "bad-umbau"],
+      "begriffe": ["toilette erhöhen", "wc erhöhen", "erhöhtes wc", "toilettensitz", "waschtisch", "unterfahrbar", "waschbecken tiefer", "klo"],
+      "fragen": ["ort"],
+      "notizfragen": ["wohnen-eigentum"],
+      "ratgeber": ["barrierefrei-wohnen"]
+    },
+    {
+      "id": "bad-zuschuss",
+      "titel": "Zuschüsse für den Badumbau finden",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": [],
+      "leistungen": [],
+      "verwandt": ["bad-dusche", "bad-umbau"],
+      "begriffe": ["zuschuss bad", "zuschüsse badumbau", "förderung badumbau", "förderung bad", "kosten badumbau", "pflegekasse bad", "pflegekasse umbau", "wohnumfeldverbesserung", "kfw", "wer bezahlt badumbau", "geld für umbau"],
+      "fragen": [],
+      "notizfragen": [],
+      "ratgeber": ["altersgerechter-umbau", "barrierefrei-wohnen"]
+    },
+    {
+      "id": "bad-beratung",
+      "titel": "Beratung: Was ist im Bad sinnvoll?",
+      "thema": "wohnen-haus-handwerk",
+      "gruppe": "badezimmer",
+      "kategorien": [],
+      "leistungen": [],
+      "verwandt": ["bad-umbau", "bad-zuschuss"],
+      "begriffe": ["wohnberatung", "beratung bad", "was ist sinnvoll", "bad planen", "sicheres bad", "wohnung sicher"],
+      "fragen": [],
+      "notizfragen": [],
+      "ratgeber": ["barrierefrei-wohnen", "altersgerechter-umbau"],
+      "werkzeug": "wohnungs-check"
+    },
+    {
+      "id": "treppenlift",
+      "titel": "Treppenlift",
+      "kurz": "Treppenlift, Hublift oder Aufzug",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.02"],
+      "leistungen": ["Treppenlift und Hilfsmittel"],
+      "verwandt": ["treppenlift-zuschuss", "wohnung-umbauen"],
+      "begriffe": ["treppenlift", "treppe", "treppensteigen", "sitzlift", "plattformlift", "hublift", "aufzug", "lift", "treppe hoch", "treppe kommt nicht mehr hoch", "kurvige treppe", "treppenlift kurvig"],
+      "fragen": ["ort"],
+      "notizfragen": ["treppe-form", "treppe-lage", "treppe-etagen"],
+      "ratgeber": ["treppenlift-einbau"]
+    },
+    {
+      "id": "treppenlift-zuschuss",
+      "titel": "Zuschüsse für einen Treppenlift finden",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": [],
+      "leistungen": [],
+      "verwandt": ["treppenlift", "bad-zuschuss"],
+      "begriffe": ["zuschuss treppenlift", "förderung treppenlift", "kosten treppenlift", "pflegekasse treppenlift", "treppenlift bezahlen"],
+      "fragen": [],
+      "notizfragen": [],
+      "ratgeber": ["treppenlift-einbau", "altersgerechter-umbau"]
+    },
+    {
+      "id": "wohnung-umbauen",
+      "titel": "Wohnung altersgerecht umbauen",
+      "kurz": "Schwellen, Türen, Rampen",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.01"],
+      "leistungen": ["Barrierearmer Umbau (z. B. Bad, Haltegriffe)"],
+      "verwandt": ["bad-umbau", "treppenlift", "kleinreparaturen"],
+      "begriffe": ["altersgerecht umbauen", "barrierefrei umbauen", "barrierearm", "schwelle", "schwellen entfernen", "tür verbreitern", "rampe", "rollstuhlgerecht", "umbau wohnung", "wohnraumanpassung"],
+      "fragen": ["ort"],
+      "notizfragen": ["wohnen-eigentum"],
+      "ratgeber": ["altersgerechter-umbau", "barrierefrei-wohnen"]
+    },
+    {
+      "id": "kleinreparaturen",
+      "titel": "Kleine Reparaturen im Haus",
+      "kurz": "Hausmeister-Dienste",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.05"],
+      "leistungen": ["Kleinreparaturen im Haus"],
+      "verwandt": ["handwerker", "moebel"],
+      "begriffe": ["reparatur", "reparieren", "kleinreparatur", "hausmeister", "lampe aufhängen", "bild aufhängen", "tropfender wasserhahn", "glühbirne wechseln", "kaputt", "handwerkerdienst", "dübeln", "bohren"],
+      "fragen": ["ort"],
+      "notizfragen": ["ab-wann"],
+      "ratgeber": []
+    },
+    {
+      "id": "handwerker",
+      "titel": "Handwerker, zum Beispiel Maler",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.03"],
+      "leistungen": ["Maler- und Tapezierarbeiten", "Kleinreparaturen im Haus"],
+      "verwandt": ["kleinreparaturen", "wohnung-umbauen"],
+      "begriffe": ["handwerker", "maler", "streichen", "tapezieren", "tapete", "wand streichen", "renovieren", "renovierung", "fliesen", "bodenbelag"],
+      "fragen": ["ort"],
+      "notizfragen": ["umfang-raeume", "ab-wann"],
+      "ratgeber": []
+    },
+    {
+      "id": "moebel",
+      "titel": "Möbel aufbauen oder umstellen",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.05"],
+      "leistungen": ["Möbel aufbauen oder umstellen"],
+      "verwandt": ["kleinreparaturen", "umzug"],
+      "begriffe": ["möbel", "möbel aufbauen", "schrank aufbauen", "bett aufbauen", "umstellen", "möbel tragen", "montage", "regal"],
+      "fragen": ["ort"],
+      "notizfragen": ["ab-wann"],
+      "ratgeber": []
+    },
+    {
+      "id": "garten",
+      "titel": "Gartenpflege und Heckenschnitt",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.04"],
+      "leistungen": ["Gartenpflege und Heckenschnitt"],
+      "verwandt": ["winterdienst"],
+      "begriffe": ["garten", "gartenpflege", "gärtner", "hecke", "hecke schneiden", "heckenschnitt", "rasen mähen", "rasenmähen", "unkraut", "laub", "baum schneiden", "gartenarbeit"],
+      "fragen": ["ort"],
+      "notizfragen": ["garten-groesse", "haushalt-haeufigkeit"],
+      "ratgeber": []
+    },
+    {
+      "id": "winterdienst",
+      "titel": "Winterdienst: Schnee räumen und streuen",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["01.04", "01.05"],
+      "leistungen": ["Winterdienst"],
+      "verwandt": ["garten", "kleinreparaturen"],
+      "begriffe": ["winterdienst", "schnee", "schnee räumen", "schneeschippen", "streuen", "glatteis", "gehweg räumen"],
+      "fragen": ["ort"],
+      "notizfragen": ["ab-wann"],
+      "ratgeber": []
+    },
+    {
+      "id": "umzug",
+      "titel": "Umzug im Alter",
+      "thema": "wohnen-haus-handwerk",
+      "kategorien": ["11.04"],
+      "leistungen": ["Umzugshilfe"],
+      "verwandt": ["entruempelung", "moebel"],
+      "begriffe": ["umzug", "umziehen", "umzugshilfe", "umzugsfirma", "seniorenumzug", "kisten packen", "kleinere wohnung", "ins heim ziehen"],
+      "fragen": ["ort"],
+      "notizfragen": ["umfang-raeume", "ab-wann"],
+      "ratgeber": ["mehrgenerationenhaus-mehrgenerationenwohnen"]
+    },
+    {
+      "id": "haushaltshilfe",
+      "titel": "Haushaltshilfe",
+      "kurz": "Putzen, Wäsche, Kochen oder Einkaufen",
+      "thema": "haushalt-reinigung",
+      "kategorien": ["02.01", "02.02", "02.04", "02.03"],
+      "leistungen": ["Regelmäßige Wohnungsreinigung"],
+      "verwandt": ["fenster-grossputz", "essen", "einkaufen", "alltagsbegleitung"],
+      "begriffe": ["haushaltshilfe", "haushalt", "putzhilfe", "putzfrau", "reinigungskraft", "putzen", "wohnung putzen", "sauber machen", "staubsaugen", "hilfe im haushalt", "haushaltsnahe dienstleistung", "reinigung", "entlastungsbetrag"],
+      "fragen": ["haushalt-art", "ort"],
+      "notizfragen": ["haushalt-haeufigkeit", "wohnung-groesse"],
+      "ratgeber": ["haushaltshilfe-im-alter", "haushaltshilfe-betrieb-oder-privat"]
+    },
+    {
+      "id": "fenster-grossputz",
+      "titel": "Fenster putzen oder Großputz",
+      "thema": "haushalt-reinigung",
+      "kategorien": ["02.01"],
+      "leistungen": ["Fenster putzen", "Großputz oder Frühjahrsputz"],
+      "verwandt": ["haushaltshilfe", "entruempelung"],
+      "begriffe": ["fenster", "fenster putzen", "fensterputzer", "gardinen", "großputz", "frühjahrsputz", "grundreinigung", "einmal gründlich"],
+      "fragen": ["ort"],
+      "notizfragen": ["wohnung-groesse", "haushalt-haeufigkeit"],
+      "ratgeber": ["haushaltshilfe-im-alter"]
+    },
+    {
+      "id": "waesche",
+      "titel": "Wäsche waschen und bügeln",
+      "thema": "haushalt-reinigung",
+      "kategorien": ["02.02"],
+      "leistungen": ["Wäsche waschen und bügeln"],
+      "verwandt": ["haushaltshilfe"],
+      "begriffe": ["wäsche", "waschen", "bügeln", "bügelservice", "wäscheservice", "kleidung", "wäscherei"],
+      "fragen": ["ort"],
+      "notizfragen": ["haushalt-haeufigkeit"],
+      "ratgeber": ["haushaltshilfe-im-alter"]
+    },
+    {
+      "id": "essen",
+      "titel": "Essen auf Rädern und Mahlzeiten",
+      "thema": "haushalt-reinigung",
+      "kategorien": ["02.04"],
+      "leistungen": ["Hilfe beim Kochen und Vorräte auffüllen"],
+      "verwandt": ["haushaltshilfe", "einkaufen"],
+      "begriffe": ["essen auf rädern", "essen", "mittagessen", "mahlzeiten", "menüdienst", "menü", "warmes essen", "kochen", "mittagstisch", "essenslieferung", "lieferservice essen"],
+      "fragen": ["ort"],
+      "notizfragen": ["haushalt-haeufigkeit"],
+      "ratgeber": ["ernaehrung-ab-60", "fruehstueck-ab-60-eiweiss"]
+    },
+    {
+      "id": "entruempelung",
+      "titel": "Entrümpelung und Haushaltsauflösung",
+      "thema": "haushalt-reinigung",
+      "kategorien": ["11.05"],
+      "leistungen": ["Entrümpelung und Haushaltsauflösung"],
+      "verwandt": ["umzug", "fenster-grossputz"],
+      "begriffe": ["entrümpelung", "entrümpeln", "haushaltsauflösung", "wohnungsauflösung", "keller ausräumen", "sperrmüll", "ausmisten", "räumung"],
+      "fragen": ["ort"],
+      "notizfragen": ["umfang-raeume", "ab-wann"],
+      "ratgeber": []
+    },
+    {
+      "id": "pflegedienst",
+      "titel": "Pflegedienst und Pflege",
+      "kurz": "Pflege zu Hause, Tagespflege, Demenz, Palliativ",
+      "thema": "pflege-betreuung",
+      "kategorien": ["03.01", "03.04", "03.05", "03.07", "03.02"],
+      "leistungen": ["Ambulante Pflege durch einen Pflegedienst"],
+      "verwandt": ["stundenweise-betreuung", "tages-kurzzeitpflege", "pflegegrad"],
+      "begriffe": ["pflegedienst", "ambulanter pflegedienst", "pflege", "pflege zu hause", "häusliche pflege", "ambulante pflege", "krankenpflege", "pflegekraft", "pflegerin", "behandlungspflege", "grundpflege", "waschen helfen", "medikamente geben"],
+      "fragen": ["pflege-art", "ort"],
+      "notizfragen": ["pflegegrad-stand", "hilfe-umfang", "ab-wann"],
+      "ratgeber": ["pflegegrad-beantragen", "pflegereform-2027"]
+    },
+    {
+      "id": "tages-kurzzeitpflege",
+      "titel": "Tagespflege oder Kurzzeitpflege",
+      "kurz": "Auch Verhinderungspflege",
+      "thema": "pflege-betreuung",
+      "kategorien": ["03.04"],
+      "leistungen": ["Tagespflege", "Verhinderungspflege"],
+      "verwandt": ["pflegedienst", "entlastung-angehoerige"],
+      "begriffe": ["tagespflege", "kurzzeitpflege", "verhinderungspflege", "nachtpflege", "urlaub von der pflege", "pflege im urlaub", "tagsüber betreut"],
+      "fragen": ["ort"],
+      "notizfragen": ["pflegegrad-stand", "ab-wann"],
+      "ratgeber": ["kurzzeitpflege"]
+    },
+    {
+      "id": "demenz",
+      "titel": "Betreuung bei Demenz",
+      "thema": "pflege-betreuung",
+      "kategorien": ["03.05"],
+      "leistungen": ["Betreuung bei Demenz"],
+      "verwandt": ["stundenweise-betreuung", "pflegedienst", "entlastung-angehoerige"],
+      "begriffe": ["demenz", "alzheimer", "vergesslich", "vergesslichkeit", "verwirrt", "demenzbetreuung", "gedächtnis"],
+      "fragen": ["ort"],
+      "notizfragen": ["pflegegrad-stand", "hilfe-umfang"],
+      "ratgeber": ["pflegegrad-beantragen", "eltern-aus-der-ferne-unterstuetzen"]
+    },
+    {
+      "id": "palliativ",
+      "titel": "Palliativversorgung",
+      "kurz": "Begleitung am Lebensende",
+      "thema": "pflege-betreuung",
+      "kategorien": ["03.07"],
+      "leistungen": [],
+      "verwandt": ["pflegedienst"],
+      "begriffe": ["palliativ", "palliativpflege", "sapv", "lebensende", "sterbebegleitung", "schwer krank"],
+      "fragen": ["ort"],
+      "notizfragen": ["pflegegrad-stand"],
+      "ratgeber": ["patientenverfuegung-vorsorgevollmacht"]
+    },
+    {
+      "id": "stundenweise-betreuung",
+      "titel": "Stundenweise Betreuung zu Hause",
+      "kurz": "Alltagsbegleitung und Entlastung",
+      "thema": "pflege-betreuung",
+      "kategorien": ["04.01"],
+      "leistungen": ["Stundenweise Betreuung zu Hause"],
+      "verwandt": ["alltagsbegleitung", "betreuung-24h", "demenz"],
+      "begriffe": ["betreuung", "stundenweise betreuung", "betreuung zu hause", "jemand der aufpasst", "seniorenbetreuung", "betreuungskraft", "nicht allein lassen"],
+      "fragen": ["ort"],
+      "notizfragen": ["hilfe-umfang", "pflegegrad-stand"],
+      "ratgeber": ["haushaltshilfe-im-alter", "eltern-aus-der-ferne-unterstuetzen"]
+    },
+    {
+      "id": "betreuung-24h",
+      "titel": "24-Stunden-Betreuung",
+      "thema": "pflege-betreuung",
+      "kategorien": ["03.03"],
+      "leistungen": [],
+      "verwandt": ["stundenweise-betreuung", "pflegedienst"],
+      "begriffe": ["24 stunden", "24 stunden betreuung", "rund um die uhr", "betreuungskraft wohnt mit", "live in", "osteuropäische pflegekraft", "polnische pflegekraft"],
+      "fragen": ["ort"],
+      "notizfragen": ["pflegegrad-stand", "ab-wann"],
+      "ratgeber": ["eltern-aus-der-ferne-unterstuetzen"]
+    },
+    {
+      "id": "entlastung-angehoerige",
+      "titel": "Entlastung für pflegende Angehörige",
+      "thema": "pflege-betreuung",
+      "kategorien": ["13.03", "04.01", "03.04"],
+      "leistungen": ["Entlastung für pflegende Angehörige"],
+      "verwandt": ["tages-kurzzeitpflege", "stundenweise-betreuung"],
+      "begriffe": ["entlastung", "pflegende angehörige", "auszeit", "überfordert", "pause von der pflege", "angehörige entlasten"],
+      "fragen": ["ort"],
+      "notizfragen": ["pflegegrad-stand", "hilfe-umfang"],
+      "ratgeber": ["kurzzeitpflege", "eltern-aus-der-ferne-unterstuetzen"]
+    },
+    {
+      "id": "pflegegrad",
+      "titel": "Pflegegrad beantragen",
+      "thema": "pflege-betreuung",
+      "kategorien": [],
+      "leistungen": [],
+      "verwandt": ["pflegedienst", "tages-kurzzeitpflege"],
+      "begriffe": ["pflegegrad", "pflegestufe", "pflegegrad beantragen", "pflegekasse", "gutachten", "medizinischer dienst", "pflegegeld", "höherstufung"],
+      "fragen": [],
+      "notizfragen": [],
+      "ratgeber": ["pflegegrad-beantragen", "pflegereform-2027"],
+      "werkzeug": "pflegegrad-rechner"
+    },
+    {
+      "id": "therapie",
+      "titel": "Physiotherapie oder Ergotherapie",
+      "thema": "pflege-betreuung",
+      "kategorien": ["05.01"],
+      "leistungen": [],
+      "verwandt": ["kurse-bewegung", "fusspflege"],
+      "begriffe": ["physiotherapie", "krankengymnastik", "physio", "ergotherapie", "logopädie", "massage", "therapie", "therapeut", "hausbesuch therapie"],
+      "fragen": ["angebotsform", "ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["gesund-und-fit-im-alter"]
+    },
+    {
+      "id": "einkaufen",
+      "titel": "Einkaufen und Besorgungen",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["02.03", "04.01"],
+      "leistungen": ["Einkaufen und Besorgungen"],
+      "verwandt": ["apotheke", "alltagsbegleitung", "essen"],
+      "begriffe": ["einkaufen", "einkauf", "einkaufshilfe", "lebensmittel", "lieferung", "besorgungen", "supermarkt", "einkaufsservice", "getränke"],
+      "fragen": ["ort"],
+      "notizfragen": ["haushalt-haeufigkeit", "mobilitaet"],
+      "ratgeber": ["alltag-gut-organisiert"]
+    },
+    {
+      "id": "alltagsbegleitung",
+      "titel": "Alltagsbegleitung",
+      "kurz": "Jemand, der im Alltag zur Seite steht",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["04.01"],
+      "leistungen": [],
+      "verwandt": ["stundenweise-betreuung", "einkaufen", "begleitung-termine"],
+      "begriffe": ["alltagsbegleitung", "alltagsbegleiter", "alltagshilfe", "hilfe im alltag", "begleitung", "seniorenbegleitung", "unterstützung im alltag"],
+      "fragen": ["ort"],
+      "notizfragen": ["hilfe-umfang", "mobilitaet"],
+      "ratgeber": ["alltag-gut-organisiert", "gemeinsam-statt-einsam"]
+    },
+    {
+      "id": "begleitung-termine",
+      "titel": "Begleitung zu Arztterminen",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["04.04", "06.02"],
+      "leistungen": ["Begleitung zu Arztterminen"],
+      "verwandt": ["fahrdienst", "krankenfahrt", "behoerden-post"],
+      "begriffe": ["arzt", "arzttermin", "begleitung arzt", "zum arzt", "krankenhaus begleiten", "terminbegleitung", "begleitperson"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["mobilitaet-im-alter-ohne-auto", "krankenfahrten"]
+    },
+    {
+      "id": "behoerden-post",
+      "titel": "Hilfe bei Post, Formularen und Behörden",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["04.02", "04.04"],
+      "leistungen": ["Begleitung zu Behörden und Banken", "Hilfe bei Post und Formularen"],
+      "verwandt": ["begleitung-termine", "alltagsbegleitung"],
+      "begriffe": ["formulare", "anträge", "antrag ausfüllen", "post", "briefe", "papierkram", "behörde", "amt", "bank", "seniorenassistenz", "bürokram", "schriftkram"],
+      "fragen": ["ort"],
+      "notizfragen": ["hilfe-umfang"],
+      "ratgeber": ["alltag-gut-organisiert", "rente-reicht-nicht-finanzielle-hilfen"]
+    },
+    {
+      "id": "fahrdienst",
+      "titel": "Fahrdienst und Begleitfahrten",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["06.02", "06.03"],
+      "leistungen": ["Fahrdienst"],
+      "verwandt": ["krankenfahrt", "begleitung-termine"],
+      "begriffe": ["fahrdienst", "fahrt", "fahren", "begleitfahrt", "bürgerbus", "behindertenfahrdienst", "rollstuhlfahrdienst", "abholen", "mitfahren", "taxi"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet", "haushalt-haeufigkeit"],
+      "ratgeber": ["mobilitaet-im-alter-ohne-auto"]
+    },
+    {
+      "id": "krankenfahrt",
+      "titel": "Krankenfahrt zum Arzt oder ins Krankenhaus",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["06.01"],
+      "leistungen": [],
+      "verwandt": ["fahrdienst", "begleitung-termine"],
+      "begriffe": ["krankenfahrt", "krankentransport", "dialyse", "dialysefahrt", "fahrt zur chemo", "transportschein", "liegendtransport"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["krankenfahrten"]
+    },
+    {
+      "id": "apotheke",
+      "titel": "Medikamente und Botengänge",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["02.05"],
+      "leistungen": ["Botengänge, zum Beispiel zur Apotheke"],
+      "verwandt": ["einkaufen"],
+      "begriffe": ["apotheke", "medikamente", "rezept", "botendienst", "botengang", "medikamente bringen", "arzneimittel"],
+      "fragen": ["ort"],
+      "notizfragen": ["haushalt-haeufigkeit"],
+      "ratgeber": []
+    },
+    {
+      "id": "fusspflege",
+      "titel": "Fußpflege",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["05.02"],
+      "leistungen": [],
+      "verwandt": ["friseur", "therapie"],
+      "begriffe": ["fußpflege", "podologie", "podologe", "nägel schneiden", "fußnägel", "hühnerauge", "diabetischer fuß", "pediküre"],
+      "fragen": ["angebotsform", "ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": []
+    },
+    {
+      "id": "friseur",
+      "titel": "Friseur oder Kosmetik zu Hause",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["05.03"],
+      "leistungen": [],
+      "verwandt": ["fusspflege"],
+      "begriffe": ["friseur", "frisör", "haare schneiden", "mobiler friseur", "kosmetik", "haare"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": []
+    },
+    {
+      "id": "nach-krankenhaus",
+      "titel": "Hilfe nach dem Krankenhaus",
+      "thema": "alltag-persoenliche-hilfe",
+      "kategorien": ["04.05"],
+      "leistungen": [],
+      "verwandt": ["pflegedienst", "haushaltshilfe", "alltagsbegleitung"],
+      "begriffe": ["nach dem krankenhaus", "entlassung", "nach der op", "nach operation", "krankenhausentlassung", "überleitung"],
+      "fragen": ["ort"],
+      "notizfragen": ["ab-wann", "hilfe-umfang"],
+      "ratgeber": []
+    },
+    {
+      "id": "hausnotruf",
+      "titel": "Hausnotruf",
+      "kurz": "Auch Mobilnotruf für unterwegs",
+      "thema": "technik-sicherheit",
+      "kategorien": ["07.01"],
+      "leistungen": ["Hausnotruf"],
+      "verwandt": ["sicherheit", "smartphone-computer"],
+      "begriffe": ["hausnotruf", "notruf", "notrufknopf", "notrufarmband", "mobilnotruf", "sturz", "gestürzt", "notfallknopf", "seniorennotruf"],
+      "fragen": ["ort"],
+      "notizfragen": ["notruf-wo", "pflegegrad-stand"],
+      "ratgeber": ["hausnotruf-auswahl"]
+    },
+    {
+      "id": "smartphone-computer",
+      "titel": "Hilfe mit Smartphone, Tablet und Computer",
+      "thema": "technik-sicherheit",
+      "kategorien": ["08.01", "08.02"],
+      "leistungen": ["Smartphone und Tablet einrichten und erklären", "Computer, Internet und E-Mail"],
+      "verwandt": ["fernseher-telefon", "kurse-bildung"],
+      "begriffe": ["smartphone", "handy", "tablet", "ipad", "computer", "laptop", "pc", "internet", "e mail", "whatsapp", "digitalpaten", "computerkurs", "handykurs", "technikhilfe", "online banking"],
+      "fragen": ["digital-art", "ort"],
+      "notizfragen": ["geraet"],
+      "ratgeber": ["betrug-telefon-haustuer"]
+    },
+    {
+      "id": "fernseher-telefon",
+      "titel": "Fernseher oder Seniorentelefon einrichten",
+      "thema": "technik-sicherheit",
+      "kategorien": ["08.04"],
+      "leistungen": ["Fernseher und Receiver einrichten", "Seniorentelefon einrichten"],
+      "verwandt": ["smartphone-computer"],
+      "begriffe": ["fernseher", "tv", "receiver", "sender einstellen", "fernbedienung", "seniorentelefon", "telefon einrichten", "großtastentelefon"],
+      "fragen": ["ort"],
+      "notizfragen": ["geraet"],
+      "ratgeber": []
+    },
+    {
+      "id": "sicherheit",
+      "titel": "Einbruchschutz und Rauchmelder",
+      "thema": "technik-sicherheit",
+      "kategorien": ["07.03", "07.02"],
+      "leistungen": ["Einbruchschutz und Türsicherung", "Rauchmelder anbringen"],
+      "verwandt": ["hausnotruf", "kleinreparaturen"],
+      "begriffe": ["einbruchschutz", "einbruch", "türsicherung", "türschloss", "sicherheit", "rauchmelder", "brandmelder", "türspion", "fenstersicherung"],
+      "fragen": ["sicherheit-art", "ort"],
+      "notizfragen": ["wohnen-eigentum"],
+      "ratgeber": ["betrug-telefon-haustuer"]
+    },
+    {
+      "id": "begegnung",
+      "titel": "Treffpunkte, Hobbys und Spiele",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["12.01", "12.02"],
+      "leistungen": ["Gemeinsame Hobbys und Spiele"],
+      "verwandt": ["besuchsdienst", "ausfluege", "kurse-bildung"],
+      "begriffe": ["begegnungsstätte", "treffpunkt", "seniorentreff", "café", "spielenachmittag", "karten spielen", "hobby", "hobbys", "leute kennenlernen", "einsam", "einsamkeit", "gesellschaft"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["gemeinsam-statt-einsam", "mehrgenerationenhaus-mehrgenerationenwohnen"]
+    },
+    {
+      "id": "spaziergang",
+      "titel": "Spaziergänge in Begleitung",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["12.01", "04.03"],
+      "leistungen": ["Spaziergänge in Begleitung"],
+      "verwandt": ["besuchsdienst", "begegnung"],
+      "begriffe": ["spazieren", "spaziergang", "spazieren gehen", "rausgehen", "frische luft", "gehbegleitung"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet", "haushalt-haeufigkeit"],
+      "ratgeber": ["gesund-und-fit-im-alter"]
+    },
+    {
+      "id": "besuchsdienst",
+      "titel": "Besuchsdienst und Gesellschaft",
+      "kurz": "Besuche, Telefonate, Vorlesen",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["04.03", "12.09"],
+      "leistungen": ["Gesellschaft leisten und Vorlesen"],
+      "verwandt": ["begegnung", "spaziergang"],
+      "begriffe": ["besuchsdienst", "besuch", "besuche", "telefondienst", "telefonkette", "vorlesen", "gesellschaft leisten", "allein", "generationen", "ehrenamt"],
+      "fragen": ["ort"],
+      "notizfragen": ["haushalt-haeufigkeit"],
+      "ratgeber": ["gemeinsam-statt-einsam"]
+    },
+    {
+      "id": "ausfluege",
+      "titel": "Ausflüge und Veranstaltungen in Begleitung",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["12.03", "12.05", "04.07"],
+      "leistungen": ["Begleitung zu Veranstaltungen", "Ausflüge und Tagesfahrten"],
+      "verwandt": ["begegnung", "kurse-bildung"],
+      "begriffe": ["ausflug", "ausflüge", "tagesfahrt", "reise", "seniorenreise", "konzert", "theater", "kultur", "musik", "veranstaltung"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["gemeinsam-statt-einsam", "mobilitaet-im-alter-ohne-auto"]
+    },
+    {
+      "id": "kurse-bewegung",
+      "titel": "Bewegung und Sport in der Gruppe",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["12.04", "05.08"],
+      "leistungen": ["Kurse, zum Beispiel Bewegung oder Kreatives"],
+      "verwandt": ["kurse-bildung", "therapie"],
+      "begriffe": ["sport", "bewegung", "gymnastik", "seniorensport", "rehasport", "sturzprophylaxe", "yoga", "tanzen", "wassergymnastik", "fit bleiben"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["gesund-und-fit-im-alter"]
+    },
+    {
+      "id": "kurse-bildung",
+      "titel": "Kurse: Lernen und Kreatives",
+      "thema": "freizeit-lebensqualitaet",
+      "kategorien": ["12.06", "12.03"],
+      "leistungen": ["Kurse, zum Beispiel Bewegung oder Kreatives"],
+      "verwandt": ["kurse-bewegung", "smartphone-computer"],
+      "begriffe": ["kurs", "kurse", "lernen", "bildung", "volkshochschule", "vhs", "malen", "basteln", "kreativ", "sprachkurs", "gedächtnistraining"],
+      "fragen": ["ort"],
+      "notizfragen": ["mobilitaet"],
+      "ratgeber": ["gemeinsam-statt-einsam"]
+    }
+  ]
+}

@@ -100,3 +100,10 @@ test("Notizzettel-Text: nur beantwortete Zeilen", () => {
   const t = L.notizText("Das sollten Sie am Telefon sagen", [{ label: "Anliegen", wert: "Treppenlift" }, { label: "Etagen", wert: "" }, { label: "Treppe", wert: "Mit Kurve oder Wendel" }]);
   assert.equal(t, "Das sollten Sie am Telefon sagen\n\n- Anliegen: Treppenlift\n- Treppe: Mit Kurve oder Wendel");
 });
+
+test("Hausbesuch ja/nein aus der Angebotsform, unbekannt bleibt leer", () => {
+  assert.equal(L.hausbesuch({ angebotsform: "Hausbesuch und vor Ort" }), "ja");
+  assert.equal(L.hausbesuch({ angebotsform: "vor Ort" }), "nein");
+  assert.equal(L.hausbesuch({ angebotsform: "Beratung" }), "");
+  assert.equal(L.hausbesuch({}), "");
+});

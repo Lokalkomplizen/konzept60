@@ -2,7 +2,7 @@
 title: {{site_name}} – Hilfe finden. Einfach und kostenlos.
 description: „{{site_name}}“ vermittelt Menschen ab 60 und ihren Angehörigen kostenlos und persönlich passende Dienstleister und private Helfer in der Region – für Haushalt, Handwerk, Betreuung, Alltag, Technik und Freizeit.
 head_extra: {{home_head}}
-body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/schritte.js" defer></script> <script src="/assets/js/anbieter-logik.js" defer></script> <script src="/assets/js/anbieter.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
+body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets/js/schritte.js" defer></script> <script src="/assets/js/anbieter-logik.js" defer></script> <script src="/assets/js/anbieter.js" defer></script> <script src="/assets/js/suche-logik.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- ======================================================================
        Hero  (→ front-page.php, Block "hero")
@@ -62,12 +62,14 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
   </section>
 
   <!-- ======================================================================
-       Unterstützungs-Assistent (→ WordPress: Block/Template-Part "assistent"; Logik: assets/js/assistent.js)
-       Daten (Themen, Städte, Ratgeber-Beiträge) rendert tools/build.py als data-assistent (JSON).
-       Ohne JS: nur die drei Säulen-Links. Es wird nichts gespeichert oder gesendet – das Ergebnis
-       ist ein Link auf das vorausgefüllte Anfrageformular (?thema=…&wer=…&ort=…#anfrage).
+       Unterstützungs-Assistent mit Freitextsuche (Relaunch 3.1, Konzept docs/relaunch/konzept-assistent-suche.md)
+       (→ WordPress: Block/Template-Part "assistent"; Logik: assets/js/assistent.js + suche-logik.js)
+       Daten (Anliegen-Katalog, Themen, Städte, Ratgeber-Beiträge) schreibt tools/build.py nach assets/data/assistent.json.
+       Zustand steht in der Adresszeile (?anliegen=…&stadt=…#assistent), gespeichert wird nichts.
+       Ohne JS: Säulen-Links, Themenseiten und Anfrageformular. Rückfallweg „Bei uns melden“ = Link auf
+       das vorausgefüllte Anfrageformular (?thema=…&wer=…&ort=…&notiz=…#anfrage).
        ====================================================================== -->
-  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent="{{assistent_daten}}" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent-url="{{assistent_url}}" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
     <div class="container">
       <div class="section__header">
         <span class="section__eyebrow">Assistent</span>
@@ -80,6 +82,7 @@ body_extra: <script src="/assets/js/api.js" defer></script> <script src="/assets
         <li><a href="/themen/">Hilfe finden</a> – wir suchen persönlich für Sie</li>
         <li><a href="/ratgeber/">Wissen bekommen</a> – der Ratgeber</li>
         <li><a href="/mein-alltag/">Alltag erleichtern</a> – Mein Alltag</li>
+{{assistent_nojs}}
       </ul>
 
       <!-- Mit JavaScript: assistent.js füllt diesen Bereich -->

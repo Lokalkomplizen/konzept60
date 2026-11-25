@@ -17,6 +17,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /themen/*
   Cache-Control: public, max-age=0, must-revalidate
+/hilfe-finden/*
+  Cache-Control: public, max-age=0, must-revalidate
 /fuer-anbieter/*
   Cache-Control: public, max-age=0, must-revalidate
 /ratgeber/*

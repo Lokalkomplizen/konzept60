@@ -2,6 +2,8 @@
    Konzept 60+ – anbieter.js: Anbieter-Trefferliste (wiederverwendbarer Baustein)
    --------------------------------------------------------------------------
    AnbieterListe.baue(optionen) erzeugt Liste + Zähler + Kontakt-Button und liefert { wurzel, zeige, zuruecksetzen }.
+   optionen.ausfuehrlich: Karte zusätzlich mit Unterkategorie, Hausbesuch ja/nein, E-Mail, Website (Assistent).
+   AnbieterListe.laden(url) liefert die geladenen Daten (ein gemeinsamer Abruf).
    Verwendet an zwei Stellen: Anfrageformular (Schritt 4, [data-schritt-anbieter] / [data-anbieter-mount]) und
    Ergebnis des Assistenten (assets/js/assistent.js). Es gibt nur EINEN Kontaktdialog (<dialog>) und EINEN Datenabruf.
    - Lädt die Anbieterdaten erst beim ersten Anzeigen per fetch (nur lesend, gleiche Herkunft):
@@ -135,10 +137,13 @@
       inhalt.appendChild(name);
       var info = node('span', 'anbieter-karte__info');
       info.id = idInfo;
+      if (opt.ausfuehrlich && a.unterkategorie) info.appendChild(node('span', 'anbieter-karte__leistung', a.unterkategorie));
       if (a.schwerpunkt) info.appendChild(node('span', 'anbieter-karte__text', a.schwerpunkt));
       var ort = a._gruppe === 1 ? 'Sitz in ' + a.stadt + ', auch für Ihren Ort tätig' : a.stadt;
       info.appendChild(node('span', 'anbieter-karte__meta', 'Ort: ' + ort));
       if (a.angebotsform) info.appendChild(node('span', 'anbieter-karte__meta', 'Angebot: ' + a.angebotsform));
+      var hb = opt.ausfuehrlich ? L.hausbesuch(a) : '';
+      if (hb) info.appendChild(node('span', 'anbieter-karte__meta', 'Hausbesuch: ' + hb));
       if (a._passt) info.appendChild(node('span', 'anbieter-karte__passt', 'Passt zu Ihrer Auswahl'));
       if (a.kassenabrechnung === 'ja') info.appendChild(node('span', 'badge anbieter-karte__kasse', 'Rechnet mit der Pflegekasse ab'));
       inhalt.appendChild(info);
@@ -152,6 +157,24 @@
         anruf.appendChild(document.createTextNode(' Anrufen'));
         anruf.appendChild(node('span', 'visually-hidden', ': ' + a.name));
         box0.appendChild(anruf);
+      }
+      if (opt.ausfuehrlich && (a.email || a.website)) {
+        var wege = node('p', 'anbieter-karte__wege');
+        if (a.email) {
+          var m = node('a', 'anbieter-karte__weg', 'E-Mail schreiben');
+          m.href = 'mailto:' + a.email;
+          m.appendChild(node('span', 'visually-hidden', ': ' + a.email));
+          wege.appendChild(m);
+        }
+        if (a.website) {
+          var w = node('a', 'anbieter-karte__weg', 'Website');
+          w.href = a.website;
+          w.target = '_blank';
+          w.rel = 'noopener noreferrer';
+          w.appendChild(node('span', 'visually-hidden', ' von ' + a.name + ' (öffnet in neuem Tab)'));
+          wege.appendChild(w);
+        }
+        box0.appendChild(wege);
       }
       box0.appendChild(googleLink(a, 'anbieter-karte__google'));
 
@@ -208,8 +231,10 @@
         laedt.hidden = true;
         fehler.textContent = '';
         var ortText = eing.ort || 'Ihrer Nähe';
-        treffer = (ladeFehler || !daten || !eing.ort || !eing.thema) ? [] : L.filtere(daten.anbieter, eing, daten.leistungen);
-        var neu = [eing.thema, eing.ort, (eing.leistungen || []).join(',')].join('|');
+        // eing.treffer: bereits gefilterte Liste (Assistent, L.filtereAnliegen); sonst Filter nach Thema + Ort
+        if (Array.isArray(eing.treffer)) treffer = ladeFehler ? [] : eing.treffer;
+        else treffer = (ladeFehler || !daten || !eing.ort || !eing.thema) ? [] : L.filtere(daten.anbieter, eing, daten.leistungen);
+        var neu = eing.schluessel || [eing.thema, eing.ort, (eing.leistungen || []).join(',')].join('|');
         if (neu !== schluessel) { gewaehlt = {}; sichtbar = SEITE; schluessel = neu; }
         else {
           var ids = {};
@@ -469,6 +494,11 @@
     });
   }
 
-  window.AnbieterListe = Object.freeze({ baue: baue });
+  /* Daten für andere Bausteine (Assistent: Zählung verwandter Anliegen). Promise mit { modus, anbieter, … } oder null. */
+  function ladeDaten(url) {
+    return laden(url).then(function () { return ladeFehler ? null : daten; });
+  }
+
+  window.AnbieterListe = Object.freeze({ baue: baue, laden: ladeDaten });
   initFormular();
 })();

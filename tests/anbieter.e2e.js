@@ -131,7 +131,8 @@ async function keinHorizontalesScrollen(page, label) {
   console.log("OK: Anbieter-Ablauf, Auswahl, Dialog, Druck, Leerzustand, ohne JS, mobil + desktop");
 })().catch((e) => { console.error(e); process.exit(1); });
 
-// ---- Assistent: Ergebnis mit Trefferliste (Haushalt und Reinigung, Düsseldorf) ----
+// ---- Assistent (neu, Relaunch 3.1): Ergebnis mit Trefferliste (Haushaltshilfe, Wuppertal) ----
+// Ausführliche Szenarien: tests/assistent.e2e.js
 (async () => {
   const browser = await chromium.launch();
   const fehler = [];
@@ -142,47 +143,47 @@ async function keinHorizontalesScrollen(page, label) {
     page.on("pageerror", (e) => fehler.push(`assistent ${name}: ${e.message}`));
     await page.goto(BASE + "/");
     const app = page.locator("[data-assistent-app]");
+    await app.locator(".assistent__card").waitFor();
     let tipps = 0;
     const tippe = async (locator) => { await locator.click(); tipps += 1; };
-    await tippe(app.locator("button.choice-card--tap").first());   // Ziel: praktische Hilfe
+    await tippe(app.getByRole("button", { name: /^Haushaltshilfe/ }));
     assert.equal(await app.locator("button:has-text('Weiter')").count(), 0, "kein Weiter-Button");
     if (SHOTS && name === "mobil") await page.locator("#assistent").screenshot({ path: `${SHOTS}/assistent-frage-mobil.png` });
-    await tippe(app.getByRole("button", { name: "Haushalt und Reinigung" }));
-    await tippe(app.getByRole("button", { name: "Düsseldorf", exact: true }));
-    assert.equal(tipps, 3, "3 Tipps bis zum Ergebnis");
-    assert.equal(await page.evaluate(() => document.activeElement.textContent), "Das haben wir für Sie gefunden", "Fokus auf Ergebnis-Überschrift");
+    await tippe(app.getByRole("button", { name: "Putzen und Reinigung" }));
+    await tippe(app.getByRole("button", { name: "Wuppertal", exact: true }));
+    assert.equal(tipps, 3, "3 Tipps bis zur Liste, der 4. ist „Anrufen“");
+    assert.equal(await page.evaluate(() => document.activeElement.textContent), "„Haushaltshilfe“ in Wuppertal", "Fokus auf Ergebnis-Überschrift");
     await app.locator(".anbieter-karte").first().waitFor();
     const karten = await app.locator(".anbieter-karte").count();
-    assert.ok(karten >= 2 && karten <= 6, "Karten im Assistenten: " + karten);
-    assert.match(await app.textContent(), /Diese Anbieter passen zu Ihrer Suche/);
+    assert.ok(karten >= 1 && karten <= 6, "Karten im Assistenten: " + karten);
     assert.match(await app.textContent(), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
     assert.ok(await app.locator(".anbieter-karte__anruf").count() > 0, "Anrufen auf Karten im Assistenten");
-    assert.equal(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).count(), 1);
-    assert.match(await app.getByRole("link", { name: "Lieber persönlich vermitteln lassen" }).getAttribute("href"), /thema=haushalt-reinigung.*ort=D%C3%BCsseldorf#anfrage/);
+    assert.equal(await app.getByRole("link", { name: "Bei uns melden" }).count(), 1);
+    assert.match(await app.getByRole("link", { name: "Bei uns melden" }).getAttribute("href"), /thema=haushalt-reinigung.*ort=Wuppertal.*#anfrage/);
     await app.locator(".anbieter-karte__wahl").nth(0).click();
-    await app.locator(".anbieter-karte__wahl").nth(1).click();
-    assert.equal((await app.locator(".anbieter__zaehler").textContent()).trim(), "2 ausgewählt");
+    if (karten > 1) {
+      await app.locator(".anbieter-karte__wahl").nth(1).click();
+      assert.equal((await app.locator(".anbieter__zaehler").textContent()).trim(), "2 ausgewählt");
+    }
     await keinHorizontalesScrollen(page, "Assistent " + name);
     if (SHOTS) await page.locator("#assistent").screenshot({ path: `${SHOTS}/assistent-treffer-${name}.png` });
     await app.getByRole("button", { name: "Ausgewählte drucken oder weiterleiten" }).click();
     const dlg = page.locator("dialog.kontakt-dialog");
     await dlg.waitFor({ state: "visible" });
     assert.equal(await page.locator("dialog.kontakt-dialog").count(), 1, "nur ein Dialog");
-    assert.equal(await dlg.locator(".kontakt").count(), 2);
+    assert.equal(await dlg.locator(".kontakt").count(), karten > 1 ? 2 : 1);
     await keinHorizontalesScrollen(page, "Assistent-Dialog " + name);
     if (SHOTS && name === "mobil") await page.screenshot({ path: `${SHOTS}/assistent-dialog-mobil.png` });
     await page.keyboard.press("Escape");
     await dlg.waitFor({ state: "hidden" });
 
-    // Leerzustand: Wesel -> keine Liste, direkter Weg zur Anfrage
+    // Leerzustand: Wesel -> keine Liste, Weg zur Anfrage
     await app.getByRole("button", { name: "Zurück" }).click();
-    if (await app.getByRole("button", { name: "Wesel", exact: true }).count()) {
-      await app.getByRole("button", { name: "Wesel", exact: true }).click();
-      await page.waitForFunction(() => /sucht für Sie/.test(document.querySelector("[data-assistent-app]").textContent));
-      assert.equal(await app.locator(".anbieter-karte").count(), 0);
-      assert.equal(await app.locator(".anbieter__leer").isVisible(), false, "kein leerer Kasten");
-      assert.equal(await app.getByRole("link", { name: "Anfrage mit diesen Angaben stellen" }).count(), 1);
-    }
+    await app.getByRole("button", { name: "Wesel", exact: true }).click();
+    await page.waitForFunction(() => /noch keinen Anbieter/.test(document.querySelector("[data-assistent-app]").textContent));
+    assert.equal(await app.locator(".anbieter-karte").count(), 0);
+    assert.equal(await app.locator(".anbieter__leer").isVisible(), false, "kein leerer Kasten");
+    assert.equal(await app.getByRole("link", { name: "Bei uns melden" }).count(), 1);
     await ctx.close();
   }
   await browser.close();

@@ -106,6 +106,20 @@
       })[0];
       if (match) { form.elements.ort.value = match.value; applied = true; }
     }
+    // ?leistung=<slug>,<slug> (vom Assistenten): passende Leistungs-Kästchen der gewählten Kategorie ankreuzen
+    var leistung = params.get('leistung');
+    if (leistung) {
+      leistung.split(',').forEach(function (slug) {
+        var box = form.querySelector('input[name="leistungen"][value="' + CSS.escape(slug) + '"]:not([disabled])');
+        if (box) { box.checked = true; applied = true; }
+      });
+    }
+    // ?notiz=<Text> (Notizzettel des Assistenten): nur in ein leeres Beschreibungsfeld übernehmen
+    var notiz = params.get('notiz');
+    if (notiz && form.elements.beschreibung && !form.elements.beschreibung.value.trim()) {
+      form.elements.beschreibung.value = notiz.slice(0, 1500);
+      applied = true;
+    }
     return applied;
   }
 
@@ -115,7 +129,7 @@
 
     // a) Beim Laden: Parameter übernehmen, danach aus der Adresszeile entfernen
     var params = new URLSearchParams(window.location.search);
-    if (applyPreselect(form, params) || ['thema', 'fuer', 'wer', 'region', 'ort'].some(function (k) { return params.has(k); })) {
+    if (applyPreselect(form, params) || ['thema', 'fuer', 'wer', 'region', 'ort', 'leistung', 'notiz'].some(function (k) { return params.has(k); })) {
       history.replaceState(null, '', window.location.pathname + window.location.hash);
     }
 

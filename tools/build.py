@@ -10,6 +10,7 @@ Erzeugt alle HTML-Seiten aus
   partials/header.html            Kopfbereich inkl. Navigation ({{nav:…}} → aria-current)
   partials/footer.html            Fußbereich ({{footer_themen}}, {{footer_regionen}})
   data/themen.json, data/regionen.json, data/checklisten.json, data/wohnungs-check.json
+  data/anliegen.json              Anliegen-Katalog (Suche + Assistent, geprüft in load_anliegen())
   content/ratgeber/*.md           Ratgeber-Beiträge (Frontmatter + Markdown-Teilmenge)
                                   → ratgeber/<slug>/index.html, ratgeber/index.html,
                                     data/ratgeber.json (gesammelte Frontmatter, generiert)
@@ -36,7 +37,7 @@ SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Live
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
 META_RE = re.compile(r"\A<!--meta\n(.*?)\n-->\n", re.S)
-NAV_KEYS = ("themen", "ratgeber", "alltag", "anbieter")
+NAV_KEYS = ("themen", "ratgeber", "alltag", "anbieter", "suche")
 
 
 # --------------------------------------------------------------------------
@@ -660,6 +661,7 @@ def add_asset_versions(page):
 
 
 ANBIETER_ASSET = "assets/data/anbieter.json"
+ASSISTENT_ASSET = "assets/data/assistent.json"
 
 
 def write_anbieter_assets(themen):
@@ -753,17 +755,107 @@ def ratgeber_filter(themen, beitraege):
     return indent(lines, 6)
 
 
-def assistent_data(themen, regionen, beitraege):
-    """Daten für den Unterstützungs-Assistenten (Startseite) → als data-Attribut ins HTML (kein Inline-Skript,
-    kein Nachladen). Gelesen von assets/js/assistent.js. → WordPress: wp_localize_script bzw. data-Attribut
-    im Block-Template; Beiträge per WP_Query nach Taxonomie themenbereich."""
+ALLTAG_WERKZEUGE = [
+    {"id": "checklisten", "illu": "checkliste", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
+    {"id": "wohnungs-check", "illu": "wohnungscheck", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
+    {"id": "pflegegrad-rechner", "illu": "pflegegrad", "titel": "Pflegegradrechner", "hinweis": "Welcher Pflegegrad könnte vorliegen?", "url": "/mein-alltag/pflegegrad-rechner/", "bald": False},
+    {"id": "termine", "illu": "erinnerungen", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+    {"id": "plan", "illu": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
+]
+
+
+def load_anliegen(themen, beitraege):
+    """data/anliegen.json prüfen (Konzept docs/relaunch/konzept-assistent-suche.md, Abschnitt 2/3):
+    Kategorien streng und sichtbar (nicht null in kategorie-zuordnung.json), jede Leistung aus themen.json
+    mindestens einmal, Verweise (verwandt, fragen, ratgeber, werkzeug, gruppe, haeufig) gültig.
+    → WordPress: Taxonomie 'anliegen' (Term-Meta: begriffe, kategorien, fragen, notizfragen, verwandt)."""
+    kat = json.loads(read(ROOT / "data" / "anliegen.json"))
+    zuordnung = json.loads(read(ROOT / "data" / "kategorie-zuordnung.json"))["kategorien"]
+    slugs_t = {t["slug"] for t in themen}
+    slugs_b = {b["slug"] for b in beitraege}
+    ids = [a["id"] for a in kat["anliegen"]]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("FEHLER: anliegen.json – doppelte id")
+    gruppen = {g["id"] for g in kat["gruppen"]}
+    werkzeuge = {w["id"] for w in ALLTAG_WERKZEUGE}
+    fragen = kat["fragen"]
+    for fid, f in fragen.items():
+        if f.get("art") not in ("filter", "notiz") or not f.get("optionen") or not f.get("titel"):
+            raise SystemExit(f"FEHLER: anliegen.json – Frage {fid} unvollständig")
+        for o in f["optionen"]:
+            for k in o.get("kategorien", []):
+                if not zuordnung.get(k):
+                    raise SystemExit(f"FEHLER: anliegen.json – Frage {fid}: Kategorie {k} unbekannt/ausgeblendet")
+    alle_leistungen = set()
+    for a in kat["anliegen"]:
+        for key in ("id", "titel", "thema", "kategorien", "leistungen", "verwandt", "begriffe", "fragen", "notizfragen", "ratgeber"):
+            if key not in a:
+                raise SystemExit(f"FEHLER: anliegen.json – '{key}' fehlt bei {a.get('id')}")
+        if a["thema"] not in slugs_t:
+            raise SystemExit(f"FEHLER: anliegen.json – unbekanntes Thema bei {a['id']}")
+        if a.get("gruppe") and a["gruppe"] not in gruppen:
+            raise SystemExit(f"FEHLER: anliegen.json – unbekannte Gruppe bei {a['id']}")
+        for k in a["kategorien"]:
+            if not zuordnung.get(k):
+                raise SystemExit(f"FEHLER: anliegen.json – Kategorie {k} unbekannt/ausgeblendet bei {a['id']}")
+        for v in a["verwandt"]:
+            if v not in ids:
+                raise SystemExit(f"FEHLER: anliegen.json – verwandt '{v}' unbekannt bei {a['id']}")
+        for fid in a["fragen"]:
+            if fid != "ort" and (fid not in fragen or fragen[fid]["art"] != "filter"):
+                raise SystemExit(f"FEHLER: anliegen.json – Filterfrage '{fid}' unbekannt bei {a['id']}")
+        for fid in a["notizfragen"]:
+            if fid not in fragen or fragen[fid]["art"] != "notiz":
+                raise SystemExit(f"FEHLER: anliegen.json – Notizfrage '{fid}' unbekannt bei {a['id']}")
+        for r in a["ratgeber"]:
+            if r not in slugs_b:
+                raise SystemExit(f"FEHLER: anliegen.json – Ratgeber '{r}' unbekannt bei {a['id']}")
+        if a.get("werkzeug") and a["werkzeug"] not in werkzeuge:
+            raise SystemExit(f"FEHLER: anliegen.json – Werkzeug unbekannt bei {a['id']}")
+        if a["kategorien"] and "ort" not in a["fragen"]:
+            raise SystemExit(f"FEHLER: anliegen.json – {a['id']} hat Kategorien, aber keine Ortsfrage")
+        if not a["kategorien"] and not (a["ratgeber"] or a.get("werkzeug")):
+            raise SystemExit(f"FEHLER: anliegen.json – {a['id']} ohne Kategorien braucht Ratgeber oder Werkzeug")
+        if len([f for f in a["fragen"] if f != "ort"]) + 1 > 4:
+            raise SystemExit(f"FEHLER: anliegen.json – {a['id']}: höchstens vier Fragen bis zur Liste")
+        eigene = next(t for t in themen if t["slug"] == a["thema"])["leistungen"]
+        for leistung in a["leistungen"]:
+            if leistung not in eigene:
+                raise SystemExit(f"FEHLER: anliegen.json – Leistung „{leistung}“ gehört nicht zum Thema von {a['id']}")
+        alle_leistungen.update(a["leistungen"])
+    for t in themen:
+        for leistung in t["leistungen"]:
+            if leistung not in alle_leistungen:
+                raise SystemExit(f"FEHLER: anliegen.json – Leistung „{leistung}“ ({t['slug']}) hat kein Anliegen")
+    for h in kat["haeufig"]:
+        if (h.split(":", 1)[1] not in gruppen) if h.startswith("gruppe:") else (h not in ids):
+            raise SystemExit(f"FEHLER: anliegen.json – haeufig '{h}' unbekannt")
+    return kat
+
+
+def anbieter_orte(regionen):
+    """Ortsvorschläge ohne Umkreissuche: Start-Städte plus alle Städte und Einzugsgebiete aus der Anbieterliste."""
+    daten = json.loads(read(ROOT / "data" / "anbieter.json"))
+    orte = {r["name"] for r in regionen}
+    for e in daten["anbieter"]:
+        if e.get("stadt"):
+            orte.add(e["stadt"])
+        orte.update(o for o in e.get("einzugsgebiet") or [] if o)
+    return sorted(orte, key=lambda o: o.lower())
+
+
+def assistent_data(themen, regionen, beitraege, anliegen):
+    """Daten für Assistent und Freitextsuche (Startseite #assistent und /hilfe-finden/) → assets/data/assistent.json
+    (ausgeliefert, lesend per fetch geladen von assets/js/assistent.js; als data-Attribut wäre jede Seite ~70 KB
+    größer). Gibt die URL mit ?v=<Hash> zurück. → WordPress: REST-Endpunkt bzw. wp_localize_script;
+    Anliegen aus der Taxonomie 'anliegen', Beiträge per WP_Query."""
+    by_slug = {b["slug"]: b for b in beitraege}
     data = {
         "sprite": f"{ILLU_SPRITE}?v={_asset_version(ILLU_SPRITE)}",
         "ziele": [
-            {"id": "praktisch", "illu": "praktisch", "titel": "Ich brauche praktische Unterstützung", "hinweis": "Zum Beispiel im Haushalt, bei Reparaturen oder im Alltag"},
+            {"id": "angehoerige", "illu": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
             {"id": "informieren", "illu": "wissen", "titel": "Ich möchte mich informieren", "hinweis": "Verständliche Beiträge im Ratgeber"},
             {"id": "alltag", "illu": "alltag", "titel": "Ich möchte meinen Alltag besser organisieren", "hinweis": "Checklisten und Wohnungs-Check zum Selbermachen"},
-            {"id": "angehoerige", "illu": "angehoerige", "titel": "Ich suche Hilfe für einen Angehörigen", "hinweis": "Auch wenn Sie nicht vor Ort wohnen"},
         ],
         "themen": [
             {
@@ -774,16 +866,32 @@ def assistent_data(themen, regionen, beitraege):
             }
             for t in themen
         ],
-        "alltag": [
-            {"id": "checklisten", "illu": "checkliste", "titel": "Checklisten", "hinweis": "Zum Abhaken und Ausdrucken", "url": "/mein-alltag/checklisten/", "bald": False},
-            {"id": "wohnungs-check", "illu": "wohnungscheck", "titel": "Wohnungs-Check", "hinweis": "Wie sicher ist Ihr Zuhause?", "url": "/mein-alltag/wohnungs-check/", "bald": False},
-            {"id": "pflegegrad-rechner", "illu": "pflegegrad", "titel": "Pflegegradrechner", "hinweis": "Welcher Pflegegrad könnte vorliegen?", "url": "/mein-alltag/pflegegrad-rechner/", "bald": False},
-            {"id": "termine", "illu": "erinnerungen", "titel": "Termine und Erinnerungen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
-            {"id": "plan", "illu": "plan", "titel": "Unterstützung planen", "hinweis": "Kommt bald", "url": "/mein-alltag/", "bald": True},
-        ],
+        "alltag": ALLTAG_WERKZEUGE,
         "orte": [r["name"] for r in regionen],
+        "ortVorschlaege": anbieter_orte(regionen),
+        "ratgeber": [{"slug": b["slug"], "titel": b["titel"], "url": b["url"]} for b in beitraege],
+        "haeufig": anliegen["haeufig"],
+        "gruppen": anliegen["gruppen"],
+        "fragen": anliegen["fragen"],
+        "anliegen": [
+            {k: v for k, v in a.items() if v not in ([], "", None)} | {"kategorien": a["kategorien"]}
+            for a in anliegen["anliegen"]
+        ],
+        "leistungSlugs": {a["id"]: [slugify(x) for x in a["leistungen"]] for a in anliegen["anliegen"]},
     }
-    return esc(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+    for a in data["anliegen"]:
+        a["ratgeber"] = [{"titel": by_slug[r]["titel"], "url": by_slug[r]["url"]} for r in a.get("ratgeber", [])]
+    ziel = ROOT / ASSISTENT_ASSET
+    ziel.parent.mkdir(parents=True, exist_ok=True)
+    ziel.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    return "/" + ASSISTENT_ASSET + "?v=" + _asset_version("/" + ASSISTENT_ASSET)
+
+
+def assistent_nojs(themen):
+    """Ohne JavaScript: Links auf die Themenseiten und das Anfrageformular (Konzept Abschnitt 7)."""
+    lines = [f'<li><a href="/themen/{t["slug"]}/">{esc(t["titel"])}</a></li>' for t in themen]
+    lines.append('<li><a href="/#anfrage">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>')
+    return indent(lines, 8)
 
 
 def article_toc(blocks, ids):
@@ -1365,6 +1473,7 @@ def main():
     anbieter_url = write_anbieter_assets(themen)
 
     checklisten, wohnungs_check = load_alltag(themen, beitraege)
+    anliegen = load_anliegen(themen, beitraege)
     pgr_faq, pgr_jsonld, pgr_faq_stand = pflegegrad_seo()
     wc_form, wc_result = wohnungs_check_html(wohnungs_check, beitraege, SITE_NAME)
     region_items = [(r["slug"], r["name"]) for r in regionen]
@@ -1402,9 +1511,12 @@ def main():
         "anbieter_url": anbieter_url,
         "home_head": home_head(regionen),
         **veranstaltungen_html(regionen),
-        "assistent_daten": assistent_data(themen, regionen, beitraege),
+        "assistent_url": assistent_data(themen, regionen, beitraege, anliegen),
+        "assistent_nojs": assistent_nojs(themen),
+        "werkzeuge_hilfe": seiten_werkzeuge("Seite „Hilfe finden“ teilen: Link zu dieser Seite", 6),
         "themen_karten_h4": theme_cards(themen, "h4", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
+        "themen_karten_h3": theme_cards(themen, "h3", 8),
         "kategorie_optionen": kategorie_optionen(themen),
         "leistungen_gruppen": leistungen_gruppen(themen),
         "orte_optionen": orte_optionen(regionen),
@@ -1423,6 +1535,7 @@ def main():
     for template, output in (
         ("index.html", "index.html"),
         ("themen.html", "themen/index.html"),
+        ("hilfe-finden.html", "hilfe-finden/index.html"),
         ("fuer-anbieter.html", "fuer-anbieter/index.html"),
         ("ratgeber.html", "ratgeber/index.html"),
         ("mein-alltag.html", "mein-alltag/index.html"),
@@ -1459,7 +1572,7 @@ def main():
         built.append(build_page("ratgeber-beitrag.html", f"ratgeber/{b['slug']}/index.html", ctx, partials, themen, regionen))
 
     write_sitemap(["/" + p.removesuffix("index.html") for p in built if p != "404.html"])
-    print("  ✓ data/ratgeber.json, assets/data/anbieter.json, sitemap.xml, robots.txt")
+    print("  ✓ data/ratgeber.json, assets/data/anbieter.json, assets/data/assistent.json, sitemap.xml, robots.txt")
     for path in built:
         print(f"  ✓ {path}")
     print(f"{len(built)} Seiten erzeugt.")

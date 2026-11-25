@@ -120,6 +120,14 @@
     return true;
   }
 
+  /* Hausbesuch aus der Angebotsform: 'ja' | 'nein' | '' (unbekannt) */
+  function hausbesuch(a) {
+    var f = String(a.angebotsform || '').toLowerCase();
+    if (f.indexOf('hausbesuch') !== -1 || f.indexOf('ambulant') !== -1) return 'ja';
+    if (f.indexOf('vor ort') !== -1 || f.indexOf('stationär') !== -1) return 'nein';
+    return '';
+  }
+
   function filtereAnliegen(liste, auswahl) {
     var kat = auswahl.kategorien || [];
     if (!kat.length) return [];
@@ -173,6 +181,7 @@
     mailtoLink: mailtoLink,
     whatsappLink: whatsappLink,
     angebotsformPasst: angebotsformPasst,
+    hausbesuch: hausbesuch,
     filtereAnliegen: filtereAnliegen,
     zaehleAnliegen: zaehleAnliegen,
     notizText: notizText

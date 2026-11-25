@@ -179,3 +179,10 @@ p, li { orphans: 3; widows: 3; }
 .is-printing-kontakte .kontakt a { text-decoration: none; color: #000; }
 .is-printing-kontakte .kontakt a[href^="mailto:"]::after,
 .is-printing-kontakte .kontakt a[href^="http"]::after { content: none; }
+
+/* Notizzettel des Assistenten: „Drucken“ setzt body.is-printing-notiz – gedruckt wird NUR der Zettel */
+.is-printing-notiz *:not(:has([data-notizzettel])):not([data-notizzettel]):not([data-notizzettel] *) { display: none !important; }
+.is-printing-notiz [data-notizzettel] { border: 1px solid #999; background: #fff; padding: 0.5cm; }
+.is-printing-notiz .notizzettel__aktionen,
+.is-printing-notiz .notizzettel__fuss { display: none !important; }
+.is-printing-notiz .assistent__card { border: 0; box-shadow: none; padding: 0; }

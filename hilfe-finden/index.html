@@ -1,0 +1,368 @@
+<!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/hilfe-finden.html – nicht direkt bearbeiten -->
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Hilfe finden: Anbieter suchen – Konzept 60+</title>
+  <meta name="description" content="Finden Sie selbst passende Anbieter in Ihrer Stadt: Pflegedienst, Haushaltshilfe, Treppenlift, Badumbau und mehr. Mit Suche, kurzen Fragen und Notizzettel für Ihr Gespräch. Kostenlos, ohne Anmeldung.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <link rel="canonical" href="https://www.example.org/hilfe-finden/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Konzept 60+">
+  <meta property="og:title" content="Hilfe finden: Anbieter suchen – Konzept 60+">
+  <meta property="og:description" content="Finden Sie selbst passende Anbieter in Ihrer Stadt: Pflegedienst, Haushaltshilfe, Treppenlift, Badumbau und mehr. Mit Suche, kurzen Fragen und Notizzettel für Ihr Gespräch. Kostenlos, ohne Anmeldung.">
+  <meta property="og:url" content="https://www.example.org/hilfe-finden/">
+  <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
+
+  <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
+  <script src="/assets/js/no-js.js?v=cbdd4bffae"></script>
+
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
+       → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=0738e96f5d">
+  <link rel="stylesheet" href="/assets/css/base.css?v=0e91fd6f69">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=427197b68b">
+  <link rel="stylesheet" href="/assets/css/components.css?v=c77d4dd356">
+  <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
+
+</head>
+<body>
+
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/></symbol>
+  <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
+  <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
+  <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-3.9A8 8 0 1 1 20 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+  <symbol id="icon-teilen" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-3.8M8.2 13.2l7.6 3.8"/></symbol>
+  <symbol id="icon-drucken" viewBox="0 0 24 24"><path d="M7.5 8.5v-5h9v5"/><path d="M7.5 18.5h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3"/><rect x="7.5" y="14.5" width="9" height="6" rx="1.5"/></symbol>
+  <symbol id="icon-suche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="/" aria-label="Konzept 60+ – zur Startseite">
+      <span class="logo__text" translate="no">Konzept 60+</span>
+    </a>
+
+    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent) -->
+    <a class="btn btn--secondary site-header__suche" href="/hilfe-finden/" aria-current="page">
+      <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
+      <span>Anbieter suchen</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/">Mein Alltag</a></li>
+        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
+      </ul>
+      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
+    </nav>
+  </div>
+</header>
+<!-- END partial:header -->
+
+<main id="inhalt" tabindex="-1">
+  <!-- Hilfe finden (Relaunch 3.1): Suche + Assistent + sechs Themen
+       (→ WordPress: page-hilfe-finden.php mit Template-Part "assistent"; Anliegen = Taxonomie 'anliegen') -->
+  <div class="page-header page-header--plain">
+    <div class="container">
+      <span class="section__eyebrow">Hilfe finden</span>
+      <h1>Welche Hilfe suchen Sie?</h1>
+      <p class="section__intro">
+        Suchen Sie selbst einen passenden Anbieter in Ihrer Stadt: Geben Sie ein, was Sie brauchen,
+        oder wählen Sie unten ein Thema. Wenn nichts passt, suchen wir persönlich für Sie.
+      </p>
+      <div class="seiten-werkzeuge seiten-werkzeuge--dezent no-print" data-werkzeuge>
+        <button type="button" class="seiten-werkzeuge__link" data-teilen
+                aria-label="Seite „Hilfe finden“ teilen: Link zu dieser Seite" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
+          <span>Seite teilen</span>
+        </button>
+        <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent-url="/assets/data/assistent.json?v=c0ec44684b" data-anbieter-url="/assets/data/anbieter.json?v=098781b1f1" data-seitenname="Konzept 60+">
+    <div class="container">
+      <div class="section__header">
+        <h2 id="assistent-titel">Was suchen Sie?</h2>
+        <p class="section__intro">Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
+      </div>
+
+      <!-- Ohne JavaScript: Themenseiten und Anfrageformular -->
+      <ul class="assistent__nojs">
+        <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+        <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+        <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+        <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+        <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+        <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        <li><a href="/#anfrage">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>
+      </ul>
+
+      <!-- Mit JavaScript: assistent.js füllt diesen Bereich (Suche, Fragen, Ergebnis) -->
+      <div class="assistent__app" data-assistent-app hidden></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="hilfe-themen-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Themen</span>
+        <h2 id="hilfe-themen-titel">Alle sechs Themen</h2>
+      </div>
+      <ul class="grid grid--3 card-grid">
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/wohnen-haus-handwerk-480.webp 480w, /assets/img/themen/wohnen-haus-handwerk-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/wohnen-haus-handwerk-800.jpg" width="800" height="1000" alt="Ein Handwerker mit Werkzeugkoffer steht lächelnd vor der Haustür eines älteren Herrn, der ihn freundlich empfängt."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Wohnen, Haus und Handwerk</h3>
+              <p class="card__text">Kleine Reparaturen, Garten, Umbau für mehr Komfort oder Hilfe beim Umzug.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Kleinreparaturen</li><li>Gartenpflege</li><li>Barrierearmer Umbau</li><li>Umzugshilfe</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Anliegen beschreiben<span class="visually-hidden">: Wohnen, Haus und Handwerk</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/wohnen-haus-handwerk/">Mehr zum Thema<span class="visually-hidden">: Wohnen, Haus und Handwerk</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/haushalt-reinigung-480.webp 480w, /assets/img/themen/haushalt-reinigung-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/haushalt-reinigung-800.jpg" width="800" height="1000" alt="Eine Haushaltshilfe mit gelben Handschuhen wischt den Tisch, während eine ältere Frau mit einer Tasse in der Hand daneben sitzt und lacht."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Haushalt und Reinigung</h3>
+              <p class="card__text">Unterstützung im Haushalt, regelmäßig oder einmalig.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Wohnungsreinigung</li><li>Fenster putzen</li><li>Wäsche</li><li>Entrümpelung</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=haushalt-reinigung#anfrage" data-thema="haushalt-reinigung">Anliegen beschreiben<span class="visually-hidden">: Haushalt und Reinigung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/haushalt-reinigung/">Mehr zum Thema<span class="visually-hidden">: Haushalt und Reinigung</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/pflege-betreuung-v2-480.webp 480w, /assets/img/themen/pflege-betreuung-v2-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/pflege-betreuung-v2-800.jpg" width="800" height="880" alt="Eine Betreuerin kniet lächelnd neben einer älteren Frau, die im Garten sitzt, und legt ihr freundlich die Hand auf den Arm."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Pflege und Betreuung</h3>
+              <p class="card__text">Wir vermitteln Kontakte zu Pflegediensten und Betreuungsangeboten – und entlasten Angehörige.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Ambulante Pflege</li><li>Stundenweise Betreuung</li><li>Entlastung für Angehörige</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Anliegen beschreiben<span class="visually-hidden">: Pflege und Betreuung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/pflege-betreuung/">Mehr zum Thema<span class="visually-hidden">: Pflege und Betreuung</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/alltag-persoenliche-hilfe-480.webp 480w, /assets/img/themen/alltag-persoenliche-hilfe-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/alltag-persoenliche-hilfe-800.jpg" width="800" height="1000" alt="Ein Mann trägt eine Einkaufstüte und geht lächelnd mit einer älteren Dame untergehakt die Straße entlang."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Alltag und persönliche Hilfe</h3>
+              <p class="card__text">Begleitung und praktische Hilfe für die kleinen und großen Dinge des Alltags.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Einkaufen</li><li>Begleitung zu Terminen</li><li>Fahrdienst</li><li>Post und Formulare</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=alltag-persoenliche-hilfe#anfrage" data-thema="alltag-persoenliche-hilfe">Anliegen beschreiben<span class="visually-hidden">: Alltag und persönliche Hilfe</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/alltag-persoenliche-hilfe/">Mehr zum Thema<span class="visually-hidden">: Alltag und persönliche Hilfe</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/technik-sicherheit-480.webp 480w, /assets/img/themen/technik-sicherheit-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/technik-sicherheit-800.jpg" width="800" height="1000" alt="Ein jüngerer Mann zeigt einem älteren Herrn am Tisch etwas auf dem Tablet, beide lachen."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Technik und Sicherheit</h3>
+              <p class="card__text">Geräte einrichten, Fragen klären und sicher zu Hause leben.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Smartphone und Tablet</li><li>Hausnotruf</li><li>Rauchmelder</li><li>Fernseher einrichten</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=technik-sicherheit#anfrage" data-thema="technik-sicherheit">Anliegen beschreiben<span class="visually-hidden">: Technik und Sicherheit</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/technik-sicherheit/">Mehr zum Thema<span class="visually-hidden">: Technik und Sicherheit</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <picture class="card__media">
+              <source type="image/webp" srcset="/assets/img/themen/freizeit-lebensqualitaet-480.webp 480w, /assets/img/themen/freizeit-lebensqualitaet-800.webp 800w" sizes="(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw">
+              <img src="/assets/img/themen/freizeit-lebensqualitaet-800.jpg" width="800" height="1000" alt="Eine Gruppe älterer Menschen ist gut gelaunt mit Wanderstöcken in der Natur unterwegs."
+                   loading="lazy" decoding="async">
+            </picture>
+            <div class="card__body">
+              <h3 class="card__title">Freizeit und Lebensqualität</h3>
+              <p class="card__text">Gemeinsam unterwegs sein, Neues lernen und Kontakte pflegen.</p>
+              <ul class="card__examples" aria-label="Beispiele">
+                <li>Spaziergänge</li><li>Kurse</li><li>Ausflüge</li><li>Gesellschaft</li>
+              </ul>
+              <div class="card__actions">
+                <a class="card__link" href="/?thema=freizeit-lebensqualitaet#anfrage" data-thema="freizeit-lebensqualitaet">Anliegen beschreiben<span class="visually-hidden">: Freizeit und Lebensqualität</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__more" href="/themen/freizeit-lebensqualitaet/">Mehr zum Thema<span class="visually-hidden">: Freizeit und Lebensqualität</span></a>
+              </div>
+            </div>
+          </article>
+        </li>
+      </ul>
+      <div class="notice notice--light">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Nichts Passendes dabei?</strong> Beschreiben Sie uns Ihr Anliegen, dann suchen wir persönlich für Sie.
+          <a href="/?thema=sonstiges#anfrage" data-thema="sonstiges">Zum Anfrageformular</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="logo logo--light" href="/" aria-label="Konzept 60+ – zur Startseite">
+          <span class="logo__text" translate="no">Konzept 60+</span>
+        </a>
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          Wir erbringen selbst keine Dienstleistungen.</p>
+      </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
+          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/?region=solingen#anfrage" data-region="solingen">Solingen</a></li>
+          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
+          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul class="site-footer__info">
+          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
+          <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
+    </div>
+  </div>
+</footer>
+<!-- END partial:footer -->
+
+<!-- Quellenangabe im Ausdruck: nur beim Drucken sichtbar (print.css). main.js (11.)
+     setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
+<p class="print-url print-only" data-print-url></p>
+
+<script src="/assets/js/main.js?v=3c4b2b5ec0" defer></script>
+  <script src="/assets/js/anbieter-logik.js?v=7644f1e6e1" defer></script> <script src="/assets/js/anbieter.js?v=f6f831e717" defer></script> <script src="/assets/js/suche-logik.js?v=e127fde0ed" defer></script> <script src="/assets/js/assistent.js?v=355a2a9999" defer></script>
+</body>
+</html>

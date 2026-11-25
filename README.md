@@ -1,6 +1,6 @@
 # Konzept 60+ – statischer Prototyp (Arbeitstitel)
 
-Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung (einziger `fetch`: lesender Abruf der statischen Anbieterliste `assets/data/anbieter.json`): Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
+Statischer HTML/CSS/Vanilla-JS-Prototyp eines kostenlosen, **persönlichen** Vermittlungsportals für Menschen ab 60 und Angehörige. Keine Frameworks, keine externen Ressourcen (Source Serif 4 lokal + Systemschrift), keine Datenübertragung (einzige `fetch`-Aufrufe: lesender Abruf der statischen Dateien `assets/data/anbieter.json` und `assets/data/assistent.json`): Formulare senden nichts selbst: sie öffnen E-Mail-Programm oder WhatsApp mit vorbefülltem Text (kein `fetch`, kein Storage, keine Cookies). Alle Inhalte sind **Beispieldaten**; es gibt keine eigene Telefonnummer (Rückruf erfolgt durch uns), Domain `example.org` ist ein Platzhalter (Kommentare in `<head>`/JSON-LD).
 
 ## Lokal starten
 
@@ -19,6 +19,7 @@ Alle Pfade sind **wurzelrelativ** (`/assets/…`, `/themen/…`) – die Seiten 
 |---|---|---|
 | `/` | `index.html` | `templates/index.html` |
 | `/themen/` | `themen/index.html` | `templates/themen.html` |
+| `/hilfe-finden/` | `hilfe-finden/index.html` | `templates/hilfe-finden.html` (Suche + Assistent + sechs Themen; Ziel des Kopf-Knopfs „Anbieter suchen“) |
 | `/themen/<slug>/` (6×) | `themen/<slug>/index.html` | `templates/thema.html` + `data/themen.json` |
 | `/fuer-anbieter/` | `fuer-anbieter/index.html` | `templates/fuer-anbieter.html` |
 | `/mein-alltag/` | `mein-alltag/index.html` | `templates/mein-alltag.html` (Übersicht der Alltags-Werkzeuge) |
@@ -34,7 +35,7 @@ Cloudflare Workers Assets liefert `/themen/slug/` aus `themen/slug/index.html` (
 
 **Name:** „Konzept 60+“ ist ein Arbeitstitel und steht zentral in `tools/build.py` (`SITE_NAME`); Templates/Partials nutzen `{{site_name}}`, Meta-Titel, Open Graph und JSON-LD folgen automatisch. Textlogo = Serif + Akzentpunkt (`.logo__text`).
 
-**Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
+**Navigation nach drei Säulen:** „Hilfe finden“ (`/themen/`), „Ratgeber“ (`/ratgeber/`, Säule „Wissen bekommen“), „Mein Alltag“ (`/mein-alltag/`, Säule „Alltag erleichtern“), danach kleiner „Für Anbieter“; CTA „Anfrage stellen“. Rechts im Kopf steht zusätzlich der Knopf „Anbieter suchen“ (→ `/hilfe-finden/`, auf dem Handy als volle Zeile unter Logo und Menü, 68–75em nur Lupe). `NAV_KEYS` in `build.py`: `themen`, `ratgeber`, `alltag`, `anbieter`, `suche`. „So funktioniert’s“ steht im Footer. Bestehende URLs sind unverändert.
 
 **Entscheidung Navigation „Themen“:** verweist auf die eigene Übersichtsseite `/themen/` (entspricht später dem Taxonomie-Archiv). Die Startseite behält zusätzlich den Bereich `#themen` (als Weg 1 im Abschnitt „Drei Wege“, `#drei-wege`). Der frühere Startseiten-Abschnitt „Für Anbieter“ ist ein einzeiliger Hinweis (`#fuer-anbieter`) mit Link auf `/fuer-anbieter/`. Aktiver Menüpunkt: `aria-current="page"` (Übersicht) bzw. `aria-current="true"` (Unterseiten eines Bereichs).
 
@@ -101,6 +102,27 @@ assets/js/anbieter.js         Liste + Dialog; lädt assets/data/anbieter.json er
 - WordPress: `data/anbieter.json` entspricht dem CPT `anbieter` (Taxonomien `themenbereich` = `thema`, `region` = `stadt` + `einzugsgebiet`).
 - E2E: `python3 -m http.server 8765 &  node tests/anbieter.e2e.js` (Playwright).
 
+## Anliegen, Freitextsuche und Assistent (Relaunch 3.1)
+
+Konzept: `docs/relaunch/konzept-assistent-suche.md`. Grundsatz: Der Besucher wählt seinen Anbieter selbst, „Bei uns melden“ ist der Rückfallweg. Die Umkreissuche (Konzept Abschnitt 4) ist **zurückgestellt**: Treffer = Stadt gleich oder Wohnort im Einzugsgebiet (`ortsGruppe`), keine Entfernungen, keine Radius-Knöpfe.
+
+```
+data/anliegen.json ──tools/build.py (load_anliegen prüft)──▶ assets/data/assistent.json (fetch, ?v=Hash)
+data/anbieter.json ─────────────────────────────────────────▶ assets/data/anbieter.json (wie bisher)
+assets/js/suche-logik.js     reine Suchlogik (Test: tests/suche-logik.test.js)
+assets/js/anbieter-logik.js  + filtereAnliegen, zaehleAnliegen, hausbesuch, notizText (Test: tests/anbieter-logik.test.js)
+assets/js/assistent.js       Oberfläche: Combobox, Schritte, Ergebnis, Notizzettel (Startseite #assistent + /hilfe-finden/)
+```
+
+- **Anliegen-Katalog** `data/anliegen.json` (49 Anliegen): `id`, `titel`, `kurz?`, `thema`, `gruppe?` (z. B. `badezimmer` mit sechs Möglichkeiten), `kategorien` (**streng**: nur Anbieter mit genau diesen Kategorie-IDs, das Thema spielt keine Rolle; leer = Ratgeber-Anliegen), `leistungen` (Wortlaut aus `themen.json`, für die Vorauswahl im Formular), `verwandt`, `begriffe` (Synonyme, Umgangssprache, Mehrwort-Begriffe), `fragen` (Filterfragen + `ort`), `notizfragen`, `ratgeber` (Slugs), `werkzeug?` (Mein-Alltag-Werkzeug). Dazu `gruppen`, `haeufig` (Startauswahl) und `fragen` (je Frage `art: filter|notiz`, `titel`, `notiz` = Bezeichnung auf dem Notizzettel, `optionen` mit `kategorien`, `angebotsform` oder `begriffe` zur Vorbelegung aus dem Freitext). `build.py` bricht ab, wenn eine Leistung aus `themen.json` kein Anliegen hat, eine Kategorie ausgeblendet/unbekannt ist, ein Verweis nicht stimmt oder mehr als vier Fragen bis zur Liste nötig wären.
+- **Freitextsuche** (`suche-logik.js`): Kleinschreibung, ä/ae, ß/ss, Bindestriche, Füllwörter weg, Wortstamm (-en/-er/-e), Tippfehler (Abstand 1 ab 5 Buchstaben), Wortteile (notruf → hausnotruf), Mehrwort-Regel (alle Wörter eines Begriffs in der Eingabe → starker Treffer, „dusche statt badewanne“ → `bad-dusche`). Erkennt Orte („in Solingen“) und Personen („für meine Mutter“ → `wer=angehoerige`). Höchstens 5 Anliegen, 2 Ratgeber, 1 Thema. Nichts wird protokolliert.
+- **Assistent** (`assistent.js`): Start mit Suchfeld (ARIA-Combobox ab 2 Buchstaben, Pfeiltasten/Enter/Escape), „Häufig gesucht“, sechs Themen, „Andere Wege“ (Angehörige, Informieren → Ratgeber, Alltag → Mein-Alltag-Werkzeuge). Danach Filterfragen → Stadt (große Knöpfe der Start-Städte oder Feld mit Vorschlägen aus allen Städten der Anbieterliste) → Liste über `AnbieterListe.baue({ ausfuehrlich: true })`. Optional Notizfragen → Notizzettel (Drucken nur des Zettels über `body.is-printing-notiz`, E-Mail/WhatsApp über `mailtoLink`/`whatsappLink`). Null Treffer: verwandte Anliegen mit echter Anzahl in der Stadt, dann „Bei uns melden“. Ratgeber-Anliegen führen zu Ratgeber/Werkzeug statt zu einer leeren Liste.
+- **Zustand in der Adresszeile** (`history.pushState`, kein Storage): `anliegen`, `bereich` (Thema), `gruppe`, `ziel` (`informieren|alltag`), `werkzeug`, `person=angehoerige`, `stadt`, `f-<frage>` (Filter, `-` = übersprungen), `n-<frage>` (Notiz), `notizen=1`, `q` (Suchbegriff). Beispiel: `/hilfe-finden/?anliegen=treppenlift&stadt=Solingen&n-treppe-form=kurvig`; auf der Startseite mit `#assistent`. Die Namen überschneiden sich bewusst nicht mit den Formular-Parametern.
+- **„Bei uns melden“** = `/?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>&leistung=<slug,…>&notiz=<Notizzettel als Text>#anfrage`; `main.js` (2.) übernimmt `leistung` (Kästchen) und `notiz` (nur in ein leeres Beschreibungsfeld) und entfernt die Parameter danach.
+- **Ohne JS** (oder wenn `assistent.json` nicht lädt): Liste mit Links auf die sechs Themenseiten und das Anfrageformular.
+- Tests: `node --test tests/*.test.js`; E2E (Server auf 8765): `node tests/assistent.e2e.js` (Szenarien Haushaltshilfe in Solingen, Treppenlift kurvige Treppe, Pflegedienst für Mutter in Düsseldorf, Zuschüsse Badumbau/„dusche statt badewanne“; `SHOTS=<ordner/>` speichert Screenshots), `node tests/anbieter.e2e.js`, `node tests/rechner.e2e.js`.
+- **WordPress:** `anliegen` = Taxonomie mit Term-Meta (`begriffe`, `kategorien`, `fragen`, `notizfragen`, `verwandt`, `ratgeber`), Fragen als Optionsseite oder JSON im Theme; `assistent.json` = REST-Endpunkt `/wp-json/wirhelfen/v1/assistent`; Trefferliste später `/wp-json/wirhelfen/v1/anbieter?anliegen=&stadt=` mit derselben Logik wie `filtereAnliegen` (PHP-Vorlage). Seite `/hilfe-finden/` = `page-hilfe-finden.php` mit Template-Part `assistent`.
+
 ## Weitere Struktur
 
 ```
@@ -119,7 +141,7 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 
 - **Veranstaltungen:** einspaltige Zeilen je Tag, Zusatzinfos in `<details>` („Mehr erfahren“). `assets/js/veranstaltungen.js` schreibt Ort und Thema in die Adresszeile (`/veranstaltungen/?ort=Hilden&thema=Kultur`, `history.replaceState`) und liest sie beim Laden (unbekannte Werte → „Alle“, Parameter entfernt); vor dem Druck werden alle Zusatzinfos aufgeklappt.
 - **Kein Inline-JS/-CSS** (außer JSON-LD) → CSP ohne `unsafe-inline`; geprüft unter `wrangler dev` mit echten Headern.
-- **Unterstützungs-Assistent** (Startseite, `#assistent`, `assets/js/assistent.js`, nur dort eingebunden über `body_extra` im Template-Kopf): Ziel → Thema → (bei Hilfe/Angehörigen) Stadt → Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Daten rendert `build.py` (`assistent_data()`) als JSON ins Attribut `data-assistent` (kein Inline-Skript, kein Nachladen). Ohne JS zeigt der Abschnitt die drei Säulen-Links. Nichts wird gespeichert; Ergebnis = Link `/?thema=<slug>&wer=selbst|angehoerige&ort=<Stadt>#anfrage`.
+- **Assistent** (Startseite `#assistent` und `/hilfe-finden/`, `assets/js/assistent.js`, eingebunden über `body_extra`): seit Relaunch 3.1 mit Freitextsuche und Anliegen-Katalog, siehe Abschnitt „Anliegen, Freitextsuche und Assistent“. Daten schreibt `build.py` (`assistent_data()`) nach `assets/data/assistent.json` (früher Attribut `data-assistent`; jetzt zu groß fürs HTML).
 - **Vorauswahl:** Links wie `/?thema=pflege-betreuung#anfrage`, `/?wer=angehoerige#anfrage` (älter: `?fuer=`), `/?ort=Hilden#anfrage` (nur Städte aus `data/regionen.json`; älter: `/?region=wesel#anfrage`) funktionieren von jeder Seite (ohne JS: normale Navigation zum Formular). `main.js` übernimmt die Parameter und entfernt sie danach aus der Adresszeile; auf der Startseite selbst werden solche Links ohne Neuladen abgefangen.
 - **Leistungen je Kategorie** werden serverseitig (Build) als Checkbox-Gruppen gerendert, standardmäßig `hidden disabled`; JS blendet die passende ein. Ohne JS genügt die Pflicht-Beschreibung.
 - **Schritt-Formulare** (`assets/js/schritte.js`, deklarativ über `data-schritte`/`data-schritt`): Anfrage, Anbieter-Registrierung und Veranstaltung melden laufen mit JS Schritt für Schritt (Fortschritt, Zurück/Weiter, Prüfung je Schritt). Letzter Schritt: Zusammenfassung und Versand **per E-Mail** (`mailto:`) oder **per WhatsApp** (`wa.me`) mit vorbefülltem Text; gesendet wird erst im Mailprogramm bzw. in WhatsApp. Empfänger stehen nur in `assets/js/api.js` (`KONTAKT`, Platzhalter, vor Livegang ersetzen). Ohne JS bleibt das ganze Formular sichtbar. Tests: `node --test` (Unit), Klickpfad per Playwright.
@@ -139,6 +161,7 @@ _headers                   Security-Header (strikte CSP ohne unsafe-inline) + Ca
 | `templates/index.html` | `front-page.php` mit `get_template_part()` je Sektion |
 | `templates/thema.html` | `taxonomy-themenbereich.php` (Term + Term-Meta aus `themen.json`) |
 | `templates/themen.html` | `page-themen.php` bzw. Archiv der Taxonomie |
+| `templates/hilfe-finden.html` | `page-hilfe-finden.php` (Template-Part `assistent`, Taxonomie `anliegen`) |
 | `templates/fuer-anbieter.html` | `page-fuer-anbieter.php` |
 | `templates/ratgeber.html` | `home.php` (Beitragsarchiv) |
 | `templates/ratgeber-beitrag.html` | `single.php` (Breadcrumb, `the_content()`, Inhaltsverzeichnis per Filter auf `the_content` aus den H2) |

@@ -3107,3 +3107,130 @@ body:has(dialog[open]) { overflow: hidden; }
   outline-offset: 3px;
   box-shadow: 0 0 0 6px var(--color-navy-800);
 }
+
+/* ---- Assistent mit Freitextsuche (Relaunch 3.1, assets/js/assistent.js + suche-logik.js) ------------
+   Konzept: docs/relaunch/konzept-assistent-suche.md. Auswahlflächen mind. 56px (choice-card 4rem),
+   Abstand 12px (--space-s), Raster immer minmax(0, 1fr), keine Dropdowns, keine opacity auf Text. */
+.assistent--ohne-app .assistent__nojs { display: grid; } /* Daten nicht ladbar: Links bleiben sichtbar */
+.js .assistent--ohne-app .assistent__nojs { display: grid; }
+
+.assistent__abschnitt {
+  margin: var(--space-xl) 0 var(--space-s);
+  font-size: var(--font-size-lg);
+}
+.assistent__frage-art { margin: 0 0 var(--space-m); color: var(--color-ink-muted); max-width: 50rem; }
+
+/* Gewählte Angaben mit „ändern“ */
+.assistent__auswahl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-m);
+  margin: 0 0 var(--space-l);
+  padding: 0 0 var(--space-m);
+  list-style: none;
+  border-bottom: 1px solid var(--color-sand-300);
+}
+.assistent__auswahl-item { min-width: 0; overflow-wrap: anywhere; }
+.assistent__auswahl-label { color: var(--color-ink-muted); }
+.assistent__aendern {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding-inline: var(--space-2xs);
+  font-weight: 700;
+}
+
+/* Suchfeld als ARIA-Combobox */
+.assistent__suche { margin: var(--space-m) 0 0; }
+.suche { margin: 0; }
+.suche__label { display: block; margin-bottom: var(--space-2xs); font-weight: 700; font-size: var(--font-size-lg); color: var(--color-navy-800); }
+.suche__hinweis { margin: 0 0 var(--space-xs); font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+.suche__zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-s);
+}
+@media (min-width: 40em) {
+  .suche__zeile { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+}
+.suche__feld { position: relative; min-width: 0; }
+.suche__input { width: 100%; min-height: 3.5rem; font-size: var(--font-size-lg); }
+.suche__knopf { min-height: 3.5rem; }
+.suche__liste {
+  position: absolute;
+  z-index: 20;
+  inset-inline: 0;
+  top: calc(100% + var(--space-2xs));
+  margin: 0;
+  padding: var(--space-2xs);
+  list-style: none;
+  max-height: 24rem;
+  overflow-y: auto;
+  background: var(--color-white);
+  border: 2px solid var(--color-navy-800);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
+}
+.suche__liste[hidden] { display: none; }
+.suche__option {
+  display: grid;
+  gap: 0.1rem;
+  min-height: 3.5rem;
+  padding: var(--space-xs) var(--space-s);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.suche__option + .suche__option { margin-top: var(--space-2xs); }
+.suche__option-titel { font-weight: 700; color: var(--color-navy-800); line-height: 1.3; }
+.suche__option-hinweis { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+.suche__option:hover { background: var(--color-navy-100); }
+.suche__option[aria-selected="true"] {
+  background: var(--color-navy-800);
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+.suche__option[aria-selected="true"] .suche__option-titel,
+.suche__option[aria-selected="true"] .suche__option-hinweis { color: var(--color-white); }
+.suche__ergebnis:not(:empty) { margin-top: var(--space-l); }
+.suche__ergebnis-titel { margin: 0 0 var(--space-s); font-size: var(--font-size-lg); }
+.suche--ort { margin-top: var(--space-l); }
+.suche--ort .suche__label { font-size: var(--font-size-base); }
+
+/* Ergebnis: Trefferzahl, Notizzettel, verwandte Anliegen, Rückfallweg */
+.assistent__trefferzahl { margin: var(--space-s) 0 0; font-size: var(--font-size-lg); font-weight: 700; }
+.assistent__trefferzahl:empty { display: none; }
+.anbieter-karte__leistung { font-weight: 700; color: var(--color-sage-700); }
+.anbieter-karte__wege { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); margin: 0; }
+.anbieter-karte__weg { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 600; }
+
+.notizzettel {
+  margin: var(--space-l) 0;
+  padding: var(--space-l) var(--space-m);
+  background: var(--color-sand-50);
+  border: 2px dashed var(--color-border-input);
+  border-radius: var(--radius-m);
+}
+@media (min-width: 40em) { .notizzettel { padding: var(--space-l); } }
+.notizzettel__titel { margin: 0 0 var(--space-s); font-size: var(--font-size-h3); }
+.notizzettel__liste { margin: 0 0 var(--space-m); padding-left: 1.25rem; display: grid; gap: var(--space-2xs); }
+.notizzettel__liste li { overflow-wrap: anywhere; }
+.notizzettel__label { font-weight: 700; }
+.notizzettel__aktionen { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+.notizzettel__aktionen .btn { flex: 1 1 12rem; }
+.notizzettel__fuss { margin: var(--space-s) 0 0; }
+.notizzettel__aendern { display: inline-flex; align-items: center; min-height: var(--touch-min); }
+
+.assistent__notiz-einladung,
+.assistent__verwandt { margin: var(--space-l) 0; }
+.assistent__notiz-einladung .assistent__abschnitt,
+.assistent__verwandt .assistent__abschnitt { margin-top: 0; }
+.assistent__melden {
+  margin: var(--space-xl) 0 var(--space-l);
+  padding-top: var(--space-l);
+  border-top: 2px solid var(--color-sand-300);
+}
+.assistent__melden-titel { margin: 0 0 var(--space-xs); font-size: var(--font-size-h3); }
+.assistent__melden-zeile { margin: var(--space-m) 0 0; }
+.assistent__neu { margin-left: auto; }
+@media (max-width: 29.99em) { .assistent__neu { margin-left: 0; } }

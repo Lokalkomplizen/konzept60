@@ -34,9 +34,9 @@
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
   <link rel="stylesheet" href="/assets/css/tokens.css?v=0738e96f5d">
   <link rel="stylesheet" href="/assets/css/base.css?v=0e91fd6f69">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=336ceb280e">
-  <link rel="stylesheet" href="/assets/css/components.css?v=1d325832e4">
-  <link rel="stylesheet" href="/assets/css/print.css?v=8506f8690f" media="print">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=427197b68b">
+  <link rel="stylesheet" href="/assets/css/components.css?v=c77d4dd356">
+  <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
   <script type="application/ld+json">
@@ -83,6 +83,7 @@
   <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
   <symbol id="icon-teilen" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-3.8M8.2 13.2l7.6 3.8"/></symbol>
   <symbol id="icon-drucken" viewBox="0 0 24 24"><path d="M7.5 8.5v-5h9v5"/><path d="M7.5 18.5h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3"/><rect x="7.5" y="14.5" width="9" height="6" rx="1.5"/></symbol>
+  <symbol id="icon-suche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
 </svg>
 
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -98,6 +99,12 @@
   <div class="container site-header__bar">
     <a class="logo" href="/" aria-label="Konzept 60+ – zur Startseite">
       <span class="logo__text" translate="no">Konzept 60+</span>
+    </a>
+
+    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent) -->
+    <a class="btn btn--secondary site-header__suche" href="/hilfe-finden/">
+      <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
+      <span>Anbieter suchen</span>
     </a>
 
     <button class="btn btn--menu site-header__nav-toggle" type="button"
@@ -386,7 +393,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=4fe9cfe999" defer></script>
+<script src="/assets/js/main.js?v=3c4b2b5ec0" defer></script>
 
 </body>
 </html>

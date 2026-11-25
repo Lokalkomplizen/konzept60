@@ -127,6 +127,37 @@
 
 .site-header__bar .site-header__nav-toggle { display: none; }
 
+/* Knopf „Anbieter suchen“ (→ /hilfe-finden/): immer sichtbar, auch auf dem Handy */
+.site-header__bar .logo { flex-shrink: 0; white-space: nowrap; }
+.btn.site-header__suche { gap: var(--space-xs); padding-inline: 1rem; white-space: nowrap; }
+.site-header__suche[aria-current="page"] { background: var(--color-navy-800); color: var(--color-white); }
+/* Handy: eigene volle Zeile unter Logo und „Menü“ (passt so auch bei 320 px) */
+@media (max-width: 47.99em) {
+  .btn.site-header__suche { order: 2; flex-basis: 100%; justify-content: center; }
+  .site-header__nav-toggle { order: 1; }
+  .site-nav { order: 3; }
+}
+@media (min-width: 48em) and (max-width: 67.99em) {
+  .site-header__suche { margin-left: auto; }
+}
+@media (min-width: 68em) {
+  .site-header__suche { order: 3; }
+  .site-nav { order: 2; margin-left: auto; }
+}
+@media (min-width: 68em) {
+  /* Platz für Logo, Navigation, „Anfrage stellen“ und „Anbieter suchen“ in einer Zeile */
+  .site-header__bar .site-nav { gap: var(--space-m); }
+  .btn.site-header__suche { font-size: var(--font-size-md); }
+}
+@media (min-width: 68em) and (max-width: 74.99em) {
+  /* 1088–1199 px: nur Lupe sichtbar, Name „Anbieter suchen“ bleibt für Screenreader erhalten */
+  .btn.site-header__suche { padding-inline: 0.8rem; }
+  .site-header__suche span {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+}
+
 /* Mobile Navigation: nur zuklappen, wenn JS aktiv ist (.js auf <html>).
    Ohne JS steht die Navigation einfach unter dem Logo. */
 @media (max-width: 67.99em) {

@@ -56,7 +56,8 @@ ZUORDNUNG = {
 LEISTUNGEN = {
     W: {"Kleinreparaturen im Haus": ["01.05", "01.03"], "Gartenpflege und Heckenschnitt": ["01.04"],
         "Barrierearmer Umbau (z. B. Bad, Haltegriffe)": ["01.01", "01.02"], "Maler- und Tapezierarbeiten": ["01.03"],
-        "Möbel aufbauen oder umstellen": ["01.05"], "Umzugshilfe": ["11.04"], "Winterdienst": ["01.04", "01.05"]},
+        "Möbel aufbauen oder umstellen": ["01.05"], "Umzugshilfe": ["11.04"], "Winterdienst": ["01.04", "01.05"],
+        "Treppenlift und Hilfsmittel": ["01.02"]},
     H: {"Regelmäßige Wohnungsreinigung": ["02.01"], "Fenster putzen": ["02.01"], "Wäsche waschen und bügeln": ["02.02"],
         "Großputz oder Frühjahrsputz": ["02.01"], "Entrümpelung und Haushaltsauflösung": ["11.05"],
         "Hilfe beim Kochen und Vorräte auffüllen": ["02.04"]},

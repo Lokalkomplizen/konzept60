@@ -1,0 +1,53 @@
+<!--meta
+title: Hilfe finden: Anbieter suchen – {{site_name}}
+description: Finden Sie selbst passende Anbieter in Ihrer Stadt: Pflegedienst, Haushaltshilfe, Treppenlift, Badumbau und mehr. Mit Suche, kurzen Fragen und Notizzettel für Ihr Gespräch. Kostenlos, ohne Anmeldung.
+nav: suche
+body_extra: <script src="/assets/js/anbieter-logik.js" defer></script> <script src="/assets/js/anbieter.js" defer></script> <script src="/assets/js/suche-logik.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
+-->
+  <!-- Hilfe finden (Relaunch 3.1): Suche + Assistent + sechs Themen
+       (→ WordPress: page-hilfe-finden.php mit Template-Part "assistent"; Anliegen = Taxonomie 'anliegen') -->
+  <div class="page-header page-header--plain">
+    <div class="container">
+      <span class="section__eyebrow">Hilfe finden</span>
+      <h1>Welche Hilfe suchen Sie?</h1>
+      <p class="section__intro">
+        Suchen Sie selbst einen passenden Anbieter in Ihrer Stadt: Geben Sie ein, was Sie brauchen,
+        oder wählen Sie unten ein Thema. Wenn nichts passt, suchen wir persönlich für Sie.
+      </p>
+{{werkzeuge_hilfe}}
+    </div>
+  </div>
+
+  <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent-url="{{assistent_url}}" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
+    <div class="container">
+      <div class="section__header">
+        <h2 id="assistent-titel">Was suchen Sie?</h2>
+        <p class="section__intro">Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
+      </div>
+
+      <!-- Ohne JavaScript: Themenseiten und Anfrageformular -->
+      <ul class="assistent__nojs">
+{{assistent_nojs}}
+      </ul>
+
+      <!-- Mit JavaScript: assistent.js füllt diesen Bereich (Suche, Fragen, Ergebnis) -->
+      <div class="assistent__app" data-assistent-app hidden></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="hilfe-themen-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Themen</span>
+        <h2 id="hilfe-themen-titel">Alle sechs Themen</h2>
+      </div>
+      <ul class="grid grid--3 card-grid">
+{{themen_karten_h3}}
+      </ul>
+      <div class="notice notice--light">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Nichts Passendes dabei?</strong> Beschreiben Sie uns Ihr Anliegen, dann suchen wir persönlich für Sie.
+          <a href="/?thema=sonstiges#anfrage" data-thema="sonstiges">Zum Anfrageformular</a></p>
+      </div>
+    </div>
+  </section>

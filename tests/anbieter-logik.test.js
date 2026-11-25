@@ -56,3 +56,54 @@ test("Google-Maps-Link: Name + Stadt kodiert, keine Bewertungsdaten", () => {
   const u = L.googleMapsLink({ name: "Pflege & Co", stadt: "Mülheim an der Ruhr" });
   assert.equal(u, "https://www.google.com/maps/search/?api=1&query=Pflege%20%26%20Co%20M%C3%BClheim%20an%20der%20Ruhr");
 });
+
+// ---- Anliegen-Abgleich (data/anliegen.json): streng nach Kategorie, Ort über Stadt/Einzugsgebiet ----
+// Kleine Test-Fixture mit erfundenen Platzhalter-Namen (keine Daten aus data/anbieter.json).
+const fix = [
+  { id: "t1", name: "Lift Nord", thema: "wohnen-haus-handwerk", kategorie_id: "01.02", stadt: "Solingen", einzugsgebiet: [] },
+  { id: "t2", name: "Allround Handwerk", thema: "wohnen-haus-handwerk", kategorie_id: "01.03", stadt: "Solingen", einzugsgebiet: [] },
+  { id: "t3", name: "Lift Süd", thema: "wohnen-haus-handwerk", kategorie_id: "01.02", stadt: "Haan", einzugsgebiet: ["Solingen"] },
+  { id: "h1", name: "Putz B", thema: "haushalt-reinigung", kategorie_id: "02.01", stadt: "Solingen", einzugsgebiet: [] },
+  { id: "h2", name: "Menü A", thema: "haushalt-reinigung", kategorie_id: "02.04", stadt: "Solingen", einzugsgebiet: [] },
+  { id: "h3", name: "Laden C", thema: "alltag-persoenliche-hilfe", kategorie_id: "02.03", stadt: "Solingen", einzugsgebiet: [] },
+  { id: "p1", name: "Physio Haus", thema: "pflege-betreuung", kategorie_id: "05.01", stadt: "Hilden", einzugsgebiet: [], angebotsform: "Hausbesuch" },
+  { id: "p2", name: "Physio Praxis", thema: "pflege-betreuung", kategorie_id: "05.01", stadt: "Hilden", einzugsgebiet: [], angebotsform: "vor Ort" },
+  { id: "p3", name: "Physio Beides", thema: "pflege-betreuung", kategorie_id: "05.01", stadt: "Hilden", einzugsgebiet: [], angebotsform: "Hausbesuch und vor Ort" },
+  { id: "p4", name: "Physio Unbekannt", thema: "pflege-betreuung", kategorie_id: "05.01", stadt: "Hilden", einzugsgebiet: [] }
+];
+
+test("Anliegen streng: Treppenlift (01.02) zeigt keinen allgemeinen Handwerker; Stadt vor Einzugsgebiet", () => {
+  const r = L.filtereAnliegen(fix, { kategorien: ["01.02"], ort: "Solingen" });
+  assert.deepEqual(r.map((a) => a.id), ["t1", "t3"]);
+  assert.equal(r[1]._gruppe, 1);
+});
+
+test("Anliegen: Thema egal, Kategorie zählt (Haushaltshilfe mit Einkaufen 02.03 aus anderem Thema); Hauptkategorie zuerst", () => {
+  const r = L.filtereAnliegen(fix, { kategorien: ["02.01", "02.02", "02.04", "02.03"], ort: "solingen" });
+  assert.deepEqual(r.map((a) => a.id), ["h1", "h2", "h3"]);
+  assert.deepEqual(L.filtereAnliegen(fix, { kategorien: ["02.04"], ort: "Solingen" }).map((a) => a.id), ["h2"]);
+});
+
+test("Anliegen: Angebotsform-Filter schließt nur bekannte Abweichungen aus", () => {
+  assert.deepEqual(L.filtereAnliegen(fix, { kategorien: ["05.01"], ort: "Hilden", angebotsform: "hausbesuch" }).map((a) => a.id).sort(), ["p1", "p3", "p4"]);
+  assert.deepEqual(L.filtereAnliegen(fix, { kategorien: ["05.01"], ort: "Hilden", angebotsform: "vor-ort" }).map((a) => a.id).sort(), ["p2", "p3", "p4"]);
+});
+
+test("Anliegen ohne Kategorien (Ratgeber-Anliegen) und unbekannter Ort -> leer; Zählung je Anliegen", () => {
+  assert.deepEqual(L.filtereAnliegen(fix, { kategorien: [], ort: "Solingen" }), []);
+  assert.deepEqual(L.filtereAnliegen(fix, { kategorien: ["01.02"], ort: "Wesel" }), []);
+  const n = L.zaehleAnliegen(fix, [{ id: "treppenlift", kategorien: ["01.02"] }, { id: "maler", kategorien: ["01.03"] }, { id: "zuschuss", kategorien: [] }], "Haan");
+  assert.deepEqual(n, { treppenlift: 1, maler: 0, zuschuss: 0 });
+});
+
+test("Notizzettel-Text: nur beantwortete Zeilen", () => {
+  const t = L.notizText("Das sollten Sie am Telefon sagen", [{ label: "Anliegen", wert: "Treppenlift" }, { label: "Etagen", wert: "" }, { label: "Treppe", wert: "Mit Kurve oder Wendel" }]);
+  assert.equal(t, "Das sollten Sie am Telefon sagen\n\n- Anliegen: Treppenlift\n- Treppe: Mit Kurve oder Wendel");
+});
+
+test("Hausbesuch ja/nein aus der Angebotsform, unbekannt bleibt leer", () => {
+  assert.equal(L.hausbesuch({ angebotsform: "Hausbesuch und vor Ort" }), "ja");
+  assert.equal(L.hausbesuch({ angebotsform: "vor Ort" }), "nein");
+  assert.equal(L.hausbesuch({ angebotsform: "Beratung" }), "");
+  assert.equal(L.hausbesuch({}), "");
+});

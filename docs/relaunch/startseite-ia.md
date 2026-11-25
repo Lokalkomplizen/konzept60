@@ -26,7 +26,7 @@ Das sind neun Blöcke mit zwei vollständigen Einstiegen (Assistent und Formular
 
 1. **A und C sind fast dieselbe Liste.** Die Suchbeispiele in A (Haushalt, Treppenlift, Pflege, Handwerker, Bad, Computer) und der Schnelleinstieg in C (Haushaltshilfe, Treppenlift, Pflege, Garten, Badumbau, Hausnotruf) überschneiden sich zu vier Fünfteln. Zwei Blöcke mit denselben Zielen widersprechen der eigenen Regel „keine überladenen Seiten". Vorschlag: C wird Teil von A, als Zeile „Häufig gesucht" direkt unter dem Suchfeld. Die Suchbeispiele erscheinen als wechselnder Platzhaltertext im Feld.
 2. **Suche und Assistent dürfen nicht nebeneinander stehen.** Wenn beide auf der Startseite bleiben, muss ein Besucher sich zuerst entscheiden, welchen Weg er nimmt. Das kostet genau den Klick, den wir sparen wollen. Vorschlag: Die Suche ist der erste Schritt des Assistenten. Wer „Treppenlift" eintippt, landet direkt bei der Frage nach dem Ort und danach in der Trefferliste. Wie genau, hängt an Punkt 5 des Prompts, deshalb hier nur als Richtung.
-3. **D passt nicht mehr zum Hero-Versprechen.** D sagt „Anbieter finden, Kontakt aufnehmen", also Selbstbedienung. Der Hero sagt „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da", und die Vertrauensleiste sagt „Persönlich statt anonym". Beides gleichzeitig zu versprechen ist unehrlich, wenn die Hauptstrecke eine Liste ist. Vorschlag: D zeigt den Selbstweg als Hauptweg und die persönliche Vermittlung als gleichwertigen zweiten Weg im dritten Schritt („Kontakt aufnehmen, selbst oder über uns"). Die Hero-Überschrift wird an „Hilfe finden. Einfach und kostenlos." angepasst, der alte Satz bleibt als Unterzeile erhalten.
+3. **D und Hero passen nicht zusammen. Entschieden am 25.11.2026:** Hauptweg ist, dass sich der Besucher seinen Dienstleister selbst aussucht. Die persönliche Vermittlung ist nur der Rückfallweg, wenn nichts passt oder jemand Hilfe braucht. Daraus folgt: Der Hero-Satz „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." verspricht zu viel und wird vom Hauptsatz zum Text auf dem Rückfall-Kasten in D (der Text bleibt erhalten, nur an anderer Stelle). „Persönlich statt anonym" wird in F umformuliert, siehe dort.
 4. **A bis F lässt drei vorhandene Inhalte ohne Platz.** Mein Alltag (Pflegegradrechner, Wohnungs-Check, Checklisten), der Angehörigen-Block und der Veranstaltungskalender kommen im Prompt nicht vor. Löschen ist verboten, also brauchen sie einen Ort. Vorschlag siehe Teil E und F.
 
 ## 3. Neue Startseite
@@ -36,7 +36,7 @@ Reihenfolge auf allen Geräten gleich. Geschätzte Länge auf dem Handy: rund 5 
 ### A. Hero mit Suche
 
 - **Überschrift (h1):** „Hilfe finden. Einfach und kostenlos."
-- **Unterzeile:** „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." (bisherige h1, bleibt erhalten)
+- **Unterzeile:** „Geprüfte Anbieter aus Ihrer Region. Sie wählen selbst, wir helfen, wenn Sie nicht weiterkommen." Die bisherige h1 „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." zieht in D (Rückfall-Kasten) um.
 - **Suchfeld** mit sichtbarem Label „Was suchen Sie?", mindestens 56 px hoch, Schrift 20 px, großer Button „Hilfe finden". Platzhalter wechselt nicht automatisch (Animation), sondern zeigt fest ein Beispiel: „z. B. Hilfe im Haushalt".
 - **Häufig gesucht** (ehemals C), 6 große Chips, je mindestens 48 px hoch und 12 px Abstand:
   Haushaltshilfe · Treppenlift · Pflege zu Hause · Gartenhilfe · Bad umbauen · Hausnotruf · Hilfe am Computer
@@ -63,7 +63,9 @@ Geht in A auf (siehe Punkt 2.1). Falls du C trotzdem als eigenen Block willst: d
 
 1. **Anliegen beschreiben.** Suchen oder Thema antippen, Ort angeben.
 2. **Passende regionale Anbieter finden.** Wir zeigen geprüfte Anbieter aus Ihrer Region.
-3. **Kontakt aufnehmen.** Selbst anrufen oder schreiben, oder wir vermitteln persönlich für Sie.
+3. **Kontakt aufnehmen.** Sie rufen den Anbieter selbst an oder schreiben ihm.
+
+**Rückfall-Kasten direkt darunter:** „Nichts Passendes gefunden? Oder lieber mit Unterstützung? Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." Button „Bei uns melden" zu `/anfrage/` (persönliche Vermittlung, Rückruf durch uns möglich). Derselbe Kasten erscheint am Ende jeder Trefferliste und bei null Treffern.
 
 Darunter wie bisher: keine Antwortfrist, nur „so schnell wie möglich", und offen gesagt, dass wir nicht für jedes Anliegen jemanden finden. Keine Telefonnummer, Rückruf durch uns bleibt erlaubt. Der Angehörigen-Block (heute #6) wird als Hinweiskasten hier angehängt: „Sie suchen Hilfe für Ihre Eltern?" mit dem Link zum Leitfaden.
 
@@ -76,8 +78,10 @@ Darunter wie bisher: keine Antwortfrist, nur „so schnell wie möglich", und of
 ### F. Vertrauen
 
 Vier Aussagen mit den vorhandenen Icons, je ein Satz Erklärung:
-Kostenlos und unverbindlich · Persönlich statt anonym · Regional und nah · Einfache Vermittlung.
-Für „Einfache Vermittlung" fehlt ein Icon, das muss neu gezeichnet werden (Tommy, im Stil der drei vorhandenen WebP-Icons).
+Kostenlos und unverbindlich · Sie entscheiden selbst · Regional und nah · Wir helfen, wenn Sie nicht weiterkommen.
+
+„Persönlich statt anonym" stimmt für den Hauptweg nicht mehr, denn dort sucht der Besucher allein in einer Liste. Vorschlag: Die Aussage wandert sinngemäß in die vierte Zeile („Wir helfen, wenn Sie nicht weiterkommen: persönlich, nicht anonym"). Die vier vorhandenen Icons passen weiter (kostenlos, persönlich, regional); für „Sie entscheiden selbst" fehlt eins.
+Das neue Icon zeichnest du im Stil der drei vorhandenen WebP-Icons.
 Darunter klein der Anbieter-Hinweis (heute #9): „Sie bieten Hilfe an? Kostenlos registrieren".
 
 ### Was von der Startseite wegzieht
@@ -101,5 +105,5 @@ Heute: Themen · Ratgeber · Mein Alltag · Für Anbieter · Anfrage. Vorschlag:
 ## 6. Offen
 
 - Punkt 5 und alles danach im Master-Prompt.
-- Icon „Einfache Vermittlung" (neu, von dir).
+- Icon „Sie entscheiden selbst" (neu, von dir).
 - Welche sechs Ratgeber auf die Startseite sollen. Mein Vorschlag, falls du nichts sagst: Pflegegrad beantragen · Haushaltshilfe im Alter · Treppenlift-Einbau · Hausnotruf auswählen · Barrierefrei wohnen · Eltern aus der Ferne unterstützen.

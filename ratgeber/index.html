@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Ratgeber – Konzept 60+</title>
   <meta name="description" content="Der Ratgeber von Konzept 60+: verständliche Beiträge zu Wohnen und Umbauen, Pflege, Finanzen, Alltag und Gesundheit – mit Suche, Themen und Stand der Informationen.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/ratgeber/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -36,6 +35,29 @@
   <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
 <script src="/assets/js/weiterleitung.js?v=6c74c62537" data-ratgeber-themen="{&quot;wohnen-haus-handwerk&quot;:&quot;/ratgeber/wohnen-umbauen/&quot;,&quot;haushalt-reinigung&quot;:&quot;/ratgeber/alltag-unterstuetzung/#haushaltshilfe&quot;,&quot;pflege-betreuung&quot;:&quot;/ratgeber/pflege-betreuung/&quot;,&quot;alltag-persoenliche-hilfe&quot;:&quot;/ratgeber/alltag-unterstuetzung/&quot;,&quot;technik-sicherheit&quot;:&quot;/ratgeber/alltag-unterstuetzung/&quot;,&quot;freizeit-lebensqualitaet&quot;:&quot;/ratgeber/gesundheit-lebensqualitaet/&quot;}"></script>
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen. -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        }
+      ]
+    }
+  ]
+  </script>
 </head>
 <body class="hat-leiste">
 

@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Konzept 60+ – Hilfe finden. Einfach und kostenlos.</title>
   <meta name="description" content="Hilfe finden, einfach und kostenlos: Anbieter aus Ihrer Region für Haushalt, Handwerk, Pflege, Alltag, Technik und Freizeit. Sie wählen selbst, wir helfen, wenn Sie nicht weiterkommen.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -35,20 +34,52 @@
   <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
   <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
-<script src="/assets/js/weiterleitung.js?v=6c74c62537"></script>   <link rel="preload" as="image" type="image/webp"
+<script src="/assets/js/weiterleitung.js?v=6c74c62537"></script>   <link rel="preload" as="image" type="image/webp" fetchpriority="high"
         imagesrcset="/assets/img/hero-garten-800.webp 800w, /assets/img/hero-garten-1600.webp 1600w"
-        imagesizes="(min-width: 60em) 55vw, 100vw">
+        imagesizes="(min-width: 60em) 45vw, 100vw">
 
-  <!-- JSON-LD: PLATZHALTER – url (example.org = reservierte Beispiel-Domain)
-       (Demo-Nummer, nicht vergeben) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen. -->
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen; Adresse/Logo erst mit echten Daten ergänzen, keine Telefonnummer. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Konzept 60+",
     "url": "https://www.example.org/",
-    "description": "Kostenloses Vermittlungsportal für Menschen ab 60 und Angehörige: Unser Team sucht persönlich passende Dienstleister und private Helfer in der Region.",
-    "areaServed": ["Düsseldorf", "Wuppertal", "Hilden", "Remscheid", "Solingen", "Langenfeld", "Haan", "Wesel"]
+    "description": "Kostenloses Portal für Menschen ab 60 und Angehörige: regionale Anbieter selbst finden oder persönlich vermitteln lassen. Wir erbringen selbst keine Dienstleistungen.",
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Düsseldorf"
+      },
+      {
+        "@type": "City",
+        "name": "Wuppertal"
+      },
+      {
+        "@type": "City",
+        "name": "Hilden"
+      },
+      {
+        "@type": "City",
+        "name": "Remscheid"
+      },
+      {
+        "@type": "City",
+        "name": "Solingen"
+      },
+      {
+        "@type": "City",
+        "name": "Langenfeld"
+      },
+      {
+        "@type": "City",
+        "name": "Haan"
+      },
+      {
+        "@type": "City",
+        "name": "Wesel"
+      }
+    ]
   }
   </script>
 </head>

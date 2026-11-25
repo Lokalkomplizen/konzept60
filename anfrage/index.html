@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Anliegen beschreiben: persönliche Vermittlung – Konzept 60+</title>
   <meta name="description" content="Beschreiben Sie Ihr Anliegen: Jemand aus unserem Team sucht kostenlos und unverbindlich passende Dienstleister oder private Helfer in Ihrer Region, für Sie selbst oder für Ihre Angehörigen.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/anfrage/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -35,7 +34,29 @@
   <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
   <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
-
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen. -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bei uns melden",
+          "item": "https://www.example.org/anfrage/"
+        }
+      ]
+    }
+  ]
+  </script>
 </head>
 <body class="hat-leiste">
 

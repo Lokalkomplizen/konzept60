@@ -7,8 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>Haushalt und Reinigung – Themen – Konzept 60+</title>
   <meta name="description" content="Unterstützung im Haushalt, regelmäßig oder einmalig. Wir suchen persönlich und kostenlos passende Dienstleister oder private Helfer in Ihrer Region.">
-  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
-       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <!-- PROTOTYP: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen (Canonical, Open Graph, JSON-LD). -->
   <link rel="canonical" href="https://www.example.org/themen/haushalt-reinigung/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
@@ -35,7 +34,92 @@
   <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
   <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
-
+  <!-- JSON-LD: PLATZHALTER-Domain (SITE in tools/build.py) vor Livegang ersetzen. -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Haushalt und Reinigung",
+      "serviceType": "Vermittlung regionaler Anbieter: Haushalt und Reinigung",
+      "description": "Unterstützung im Haushalt, regelmäßig oder einmalig.",
+      "url": "https://www.example.org/themen/haushalt-reinigung/",
+      "provider": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Düsseldorf"
+        },
+        {
+          "@type": "City",
+          "name": "Wuppertal"
+        },
+        {
+          "@type": "City",
+          "name": "Hilden"
+        },
+        {
+          "@type": "City",
+          "name": "Remscheid"
+        },
+        {
+          "@type": "City",
+          "name": "Solingen"
+        },
+        {
+          "@type": "City",
+          "name": "Langenfeld"
+        },
+        {
+          "@type": "City",
+          "name": "Haan"
+        },
+        {
+          "@type": "City",
+          "name": "Wesel"
+        }
+      ],
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedMinAge": 60
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "description": "Suche und persönliche Vermittlung sind kostenlos."
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Themen",
+          "item": "https://www.example.org/themen/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Haushalt und Reinigung",
+          "item": "https://www.example.org/themen/haushalt-reinigung/"
+        }
+      ]
+    }
+  ]
+  </script>
 </head>
 <body class="hat-leiste">
 

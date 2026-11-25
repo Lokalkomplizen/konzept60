@@ -60,6 +60,8 @@ Beispiel Haushaltshilfe: Welche Unterstützung (Filter) → Ort/PLZ → Radius �
 
 ## 4. Umkreissuche
 
+> **Zurückgestellt (Tommy, 25.11.2026):** Die Umkreissuche wird vorerst nicht gebaut. Gesucht wird über die Stadt (Stadt gleich oder Wohnort im Einzugsgebiet des Anbieters). Der Abschnitt bleibt als Plan für später stehen.
+
 - **Eingabe:** PLZ oder Ort in einem Feld, mit Vorschlägen während der Eingabe (alle Orte und PLZ aus NRW im Umkreis von 60 km um die Start-Region).
 - **Radius:** 5 · 10 · 20 · 30 · 50 km · Gesamte Region, als große Knöpfe. Voreinstellung 20 km [Guessing: 10 km ist für Spezialanbieter zu eng, 20 km deckt die Nachbarstädte ab].
 - **Koordinaten:** GeoNames-Postleitzahlen (CC BY 4.0, Quellenangabe im Impressum und auf der Ergebnisseite). Die Datei wird beim Build auf die Region gekürzt (`tools/geodaten.py` → `assets/data/plz.json`, geschätzt unter 30 KB). Kein externer Dienst zur Laufzeit, nichts verlässt den Browser.

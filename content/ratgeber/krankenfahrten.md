@@ -7,6 +7,14 @@ bild_alt: Ein silberner Kleinbus mit geöffneter Heckklappe und ausgeklappter Ra
 stand: November 2026
 veroeffentlicht: 2026-11-20 17:00
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: mobilitaet
+anliegen: krankenfahrt
+kurz:
+  - Eine Krankenfahrt ist eine Beförderung zu einer medizinisch notwendigen Behandlung ohne medizinisch-fachliche Betreuung während der Fahrt.
+  - Fahrten zu gewöhnlichen ambulanten Arztterminen bezahlt die Krankenkasse nur in bestimmten Ausnahmefällen, zum Beispiel bei Pflegegrad 4 oder 5.
+  - In vielen Fällen ist eine ärztliche Verordnung nötig, bei ambulanten Behandlungen häufig zusätzlich eine vorherige Genehmigung der Krankenkasse.
+  - Die Zuzahlung beträgt in der Regel zehn Prozent der Fahrkosten, mindestens 5 Euro und höchstens 10 Euro je Fahrt.
 hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Auskunft der Krankenkasse. Die Voraussetzungen zur Kostenübernahme richten sich nach den gesetzlichen Regelungen und dem jeweiligen Einzelfall. Die Angaben zur Kostenübernahme orientieren sich an § 60 SGB V und der Krankentransport-Richtlinie des Gemeinsamen Bundesausschusses, Stand 2026.
 inline_bild: krankenfahrten-verordnung
 inline_bild_alt: Eine ältere Frau mit Brille liest lächelnd ein Schreiben am Küchentisch, vor ihr ein Blutdruckmessgerät und Medikamente.

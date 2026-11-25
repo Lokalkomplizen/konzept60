@@ -7,6 +7,15 @@ bild_alt: Gedeckter Frühstückstisch im Garten mit Joghurt-Bowl mit Beeren, Rü
 stand: November 2026
 veroeffentlicht: 2026-11-21 19:00
 geaendert: 2026-11-21
+kategorie: gesundheit-lebensqualitaet
+unterkategorien: ernaehrung
+anliegen: essen
+kurz:
+  - Mit zunehmendem Alter fällt es dem Körper häufig schwerer, Muskelmasse zu erhalten. Ausreichend Eiweiß kann helfen, dem Muskelabbau entgegenzuwirken.
+  - Für gesunde Menschen ab 65 Jahren liegt der Schätzwert der DGE bei 1,0 Gramm Eiweiß pro Kilogramm Körpergewicht täglich.
+  - Es ist sinnvoll, eiweißreiche Lebensmittel über mehrere Mahlzeiten zu verteilen.
+  - Quark und Skyr, Eier, Haferflocken, Nüsse und Käse eignen sich gut für ein eiweißreiches Frühstück.
+  - Bei Nierenerkrankungen oder anderen gesundheitlichen Einschränkungen sollte die Eiweißzufuhr ärztlich abgestimmt werden.
 seo_titel: Frühstück ab 60: Warum Eiweiß am Morgen so wichtig ist
 meta_beschreibung: Warum ist Eiweiß ab 60 so wichtig? Entdecken Sie eiweißreiche Frühstücksideen mit Quark, Eiern, Haferflocken und Nüssen für einen guten Start in den Tag.
 hinweis: Dieser Beitrag dient der allgemeinen Information und ersetzt keine ärztliche Beratung oder Ernährungsberatung. Die Angaben zum Eiweißbedarf beruhen auf den Referenzwerten der Deutschen Gesellschaft für Ernährung (DGE), außerdem auf Informationen der DGE zu kritischen Nährstoffen im Alter, von gesund.bund.de (Bundesministerium für Gesundheit) und der Verbraucherzentrale. Stand: November 2026.

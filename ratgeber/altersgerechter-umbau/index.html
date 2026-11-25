@@ -35,29 +35,76 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
-    "description": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/altersgerechter-umbau-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Wohnen, Haus und Handwerk",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/altersgerechter-umbau/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
+      "description": "Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/altersgerechter-umbau-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T17:05:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Wohnen und Umbauen",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/altersgerechter-umbau/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Wohnen und Umbauen",
+          "item": "https://www.example.org/ratgeber/wohnen-umbauen/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause",
+          "item": "https://www.example.org/ratgeber/altersgerechter-umbau/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Welche Fördermöglichkeiten gibt es?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein altersgerechter Umbau kann teuer werden. Deshalb lohnt es sich, mögliche Zuschüsse und Förderkredite frühzeitig zu prüfen. Zuschuss der Pflegekasse: Wer einen anerkannten Pflegegrad von 1 bis 5 hat, kann für sogenannte wohnumfeldverbessernde Maßnahmen unter bestimmten Voraussetzungen einen Zuschuss von bis zu 4.180 Euro erhalten. Dazu können beispielsweise ein Badumbau, ein Treppenlift oder feste Rampen gehören. Entscheidend ist, dass die Maßnahme die häusliche Pflege ermöglicht oder erleichtert beziehungsweise die Selbstständigkeit verbessert. KfW-Förderkredit: Über das Programm „Altersgerecht Umbauen“ (Kredit 159) können barrierereduzierende Umbauten mit einem Kredit von bis zu 50.000 Euro je Wohneinheit finanziert werden. Die Verfügbarkeit und Konditionen sollten vor der Planung geprüft werden. Wichtig für 2026: Der KfW-Zuschuss 455-B für Barrierereduzierung ist seit dem 31. Juli 2026 wegen ausgeschöpfter Fördermittel nicht mehr für neue Anträge verfügbar. Ob das Programm wieder startet, sollte direkt bei der KfW geprüft werden. Beginnen Sie keine geförderte Maßnahme, bevor Sie die jeweiligen Antrags- und Förderbedingungen geklärt haben."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +182,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +194,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/wohnen-umbauen/">Wohnen und Umbauen</a></li>
             <li><a href="/ratgeber/altersgerechter-umbau/" aria-current="page">Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/wohnen-umbauen/">Wohnen und Umbauen</a></p>
           <h1>Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -205,6 +255,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Oft reichen schon einzelne Anpassungen, um den Alltag deutlich sicherer und komfortabler zu machen.</li>
+              <li>Das Badezimmer gehört zu den Bereichen mit einem besonders hohen Sturzrisiko.</li>
+              <li>Mit einem anerkannten Pflegegrad von 1 bis 5 ist unter bestimmten Voraussetzungen ein Zuschuss der Pflegekasse von bis zu 4.180 Euro für wohnumfeldverbessernde Maßnahmen möglich, zum Beispiel für einen Badumbau.</li>
+              <li>Über das KfW-Programm „Altersgerecht Umbauen“ (Kredit 159) ist ein Kredit von bis zu 50.000 Euro je Wohneinheit möglich. Der KfW-Zuschuss 455-B ist seit dem 31. Juli 2026 nicht mehr für neue Anträge verfügbar.</li>
+              <li>Beginnen Sie keine geförderte Maßnahme, bevor Sie die Antrags- und Förderbedingungen geklärt haben.</li>
+            </ul>
+          </section>
+
         <p>Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne zu echten Hindernissen werden.</p>
         <p>Ein altersgerechter Umbau hilft dabei, diese Barrieren zu reduzieren. Oft reichen schon einzelne Anpassungen, um den Alltag deutlich sicherer und komfortabler zu machen. Und manchmal lohnt sich auch eine größere Modernisierung.</p>
         <h2 id="das-badezimmer-sicher-und-komfortabel-gestalten">1. Das Badezimmer sicher und komfortabel gestalten</h2>
@@ -264,6 +325,18 @@
         <h2 id="heute-planen-morgen-selbststaendig-wohnen">Heute planen, morgen selbstständig wohnen</h2>
         <p>Ein altersgerechter Umbau muss nicht bedeuten, das ganze Haus auf den Kopf zu stellen. Häufig bringen schon gezielte Veränderungen mehr Sicherheit und Komfort.</p>
         <p>Wir helfen Ihnen dabei, passende Ansprechpartner für Treppenlifte, Badumbauten, Handwerksarbeiten und weitere Wohnraumanpassungen zu finden. Beschreiben Sie einfach, was Sie verändern möchten. Ihre Anfrage ist kostenlos und unverbindlich.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#welche-foerdermoeglichkeiten-gibt-es">Welche Fördermöglichkeiten gibt es?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -280,18 +353,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Wohnen, Haus und Handwerk?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Wohnung altersgerecht umbauen“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=wohnen-haus-handwerk" data-thema="wohnen-haus-handwerk">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=wohnung-umbauen">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=wohnen-haus-handwerk" data-thema="wohnen-haus-handwerk">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -299,24 +373,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
-              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/barrierefrei-wohnen-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Wohnen und Umbauen</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/barrierefrei-wohnen/">Barrierefrei wohnen: Kleine Veränderungen, große Wirkung</a></h3>
               <p class="article-card__text">Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit zunehmendem…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -327,16 +390,27 @@
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/treppenlift-einbau-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Wohnen und Umbauen</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/treppenlift-einbau/">Treppenlift: Was Sie vor dem Einbau wissen sollten</a></h3>
               <p class="article-card__text">Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Finanzen und Förderung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
+              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=wohnen-haus-handwerk">Weitere Beiträge zum Thema Wohnen, Haus und Handwerk</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/wohnen-umbauen/">Alle Beiträge im Bereich Wohnen und Umbauen</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -425,7 +499,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

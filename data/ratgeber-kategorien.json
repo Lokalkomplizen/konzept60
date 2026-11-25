@@ -1,0 +1,91 @@
+{
+  "_hinweis": "Ratgeber-Kategorien (Relaunch 3.3). Kategorie = Seite /ratgeber/<slug>/, Unterkategorie = Abschnitt (#<slug>) auf der Kategorieseite. Slugs der Unterkategorien sind seitenweit eindeutig. Zuordnung der Beiträge im Frontmatter (kategorie, unterkategorien). Unterkategorien ohne Beitrag werden nicht angezeigt. begriffe = zusätzliche Suchwörter für die Ratgeber-Suche (keine Inhalte). → WordPress: Taxonomie 'ratgeber_kategorie' (hierarchisch, zwei Ebenen).",
+  "kategorien": [
+    {
+      "slug": "wohnen-umbauen",
+      "titel": "Wohnen und Umbauen",
+      "kurztext": "Sicher und bequem zu Hause wohnen: kleine Veränderungen, größere Umbauten, Treppenlift, Bad und die Frage, wer was bezahlt.",
+      "unterkategorien": [
+        { "slug": "barrierefreies-wohnen", "titel": "Barrierefreies Wohnen", "begriffe": ["barrierefrei", "Stolperfallen", "Sturz", "sicher wohnen"] },
+        { "slug": "badumbau", "titel": "Badezimmerumbau", "begriffe": ["Bad", "Badumbau", "Badezimmer", "Dusche", "bodengleiche Dusche", "Badewanne"] },
+        { "slug": "treppenlifte", "titel": "Treppenlifte", "begriffe": ["Treppenlift", "Treppe", "Plattformlift", "Lift"] },
+        { "slug": "wohnraumanpassung", "titel": "Wohnraumanpassung", "begriffe": ["Umbau", "umbauen", "altersgerecht", "barrierearm", "barrierefrei umbauen", "Wohnung anpassen", "Türschwelle", "Rampe"] },
+        { "slug": "foerderung-umbau", "titel": "Fördermöglichkeiten für den Umbau", "begriffe": ["Förderung", "Zuschuss", "Zuschüsse", "KfW", "Pflegekasse", "wohnumfeldverbessernde Maßnahmen"] },
+        { "slug": "wohnformen", "titel": "Wohnformen", "begriffe": ["Mehrgenerationenhaus", "Mehrgenerationenwohnen", "gemeinsam wohnen", "Wohnprojekt"] }
+      ]
+    },
+    {
+      "slug": "pflege-betreuung",
+      "titel": "Pflege und Betreuung",
+      "kurztext": "Pflegegrad beantragen, Leistungen der Pflegeversicherung verstehen und Pflege zu Hause oder für kurze Zeit in einer Einrichtung organisieren.",
+      "unterkategorien": [
+        { "slug": "pflegegrade", "titel": "Pflegegrade", "begriffe": ["Pflegegrad", "Begutachtung", "Medizinischer Dienst", "Einstufung", "Widerspruch"] },
+        { "slug": "pflegeleistungen", "titel": "Pflegeleistungen", "begriffe": ["Pflegegeld", "Sachleistung", "Pflegereform", "Budget", "Pflegeversicherung"] },
+        { "slug": "ambulante-pflege", "titel": "Ambulante Pflege", "begriffe": ["Pflegedienst", "Pflege zu Hause", "häusliche Pflege"] },
+        { "slug": "verhinderungspflege", "titel": "Verhinderungspflege und Ersatzpflege", "begriffe": ["Verhinderungspflege", "Ersatzpflege", "Überbrückungsbudget"] },
+        { "slug": "kurzzeitpflege", "titel": "Kurzzeitpflege", "begriffe": ["Kurzzeitpflege", "Pflegeeinrichtung", "nach dem Krankenhaus"] },
+        { "slug": "entlastungsleistungen", "titel": "Entlastungsleistungen", "begriffe": ["Entlastungsbetrag", "Sozialraumbudget", "Entlastungsbudget", "Entlastung"] }
+      ]
+    },
+    {
+      "slug": "finanzen-foerderung",
+      "titel": "Finanzen und Förderung",
+      "kurztext": "Welche Leistungen, Zuschüsse und Entlastungen es gibt und wo man sie beantragt: von der Pflegekasse über das Wohngeld bis zur Steuer.",
+      "unterkategorien": [
+        { "slug": "pflegekasse", "titel": "Leistungen der Pflegekasse", "begriffe": ["Pflegekasse", "Pflegeversicherung", "Antrag"] },
+        { "slug": "zuschuesse", "titel": "Zuschüsse", "begriffe": ["Zuschuss", "Zuschüsse", "Förderung", "Geld", "Kosten", "Kostenübernahme"] },
+        { "slug": "wohngeld", "titel": "Wohngeld", "begriffe": ["Wohngeld", "Miete", "Pflegewohngeld"] },
+        { "slug": "rente", "titel": "Rente und Grundsicherung", "begriffe": ["Rente", "Grundsicherung", "Grundrente", "Hilfe zur Pflege", "kleine Rente"] },
+        { "slug": "steuern", "titel": "Steuerliche Vorteile", "begriffe": ["Steuer", "Steuern", "Steuerermäßigung", "Pauschbetrag", "außergewöhnliche Belastung", "Finanzamt"] },
+        { "slug": "foerderprogramme", "titel": "Förderprogramme", "begriffe": ["Förderung", "Förderprogramm", "KfW", "Förderkredit", "Sanierung"] }
+      ]
+    },
+    {
+      "slug": "alltag-unterstuetzung",
+      "titel": "Alltag und Unterstützung",
+      "kurztext": "Hilfe im Haushalt, unterwegs und im Notfall, Unterstützung für Angehörige und Vorsorge für den Ernstfall.",
+      "unterkategorien": [
+        { "slug": "haushaltshilfe", "titel": "Haushaltshilfe", "begriffe": ["Haushaltshilfe", "Putzhilfe", "Reinigung", "Haushalt"] },
+        { "slug": "einkaufen", "titel": "Einkaufen und Besorgungen", "begriffe": ["Einkaufen", "Einkauf", "Einkaufsservice", "Besorgungen"] },
+        { "slug": "mobilitaet", "titel": "Mobilität", "begriffe": ["Mobilität", "Fahrdienst", "Krankenfahrt", "Bus", "Bahn", "Deutschlandticket", "ohne Auto", "Taxi"] },
+        { "slug": "hausnotruf", "titel": "Hausnotruf", "begriffe": ["Hausnotruf", "Notruf", "Notrufknopf", "Sturz"] },
+        { "slug": "persoenliche-betreuung", "titel": "Persönliche Betreuung", "begriffe": ["Betreuung", "Alltagsbegleitung", "Besuchsdienst", "Begleitung"] },
+        { "slug": "angehoerige", "titel": "Für Angehörige", "begriffe": ["Angehörige", "Eltern", "aus der Ferne", "Mutter", "Vater"] },
+        { "slug": "vorsorge", "titel": "Vorsorge und Vollmachten", "begriffe": ["Patientenverfügung", "Vorsorgevollmacht", "Betreuungsverfügung", "Vollmacht"] },
+        { "slug": "sicherheit", "titel": "Sicherheit im Alltag", "begriffe": ["Betrug", "Enkeltrick", "Schockanruf", "Haustür", "Telefon"] },
+        { "slug": "alltag-organisieren", "titel": "Alltag organisieren", "begriffe": ["Organisation", "Unterlagen", "Kalender", "Überblick"] }
+      ]
+    },
+    {
+      "slug": "gesundheit-lebensqualitaet",
+      "titel": "Gesundheit und Lebensqualität",
+      "kurztext": "Bewegung, gutes Essen, Kontakte und Freizeit: was Sie selbst für Ihr Wohlbefinden und Ihre Selbstständigkeit tun können.",
+      "unterkategorien": [
+        { "slug": "bewegung", "titel": "Bewegung", "begriffe": ["Bewegung", "Sport", "Gymnastik", "fit", "Spaziergang"] },
+        { "slug": "ernaehrung", "titel": "Ernährung", "begriffe": ["Ernährung", "Essen", "Eiweiß", "Frühstück", "Trinken", "Lebensmittel"] },
+        { "slug": "freizeit", "titel": "Freizeit", "begriffe": ["Freizeit", "Hobby", "Ausflug", "Verein", "Kurs"] },
+        { "slug": "soziale-kontakte", "titel": "Soziale Kontakte", "begriffe": ["Einsamkeit", "einsam", "Kontakte", "Freunde", "Begegnung"] },
+        { "slug": "selbststaendigkeit", "titel": "Selbstständigkeit", "begriffe": ["selbstständig", "selbstbestimmt", "Wohlbefinden"] }
+      ]
+    }
+  ],
+  "themen": {
+    "_hinweis": "Alte Filter-Adressen /ratgeber/?thema=<Themenbereich> (bis Relaunch 3.2) → neue Kategorieseite (assets/js/weiterleitung.js)",
+    "wohnen-haus-handwerk": "wohnen-umbauen",
+    "haushalt-reinigung": "alltag-unterstuetzung#haushaltshilfe",
+    "pflege-betreuung": "pflege-betreuung",
+    "alltag-persoenliche-hilfe": "alltag-unterstuetzung",
+    "technik-sicherheit": "alltag-unterstuetzung",
+    "freizeit-lebensqualitaet": "gesundheit-lebensqualitaet"
+  },
+  "haeufig": [
+    { "titel": "Pflegegrad beantragen", "beitrag": "pflegegrad-beantragen" },
+    { "titel": "Zuschüsse für den Umbau", "ziel": "wohnen-umbauen#foerderung-umbau" },
+    { "titel": "Pflege 2027", "beitrag": "pflegereform-2027" },
+    { "titel": "Treppenlift", "beitrag": "treppenlift-einbau" },
+    { "titel": "Haushaltshilfe", "ziel": "alltag-unterstuetzung#haushaltshilfe" },
+    { "titel": "Hausnotruf", "beitrag": "hausnotruf-auswahl" },
+    { "titel": "Patientenverfügung", "beitrag": "patientenverfuegung-vorsorgevollmacht" },
+    { "titel": "Rente reicht nicht", "beitrag": "rente-reicht-nicht-finanzielle-hilfen" }
+  ]
+}

@@ -7,6 +7,14 @@ bild_alt: Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:50
 geaendert: 2026-11-20
+kategorie: gesundheit-lebensqualitaet
+unterkategorien: soziale-kontakte, freizeit
+anliegen: begegnung
+kurz:
+  - Soziale Kontakte sind wichtig für das Wohlbefinden und die Lebensqualität.
+  - Manchmal reicht schon ein kurzer Anruf, eine Nachricht oder eine Einladung zum Kaffee, um eine Freundschaft lebendig zu halten.
+  - Neue Kontakte entstehen zum Beispiel in Seniorentreffs, Vereinen, Wandergruppen, Kursen oder bei Nachbarschaftstreffen.
+  - Wer sich häufig einsam fühlt, sollte darüber sprechen. Vertrauenspersonen, Beratungsstellen und lokale Begegnungsangebote können erste Anlaufstellen sein.
 ---
 
 Ein gutes Gespräch, ein gemeinsamer Spaziergang oder eine Tasse Kaffee mit Freunden: Oft sind es die kleinen Begegnungen, die den Alltag besonders machen.

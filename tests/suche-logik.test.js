@@ -86,3 +86,36 @@ test("Kein Treffer: leere Listen, aber erkannter Ort bleibt erhalten", () => {
   assert.equal(S.erkenneOrt("pflege in mülheim an der ruhr", ORTE).ort, "Mülheim an der Ruhr");
   assert.equal(S.erkenneOrt("pflege dusseldorf", ORTE).ort, "Düsseldorf");
 });
+
+// ---- Ratgeber-Suche (Relaunch 3.3) gegen den beim Build erzeugten Index assets/data/ratgeber-suche.json ----
+const RI = JSON.parse(fs.readFileSync(path.join(__dirname, "../assets/data/ratgeber-suche.json"), "utf8")).beitraege;
+
+test("Ratgeber-Suche: „Pflegegrad“ → Pflegegrad beantragen zuerst", () => {
+  const r = S.sucheRatgeber("Pflegegrad", RI);
+  assert.equal(r.treffer[0].slug, "pflegegrad-beantragen");
+  assert.ok(r.alleWoerter);
+});
+
+test("Ratgeber-Suche: „Zuschuss Bad“ → Badumbau-/Förder-Beiträge, Altersgerechter Umbau zuerst", () => {
+  const r = S.sucheRatgeber("Zuschuss Bad", RI);
+  assert.equal(r.treffer[0].slug, "altersgerechter-umbau");
+  assert.ok(r.treffer.some((t) => t.slug === "barrierefrei-wohnen"));
+  assert.ok(!r.treffer.some((t) => t.slug === "hausnotruf-auswahl"));
+});
+
+test("Ratgeber-Suche: ganze Frage mit Füllwörtern findet den Umbau-Beitrag", () => {
+  const r = S.sucheRatgeber("Welche Zuschüsse gibt es für barrierefreien Badumbau?", RI);
+  assert.ok(r.treffer.slice(0, 2).some((t) => t.slug === "altersgerechter-umbau"));
+});
+
+test("Ratgeber-Suche: Umlaute, Groß-/Kleinschreibung, Unterkategorie-Begriffe", () => {
+  assert.equal(S.sucheRatgeber("HAUSNOTRUF", RI).treffer[0].slug, "hausnotruf-auswahl");
+  assert.equal(S.sucheRatgeber("einsamkeit", RI).treffer[0].slug, "gemeinsam-statt-einsam");
+  assert.equal(S.sucheRatgeber("Treppenlift Kosten", RI).treffer[0].slug, "treppenlift-einbau");
+});
+
+test("Ratgeber-Suche: zu kurz oder unbekannt → keine Treffer", () => {
+  assert.equal(S.sucheRatgeber("a", RI).treffer.length, 0);
+  assert.equal(S.sucheRatgeber("xyzq", RI).treffer.length, 0);
+  assert.equal(S.sucheRatgeber("", RI).treffer.length, 0);
+});

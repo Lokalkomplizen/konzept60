@@ -7,6 +7,14 @@ bild_alt: Auf einem sonnigen Holztisch stehen ein Glas Wasser mit Zitrone, eine 
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:55
 geaendert: 2026-11-20
+kategorie: gesundheit-lebensqualitaet
+unterkategorien: bewegung, ernaehrung, selbststaendigkeit
+anliegen: kurse-bewegung
+kurz:
+  - Schon kleine Veränderungen im Alltag können das Wohlbefinden stärken und helfen, möglichst lange selbstständig zu bleiben.
+  - Für Bewegung muss es kein anstrengender Sport sein: Spaziergänge, leichte Gymnastik oder Wassergymnastik können viel bewirken.
+  - Gerade im Alter lässt das Durstgefühl manchmal nach. Stellen Sie sich regelmäßig ein Glas Wasser oder ungesüßten Tee bereit.
+  - Nutzen Sie die empfohlenen Vorsorge- und Früherkennungsuntersuchungen und sprechen Sie bei Fragen mit Ihrer Hausarztpraxis.
 inline_bild: gesund-und-fit-wandern
 inline_bild_alt: Ein älterer Mann mit Kappe, Rucksack und Wanderstöcken steht lächelnd auf einem Aussichtspunkt, hinter ihm bewaldete Hügel und ein See.
 inline_nach_ueberschrift: 1. Bewegung hält Körper und Geist in Schwung

@@ -1,30 +1,86 @@
 <!--meta
 title: Ratgeber – {{site_name}}
-description: Der Ratgeber von {{site_name}}: verständliche Beiträge rund um Haushaltshilfe, Hausnotruf und die Unterstützung von Eltern aus der Ferne – ohne Fachchinesisch.
+description: Der Ratgeber von {{site_name}}: verständliche Beiträge zu Wohnen und Umbauen, Pflege, Finanzen, Alltag und Gesundheit – mit Suche, Themen und Stand der Informationen.
 nav: ratgeber
+head_extra: {{ratgeber_weiterleitung}}
+body_extra: <script src="/assets/js/suche-logik.js" defer></script><script src="/assets/js/ratgeber.js" defer></script>
 -->
-  <!-- Ratgeber  (→ WordPress: home.php / Beitragsarchiv, Karten = template-parts/card-artikel.php)
-       Karten erzeugt von tools/build.py aus content/ratgeber/*.md
-       Ohne Breadcrumb (Hauptnavigation markiert „Ratgeber“) → page-header--plain gleicht den Abstand oben aus.
-       Themenfilter: tools/build.py (ratgeber_filter), Verhalten: main.js (7.), ohne JS ausgeblendet. -->
-  <div class="page-header page-header--plain">
+  <!-- Ratgeber-Übersicht, Relaunch 3.3  (→ WordPress: home.php / Beitragsarchiv)
+       Aufbau: Kopf mit Suche und „Häufig gesucht“ · Empfohlen (Frontmatter hervorgehoben) · Themen
+       (data/ratgeber-kategorien.json, nur Unterkategorien mit Beiträgen) · Aktuell (Entwurfs-/Gesetzesstand,
+       zuletzt geändert) · alle Beiträge von A bis Z (eingeklappt) · persönliche Hilfe.
+       Suche: assets/js/ratgeber.js + SucheLogik.sucheRatgeber, Index assets/data/ratgeber-suche.json (Build);
+       ohne JS ist das Suchfeld verborgen, alles bleibt über Themen und A–Z erreichbar.
+       Alte Filter-Adressen /ratgeber/?thema=… leitet assets/js/weiterleitung.js auf die Kategorieseite um. -->
+  <div class="page-header page-header--plain ratgeber-kopf">
     <div class="container">
       <span class="section__eyebrow">Ratgeber</span>
       <h1>Wissen, das weiterhilft</h1>
       <p class="section__intro">
         Verständliche Beiträge rund um Hilfe im Alltag – ohne Fachchinesisch.
       </p>
+
+      <div class="ratgeber-suche" data-ratgeber-suche data-suche-url="{{ratgeber_suche_url}}" hidden>
+        <form class="suche" role="search" action="/ratgeber/" method="get" data-ratgeber-suche-form>
+          <label class="suche__label" for="ratgeber-suche-feld">Im Ratgeber suchen</label>
+          <p class="suche__hinweis" id="ratgeber-suche-hinweis">Sucht in Titeln, Einleitungen und Zwischenüberschriften aller Beiträge.</p>
+          <div class="suche__zeile">
+            <div class="suche__feld">
+              <input class="form-field__input suche__input" id="ratgeber-suche-feld" name="q" type="search"
+                     placeholder="z. B. Pflegegrad oder Zuschuss Bad" autocomplete="off" enterkeyhint="search"
+                     aria-describedby="ratgeber-suche-hinweis" aria-controls="ratgeber-treffer">
+            </div>
+            <button class="btn btn--secondary suche__knopf" type="submit">
+              <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg> Suchen</button>
+          </div>
+        </form>
+        <p class="ratgeber-suche__status" role="status" data-suche-status></p>
+        <ol class="ratgeber-liste ratgeber-suche__treffer" id="ratgeber-treffer" data-suche-treffer></ol>
+      </div>
+
+      <h2 class="ratgeber-haeufig__titel" id="ratgeber-haeufig-titel">Häufig gesucht</h2>
+      <ul class="ratgeber-chips" aria-labelledby="ratgeber-haeufig-titel">
+{{ratgeber_haeufig}}
+      </ul>
 {{werkzeuge_ratgeber}}
     </div>
   </div>
 
-  <section class="section section--tight" aria-labelledby="beitraege-titel">
+  <section class="section section--tight" aria-labelledby="empfohlen-titel">
     <div class="container">
-      <h2 class="visually-hidden" id="beitraege-titel">Alle Beiträge</h2>
-{{ratgeber_filter}}
-      <ul class="grid grid--3" data-filter-items>
-{{ratgeber_karten_h2}}
+      <h2 class="ratgeber-abschnitt__titel" id="empfohlen-titel">Empfohlen für den Einstieg</h2>
+      <div class="ratgeber-empfohlen">
+{{ratgeber_empfohlen}}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand" aria-labelledby="themen-titel">
+    <div class="container">
+      <div class="section__header">
+        <h2 id="themen-titel">Themen im Ratgeber</h2>
+        <p class="section__intro">Wählen Sie einen Bereich oder springen Sie direkt zu einem Unterthema.</p>
+      </div>
+      <ul class="ratgeber-themen">
+{{ratgeber_themen}}
       </ul>
+    </div>
+  </section>
+
+  <section class="section section--compact" aria-labelledby="aktuell-titel">
+    <div class="container ratgeber-aktuell">
+      <h2 class="ratgeber-abschnitt__titel" id="aktuell-titel">Aktuell</h2>
+      <p class="ratgeber-aktuell__intro">Beiträge zu geplanten Änderungen ab 2027 und zuletzt aktualisierte Beiträge. In Klammern steht, worauf sich der Stand stützt.</p>
+      <ol class="ratgeber-aktuell__liste">
+{{ratgeber_aktuell}}
+      </ol>
+
+      <details class="ratgeber-az">
+        <summary>Alle {{ratgeber_anzahl}} Beiträge von A bis Z</summary>
+        <ul class="ratgeber-az__liste">
+{{ratgeber_az}}
+        </ul>
+      </details>
     </div>
   </section>
 
@@ -32,7 +88,8 @@ nav: ratgeber
     <div class="container">
       <div class="notice notice--light notice--flush">
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
-        <p><strong>Sie haben eine Frage, die hier nicht beantwortet wird?</strong> Beschreiben Sie Ihr Anliegen – unser Team hilft Ihnen persönlich weiter.
+        <p><strong>Sie haben eine Frage, die hier nicht beantwortet wird?</strong> Suchen Sie passende Anbieter
+          <a href="/hilfe-finden/">im Assistenten</a> oder beschreiben Sie Ihr Anliegen – unser Team hilft Ihnen persönlich weiter.
           <a href="/anfrage/">Zum Anfrageformular</a></p>
       </div>
     </div>

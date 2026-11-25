@@ -35,29 +35,148 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
-    "description": "Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/kurzzeitpflege-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Pflege und Betreuung",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/kurzzeitpflege/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
+      "description": "Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/kurzzeitpflege-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T22:00:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Pflege und Betreuung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/kurzzeitpflege/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pflege und Betreuung",
+          "item": "https://www.example.org/ratgeber/pflege-betreuung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist",
+          "item": "https://www.example.org/ratgeber/kurzzeitpflege/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was ist Kurzzeitpflege?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bei der Kurzzeitpflege wird ein pflegebedürftiger Mensch für einen begrenzten Zeitraum in einer stationären Pflegeeinrichtung betreut und versorgt. Anders als bei einer dauerhaften Heimunterbringung ist der Aufenthalt von Anfang an zeitlich begrenzt. Die Kurzzeitpflege kann beispielsweise sinnvoll sein: Nach einem Krankenhausaufenthalt, wenn die Rückkehr nach Hause noch nicht möglich ist. Wenn nach einer Operation vorübergehend mehr Unterstützung benötigt wird. Wenn Angehörige kurzfristig ausfallen. Wenn die häusliche Pflege vorübergehend nicht sichergestellt werden kann. Wenn die bisherige Versorgung neu organisiert werden muss. Während des Aufenthalts kümmern sich Pflegefachkräfte und Betreuungspersonal um die pflegerische Versorgung, Unterstützung im Alltag und notwendige Betreuung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wer hat Anspruch auf Kurzzeitpflege?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Einen Anspruch auf Kurzzeitpflege über die Pflegeversicherung haben grundsätzlich Menschen mit Pflegegrad 2 bis 5. Voraussetzung ist, dass die häusliche Pflege zeitweise nicht, noch nicht oder nicht im erforderlichen Umfang erbracht werden kann und eine teilstationäre Versorgung nicht ausreicht. Wichtig: Wer keinen Pflegegrad 2 bis 5 hat, kann unter bestimmten Voraussetzungen über die gesetzliche Krankenversicherung Kurzzeitpflege für bis zu acht Wochen erhalten, beispielsweise nach einer Krankenhausbehandlung, wenn häusliche Krankenpflege nicht ausreicht."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie lange kann Kurzzeitpflege genutzt werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Pflegeversicherung unterstützt die Kurzzeitpflege auch nach der geplanten Reform für bis zu acht Wochen pro Kalenderjahr."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie viel zahlt die Pflegekasse ab 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nach dem Regierungsentwurf zur Pflegereform 2027 soll der bisherige gemeinsame Jahresbetrag für Kurzzeit- und Verhinderungspflege im neuen Überbrückungsbudget aufgehen. Pflegebedürftige mit Pflegegrad 2 bis 5 sollen daraus bis zu 2.285 Euro je Kalenderjahr erhalten. Das Budget ist für Situationen gedacht, in denen die Versorgung zu Hause vorübergehend nicht sichergestellt ist, zum Beispiel für eine Kurzzeitpflege oder eine Ersatzpflege, wenn die Pflegeperson ausfällt. Für Menschen mit Pflegegrad 1 soll der bisherige Entlastungsbetrag nach dem Entwurf ersatzlos entfallen. Eine Kurzzeitpflege würde von der Pflegekasse dann nicht mehr bezuschusst."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Kosten übernimmt die Pflegekasse?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Pflegekasse beteiligt sich im Rahmen des Überbrückungsbudgets insbesondere an den pflegebedingten Aufwendungen der Kurzzeitpflege. Weitere Kosten können entstehen, zum Beispiel für: Unterkunft und Verpflegung Investitionskosten der Einrichtung Kosten, die über den Leistungsbetrag hinausgehen Diese Kosten müssen häufig selbst getragen werden. Unter bestimmten Voraussetzungen können weitere Unterstützungsleistungen infrage kommen. Es lohnt sich deshalb, vor der Aufnahme einen detaillierten Kostenvoranschlag der Einrichtung anzufordern."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was passiert mit den laufenden Leistungen während der Kurzzeitpflege?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisher wurde das Pflegegeld während einer Kurzzeitpflege zur Hälfte weitergezahlt. Ob und in welcher Höhe das geplante Entlastungsbudget während eines Aufenthalts weiterläuft, geht aus den bisher veröffentlichten Informationen zum Entwurf noch nicht eindeutig hervor. Fragen Sie vor der Aufnahme bei Ihrer Pflegekasse nach."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie findet man einen passenden Kurzzeitpflegeplatz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein freier Kurzzeitpflegeplatz ist nicht immer kurzfristig verfügbar. Deshalb sollte möglichst frühzeitig mit der Suche begonnen werden. Folgende Schritte helfen: Pflegekasse kontaktieren: Erfragen Sie die verfügbaren Leistungen und das noch vorhandene Budget. Pflegeeinrichtungen anfragen: Fragen Sie gezielt nach freien Kurzzeitpflegeplätzen. Kosten vergleichen: Lassen Sie sich die Eigenanteile und zusätzlichen Kosten schriftlich aufschlüsseln. Versorgung klären: Informieren Sie die Einrichtung über Medikamente, Erkrankungen, Hilfsmittel und den individuellen Unterstützungsbedarf. Anschlussversorgung planen: Überlegen Sie rechtzeitig, wie die Pflege nach dem Aufenthalt weitergehen soll. Auch der Sozialdienst eines Krankenhauses oder ein Pflegestützpunkt kann bei der Organisation helfen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was sollte man vor dem Aufenthalt vorbereiten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Damit der Übergang möglichst reibungslos funktioniert, sollten wichtige Informationen und persönliche Dinge vorbereitet werden. Dazu gehören: Krankenversicherungskarte und Pflegekasseninformationen Medikamentenplan Arztberichte und wichtige medizinische Unterlagen Kontaktdaten von Angehörigen und behandelnden Ärzten Bequeme Kleidung und persönliche Pflegeartikel Brille, Hörgerät und benötigte Hilfsmittel Gewohnheiten und wichtige Informationen zum Tagesablauf Ein persönliches Gespräch mit der Einrichtung vor der Aufnahme kann viele Fragen klären."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kurzzeitpflege oder Ersatzpflege zu Hause: Was ist der Unterschied?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beide Leistungen unterstützen Familien, wenn die häusliche Pflege vorübergehend nicht wie gewohnt möglich ist. Sie verfolgen jedoch unterschiedliche Ansätze. Kurzzeitpflege: Die pflegebedürftige Person zieht vorübergehend in eine stationäre Pflegeeinrichtung. Ersatzpflege zu Hause: Die bisherige private Pflegeperson fällt vorübergehend aus. Eine Ersatzpflege übernimmt die Versorgung, beispielsweise ein ambulanter Pflegedienst oder eine andere geeignete Person. Nach dem Entwurf soll es die Verhinderungspflege als eigene Leistung nicht mehr geben. Beide Fälle sollen künftig aus dem gemeinsamen Überbrückungsbudget von bis zu 2.285 Euro im Jahr bezahlt werden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie geht es nach der Kurzzeitpflege weiter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Idealerweise ist der Aufenthalt eine Übergangslösung, bis die Versorgung zu Hause wieder möglich ist. Dafür sollte frühzeitig geklärt werden: Wird ein ambulanter Pflegedienst benötigt? Ist eine Haushaltshilfe sinnvoll? Werden Angehörige bei der Betreuung entlastet? Sind Veränderungen in der Wohnung notwendig? Werden ein Hausnotruf oder weitere Hilfsmittel benötigt? Ist eine Tagespflege eine passende Ergänzung? Eine gute Anschlussversorgung kann helfen, einen erneuten Krankenhausaufenthalt oder eine dauerhafte Überforderung der Angehörigen zu vermeiden."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +254,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +266,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></li>
             <li><a href="/ratgeber/kurzzeitpflege/" aria-current="page">Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></p>
           <h1>Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026 (geplant ab 2027, Regierungsentwurf)</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -209,6 +331,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Kurzzeitpflege ist eine zeitlich begrenzte stationäre Versorgung in einer geeigneten Pflegeeinrichtung.</li>
+              <li>Anspruch über die Pflegeversicherung haben grundsätzlich Menschen mit Pflegegrad 2 bis 5, für bis zu acht Wochen pro Kalenderjahr.</li>
+              <li>Nach dem Regierungsentwurf sollen Kurzzeitpflege und Ersatzpflege ab 2027 aus einem gemeinsamen Überbrückungsbudget von bis zu 2.285 Euro je Kalenderjahr bezahlt werden.</li>
+              <li>Unterkunft, Verpflegung und Investitionskosten müssen häufig selbst getragen werden. Fordern Sie vorab einen Kostenvoranschlag an.</li>
+              <li>Ein freier Kurzzeitpflegeplatz ist nicht immer kurzfristig verfügbar. Beginnen Sie möglichst frühzeitig mit der Suche.</li>
+            </ul>
+          </section>
+
         <p>Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem Krankenhausaufenthalt noch keine ausreichende Versorgung zu Hause bereit. Oder die bisherige Pflegeperson fällt aus und eine andere Lösung wird benötigt.</p>
         <p>In solchen Situationen kann die Kurzzeitpflege eine wichtige Unterstützung sein. Sie ermöglicht eine zeitlich begrenzte stationäre Versorgung in einer geeigneten Pflegeeinrichtung. Betroffene erhalten die notwendige Betreuung und Angehörige gewinnen Zeit, um die weitere Versorgung zu organisieren.</p>
         <h2 id="was-ist-kurzzeitpflege">Was ist Kurzzeitpflege?</h2>
@@ -311,6 +444,27 @@
         <p>Wir helfen dabei, passende Unterstützung und regionale Ansprechpartner zu finden.</p>
         <p>Ob Haushaltshilfe, Alltagsbegleitung, Betreuung oder weitere Unterstützung im Alltag: <a href="/anfrage/?thema=pflege-betreuung">Beschreiben Sie einfach, wobei Sie Hilfe benötigen.</a></p>
         <p>Hilfe finden. Einfach und kostenlos.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-ist-kurzzeitpflege">Was ist Kurzzeitpflege?</a></li>
+              <li><a href="#wer-hat-anspruch-auf-kurzzeitpflege">Wer hat Anspruch auf Kurzzeitpflege?</a></li>
+              <li><a href="#wie-lange-kann-kurzzeitpflege-genutzt-werden">Wie lange kann Kurzzeitpflege genutzt werden?</a></li>
+              <li><a href="#wie-viel-zahlt-die-pflegekasse-ab-2027">Wie viel zahlt die Pflegekasse ab 2027?</a></li>
+              <li><a href="#welche-kosten-uebernimmt-die-pflegekasse">Welche Kosten übernimmt die Pflegekasse?</a></li>
+              <li><a href="#was-passiert-mit-den-laufenden-leistungen-waehrend-der-kurzzeitpflege">Was passiert mit den laufenden Leistungen während der Kurzzeitpflege?</a></li>
+              <li><a href="#wie-findet-man-einen-passenden-kurzzeitpflegeplatz">Wie findet man einen passenden Kurzzeitpflegeplatz?</a></li>
+              <li><a href="#was-sollte-man-vor-dem-aufenthalt-vorbereiten">Was sollte man vor dem Aufenthalt vorbereiten?</a></li>
+              <li><a href="#kurzzeitpflege-oder-ersatzpflege-zu-hause-was-ist-der-unterschied">Kurzzeitpflege oder Ersatzpflege zu Hause: Was ist der Unterschied?</a></li>
+              <li><a href="#wie-geht-es-nach-der-kurzzeitpflege-weiter">Wie geht es nach der Kurzzeitpflege weiter?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026 (geplant ab 2027, Regierungsentwurf). Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -327,18 +481,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Pflege und Betreuung?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Tagespflege oder Kurzzeitpflege“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=tages-kurzzeitpflege">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -346,7 +501,7 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
         <li>
           <article class="article-card article-card--image">
@@ -370,20 +525,9 @@
             </div>
           </article>
         </li>
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
-              <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=pflege-betreuung">Weitere Beiträge zum Thema Pflege und Betreuung</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/pflege-betreuung/">Alle Beiträge im Bereich Pflege und Betreuung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -472,7 +616,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

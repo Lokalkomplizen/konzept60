@@ -7,6 +7,15 @@ bild_alt: Eine ältere Frau sitzt lachend auf einem Sitztreppenlift an einer Tre
 stand: November 2026
 veroeffentlicht: 2026-11-20 12:00
 geaendert: 2026-11-20
+kategorie: wohnen-umbauen
+unterkategorien: treppenlifte, foerderung-umbau, zuschuesse
+anliegen: treppenlift
+kurz:
+  - Welcher Treppenlift infrage kommt, hängt vor allem von Ihrer Treppe und Ihrer Beweglichkeit ab.
+  - Nach Angaben der Verbraucherzentrale kostet der Einbau eines Treppenlifts zwischen 3.500 und 15.000 Euro. Hinzu kommen etwa 200 bis 300 Euro im Jahr für Wartung und Service.
+  - Liegt ein Pflegegrad vor, kann die Pflegekasse bis zu 4.180 Euro je Maßnahme zuschießen. Leben mehrere Pflegebedürftige zusammen, sind für gemeinsame Maßnahmen bis zu 16.720 Euro möglich.
+  - Die KfW bietet den Kredit „Altersgerecht Umbauen“ mit bis zu 50.000 Euro je Wohneinheit an, unabhängig vom Alter und auch ohne Pflegegrad.
+  - Unterschreiben Sie keinen Auftrag, bevor die Förderung geklärt ist.
 startseite: 3
 inline_bild: treppenlift-kosten-planen
 inline_bild_alt: Ein älteres Paar sitzt am Tisch und schaut gemeinsam auf ein Blatt Papier, vor ihnen stehen mehrere Münzstapel.

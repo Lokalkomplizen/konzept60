@@ -7,6 +7,15 @@ bild_alt: Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an 
 stand: November 2026
 veroeffentlicht: 2026-11-20 10:02
 geaendert: 2026-11-20
+kategorie: alltag-unterstuetzung
+unterkategorien: hausnotruf
+anliegen: hausnotruf
+kurz:
+  - Mit einem Hausnotruf erreichen Sie per Knopfdruck eine rund um die Uhr besetzte Notrufzentrale.
+  - Es gibt den klassischen Hausnotruf, mobile Notrufsysteme und Notrufuhren.
+  - Ein klassischer Hausnotruf kostet im Basistarif häufig zwischen 27 und 40 Euro monatlich.
+  - Seit dem 1. April 2026 beträgt die monatliche Kostenübernahme der Pflegekasse für den Basistarif bis zu 27 Euro. Voraussetzung ist unter anderem ein anerkannter Pflegegrad.
+  - Nicht jede Sturzerkennung funktioniert zuverlässig in jeder Situation. Testen Sie die Bedienung möglichst vor Vertragsabschluss.
 startseite: 4
 ---
 

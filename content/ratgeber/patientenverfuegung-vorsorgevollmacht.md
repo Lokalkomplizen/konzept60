@@ -7,6 +7,14 @@ bild_alt: Auf einem sonnigen Holztisch liegen Unterlagen mit den Überschriften 
 stand: November 2026
 veroeffentlicht: 2026-11-23 10:00
 geaendert: 2026-11-23
+kategorie: alltag-unterstuetzung
+unterkategorien: vorsorge
+kurz:
+  - Die Patientenverfügung beschreibt Ihren Willen. Die Vorsorgevollmacht bestimmt, wer diesen Willen vertreten und ihm Geltung verschaffen darf.
+  - Ohne Vollmacht oder gerichtliche Betreuung gibt es keine allgemeine gesetzliche Vertretungsbefugnis für erwachsene Angehörige.
+  - Eine Patientenverfügung muss schriftlich vorliegen und eigenhändig unterschrieben sein (§ 1827 BGB).
+  - Das Ehegattennotvertretungsrecht nach § 1358 BGB gilt höchstens sechs Monate und ist keine umfassende Vorsorgevollmacht.
+  - Banken verlangen häufig eigene Vollmachtsformulare. Klären Sie das rechtzeitig mit Ihrem Kreditinstitut.
 seo_titel: Patientenverfügung und Vorsorgevollmacht: Das sollten Sie wissen
 meta_beschreibung: Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge.
 tabelle_beschriftung: Patientenverfügung und Vorsorgevollmacht im Vergleich

@@ -7,6 +7,14 @@ bild_alt: Nahaufnahme eines Fußes in braunem Schuh, der an der hochgeschlagenen
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:15
 geaendert: 2026-11-20
+kategorie: wohnen-umbauen
+unterkategorien: barrierefreies-wohnen, badumbau, wohnraumanpassung
+anliegen: wohnung-umbauen
+kurz:
+  - Nicht immer ist ein großer Umbau notwendig. Oft helfen schon kleine Veränderungen.
+  - Rutschhemmende Unterlagen, freie Laufwege und gut sichtbare Stufenkanten schaffen mehr Sicherheit.
+  - Gutes Licht ist besonders in Fluren, auf Treppen, in Eingangsbereichen und im Badezimmer wichtig.
+  - Je nach persönlicher Situation kommen Zuschüsse oder Fördermöglichkeiten infrage. Die Voraussetzungen sollten immer individuell geprüft werden.
 startseite: 5
 inline_bild: barrierefrei-wohnen-bad
 inline_bild_alt: Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriff und hochklappbarem Duschsitz, daneben ein Waschtisch mit Blumen.

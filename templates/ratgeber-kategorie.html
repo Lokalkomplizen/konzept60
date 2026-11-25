@@ -1,0 +1,53 @@
+<!--meta
+title: {{kategorie_titel}} – Ratgeber – {{site_name}}
+description: {{kategorie_meta_beschreibung}}
+nav: ratgeber
+nav_level: section
+head_extra: {{kategorie_jsonld}}
+-->
+  <!-- Ratgeber-Kategorie, Relaunch 3.3  (→ WordPress: taxonomy-ratgeber_kategorie.php)
+       erzeugt von tools/build.py (kategorie_ctx) aus data/ratgeber-kategorien.json + Frontmatter der Beiträge.
+       Je Unterkategorie ein Abschnitt (#<slug>); Unterkategorien ohne Beitrag erscheinen nicht.
+       Ein Beitrag kann in mehreren Unterkategorien stehen (Mehrfachzuordnung). -->
+  <div class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation">
+        <ol class="breadcrumb__list">
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/ratgeber/">Ratgeber</a></li>
+          <li><a href="/ratgeber/{{kategorie_slug}}/" aria-current="page">{{kategorie_titel}}</a></li>
+        </ol>
+      </nav>
+      <span class="section__eyebrow">Ratgeber · {{kategorie_anzahl}}</span>
+      <h1>{{kategorie_titel}}</h1>
+      <p class="section__intro">{{kategorie_kurztext}}</p>
+      <nav class="kategorie-nav" aria-labelledby="kategorie-nav-titel">
+        <h2 class="ratgeber-haeufig__titel" id="kategorie-nav-titel">Unterthemen</h2>
+        <ul class="ratgeber-chips">
+{{kategorie_nav}}
+        </ul>
+      </nav>
+{{werkzeuge_kategorie}}
+    </div>
+  </div>
+
+  <div class="section section--tight">
+    <div class="container kategorie-inhalt">
+{{kategorie_abschnitte}}
+    </div>
+  </div>
+
+  <section class="section section--sand section--compact" aria-labelledby="andere-kategorien-titel">
+    <div class="container">
+      <h2 class="ratgeber-abschnitt__titel" id="andere-kategorien-titel">Weitere Themen im Ratgeber</h2>
+      <ul class="kategorie-andere">
+{{kategorie_andere}}
+      </ul>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
+      <div class="notice notice--light notice--flush">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Lieber gleich Hilfe in Ihrer Nähe finden?</strong> Im Assistenten wählen Sie Ihr Anliegen und Ihren Ort.
+          <a href="/hilfe-finden/">Hilfe finden</a></p>
+      </div>
+    </div>
+  </section>

@@ -10,6 +10,15 @@ inline_nach_ueberschrift: Spezielle Fahrdienste | Rollator
 stand: November 2026 (Zuzahlung 2027: angekündigt)
 veroeffentlicht: 2026-11-23 15:00
 geaendert: 2026-11-23
+kategorie: alltag-unterstuetzung
+unterkategorien: mobilitaet
+anliegen: fahrdienst
+kurz:
+  - Wer seine Mobilität rechtzeitig neu organisiert, kann auch ohne eigenes Fahrzeug aktiv bleiben. Besonders hilfreich ist es, mehrere Lösungen miteinander zu verbinden.
+  - Das Deutschlandticket kostet ab dem 1. Januar 2027 66,80 Euro im Monat (bis Ende 2026: 63 Euro).
+  - Ein bundesweit kostenloses Seniorenticket gibt es nicht. Viele Verkehrsverbünde bieten jedoch vergünstigte Seniorentarife oder Sozialtickets an.
+  - Mit einem Schwerbehindertenausweis können Sie unter bestimmten Voraussetzungen kostenlos Bus und Bahn fahren. Erforderlich sind bestimmte Merkzeichen und grundsätzlich ein gültiges Beiblatt mit Wertmarke.
+  - Wo kein Bus fährt, können Bürgerbusse, Rufbusse, TaxiBusse, Anruf-Sammeltaxis und ehrenamtliche Fahrdienste helfen.
 seo_titel: Mobilität im Alter: Unabhängig ohne eigenes Auto
 meta_beschreibung: Ohne Auto mobil bleiben: Bus und Bahn, Bürgerbus, Rufbus, Fahrdienste, Krankenfahrten, Vergünstigungen und finanzielle Hilfen für Menschen ab 60 erklärt.
 tabelle_beschriftung: Beispiel für eine Wochenplanung der Wege | Beispiel: monatliche Kosten eines eigenen Autos | Beispiel: monatliche Kosten für Mobilität ohne eigenes Auto

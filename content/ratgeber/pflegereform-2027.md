@@ -7,6 +7,15 @@ bild_alt: Eine ältere und eine jüngere Frau sitzen nebeneinander, lächeln und
 stand: November 2026 (Gesetzentwurf)
 veroeffentlicht: 2026-11-20 19:00
 geaendert: 2026-11-20
+kategorie: pflege-betreuung
+unterkategorien: pflegeleistungen, pflegegrade, entlastungsleistungen, pflegekasse
+anliegen: pflegedienst
+kurz:
+  - Zum 1. Januar 2027 plant die Bundesregierung eine umfassende Reform der Pflegeversicherung. Das Gesetzgebungsverfahren ist noch nicht abgeschlossen.
+  - Pflegegeld, Pflegesachleistungen, Entlastungsbetrag, Verhinderungspflege und Kurzzeitpflege sollen in vier Budgets zusammengefasst werden.
+  - Statt des Entlastungsbetrags ist ab Pflegegrad 2 ein Sozialraumbudget von monatlich 175 Euro vorgesehen. Für Pflegegrad 1 würde der Entlastungsbetrag von 131 Euro entfallen.
+  - Wer bereits einen anerkannten Pflegegrad hat, soll Bestandsschutz erhalten.
+  - Kosten aus 2026 für Verhinderungs- oder Kurzzeitpflege können nach geltendem Recht noch bis zum 31. Dezember 2027 geltend gemacht werden.
 tabelle_beschriftung: Geplante monatliche Budgets für Pflegegrad 2 bis 5 | Erforderliche Punktzahl je Pflegegrad, bisher und geplant ab 2027
 hinweis: Dieser Beitrag beschreibt einen Gesetzentwurf (Stand November 2026). Bis zum Inkrafttreten können sich Beträge und Regeln noch ändern. Er ersetzt keine Pflegeberatung.
 ---

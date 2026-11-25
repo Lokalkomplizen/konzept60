@@ -9,11 +9,27 @@
      /#drei-wege                                         → /so-funktioniert-es/(#…)
    location.replace: kein zusätzlicher Eintrag im Verlauf. Es wird nichts gespeichert oder gesendet.
    Ohne JavaScript bleibt man auf der Startseite; dort führt „Bei uns melden“ (#anfrage) weiter.
+   Ratgeber (Relaunch 3.3, nur auf /ratgeber/ eingebunden): Die Themenfilter-Adressen
+     /ratgeber/?thema=<Themenbereich>                    → /ratgeber/<Kategorie>/(#Unterkategorie)
+   Die Zuordnung schreibt tools/build.py aus data/ratgeber-kategorien.json (themen) in das Attribut
+   data-ratgeber-themen dieses <script>-Elements. Unbekannte Themen: Parameter wird entfernt.
    → WordPress: dieselben Regeln als 301 in template_redirect (Abfrageteil) bzw. dieses Skript (Anker).
    ========================================================================== */
 (function () {
   'use strict';
   var l = window.location;
+  var skript = document.currentScript;
+
+  if (l.pathname === '/ratgeber/' || l.pathname === '/ratgeber/index.html') {
+    var thema = new URLSearchParams(l.search).get('thema');
+    if (thema === null) return;
+    var ziele = {};
+    try { ziele = JSON.parse((skript && skript.getAttribute('data-ratgeber-themen')) || '{}'); } catch (e) { ziele = {}; }
+    if (Object.prototype.hasOwnProperty.call(ziele, thema)) l.replace(ziele[thema]);
+    else history.replaceState(null, '', l.pathname + l.hash);
+    return;
+  }
+
   if (l.pathname !== '/' && l.pathname !== '/index.html') return;
 
   var params = new URLSearchParams(l.search);

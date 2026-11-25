@@ -10,6 +10,15 @@ inline_nach_ueberschrift: 2. Wohngeld | 5. Befreiung vom Rundfunkbeitrag | 6. Be
 stand: November 2026 (Pflegereform 2027: Gesetzentwurf)
 veroeffentlicht: 2026-11-23 10:00
 geaendert: 2026-11-23
+kategorie: finanzen-foerderung
+unterkategorien: rente, wohngeld, zuschuesse, steuern, pflegekasse
+anliegen: behoerden-post
+kurz:
+  - Wer von der Rente kaum leben kann, hat unter bestimmten Voraussetzungen Anspruch auf staatliche Unterstützung, etwa Grundsicherung im Alter, Wohngeld oder Hilfe zur Pflege. Das sind gesetzlich geregelte Ansprüche, keine Almosen.
+  - Unterhaltsansprüche gegenüber Kindern werden bei der Grundsicherung erst berücksichtigt, wenn das jährliche Gesamteinkommen des jeweiligen Kindes mehr als 100.000 Euro beträgt.
+  - Wer Grundsicherung im Alter erhält, bekommt kein zusätzliches Wohngeld.
+  - Die Grundrente muss nicht beantragt werden. Die Deutsche Rentenversicherung prüft automatisch, ob ein Anspruch besteht.
+  - Für wohnumfeldverbessernde Maßnahmen zahlt die Pflegekasse bei Pflegegrad 1 bis 5 bis zu 4.180 Euro je Maßnahme und anspruchsberechtigter Person.
 seo_titel: Rente reicht nicht? Diese finanziellen Hilfen gibt es
 meta_beschreibung: Rente zu niedrig? Erfahren Sie, welche Hilfen Ihnen zustehen: Grundsicherung, Wohngeld, Hilfe zur Pflege, Zuschüsse und Befreiungen verständlich erklärt.
 tabelle_beschriftung: Vereinfachte Beispielrechnung zur Grundsicherung im Alter | Überblick über finanzielle Hilfen und zuständige Stellen

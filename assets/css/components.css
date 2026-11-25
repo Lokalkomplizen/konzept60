@@ -3559,3 +3559,253 @@ body:has(dialog[open]) { overflow: hidden; }
 .path-card__text { hyphens: auto; overflow-wrap: anywhere; }
 .placeholder-tag { display: inline; white-space: normal; overflow-wrap: anywhere; }
 .path-card .btn { max-width: 100%; hyphens: auto; overflow-wrap: anywhere; }
+
+/* ==========================================================================
+   Ratgeber-Struktur (Relaunch 3.3): Übersicht /ratgeber/, Kategorieseiten, Beitragsbausteine
+   Bewusst kein einheitliches Kartenraster: Suche + Chips im Kopf, ein großer Empfehlungs-Beitrag
+   mit Zeilen daneben, Themen als Index (Titel links, Unterthemen rechts), „Aktuell“ als Liste.
+   Keine Verläufe, nur --shadow-card, Breakpoints 40/48/64em.
+   ========================================================================== */
+.ratgeber-kopf .section__intro { margin-bottom: var(--space-l); }
+.ratgeber-suche { max-width: 46rem; margin-bottom: var(--space-l); }
+.ratgeber-suche[hidden] { display: none; }
+.ratgeber-suche .suche__knopf { gap: var(--space-xs); }
+.ratgeber-suche__status:not(:empty) { margin: var(--space-m) 0 var(--space-s); font-weight: 700; color: var(--color-navy-800); }
+.ratgeber-suche__status:empty { margin: 0; }
+.ratgeber-suche__treffer:empty { display: none; }
+
+.ratgeber-haeufig__titel {
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.ratgeber-chips {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+.ratgeber-chips > li { min-width: 0; max-width: 100%; }
+.ratgeber-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  max-width: 100%;
+  padding: var(--space-xs) var(--space-m);
+  border: 2px solid var(--color-navy-800);
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-navy-800);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: background-color var(--transition), color var(--transition);
+}
+.ratgeber-chip:hover { background: var(--color-navy-800); color: var(--color-white); }
+.ratgeber-chip__zahl { font-weight: 400; white-space: pre; }
+
+.ratgeber-abschnitt__titel { margin-bottom: var(--space-l); }
+
+/* Zeile: kleines Vorschaubild + Text; ganze Zeile über den Titel-Link klickbar */
+.ratgeber-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
+.ratgeber-zeile {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--space-m);
+  align-items: center;
+  padding: var(--space-s);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-m);
+}
+.ratgeber-zeile--ohne-bild { grid-template-columns: minmax(0, 1fr); padding: var(--space-s) var(--space-m); }
+.ratgeber-zeile:hover { border-color: var(--color-sage-700); }
+.ratgeber-zeile:has(a:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800);
+}
+.ratgeber-zeile__bild { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-s); background: var(--color-sand-100); }
+.ratgeber-zeile__text { min-width: 0; }
+.ratgeber-zeile__meta { margin: 0 0 var(--space-2xs); font-size: var(--font-size-sm); font-weight: 700; color: var(--color-sage-700); overflow-wrap: anywhere; }
+.ratgeber-zeile__titel {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: var(--line-height-tight);
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
+.ratgeber-zeile__titel a { color: var(--color-navy-800); text-decoration: none; }
+.ratgeber-zeile__titel a::after { content: ""; position: absolute; inset: 0; }
+.ratgeber-zeile:hover .ratgeber-zeile__titel a { text-decoration: underline; }
+.ratgeber-zeile__titel a:focus-visible { outline: none; box-shadow: none; }
+.ratgeber-zeile__anreisser { display: none; margin: var(--space-2xs) 0 0; color: var(--color-ink-muted); }
+@media (min-width: 40em) {
+  .ratgeber-zeile { grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-l); padding: var(--space-m); }
+  .ratgeber-zeile--ohne-bild { grid-template-columns: minmax(0, 1fr); }
+  .ratgeber-zeile__bild { aspect-ratio: 4 / 3; }
+  .ratgeber-zeile__anreisser { display: block; }
+}
+
+/* Empfohlen: ein großer Beitrag, daneben (ab 64em) die übrigen als Zeilen */
+.ratgeber-empfohlen { display: grid; gap: var(--space-l); }
+.ratgeber-empfohlen__haupt {
+  position: relative;
+  display: grid;
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.ratgeber-empfohlen__haupt:has(a:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-navy-800), var(--shadow-card);
+}
+.ratgeber-empfohlen__bild { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: var(--color-sand-100); }
+.ratgeber-empfohlen__text { padding: var(--space-l); min-width: 0; }
+.ratgeber-empfohlen__text p:last-child { margin-bottom: 0; color: var(--color-ink-muted); }
+.ratgeber-empfohlen__titel { font-family: var(--font-sans); font-weight: 700; letter-spacing: 0; font-size: var(--font-size-h3); hyphens: auto; overflow-wrap: anywhere; }
+.ratgeber-empfohlen__titel a { color: var(--color-navy-800); text-decoration: none; }
+.ratgeber-empfohlen__titel a::after { content: ""; position: absolute; inset: 0; }
+.ratgeber-empfohlen__haupt:hover .ratgeber-empfohlen__titel a { text-decoration: underline; }
+.ratgeber-empfohlen__titel a:focus-visible { outline: none; box-shadow: none; }
+.ratgeber-empfohlen__weitere { align-content: start; }
+@media (min-width: 64em) {
+  .ratgeber-empfohlen { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; }
+  .ratgeber-empfohlen__weitere .ratgeber-zeile { grid-template-columns: 7rem minmax(0, 1fr); }
+}
+
+/* Themen als Index: Titel, Anzahl und Kurztext links, Unterthemen als Linkliste rechts */
+.ratgeber-themen { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--color-navy-800); }
+.ratgeber-thema {
+  display: grid;
+  gap: var(--space-s) var(--space-2xl);
+  padding-block: var(--space-l);
+  border-bottom: 1px solid var(--color-sand-300);
+}
+.ratgeber-thema__kopf { min-width: 0; }
+.ratgeber-thema__titel { margin: 0; font-size: var(--font-size-h3); hyphens: auto; overflow-wrap: anywhere; }
+.ratgeber-thema__titel a { display: inline-flex; align-items: center; min-height: var(--touch-min); color: var(--color-navy-800); }
+.ratgeber-thema__anzahl { margin: 0 0 var(--space-xs); font-size: var(--font-size-sm); font-weight: 700; color: var(--color-sage-700); }
+.ratgeber-thema__text { margin: 0; color: var(--color-ink-muted); }
+.ratgeber-thema__unter {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-l);
+  align-content: start;
+}
+.ratgeber-thema__unter li { min-width: 0; border-top: 1px solid var(--color-sand-300); }
+.ratgeber-thema__unter a {
+  display: block;
+  min-height: var(--touch-min);
+  padding-block: 0.7rem;
+  line-height: var(--line-height-tight);
+  font-weight: 700;
+  color: var(--color-navy-800);
+  overflow-wrap: anywhere;
+}
+.ratgeber-thema__zahl { font-weight: 400; color: var(--color-ink-muted); white-space: pre; }
+@media (min-width: 48em) {
+  .ratgeber-thema__unter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) {
+  .ratgeber-thema { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+}
+
+/* Aktuell: schlichte Liste mit Stand-Marke (nicht nur Farbe: Marke trägt Text) */
+.ratgeber-aktuell > * { max-width: 64rem; }
+.ratgeber-aktuell__intro { max-width: 46rem; color: var(--color-ink-muted); }
+.ratgeber-aktuell__liste { list-style: none; margin: 0 0 var(--space-xl); padding: 0; }
+.ratgeber-aktuell__eintrag {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2xs) var(--space-m);
+  padding-block: var(--space-s);
+  border-bottom: 1px solid var(--color-sand-300);
+}
+.ratgeber-aktuell__marke {
+  justify-self: start;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--color-terra-200);
+  border-radius: var(--radius-s);
+  background: var(--color-terra-100);
+  color: var(--color-terra-700);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+.ratgeber-aktuell__marke--neu { border-color: var(--color-sage-200); background: var(--color-sage-100); color: var(--color-sage-700); }
+.ratgeber-aktuell__link { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 700; overflow-wrap: anywhere; }
+.ratgeber-aktuell__datum { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+@media (min-width: 64em) {
+  .ratgeber-aktuell__eintrag { grid-template-columns: 11rem minmax(0, 1fr) auto; align-items: center; }
+}
+
+.ratgeber-az > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+  min-height: var(--touch-min);
+  font-weight: 700;
+  color: var(--color-navy-800);
+  cursor: pointer;
+}
+.ratgeber-az__liste { columns: 1; margin: var(--space-m) 0 0; padding-left: 1.25rem; }
+.ratgeber-az__liste li { break-inside: avoid; padding-block: var(--space-2xs); overflow-wrap: anywhere; }
+.ratgeber-az__liste a { display: inline; }
+.ratgeber-az__kat { display: block; font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+@media (min-width: 64em) { .ratgeber-az__liste { columns: 2; column-gap: var(--space-2xl); } }
+
+/* Kategorieseite */
+.kategorie-nav { margin-top: var(--space-l); }
+.kategorie-nav .ratgeber-chips { margin-bottom: var(--space-m); }
+.kategorie-inhalt { display: grid; gap: var(--space-2xl); }
+.kategorie-abschnitt { max-width: 52rem; min-width: 0; }
+.kategorie-abschnitt__titel { font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem); margin-bottom: var(--space-m); }
+.kategorie-andere { list-style: none; margin: 0 0 var(--space-l); padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-l); }
+.kategorie-andere a { display: inline-flex; align-items: center; min-height: var(--touch-min); font-weight: 700; }
+
+/* Beitrag: Das Wichtigste in Kürze */
+.beitrag-kurz {
+  margin: 0 0 var(--space-2xl);
+  padding: var(--space-l);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-300);
+  border-left: 6px solid var(--color-sage-700);
+  border-radius: var(--radius-m);
+}
+.article__body > .beitrag-kurz h2.beitrag-kurz__titel,
+.beitrag-kurz__titel { margin: 0 0 var(--space-s); font-family: var(--font-sans); font-size: var(--font-size-lg); font-weight: 700; letter-spacing: 0; }
+.beitrag-kurz__liste { margin: 0; padding-left: 1.25rem; }
+.beitrag-kurz__liste li { margin-bottom: var(--space-xs); padding-left: 0.25rem; }
+.beitrag-kurz__liste li:last-child { margin-bottom: 0; }
+.beitrag-kurz__liste li::marker { color: var(--color-sage-700); }
+
+/* Beitrag: Häufige Fragen (Sprunglinks zu den Fragen im Text) */
+.beitrag-fragen { margin-top: var(--space-2xl); padding-top: var(--space-l); border-top: 2px solid var(--color-navy-800); }
+.beitrag-fragen h2 { font-size: var(--font-size-lg); margin-bottom: var(--space-xs); }
+.beitrag-fragen__hinweis { font-size: var(--font-size-sm); color: var(--color-ink-muted); }
+.beitrag-fragen__liste { list-style: none; margin: 0; padding: 0; }
+.beitrag-fragen__liste li { border-top: 1px solid var(--color-sand-300); }
+.beitrag-fragen__liste a { display: flex; align-items: center; min-height: var(--touch-min); padding-block: var(--space-xs); overflow-wrap: anywhere; }
+
+/* Beitrag: Stand und Quellen */
+.beitrag-quellen__stand { font-size: var(--font-size-sm); }
+.beitrag-quellen__titel { font-size: var(--font-size-base); margin: var(--space-m) 0 var(--space-xs); }
+
+/* Passende Hilfe: Zweitweg „Bei uns melden“ unter dem Knopf */
+.relatives__link { display: inline-flex; align-items: center; min-height: var(--touch-min); margin-top: var(--space-xs); font-weight: 700; }
+.relatives__action { display: flex; flex-direction: column; align-items: flex-start; }

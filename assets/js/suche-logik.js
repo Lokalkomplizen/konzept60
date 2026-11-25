@@ -207,7 +207,65 @@
     return leer;
   }
 
+  /* Ratgeber-Suche (Relaunch 3.3, /ratgeber/): Volltext über den beim Build erzeugten Index
+     (assets/data/ratgeber-suche.json). Je Eingabewort zählt der beste Treffer, gewichtet nach Feld:
+     Titel 4, Kategorie/Unterkategorie und deren Suchbegriffe 3, Zwischenüberschriften 2,
+     „Das Wichtigste in Kürze“ und Anreißer 1 (Wortvergleich wie oben: Stamm, Wortteil, Tippfehler).
+     Treffer = Beiträge mit den meisten erkannten Eingabewörtern (ab drei Wörtern darf eines fehlen), sortiert
+     nach Zahl der erkannten Wörter, dann Punkten.
+     index: [{slug, titel, url, kategorie, stand, anreisser, ueberschriften[], kurz[], begriffe[]}]
+     Ergebnis: { treffer: [{slug, titel, url, kategorie, stand, score}], alleWoerter: bool, woerter } */
+  var RATGEBER_FELDER = [['titel', 4], ['begriffe', 3], ['ueberschriften', 2], ['kurz', 1], ['anreisser', 1]];
+
+  function ratgeberWoerter(eintrag) {
+    if (eintrag._woerter) return eintrag._woerter;
+    var felder = {};
+    RATGEBER_FELDER.forEach(function (f) {
+      var liste = [];
+      [].concat(eintrag[f[0]] || []).forEach(function (t) { liste = liste.concat(woerter(t)); });
+      felder[f[0]] = liste;
+    });
+    try { Object.defineProperty(eintrag, '_woerter', { value: felder }); } catch (e) { /* eingefroren: ohne Cache */ }
+    return felder;
+  }
+
+  function sucheRatgeber(text, index, opt) {
+    opt = opt || {};
+    var q = woerter(text);
+    var leer = { treffer: [], alleWoerter: false, woerter: q };
+    if (normalisiere(text).replace(/ /g, '').length < (opt.mindestens || 2) || !q.length) return leer;
+    var bewertet = (index || []).map(function (e) {
+      var felder = ratgeberWoerter(e);
+      var erkannt = 0, score = 0;
+      q.forEach(function (w, i) {
+        var best = 0, haeufig = 0;
+        RATGEBER_FELDER.forEach(function (f) {
+          felder[f[0]].forEach(function (z) {
+            var p = wortPasst(w, z, i === q.length - 1);
+            if (p) { best = Math.max(best, p * f[1]); if (p >= 2) haeufig += 1; }
+          });
+        });
+        if (best) { erkannt += 1; score += best * 10 + Math.min(haeufig, 10); }
+      });
+      return { e: e, erkannt: erkannt, score: score };
+    });
+    var maxErkannt = bewertet.reduce(function (m, b) { return Math.max(m, b.erkannt); }, 0);
+    if (!maxErkannt) return leer;
+    // Ab drei Suchwörtern (ganze Fragen) darf ein Wort fehlen; Beiträge mit mehr erkannten Wörtern zuerst
+    var mindest = Math.max(1, maxErkannt - (q.length >= 3 ? 1 : 0));
+    var treffer = bewertet.filter(function (b) { return b.erkannt >= mindest; })
+      .sort(function (a, b) {
+        return b.erkannt - a.erkannt || b.score - a.score || String(a.e.titel).localeCompare(String(b.e.titel), 'de');
+      })
+      .slice(0, opt.max || 8)
+      .map(function (b) {
+        return { slug: b.e.slug, titel: b.e.titel, url: b.e.url, kategorie: b.e.kategorie, stand: b.e.stand, score: b.score };
+      });
+    return { treffer: treffer, alleWoerter: maxErkannt === q.length, woerter: q };
+  }
+
   var api = {
+    sucheRatgeber: sucheRatgeber,
     normalisiere: normalisiere,
     woerter: woerter,
     stamm: stamm,

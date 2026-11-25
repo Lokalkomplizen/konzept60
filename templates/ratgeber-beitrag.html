@@ -8,8 +8,10 @@ head_extra: {{beitrag_jsonld}}
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -18,11 +20,12 @@ head_extra: {{beitrag_jsonld}}
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="{{beitrag_kategorie_url}}">{{beitrag_kategorie_titel}}</a></li>
             <li><a href="/ratgeber/{{beitrag_slug}}/" aria-current="page">{{beitrag_titel}}</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/{{beitrag_thema}}/">{{beitrag_thema_titel}}</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="{{beitrag_kategorie_url}}">{{beitrag_kategorie_titel}}</a></p>
           <h1>{{beitrag_titel}}</h1>
           <p class="article__stand">Stand: <time datetime="{{beitrag_geaendert}}">{{beitrag_stand}}</time></p>
 {{werkzeuge_beitrag}}
@@ -35,7 +38,9 @@ head_extra: {{beitrag_jsonld}}
 {{beitrag_bild}}
 {{beitrag_toc}}
         <div class="article__body">
+{{beitrag_kurz}}
 {{beitrag_inhalt}}
+{{beitrag_fragen}}
 {{beitrag_quellen}}
 
           <div class="notice article__disclaimer" role="note">
@@ -51,31 +56,18 @@ head_extra: {{beitrag_jsonld}}
     <div class="container">
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-team"/></svg>
-        <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema {{beitrag_thema_titel}}?</h2>
-          <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
-          </p>
-        </div>
-        <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema={{beitrag_thema}}" data-thema="{{beitrag_thema}}">
-            Anliegen beschreiben
-            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
-          </a>
-        </div>
+{{beitrag_hilfe}}
       </div>
     </div>
   </section>
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
 {{weitere_beitraege}}
       </ul>
-{{weitere_zum_thema}}
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="{{beitrag_kategorie_url}}">Alle Beiträge im Bereich {{beitrag_kategorie_titel}}</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>

@@ -5,7 +5,7 @@ thema: freizeit-lebensqualitaet
 bild: fruehstueck-ab-60-garten
 bild_alt: Gedeckter Frühstückstisch im Garten mit Joghurt-Bowl mit Beeren, Rührei, Vollkornbrötchen, gekochtem Ei, Hüttenkäse, Nüssen, Obst und Kaffee.
 stand: November 2026
-veroeffentlicht: 2026-11-21 19:00
+veroeffentlicht: 2026-11-19 05:00
 geaendert: 2026-11-21
 kategorie: gesundheit-lebensqualitaet
 unterkategorien: ernaehrung

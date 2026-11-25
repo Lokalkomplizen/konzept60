@@ -5,7 +5,7 @@ thema: alltag-persoenliche-hilfe
 bild: krankenfahrten
 bild_alt: Ein silberner Kleinbus mit geöffneter Heckklappe und ausgeklappter Rampe steht vor einem Praxiseingang, daneben ein Rollstuhl.
 stand: November 2026
-veroeffentlicht: 2026-11-20 17:00
+veroeffentlicht: 2026-11-09 22:00
 geaendert: 2026-11-20
 kategorie: alltag-unterstuetzung
 unterkategorien: mobilitaet

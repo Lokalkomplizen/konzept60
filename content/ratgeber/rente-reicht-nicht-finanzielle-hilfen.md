@@ -8,7 +8,7 @@ inline_bild: rente-wohnkosten | rente-fernsehabend | rente-medikamente-zuzahlung
 inline_bild_alt: Gestapelte Münzen, ein kleines Hausmodell, ein Schlüsselbund mit Haus-Anhänger und ein Taschenrechner auf einem sonnigen Holztisch. | Ein älteres Paar sitzt entspannt auf dem Sofa und schaut gemeinsam fern, der Mann hält die Fernbedienung. | Eine ältere Frau liest am Küchentisch ein Schreiben, vor ihr liegen Tablettenpackungen, eine Medikamentendose und ein Blutdruckmessgerät. | Helles Badezimmer mit bodengleicher Dusche hinter Glas, Haltegriffen, Klappsitz und Waschtisch. | Bettschutzeinlagen, Desinfektionsmittel, Feuchttücher, Einmalhandschuhe, eine Greifzange und ein Notrufknopf liegen auf einem Holztisch, dahinter ein Rollator. | Ein rosa Sparschwein, Münzstapel, ein Taschenrechner und Rechnungen auf einem Holztisch. | Ein ordentlicher Schreibtisch mit einem Stapel Formulare auf einem Klemmbrett, einem Kugelschreiber, Aktenordnern und einer Tasse.
 inline_nach_ueberschrift: 2. Wohngeld | 5. Befreiung vom Rundfunkbeitrag | 6. Befreiung von Zuzahlungen | 7. Zuschüsse für einen altersgerechten Umbau | 8. Pflegehilfsmittel | 9. Weitere finanzielle Entlastungen | 12. So gehen Sie vor
 stand: November 2026 (Pflegereform 2027: Gesetzentwurf)
-veroeffentlicht: 2026-11-23 10:00
+veroeffentlicht: 2026-11-22 07:00
 geaendert: 2026-11-23
 kategorie: finanzen-foerderung
 unterkategorien: rente, wohngeld, zuschuesse, steuern, pflegekasse

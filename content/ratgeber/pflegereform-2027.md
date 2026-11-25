@@ -5,7 +5,7 @@ thema: pflege-betreuung
 bild: pflegereform-2027
 bild_alt: Eine ältere und eine jüngere Frau sitzen nebeneinander, lächeln und lesen gemeinsam ein Blatt mit der Überschrift „Pflege 2027“ und Stichpunkten.
 stand: November 2026 (Gesetzentwurf)
-veroeffentlicht: 2026-11-20 19:00
+veroeffentlicht: 2026-11-14 13:00
 geaendert: 2026-11-20
 kategorie: pflege-betreuung
 unterkategorien: pflegeleistungen, pflegegrade, entlastungsleistungen, pflegekasse

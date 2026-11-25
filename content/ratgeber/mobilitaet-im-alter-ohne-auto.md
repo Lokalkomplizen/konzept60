@@ -8,8 +8,8 @@ inline_bild: mobilitaet-fahrdienst-rampe | mobilitaet-rollator
 inline_bild_alt: Ein Mann im Rollstuhl fährt vor einem Einfamilienhaus auf die ausgeklappte Rampe eines weißen Kleinbusses mit geöffneter Heckklappe zu. | Ein gut gelaunter älterer Herr mit grauem Bart und Cordjacke tritt mit seinem Rollator aus der Haustür auf die sonnige Terrasse.
 inline_nach_ueberschrift: Spezielle Fahrdienste | Rollator
 stand: November 2026 (Zuzahlung 2027: angekündigt)
-veroeffentlicht: 2026-11-23 15:00
-geaendert: 2026-11-23
+veroeffentlicht: 2026-11-25 10:00
+geaendert: 2026-11-25
 kategorie: alltag-unterstuetzung
 unterkategorien: mobilitaet
 anliegen: fahrdienst

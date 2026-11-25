@@ -5,7 +5,7 @@ thema: alltag-persoenliche-hilfe
 bild: alltag-gut-organisiert
 bild_alt: Eine ältere Frau sitzt lächelnd mit Stift und Notizbuch an einem Holztisch, daneben Ordner, Laptop, Smartphone und eine Tasse.
 stand: November 2026
-veroeffentlicht: 2026-11-20 15:30
+veroeffentlicht: 2026-10-31 14:00
 geaendert: 2026-11-20
 kategorie: alltag-unterstuetzung
 unterkategorien: alltag-organisieren, selbststaendigkeit

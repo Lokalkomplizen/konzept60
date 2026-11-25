@@ -5,7 +5,7 @@ thema: technik-sicherheit
 bild: hausnotruf-auswahl
 bild_alt: Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an ihrer Halskette, eine jüngere Frau erklärt ihr die Bedienung.
 stand: November 2026
-veroeffentlicht: 2026-11-20 10:02
+veroeffentlicht: 2026-10-28 12:00
 geaendert: 2026-11-20
 kategorie: alltag-unterstuetzung
 unterkategorien: hausnotruf

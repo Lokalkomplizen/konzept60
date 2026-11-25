@@ -8,7 +8,7 @@ inline_bild: mehrgenerationenhaus-anbau | mehrgenerationenhaus-altbau-umbau | me
 inline_bild_alt: Weißes Einfamilienhaus mit Satteldach und einem flachen Anbau mit eigenem Eingang, davor ein Baum, eine Sitzbank und ein Kiesweg. | Ein rotes Backsteinhaus und ein moderner weißer Anbau mit großer Glasfront stehen nebeneinander an einem gemeinsamen Rasen, in beiden Häusern brennt warmes Licht. | Helle Wohnküche mit Esstisch, Holzstühlen und Sofa, durch die offene Terrassentür blickt man in einen grünen Garten. | Helles Badezimmer mit bodengleicher Dusche hinter Glas, Haltegriffen, Duschsitz und unterfahrbarem Waschtisch. | Älteres weißes Zweifamilienhaus mit Balkon und Garten im Frühling, daneben ein weiteres Wohnhaus. | Kleine, helle Wohnung mit Küchenzeile, Sitzecke und Blick in ein Duschbad mit Duschhocker.
 inline_nach_ueberschrift: Wohnform 2 | Wohnform 3 | Soziale Nähe | Barrierefreiheit von Anfang an | 6.3 Förderungen für energetische | 11. Beispiel
 stand: November 2026 (Steueränderungen 2027: Regierungsentwurf)
-veroeffentlicht: 2026-11-23 11:00
+veroeffentlicht: 2026-11-23 20:00
 geaendert: 2026-11-23
 kategorie: wohnen-umbauen
 unterkategorien: wohnformen, steuern, foerderprogramme

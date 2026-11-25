@@ -80,7 +80,7 @@ Darunter wie bisher: keine Antwortfrist, nur „so schnell wie möglich", und of
 Vier Aussagen mit den vorhandenen Icons, je ein Satz Erklärung:
 Kostenlos und unverbindlich · Sie entscheiden selbst · Regional und nah · Wir helfen, wenn Sie nicht weiterkommen.
 
-„Persönlich statt anonym" stimmt für den Hauptweg nicht mehr, denn dort sucht der Besucher allein in einer Liste. Vorschlag: Die Aussage wandert sinngemäß in die vierte Zeile („Wir helfen, wenn Sie nicht weiterkommen: persönlich, nicht anonym"). Die vier vorhandenen Icons passen weiter (kostenlos, persönlich, regional); für „Sie entscheiden selbst" fehlt eins.
+„Persönlich statt anonym" stimmt für den Hauptweg nicht mehr, denn dort sucht der Besucher allein in einer Liste. Vorschlag: Die Aussage wandert sinngemäß in die vierte Zeile („Wir helfen, wenn Sie nicht weiterkommen: persönlich, nicht anonym"). Die drei vorhandenen Icons passen weiter (kostenlos, persönlich, regional); für „Sie entscheiden selbst" fehlt eins.
 Das neue Icon zeichnest du im Stil der drei vorhandenen WebP-Icons.
 Darunter klein der Anbieter-Hinweis (heute #9): „Sie bieten Hilfe an? Kostenlos registrieren".
 

@@ -65,7 +65,14 @@ async function angezeigteIds(page) {
     const optionen = page.locator(".assistent__suche [role=option]");
     assert.ok(await optionen.count() <= 7, "höchstens 5 Anliegen + 2 Ratgeber");
     assert.match(await optionen.first().textContent(), /Haushaltshilfe.*in Solingen/);
-    if (SHOTS) await page.screenshot({ path: `${SHOTS}suche-vorschlaege-${name}.png` });
+    if (SHOTS) {
+      // Suchfeld mit Vorschlägen in den sichtbaren Bereich holen (Kopf bleibt sichtbar, wenn möglich)
+      await page.evaluate(() => {
+        const f = document.querySelector(".assistent__card");
+        window.scrollTo({ top: f.getBoundingClientRect().top + window.scrollY - 24, behavior: "instant" });
+      });
+      await page.screenshot({ path: `${SHOTS}suche-vorschlaege-${name}.png` });
+    }
     await page.keyboard.press("ArrowDown");
     assert.equal(await input.getAttribute("aria-activedescendant"), await optionen.first().getAttribute("id"));
     await page.keyboard.press("Enter");
@@ -86,7 +93,7 @@ async function angezeigteIds(page) {
     assert.doesNotMatch(await page.locator(".assistent__liste").textContent(), /★|Sterne/);
     assert.equal(await page.locator(".assistent__liste img").count(), 0, "keine Logos");
     await keinHorizontalesScrollen(page, name + " Liste");
-    if (SHOTS) await page.screenshot({ path: `${SHOTS}ergebnisliste-${name}.png`, fullPage: name === "desktop" });
+    if (SHOTS) await page.locator(".assistent__card").screenshot({ path: `${SHOTS}ergebnisliste-${name}.png` });
 
     // Notizzettel: Häufigkeit (Notizfrage) ändert die Liste nicht
     await page.getByRole("button", { name: "Notizzettel erstellen" }).click();

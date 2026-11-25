@@ -11,7 +11,7 @@ Quelle der Wahrheit für Werte: `assets/css/tokens.css`. Hier nie abweichende We
 - **Name:** "Konzept 60+" (Arbeitstitel). Nur Textlogo, kein Bildlogo. Der Name steht zentral in `tools/build.py` (`SITE_NAME`) und kommt per `{{site_name}}` in Templates und Partials.
 - **Logo:** `.logo` in Source Serif 4 (Gewicht 600, 1.75rem, Navy) mit kleinem terrakottafarbenem Punkt (`.logo__text::after`). Auf dunklem Grund `.logo--light`.
 - **Zweck:** kostenloses, persönliches Vermittlungs- und Infoportal für Menschen ab 60 und Angehörige. Es verbindet sie mit gewerblichen Anbietern und privaten Helfern. Wir erbringen selbst keine Dienstleistungen.
-- **Drei Säulen** (Hauptnavigation): Hilfe finden (`/themen/`), Ratgeber (`/ratgeber/`), Mein Alltag (`/mein-alltag/`). Dazu klein "Für Anbieter" und der CTA "Anfrage stellen".
+- **Drei Säulen** (Hauptnavigation): Hilfe finden (`/themen/`), Ratgeber (`/ratgeber/`), Mein Alltag (`/mein-alltag/`). Dazu klein "Für Anbieter", der CTA "Anfrage stellen" und der Knopf "Anbieter suchen" (`/hilfe-finden/`).
 - **Sechs Themen:** Wohnen, Haus und Handwerk; Haushalt und Reinigung; Pflege und Betreuung; Alltag und persönliche Hilfe; Technik und Sicherheit; Freizeit und Lebensqualität. Dazu Ratgeber.
 - **Region:** Düsseldorf, Wuppertal, Hilden, Remscheid, Solingen, Langenfeld, Haan, Wesel (`data/regionen.json`).
 - **Technik:** statisches HTML, CSS, Vanilla-JS auf Cloudflare Workers, später eigenes WordPress-Theme.
@@ -275,7 +275,8 @@ Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind
 
 - **Hero** (`.hero`): Navy, Bild 16:10 (Desktop rechts, füllend), `.hero__title`, `.hero__text`, `.hero__note`.
 - **Seitenkopf** `.page-header`, **Breadcrumb** `.breadcrumb`, **Check-Liste** `.check-list`, **Badge** `.badge` (Terrakotta-100), **Demo-Label** `.demo-label`.
-- **Assistent** (Startseite, `assets/js/assistent.js`): Ziel, Thema, Stadt, Ergebnis mit einem Hauptbutton und höchstens zwei Nebenlinks. Ohne JS: drei Säulen-Links.
+- **Assistent mit Suche** (Startseite `#assistent` und `/hilfe-finden/`, `assets/js/assistent.js`, Relaunch 3.1): weiße Karte `.assistent__card`; oben Fortschritt (`.assistent__progress`, `aria-live`) und Segmentbalken, darunter die gewählten Angaben als Zeile mit „ändern“-Links (`.assistent__auswahl`). Start: Suchfeld `.suche` (ARIA-Combobox, Feld 56px, Vorschlagsliste `.suche__liste` mit Navy-Rand, aktive Option Navy-Fläche plus gelber Innenring), darunter Abschnitte (`.assistent__abschnitt`, h4) mit Auswahlkarten `.choice-card--tap` (mind. 64px hoch, 12px Abstand, Raster `minmax(0, 1fr)`, keine Dropdowns). Filterfragen tragen den Satz „Ihre Antwort ändert die Liste“, Notizfragen „Für Ihr Gespräch … ändert die Liste nicht“ (`.assistent__frage-art`). Ergebnis: Trefferzahl (`.assistent__trefferzahl`, `role=status`), Anbieterkarten mit Unterkategorie (Salbei-700, fett), Hausbesuch ja/nein, E-Mail/Website-Links, Anrufen, Google-Link (keine Logos, keine Sterne); Notizzettel `.notizzettel` (Sand-50, gestrichelter Rand, „Das sollten Sie am Telefon sagen“); Rückfallweg `.assistent__melden` mit Terrakotta-Button „Bei uns melden“ (einzige Hauptaktion im Ergebnis). Fokus springt bei jedem Schrittwechsel auf die Überschrift. Ohne JS: Links auf Themenseiten und Anfrageformular.
+- **Knopf „Anbieter suchen“** (`.site-header__suche`, `.btn--secondary` mit Lupe `#icon-suche`): rechts im Kopf nach „Anfrage stellen“; unter 48em als volle Zeile unter Logo und Menü, 68–75em nur Lupe (Name bleibt für Screenreader). Auf `/hilfe-finden/` `aria-current="page"` (Navy-Fläche).
 - **Startseite, Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal in „So funktioniert’s“ (`#so-funktionierts`, Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Vertrauensleiste (`.trust`, Papiergrund) nur Stichworte, Formular-Seitenspalte nur zwei kurze Punkte.
 - **Drei Wege** (`#drei-wege`, darin `#themen`): Weg 1 „Hilfe finden“ = Themenraster (Kartentitel h4), Weg 2 und 3 als `.way-card`.
 - **Bildband** (`.photo-band`, Startseite zwischen „Drei Wege“ und „So funktioniert’s“): ein Stimmungsfoto über die volle Breite, kein Text auf dem Bild, echter Alt-Text, `loading="lazy"`. Mobil 3:2, ab 48em 21:9, höchstens 36rem hoch, `object-position: 50% 35%` (Gesichter bleiben im Bild). Höchstens ein Bildband pro Seite. Aktuell `ratgeber/gemeinsam-statt-einsam-*` (3:2-Zuschnitt aus `tools/bilder.py`).
@@ -398,7 +399,8 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 | `assets/css/components.css` | BEM-Komponenten (ca. 77 KB; gezielt per `grep` suchen) |
 | `assets/css/print.css` | Druckansicht (nur `media="print"`) |
 | `assets/fonts/` | selbst gehostete WOFF2-Dateien |
-| `assets/js/` | `main.js`, `no-js.js`, `api.js` (Versandwege, `KONTAKT`), `schritte.js` (Schritt-Formulare), `assistent.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
+| `assets/js/` | `main.js`, `no-js.js`, `api.js` (Versandwege, `KONTAKT`), `schritte.js` (Schritt-Formulare), `assistent.js` + `suche-logik.js` (Assistent und Freitextsuche), `anbieter.js` + `anbieter-logik.js`, `alltag.js`, `veranstaltungen.js`, `pflegegrad/` |
+| `data/anliegen.json` | Anliegen-Katalog (Suche, Assistent); Pflege siehe README |
 | `templates/`, `partials/`, `data/`, `content/ratgeber/` | Quellen; HTML wird per `python3 tools/build.py` generiert |
 | `README.md` | Struktur, Build, WordPress-Mapping |
 

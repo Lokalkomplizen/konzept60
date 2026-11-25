@@ -192,7 +192,7 @@
         labels
       ];
       if (hinweis) kinder.push(h('p', { class: 'pgr-leistung__voraus', text: hinweis }));
-      kinder.push(h('a', { class: 'pgr-hilfe__link no-print', href: '/?thema=' + encodeURIComponent(a.thema) + '#anfrage', 'data-thema': a.thema, text: 'Unterstützung anfragen' }));
+      kinder.push(h('a', { class: 'pgr-hilfe__link no-print', href: '/anfrage/?thema=' + encodeURIComponent(a.thema), 'data-thema': a.thema, text: 'Unterstützung anfragen' }));
       ul.appendChild(h('li', { class: 'pgr-hilfe__item' }, kinder));
     });
     box.appendChild(ul);

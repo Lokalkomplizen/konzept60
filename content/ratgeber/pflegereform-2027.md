@@ -160,6 +160,6 @@ Da das Gesetzgebungsverfahren noch nicht abgeschlossen ist, können sich einzeln
 
 Konzept 60+ informiert Sie über wichtige Entwicklungen rund um Pflege, Betreuung und Unterstützung im Alltag.
 
-Wenn Sie [Hilfe bei der Suche nach einer Haushaltshilfe, einem Pflegedienst oder einer Alltagsbegleitung benötigen](/?thema=pflege-betreuung#anfrage), unterstützen wir Sie dabei, passende Ansprechpartner in Ihrer Region zu finden.
+Wenn Sie [Hilfe bei der Suche nach einer Haushaltshilfe, einem Pflegedienst oder einer Alltagsbegleitung benötigen](/anfrage/?thema=pflege-betreuung), unterstützen wir Sie dabei, passende Ansprechpartner in Ihrer Region zu finden.
 
 Denn wer gut informiert ist, kann bessere Entscheidungen treffen.

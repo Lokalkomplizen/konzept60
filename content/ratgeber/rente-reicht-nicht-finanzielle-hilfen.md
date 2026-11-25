@@ -564,4 +564,4 @@ Deshalb lohnt es sich, die eigene Situation prüfen zu lassen. Selbst wenn Sie n
 
 Sie wissen nicht, welche finanzielle Unterstützung für Ihre Situation infrage kommt? Oder Sie benötigen Hilfe im Haushalt, bei der Pflege oder bei alltäglichen Aufgaben?
 
-Wir helfen dabei, passende Ansprechpartner und Unterstützungsangebote in Ihrer Region zu finden. [Beschreiben Sie uns Ihr Anliegen.](/?thema=alltag-persoenliche-hilfe#anfrage) Wir schauen uns Ihre Anfrage persönlich an und suchen nach passenden regionalen Anlaufstellen und Dienstleistern.
+Wir helfen dabei, passende Ansprechpartner und Unterstützungsangebote in Ihrer Region zu finden. [Beschreiben Sie uns Ihr Anliegen.](/anfrage/?thema=alltag-persoenliche-hilfe) Wir schauen uns Ihre Anfrage persönlich an und suchen nach passenden regionalen Anlaufstellen und Dienstleistern.

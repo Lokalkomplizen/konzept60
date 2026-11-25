@@ -674,4 +674,4 @@ Ein gutes Mehrgenerationenhaus bietet Nähe, ohne die Selbstständigkeit aufzuge
 
 Ein Mehrgenerationenhaus bringt viele Fragen mit sich. Vielleicht möchten Sie Ihr Haus altersgerecht umbauen, einen Treppenlift einbauen lassen, das Badezimmer barrierefrei gestalten oder Unterstützung im Haushalt organisieren.
 
-Wir helfen Ihnen dabei, passende Ansprechpartner und regionale Dienstleister zu finden. [Beschreiben Sie uns einfach, wobei Sie Unterstützung benötigen.](/?thema=wohnen-haus-handwerk#anfrage) Wir prüfen Ihre Anfrage persönlich und suchen nach geeigneten Kontakten in Ihrer Nähe.
+Wir helfen Ihnen dabei, passende Ansprechpartner und regionale Dienstleister zu finden. [Beschreiben Sie uns einfach, wobei Sie Unterstützung benötigen.](/anfrage/?thema=wohnen-haus-handwerk) Wir prüfen Ihre Anfrage persönlich und suchen nach geeigneten Kontakten in Ihrer Nähe.

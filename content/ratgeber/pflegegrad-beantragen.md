@@ -7,6 +7,7 @@ bild_alt: Ein Klemmbrett mit der Überschrift „Pflegegrad“ und abgehakten Sc
 stand: November 2026
 veroeffentlicht: 2026-11-20 17:10
 geaendert: 2026-11-20
+startseite: 1
 tabelle_beschriftung: Die sechs Lebensbereiche der Begutachtung und was jeweils geprüft wird | Die fünf Pflegegrade mit Gesamtpunktzahl und Bedeutung
 hinweis: Dieser Beitrag bietet eine allgemeine Orientierung und ersetzt keine individuelle Pflegeberatung oder rechtliche Beratung.
 inline_bild: pflegegrad-antrag-schreibtisch

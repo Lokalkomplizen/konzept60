@@ -7,6 +7,7 @@ bild_alt: Eine ältere Frau sitzt lachend auf einem Sitztreppenlift an einer Tre
 stand: November 2026
 veroeffentlicht: 2026-11-20 12:00
 geaendert: 2026-11-20
+startseite: 3
 inline_bild: treppenlift-kosten-planen
 inline_bild_alt: Ein älteres Paar sitzt am Tisch und schaut gemeinsam auf ein Blatt Papier, vor ihnen stehen mehrere Münzstapel.
 inline_nach_ueberschrift: 4. Welche Kosten entstehen?

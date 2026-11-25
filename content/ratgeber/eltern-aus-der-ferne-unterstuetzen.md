@@ -7,6 +7,7 @@ bild_alt: Eine Frau sitzt am Küchentisch mit Kalender und Notizbuch und spricht
 stand: November 2026
 veroeffentlicht: 2026-11-20 10:00
 geaendert: 2026-11-20
+startseite: 6
 inline_bild: eltern-aus-der-ferne-tablet-kueche
 inline_bild_alt: Eine ältere Frau und ihre Betreuerin sitzen in der Küche und schauen gemeinsam lächelnd auf ein Tablet.
 inline_nach_ueberschrift: 3. Unterstützung organisieren

@@ -7,6 +7,7 @@ bild_alt: Nahaufnahme eines Fußes in braunem Schuh, der an der hochgeschlagenen
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:15
 geaendert: 2026-11-20
+startseite: 5
 inline_bild: barrierefrei-wohnen-bad
 inline_bild_alt: Ein helles, modernes Badezimmer mit bodengleicher Dusche hinter einer Glaswand, Haltegriff und hochklappbarem Duschsitz, daneben ein Waschtisch mit Blumen.
 inline_nach_ueberschrift: 3. Badezimmer sicherer gestalten

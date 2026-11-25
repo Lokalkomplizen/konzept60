@@ -96,7 +96,7 @@
     mehrZeile.appendChild(mehr);
     var leer = node('div', 'anbieter__leer');
     leer.hidden = true;
-    leer.appendChild(node('h5', 'anbieter__leer-titel', 'Dafür suchen wir persönlich für Sie'));
+    leer.appendChild(node('h4', 'anbieter__leer-titel', 'Dafür suchen wir persönlich für Sie'));
     var leerText = node('p');
     leer.appendChild(leerText);
     var aktionen = node('div', 'anbieter__aktionen');

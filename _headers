@@ -21,7 +21,13 @@
   Cache-Control: public, max-age=0, must-revalidate
 /fuer-anbieter/*
   Cache-Control: public, max-age=0, must-revalidate
+/anfrage/*
+  Cache-Control: public, max-age=0, must-revalidate
+/so-funktioniert-es/*
+  Cache-Control: public, max-age=0, must-revalidate
 /ratgeber/*
+  Cache-Control: public, max-age=0, must-revalidate
+/veranstaltungen/*
   Cache-Control: public, max-age=0, must-revalidate
 /mein-alltag/*
   Cache-Control: public, max-age=0, must-revalidate

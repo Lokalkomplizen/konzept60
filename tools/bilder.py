@@ -10,6 +10,10 @@ Ratgeberbilder: python3 tools/bilder.py --ratgeber <ordner-mit-originalen>
   schreibt nach assets/img/ratgeber/:
     Beitragsbild 3:2 (mittig):  <bild>-800.webp, <bild>-1400.webp, <bild>-1400.jpg
     Teaser 4:3 (mittig):        <bild>-teaser-600.webp  (nur für Titelbilder, nicht für inline_bild)
+Vorschaubilder:  python3 tools/bilder.py --vorschau   (Relaunch 3.4, ohne Originale)
+  Aus den vorhandenen Größen: assets/img/themen/<slug>-160.webp (4:5, aus -800.jpg; Startseite Handy, 3rem)
+  und assets/img/ratgeber/<bild>-400.webp (3:2, aus -1400.jpg; Ratgeber-Zeilen der Startseite, 4rem).
+  Überschreibt nur diese Vorschaugrößen, löscht nichts.
 Die Originale gehören NICHT ins Repo/Deploy (nach dem Lauf löschen bzw. extern ablegen).
 Benötigt Pillow (nur dieses Hilfsskript; build.py nutzt ausschließlich die Standardbibliothek).
 """
@@ -95,8 +99,23 @@ def main(src_dir):
         print(f"{src.stem}: {img.size[0]}×{img.size[1]} → {', '.join(str(w) for w in WIDTHS_WEBP)} (WebP) + {WIDTH_JPG} (JPG)")
 
 
+def main_vorschau():
+    for jpg in sorted(OUT.glob("*-800.jpg")):
+        ziel = OUT / jpg.name.replace("-800.jpg", "-160.webp")
+        img = crop_4_5(Image.open(jpg).convert("RGB")).resize((160, 200), Image.LANCZOS)
+        img.save(ziel, "WEBP", quality=QUALITY, method=6)
+        print(f"{ziel.relative_to(ROOT)}: {ziel.stat().st_size // 1024} KB")
+    for jpg in sorted(RATGEBER_OUT.glob("*-1400.jpg")):
+        ziel = RATGEBER_OUT / jpg.name.replace("-1400.jpg", "-400.webp")
+        img = crop_center(Image.open(jpg).convert("RGB"), 3 / 2).resize((400, 267), Image.LANCZOS)
+        img.save(ziel, "WEBP", quality=QUALITY, method=6)
+        print(f"{ziel.relative_to(ROOT)}: {ziel.stat().st_size // 1024} KB")
+
+
 if __name__ == "__main__":
-    if len(sys.argv) == 3 and sys.argv[1] == "--ratgeber":
+    if len(sys.argv) == 2 and sys.argv[1] == "--vorschau":
+        main_vorschau()
+    elif len(sys.argv) == 3 and sys.argv[1] == "--ratgeber":
         main_ratgeber(sys.argv[2])
     elif len(sys.argv) == 2:
         main(sys.argv[1])

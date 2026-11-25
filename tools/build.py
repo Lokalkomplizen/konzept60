@@ -106,7 +106,7 @@ def picture(thema, sizes, css_class, loading="lazy", priority=False):
     extra = ' fetchpriority="high"' if priority else ""
     return (
         f'<picture class="{css_class}">\n'
-        f'  <source type="image/webp" srcset="{base}-480.webp 480w, {base}-800.webp 800w" sizes="{sizes}">\n'
+        f'  <source type="image/webp" srcset="{base}-160.webp 160w, {base}-480.webp 480w, {base}-800.webp 800w" sizes="{sizes}">\n'
         f'  <img src="{base}-800.jpg" width="800" height="{hoehe}" alt="{esc(thema["bild"]["alt"])}"\n'
         f'       loading="{loading}" decoding="async"{extra}>\n'
         f"</picture>"
@@ -308,7 +308,9 @@ def ratgeber_start(beitraege, n):
     """Teil E: sechs ausgewählte Beiträge (Frontmatter startseite: 1–6) statt der drei neuesten;
     Karte wie überall (Bild, Thema, Titel, automatischer Anreißer)."""
     auswahl = sorted((b for b in beitraege if b.get("startseite")), key=lambda b: int(b["startseite"]))
-    return "\n".join(article_card(b, "h3", n) for b in auswahl)
+    # Handy (< 40em): Zeilen mit 4rem-Vorschaubild → 400er-Variante genügt (tools/bilder.py --vorschau)
+    sizes = "(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 4rem"
+    return "\n".join(article_card(b, "h3", n, sizes=sizes) for b in auswahl)
 
 
 def werkzeug_kacheln(n):
@@ -779,7 +781,7 @@ def load_beitraege(themen):
             raise SystemExit(f"FEHLER: {source} – slug '{meta['slug']}' passt nicht zum Dateinamen")
         if meta["thema"] not in themen_by_slug:
             raise SystemExit(f"FEHLER: {source} – unbekanntes Thema '{meta['thema']}'")
-        bilder = [(meta["bild"], ("-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
+        bilder = [(meta["bild"], ("-400.webp", "-800.webp", "-1400.webp", "-1400.jpg", "-teaser-600.webp"))]
         for name, _alt, _h in inline_bilder(meta):
             bilder.append((name, ("-800.webp", "-1400.webp", "-1400.jpg")))
         for name, suffixes in bilder:
@@ -909,14 +911,19 @@ def write_ratgeber_json(beitraege):
     (ROOT / "data" / "ratgeber.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def article_card(b, heading="h3", n=0, pill=None):
+ARTICLE_SIZES = "(min-width: 75em) 370px, (min-width: 64em) 30vw, (min-width: 40em) 46vw, 92vw"
+
+
+def article_card(b, heading="h3", n=0, pill=None, sizes=ARTICLE_SIZES):
     """Beitragskarte mit Bild 3:2, geschwungener Textfläche und Pill (→ template-parts/card-artikel.php).
     pill: Text der Pill (Standard: Themenbereich; „Verwandte Ratgeber“ zeigen die Ratgeber-Kategorie)."""
     title = esc(b["titel"])
     lines = [
         "<li>",
         '  <article class="article-card article-card--image">',
-        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">',
+        f'    <img class="article-card__media" src="/{RATGEBER_IMG}/{b["bild"]}-800.webp" '
+        f'srcset="/{RATGEBER_IMG}/{b["bild"]}-400.webp 400w, /{RATGEBER_IMG}/{b["bild"]}-800.webp 800w" sizes="{sizes}" '
+        'width="800" height="533" alt="" loading="lazy" decoding="async">',
         '    <div class="article-card__body">',
         f'      <p class="article-card__meta"><span class="article-card__pill">{esc(pill or b["thema_titel"])}</span></p>',
         f'      <{heading} class="article-card__title"><a href="{b["url"]}">{title}</a></{heading}>',
@@ -2102,6 +2109,9 @@ def build_page(template, output, ctx, partials, themen, regionen):
         image = (f'/{RATGEBER_IMG}/{article["bild"]}-1400.jpg', 1400, 933, article["bild_alt"])
 
     content = render(body, page_ctx, template)
+    if meta.get("erstes_bild") == "eager":
+        # Das erste Bild steht im ersten Sichtbereich (LCP-Kandidat): nicht lazy laden, alle weiteren schon
+        content = content.replace('loading="lazy"', 'loading="eager"', 1)
     head_extra = render(meta.get("head_extra", ""), page_ctx, template)
     if path not in (None, "/") and "BreadcrumbList" not in head_extra:
         daten = [breadcrumb_aus_seite(output, path, content)]
@@ -2153,7 +2163,7 @@ def main():
                 raise SystemExit(f"FEHLER: themen.json – '{key}' fehlt bei {t.get('slug')}")
         if not 5 <= len(t["leistungen"]) <= 8:
             raise SystemExit(f"FEHLER: themen.json – {t['slug']} braucht 5–8 Leistungen")
-        for suffix in ("-480.webp", "-800.webp", "-800.jpg"):
+        for suffix in ("-160.webp", "-480.webp", "-800.webp", "-800.jpg"):
             if not (ROOT / (t["bild"]["datei"] + suffix)).exists():
                 raise SystemExit(f"FEHLER: Bild fehlt: {t['bild']['datei']}{suffix}")
 

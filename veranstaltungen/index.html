@@ -163,9 +163,11 @@
         </div>
         </div>
         <picture class="pgr-start__media ev-start__media">
+          <!-- Titelbild erst ab 48em sichtbar: unter 48em ein 1×1-Platzhalter, damit Handys das Bild nicht laden -->
+          <source media="(max-width: 47.99em)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
           <source type="image/webp" srcset="/assets/img/veranstaltungen/titelbild-800.webp 800w, /assets/img/veranstaltungen/titelbild-1536.webp 1536w" sizes="(min-width: 60em) 40vw, 92vw">
           <img src="/assets/img/veranstaltungen/titelbild-800.jpg" srcset="/assets/img/veranstaltungen/titelbild-800.jpg 800w, /assets/img/veranstaltungen/titelbild-1536.jpg 1536w" sizes="(min-width: 60em) 40vw, 92vw"
-               width="1536" height="864" alt="Ein Tischkalender mit bunten Haftnotizen und Symbolen für Theater, Wandern, Musik, Treffen, Kaffee, Malen, Radfahren und Entspannung, daneben Kaffeetasse, Brille, Hortensien und Strohhut." loading="eager">
+               width="1536" height="864" alt="Ein Tischkalender mit bunten Haftnotizen und Symbolen für Theater, Wandern, Musik, Treffen, Kaffee, Malen, Radfahren und Entspannung, daneben Kaffeetasse, Brille, Hortensien und Strohhut." loading="eager" decoding="async" fetchpriority="high">
         </picture>
       </div>
     </div>

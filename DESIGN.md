@@ -42,6 +42,7 @@ Quelle der Wahrheit für Werte: `assets/css/tokens.css`. Hier nie abweichende We
 - **Vergleichs- oder Branchenportal:** Anbieterlisten, Sternebewertungen, Preis-Badges, "Jetzt vergleichen", Werbebanner. Wir vermitteln persönlich, wir listen nicht.
 - **Seniorenmarkt-Klischee:** übergroße Comic-Icons, Kinderbuchfarben, "Oma und Opa"-Ton. Groß heißt nicht kindlich.
 - **Generische Startup-Landingpage:** Verläufe, Glas-Effekte, Neon-Akzente, englische Schlagworte, Dauer-Animationen.
+- **„KI-generiert“-Optik (Relaunch 3.4, `docs/relaunch/design-audit-3-4.md`):** überall gleiche abgerundete Karten mit Schatten, Pillen-Buttons, bunte Marken auf jeder Karte, Kennzeile in Großbuchstaben über jeder Überschrift, Illustrations-Icons neben jedem Absatz, gestaffelte Einblend-Animationen, geschwungene Deko-Kanten. Stattdessen: Listen mit Trennlinien, wo Karten nichts gliedern; Karten nur, wo eine Fläche klickbar ist oder etwas zusammenhält; Text vor Symbol.
 
 ## 3. Farben
 
@@ -114,6 +115,9 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 | `--color-success` | `#2f5a37` | Erfolg |
 | `--color-success-bg` | `#e7f1e6` | Erfolgs-Hintergrund |
 | `--color-focus` | `#f2b134` | Fokusring, wirkt mit Navy-Kontur auf hellem und dunklem Grund |
+| `--color-line-on-navy` | `rgb(255 255 255 / 0.18)` | Trennlinien im Footer |
+| `--color-border-on-navy` | `rgb(255 255 255 / 0.8)` | Ränder von Chips und `.btn--outline-light` auf Navy |
+| `--color-backdrop` | `rgb(14 24 48 / 0.7)` | Hintergrund hinter Dialogen (`::backdrop`) |
 
 ### 3.8 Abschnittsflächen
 
@@ -132,7 +136,7 @@ Rhythmus von `/so-funktioniert-es/`: Seitenkopf (Papier) → Selbst suchen (Papi
 | `--font-serif` | "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif | h1, h2, Logo, Frageüberschriften, Hero |
 | `--font-sans` | system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif | Fließtext (`body`), h3, h4, Buttons, Formulare, Kartentitel, Footer-Überschriften |
 
-**Kartentitel (einheitlich):** Sans, Gewicht 700, `--font-size-h3`, `letter-spacing: 0` für Themenkarten (`.card__title`), Ratgeber-Karten (`.article-card__title`, auch mit Bildwelle), Verweiskarten (`.way-card__title`) und Veranstaltungszeilen (`.ev-row__title`, dort `--font-size-lg`). Serif bleibt h1/h2, Logo und Hero vorbehalten.
+**Kartentitel (einheitlich):** Sans, Gewicht 700, `--font-size-h3`, `letter-spacing: 0` für Themenkarten (`.card__title`), Ratgeber-Karten (`.article-card__title`), Verweiskarten (`.way-card__title`) und Veranstaltungszeilen (`.ev-row__title`, dort `--font-size-lg`). Serif bleibt h1/h2, Logo und Hero vorbehalten.
 
 **Zahlen:** `font-variant-numeric: tabular-nums` für Uhrzeiten (`.ev-row__time`), Tabellenzellen (`.article__table td`, `.pgr-table td`) und Balkenwerte (`.pgr-bar__wert`).
 
@@ -150,6 +154,7 @@ Rhythmus von `/so-funktioniert-es/`: Seitenkopf (Papier) → Selbst suchen (Papi
 | `--font-size-h3` | `1.4375rem` | h3, Gewicht 700, Sans |
 | `--font-size-h2` | `clamp(1.875rem, 1.4rem + 2vw, 2.625rem)` | Serif, 600 |
 | `--font-size-h1` | `clamp(2.25rem, 1.6rem + 3vw, 3.75rem)` | Serif, 600 |
+| `--font-size-h1-handy` | `2rem` | Hero-Titel der Startseite unter 40em (Claim in zwei Zeilen) |
 | `--line-height-base` | `1.6` | Fließtext |
 | `--line-height-tight` | `1.2` | Überschriften |
 
@@ -174,28 +179,31 @@ Rhythmus von `/so-funktioniert-es/`: Seitenkopf (Papier) → Selbst suchen (Papi
 | `--space-l` | `1.5rem` |
 | `--space-xl` | `2rem` |
 | `--space-2xl` | `3rem` |
-| `--space-3xl` | `clamp(3.5rem, 2.5rem + 4vw, 6rem)` (Abschnitts-Padding) |
+| `--space-3xl` | `clamp(2.25rem, 0.25rem + 6.5vw, 6rem)` (Abschnitts-Padding: Handy 36px, Desktop 96px; vor 3.4 Handy 56px) |
 
 ### 5.2 Container und Sonstiges
 
 | Token | Wert | Hinweis |
 |---|---|---|
 | `--container-max` | `clamp(75rem, 80vw, 120rem)` | 1200px, auf großen Monitoren 80 % der Breite (max. 1920px) |
-| `--gutter` | `1.25rem`; ab 60em `2rem` | seitlicher Innenabstand |
+| `--gutter` | `1rem`; ab 60em `2rem` | seitlicher Innenabstand (Handy 16px seit 3.4) |
 | `--touch-min` | `3rem` | 48px Mindestgröße für Touch-Ziele |
 | `--touch-compact` | `2.75rem` | 44px, nur für dichte Linklisten (Footer) |
 | `--transition` | `160ms ease`; bei reduzierter Bewegung `0ms` | Standard-Übergang |
 
 ### 5.3 Radien und Schatten
 
+Seit Relaunch 3.4 zwei Stufen für Flächen und eine Pille nur für Kleines. Keine festen Pixelwerte im CSS.
+
 | Token | Wert | Einsatz |
 |---|---|---|
-| `--radius-s` | `6px` | Eingabefelder, Skip-Link, Menü-Button |
-| `--radius-m` | `16px` | Karten, Hinweisboxen (vorher 12px; weicher, aber nicht verspielt) |
-| `--radius-l` | `20px` | große Panels (`.provider-panel`) |
-| (fest) | `999px` | Buttons, Badges, Pills, Stand-Hinweis |
-| (fest) | `50%` | runde Marker, Logo-Punkt |
-| `--shadow-card` | `0 1px 2px rgb(20 33 61 / 0.06), 0 6px 20px rgb(20 33 61 / 0.07)` | Karten; Schatten sind sonst nicht vorgesehen |
+| `--radius-xs` | `3px` | Fortschrittsbalken (Segmente), kleine Symbolkästen |
+| `--radius-s` | `6px` | **Buttons**, Eingabefelder, Skip-Link, Menü-Button, Bilder in Zeilen |
+| `--radius-m` | `8px` | Karten, Hinweisboxen, Panels (vorher 16px) |
+| `--radius-l` | `var(--radius-m)` | Alias (vorher 20px), damit große Panels gleich aussehen |
+| `--radius-pill` | `999px` | nur Auswahl-Chips, Hero-Chips, Badges, Demo-Label, Stand-Hinweis, Platzhalter-Marke |
+| `--radius-round` | `50%` | runde Nummern, Logo-Punkt, Symbolkreise |
+| `--shadow-card` | `0 1px 2px rgb(20 33 61 / 0.06)` | nur noch ein Hauch; Karten trennen sich über den Sandrand |
 
 ### 5.4 Raster (`layout.css`)
 
@@ -224,18 +232,19 @@ Namensschema BEM (`block__element--modifier`), WordPress-tauglich (Template-Part
 
 ### 6.1 Buttons (`.btn`)
 
-- Pille (`border-radius: 999px`), `min-height: 48px`, Padding `0.7rem 1.4rem`, Rand 2px, fett, `1.0625em`, Übergang `--transition`.
+- Eckig mit leichtem Radius (`--radius-s`, 6px; bis 3.3 Pille), `min-height: 48px`, Padding `0.7rem 1.4rem`, Rand 2px, fett, `1.0625em`, Übergang `--transition`. Filter- und Checklisten-Knöpfe ebenso.
 - Varianten: `.btn--primary` (Terrakotta-600, Weiß; Hover Terrakotta-700) nur für „Anbieter suchen“ (Kopf, Handy-Leiste), „Hilfe finden“ (Hero-Suche), „Bei uns melden“ (Rückfall-Kasten), Seitenkopf-CTAs und Formular-Absenden; Karten-, Kachel- und Raster-Buttons (Drei Wege, Mein Alltag, Checklisten, Angehörigen-Panel der Startseite, Assistent „Weiter“) sind `.btn--secondary`; `.btn--secondary` (Weiß, Navy-Rand; Hover Navy-Fläche); `.btn--outline-light` (transparent, weißer Rand, auf Navy); `.btn--block` (volle Breite); `.btn--menu` (Radius 6px, für Menü-Toggle, `aria-expanded` füllt Navy).
 - `.btn-group` ordnet mehrere Buttons.
 
 ### 6.2 Karten
 
+- **Wann Karte, wann Liste (3.4):** Karte nur, wenn die ganze Fläche klickbar ist oder Inhalte zusammenhält (Themenkarten ab 48em, Ratgeber-Karten ab 40em, Formulare, Assistent). Auf dem Handy und bei reinen Aufzählungen Liste mit 1px-Trennlinien (Themen und Ratgeber der Startseite, Werkzeuge, Vorteile für Anbieter).
 - `.card`: weiß, 1px Sandrand, `--radius-m`, `--shadow-card`; Hover und `:focus-within` färben den Rand Salbei-700. Ganze Karte klickbar.
 - `.card__media` Bild oben 4:5, `object-fit: cover`. In `.card-grid` mobil (<40em) Querformat 2:1 mit Rand innen.
 - Teile: `.card__body`, `.card__title` (Sans), `.card__text`, `.card__examples`, `.card__actions`, `.card__link`, `.card__more`.
 - Themenkarten mobil (<40em, `.card-grid`): kompakte Zeile, quadratisches Vorschaubild (5.5rem) neben dem Titel, Text und Links darunter; Beispiel-Stichworte (`.card__examples`) nur ab 40em.
-- `.article-card` (Ratgeber): Bild 4:3 bzw. 3:2 mit Bildwelle (mobil 2:1, Anreißer auf 3 Zeilen gekürzt), Meta, Titel, Anreißer, `.article-card__pill`, `.article-card__stand`. Fokusring der ganzen Karte nur bei Tastaturfokus (`.article-card:has(a:focus-visible)`), nicht nach Mausklick.
-- `.way-card` (`/so-funktioniert-es/#drei-wege`; `.way-card--navy` für „Anbieter in Ihrer Region“): weiß, Sandrand, 6px Oberkante Salbei bzw. Terrakotta, Illustration links (mobil ausgeblendet), ganze Karte über den Titel-Link klickbar, Fokus wie `.article-card`.
+- `.article-card` (Ratgeber): Bild 4:3 bzw. 3:2 mit gerader Kante (Bildwelle seit 3.4 entfernt; mobil 2:1, Anreißer auf 3 Zeilen gekürzt), Meta, Titel, Anreißer, `.article-card__pill` (seit 3.4 Salbei-700-Textzeile statt Terrakotta-Pille), `.article-card__stand`. Bild mit `srcset` 400/800 (`sizes` je Einsatz). Fokusring der ganzen Karte nur bei Tastaturfokus (`.article-card:has(a:focus-visible)`), nicht nach Mausklick.
+- `.way-card` (`/so-funktioniert-es/#drei-wege`; `.way-card--navy` für „Anbieter in Ihrer Region“): weiß, Sandrand, 6px Oberkante Salbei bzw. Terrakotta, ohne Illustration (seit 3.4), ganze Karte über den Titel-Link klickbar, Fokus wie `.article-card`.
 - `.provider-panel`: weiß, Sandrand, `--radius-l`.
 
 ### 6.3 Hinweisboxen (`.notice`)
@@ -271,7 +280,7 @@ Anfrage (`/anfrage/`), Anbieter-Registrierung und „Veranstaltung melden“ sin
 
 ### 6.6 Footer
 
-`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Aufbau: `.site-footer__brand` (Logo + Kurztext; ab 64em eine Zeile über den Spalten mit Trennlinie), dann Drei Wege, Themen, Regionen, Informationen. Jede Linkzeile ist mind. 44px hoch (`--touch-compact`) mit `padding-block: --space-2xs` und ohne zusätzlichen Listenabstand, dadurch gleiche Abstände in allen Spalten; mehrzeilige Links mit enger Zeilenhöhe. Regionen und Informationen mobil zweispaltig; Regionen ab 64em einspaltig, ab 75em zweispaltig; Informationen ab 48em einspaltig. Ab 64em Linkgröße `--font-size-md` (18px), damit keine Einträge umbrechen. Unten Trennlinie, Copyright, Prototyp-Hinweis (`.demo-label`).
+`.site-footer` (Navy-900, Text `--color-on-navy`, Links weiß, Hover hell-terrakotta). Aufbau: `.site-footer__brand` (Logo + Kurztext, Handy 17px; ab 64em eine Zeile über den Spalten mit Trennlinie), dann vier Linkspalten Drei Wege, Themen, Regionen, Informationen. **Jede Spalte ist ein `<details class="site-footer__spalte" data-footer-spalte>`** mit der h2 im `<summary>` (Relaunch 3.4): unter 48em zugeklappt, je Spalte eine 48px-Zeile mit „+“/„−“ und Trennlinie (`--color-line-on-navy`); ab 48em offen und nicht einklappbar (`main.js` 13., ohne JS über `::details-content`). **Impressum und Datenschutz** stehen nicht in einer Spalte, sondern immer sichtbar in `.site-footer__recht` in der Fußzeile. Jede Linkzeile ist mind. 44px hoch (`--touch-compact`). Regionen und Informationen mobil zweispaltig; Regionen ab 64em einspaltig, ab 75em zweispaltig; Informationen ab 48em einspaltig. Ab 64em Linkgröße `--font-size-md` (18px). Unten Copyright, Prototyp-Hinweis (`.demo-label`).
 
 ### 6.7 Weitere Bausteine
 
@@ -280,7 +289,7 @@ Anfrage (`/anfrage/`), Anbieter-Registrierung und „Veranstaltung melden“ sin
 - **Assistent mit Suche** (`/hilfe-finden/`; Startseite nur Einstieg, `assets/js/assistent.js`, Relaunch 3.1): weiße Karte `.assistent__card`; oben Fortschritt (`.assistent__progress`, `aria-live`) und Segmentbalken, darunter die gewählten Angaben als Zeile mit „ändern“-Links (`.assistent__auswahl`). Start: Suchfeld `.suche` (ARIA-Combobox, Feld 56px, Vorschlagsliste `.suche__liste` mit Navy-Rand, aktive Option Navy-Fläche plus gelber Innenring), darunter Abschnitte (`.assistent__abschnitt`, h4) mit Auswahlkarten `.choice-card--tap` (mind. 64px hoch, 12px Abstand, Raster `minmax(0, 1fr)`, keine Dropdowns). Filterfragen tragen den Satz „Ihre Antwort ändert die Liste“, Notizfragen „Für Ihr Gespräch … ändert die Liste nicht“ (`.assistent__frage-art`). Ergebnis: Trefferzahl (`.assistent__trefferzahl`, `role=status`), Anbieterkarten mit Unterkategorie (Salbei-700, fett), Hausbesuch ja/nein, E-Mail/Website-Links, Anrufen, Google-Link (keine Logos, keine Sterne); Notizzettel `.notizzettel` (Sand-50, gestrichelter Rand, „Das sollten Sie am Telefon sagen“); Rückfallweg `.assistent__melden` mit Terrakotta-Button „Bei uns melden“ (einzige Hauptaktion im Ergebnis). Fokus springt bei jedem Schrittwechsel auf die Überschrift. Ohne JS: Links auf Themenseiten und Anfrageformular.
 - **Knopf „Anbieter suchen“** (`.site-header__suche`, `.btn--primary` mit Lupe `#icon-suche`, einzige Terrakotta-Fläche im Kopf): rechts im Kopf; unter 48em ausgeblendet (die Handy-Leiste übernimmt), 68–75em nur Lupe (Name bleibt für Screenreader). Auf `/hilfe-finden/` `aria-current="page"` (Navy-Fläche).
 - **Handy-Leiste** (`.leiste`, nur unter 48em): feste Leiste unten mit `.btn--primary` „Anbieter suchen“ in voller Breite, Höhe `--leiste-hoehe`; `body.hat-leiste` bekommt unten denselben Innenabstand, `scroll-padding-bottom` hält fokussierte Elemente frei. Nicht auf `/hilfe-finden/`, nicht im Druck, ausgeblendet bei Fokus in Eingabefeldern und auf der Startseite, solange die Hero-Suche sichtbar ist.
-- **Startseite 3.2:** Hero `.hero--suche` mit Suchfeld (`.suche--hero`, Combobox aus `assistent.js`, ohne JS GET-Formular), Chips `.hero-chips` (auf Navy: weißer Rand, weiße Schrift, mind. 48px; Hover weiße Fläche) und Stichworten `.hero__vertrauen` (mit Trennpunkt). Themen `.themen-start`/`.thema-start`: Bild, Titel-Link, 3–4 Unterthemen-Links (Sprungmarken der Leistungen auf der Themenseite, `:target` wird hervorgehoben), „Alle Leistungen“; einspaltig, ab 64em zweispaltig (bewusst kein Dreierraster). Ablauf `.ablauf__schritte` (Nummern über CSS-Zähler, keine Icons) und Rückfall-Kasten `.rueckfall` (weiß, Terrakotta-Linie links, Knopf „Bei uns melden“). Werkzeuge `.werkzeug-kachel` als Textkacheln ohne Bild. Vertrauen `.vertrauen` als Liste mit den vorhandenen Trust-Icons; „Sie entscheiden selbst“ nutzt `#icon-check` statt eines neuen Icons. Hinweis `.anbieter-hinweis` als eine Zeile.
+- **Startseite 3.2:** Hero `.hero--suche` mit Suchfeld (`.suche--hero`, Combobox aus `assistent.js`, ohne JS GET-Formular), Chips `.hero-chips` (auf Navy: weißer Rand, weiße Schrift, mind. 48px; Hover weiße Fläche) und Stichworten `.hero__vertrauen` (mit Trennpunkt). Themen `.themen-start`/`.thema-start`: Bild, Titel-Link, 3–4 Unterthemen-Links (Sprungmarken der Leistungen auf der Themenseite, `:target` wird hervorgehoben), „Alle Leistungen“. Handy (3.4): Liste mit Trennlinien, Vorschaubild 3rem (`-160.webp`), Unterthemen als unterstrichene Textlinks in zwei Spalten (je mind. 44px); ab 48em weiße Karte mit Bild links (10rem, 4:5), Unterthemen fließend; ab 64em zweispaltig (bewusst kein Dreierraster). Ratgeber der Startseite auf dem Handy als Zeilen mit Trennlinie (Bild 4rem, `-400.webp`), Werkzeuge als Liste; Kennzeilen der Startseite (`.section__eyebrow--ab-tablet`) und Vertrauens-Symbole erst ab 48em bzw. 40em. Ablauf-Schritte auf dem Handy: Titel und Satz in einem Absatz. Ablauf `.ablauf__schritte` (Nummern über CSS-Zähler, keine Icons) und Rückfall-Kasten `.rueckfall` (weiß, Terrakotta-Linie links, Knopf „Bei uns melden“). Werkzeuge `.werkzeug-kachel` als Textkacheln ohne Bild (Handy: Liste). Vertrauen `.vertrauen` als Liste mit den vorhandenen Trust-Icons (unter 40em ausgeblendet); „Sie entscheiden selbst“ nutzt `#icon-check` statt eines neuen Icons. Hinweis `.anbieter-hinweis` als eine Zeile.
 - **Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal auf `/so-funktioniert-es/#so-funktionierts` (Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Startseite: Stichworte im Hero, kurze Fassung im Rückfall-Kasten; Formular-Seitenspalte auf `/anfrage/` nur zwei kurze Punkte.
 - **Drei Wege** (`#drei-wege`, darin `#themen`): Weg 1 „Hilfe finden“ = Themenraster (Kartentitel h4), Weg 2 und 3 als `.way-card`.
 - **Bildband** (`.photo-band`, auf `/so-funktioniert-es/` zwischen „Für Angehörige“ und „Vertrauen“): ein Stimmungsfoto über die volle Breite, kein Text auf dem Bild, echter Alt-Text, `loading="lazy"`. Mobil 3:2, ab 48em 21:9, höchstens 36rem hoch, `object-position: 50% 35%` (Gesichter bleiben im Bild). Höchstens ein Bildband pro Seite. Aktuell `ratgeber/gemeinsam-statt-einsam-*` (3:2-Zuschnitt aus `tools/bilder.py`).
@@ -323,9 +332,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 
 - **Standard-Übergang:** `--transition: 160ms ease` für Buttons, Kartenrand, Hover-Flächen. Nur Farbe, Rand, Breite (Fortschrittsbalken); kein Springen.
 - **Reduzierte Bewegung:** `tokens.css` setzt `--transition: 0ms`; `base.css` setzt `scroll-behavior: auto` und kürzt alle Animationen und Übergänge auf 0.01ms. Fortschrittsbalken `.beitrag-check__balken` schaltet Übergang ebenfalls ab.
-- **Scroll-Einblendung** (`[data-anim]`, nur bei `prefers-reduced-motion: no-preference`, gesetzt durch `main.js` 9. mit `.js-anim`): Einblenden 0.6s `ease-out`, Bewegung 0.6s `cubic-bezier(0.22, 0.61, 0.36, 1)`, optional `--anim-delay`.
-  - Varianten: `up` (16px), `left`/`right` (20px; mobil <48em stattdessen senkrecht), `zoom` (Skalierung 1.05, Bild 1.2s). Einmalig, bereits sichtbare Elemente werden nicht animiert.
-  - Parallax nur Desktop (`.has-parallax`, `--parallax-y`), dezent; bei reduzierter Bewegung werden keine Scroll-Listener registriert.
+- **Scroll-Einblendung** (`[data-anim]`, nur bei `prefers-reduced-motion: no-preference`, gesetzt durch `main.js` 9. mit `.js-anim`): seit 3.4 nur noch Abschnittsköpfe (`.section__header`), Einblenden 0.4s `ease-out` mit 8px Weg, einmalig; bereits sichtbare Elemente werden nicht animiert. Kein seitliches Einfliegen, kein zeitversetztes Einblenden von Karten, kein Bild-Zoom, kein Parallax (alle entfernt).
 - **Smooth Scroll** auf `html`; Anker mit `scroll-margin-top`.
 - Regeln: keine Endlosschleifen, kein Autoplay, keine Bewegung, die Information trägt.
 
@@ -341,7 +348,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Semantik:** Landmarken, Skip-Link, `aria-current`, `aria-expanded`, `aria-describedby`, `aria-invalid`, `aria-pressed`, `role="status"` und `aria-live` für Rückmeldungen. `.visually-hidden` für reine Screenreader-Texte.
 - **Bilder:** immer sinnvoller Alt-Text (Beitragsbilder per Frontmatter `bild_alt`).
 - **Fehlermeldungen:** in einfacher Sprache, mit Zusammenfassung und Sprunglinks.
-- **Reflow (A11Y-01/02):** keine Seite scrollt bei 320px waagerecht; Rasterspalten mit `minmax(0, 1fr)`, Rasterkinder mit `min-width: 0`, h1–h3 mit `hyphens: auto` und `overflow-wrap`, lange Footer-Links brechen um. Geprüft in `tests/startseite.e2e.js` (320/390/768/1440).
+- **Reflow (A11Y-01/02):** keine Seite scrollt bei 320px waagerecht; Rasterspalten mit `minmax(0, 1fr)`, Rasterkinder mit `min-width: 0`, h1–h3 mit `hyphens: auto` und `overflow-wrap`, lange Footer-Links brechen um. Geprüft in `tests/startseite.e2e.js` (320/390/768/1440) und für alle Seiten der Sitemap bei 320px in `tests/seo.e2e.js`.
 - **Eine h1 je Zustand (A11Y-05):** Der Pflegegrad-Rechner hat in Fragen, Übersicht und Ergebnis eine visuell verborgene h1 (`data-pgr-h1`), auf dem Startbildschirm die sichtbare.
 - **Bewegung:** siehe Abschnitt 7.
 
@@ -352,7 +359,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Ausnahme:** Das Herz-Logo im Pflege-Bild bleibt. Das Pflege-Bild ist unten beschnitten (`pflege-betreuung-v2-*`, 800×880 statt 800×1000), damit der Rollstuhlgriff nicht zu sehen ist; `data/themen.json` trägt dafür `bild.hoehe: 880`, `build.py` setzt width/height danach. Das Krankenfahrten-Bild im Ratgeber bleibt (Rampe ist dort Thema).
 - **Kategoriebilder** (Themenkarten): Hochformat 4:5; **mobil im Querformat** (2:1 in `.card-grid`, unter 40em).
 - **Formate:** Hero 16:10 (`hero-garten-*`), Beitrag 3:2, Teaser 4:3, Bildband 21:9 bzw. mobil 3:2 (per CSS aus einem 3:2-Bild). Ordner: `assets/img/themen/`, `ratgeber/`, `veranstaltungen/`, `pflegegrad/`. Zuschnitt und WebP-Größen über `tools/bilder.py`; Originale nicht ins Repo.
-- **Technik:** WebP mit JPG-Fallback, `object-fit: cover`, Platzhalterfläche Sand-100, Lazy-Loading außer im ersten Sichtbereich.
+- **Technik:** WebP mit JPG-Fallback, `object-fit: cover`, Platzhalterfläche Sand-100. Das erste sichtbare Bild jeder Seite lädt sofort (Hero/Themenbild mit `fetchpriority="high"`, Startseite zusätzlich Preload mit denselben `sizes`; Template-Kopf `erstes_bild: eager` für Seiten, deren erstes Bild ein Listenbild ist), alle weiteren mit `loading="lazy"`, `decoding="async"`, `width`/`height`. Vorschaugrößen für kleine Darstellungen: `tools/bilder.py --vorschau` (Themen 160px, Ratgeber 400px). Ausgelieferte Bilder höchstens 300 KB.
 - **Icons:** SVG-Sprite `partials/icons.html` (Linien-Icons, `aria-hidden`), Illustrationen in `assets/img/illus.svg` (96×96, Farben Olive/Orange).
 
 ## 10. Tonalität und Texte
@@ -428,6 +435,6 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 **Bekannte Abweichungen im Code (Stand der Prüfung):**
 
 - Source Serif 4 ist nur für Überschriften (h1, h2), Logo und Frageüberschriften im Einsatz; der Fließtext nutzt die Systemschrift (`--font-sans`). Es ist nur ein Gewicht (600) eingebunden.
-- `components.css` und `layout.css` enthalten keine festen Hex-Werte mehr. Einzige Ausnahme sind halbtransparente Weiß-Ränder auf Navy (`rgb(255 255 255 / …)`).
-- Kennzeichnungen (`.demo-label`, `.badge`, `.placeholder-tag`) und Nummern in Kreisen (`.form__legend-nr`, `.wc__q-nr`) haben mindestens 16px (1rem), liegen also noch unter den 17px aus Abschnitt 8. Kleiner sind nur einzelne Symbolzeichen in Icon-Kreisen (+, ✓, !, i; 0.75 bis 0.95rem), die keinen Lesetext tragen.
-- `.card` deklariert `transform` im Übergang, setzt aber keinen Transform-Hover.
+- `components.css` und `layout.css` enthalten keine festen Farbwerte und keine festen Radien mehr (seit 3.4 auch die halbtransparenten Töne auf Navy als Tokens).
+- Kennzeichnungen (`.demo-label`, `.badge`, `.placeholder-tag`), Segment-Optionen und Nummern in Kreisen haben seit 3.4 17px (`--font-size-sm`). Kleiner sind nur einzelne Symbolzeichen in Icon-Kreisen (+, ✓, !, i; 0.75 bis 0.95rem), die keinen Lesetext tragen.
+- Illustrationen (`illus.svg`) nur noch auf `/mein-alltag/` (Werkzeuge) und im Kasten „Passende Hilfe“ des Ratgeber-Beitrags.

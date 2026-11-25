@@ -11,7 +11,7 @@ Quelle der Wahrheit für Werte: `assets/css/tokens.css`. Hier nie abweichende We
 - **Name:** "Konzept 60+" (Arbeitstitel). Nur Textlogo, kein Bildlogo. Der Name steht zentral in `tools/build.py` (`SITE_NAME`) und kommt per `{{site_name}}` in Templates und Partials.
 - **Logo:** `.logo` in Source Serif 4 (Gewicht 600, 1.75rem, Navy) mit kleinem terrakottafarbenem Punkt (`.logo__text::after`). Auf dunklem Grund `.logo--light`.
 - **Zweck:** kostenloses, persönliches Vermittlungs- und Infoportal für Menschen ab 60 und Angehörige. Es verbindet sie mit gewerblichen Anbietern und privaten Helfern. Wir erbringen selbst keine Dienstleistungen.
-- **Drei Säulen** (Hauptnavigation): Hilfe finden (`/themen/`), Ratgeber (`/ratgeber/`), Mein Alltag (`/mein-alltag/`). Dazu klein "Für Anbieter", der CTA "Anfrage stellen" und der Knopf "Anbieter suchen" (`/hilfe-finden/`).
+- **Hauptnavigation** (Relaunch 3.2): Hilfe finden (`/hilfe-finden/`), Ratgeber (`/ratgeber/`), Mein Alltag (`/mein-alltag/`), So funktioniert es (`/so-funktioniert-es/`), dazu der Knopf "Anbieter suchen" (`/hilfe-finden/`). "Für Anbieter" steht im Footer. Grundsatz: Besucher wählen ihren Anbieter selbst; "Bei uns melden" (`/anfrage/`) ist der Rückfallweg (Topbar, Startseite Teil D, Footer, Ergebnis des Assistenten).
 - **Sechs Themen:** Wohnen, Haus und Handwerk; Haushalt und Reinigung; Pflege und Betreuung; Alltag und persönliche Hilfe; Technik und Sicherheit; Freizeit und Lebensqualität. Dazu Ratgeber.
 - **Region:** Düsseldorf, Wuppertal, Hilden, Remscheid, Solingen, Langenfeld, Haan, Wesel (`data/regionen.json`).
 - **Technik:** statisches HTML, CSS, Vanilla-JS auf Cloudflare Workers, später eigenes WordPress-Theme.
@@ -119,7 +119,9 @@ Hinweis: `illus.svg` trägt diese Werte fest eingetragen. Bei Änderung dort mit
 
 `.section` (Papiergrund Sand-50), `.section--sand`, `.section--sage`, `.section--navy` (Überschriften dann weiß). Abwechselnd einsetzen, nie zwei gleiche direkt untereinander. Weiß ist keine Abschnittsfläche mehr, sondern Kartenfarbe: Karten auf Papiergrund brauchen dadurch kaum Schatten (Idee aus der Oura-Analyse, 2026-11).
 
-Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (Papier, schmal) → Assistent (Sand) → Drei Wege mit Themen (Papier) → Bildband (Foto, volle Breite) → So funktioniert’s (Navy) → Angehörige (Papier) → Anfrage (Sand) → Ratgeber (Salbei) → Hinweis „Für Anbieter“ (Papier, schmal) → Footer (Navy).
+Rhythmus der Startseite (Relaunch 3.2, `docs/relaunch/startseite-ia.md`): A Hero mit Suche (Navy) → B Themen (Papier) → D Ablauf mit Rückfall-Kasten (Sand) → E Ratgeber und Werkzeuge (Salbei) → F Vertrauen mit Hinweis für Anbieter (Papier) → Footer (Navy).
+
+Rhythmus von `/so-funktioniert-es/`: Seitenkopf (Papier) → Selbst suchen (Papier) → Persönliche Vermittlung (Navy) → Für Angehörige (Papier) → Bildband (Foto) → Vertrauen (Salbei) → Drei Wege (Papier) → Hinweis „Für Anbieter“ (Papier, schmal) → Footer (Navy).
 
 ## 4. Typografie
 
@@ -206,11 +208,11 @@ Rhythmus der Startseite: Hero (Navy) → Vertrauensleiste (Papier, schmal) → A
 | Breite | Wirkung |
 |---|---|
 | `30em` / `<30em` | Kleinster Handy-Bereich: Werkzeug-Buttons im Beitrag nebeneinander mit Kurzbeschriftung |
-| `40em` / `<40em` | 2-Spalten-Raster; mobile Kartenbilder 2:1 |
-| `48em` / `<48em` | Topbar sichtbar, Footer 2 Spalten; viele Komponenten-Anpassungen |
+| `40em` / `<40em` | 2-Spalten-Raster; mobile Kartenbilder 2:1; Ratgeber der Startseite darunter als kompakte Zeilen |
+| `48em` / `<48em` | Topbar und Kopf-Knopf „Anbieter suchen“ sichtbar, Footer 2 Spalten; darunter feste Handy-Leiste; viele Komponenten-Anpassungen |
 | `56em` | Beitragslayout |
 | `60em` / `<60em` | Desktop-Schrift 20px, Gutter 2rem, Hero zweispaltig |
-| `64em` | 3-Spalten-Raster, Anfrage-Layout, Footer 5 Spalten |
+| `64em` | 3-Spalten-Raster, Anfrage-Layout, Footer 5 Spalten, Themen der Startseite zweispaltig |
 | `68em` / `<68em` | Desktop-Navigation (darunter Menü-Button, mit JS einklappbar) |
 | `75em` | 4-Spalten-Raster (Ratgeber) |
 
@@ -223,7 +225,7 @@ Namensschema BEM (`block__element--modifier`), WordPress-tauglich (Template-Part
 ### 6.1 Buttons (`.btn`)
 
 - Pille (`border-radius: 999px`), `min-height: 48px`, Padding `0.7rem 1.4rem`, Rand 2px, fett, `1.0625em`, Übergang `--transition`.
-- Varianten: `.btn--primary` (Terrakotta-600, Weiß; Hover Terrakotta-700) nur für „Anfrage stellen“ (Header-CTA), den Hero-/Seitenkopf-CTA und Formular-Absenden; Karten-, Kachel- und Raster-Buttons (Drei Wege, Mein Alltag, Checklisten, Angehörigen-Panel der Startseite, Assistent „Weiter“) sind `.btn--secondary`; `.btn--secondary` (Weiß, Navy-Rand; Hover Navy-Fläche); `.btn--outline-light` (transparent, weißer Rand, auf Navy); `.btn--block` (volle Breite); `.btn--menu` (Radius 6px, für Menü-Toggle, `aria-expanded` füllt Navy).
+- Varianten: `.btn--primary` (Terrakotta-600, Weiß; Hover Terrakotta-700) nur für „Anbieter suchen“ (Kopf, Handy-Leiste), „Hilfe finden“ (Hero-Suche), „Bei uns melden“ (Rückfall-Kasten), Seitenkopf-CTAs und Formular-Absenden; Karten-, Kachel- und Raster-Buttons (Drei Wege, Mein Alltag, Checklisten, Angehörigen-Panel der Startseite, Assistent „Weiter“) sind `.btn--secondary`; `.btn--secondary` (Weiß, Navy-Rand; Hover Navy-Fläche); `.btn--outline-light` (transparent, weißer Rand, auf Navy); `.btn--block` (volle Breite); `.btn--menu` (Radius 6px, für Menü-Toggle, `aria-expanded` füllt Navy).
 - `.btn-group` ordnet mehrere Buttons.
 
 ### 6.2 Karten
@@ -233,7 +235,7 @@ Namensschema BEM (`block__element--modifier`), WordPress-tauglich (Template-Part
 - Teile: `.card__body`, `.card__title` (Sans), `.card__text`, `.card__examples`, `.card__actions`, `.card__link`, `.card__more`.
 - Themenkarten mobil (<40em, `.card-grid`): kompakte Zeile, quadratisches Vorschaubild (5.5rem) neben dem Titel, Text und Links darunter; Beispiel-Stichworte (`.card__examples`) nur ab 40em.
 - `.article-card` (Ratgeber): Bild 4:3 bzw. 3:2 mit Bildwelle (mobil 2:1, Anreißer auf 3 Zeilen gekürzt), Meta, Titel, Anreißer, `.article-card__pill`, `.article-card__stand`. Fokusring der ganzen Karte nur bei Tastaturfokus (`.article-card:has(a:focus-visible)`), nicht nach Mausklick.
-- `.way-card` (Startseite, Drei Wege 2 und 3): weiß, Sandrand, 6px Oberkante Salbei bzw. Terrakotta, Illustration links (mobil ausgeblendet), ganze Karte über den Titel-Link klickbar, Fokus wie `.article-card`.
+- `.way-card` (`/so-funktioniert-es/#drei-wege`; `.way-card--navy` für „Anbieter in Ihrer Region“): weiß, Sandrand, 6px Oberkante Salbei bzw. Terrakotta, Illustration links (mobil ausgeblendet), ganze Karte über den Titel-Link klickbar, Fokus wie `.article-card`.
 - `.provider-panel`: weiß, Sandrand, `--radius-l`.
 
 ### 6.3 Hinweisboxen (`.notice`)
@@ -250,7 +252,7 @@ Weiß, `--radius-m`, 6px Balken links, Icon. Varianten: Standard (Terrakotta-600
 
 ### 6.4a Schritt-Formulare (`assets/js/schritte.js`)
 
-Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind Schritt-für-Schritt-Formulare: je Schritt eine Frage oder kleine Gruppe (je 5 Schritte plus Versand-Schritt).
+Anfrage (`/anfrage/`), Anbieter-Registrierung und „Veranstaltung melden“ sind Schritt-für-Schritt-Formulare: je Schritt eine Frage oder kleine Gruppe (je 5 Schritte plus Versand-Schritt).
 
 - **Deklarativ:** `form[data-schritte]`, Schritte `[data-schritt]` (meist `.form__section`; gleicher Wert = derselbe Schritt, z. B. Betrieb/Privat), letzter Schritt `[data-schritt-versand]` (ohne JS `hidden`). Bestätigung: `data-schritte-erfolg="<id>"` (`.form-success`).
 - **Kopf** `.schritte__kopf`: „Schritt 2 von 6“ (`.schritte__stand`, Eyebrow-Stil) plus Segmentbalken `.schritte__balken` (Navy = erledigt/aktuell, Sand-300 = offen; Information steht immer auch im Text).
@@ -262,8 +264,8 @@ Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind
 
 ### 6.5 Header und Navigation
 
-- `.site-header`: Papiergrund (`--color-page`), 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt nur einen Hinweistext.
-- Ab 68em horizontale `.site-nav` mit `.site-nav__link` (18px, `--font-size-md`; bricht 68em–1440px nicht um), "Für Anbieter" kleiner (`--minor`, 17px) und CTA `.btn--primary` "Anfrage stellen". Darunter: `.btn--menu` klappt `#hauptnavigation` nur mit JS (`.js`) zu; ohne JS steht die Navigation offen.
+- `.site-header`: Papiergrund (`--color-page`), 1px Sandlinie unten, Balkenhöhe mind. 5rem. `.site-header__topbar` (Navy-900, nur ab 48em) trägt einen Hinweistext und den Link „Lieber persönlich? Bei uns melden“ (→ `/anfrage/`).
+- Ab 68em horizontale `.site-nav` mit `.site-nav__link` (18px, `--font-size-md`; bricht 68em–1440px nicht um), vier Punkte (Hilfe finden, Ratgeber, Mein Alltag, So funktioniert es); kein CTA „Anfrage stellen“ mehr im Kopf. Darunter: `.btn--menu` klappt `#hauptnavigation` nur mit JS (`.js`) zu; ohne JS steht die Navigation offen.
 - Aktiver Punkt: `aria-current="page"` (Übersicht) oder `aria-current="true"` (Unterseite).
 - Skip-Link `.skip-link` oben.
 
@@ -275,11 +277,13 @@ Anfrage (Startseite), Anbieter-Registrierung und „Veranstaltung melden“ sind
 
 - **Hero** (`.hero`): Navy, Bild 16:10 (Desktop rechts, füllend), `.hero__title`, `.hero__text`, `.hero__note`.
 - **Seitenkopf** `.page-header`, **Breadcrumb** `.breadcrumb`, **Check-Liste** `.check-list`, **Badge** `.badge` (Terrakotta-100), **Demo-Label** `.demo-label`.
-- **Assistent mit Suche** (Startseite `#assistent` und `/hilfe-finden/`, `assets/js/assistent.js`, Relaunch 3.1): weiße Karte `.assistent__card`; oben Fortschritt (`.assistent__progress`, `aria-live`) und Segmentbalken, darunter die gewählten Angaben als Zeile mit „ändern“-Links (`.assistent__auswahl`). Start: Suchfeld `.suche` (ARIA-Combobox, Feld 56px, Vorschlagsliste `.suche__liste` mit Navy-Rand, aktive Option Navy-Fläche plus gelber Innenring), darunter Abschnitte (`.assistent__abschnitt`, h4) mit Auswahlkarten `.choice-card--tap` (mind. 64px hoch, 12px Abstand, Raster `minmax(0, 1fr)`, keine Dropdowns). Filterfragen tragen den Satz „Ihre Antwort ändert die Liste“, Notizfragen „Für Ihr Gespräch … ändert die Liste nicht“ (`.assistent__frage-art`). Ergebnis: Trefferzahl (`.assistent__trefferzahl`, `role=status`), Anbieterkarten mit Unterkategorie (Salbei-700, fett), Hausbesuch ja/nein, E-Mail/Website-Links, Anrufen, Google-Link (keine Logos, keine Sterne); Notizzettel `.notizzettel` (Sand-50, gestrichelter Rand, „Das sollten Sie am Telefon sagen“); Rückfallweg `.assistent__melden` mit Terrakotta-Button „Bei uns melden“ (einzige Hauptaktion im Ergebnis). Fokus springt bei jedem Schrittwechsel auf die Überschrift. Ohne JS: Links auf Themenseiten und Anfrageformular.
-- **Knopf „Anbieter suchen“** (`.site-header__suche`, `.btn--secondary` mit Lupe `#icon-suche`): rechts im Kopf nach „Anfrage stellen“; unter 48em als volle Zeile unter Logo und Menü, 68–75em nur Lupe (Name bleibt für Screenreader). Auf `/hilfe-finden/` `aria-current="page"` (Navy-Fläche).
-- **Startseite, Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal in „So funktioniert’s“ (`#so-funktionierts`, Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Vertrauensleiste (`.trust`, Papiergrund) nur Stichworte, Formular-Seitenspalte nur zwei kurze Punkte.
+- **Assistent mit Suche** (`/hilfe-finden/`; Startseite nur Einstieg, `assets/js/assistent.js`, Relaunch 3.1): weiße Karte `.assistent__card`; oben Fortschritt (`.assistent__progress`, `aria-live`) und Segmentbalken, darunter die gewählten Angaben als Zeile mit „ändern“-Links (`.assistent__auswahl`). Start: Suchfeld `.suche` (ARIA-Combobox, Feld 56px, Vorschlagsliste `.suche__liste` mit Navy-Rand, aktive Option Navy-Fläche plus gelber Innenring), darunter Abschnitte (`.assistent__abschnitt`, h4) mit Auswahlkarten `.choice-card--tap` (mind. 64px hoch, 12px Abstand, Raster `minmax(0, 1fr)`, keine Dropdowns). Filterfragen tragen den Satz „Ihre Antwort ändert die Liste“, Notizfragen „Für Ihr Gespräch … ändert die Liste nicht“ (`.assistent__frage-art`). Ergebnis: Trefferzahl (`.assistent__trefferzahl`, `role=status`), Anbieterkarten mit Unterkategorie (Salbei-700, fett), Hausbesuch ja/nein, E-Mail/Website-Links, Anrufen, Google-Link (keine Logos, keine Sterne); Notizzettel `.notizzettel` (Sand-50, gestrichelter Rand, „Das sollten Sie am Telefon sagen“); Rückfallweg `.assistent__melden` mit Terrakotta-Button „Bei uns melden“ (einzige Hauptaktion im Ergebnis). Fokus springt bei jedem Schrittwechsel auf die Überschrift. Ohne JS: Links auf Themenseiten und Anfrageformular.
+- **Knopf „Anbieter suchen“** (`.site-header__suche`, `.btn--primary` mit Lupe `#icon-suche`, einzige Terrakotta-Fläche im Kopf): rechts im Kopf; unter 48em ausgeblendet (die Handy-Leiste übernimmt), 68–75em nur Lupe (Name bleibt für Screenreader). Auf `/hilfe-finden/` `aria-current="page"` (Navy-Fläche).
+- **Handy-Leiste** (`.leiste`, nur unter 48em): feste Leiste unten mit `.btn--primary` „Anbieter suchen“ in voller Breite, Höhe `--leiste-hoehe`; `body.hat-leiste` bekommt unten denselben Innenabstand, `scroll-padding-bottom` hält fokussierte Elemente frei. Nicht auf `/hilfe-finden/`, nicht im Druck, ausgeblendet bei Fokus in Eingabefeldern und auf der Startseite, solange die Hero-Suche sichtbar ist.
+- **Startseite 3.2:** Hero `.hero--suche` mit Suchfeld (`.suche--hero`, Combobox aus `assistent.js`, ohne JS GET-Formular), Chips `.hero-chips` (auf Navy: weißer Rand, weiße Schrift, mind. 48px; Hover weiße Fläche) und Stichworten `.hero__vertrauen` (mit Trennpunkt). Themen `.themen-start`/`.thema-start`: Bild, Titel-Link, 3–4 Unterthemen-Links (Sprungmarken der Leistungen auf der Themenseite, `:target` wird hervorgehoben), „Alle Leistungen“; einspaltig, ab 64em zweispaltig (bewusst kein Dreierraster). Ablauf `.ablauf__schritte` (Nummern über CSS-Zähler, keine Icons) und Rückfall-Kasten `.rueckfall` (weiß, Terrakotta-Linie links, Knopf „Bei uns melden“). Werkzeuge `.werkzeug-kachel` als Textkacheln ohne Bild. Vertrauen `.vertrauen` als Liste mit den vorhandenen Trust-Icons; „Sie entscheiden selbst“ nutzt `#icon-check` statt eines neuen Icons. Hinweis `.anbieter-hinweis` als eine Zeile.
+- **Botschaft „kostenlos, persönlich, keine anonyme Datenbank“:** steht ausführlich nur einmal auf `/so-funktioniert-es/#so-funktionierts` (Navy: Einleitung, drei Schritte, Hinweis „Sie behalten die Kontrolle / Ehrlich gesagt“). Startseite: Stichworte im Hero, kurze Fassung im Rückfall-Kasten; Formular-Seitenspalte auf `/anfrage/` nur zwei kurze Punkte.
 - **Drei Wege** (`#drei-wege`, darin `#themen`): Weg 1 „Hilfe finden“ = Themenraster (Kartentitel h4), Weg 2 und 3 als `.way-card`.
-- **Bildband** (`.photo-band`, Startseite zwischen „Drei Wege“ und „So funktioniert’s“): ein Stimmungsfoto über die volle Breite, kein Text auf dem Bild, echter Alt-Text, `loading="lazy"`. Mobil 3:2, ab 48em 21:9, höchstens 36rem hoch, `object-position: 50% 35%` (Gesichter bleiben im Bild). Höchstens ein Bildband pro Seite. Aktuell `ratgeber/gemeinsam-statt-einsam-*` (3:2-Zuschnitt aus `tools/bilder.py`).
+- **Bildband** (`.photo-band`, auf `/so-funktioniert-es/` zwischen „Für Angehörige“ und „Vertrauen“): ein Stimmungsfoto über die volle Breite, kein Text auf dem Bild, echter Alt-Text, `loading="lazy"`. Mobil 3:2, ab 48em 21:9, höchstens 36rem hoch, `object-position: 50% 35%` (Gesichter bleiben im Bild). Höchstens ein Bildband pro Seite. Aktuell `ratgeber/gemeinsam-statt-einsam-*` (3:2-Zuschnitt aus `tools/bilder.py`).
 - **Hinweis „Für Anbieter“** (`.provider-hint`, `#fuer-anbieter`): eine Zeile plus Link auf `/fuer-anbieter/`, direkt vor dem Footer.
 
 ### 6.8 Ratgeber-Elemente
@@ -335,6 +339,8 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Semantik:** Landmarken, Skip-Link, `aria-current`, `aria-expanded`, `aria-describedby`, `aria-invalid`, `aria-pressed`, `role="status"` und `aria-live` für Rückmeldungen. `.visually-hidden` für reine Screenreader-Texte.
 - **Bilder:** immer sinnvoller Alt-Text (Beitragsbilder per Frontmatter `bild_alt`).
 - **Fehlermeldungen:** in einfacher Sprache, mit Zusammenfassung und Sprunglinks.
+- **Reflow (A11Y-01/02):** keine Seite scrollt bei 320px waagerecht; Rasterspalten mit `minmax(0, 1fr)`, Rasterkinder mit `min-width: 0`, h1–h3 mit `hyphens: auto` und `overflow-wrap`, lange Footer-Links brechen um. Geprüft in `tests/startseite.e2e.js` (320/390/768/1440).
+- **Eine h1 je Zustand (A11Y-05):** Der Pflegegrad-Rechner hat in Fragen, Übersicht und Ergebnis eine visuell verborgene h1 (`data-pgr-h1`), auf dem Startbildschirm die sichtbare.
 - **Bewegung:** siehe Abschnitt 7.
 
 ## 9. Bildsprache
@@ -355,7 +361,7 @@ Weißer Grund, schwarze Schrift 12pt, kein Header, Footer, Navigation, Buttons, 
 - **Anbieterprofile** sind nicht öffentlich.
 - **Ratgeber:** ohne Autor, mit sichtbarem "Stand"; Förderbeträge immer mit Quelle. Inhalte gehen vom Rechtsstand 2027 aus.
 - **Beispieldaten** sind als Prototyp gekennzeichnet (`.demo-label`).
-- Buttons nennen die Handlung ("Anfrage stellen", "Hilfe finden"), nicht "Hier klicken".
+- Buttons nennen die Handlung ("Anbieter suchen", "Bei uns melden", "Hilfe finden"), nicht "Hier klicken".
 - Bindestriche: kein Gedankenstrich in Fließtext; Gedankenstrich nur in Titeln, wenn bereits vorhanden.
 
 ## 11. Dos und Don'ts

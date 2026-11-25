@@ -1,5 +1,5 @@
 // Ende-zu-Ende-Test der Anbieter-Trefferliste im Anfrageformular (Playwright).
-// Aufruf: python3 -m http.server 8765 &   SHOTS=<ordner> node tests/anbieter.e2e.js
+// Aufruf (Formular auf /anfrage/, Assistent auf /hilfe-finden/): python3 -m http.server 8765 &   SHOTS=<ordner> node tests/anbieter.e2e.js
 // Prüft: Ablauf Pflege + Wuppertal bis Kontaktfenster, Mehrfachauswahl, Zähler, Weitere anzeigen,
 // Leerzustand (Wesel), Druckansicht (nur Dialog), Mobil 390 px / Desktop 1440 px ohne horizontales Scrollen,
 // keine Konsolenfehler.
@@ -11,7 +11,7 @@ const BASE = process.env.BASE || "http://localhost:8765";
 const SHOTS = process.env.SHOTS;
 
 async function bisAnbieter(page, thema, ort, plz) {
-  await page.goto(BASE + "/#anfrage");
+  await page.goto(BASE + "/anfrage/");
   await page.check("#f-wer-selbst");
   await page.selectOption("#f-thema", thema);
   await page.click(".schritte__weiter");
@@ -121,7 +121,7 @@ async function keinHorizontalesScrollen(page, label) {
   // Ohne JS: Schritt verborgen, Formular unverändert
   const ctxN = await browser.newContext({ javaScriptEnabled: false });
   const pageN = await ctxN.newPage();
-  await pageN.goto(BASE + "/");
+  await pageN.goto(BASE + "/anfrage/");
   assert.equal(await pageN.locator("[data-schritt-anbieter]").isVisible(), false);
   assert.equal(await pageN.locator("#f-vorname").isVisible(), true);
   await ctxN.close();
@@ -141,7 +141,7 @@ async function keinHorizontalesScrollen(page, label) {
     const page = await ctx.newPage();
     page.on("console", (m) => { if (m.type() === "error") fehler.push(`assistent ${name}: ${m.text()}`); });
     page.on("pageerror", (e) => fehler.push(`assistent ${name}: ${e.message}`));
-    await page.goto(BASE + "/");
+    await page.goto(BASE + "/hilfe-finden/");
     const app = page.locator("[data-assistent-app]");
     await app.locator(".assistent__card").waitFor();
     let tipps = 0;
@@ -159,7 +159,7 @@ async function keinHorizontalesScrollen(page, label) {
     assert.match(await app.textContent(), /öffentlich zugänglichen Quellen, Stand November 2026, ohne Gewähr/);
     assert.ok(await app.locator(".anbieter-karte__anruf").count() > 0, "Anrufen auf Karten im Assistenten");
     assert.equal(await app.getByRole("link", { name: "Bei uns melden" }).count(), 1);
-    assert.match(await app.getByRole("link", { name: "Bei uns melden" }).getAttribute("href"), /thema=haushalt-reinigung.*ort=Wuppertal.*#anfrage/);
+    assert.match(await app.getByRole("link", { name: "Bei uns melden" }).getAttribute("href"), /^\/anfrage\/\?.*thema=haushalt-reinigung.*ort=Wuppertal/);
     await app.locator(".anbieter-karte__wahl").nth(0).click();
     if (karten > 1) {
       await app.locator(".anbieter-karte__wahl").nth(1).click();

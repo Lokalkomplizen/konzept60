@@ -35,29 +35,100 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Pflege 2027: Was sich zum 1. Januar ändern soll",
-    "description": "Neue Pflegebudgets, Änderungen beim Pflegegrad und andere Möglichkeiten zur Unterstützung im Alltag: Zum 1. Januar 2027 plant die Bundesregierung eine…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/pflegereform-2027-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Pflege und Betreuung",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/pflegereform-2027/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Pflege 2027: Was sich zum 1. Januar ändern soll",
+      "description": "Neue Pflegebudgets, Änderungen beim Pflegegrad und andere Möglichkeiten zur Unterstützung im Alltag: Zum 1. Januar 2027 plant die Bundesregierung eine…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/pflegereform-2027-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T19:00:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Pflege und Betreuung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/pflegereform-2027/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pflege und Betreuung",
+          "item": "https://www.example.org/ratgeber/pflege-betreuung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Pflege 2027: Was sich zum 1. Januar ändern soll",
+          "item": "https://www.example.org/ratgeber/pflegereform-2027/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was bedeuten die neuen Budgets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Entlastungsbudget soll die selbst organisierte Pflege zu Hause unterstützen. Daraus können beispielsweise auch private Ersatzpflege und Pflegehilfsmittel finanziert werden. Das Sachleistungsbudget ist für professionelle Unterstützung durch ambulante Pflege- und Betreuungsdienste vorgesehen. Die Kombination aus selbst organisierter und professioneller Pflege soll weiterhin möglich sein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was bedeutet das für Menschen mit bestehendem Pflegegrad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wer bereits einen anerkannten Pflegegrad besitzt, soll Bestandsschutz erhalten. Eine automatische Neubegutachtung oder Herabstufung allein wegen der neuen Punktgrenzen ist nicht vorgesehen. Bei neuen Anträgen und Begutachtungen könnten die veränderten Schwellenwerte dagegen eine Rolle spielen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ändert sich für Menschen mit Pflegegrad 1?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für Menschen mit Pflegegrad 1 sind die geplanten Veränderungen besonders wichtig. Nach dem aktuellen Entwurf sollen folgende Leistungen weiterhin zur Verfügung stehen: Pflegeberatung Zuschüsse für wohnumfeldverbessernde Maßnahmen Pflegekurse für Angehörige Allerdings sollen der bisherige monatliche Entlastungsbetrag und die Zuschüsse für zum Verbrauch bestimmte Pflegehilfsmittel entfallen. Ausgenommen sind nach dem Entwurf saugende Bettschutzeinlagen. Wer Pflegegrad 1 hat, sollte sich deshalb rechtzeitig informieren und prüfen, welche Unterstützung künftig noch zur Verfügung steht."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was sollten Pflegebedürftige und Angehörige jetzt tun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Auch wenn die Reform noch nicht endgültig beschlossen ist, lohnt es sich, sich frühzeitig vorzubereiten. Unsere Empfehlungen: Informieren Sie sich über die geplanten Veränderungen bei Ihrer Pflegekasse. Prüfen Sie, welche Leistungen Sie derzeit nutzen. Klären Sie mit Ihrem Pflegedienst, ob sich die Abrechnung künftig verändert. Prüfen Sie, ob Ihnen noch nicht genutzte Leistungen aus dem Jahr 2026 zustehen. Lassen Sie sich beraten, wenn Sie Unterstützung im Haushalt oder bei der Betreuung benötigen. Besonders wichtig: Wer Leistungen aus der bisherigen Verhinderungs- oder Kurzzeitpflege für 2026 noch nicht abgerechnet hat, sollte die Abrechnung rechtzeitig klären. Nach geltendem Recht können Kosten aus 2026 noch bis zum 31. Dezember 2027 geltend gemacht werden. Eine eigene Übergangsregel enthält der Entwurf nicht. Rechnen Sie deshalb möglichst früh ab."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +206,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +218,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></li>
             <li><a href="/ratgeber/pflegereform-2027/" aria-current="page">Pflege 2027: Was sich zum 1. Januar ändern soll</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></p>
           <h1>Pflege 2027: Was sich zum 1. Januar ändern soll</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026 (Gesetzentwurf)</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -208,6 +282,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Zum 1. Januar 2027 plant die Bundesregierung eine umfassende Reform der Pflegeversicherung. Das Gesetzgebungsverfahren ist noch nicht abgeschlossen.</li>
+              <li>Pflegegeld, Pflegesachleistungen, Entlastungsbetrag, Verhinderungspflege und Kurzzeitpflege sollen in vier Budgets zusammengefasst werden.</li>
+              <li>Statt des Entlastungsbetrags ist ab Pflegegrad 2 ein Sozialraumbudget von monatlich 175 Euro vorgesehen. Für Pflegegrad 1 würde der Entlastungsbetrag von 131 Euro entfallen.</li>
+              <li>Wer bereits einen anerkannten Pflegegrad hat, soll Bestandsschutz erhalten.</li>
+              <li>Kosten aus 2026 für Verhinderungs- oder Kurzzeitpflege können nach geltendem Recht noch bis zum 31. Dezember 2027 geltend gemacht werden.</li>
+            </ul>
+          </section>
+
         <p>Neue Pflegebudgets, Änderungen beim <a href="/ratgeber/pflegegrad-beantragen/">Pflegegrad</a> und andere Möglichkeiten zur Unterstützung im Alltag: Zum 1. Januar 2027 plant die Bundesregierung eine umfassende Reform der Pflegeversicherung. Für Pflegebedürftige und ihre Angehörigen könnte sich dadurch einiges verändern. Wir erklären die wichtigsten geplanten Neuerungen und worauf Sie sich einstellen sollten.</p>
         <h2 id="pflegeleistungen-werden-neu-geordnet">1. Pflegeleistungen werden neu geordnet</h2>
         <p>Eine der größten geplanten Veränderungen betrifft die Leistungen für Menschen, die zu Hause gepflegt werden.</p>
@@ -236,7 +321,7 @@
             </tbody>
           </table>
         </div>
-        <h3>Was bedeuten die neuen Budgets?</h3>
+        <h3 id="was-bedeuten-die-neuen-budgets">Was bedeuten die neuen Budgets?</h3>
         <p>Das Entlastungsbudget soll die selbst organisierte Pflege zu Hause unterstützen. Daraus können beispielsweise auch private Ersatzpflege und Pflegehilfsmittel finanziert werden.</p>
         <p>Das Sachleistungsbudget ist für professionelle Unterstützung durch ambulante Pflege- und Betreuungsdienste vorgesehen.</p>
         <p>Die Kombination aus selbst organisierter und professioneller Pflege soll weiterhin möglich sein.</p>
@@ -278,7 +363,7 @@
             </tbody>
           </table>
         </div>
-        <h3>Was bedeutet das für Menschen mit bestehendem Pflegegrad?</h3>
+        <h3 id="was-bedeutet-das-fuer-menschen-mit-bestehendem-pflegegrad">Was bedeutet das für Menschen mit bestehendem Pflegegrad?</h3>
         <p>Wer bereits einen anerkannten Pflegegrad besitzt, soll Bestandsschutz erhalten. Eine automatische Neubegutachtung oder Herabstufung allein wegen der neuen Punktgrenzen ist nicht vorgesehen.</p>
         <p>Bei neuen Anträgen und Begutachtungen könnten die veränderten Schwellenwerte dagegen eine Rolle spielen.</p>
         <h2 id="was-aendert-sich-fuer-menschen-mit-pflegegrad-1">6. Was ändert sich für Menschen mit Pflegegrad 1?</h2>
@@ -324,6 +409,21 @@
         <p>Konzept 60+ informiert Sie über wichtige Entwicklungen rund um Pflege, Betreuung und Unterstützung im Alltag.</p>
         <p>Wenn Sie <a href="/anfrage/?thema=pflege-betreuung">Hilfe bei der Suche nach einer Haushaltshilfe, einem Pflegedienst oder einer Alltagsbegleitung benötigen</a>, unterstützen wir Sie dabei, passende Ansprechpartner in Ihrer Region zu finden.</p>
         <p>Denn wer gut informiert ist, kann bessere Entscheidungen treffen.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-bedeuten-die-neuen-budgets">Was bedeuten die neuen Budgets?</a></li>
+              <li><a href="#was-bedeutet-das-fuer-menschen-mit-bestehendem-pflegegrad">Was bedeutet das für Menschen mit bestehendem Pflegegrad?</a></li>
+              <li><a href="#was-aendert-sich-fuer-menschen-mit-pflegegrad-1">Was ändert sich für Menschen mit Pflegegrad 1?</a></li>
+              <li><a href="#was-sollten-pflegebeduerftige-und-angehoerige-jetzt-tun">Was sollten Pflegebedürftige und Angehörige jetzt tun?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026 (Gesetzentwurf). Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -340,18 +440,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Pflege und Betreuung?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Pflegedienst und Pflege“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=pflegedienst">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -359,19 +460,8 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/kurzzeitpflege-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Pflege und Betreuung</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/kurzzeitpflege/">Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</a></h3>
-              <p class="article-card__text">Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/pflegegrad-beantragen-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
@@ -385,18 +475,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/kurzzeitpflege-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
-              <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Pflege und Betreuung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/kurzzeitpflege/">Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</a></h3>
+              <p class="article-card__text">Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Finanzen und Förderung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
+              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=pflege-betreuung">Weitere Beiträge zum Thema Pflege und Betreuung</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/pflege-betreuung/">Alle Beiträge im Bereich Pflege und Betreuung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -485,7 +586,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

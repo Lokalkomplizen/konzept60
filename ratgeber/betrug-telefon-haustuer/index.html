@@ -35,29 +35,76 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
-    "description": "Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/betrug-telefon-haustuer-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Technik und Sicherheit",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/betrug-telefon-haustuer/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
+      "description": "Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/betrug-telefon-haustuer-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T16:30:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/betrug-telefon-haustuer/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür",
+          "item": "https://www.example.org/ratgeber/betrug-telefon-haustuer/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was tun, wenn Sie unsicher sind?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Legen Sie auf oder schließen Sie die Tür. Überweisen Sie kein Geld und übergeben Sie keine Wertsachen. Rufen Sie eine vertraute Person an. Kontaktieren Sie bei einem Betrugsverdacht die Polizei. Wenn Sie bereits Geld oder Daten herausgegeben haben, informieren Sie sofort Ihre Bank und die Polizei."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +182,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +194,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/betrug-telefon-haustuer/" aria-current="page">Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -205,6 +255,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Betrüger setzen häufig auf Zeitdruck, Angst oder Vertrauen. Lassen Sie sich nicht hetzen und beenden Sie im Zweifel das Gespräch.</li>
+              <li>Die Polizei fordert Sie niemals dazu auf, Bargeld oder Wertsachen zur Übergabe bereitzulegen.</li>
+              <li>Lassen Sie niemanden unangekündigt in Ihre Wohnung und prüfen Sie Angaben über eine selbst recherchierte Telefonnummer.</li>
+              <li>Banken und seriöse Unternehmen fragen Sie nicht nach Ihrer PIN oder Ihrem Passwort.</li>
+              <li>Ein persönliches Kennwort in der Familie hilft, falsche Schockanrufe zu entlarven.</li>
+            </ul>
+          </section>
+
         <p>Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu gelangen. Dabei setzen sie häufig auf Zeitdruck, Angst oder das Vertrauen ihrer Gesprächspartner.</p>
         <p>Mit etwas Aufmerksamkeit und ein paar einfachen Regeln können Sie sich und Ihre Angehörigen besser schützen.</p>
         <h2 id="lassen-sie-sich-nicht-unter-druck-setzen">1. Lassen Sie sich nicht unter Druck setzen</h2>
@@ -237,6 +298,18 @@
         <h2 id="gemeinsam-besser-geschuetzt">Gemeinsam besser geschützt</h2>
         <p>Niemand muss sich für einen Betrugsversuch schämen. Die Täter sind oft sehr geschickt und arbeiten mit psychologischem Druck. Wer aufmerksam bleibt, sich Zeit nimmt und im Zweifel nachfragt, kann sich wirksam schützen.</p>
         <p>Wir möchten dabei helfen, den Alltag sicherer und selbstbestimmter zu gestalten. Sprechen Sie auch mit Ihren Angehörigen über solche Situationen. Ein kurzes Gespräch kann viel bewirken.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-tun-wenn-sie-unsicher-sind">Was tun, wenn Sie unsicher sind?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -272,24 +345,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/hausnotruf-auswahl-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Technik und Sicherheit</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/hausnotruf-auswahl/">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></h3>
-              <p class="article-card__text">Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
               <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -298,18 +360,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
-              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></h3>
+              <p class="article-card__text">Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/krankenfahrten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></h3>
+              <p class="article-card__text">Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=technik-sicherheit">Weitere Beiträge zum Thema Technik und Sicherheit</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -398,7 +471,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

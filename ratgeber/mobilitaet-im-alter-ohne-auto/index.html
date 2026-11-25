@@ -35,29 +35,308 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?",
-    "description": "Ohne Auto mobil bleiben: Bus und Bahn, Bürgerbus, Rufbus, Fahrdienste, Krankenfahrten, Vergünstigungen und finanzielle Hilfen für Menschen ab 60 erklärt.",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/mobilitaet-haltestelle-1400.jpg"
-    ],
-    "dateModified": "2026-11-23",
-    "inLanguage": "de-DE",
-    "articleSection": "Alltag und persönliche Hilfe",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/mobilitaet-im-alter-ohne-auto/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?",
+      "description": "Ohne Auto mobil bleiben: Bus und Bahn, Bürgerbus, Rufbus, Fahrdienste, Krankenfahrten, Vergünstigungen und finanzielle Hilfen für Menschen ab 60 erklärt.",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/mobilitaet-haltestelle-1400.jpg"
+      ],
+      "datePublished": "2026-11-23T15:00:00+01:00",
+      "dateModified": "2026-11-23",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/mobilitaet-im-alter-ohne-auto/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?",
+          "item": "https://www.example.org/ratgeber/mobilitaet-im-alter-ohne-auto/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wann ist es sinnvoll, das Autofahren aufzugeben?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Entscheidung, nicht mehr selbst Auto zu fahren, ist für viele Menschen emotional schwierig. Schließlich bedeutet der Führerschein oft jahrzehntelange Unabhängigkeit. Es gibt keinen festen Geburtstag, an dem Autofahren automatisch nicht mehr möglich oder erlaubt ist. Entscheidend ist die individuelle Fahrtüchtigkeit. Mit zunehmendem Alter können sich verschiedene Fähigkeiten verändern: Sehschärfe und Dämmerungssehen Reaktionsgeschwindigkeit Beweglichkeit von Kopf und Nacken Konzentrationsfähigkeit Hörvermögen Belastbarkeit Beweglichkeit beim Ein- und Aussteigen Auch Medikamente oder Erkrankungen können die Fahrtüchtigkeit beeinflussen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es eine verpflichtende Fahrtauglichkeitsprüfung ab einem bestimmten Alter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Deutschland gibt es derzeit keine allgemeine verpflichtende medizinische Fahrtauglichkeitsuntersuchung allein aufgrund eines bestimmten Lebensalters für Inhaber eines regulären Pkw-Führerscheins. Das bedeutet jedoch nicht, dass gesundheitliche Einschränkungen ignoriert werden dürfen. Wer aufgrund einer Erkrankung oder körperlichen Einschränkung nicht mehr sicher fahren kann, muss dies berücksichtigen. Eine freiwillige ärztliche Untersuchung oder ein Fahr-Fitness-Check kann helfen, die eigene Situation realistisch einzuschätzen. Unser Tipp: Warten Sie nicht auf einen Unfall oder eine gefährliche Situation. Es ist leichter, sich schrittweise an neue Mobilitätsmöglichkeiten zu gewöhnen, solange man noch selbstständig und flexibel ist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Verkehrsmittel gehören zum ÖPNV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Linienbusse Straßenbahnen U-Bahnen S-Bahnen Regionalbahnen Regional-Express-Züge bestimmte Rufbusse und bedarfsorientierte Verkehrsangebote Ein großer Vorteil: Wer regelmäßig Bus und Bahn nutzt, muss sich nicht um Reparaturen, Versicherung, Parkplatzsuche oder Kraftstoff kümmern."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet die Nutzung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Preise unterscheiden sich je nach Verkehrsverbund und Strecke. In vielen Regionen gibt es Einzel-, Tages-, Wochen- und Monatstickets. Eine bundesweit gültige Möglichkeit ist das Deutschlandticket."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es besondere Seniorentickets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Viele Verkehrsverbünde bieten spezielle Tarife für ältere Menschen an. Die Bedingungen unterscheiden sich regional. Mögliche Angebote sind: vergünstigte Monatstickets Seniorentickets mit zeitlicher Einschränkung günstige Jahresabonnements Sozialtickets für Menschen mit geringem Einkommen besondere Angebote für Menschen mit Schwerbehinderung Erkundigen Sie sich beim örtlichen Verkehrsverbund oder im Kundencenter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Krankenfahrten: Wann übernimmt die Krankenkasse die Kosten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein besonders wichtiges Thema sind Fahrten zu Arztterminen, Dialyse, Chemotherapie oder anderen medizinisch notwendigen Behandlungen. Viele Menschen wissen nicht, dass gesetzliche Krankenkassen unter bestimmten Voraussetzungen die Kosten für Krankenfahrten übernehmen können. Dabei muss zwischen einer normalen Krankenfahrt und einem medizinisch notwendigen Krankentransport unterschieden werden. Ausführlich erklärt unser Ratgeber Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie, wie Verordnung, Genehmigung und Abrechnung ablaufen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist eine Krankenfahrt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Krankenfahrt ist eine Beförderung zu einer medizinischen Behandlung, bei der keine medizinische Betreuung während der Fahrt erforderlich ist. Dafür können beispielsweise genutzt werden: Taxi Mietwagen andere geeignete Fahrzeuge"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist ein Krankentransport?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein Krankentransport wird benötigt, wenn während der Fahrt eine medizinisch-fachliche Betreuung erforderlich ist oder ein speziell ausgestattetes Krankentransportfahrzeug notwendig ist. Die Entscheidung über das geeignete Transportmittel trifft die behandelnde Ärztin oder der behandelnde Arzt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wann übernimmt die Krankenkasse die Kosten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die gesetzlichen Krankenkassen übernehmen Fahrkosten insbesondere bei: stationären Krankenhausbehandlungen Rettungsfahrten zum Krankenhaus medizinisch notwendigen Krankentransporten bestimmten vor- und nachstationären Krankenhausbehandlungen ambulanten Operationen unter den gesetzlichen Voraussetzungen Bei ambulanten Behandlungen ist die Kostenübernahme grundsätzlich eingeschränkt. Eine Ausnahme kann beispielsweise bei folgenden Voraussetzungen bestehen: Schwerbehindertenausweis mit Merkzeichen aG, Bl oder H Pflegegrad 4 oder 5 Pflegegrad 3 in Verbindung mit einer dauerhaften Beeinträchtigung der Mobilität Wie ein Pflegegrad beantragt wird, lesen Sie im Ratgeber Pflegegrad beantragen. Eine erste Einschätzung gibt unser Pflegegradrechner. Auch bei bestimmten hochfrequenten Behandlungen wie Dialyse, onkologischer Strahlen- oder Chemotherapie kann eine Kostenübernahme möglich sein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Brauche ich eine ärztliche Verordnung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Für Krankenfahrten zu ambulanten Behandlungen ist grundsätzlich eine ärztliche Verordnung erforderlich. In vielen Fällen muss die Krankenkasse die Fahrt außerdem vorher genehmigen. Für bestimmte Personengruppen mit den genannten Merkzeichen oder Pflegegraden entfällt die vorherige Genehmigung bei Fahrten mit Taxi oder Mietwagen unter den gesetzlichen Voraussetzungen. Für einen Krankentransportwagen ist weiterhin eine Genehmigung nötig. Wichtig: Ein Pflegegrad allein bedeutet nicht, dass jede Taxifahrt zum Arzt von der Krankenkasse bezahlt wird. Auch eine ärztliche Verordnung führt nicht automatisch zu einer Kostenübernahme. Klären Sie die Voraussetzungen vor der Fahrt mit Ihrer Krankenkasse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie hoch ist die Zuzahlung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für gesetzlich Versicherte gilt bei erstattungsfähigen Krankenfahrten grundsätzlich eine Zuzahlung von: 10 Prozent der Fahrtkosten mindestens 5 Euro höchstens 10 Euro je Fahrt Die Zuzahlung darf die tatsächlichen Fahrtkosten nicht überschreiten. Wichtig: Ab 1. Januar 2027 sollen die Zuzahlungen steigen, für Fahrten voraussichtlich auf mindestens 7,50 Euro und höchstens 15 Euro je Fahrt (GKV-Beitragssatz­stabilisierungs­gesetz). Bitte den aktuellen Betrag bei Ihrer Krankenkasse erfragen. Wer von gesetzlichen Zuzahlungen befreit ist, sollte dies bei der Krankenkasse beziehungsweise beim Fahrdienst nachweisen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Merkzeichen berechtigen zur unentgeltlichen Beförderung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Berechtigung kann bei folgenden Merkzeichen bestehen: G: erhebliche Beeinträchtigung der Bewegungsfähigkeit im Straßenverkehr aG: außergewöhnliche Gehbehinderung H: Hilflosigkeit Bl: Blindheit Gl: Gehörlosigkeit Zusätzlich wird grundsätzlich ein Beiblatt mit gültiger Wertmarke benötigt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet die Wertmarke?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Eigenbeteiligung beträgt derzeit 104 Euro für ein Jahr und 53 Euro für ein halbes Jahr (Stand November 2026). Der Betrag wird in größeren Abständen angepasst; den aktuellen Preis nennt das Versorgungsamt. Unter bestimmten Voraussetzungen wird die Wertmarke kostenlos ausgegeben, beispielsweise bei bestimmten Merkzeichen oder beim Bezug bestimmter Sozialleistungen. Die genauen Voraussetzungen ergeben sich aus §§ 228 bis 230 SGB IX."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Darf eine Begleitperson kostenlos mitfahren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wenn im Schwerbehindertenausweis das Merkzeichen B eingetragen ist, kann eine notwendige Begleitperson im öffentlichen Personenverkehr grundsätzlich unentgeltlich mitfahren. Das gilt im Rahmen der gesetzlichen Beförderungsregelungen. Für bestimmte zuschlagpflichtige Leistungen können zusätzliche Bestimmungen gelten. Wichtig: Die Freifahrt gilt für den öffentlichen Nahverkehr, nicht automatisch für ICE, IC oder EC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Worauf sollten Sie achten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gute und ausreichende Beleuchtung Ebenmäßige und rutschfeste Wege Möglichst wenige Bordsteinkanten Ausreichend Sitzgelegenheiten Sichere Überquerungsmöglichkeiten Gut erreichbare Haltestellen Kurze Wege zu wichtigen Einrichtungen Auch die Wahl des richtigen Schuhwerks spielt eine wichtige Rolle. Wer unsicher auf den Beinen ist, sollte gegebenenfalls eine Gehhilfe nutzen und sich beraten lassen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Worauf sollten ältere Fahrer achten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das Fahrrad sollte eine passende Rahmenhöhe haben. Ein tiefer Einstieg erleichtert das Auf- und Absteigen. Die Bremsen müssen zuverlässig funktionieren. Die Sitzposition sollte bequem und sicher sein. Der Umgang mit dem Motor sollte zunächst auf ruhigen Wegen geübt werden. Ein gut sitzender Fahrradhelm ist empfehlenswert. Ein Pedelec fährt mit elektrischer Unterstützung bis 25 km/h. Ein sogenanntes S-Pedelec kann deutlich höhere Geschwindigkeiten erreichen und unterliegt anderen rechtlichen Anforderungen. Wer längere Zeit nicht Fahrrad gefahren ist, sollte nicht direkt mit starkem Verkehr beginnen. Ein Fahrtraining oder eine Übungsrunde auf einem verkehrsarmen Gelände kann helfen. Unser Tipp: Ein Dreirad oder ein spezielles Seniorenrad kann für Menschen mit Gleichgewichtsproblemen eine Alternative sein. Lassen Sie sich vor dem Kauf beraten und probieren Sie das Fahrzeug unbedingt aus."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wo findet man solche Angebote?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mögliche Ansprechpartner sind: Seniorenbüros Stadtteilzentren Mehrgenerationenhäuser Wohlfahrtsverbände Kirchengemeinden Nachbarschaftsvereine Bürgerbusvereine Freiwilligenagenturen lokale Initiativen Was öffentlich geförderte Mehrgenerationenhäuser als Begegnungsorte leisten, erklärt unser Ratgeber Mehrgenerationenhaus. Gemeinsame Ausflüge und Treffen in Ihrer Stadt finden Sie auch in unserem Veranstaltungskalender. Die Angebote unterscheiden sich erheblich. Manche Fahrdienste verlangen nur eine kleine Kostenbeteiligung, andere arbeiten mit festen Tarifen oder Mitgliedsbeiträgen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was sollte vorher geklärt werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bei ehrenamtlichen Fahrangeboten sollten Sie nachfragen: Wer organisiert den Fahrdienst? Ist der Fahrer versichert? Welche Fahrten werden angeboten? Wie weit im Voraus muss gebucht werden? Gibt es eine Kostenbeteiligung? Werden Rollatoren oder Rollstühle transportiert? Ist eine Begleitung bis zur Wohnung möglich? Bei regelmäßigen Fahrten empfiehlt es sich, feste Absprachen zu treffen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mobilitäts-Apps und digitale Fahrpläne: Hilfe oder Hindernis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Digitale Angebote können die Mobilität erheblich erleichtern. Mit einer App lassen sich Verbindungen suchen, Verspätungen erkennen und Tickets kaufen. Viele Informationen sind inzwischen auch in Echtzeit verfügbar. Allerdings sind nicht alle älteren Menschen mit Smartphones und digitalen Anwendungen vertraut. Deshalb sollte niemand gezwungen sein, ausschließlich digitale Angebote zu nutzen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist bei der Nutzung wichtig?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Verbindungen möglichst zu Hause vorbereiten. Wichtige Haltestellen als Favoriten speichern. Eine Verbindung mit wenigen Umstiegen wählen. Genügend Zeit für den Umstieg einplanen. Die Rückfahrt gleich mitplanen. Das Smartphone ausreichend aufladen. Wichtige Telefonnummern zusätzlich auf Papier notieren. Wer sich mit dem Smartphone unsicher fühlt, kann sich von Angehörigen, Seniorenbüros oder Volkshochschulen helfen lassen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kostet Mobilität ohne eigenes Auto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein eigenes Auto verursacht nicht nur Kosten für Kraftstoff. Auch Versicherung, Kfz-Steuer, Wartung, Reparaturen, Reifen, TÜV und Wertverlust müssen berücksichtigt werden. Wer das Auto nicht mehr benötigt, kann durch den Verzicht erhebliche Ausgaben einsparen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche finanzielle Unterstützung gibt es?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nicht jeder kann sich zusätzliche Fahrten leisten. Gerade Menschen mit kleiner Rente müssen genau überlegen, welche Ausgaben möglich sind. Welche Hilfen es generell bei knapper Rente gibt, zeigt unser Ratgeber Wenn die Rente nicht reicht. Es gibt verschiedene Möglichkeiten, die finanzielle Belastung zu reduzieren."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie finde ich passende Mobilitätsangebote in meiner Nähe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Viele Angebote sind vorhanden, aber nicht immer leicht zu finden. Eine gute Anlaufstelle ist die eigene Stadt oder Gemeinde. Folgende Stellen können weiterhelfen: Seniorenbüro: Seniorenbüros kennen häufig lokale Fahrdienste, Nachbarschaftshilfen, Begegnungsangebote und ehrenamtliche Initiativen. Sozialamt: Hier können Sie sich nach möglichen Vergünstigungen, Sozialtickets und kommunalen Unterstützungsangeboten erkundigen. Verkehrsunternehmen und Verkehrsverbünde: Sie informieren über Fahrpläne, Rufbusse, TaxiBusse, Bürgerbusse und vergünstigte Tickets. Wohlfahrtsverbände: Caritas, Diakonie, Deutsches Rotes Kreuz, Arbeiterwohlfahrt und andere Organisationen bieten regional unterschiedliche Unterstützungsangebote an. Freiwilligenagenturen: Sie vermitteln häufig ehrenamtliche Unterstützung und kennen lokale Initiativen. Pflegestützpunkte und Pflegeberatungsstellen: Wenn Mobilitätsprobleme mit einer Pflegebedürftigkeit zusammenhängen, können Pflegeberatungsstellen geeignete Unterstützungsangebote aufzeigen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Darf ich im Alter unbegrenzt Auto fahren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für Inhaber eines regulären Pkw-Führerscheins gibt es in Deutschland keine allgemeine Altersgrenze und keine verpflichtende Fahrtauglichkeitsprüfung allein aufgrund des Lebensalters. Entscheidend ist die tatsächliche Fahrtüchtigkeit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es ein kostenloses Seniorenticket?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein bundesweit kostenloses Seniorenticket gibt es nicht. Viele Verkehrsverbünde bieten jedoch vergünstigte Seniorentarife oder Sozialtickets an."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kann ich mit einem Schwerbehindertenausweis kostenlos Bus und Bahn fahren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unter bestimmten Voraussetzungen ja. Erforderlich sind bestimmte Merkzeichen und grundsätzlich ein gültiges Beiblatt mit Wertmarke."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Übernimmt die Krankenkasse Taxifahrten zum Arzt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nur unter bestimmten medizinischen und gesetzlichen Voraussetzungen. Bei ambulanten Behandlungen sind eine ärztliche Verordnung und häufig eine vorherige Genehmigung notwendig."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wer bezahlt einen Fahrdienst für Senioren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das hängt vom Anbieter ab. Private Fahrdienste werden in der Regel selbst bezahlt. Kommunale oder ehrenamtliche Angebote können günstiger sein. Eine allgemeine Kostenübernahme durch die Pflegekasse oder Krankenkasse gibt es nicht."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was kann ich tun, wenn ich auf dem Land wohne und kein Bus fährt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Erkundigen Sie sich nach Bürgerbussen, Rufbussen, TaxiBussen, Anruf-Sammeltaxis und ehrenamtlichen Fahrdiensten. Auch Nachbarschaftshilfe kann eine wichtige Ergänzung sein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es Unterstützung, wenn ich einen Rollator benötige?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Viele Busse und Bahnen sind auf die Mitnahme von Rollatoren eingestellt. Prüfen Sie trotzdem die örtlichen Bedingungen. Ein korrekt eingestellter Rollator und etwas Übung beim Ein- und Aussteigen erhöhen die Sicherheit."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +414,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +426,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/" aria-current="page">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-23">November 2026 (Zuzahlung 2027: angekündigt)</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -218,6 +500,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Wer seine Mobilität rechtzeitig neu organisiert, kann auch ohne eigenes Fahrzeug aktiv bleiben. Besonders hilfreich ist es, mehrere Lösungen miteinander zu verbinden.</li>
+              <li>Das Deutschlandticket kostet ab dem 1. Januar 2027 66,80 Euro im Monat (bis Ende 2026: 63 Euro).</li>
+              <li>Ein bundesweit kostenloses Seniorenticket gibt es nicht. Viele Verkehrsverbünde bieten jedoch vergünstigte Seniorentarife oder Sozialtickets an.</li>
+              <li>Mit einem Schwerbehindertenausweis können Sie unter bestimmten Voraussetzungen kostenlos Bus und Bahn fahren. Erforderlich sind bestimmte Merkzeichen und grundsätzlich ein gültiges Beiblatt mit Wertmarke.</li>
+              <li>Wo kein Bus fährt, können Bürgerbusse, Rufbusse, TaxiBusse, Anruf-Sammeltaxis und ehrenamtliche Fahrdienste helfen.</li>
+            </ul>
+          </section>
+
         <p>Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu bleiben. Vom öffentlichen Nahverkehr über Bürgerbusse und Fahrdienste bis hin zu Krankenfahrten, Rufbussen und ehrenamtlicher Unterstützung. Welche Angebote gibt es, wer übernimmt die Kosten und welche finanziellen Hilfen können genutzt werden?</p>
         <p>Das eigene Auto bedeutet für viele Menschen Freiheit. Man kann jederzeit losfahren, Einkäufe erledigen, Freunde besuchen oder spontan einen Ausflug machen. Doch irgendwann wird das Autofahren anstrengender. Die Augen werden schlechter, die Reaktionszeit verändert sich oder längere Strecken werden zur Belastung. Manchmal spielen auch die Kosten für Versicherung, Reparaturen, Kraftstoff und Wartung eine Rolle.</p>
         <p>Der Verzicht auf das eigene Auto muss jedoch nicht bedeuten, auf Selbstständigkeit und Lebensqualität zu verzichten.</p>
@@ -265,7 +558,7 @@
           <li>Sie fühlen sich nach einer Fahrt ungewöhnlich erschöpft.</li>
         </ul>
         <p>Solche Anzeichen bedeuten nicht automatisch, dass jemand nicht mehr fahren darf. Sie sollten aber Anlass sein, die eigene Fahrtüchtigkeit ärztlich überprüfen zu lassen.</p>
-        <h3>Gibt es eine verpflichtende Fahrtauglichkeitsprüfung ab einem bestimmten Alter?</h3>
+        <h3 id="gibt-es-eine-verpflichtende-fahrtauglichkeitspruefung-ab-einem-bestimmten-alter">Gibt es eine verpflichtende Fahrtauglichkeitsprüfung ab einem bestimmten Alter?</h3>
         <p>In Deutschland gibt es derzeit keine allgemeine verpflichtende medizinische Fahrtauglichkeitsuntersuchung allein aufgrund eines bestimmten Lebensalters für Inhaber eines regulären Pkw-Führerscheins.</p>
         <p>Das bedeutet jedoch nicht, dass gesundheitliche Einschränkungen ignoriert werden dürfen. Wer aufgrund einer Erkrankung oder körperlichen Einschränkung nicht mehr sicher fahren kann, muss dies berücksichtigen.</p>
         <p>Eine freiwillige ärztliche Untersuchung oder ein Fahr-Fitness-Check kann helfen, die eigene Situation realistisch einzuschätzen.</p>
@@ -278,7 +571,7 @@
         <h2 id="bus-und-bahn-die-wichtigste-alternative-zum-eigenen-auto">3. Bus und Bahn: Die wichtigste Alternative zum eigenen Auto</h2>
         <p>Für viele ältere Menschen sind Busse, Straßenbahnen und Züge die einfachste Möglichkeit, weiterhin selbstständig unterwegs zu sein.</p>
         <p>Der öffentliche Personennahverkehr (ÖPNV) bietet insbesondere in Städten und größeren Gemeinden eine gute Alternative zum Auto.</p>
-        <h3>Welche Verkehrsmittel gehören zum ÖPNV?</h3>
+        <h3 id="welche-verkehrsmittel-gehoeren-zum-oepnv">Welche Verkehrsmittel gehören zum ÖPNV?</h3>
         <ul>
           <li>Linienbusse</li>
           <li>Straßenbahnen</li>
@@ -289,7 +582,7 @@
           <li>bestimmte Rufbusse und bedarfsorientierte Verkehrsangebote</li>
         </ul>
         <p>Ein großer Vorteil: Wer regelmäßig Bus und Bahn nutzt, muss sich nicht um Reparaturen, Versicherung, Parkplatzsuche oder Kraftstoff kümmern.</p>
-        <h3>Was kostet die Nutzung?</h3>
+        <h3 id="was-kostet-die-nutzung">Was kostet die Nutzung?</h3>
         <p>Die Preise unterscheiden sich je nach Verkehrsverbund und Strecke. In vielen Regionen gibt es Einzel-, Tages-, Wochen- und Monatstickets.</p>
         <p>Eine bundesweit gültige Möglichkeit ist das Deutschlandticket.</p>
         <h3>Deutschlandticket: Preis ab 2027</h3>
@@ -307,7 +600,7 @@
             <p><strong>Wichtig:</strong> Das Deutschlandticket ist nicht automatisch für jeden die preiswerteste Lösung. Prüfen Sie auch regionale Senioren- und Sozialtickets. Manche Verkehrsverbünde bieten günstigere Angebote mit zeitlichen Einschränkungen an.</p>
           </div>
         </div>
-        <h3>Gibt es besondere Seniorentickets?</h3>
+        <h3 id="gibt-es-besondere-seniorentickets">Gibt es besondere Seniorentickets?</h3>
         <p>Viele Verkehrsverbünde bieten spezielle Tarife für ältere Menschen an. Die Bedingungen unterscheiden sich regional.</p>
         <p>Mögliche Angebote sind:</p>
         <ul>
@@ -434,7 +727,7 @@
         <p>Ein besonders wichtiges Thema sind Fahrten zu Arztterminen, Dialyse, Chemotherapie oder anderen medizinisch notwendigen Behandlungen.</p>
         <p>Viele Menschen wissen nicht, dass gesetzliche Krankenkassen unter bestimmten Voraussetzungen die Kosten für Krankenfahrten übernehmen können.</p>
         <p>Dabei muss zwischen einer normalen Krankenfahrt und einem medizinisch notwendigen Krankentransport unterschieden werden. Ausführlich erklärt unser Ratgeber <a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a>, wie Verordnung, Genehmigung und Abrechnung ablaufen.</p>
-        <h3>Was ist eine Krankenfahrt?</h3>
+        <h3 id="was-ist-eine-krankenfahrt">Was ist eine Krankenfahrt?</h3>
         <p>Eine Krankenfahrt ist eine Beförderung zu einer medizinischen Behandlung, bei der keine medizinische Betreuung während der Fahrt erforderlich ist.</p>
         <p>Dafür können beispielsweise genutzt werden:</p>
         <ul>
@@ -442,10 +735,10 @@
           <li>Mietwagen</li>
           <li>andere geeignete Fahrzeuge</li>
         </ul>
-        <h3>Was ist ein Krankentransport?</h3>
+        <h3 id="was-ist-ein-krankentransport">Was ist ein Krankentransport?</h3>
         <p>Ein Krankentransport wird benötigt, wenn während der Fahrt eine medizinisch-fachliche Betreuung erforderlich ist oder ein speziell ausgestattetes Krankentransportfahrzeug notwendig ist.</p>
         <p>Die Entscheidung über das geeignete Transportmittel trifft die behandelnde Ärztin oder der behandelnde Arzt.</p>
-        <h3>Wann übernimmt die Krankenkasse die Kosten?</h3>
+        <h3 id="wann-uebernimmt-die-krankenkasse-die-kosten">Wann übernimmt die Krankenkasse die Kosten?</h3>
         <p>Die gesetzlichen Krankenkassen übernehmen Fahrkosten insbesondere bei:</p>
         <ul>
           <li>stationären Krankenhausbehandlungen</li>
@@ -463,7 +756,7 @@
         </ul>
         <p>Wie ein Pflegegrad beantragt wird, lesen Sie im Ratgeber <a href="/ratgeber/pflegegrad-beantragen/">Pflegegrad beantragen</a>. Eine erste Einschätzung gibt unser <a href="/mein-alltag/pflegegrad-rechner/">Pflegegradrechner</a>.</p>
         <p>Auch bei bestimmten hochfrequenten Behandlungen wie Dialyse, onkologischer Strahlen- oder Chemotherapie kann eine Kostenübernahme möglich sein.</p>
-        <h3>Brauche ich eine ärztliche Verordnung?</h3>
+        <h3 id="brauche-ich-eine-aerztliche-verordnung">Brauche ich eine ärztliche Verordnung?</h3>
         <p>Ja. Für Krankenfahrten zu ambulanten Behandlungen ist grundsätzlich eine ärztliche Verordnung erforderlich.</p>
         <p>In vielen Fällen muss die Krankenkasse die Fahrt außerdem vorher genehmigen.</p>
         <p>Für bestimmte Personengruppen mit den genannten Merkzeichen oder Pflegegraden entfällt die vorherige Genehmigung bei Fahrten mit Taxi oder Mietwagen unter den gesetzlichen Voraussetzungen. Für einen Krankentransportwagen ist weiterhin eine Genehmigung nötig.</p>
@@ -474,7 +767,7 @@
           </div>
         </div>
         <p>Klären Sie die Voraussetzungen vor der Fahrt mit Ihrer Krankenkasse.</p>
-        <h3>Wie hoch ist die Zuzahlung?</h3>
+        <h3 id="wie-hoch-ist-die-zuzahlung">Wie hoch ist die Zuzahlung?</h3>
         <p>Für gesetzlich Versicherte gilt bei erstattungsfähigen Krankenfahrten grundsätzlich eine Zuzahlung von:</p>
         <ul>
           <li>10 Prozent der Fahrtkosten</li>
@@ -493,7 +786,7 @@
         <p>Menschen mit einer anerkannten Schwerbehinderung können unter bestimmten Voraussetzungen den öffentlichen Nahverkehr unentgeltlich nutzen.</p>
         <p>Dafür reicht der Schwerbehindertenausweis allein allerdings nicht aus.</p>
         <p>Entscheidend sind bestimmte Merkzeichen und ein gültiges Beiblatt mit Wertmarke.</p>
-        <h3>Welche Merkzeichen berechtigen zur unentgeltlichen Beförderung?</h3>
+        <h3 id="welche-merkzeichen-berechtigen-zur-unentgeltlichen-befoerderung">Welche Merkzeichen berechtigen zur unentgeltlichen Beförderung?</h3>
         <p>Eine Berechtigung kann bei folgenden Merkzeichen bestehen:</p>
         <ul>
           <li><strong>G:</strong> erhebliche Beeinträchtigung der Bewegungsfähigkeit im Straßenverkehr</li>
@@ -503,11 +796,11 @@
           <li><strong>Gl:</strong> Gehörlosigkeit</li>
         </ul>
         <p>Zusätzlich wird grundsätzlich ein Beiblatt mit gültiger Wertmarke benötigt.</p>
-        <h3>Was kostet die Wertmarke?</h3>
+        <h3 id="was-kostet-die-wertmarke">Was kostet die Wertmarke?</h3>
         <p>Die Eigenbeteiligung beträgt derzeit 104 Euro für ein Jahr und 53 Euro für ein halbes Jahr (Stand November 2026). Der Betrag wird in größeren Abständen angepasst; den aktuellen Preis nennt das Versorgungsamt.</p>
         <p>Unter bestimmten Voraussetzungen wird die Wertmarke kostenlos ausgegeben, beispielsweise bei bestimmten Merkzeichen oder beim Bezug bestimmter Sozialleistungen.</p>
         <p>Die genauen Voraussetzungen ergeben sich aus §§ 228 bis 230 SGB IX.</p>
-        <h3>Darf eine Begleitperson kostenlos mitfahren?</h3>
+        <h3 id="darf-eine-begleitperson-kostenlos-mitfahren">Darf eine Begleitperson kostenlos mitfahren?</h3>
         <p>Wenn im Schwerbehindertenausweis das Merkzeichen B eingetragen ist, kann eine notwendige Begleitperson im öffentlichen Personenverkehr grundsätzlich unentgeltlich mitfahren.</p>
         <p>Das gilt im Rahmen der gesetzlichen Beförderungsregelungen. Für bestimmte zuschlagpflichtige Leistungen können zusätzliche Bestimmungen gelten.</p>
         <div class="notice notice--important article__notice" role="note">
@@ -522,7 +815,7 @@
         <p>Ein Spaziergang zum Bäcker, der Weg zum Briefkasten oder ein kurzer Besuch bei den Nachbarn sind kleine Aktivitäten mit großer Bedeutung.</p>
         <p>Allerdings verändern sich mit zunehmendem Alter häufig Gleichgewicht, Kraft und Sicherheit beim Gehen.</p>
         <p>Deshalb sollte die Umgebung möglichst gut auf die eigenen Bedürfnisse abgestimmt sein.</p>
-        <h3>Worauf sollten Sie achten?</h3>
+        <h3 id="worauf-sollten-sie-achten">Worauf sollten Sie achten?</h3>
         <ul>
           <li>Gute und ausreichende Beleuchtung</li>
           <li>Ebenmäßige und rutschfeste Wege</li>
@@ -565,7 +858,7 @@
           <li>flexible Nutzung im Alltag</li>
           <li>Bewegung an der frischen Luft</li>
         </ul>
-        <h3>Worauf sollten ältere Fahrer achten?</h3>
+        <h3 id="worauf-sollten-aeltere-fahrer-achten">Worauf sollten ältere Fahrer achten?</h3>
         <ul>
           <li>Das Fahrrad sollte eine passende Rahmenhöhe haben.</li>
           <li>Ein tiefer Einstieg erleichtert das Auf- und Absteigen.</li>
@@ -586,7 +879,7 @@
         <p>Eine besonders persönliche Form der Mobilität entsteht durch Unterstützung aus dem direkten Umfeld.</p>
         <p>Vielleicht fährt ein Nachbar ohnehin regelmäßig zum Supermarkt. Vielleicht organisiert ein Verein gemeinsame Fahrten zu Veranstaltungen. Oder ein ehrenamtlicher Helfer begleitet ältere Menschen zu Arztterminen.</p>
         <p>Solche Angebote können eine wertvolle Ergänzung zum öffentlichen Nahverkehr sein.</p>
-        <h3>Wo findet man solche Angebote?</h3>
+        <h3 id="wo-findet-man-solche-angebote">Wo findet man solche Angebote?</h3>
         <p>Mögliche Ansprechpartner sind:</p>
         <ul>
           <li>Seniorenbüros</li>
@@ -601,7 +894,7 @@
         </ul>
         <p>Was öffentlich geförderte Mehrgenerationenhäuser als Begegnungsorte leisten, erklärt unser Ratgeber <a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus</a>. Gemeinsame Ausflüge und Treffen in Ihrer Stadt finden Sie auch in unserem <a href="/veranstaltungen/">Veranstaltungskalender</a>.</p>
         <p>Die Angebote unterscheiden sich erheblich. Manche Fahrdienste verlangen nur eine kleine Kostenbeteiligung, andere arbeiten mit festen Tarifen oder Mitgliedsbeiträgen.</p>
-        <h3>Was sollte vorher geklärt werden?</h3>
+        <h3 id="was-sollte-vorher-geklaert-werden">Was sollte vorher geklärt werden?</h3>
         <p>Bei ehrenamtlichen Fahrangeboten sollten Sie nachfragen:</p>
         <ul>
           <li>Wer organisiert den Fahrdienst?</li>
@@ -658,7 +951,7 @@
           <li><strong>Google Maps:</strong> für Fußwege, Haltestellen und Verbindungen mit öffentlichen Verkehrsmitteln.</li>
           <li><strong>Apps der Verkehrsverbünde:</strong> Viele Verkehrsverbünde bieten eigene Apps mit regionalen Fahrplänen, Ticketkauf und Echtzeitinformationen an.</li>
         </ul>
-        <h3>Was ist bei der Nutzung wichtig?</h3>
+        <h3 id="was-ist-bei-der-nutzung-wichtig">Was ist bei der Nutzung wichtig?</h3>
         <ul>
           <li>Verbindungen möglichst zu Hause vorbereiten.</li>
           <li>Wichtige Haltestellen als Favoriten speichern.</li>
@@ -835,19 +1128,19 @@
         </div>
         <p>Eine kleine Liste im Portemonnaie kann sehr hilfreich sein.</p>
         <h2 id="haeufige-fragen-zur-mobilitaet-im-alter">18. Häufige Fragen zur Mobilität im Alter</h2>
-        <h3>Darf ich im Alter unbegrenzt Auto fahren?</h3>
+        <h3 id="darf-ich-im-alter-unbegrenzt-auto-fahren">Darf ich im Alter unbegrenzt Auto fahren?</h3>
         <p>Für Inhaber eines regulären Pkw-Führerscheins gibt es in Deutschland keine allgemeine Altersgrenze und keine verpflichtende Fahrtauglichkeitsprüfung allein aufgrund des Lebensalters. Entscheidend ist die tatsächliche Fahrtüchtigkeit.</p>
-        <h3>Gibt es ein kostenloses Seniorenticket?</h3>
+        <h3 id="gibt-es-ein-kostenloses-seniorenticket">Gibt es ein kostenloses Seniorenticket?</h3>
         <p>Ein bundesweit kostenloses Seniorenticket gibt es nicht. Viele Verkehrsverbünde bieten jedoch vergünstigte Seniorentarife oder Sozialtickets an.</p>
-        <h3>Kann ich mit einem Schwerbehindertenausweis kostenlos Bus und Bahn fahren?</h3>
+        <h3 id="kann-ich-mit-einem-schwerbehindertenausweis-kostenlos-bus-und-bahn-fahren">Kann ich mit einem Schwerbehindertenausweis kostenlos Bus und Bahn fahren?</h3>
         <p>Unter bestimmten Voraussetzungen ja. Erforderlich sind bestimmte Merkzeichen und grundsätzlich ein gültiges Beiblatt mit Wertmarke.</p>
-        <h3>Übernimmt die Krankenkasse Taxifahrten zum Arzt?</h3>
+        <h3 id="uebernimmt-die-krankenkasse-taxifahrten-zum-arzt">Übernimmt die Krankenkasse Taxifahrten zum Arzt?</h3>
         <p>Nur unter bestimmten medizinischen und gesetzlichen Voraussetzungen. Bei ambulanten Behandlungen sind eine ärztliche Verordnung und häufig eine vorherige Genehmigung notwendig.</p>
-        <h3>Wer bezahlt einen Fahrdienst für Senioren?</h3>
+        <h3 id="wer-bezahlt-einen-fahrdienst-fuer-senioren">Wer bezahlt einen Fahrdienst für Senioren?</h3>
         <p>Das hängt vom Anbieter ab. Private Fahrdienste werden in der Regel selbst bezahlt. Kommunale oder ehrenamtliche Angebote können günstiger sein. Eine allgemeine Kostenübernahme durch die Pflegekasse oder Krankenkasse gibt es nicht.</p>
-        <h3>Was kann ich tun, wenn ich auf dem Land wohne und kein Bus fährt?</h3>
+        <h3 id="was-kann-ich-tun-wenn-ich-auf-dem-land-wohne-und-kein-bus-faehrt">Was kann ich tun, wenn ich auf dem Land wohne und kein Bus fährt?</h3>
         <p>Erkundigen Sie sich nach Bürgerbussen, Rufbussen, TaxiBussen, Anruf-Sammeltaxis und ehrenamtlichen Fahrdiensten. Auch Nachbarschaftshilfe kann eine wichtige Ergänzung sein.</p>
-        <h3>Gibt es Unterstützung, wenn ich einen Rollator benötige?</h3>
+        <h3 id="gibt-es-unterstuetzung-wenn-ich-einen-rollator-benoetige">Gibt es Unterstützung, wenn ich einen Rollator benötige?</h3>
         <p>Viele Busse und Bahnen sind auf die Mitnahme von Rollatoren eingestellt. Prüfen Sie trotzdem die örtlichen Bedingungen. Ein korrekt eingestellter Rollator und etwas Übung beim Ein- und Aussteigen erhöhen die Sicherheit.</p>
         <h2 id="fazit-unabhaengig-bleiben-auch-ohne-eigenes-auto">19. Fazit: Unabhängig bleiben, auch ohne eigenes Auto</h2>
         <p>Das eigene Auto aufzugeben, bedeutet nicht, auf Freiheit verzichten zu müssen.</p>
@@ -859,8 +1152,47 @@
         <h2 id="wir-helfen-gemeinsam-passende-mobilitaetsangebote-finden">Wir helfen: Gemeinsam passende Mobilitätsangebote finden</h2>
         <p>Sie möchten auch ohne eigenes Auto mobil bleiben? Sie benötigen Unterstützung bei Einkäufen, Arztbesuchen oder regelmäßigen Erledigungen? Oder Sie suchen einen Fahrdienst, eine Begleitung oder ehrenamtliche Unterstützung in Ihrer Nähe?</p>
         <p>Wir helfen Ihnen dabei, passende Ansprechpartner und Angebote in Ihrer Region zu finden. <a href="/anfrage/?thema=alltag-persoenliche-hilfe">Beschreiben Sie uns einfach, wobei Sie Unterstützung benötigen.</a> Wir prüfen Ihre Anfrage persönlich und suchen nach geeigneten Kontakten.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#wann-ist-es-sinnvoll-das-autofahren-aufzugeben">Wann ist es sinnvoll, das Autofahren aufzugeben?</a></li>
+              <li><a href="#gibt-es-eine-verpflichtende-fahrtauglichkeitspruefung-ab-einem-bestimmten-alter">Gibt es eine verpflichtende Fahrtauglichkeitsprüfung ab einem bestimmten Alter?</a></li>
+              <li><a href="#welche-verkehrsmittel-gehoeren-zum-oepnv">Welche Verkehrsmittel gehören zum ÖPNV?</a></li>
+              <li><a href="#was-kostet-die-nutzung">Was kostet die Nutzung?</a></li>
+              <li><a href="#gibt-es-besondere-seniorentickets">Gibt es besondere Seniorentickets?</a></li>
+              <li><a href="#krankenfahrten-wann-uebernimmt-die-krankenkasse-die-kosten">Krankenfahrten: Wann übernimmt die Krankenkasse die Kosten?</a></li>
+              <li><a href="#was-ist-eine-krankenfahrt">Was ist eine Krankenfahrt?</a></li>
+              <li><a href="#was-ist-ein-krankentransport">Was ist ein Krankentransport?</a></li>
+              <li><a href="#wann-uebernimmt-die-krankenkasse-die-kosten">Wann übernimmt die Krankenkasse die Kosten?</a></li>
+              <li><a href="#brauche-ich-eine-aerztliche-verordnung">Brauche ich eine ärztliche Verordnung?</a></li>
+              <li><a href="#wie-hoch-ist-die-zuzahlung">Wie hoch ist die Zuzahlung?</a></li>
+              <li><a href="#welche-merkzeichen-berechtigen-zur-unentgeltlichen-befoerderung">Welche Merkzeichen berechtigen zur unentgeltlichen Beförderung?</a></li>
+              <li><a href="#was-kostet-die-wertmarke">Was kostet die Wertmarke?</a></li>
+              <li><a href="#darf-eine-begleitperson-kostenlos-mitfahren">Darf eine Begleitperson kostenlos mitfahren?</a></li>
+              <li><a href="#worauf-sollten-sie-achten">Worauf sollten Sie achten?</a></li>
+              <li><a href="#worauf-sollten-aeltere-fahrer-achten">Worauf sollten ältere Fahrer achten?</a></li>
+              <li><a href="#wo-findet-man-solche-angebote">Wo findet man solche Angebote?</a></li>
+              <li><a href="#was-sollte-vorher-geklaert-werden">Was sollte vorher geklärt werden?</a></li>
+              <li><a href="#mobilitaets-apps-und-digitale-fahrplaene-hilfe-oder-hindernis">Mobilitäts-Apps und digitale Fahrpläne: Hilfe oder Hindernis?</a></li>
+              <li><a href="#was-ist-bei-der-nutzung-wichtig">Was ist bei der Nutzung wichtig?</a></li>
+              <li><a href="#was-kostet-mobilitaet-ohne-eigenes-auto">Was kostet Mobilität ohne eigenes Auto?</a></li>
+              <li><a href="#welche-finanzielle-unterstuetzung-gibt-es">Welche finanzielle Unterstützung gibt es?</a></li>
+              <li><a href="#wie-finde-ich-passende-mobilitaetsangebote-in-meiner-naehe">Wie finde ich passende Mobilitätsangebote in meiner Nähe?</a></li>
+              <li><a href="#darf-ich-im-alter-unbegrenzt-auto-fahren">Darf ich im Alter unbegrenzt Auto fahren?</a></li>
+              <li><a href="#gibt-es-ein-kostenloses-seniorenticket">Gibt es ein kostenloses Seniorenticket?</a></li>
+              <li><a href="#kann-ich-mit-einem-schwerbehindertenausweis-kostenlos-bus-und-bahn-fahren">Kann ich mit einem Schwerbehindertenausweis kostenlos Bus und Bahn fahren?</a></li>
+              <li><a href="#uebernimmt-die-krankenkasse-taxifahrten-zum-arzt">Übernimmt die Krankenkasse Taxifahrten zum Arzt?</a></li>
+              <li><a href="#wer-bezahlt-einen-fahrdienst-fuer-senioren">Wer bezahlt einen Fahrdienst für Senioren?</a></li>
+              <li><a href="#was-kann-ich-tun-wenn-ich-auf-dem-land-wohne-und-kein-bus-faehrt">Was kann ich tun, wenn ich auf dem Land wohne und kein Bus fährt?</a></li>
+              <li><a href="#gibt-es-unterstuetzung-wenn-ich-einen-rollator-benoetige">Gibt es Unterstützung, wenn ich einen Rollator benötige?</a></li>
+            </ul>
+          </nav>
+
           <section class="beitrag-quellen" aria-labelledby="quellen-titel">
-            <h2 id="quellen-titel">Quellen und offizielle Formulare</h2>
+            <h2 id="quellen-titel">Stand und Quellen</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026 (Zuzahlung 2027: angekündigt). Zuletzt geändert am <time datetime="2026-11-23">23. November 2026</time>.</p>
+            <h3 class="beitrag-quellen__titel">Quellen und offizielle Stellen</h3>
             <ol>
               <li><a href="https://www.bundesregierung.de/breg-de/service/fragen-und-anworten/deutschlandticket-2134074" rel="noopener">Bundesregierung: Deutschlandticket, Preise und Gültigkeit</a></li>
               <li><a href="https://www.mobil.nrw" rel="noopener">Mobil.NRW: Informationen zum Nahverkehr in Nordrhein-Westfalen</a></li>
@@ -892,18 +1224,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Alltag und persönliche Hilfe?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Fahrdienst und Begleitfahrten“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=alltag-persoenliche-hilfe" data-thema="alltag-persoenliche-hilfe">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=fahrdienst">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=alltag-persoenliche-hilfe" data-thema="alltag-persoenliche-hilfe">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -911,15 +1244,15 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/krankenfahrten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
-              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></h3>
+              <p class="article-card__text">Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
@@ -928,7 +1261,7 @@
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></h3>
               <p class="article-card__text">Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -937,18 +1270,18 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/krankenfahrten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></h3>
-              <p class="article-card__text">Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/haushaltshilfe-im-alter/">Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht</a></h3>
+              <p class="article-card__text">Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=alltag-persoenliche-hilfe">Weitere Beiträge zum Thema Alltag und persönliche Hilfe</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -1037,7 +1370,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

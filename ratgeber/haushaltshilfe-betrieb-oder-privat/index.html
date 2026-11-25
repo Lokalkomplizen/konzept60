@@ -35,29 +35,84 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Haushaltshilfe: Betrieb oder privat – was passt zu mir?",
-    "description": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/haushaltshilfe-betrieb-oder-privat-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Haushalt und Reinigung",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/haushaltshilfe-betrieb-oder-privat/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Haushaltshilfe: Betrieb oder privat – was passt zu mir?",
+      "description": "Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/haushaltshilfe-betrieb-oder-privat-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T10:01:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/haushaltshilfe-betrieb-oder-privat/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Haushaltshilfe: Betrieb oder privat – was passt zu mir?",
+          "item": "https://www.example.org/ratgeber/haushaltshilfe-betrieb-oder-privat/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was kostet eine Haushaltshilfe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Kosten hängen unter anderem von der Region, dem Umfang der Aufgaben und der Art der Beschäftigung ab. Bei einem gewerblichen Anbieter erhalten Sie normalerweise ein konkretes Angebot. Bei einer privaten Haushaltshilfe vereinbaren Sie den Stundenlohn direkt. Beachten Sie dabei auch mögliche Arbeitgeberabgaben und die Kosten für die Anmeldung. Gut zu wissen: Unter bestimmten Voraussetzungen können Leistungen der Pflegekasse helfen, die Kosten zu reduzieren. Wer einen Pflegegrad hat, kann beispielsweise den monatlichen Entlastungsbetrag von bis zu 131 Euro für anerkannte Angebote zur Unterstützung im Alltag nutzen. Welche Leistungen infrage kommen, hängt von den individuellen Voraussetzungen und der Anerkennung des Anbieters ab."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was passt am besten zu Ihnen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine einfache Entscheidungshilfe: Ein professioneller Betrieb passt besonders gut, wenn: Sie Wert auf regelmäßige und planbare Unterstützung legen. Sie sich bei Ausfällen einen Ersatz wünschen. Sie möglichst wenig organisatorischen Aufwand haben möchten. Eine private Haushaltshilfe passt besonders gut, wenn: Sie eine feste Vertrauensperson suchen. Sie Aufgaben und Zeiten individuell vereinbaren möchten. Sie bereit sind, sich selbst um Anmeldung und Organisation zu kümmern."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +190,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +202,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/haushaltshilfe-betrieb-oder-privat/" aria-current="page">Haushaltshilfe: Betrieb oder privat – was passt zu mir?</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Haushaltshilfe: Betrieb oder privat – was passt zu mir?</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -204,6 +262,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Betrieb und private Haushaltshilfe haben beide Vorteile. Entscheidend ist, was zu Ihrer persönlichen Situation passt.</li>
+              <li>Ein Betrieb kann bei Ausfällen häufig für Ersatz sorgen. Bei einer privaten Haushaltshilfe gibt es bei Krankheit oder Urlaub meistens keinen Ersatz.</li>
+              <li>Auch eine private Haushaltshilfe muss korrekt angemeldet werden, bei einer geringfügigen Beschäftigung zum Beispiel über das Haushaltsscheck-Verfahren der Minijob-Zentrale.</li>
+              <li>Wer einen Pflegegrad hat, kann beispielsweise den monatlichen Entlastungsbetrag von bis zu 131 Euro für anerkannte Angebote zur Unterstützung im Alltag nutzen.</li>
+              <li>Ein persönliches Kennenlernen vor dem ersten regelmäßigen Einsatz ist in jedem Fall empfehlenswert.</li>
+            </ul>
+          </section>
+
         <p>Ob beim Putzen, Einkaufen, Wäschewaschen oder bei kleinen Aufgaben im Haushalt: Wenn der Alltag zunehmend schwerfällt, kann eine Haushaltshilfe eine große Entlastung sein. Doch sollte man sich an einen professionellen Dienstleister wenden oder lieber eine private Haushaltshilfe engagieren? Beide Möglichkeiten haben Vorteile. Entscheidend ist, was zu Ihrer persönlichen Situation passt.</p>
         <h2 id="haushaltshilfe-ueber-einen-professionellen-betrieb">1. Haushaltshilfe über einen professionellen Betrieb</h2>
         <p>Ein gewerblicher Dienstleister bietet in der Regel eine organisierte und vertraglich geregelte Unterstützung im Haushalt.</p>
@@ -291,6 +360,19 @@
         <p>Vergleichen Sie verschiedene Angebote, lernen Sie die betreffende Person kennen und klären Sie alle wichtigen Fragen vorab.</p>
         <p>Wir unterstützen Sie dabei, passende Möglichkeiten zu finden und den richtigen Ansprechpartner für Ihre persönliche Situation kennenzulernen.</p>
         <p>Denn gute Unterstützung soll nicht kompliziert sein. Sie soll Ihren Alltag leichter machen.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-kostet-eine-haushaltshilfe">Was kostet eine Haushaltshilfe?</a></li>
+              <li><a href="#was-passt-am-besten-zu-ihnen">Was passt am besten zu Ihnen?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -307,18 +389,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Haushalt und Reinigung?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Haushaltshilfe“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=haushalt-reinigung" data-thema="haushalt-reinigung">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=haushaltshilfe">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=haushalt-reinigung" data-thema="haushalt-reinigung">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -326,13 +409,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Haushalt und Reinigung</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/haushaltshilfe-im-alter/">Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht</a></h3>
               <p class="article-card__text">Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -343,7 +426,7 @@
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
               <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -352,18 +435,18 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
-              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></h3>
+              <p class="article-card__text">Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=haushalt-reinigung">Weitere Beiträge zum Thema Haushalt und Reinigung</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -452,7 +535,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

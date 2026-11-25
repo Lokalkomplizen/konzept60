@@ -35,29 +35,132 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
-    "description": "Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge.",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-1400.jpg"
-    ],
-    "dateModified": "2026-11-23",
-    "inLanguage": "de-DE",
-    "articleSection": "Alltag und persönliche Hilfe",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/patientenverfuegung-vorsorgevollmacht/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
+      "description": "Patientenverfügung und Vorsorgevollmacht verständlich erklärt: Unterschiede, rechtliche Grundlagen, typische Fehler und praktische Tipps zur richtigen Vorsorge.",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-1400.jpg"
+      ],
+      "datePublished": "2026-11-23T10:00:00+01:00",
+      "dateModified": "2026-11-23",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/patientenverfuegung-vorsorgevollmacht/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?",
+          "item": "https://www.example.org/ratgeber/patientenverfuegung-vorsorgevollmacht/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "In welchen Situationen gilt eine Patientenverfügung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Patientenverfügung sollte möglichst konkret beschreiben, für welche gesundheitlichen Situationen sie gelten soll. Beispiele können sein: Unmittelbarer Sterbeprozess: Sie legen fest, welche Behandlungen Sie in der letzten Phase des Lebens wünschen und auf welche Maßnahmen Sie verzichten möchten. Schwere, unheilbare Erkrankung im fortgeschrittenen Stadium: Sie beschreiben, welche medizinischen Maßnahmen Sie in einer Situation wünschen, in der eine Heilung nicht mehr möglich ist. Dauerhafter Verlust der Kommunikationsfähigkeit: Sie legen fest, welche Behandlungen Sie wünschen, wenn Sie dauerhaft nicht mehr in der Lage sind, Ihre Wünsche mitzuteilen, und keine realistische Aussicht besteht, diese Fähigkeit wiederzuerlangen. Die konkrete Formulierung ist entscheidend. Allgemeine Aussagen wie „Ich möchte nicht an Maschinen hängen“ sind häufig zu ungenau, um daraus eine konkrete Behandlungsentscheidung abzuleiten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ist eine Patientenverfügung verbindlich?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Eine wirksame Patientenverfügung ist verbindlich, wenn ihre Festlegungen auf die aktuelle Lebens- und Behandlungssituation zutreffen. Ärzte, Pflegekräfte und die rechtliche Vertretung müssen den darin festgelegten Willen beachten. Wichtig ist: Die Patientenverfügung gilt nicht nur bei einer unmittelbar bevorstehenden Sterbephase. Sie kann grundsätzlich unabhängig von Art und Stadium einer Erkrankung wirksam sein, sofern die beschriebene Situation und die Festlegungen zusammenpassen. Eine Patientenverfügung kann jederzeit formlos widerrufen werden, auch mündlich oder durch eindeutiges Verhalten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Muss die Vorsorgevollmacht notariell beglaubigt werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nicht grundsätzlich. Eine Vorsorgevollmacht ist im Allgemeinen formfrei möglich. Aus Gründen der Klarheit und Beweiskraft sollte sie jedoch schriftlich erstellt und eigenhändig unterschrieben werden. Für bestimmte Rechtsgeschäfte gelten zusätzliche Formvorschriften. Das betrifft beispielsweise Immobiliengeschäfte oder die Aufnahme von Verbraucherdarlehen. Hier kann eine notarielle Beglaubigung oder Beurkundung erforderlich sein. Auch bei größeren Vermögen, Immobilienbesitz oder komplizierten Familienverhältnissen ist eine notarielle Beratung sinnvoll. Wichtig: Eine allgemeine Vorsorgevollmacht ersetzt nicht automatisch jede besondere Bankvollmacht. Manche Banken verlangen eigene Formulare oder zusätzliche Nachweise. Klären Sie das rechtzeitig mit Ihrem Kreditinstitut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Patientenverfügung und Vorsorgevollmacht: Wo liegt der Unterschied?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die beiden Dokumente ergänzen sich, erfüllen aber unterschiedliche Aufgaben. Ein Beispiel macht den Unterschied deutlich: Eine Frau legt in ihrer Patientenverfügung fest, dass sie in einer bestimmten Situation keine künstliche Ernährung wünscht. Zusätzlich bevollmächtigt sie ihre Tochter, ihre gesundheitlichen Angelegenheiten zu regeln. Kommt es später zu einer Situation, in der die Frau nicht mehr selbst entscheiden kann, muss die Tochter gemeinsam mit den behandelnden Ärzten prüfen, ob die Festlegungen der Patientenverfügung auf die konkrete Situation zutreffen. Die Tochter darf dabei nicht nach ihren eigenen Vorstellungen entscheiden. Ihre Aufgabe ist es, den Willen ihrer Mutter umzusetzen. Die Patientenverfügung beschreibt also den Willen. Die Vorsorgevollmacht bestimmt, wer diesen Willen vertreten und ihm Geltung verschaffen darf."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was passiert, wenn ich keine Vorsorge getroffen habe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wenn Sie nicht mehr selbst entscheiden können und keine wirksame Vorsorgevollmacht vorliegt, kann das Betreuungsgericht eine rechtliche Betreuung einrichten. Das bedeutet nicht automatisch, dass ein Familienmitglied eingesetzt wird. Das Gericht prüft, ob eine Betreuung erforderlich ist und welche Person dafür geeignet ist. Es kann auch eine andere geeignete Person oder einen beruflichen Betreuer bestellen. Die Betreuung wird auf die tatsächlich erforderlichen Aufgabenbereiche beschränkt. Sie bedeutet nicht automatisch, dass der betroffene Mensch sämtliche Entscheidungsrechte verliert."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wo und wie bewahre ich meine Dokumente auf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vorsorgedokumente müssen im Ernstfall schnell auffindbar sein. Deshalb sollten Sie sich bereits bei der Erstellung Gedanken über die Aufbewahrung machen. Zu Hause: Bewahren Sie die Originale an einem sicheren, aber für Ihre Vertrauensperson bekannten Ort auf. Bei der bevollmächtigten Person: Eine Kopie kann bei der Person hinterlegt werden, die Sie mit der Vertretung beauftragt haben. Sie sollte wissen, wo sich das Original befindet und wie sie es im Ernstfall erhält. Bei Ärzten: Es kann sinnvoll sein, eine Kopie der Patientenverfügung bei der Hausarztpraxis zu hinterlegen. So kann der persönliche Wille auch bei einer medizinischen Behandlung schneller berücksichtigt werden. Im Zentralen Vorsorgeregister: Die Bundesnotarkammer führt das Zentrale Vorsorgeregister. Dort können Vorsorgevollmachten, Betreuungsverfügungen und Patientenverfügungen registriert werden. Seit der Erweiterung des Registers können unter bestimmten Voraussetzungen auch elektronische Abschriften der Dokumente hinterlegt werden. Die Registrierung erleichtert es Gerichten und berechtigten Stellen, im Bedarfsfall vorhandene Vorsorgeunterlagen zu finden. Sie ersetzt allerdings nicht die Erstellung und wirksame Unterzeichnung der Dokumente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie erstelle ich meine Vorsorgedokumente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Der Einstieg ist einfacher, als viele denken. Es gibt offizielle Formulare und Textbausteine, die bei der Erstellung helfen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Praktische Checkliste: Bin ich gut vorbereitet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mit dieser Checkliste können Sie überprüfen, ob Sie bereits an die wichtigsten Punkte gedacht haben. Ich habe mich mit dem Thema Patientenverfügung beschäftigt. Meine Patientenverfügung beschreibt konkrete medizinische Situationen und Behandlungswünsche. Ich habe eine Vertrauensperson für meine Vorsorgevollmacht ausgewählt. Die Person weiß, dass ich sie bevollmächtigen möchte. Ich habe festgelegt, welche Aufgabenbereiche die Vollmacht umfasst. Ich habe über eine Ersatzperson nachgedacht. Meine Bank kennt gegebenenfalls meine gewünschte Kontovollmacht. Meine Vorsorgedokumente sind unterschrieben und auffindbar. Meine Vertrauensperson weiß, wo die Dokumente liegen. Ich habe über eine Registrierung im Zentralen Vorsorgeregister nachgedacht. Ich überprüfe meine Dokumente gelegentlich und passe sie bei Bedarf an. Sie müssen nicht alles an einem Tag erledigen. Wichtig ist, überhaupt anzufangen."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +238,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +250,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/" aria-current="page">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-23">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -210,6 +316,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Die Patientenverfügung beschreibt Ihren Willen. Die Vorsorgevollmacht bestimmt, wer diesen Willen vertreten und ihm Geltung verschaffen darf.</li>
+              <li>Ohne Vollmacht oder gerichtliche Betreuung gibt es keine allgemeine gesetzliche Vertretungsbefugnis für erwachsene Angehörige.</li>
+              <li>Eine Patientenverfügung muss schriftlich vorliegen und eigenhändig unterschrieben sein (§ 1827 BGB).</li>
+              <li>Das Ehegattennotvertretungsrecht nach § 1358 BGB gilt höchstens sechs Monate und ist keine umfassende Vorsorgevollmacht.</li>
+              <li>Banken verlangen häufig eigene Vollmachtsformulare. Klären Sie das rechtzeitig mit Ihrem Kreditinstitut.</li>
+            </ul>
+          </section>
+
         <p>Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer darf dann mit Ärzten sprechen, medizinischen Maßnahmen zustimmen oder Bankgeschäfte erledigen? Mit einer Patientenverfügung und einer Vorsorgevollmacht können Sie frühzeitig festlegen, was in solchen Situationen gelten soll und wem Sie vertrauen.</p>
         <p>Sich mit der eigenen Entscheidungsunfähigkeit zu beschäftigen, fällt vielen Menschen schwer. Es geht um Krankheit, Abhängigkeit und die Frage, was passiert, wenn man nicht mehr selbst für sich sprechen kann.</p>
         <p>Doch Vorsorge bedeutet nicht, pessimistisch in die Zukunft zu blicken. Sie bedeutet, die eigenen Wünsche ernst zu nehmen und anderen Menschen Orientierung zu geben.</p>
@@ -235,14 +352,14 @@
           <li>Wie Sie in bestimmten Situationen mit lebensverlängernden Maßnahmen umgehen möchten.</li>
         </ul>
         <p>Dabei geht es nicht darum, medizinische Behandlungen grundsätzlich abzulehnen. Vielmehr sollen Ihre persönlichen Vorstellungen auch dann berücksichtigt werden, wenn Sie sich nicht mehr selbst äußern können.</p>
-        <h3>In welchen Situationen gilt eine Patientenverfügung?</h3>
+        <h3 id="in-welchen-situationen-gilt-eine-patientenverfuegung">In welchen Situationen gilt eine Patientenverfügung?</h3>
         <p>Eine Patientenverfügung sollte möglichst konkret beschreiben, für welche gesundheitlichen Situationen sie gelten soll.</p>
         <p>Beispiele können sein:</p>
         <p><strong>Unmittelbarer Sterbeprozess:</strong> Sie legen fest, welche Behandlungen Sie in der letzten Phase des Lebens wünschen und auf welche Maßnahmen Sie verzichten möchten.</p>
         <p><strong>Schwere, unheilbare Erkrankung im fortgeschrittenen Stadium:</strong> Sie beschreiben, welche medizinischen Maßnahmen Sie in einer Situation wünschen, in der eine Heilung nicht mehr möglich ist.</p>
         <p><strong>Dauerhafter Verlust der Kommunikationsfähigkeit:</strong> Sie legen fest, welche Behandlungen Sie wünschen, wenn Sie dauerhaft nicht mehr in der Lage sind, Ihre Wünsche mitzuteilen, und keine realistische Aussicht besteht, diese Fähigkeit wiederzuerlangen.</p>
         <p>Die konkrete Formulierung ist entscheidend. Allgemeine Aussagen wie „Ich möchte nicht an Maschinen hängen“ sind häufig zu ungenau, um daraus eine konkrete Behandlungsentscheidung abzuleiten.</p>
-        <h3>Ist eine Patientenverfügung verbindlich?</h3>
+        <h3 id="ist-eine-patientenverfuegung-verbindlich">Ist eine Patientenverfügung verbindlich?</h3>
         <p>Ja. Eine wirksame Patientenverfügung ist verbindlich, wenn ihre Festlegungen auf die aktuelle Lebens- und Behandlungssituation zutreffen.</p>
         <p>Ärzte, Pflegekräfte und die rechtliche Vertretung müssen den darin festgelegten Willen beachten.</p>
         <p>Wichtig ist: Die Patientenverfügung gilt nicht nur bei einer unmittelbar bevorstehenden Sterbephase. Sie kann grundsätzlich unabhängig von Art und Stadium einer Erkrankung wirksam sein, sofern die beschriebene Situation und die Festlegungen zusammenpassen.</p>
@@ -265,7 +382,7 @@
         <p><strong>Behörden und Versicherungen:</strong> Mit Behörden, Krankenkassen, Rentenversicherung und anderen Stellen kommunizieren und erforderliche Anträge stellen.</p>
         <p><strong>Verträge und persönliche Angelegenheiten:</strong> Verträge abschließen oder kündigen, soweit dies vom Inhalt der Vollmacht gedeckt ist.</p>
         <p>Eine Vorsorgevollmacht kann sehr weitreichende Rechte übertragen. Deshalb sollte nur eine Person bevollmächtigt werden, der man wirklich uneingeschränkt vertraut.</p>
-        <h3>Muss die Vorsorgevollmacht notariell beglaubigt werden?</h3>
+        <h3 id="muss-die-vorsorgevollmacht-notariell-beglaubigt-werden">Muss die Vorsorgevollmacht notariell beglaubigt werden?</h3>
         <p>Nicht grundsätzlich.</p>
         <p>Eine Vorsorgevollmacht ist im Allgemeinen formfrei möglich. Aus Gründen der Klarheit und Beweiskraft sollte sie jedoch schriftlich erstellt und eigenhändig unterschrieben werden.</p>
         <p>Für bestimmte Rechtsgeschäfte gelten zusätzliche Formvorschriften. Das betrifft beispielsweise Immobiliengeschäfte oder die Aufnahme von Verbraucherdarlehen. Hier kann eine notarielle Beglaubigung oder Beurkundung erforderlich sein.</p>
@@ -412,8 +529,25 @@
         <p>Vorsorge wirft viele Fragen auf. Welche Dokumente brauche ich? Wo bekomme ich offizielle Formulare? Wer kann mich beraten? Und welche Unterstützung gibt es, wenn Angehörige Hilfe bei der Organisation benötigen?</p>
         <p>Wir helfen dabei, passende Ansprechpartner und regionale Unterstützungsangebote zu finden. Ob Beratung zu Vorsorgedokumenten, Unterstützung im Alltag oder Informationen rund um Pflege und Betreuung: Beschreiben Sie uns einfach, wobei Sie Hilfe benötigen.</p>
         <p>Wir lesen Ihre Anfrage persönlich und suchen gezielt nach passenden Kontakten in Ihrer Region.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#in-welchen-situationen-gilt-eine-patientenverfuegung">In welchen Situationen gilt eine Patientenverfügung?</a></li>
+              <li><a href="#ist-eine-patientenverfuegung-verbindlich">Ist eine Patientenverfügung verbindlich?</a></li>
+              <li><a href="#muss-die-vorsorgevollmacht-notariell-beglaubigt-werden">Muss die Vorsorgevollmacht notariell beglaubigt werden?</a></li>
+              <li><a href="#patientenverfuegung-und-vorsorgevollmacht-wo-liegt-der-unterschied">Patientenverfügung und Vorsorgevollmacht: Wo liegt der Unterschied?</a></li>
+              <li><a href="#was-passiert-wenn-ich-keine-vorsorge-getroffen-habe">Was passiert, wenn ich keine Vorsorge getroffen habe?</a></li>
+              <li><a href="#wo-und-wie-bewahre-ich-meine-dokumente-auf">Wo und wie bewahre ich meine Dokumente auf?</a></li>
+              <li><a href="#wie-erstelle-ich-meine-vorsorgedokumente">Wie erstelle ich meine Vorsorgedokumente?</a></li>
+              <li><a href="#praktische-checkliste-bin-ich-gut-vorbereitet">Praktische Checkliste: Bin ich gut vorbereitet?</a></li>
+            </ul>
+          </nav>
+
           <section class="beitrag-quellen" aria-labelledby="quellen-titel">
-            <h2 id="quellen-titel">Quellen und offizielle Formulare</h2>
+            <h2 id="quellen-titel">Stand und Quellen</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-23">23. November 2026</time>.</p>
+            <h3 class="beitrag-quellen__titel">Quellen und offizielle Stellen</h3>
             <ol>
               <li><a href="https://www.gesetze-im-internet.de/bgb/__1827.html" rel="noopener">§ 1827 BGB: Patientenverfügung (Gesetze im Internet)</a></li>
               <li><a href="https://www.gesetze-im-internet.de/bgb/__1358.html" rel="noopener">§ 1358 BGB: Gegenseitige Vertretung von Ehegatten in Angelegenheiten der Gesundheitssorge (Gesetze im Internet)</a></li>
@@ -464,13 +598,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
               <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -479,29 +613,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
-              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/krankenfahrten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></h3>
               <p class="article-card__text">Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/haushaltshilfe-im-alter/">Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht</a></h3>
+              <p class="article-card__text">Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=alltag-persoenliche-hilfe">Weitere Beiträge zum Thema Alltag und persönliche Hilfe</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -590,7 +724,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

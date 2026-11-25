@@ -35,29 +35,62 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Barrierefrei wohnen: Kleine Veränderungen, große Wirkung",
-    "description": "Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/barrierefrei-wohnen-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Wohnen, Haus und Handwerk",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/barrierefrei-wohnen/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Barrierefrei wohnen: Kleine Veränderungen, große Wirkung",
+      "description": "Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/barrierefrei-wohnen-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T16:15:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Wohnen und Umbauen",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/barrierefrei-wohnen/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Wohnen und Umbauen",
+          "item": "https://www.example.org/ratgeber/wohnen-umbauen/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Barrierefrei wohnen: Kleine Veränderungen, große Wirkung",
+          "item": "https://www.example.org/ratgeber/barrierefrei-wohnen/"
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +168,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +180,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/wohnen-umbauen/">Wohnen und Umbauen</a></li>
             <li><a href="/ratgeber/barrierefrei-wohnen/" aria-current="page">Barrierefrei wohnen: Kleine Veränderungen, große Wirkung</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/wohnen-umbauen/">Wohnen und Umbauen</a></p>
           <h1>Barrierefrei wohnen: Kleine Veränderungen, große Wirkung</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -204,6 +240,16 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Nicht immer ist ein großer Umbau notwendig. Oft helfen schon kleine Veränderungen.</li>
+              <li>Rutschhemmende Unterlagen, freie Laufwege und gut sichtbare Stufenkanten schaffen mehr Sicherheit.</li>
+              <li>Gutes Licht ist besonders in Fluren, auf Treppen, in Eingangsbereichen und im Badezimmer wichtig.</li>
+              <li>Je nach persönlicher Situation kommen Zuschüsse oder Fördermöglichkeiten infrage. Die Voraussetzungen sollten immer individuell geprüft werden.</li>
+            </ul>
+          </section>
+
         <p>Das eigene Zuhause ist ein wichtiger Teil des Lebens. Hier fühlt man sich wohl, kennt jeden Winkel und hat viele Erinnerungen gesammelt. Doch mit zunehmendem Alter können Treppen, hohe Einstiegskanten oder enge Durchgänge den Alltag erschweren.</p>
         <p>Die gute Nachricht: Nicht immer ist ein großer Umbau notwendig. Oft helfen schon kleine Veränderungen, um das Zuhause sicherer und komfortabler zu gestalten.</p>
         <h2 id="stolperfallen-beseitigen">1. Stolperfallen beseitigen</h2>
@@ -226,6 +272,11 @@
         <p>Barrierefreiheit bedeutet nicht, dass eine Wohnung wie ein Krankenhaus aussehen muss. Es geht darum, das eigene Zuhause so zu gestalten, dass es zum Leben passt und Sicherheit gibt.</p>
         <p>Wir möchten Ihnen dabei helfen, passende Ansprechpartner und Unterstützung zu finden. Beschreiben Sie uns einfach, wobei Sie Hilfe benötigen. Die Anfrage ist kostenlos und unverbindlich.</p>
 
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
+
 
           <div class="notice article__disclaimer" role="note">
             <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
@@ -241,18 +292,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Wohnen, Haus und Handwerk?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Wohnung altersgerecht umbauen“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=wohnen-haus-handwerk" data-thema="wohnen-haus-handwerk">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=wohnung-umbauen">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=wohnen-haus-handwerk" data-thema="wohnen-haus-handwerk">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -260,24 +312,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
-              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/altersgerechter-umbau-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Wohnen und Umbauen</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/altersgerechter-umbau/">Altersgerechter Umbau: So bleibt das eigene Zuhause ein Zuhause</a></h3>
               <p class="article-card__text">Das eigene Zuhause bedeutet Geborgenheit, Erinnerungen und Selbstständigkeit. Doch mit zunehmendem Alter können Treppen, schmale Türen oder eine hohe Badewanne…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -286,9 +327,20 @@
         </li>
         <li>
           <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Wohnen und Umbauen</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
+              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/treppenlift-einbau-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Wohnen und Umbauen</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/treppenlift-einbau/">Treppenlift: Was Sie vor dem Einbau wissen sollten</a></h3>
               <p class="article-card__text">Die Treppe ins Schlafzimmer, in den Keller oder zur Haustür wird mit den Jahren mühsamer. Manchmal kommt die Angst vor einem Sturz dazu. Ein Treppenlift kann…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -296,8 +348,8 @@
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=wohnen-haus-handwerk">Weitere Beiträge zum Thema Wohnen, Haus und Handwerk</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/wohnen-umbauen/">Alle Beiträge im Bereich Wohnen und Umbauen</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -386,7 +438,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

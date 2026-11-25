@@ -35,29 +35,116 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie",
-    "description": "Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/krankenfahrten-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Alltag und persönliche Hilfe",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/krankenfahrten/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie",
+      "description": "Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/krankenfahrten-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T17:00:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/krankenfahrten/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie",
+          "item": "https://www.example.org/ratgeber/krankenfahrten/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was ist eine Krankenfahrt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eine Krankenfahrt ist eine Beförderung zu einer medizinisch notwendigen Behandlung, bei der keine medizinisch-fachliche Betreuung während der Fahrt erforderlich ist. Dazu gehören beispielsweise Fahrten mit: einem Taxi oder Mietwagen einem rollstuhlgerechten Fahrzeug einem privaten Pkw öffentlichen Verkehrsmitteln Wenn während der Fahrt medizinische Betreuung oder eine besondere Lagerung notwendig ist, kann stattdessen ein Krankentransportwagen erforderlich sein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wann übernimmt die Krankenkasse die Kosten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die gesetzliche Krankenkasse kann Fahrkosten übernehmen, wenn die Fahrt aus zwingenden medizinischen Gründen notwendig ist. Bei stationären Krankenhausbehandlungen werden die Kosten unter den gesetzlichen Voraussetzungen grundsätzlich übernommen. Auch bestimmte vor- und nachstationäre Behandlungen sowie ambulante Operationen können dazugehören. Fahrten zu gewöhnlichen ambulanten Arztterminen werden dagegen nur in bestimmten Ausnahmefällen bezahlt. Dazu zählen beispielsweise: Menschen mit Schwerbehindertenausweis und den Merkzeichen „aG“, „Bl“ oder „H“ Menschen mit Pflegegrad 4 oder 5 Menschen mit Pflegegrad 3 und dauerhafter erheblicher Mobilitätsbeeinträchtigung bestimmte regelmäßige Behandlungen, etwa Dialyse, Chemo- oder Strahlentherapie Ob die Voraussetzungen erfüllt sind, muss im Einzelfall geprüft werden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Brauche ich eine ärztliche Verordnung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In vielen Fällen ist eine ärztliche Verordnung zur Krankenbeförderung erforderlich. Sie wird in der Regel von der behandelnden Praxis ausgestellt. Bei Fahrten zu ambulanten Behandlungen ist häufig zusätzlich eine vorherige Genehmigung der Krankenkasse notwendig. Für bestimmte Personengruppen und Behandlungen gelten Ausnahmen. Unser Tipp: Klären Sie die Kostenübernahme möglichst vor der Fahrt mit Ihrer Arztpraxis und Ihrer Krankenkasse. So vermeiden Sie unangenehme Überraschungen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Kosten müssen selbst getragen werden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bei gesetzlich Versicherten fällt grundsätzlich eine gesetzliche Zuzahlung an. Sie beträgt in der Regel zehn Prozent der Fahrkosten, mindestens 5 Euro und höchstens 10 Euro je Fahrt, jedoch nicht mehr als die tatsächlichen Kosten. Wer seine persönliche Belastungsgrenze erreicht hat, kann unter bestimmten Voraussetzungen eine Befreiung von weiteren Zuzahlungen beantragen. Bei privat Versicherten richtet sich die Erstattung nach dem jeweiligen Tarif."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Krankenfahrt oder Krankentransport: Was ist der Unterschied?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Begriffe werden häufig verwechselt: Krankenfahrt: Beförderung ohne medizinisch-fachliche Betreuung, beispielsweise mit Taxi oder Mietwagen. Krankentransport: Beförderung mit medizinisch-fachlicher Betreuung oder besonderer Ausstattung, beispielsweise im Krankentransportwagen. Rettungsfahrt: Transport im Notfall, wenn schnelle medizinische Hilfe erforderlich ist. Welches Fahrzeug benötigt wird, entscheidet sich nach dem medizinischen Bedarf und nicht allein nach dem Alter oder der Gehfähigkeit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Worauf sollte man bei der Buchung achten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Planen Sie die Fahrt möglichst rechtzeitig und teilen Sie dem Fahrdienst mit, welche Unterstützung benötigt wird. Wichtige Angaben sind: Abholadresse und Ziel Datum und Uhrzeit des Termins Gehfähigkeit und benötigte Einstiegshilfe Rollstuhl, Rollator oder andere Hilfsmittel ob eine Begleitperson mitfahren soll Klären Sie außerdem, ob der Fahrdienst Wartezeiten oder die Rückfahrt übernehmen kann."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +222,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +234,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/krankenfahrten/" aria-current="page">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -205,6 +295,16 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Eine Krankenfahrt ist eine Beförderung zu einer medizinisch notwendigen Behandlung ohne medizinisch-fachliche Betreuung während der Fahrt.</li>
+              <li>Fahrten zu gewöhnlichen ambulanten Arztterminen bezahlt die Krankenkasse nur in bestimmten Ausnahmefällen, zum Beispiel bei Pflegegrad 4 oder 5.</li>
+              <li>In vielen Fällen ist eine ärztliche Verordnung nötig, bei ambulanten Behandlungen häufig zusätzlich eine vorherige Genehmigung der Krankenkasse.</li>
+              <li>Die Zuzahlung beträgt in der Regel zehn Prozent der Fahrkosten, mindestens 5 Euro und höchstens 10 Euro je Fahrt.</li>
+            </ul>
+          </section>
+
         <p>Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein bewältigt werden kann?</p>
         <p>Krankenfahrten ermöglichen es Menschen mit gesundheitlichen oder mobilitätsbedingten Einschränkungen, medizinische Termine sicher zu erreichen. Je nach Bedarf kommen dafür ein Taxi, ein speziell ausgestatteter Mietwagen oder ein Krankentransportwagen infrage.</p>
         <h2 id="was-ist-eine-krankenfahrt">1. Was ist eine Krankenfahrt?</h2>
@@ -269,6 +369,23 @@
         <h2 id="gut-ankommen-und-entspannt-behandelt-werden">Gut ankommen und entspannt behandelt werden</h2>
         <p>Eine zuverlässige Krankenfahrt kann viel Stress ersparen und dazu beitragen, medizinische Termine trotz eingeschränkter Mobilität wahrzunehmen.</p>
         <p>Wir helfen Ihnen dabei, passende Fahrdienste und Unterstützung in Ihrer Nähe zu finden. Beschreiben Sie einfach, welche Fahrt Sie benötigen. Ihre Anfrage ist kostenlos und unverbindlich.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-ist-eine-krankenfahrt">Was ist eine Krankenfahrt?</a></li>
+              <li><a href="#wann-uebernimmt-die-krankenkasse-die-kosten">Wann übernimmt die Krankenkasse die Kosten?</a></li>
+              <li><a href="#brauche-ich-eine-aerztliche-verordnung">Brauche ich eine ärztliche Verordnung?</a></li>
+              <li><a href="#welche-kosten-muessen-selbst-getragen-werden">Welche Kosten müssen selbst getragen werden?</a></li>
+              <li><a href="#krankenfahrt-oder-krankentransport-was-ist-der-unterschied">Krankenfahrt oder Krankentransport: Was ist der Unterschied?</a></li>
+              <li><a href="#worauf-sollte-man-bei-der-buchung-achten">Worauf sollte man bei der Buchung achten?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -285,18 +402,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Alltag und persönliche Hilfe?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Krankenfahrt zum Arzt oder ins Krankenhaus“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=alltag-persoenliche-hilfe" data-thema="alltag-persoenliche-hilfe">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=krankenfahrt">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=alltag-persoenliche-hilfe" data-thema="alltag-persoenliche-hilfe">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -304,13 +422,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
               <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -319,29 +437,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
-              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></h3>
               <p class="article-card__text">Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/haushaltshilfe-im-alter-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/haushaltshilfe-im-alter/">Haushaltshilfe im Alter: Unterstützung, die den Alltag leichter macht</a></h3>
+              <p class="article-card__text">Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=alltag-persoenliche-hilfe">Weitere Beiträge zum Thema Alltag und persönliche Hilfe</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -430,7 +548,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

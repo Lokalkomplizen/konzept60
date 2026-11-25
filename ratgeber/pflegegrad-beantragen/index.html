@@ -35,29 +35,108 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad",
-    "description": "Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/pflegegrad-beantragen-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Pflege und Betreuung",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/pflegegrad-beantragen/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad",
+      "description": "Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/pflegegrad-beantragen-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T17:10:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Pflege und Betreuung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/pflegegrad-beantragen/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pflege und Betreuung",
+          "item": "https://www.example.org/ratgeber/pflege-betreuung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad",
+          "item": "https://www.example.org/ratgeber/pflegegrad-beantragen/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Wann ist ein Pflegegrad sinnvoll?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein Pflegegrad kommt infrage, wenn die Selbstständigkeit oder die Fähigkeiten eines Menschen gesundheitlich bedingt beeinträchtigt sind und voraussichtlich mindestens sechs Monate Unterstützung benötigt wird. Das kann zum Beispiel der Fall sein, wenn jemand: Hilfe beim Waschen, Anziehen oder Essen benötigt Schwierigkeiten beim Gehen oder Treppensteigen hat Medikamente nicht mehr selbstständig einnehmen kann sich aufgrund von Demenz oder anderen Einschränkungen nicht mehr gut orientieren kann den Alltag nicht mehr allein organisieren kann Entscheidend ist nicht allein eine Diagnose oder das Alter, sondern wie selbstständig der Alltag noch bewältigt werden kann."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Pflegegrade gibt es?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Deutschland gibt es fünf Pflegegrade. Sie richten sich nach der Gesamtpunktzahl aus der Begutachtung."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wann kommt die Entscheidung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Pflegekasse hat grundsätzlich 25 Arbeitstage Zeit, um über den Antrag zu entscheiden. In bestimmten Situationen, beispielsweise bei einem Krankenhausaufenthalt oder einer palliativen Versorgung, gelten kürzere Fristen. Mit dem Bescheid erhalten Sie auch das Gutachten, sofern Sie der Übersendung nicht widersprochen haben. Darin können Sie nachvollziehen, wie die Einstufung zustande gekommen ist."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was tun, wenn der Pflegegrad zu niedrig ist?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sind Sie mit der Entscheidung nicht einverstanden, können Sie Widerspruch einlegen. Dafür gilt grundsätzlich eine Frist von einem Monat nach Erhalt des Bescheids. Prüfen Sie das Gutachten genau: Wurden alle Einschränkungen berücksichtigt? Wurde der tatsächliche Hilfebedarf richtig beschrieben? Sind wichtige Informationen oder Unterlagen nicht eingeflossen? Eine Pflegeberatungsstelle kann Sie dabei unterstützen. Begründen Sie den Widerspruch möglichst konkret und beziehen Sie sich auf die Punkte, die Ihrer Meinung nach falsch bewertet wurden."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Unterstützung gibt es nach der Einstufung?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mit einem anerkannten Pflegegrad können verschiedene Leistungen der Pflegeversicherung infrage kommen. Dazu zählen beispielsweise Pflegegeld, ambulante Pflegesachleistungen, der Entlastungsbetrag oder Zuschüsse für wohnumfeldverbessernde Maßnahmen. Welche Leistungen sinnvoll sind, hängt vom Pflegegrad und von der persönlichen Lebenssituation ab. Außerdem haben Sie Anspruch auf eine kostenlose Pflegeberatung durch Ihre Pflegekasse."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +214,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +226,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></li>
             <li><a href="/ratgeber/pflegegrad-beantragen/" aria-current="page">Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/pflege-betreuung/">Pflege und Betreuung</a></p>
           <h1>Pflegegrad beantragen: Schritt für Schritt zum richtigen Pflegegrad</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -207,6 +289,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Ein Pflegegrad kommt infrage, wenn die Selbstständigkeit gesundheitlich bedingt beeinträchtigt ist und voraussichtlich mindestens sechs Monate Unterstützung benötigt wird.</li>
+              <li>Der Antrag bei der Pflegekasse kann zunächst formlos gestellt werden, zum Beispiel telefonisch, per E-Mail oder per Brief.</li>
+              <li>Leistungen werden grundsätzlich ab dem Monat der Antragstellung gewährt, sofern die Voraussetzungen erfüllt sind.</li>
+              <li>Die Pflegekasse hat grundsätzlich 25 Arbeitstage Zeit, um über den Antrag zu entscheiden.</li>
+              <li>Für einen Widerspruch gilt grundsätzlich eine Frist von einem Monat nach Erhalt des Bescheids.</li>
+            </ul>
+          </section>
+
         <p>Wenn alltägliche Aufgaben zunehmend schwerfallen und regelmäßig Unterstützung benötigt wird, kann ein Pflegegrad helfen, die notwendige Versorgung zu organisieren und finanzielle Leistungen der Pflegeversicherung zu erhalten.</p>
         <p>Doch wie beantragt man einen Pflegegrad? Wer entscheidet über die Einstufung und wie läuft die Begutachtung ab?</p>
         <p>Wir erklären die wichtigsten Schritte einfach und verständlich.</p>
@@ -309,6 +402,22 @@
         <h2 id="fruehzeitig-hilfe-organisieren">Frühzeitig Hilfe organisieren</h2>
         <p>Ein Pflegegrad ist kein Grund, die Selbstständigkeit aufzugeben. Er kann vielmehr dabei helfen, notwendige Unterstützung zu organisieren und den Alltag zu erleichtern.</p>
         <p>Wir unterstützen Sie dabei, passende Ansprechpartner für Pflege, Betreuung, Haushaltshilfe und weitere Dienstleistungen zu finden. Beschreiben Sie einfach, wobei Sie Unterstützung benötigen. Ihre Anfrage ist kostenlos und unverbindlich.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#wann-ist-ein-pflegegrad-sinnvoll">Wann ist ein Pflegegrad sinnvoll?</a></li>
+              <li><a href="#welche-pflegegrade-gibt-es">Welche Pflegegrade gibt es?</a></li>
+              <li><a href="#wann-kommt-die-entscheidung">Wann kommt die Entscheidung?</a></li>
+              <li><a href="#was-tun-wenn-der-pflegegrad-zu-niedrig-ist">Was tun, wenn der Pflegegrad zu niedrig ist?</a></li>
+              <li><a href="#welche-unterstuetzung-gibt-es-nach-der-einstufung">Welche Unterstützung gibt es nach der Einstufung?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -325,18 +434,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Pflege und Betreuung?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Pflegedienst und Pflege“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=pflegedienst">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -344,19 +454,8 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/kurzzeitpflege-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Pflege und Betreuung</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/kurzzeitpflege/">Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</a></h3>
-              <p class="article-card__text">Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/pflegereform-2027-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
@@ -370,18 +469,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/rente-reicht-nicht-planung-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
-              <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Finanzen und Förderung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/rente-reicht-nicht-finanzielle-hilfen/">Rente reicht nicht? Diese finanziellen Hilfen und Ansprüche sollten ältere Menschen kennen</a></h3>
+              <p class="article-card__text">Eine kleine Rente bedeutet nicht automatisch, dass im Alter jeder Euro zweimal umgedreht werden muss. Wer seinen Lebensunterhalt mit der gesetzlichen Rente kaum…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/kurzzeitpflege-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Pflege und Betreuung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/kurzzeitpflege/">Kurzzeitpflege: Wenn Pflege vorübergehend nicht zu Hause möglich ist</a></h3>
+              <p class="article-card__text">Manchmal lässt sich die Pflege eines Angehörigen vorübergehend nicht mehr in den eigenen vier Wänden organisieren. Vielleicht steht nach einem…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=pflege-betreuung">Weitere Beiträge zum Thema Pflege und Betreuung</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/pflege-betreuung/">Alle Beiträge im Bereich Pflege und Betreuung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -470,7 +580,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

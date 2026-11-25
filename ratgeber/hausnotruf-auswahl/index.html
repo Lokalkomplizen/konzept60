@@ -35,29 +35,116 @@
   <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
   <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
   <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
-       ersetzen; datePublished/author/Logo erst mit echten Daten ergänzen. -->
+       ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
-    "description": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
-    "image": [
-      "https://www.example.org/assets/img/ratgeber/hausnotruf-auswahl-1400.jpg"
-    ],
-    "dateModified": "2026-11-20",
-    "inLanguage": "de-DE",
-    "articleSection": "Technik und Sicherheit",
-    "mainEntityOfPage": "https://www.example.org/ratgeber/hausnotruf-auswahl/",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Konzept 60+",
-      "url": "https://www.example.org/"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
+      "description": "Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein…",
+      "image": [
+        "https://www.example.org/assets/img/ratgeber/hausnotruf-auswahl-1400.jpg"
+      ],
+      "datePublished": "2026-11-20T10:02:00+01:00",
+      "dateModified": "2026-11-20",
+      "inLanguage": "de-DE",
+      "articleSection": "Alltag und Unterstützung",
+      "mainEntityOfPage": "https://www.example.org/ratgeber/hausnotruf-auswahl/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Konzept 60+",
+        "url": "https://www.example.org/"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "https://www.example.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ratgeber",
+          "item": "https://www.example.org/ratgeber/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Alltag und Unterstützung",
+          "item": "https://www.example.org/ratgeber/alltag-unterstuetzung/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Hausnotruf: Worauf Sie bei der Auswahl achten sollten",
+          "item": "https://www.example.org/ratgeber/hausnotruf-auswahl/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was ist ein Hausnotruf und wie funktioniert er?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ein Hausnotruf ist ein technisches System, mit dem Sie im Notfall schnell Hilfe rufen können. Die klassische Variante besteht aus einer Basisstation und einem kleinen Funksender, den Sie als Armband oder Halskette direkt am Körper tragen. Wenn Sie den Notrufknopf drücken, wird eine Verbindung zu einer rund um die Uhr besetzten Notrufzentrale hergestellt. Dort meldet sich ein Mitarbeiter, spricht mit Ihnen und organisiert die passende Hilfe. Je nach Situation werden Angehörige, ein Pflegedienst oder direkt der Rettungsdienst verständigt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Hausnotrufsysteme gibt es?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nicht jedes System passt zu jedem Alltag. Grundsätzlich lassen sich drei Varianten unterscheiden:"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Kosten entstehen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die Kosten unterscheiden sich je nach Anbieter, Gerät und Leistungsumfang. Ein klassischer Hausnotruf kostet im Basistarif häufig zwischen 27 und 40 Euro monatlich. Zusätzliche Leistungen können den Preis erhöhen. Gut zu wissen: Die Pflegekasse kann sich an den Kosten beteiligen. Seit dem 1. April 2026 beträgt die monatliche Kostenübernahme für den Hausnotruf-Basistarif bis zu 27 Euro. Voraussetzungen sind unter anderem: Es liegt ein anerkannter Pflegegrad vor. Die betroffene Person ist über weite Teile des Tages allein oder lebt mit jemandem zusammen, der im Notfall selbst keinen Hilferuf absetzen kann. Aufgrund des Gesundheits- oder Pflegezustands ist jederzeit mit einer Notsituation zu rechnen. Ohne Hausnotruf wäre es nicht möglich, in dieser Situation selbstständig Hilfe zu rufen. Der Anbieter muss einen entsprechenden Vertrag mit der Pflegekasse haben. Die Kostenübernahme muss beantragt und von der Pflegekasse geprüft werden. Zusatzleistungen wie GPS-Ortung, Schlüsselhinterlegung oder besondere Sturzerkennung können zusätzliche Kosten verursachen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Worauf sollten Sie bei der Auswahl achten?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bevor Sie sich für einen Anbieter entscheiden, sollten Sie einige wichtige Punkte vergleichen:"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was passiert, wenn Sie den Notruf auslösen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nach dem Drücken des Notrufknopfes wird eine Verbindung zur Notrufzentrale aufgebaut. Ein Mitarbeiter versucht, mit Ihnen zu sprechen und die Situation einzuschätzen. Je nach Bedarf werden anschließend: Angehörige oder hinterlegte Kontaktpersonen informiert. Ein Pflegedienst oder eine vereinbarte Kontaktperson verständigt. Bei einem medizinischen Notfall Rettungsdienst oder Notarzt alarmiert. Dafür werden vorab wichtige Informationen hinterlegt, beispielsweise Ihre Adresse, Kontaktpersonen und Angaben zu gesundheitlichen Besonderheiten. Bei der Schlüsselhinterlegung kann zusätzlich sichergestellt werden, dass Helfer im Notfall Zugang zur Wohnung erhalten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welches System passt zu Ihnen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Die richtige Entscheidung hängt vor allem davon ab, wie Sie leben und welche Unterstützung Sie benötigen. Sie sind überwiegend zu Hause? Ein klassischer Hausnotruf kann bereits vollkommen ausreichen. Sie sind viel unterwegs? Ein mobiles System mit GPS-Ortung bietet zusätzliche Sicherheit. Sie möchten eine unauffällige Lösung? Eine Notrufuhr könnte die passende Wahl sein. Sie sind sturzgefährdet? Achten Sie besonders auf eine zuverlässige Sturzerkennung und die Möglichkeit, jederzeit manuell Alarm auszulösen. Bei Menschen mit Demenz sollte besonders sorgfältig geprüft werden, ob das System im Alltag verstanden und im Notfall zuverlässig bedient werden kann. Eine automatische Sturzerkennung oder ergänzende technische Unterstützung kann sinnvoll sein, ersetzt aber keine individuelle Einschätzung."
+          }
+        }
+      ]
     }
-  }
+  ]
   </script>
 </head>
 <body class="hat-leiste">
@@ -135,8 +222,10 @@
   <!-- ======================================================================
        Ratgeber-Beitrag  (→ WordPress: single.php, Beitrag = Post)
        erzeugt von tools/build.py aus templates/ratgeber-beitrag.html + content/ratgeber/<slug>.md
-       Themen-Kicker = Term der Taxonomie themenbereich, Bild = Beitragsbild,
-       Stand = Änderungsdatum (post_modified)
+       Kicker/Breadcrumb = Ratgeber-Kategorie (Relaunch 3.3), Bild = Beitragsbild,
+       Stand = Änderungsdatum (post_modified). Einheitlicher Aufbau: Titel, Stand, Bild, Inhaltsverzeichnis,
+       „Das Wichtigste in Kürze“ (nur mit Frontmatter kurz), Beitragstext (wörtlich), Häufige Fragen (nur
+       aus Zwischenüberschriften mit „?“), Stand und Quellen, Hinweis, Passende Hilfe, Verwandte Ratgeber.
        ====================================================================== -->
   <article class="article">
     <div class="page-header page-header--article">
@@ -145,11 +234,12 @@
           <ol class="breadcrumb__list">
             <li><a href="/">Startseite</a></li>
             <li><a href="/ratgeber/">Ratgeber</a></li>
+            <li><a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></li>
             <li><a href="/ratgeber/hausnotruf-auswahl/" aria-current="page">Hausnotruf: Worauf Sie bei der Auswahl achten sollten</a></li>
           </ol>
         </nav>
         <header class="article__header">
-          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></p>
+          <p class="section__eyebrow article__kicker">Ratgeber · <a href="/ratgeber/alltag-unterstuetzung/">Alltag und Unterstützung</a></p>
           <h1>Hausnotruf: Worauf Sie bei der Auswahl achten sollten</h1>
           <p class="article__stand">Stand: <time datetime="2026-11-20">November 2026</time></p>
           <div class="seiten-werkzeuge no-print" data-werkzeuge>
@@ -205,6 +295,17 @@
           </details>
         </nav>
         <div class="article__body">
+          <section class="beitrag-kurz" aria-labelledby="kurz-titel">
+            <h2 class="beitrag-kurz__titel" id="kurz-titel">Das Wichtigste in Kürze</h2>
+            <ul class="beitrag-kurz__liste">
+              <li>Mit einem Hausnotruf erreichen Sie per Knopfdruck eine rund um die Uhr besetzte Notrufzentrale.</li>
+              <li>Es gibt den klassischen Hausnotruf, mobile Notrufsysteme und Notrufuhren.</li>
+              <li>Ein klassischer Hausnotruf kostet im Basistarif häufig zwischen 27 und 40 Euro monatlich.</li>
+              <li>Seit dem 1. April 2026 beträgt die monatliche Kostenübernahme der Pflegekasse für den Basistarif bis zu 27 Euro. Voraussetzung ist unter anderem ein anerkannter Pflegegrad.</li>
+              <li>Nicht jede Sturzerkennung funktioniert zuverlässig in jeder Situation. Testen Sie die Bedienung möglichst vor Vertragsabschluss.</li>
+            </ul>
+          </section>
+
         <p>Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein Hausnotrufsystem gibt Sicherheit und ermöglicht es, im Ernstfall mit einem Knopfdruck Unterstützung anzufordern. Doch welche Systeme gibt es und worauf sollten Sie bei der Auswahl achten?</p>
         <h2 id="was-ist-ein-hausnotruf-und-wie-funktioniert-er">1. Was ist ein Hausnotruf und wie funktioniert er?</h2>
         <p>Ein Hausnotruf ist ein technisches System, mit dem Sie im Notfall schnell Hilfe rufen können. Die klassische Variante besteht aus einer Basisstation und einem kleinen Funksender, den Sie als Armband oder Halskette direkt am Körper tragen.</p>
@@ -327,6 +428,23 @@
         <p>Lassen Sie sich verschiedene Möglichkeiten erklären und testen Sie die Bedienung möglichst vor Vertragsabschluss.</p>
         <p>Wir helfen Ihnen dabei, sich einen Überblick über passende Unterstützungsangebote zu verschaffen und den richtigen Ansprechpartner zu finden.</p>
         <p>Denn Sicherheit bedeutet auch, selbstbestimmt und mit einem guten Gefühl zu Hause leben zu können.</p>
+          <nav class="beitrag-fragen" aria-labelledby="fragen-titel">
+            <h2 id="fragen-titel">Häufige Fragen</h2>
+            <p class="beitrag-fragen__hinweis">Die Antworten stehen im Beitrag. Ein Klick führt zur Stelle im Text.</p>
+            <ul class="beitrag-fragen__liste">
+              <li><a href="#was-ist-ein-hausnotruf-und-wie-funktioniert-er">Was ist ein Hausnotruf und wie funktioniert er?</a></li>
+              <li><a href="#welche-hausnotrufsysteme-gibt-es">Welche Hausnotrufsysteme gibt es?</a></li>
+              <li><a href="#welche-kosten-entstehen">Welche Kosten entstehen?</a></li>
+              <li><a href="#worauf-sollten-sie-bei-der-auswahl-achten">Worauf sollten Sie bei der Auswahl achten?</a></li>
+              <li><a href="#was-passiert-wenn-sie-den-notruf-ausloesen">Was passiert, wenn Sie den Notruf auslösen?</a></li>
+              <li><a href="#welches-system-passt-zu-ihnen">Welches System passt zu Ihnen?</a></li>
+            </ul>
+          </nav>
+
+          <section class="beitrag-quellen" aria-labelledby="quellen-titel">
+            <h2 id="quellen-titel">Stand</h2>
+            <p class="beitrag-quellen__stand">Stand: November 2026. Zuletzt geändert am <time datetime="2026-11-20">20. November 2026</time>.</p>
+          </section>
 
 
           <div class="notice article__disclaimer" role="note">
@@ -343,18 +461,19 @@
       <div class="relatives__panel">
         <svg class="illu" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-team"/></svg>
         <div class="relatives__text">
-          <span class="section__eyebrow">Persönliche Vermittlung</span>
-          <h2 id="anfrage-cta-titel">Sie suchen Unterstützung zum Thema Technik und Sicherheit?</h2>
+          <span class="section__eyebrow">Passende Hilfe finden</span>
+          <h2 id="anfrage-cta-titel">Anbieter für „Hausnotruf“ in Ihrer Nähe</h2>
           <p>
-            Beschreiben Sie uns Ihr Anliegen. Unser Team sucht kostenlos und persönlich nach passenden
-            Ansprechpartnern in Ihrer Region – auch wenn Sie für Angehörige anfragen.
+            Im Assistenten wählen Sie Ihren Ort und sehen passende Anbieter aus Ihrer Region.
+            Sie entscheiden selbst, wen Sie ansprechen. Lieber persönlich? Dann suchen wir für Sie.
           </p>
         </div>
         <div class="relatives__action">
-          <a class="btn btn--primary" href="/anfrage/?thema=technik-sicherheit" data-thema="technik-sicherheit">
-            Anliegen beschreiben
+          <a class="btn btn--primary" href="/hilfe-finden/?anliegen=hausnotruf">
+            Passende Hilfe finden
             <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
           </a>
+          <a class="relatives__link" href="/anfrage/?thema=technik-sicherheit" data-thema="technik-sicherheit">Bei uns melden</a>
         </div>
       </div>
     </div>
@@ -362,24 +481,13 @@
 
   <section class="section section--sage no-print" aria-labelledby="weitere-beitraege-titel">
     <div class="container">
-      <h2 id="weitere-beitraege-titel">Weitere Beiträge</h2>
+      <h2 id="weitere-beitraege-titel">Verwandte Ratgeber</h2>
       <ul class="grid grid--3">
-        <li>
-          <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/betrug-telefon-haustuer-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
-            <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Technik und Sicherheit</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/betrug-telefon-haustuer/">Vorsicht vor Betrug: So schützen Sie sich am Telefon und an der Haustür</a></h3>
-              <p class="article-card__text">Ein unerwarteter Anruf, ein angeblicher Gewinn oder ein fremder Handwerker vor der Tür: Betrüger nutzen viele Wege, um an Geld und persönliche Daten zu…</p>
-              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
-            </div>
-          </article>
-        </li>
         <li>
           <article class="article-card article-card--image">
             <img class="article-card__media" src="/assets/img/ratgeber/mobilitaet-haltestelle-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Alltag und persönliche Hilfe</span></p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
               <h3 class="article-card__title"><a href="/ratgeber/mobilitaet-im-alter-ohne-auto/">Mobilität im Alter: Wie bleibe ich auch ohne eigenes Auto unabhängig?</a></h3>
               <p class="article-card__text">Mobil bleiben, selbstständig einkaufen, Freunde besuchen und Arzttermine wahrnehmen: Auch ohne eigenes Auto gibt es viele Möglichkeiten, im Alter unabhängig zu…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
@@ -388,18 +496,29 @@
         </li>
         <li>
           <article class="article-card article-card--image">
-            <img class="article-card__media" src="/assets/img/ratgeber/mehrgenerationenhaus-garten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <img class="article-card__media" src="/assets/img/ratgeber/patientenverfuegung-vorsorgevollmacht-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
             <div class="article-card__body">
-              <p class="article-card__meta"><span class="article-card__pill">Wohnen, Haus und Handwerk</span></p>
-              <h3 class="article-card__title"><a href="/ratgeber/mehrgenerationenhaus-mehrgenerationenwohnen/">Mehrgenerationenhaus: Gemeinsam wohnen, Kosten teilen und Steuervorteile nutzen</a></h3>
-              <p class="article-card__text">Wie kann das Zusammenleben von Jung und Alt unter einem Dach funktionieren? Welche Voraussetzungen müssen erfüllt sein? Wie lassen sich Kosten gerecht…</p>
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/patientenverfuegung-vorsorgevollmacht/">Patientenverfügung und Vorsorgevollmacht: Wer entscheidet, wenn ich es selbst nicht mehr kann?</a></h3>
+              <p class="article-card__text">Ein Unfall, eine schwere Erkrankung oder eine fortgeschrittene Demenz können dazu führen, dass man wichtige Entscheidungen nicht mehr selbst treffen kann. Wer…</p>
+              <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="article-card article-card--image">
+            <img class="article-card__media" src="/assets/img/ratgeber/krankenfahrten-800.webp" width="800" height="533" alt="" loading="lazy" decoding="async">
+            <div class="article-card__body">
+              <p class="article-card__meta"><span class="article-card__pill">Alltag und Unterstützung</span></p>
+              <h3 class="article-card__title"><a href="/ratgeber/krankenfahrten/">Krankenfahrten: Sicher und zuverlässig zum Arzt oder zur Therapie</a></h3>
+              <p class="article-card__text">Arzttermine, regelmäßige Behandlungen oder Krankenhausaufenthalte gehören für viele Menschen zum Alltag. Doch was tun, wenn der Weg zur Praxis nicht mehr allein…</p>
               <p class="article-card__more" aria-hidden="true">Weiterlesen →</p>
             </div>
           </article>
         </li>
       </ul>
-      <p class="article-list__all"><a href="/ratgeber/?thema=technik-sicherheit">Weitere Beiträge zum Thema Technik und Sicherheit</a></p>
-      <p class="article-list__all"><a href="/ratgeber/">Alle Beiträge im Ratgeber</a></p>
+      <p class="article-list__all"><a href="/ratgeber/alltag-unterstuetzung/">Alle Beiträge im Bereich Alltag und Unterstützung</a></p>
+      <p class="article-list__all"><a href="/ratgeber/">Zur Ratgeber-Übersicht mit Suche</a></p>
     </div>
   </section>
 </main>
@@ -488,7 +607,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+<script src="/assets/js/main.js?v=300342804c" defer></script>
 
 </body>
 </html>

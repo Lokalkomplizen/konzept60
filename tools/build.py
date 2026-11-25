@@ -266,7 +266,7 @@ def unterthemen(t):
     return out
 
 
-START_SIZES = "(min-width: 48em) 10rem, 4.5rem"
+START_SIZES = "(min-width: 48em) 10rem, 3rem"
 
 
 def themen_start(themen, n):

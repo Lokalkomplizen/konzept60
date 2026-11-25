@@ -16,7 +16,7 @@
   10. Seite teilen (navigator.share, sonst Link in die Zwischenablage)
   11. Ganze Seite drucken ([data-drucken-seite]) + Quellenangabe im Ausdruck
   12. Checklisten in Ratgeber-Beiträgen
-  13. Inhaltsverzeichnis im Beitrag: Handy/Tablet eingeklappt, ab 64em offen
+  13. Inhaltsverzeichnis im Beitrag (ab 64em offen) und Footer-Spalten (ab 48em offen): darunter eingeklappt
   14. Feste Leiste „Anbieter suchen“ (Handy): auf der Startseite aus, solange die Hero-Suche sichtbar ist
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'wirhelfen-main', …, [ 'strategy' => 'defer' ] );
@@ -1047,36 +1047,12 @@
   function initScrollAnimationen() {
     if (prefersReducedMotion() || !('IntersectionObserver' in window)) return;
 
-    var GRUPPEN = [
-      // [Selektor, Effekt, Stagger (Kinder zeitversetzt)]
-      ['.section__header, .page-header h1, .article__body > h2, .topic-columns h2', 'up'],
-      ['.article__body > p, .article__body > ul, .article__body > .article__table-wrap, .article__notice, .relatives__panel, .section > .container > .notice', 'up'],
-      ['.grid, .trust__list, .benefits, .steps', 'up', true],
-      ['.split > :first-child, .topic-columns > :nth-child(odd)', 'left'],
-      ['.split > :last-child, .topic-columns > :nth-child(even)', 'right'],
-      ['.article__figure img, .card__media img', 'zoom']
-    ];
-    var STAGGER_MS = 90, STAGGER_SPALTEN = 3; // Verzögerung je Spalte, nicht über die ganze Liste
+    // Relaunch 3.4: nur noch ein dezentes Einblenden von Abschnittsköpfen (kein Versatz von links/rechts,
+    // kein Zoom, kein Parallax, keine zeitversetzten Karten).
     var ziele = [];
-
-    GRUPPEN.forEach(function (g) {
-      document.querySelectorAll(g[0]).forEach(function (el) {
-        if (g[2]) {
-          Array.prototype.forEach.call(el.children, function (kind, i) {
-            if (kind.hasAttribute('data-anim')) return;
-            kind.setAttribute('data-anim', g[1]);
-            kind.style.setProperty('--anim-delay', (i % STAGGER_SPALTEN) * STAGGER_MS + 'ms');
-            ziele.push(kind);
-          });
-        } else if (!el.hasAttribute('data-anim') && !el.closest('[data-anim]:not([data-anim="zoom"])')) {
-          el.setAttribute('data-anim', g[1]);
-          ziele.push(el);
-        }
-      });
-    });
-    // Bilder in bereits animierten Karten trotzdem zoomen lassen
-    document.querySelectorAll('.article__figure img, .card__media img').forEach(function (img) {
-      if (!img.hasAttribute('data-anim')) { img.setAttribute('data-anim', 'zoom'); ziele.push(img); }
+    document.querySelectorAll('.section__header').forEach(function (el) {
+      el.setAttribute('data-anim', 'up');
+      ziele.push(el);
     });
 
     // Was beim Laden schon im Bild ist, bleibt einfach stehen (kein Aufblitzen).
@@ -1101,38 +1077,6 @@
       ziele.forEach(function (el) { el.classList.add('is-visible'); });
     });
 
-    initParallax();
-  }
-
-  /* Dezentes Parallax für große Bilder – nur Desktop, nur transform, rAF-gedrosselt */
-  function initParallax() {
-    // Bei reduzierter Bewegung gar keine Listener registrieren
-    if (prefersReducedMotion()) return;
-    var desktop = window.matchMedia('(min-width: 60em)');
-    var bilder = Array.prototype.slice.call(document.querySelectorAll('.hero__media img, .topic-hero__media img'));
-    if (!bilder.length) return;
-    var STAERKE = 28; // max. Verschiebung in px nach oben/unten
-    var geplant = false;
-
-    function aktualisieren() {
-      geplant = false;
-      var vh = window.innerHeight;
-      bilder.forEach(function (img) {
-        if (!desktop.matches) { img.classList.remove('has-parallax'); return; }
-        var r = img.parentNode.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh) return;
-        var p = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2); // -1 … 1
-        p = Math.max(-1, Math.min(1, p));
-        img.style.setProperty('--parallax-y', (p * -STAERKE).toFixed(1) + 'px');
-        img.classList.add('has-parallax');
-      });
-    }
-    function anfordern() {
-      if (!geplant) { geplant = true; window.requestAnimationFrame(aktualisieren); }
-    }
-    window.addEventListener('scroll', anfordern, { passive: true });
-    window.addEventListener('resize', anfordern, { passive: true });
-    aktualisieren();
   }
 
   /* ------------------------------------------------------------------------
@@ -1179,10 +1123,17 @@
      CSS (::details-content) den Inhalt trotzdem.
      ------------------------------------------------------------------------ */
   function initToc() {
-    var details = document.querySelector('[data-toc]');
+    aufklappenAb(document.querySelector('[data-toc]'), '(min-width: 64em)');
+    // Footer-Spalten (Relaunch 3.4): unter 48em zugeklappt, ab 48em offen und nicht einklappbar
+    document.querySelectorAll('[data-footer-spalte]').forEach(function (d) {
+      aufklappenAb(d, '(min-width: 48em)');
+    });
+  }
+
+  function aufklappenAb(details, query) {
     if (!details || !window.matchMedia) return;
     var summary = details.querySelector('summary');
-    var mq = window.matchMedia('(min-width: 64em)');
+    var mq = window.matchMedia(query);
     function sync() {
       details.open = mq.matches;
       if (mq.matches) summary.setAttribute('tabindex', '-1');

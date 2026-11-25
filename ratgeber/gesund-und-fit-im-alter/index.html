@@ -32,10 +32,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
-  <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
-  <link rel="stylesheet" href="/assets/css/components.css?v=375f80467a">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=5b397a5c3b">
+  <link rel="stylesheet" href="/assets/css/base.css?v=a799227ee4">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=3112fd72f0">
+  <link rel="stylesheet" href="/assets/css/components.css?v=ce5df3c7ef">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
   <!-- JSON-LD: PLATZHALTER – url/publisher (example.org = reservierte Beispiel-Domain) vor Livegang
        ersetzen; Logo erst mit echten Daten ergänzen. Kein author: Ratgeber erscheinen ohne Autor. -->
@@ -373,7 +373,9 @@
   </section>
 </main>
 
-<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py)
+     Relaunch 3.4: Linkspalten als <details>: unter 48em zugeklappt (spart Höhe auf dem Handy), ab 48em
+     offen und nicht einklappbar (main.js 13., ohne JS über ::details-content). -->
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -386,17 +388,20 @@
       </div>
 
       <nav aria-labelledby="footer-saeulen">
-        <h2 id="footer-saeulen">Drei Wege</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-saeulen">Drei Wege</h2></summary>
         <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
         <ul>
           <li><a href="/hilfe-finden/">Hilfe finden</a></li>
           <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
           <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-themen">
-        <h2 id="footer-themen">Themen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-themen">Themen</h2></summary>
         <!-- → WordPress: get_terms( 'themenbereich' ) -->
         <ul>
           <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
@@ -407,10 +412,12 @@
           <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
           <li><a href="/themen/">Alle Themen</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-regionen">
-        <h2 id="footer-regionen">Regionen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-regionen">Regionen</h2></summary>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
           <li><a href="/anfrage/?region=duesseldorf" data-region="duesseldorf">Düsseldorf</a></li>
@@ -422,23 +429,29 @@
           <li><a href="/anfrage/?region=haan" data-region="haan">Haan</a></li>
           <li><a href="/anfrage/?region=wesel" data-region="wesel">Wesel</a></li>
         </ul>
+        </details>
       </nav>
 
       <nav aria-labelledby="footer-info">
-        <h2 id="footer-info">Informationen</h2>
+        <details class="site-footer__spalte" data-footer-spalte>
+          <summary><h2 id="footer-info">Informationen</h2></summary>
         <ul class="site-footer__info">
           <li><a href="/so-funktioniert-es/">So funktioniert es</a></li>
           <li><a href="/anfrage/">Bei uns melden</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
-          <li><a href="/impressum/">Impressum</a></li>
-          <li><a href="/datenschutz/">Datenschutz</a></li>
         </ul>
+        </details>
       </nav>
     </div>
 
     <div class="site-footer__bottom">
+      <!-- Impressum und Datenschutz stehen immer sichtbar (nicht in einer zugeklappten Spalte) -->
+      <ul class="site-footer__recht" aria-label="Rechtliches">
+        <li><a href="/impressum/">Impressum</a></li>
+        <li><a href="/datenschutz/">Datenschutz</a></li>
+      </ul>
       <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
       <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
     </div>
@@ -457,7 +470,7 @@
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=300342804c" defer></script>
+<script src="/assets/js/main.js?v=b97206791a" defer></script>
 
 </body>
 </html>

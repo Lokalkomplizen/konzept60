@@ -1,0 +1,411 @@
+<!doctype html>
+<!-- GENERIERT von tools/build.py aus templates/so-funktioniert-es.html – nicht direkt bearbeiten -->
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>So funktioniert es – Konzept 60+</title>
+  <meta name="description" content="So finden Sie bei Konzept 60+ passende Hilfe: selbst einen Anbieter aus Ihrer Region aussuchen oder sich kostenlos und persönlich vermitteln lassen. Auch für Angehörige.">
+  <!-- PROTOTYP: example.org ist eine reservierte Platzhalter-Domain – Canonical, Open Graph
+       und JSON-LD vor Livegang auf die echte Domain umstellen. -->
+  <link rel="canonical" href="https://www.example.org/so-funktioniert-es/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Konzept 60+">
+  <meta property="og:title" content="So funktioniert es – Konzept 60+">
+  <meta property="og:description" content="So finden Sie bei Konzept 60+ passende Hilfe: selbst einen Anbieter aus Ihrer Region aussuchen oder sich kostenlos und persönlich vermitteln lassen. Auch für Angehörige.">
+  <meta property="og:url" content="https://www.example.org/so-funktioniert-es/">
+  <meta property="og:image" content="https://www.example.org/assets/img/hero-garten-1600.jpg">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="Ältere Frau sitzt lächelnd mit einem Glas in einem sonnigen Garten.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#14213d">
+
+  <!-- Kein JS-Flash: Klasse "js" sofort setzen (für zuklappbares Mobilmenü) -->
+  <script src="/assets/js/no-js.js?v=cbdd4bffae"></script>
+
+  <!-- CSS-Reihenfolge = Kaskade: Fonts → Tokens → Base → Layout → Komponenten
+       → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
+  <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
+  <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
+
+</head>
+<body class="hat-leiste">
+
+<!-- Icon-Sprite (selbst gezeichnet, 24×24, Strichstärke per CSS)
+     → WordPress: template-parts/icon-sprite.php (direkt nach wp_body_open()) -->
+<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.9l1.5 4-2 1.6a11 11 0 0 0 5.9 5.9l1.6-2 4 1.5v2.9a2 2 0 0 1-2.1 2A16 16 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/></symbol>
+  <symbol id="icon-kostenlos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4 4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/></symbol>
+  <symbol id="icon-geprueft" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.8-3.6 3.3-5.5 6.5-5.5 1.4 0 2.6.3 3.6.9"/><path d="m15 18 2 2 4-4.2"/></symbol>
+  <symbol id="icon-region" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M2.5 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><path d="M15 14.4c.5-.1 1-.2 1.5-.2 2.5 0 4.4 1.6 5 4.6"/></symbol>
+  <symbol id="icon-schloss" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2.5"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-3.9A8 8 0 1 1 20 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="icon-vorlesen" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="icon-stopp" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/></symbol>
+  <symbol id="icon-teilen" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-3.8M8.2 13.2l7.6 3.8"/></symbol>
+  <symbol id="icon-drucken" viewBox="0 0 24 24"><path d="M7.5 8.5v-5h9v5"/><path d="M7.5 18.5h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h15a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-3"/><rect x="7.5" y="14.5" width="9" height="6" rx="1.5"/></symbol>
+  <symbol id="icon-suche" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></symbol>
+</svg>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- BEGIN partial:header  (→ header.php; aria-current setzt tools/build.py) -->
+<header class="site-header">
+  <div class="site-header__topbar">
+    <div class="container">
+      <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+      <!-- Rückfallweg auf jeder Seite an derselben Stelle (ab 48em; darunter im Footer) -->
+      <a href="/anfrage/">Lieber persönlich? Bei uns melden</a>
+    </div>
+  </div>
+
+  <div class="container site-header__bar">
+    <a class="logo" href="/" aria-label="Konzept 60+ – zur Startseite">
+      <span class="logo__text" translate="no">Konzept 60+</span>
+    </a>
+
+    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent).
+         Hauptaktion im Kopf; auf dem Handy stattdessen als feste Leiste unten (MOBIL_LEISTE in build.py). -->
+    <a class="btn btn--primary site-header__suche" href="/hilfe-finden/">
+      <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
+      <span>Anbieter suchen</span>
+    </a>
+
+    <button class="btn btn--menu site-header__nav-toggle" type="button"
+            aria-expanded="false" aria-controls="hauptnavigation">
+      <svg class="icon" aria-hidden="true"><use href="#icon-menu" data-menu-icon/></svg>
+      <span>Menü</span>
+    </button>
+
+    <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
+           Relaunch 3.2: Hilfe finden (/hilfe-finden/, Themen gehören dazu) · Ratgeber · Mein Alltag · So funktioniert es.
+           „Für Anbieter“ steht im Footer. -->
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="/hilfe-finden/">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
+        <li><a class="site-nav__link" href="/mein-alltag/">Mein Alltag</a></li>
+        <li><a class="site-nav__link" href="/so-funktioniert-es/" aria-current="page">So funktioniert es</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!-- END partial:header -->
+
+<main id="inhalt" tabindex="-1">
+  <!-- ======================================================================
+       So funktioniert es (Relaunch 3.2, Konzept docs/relaunch/konzept-assistent-suche.md Abschnitt 8):
+       Ablauf (selbst suchen + persönliche Vermittlung), für Angehörige, Vertrauen, Drei Wege, für Anbieter.
+       Texte aus der früheren Startseite (Abschnitte „So funktioniert’s“, „Für Angehörige“, „Drei Wege“,
+       Vertrauensleiste, Bildband, Hinweis „Für Anbieter“), siehe docs/relaunch/startseite-textabgleich.md.
+       → WordPress: page-so-funktioniert-es.php mit Template-Parts ablauf, persoenlich, angehoerige, vertrauen
+       ====================================================================== -->
+  <div class="page-header page-header--plain">
+    <div class="container">
+      <span class="section__eyebrow">So funktioniert es</span>
+      <h1>So finden Sie passende Hilfe</h1>
+      <p class="section__intro">
+        Sie suchen sich Ihren Anbieter selbst aus. Wenn nichts passt oder Sie lieber Unterstützung möchten,
+        sucht jemand aus unserem Team persönlich für Sie, kostenlos und unverbindlich.
+      </p>
+      <div class="seiten-werkzeuge seiten-werkzeuge--dezent no-print" data-werkzeuge>
+        <button type="button" class="seiten-werkzeuge__link" data-teilen
+                aria-label="Seite „So funktioniert es“ teilen: Link zu dieser Seite" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#icon-teilen"/></svg>
+          <span>Seite teilen</span>
+        </button>
+        <p class="seiten-werkzeuge__status" role="status" aria-live="polite" data-werkzeuge-status></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hauptweg: selbst suchen (gleiche Schritte wie auf der Startseite, Teil D) -->
+  <section class="section section--flush-top" id="ablauf" aria-labelledby="selbst-titel">
+    <div class="container ablauf">
+      <div class="section__header">
+        <span class="section__eyebrow">Selbst suchen</span>
+        <h2 id="selbst-titel">In drei Schritten zum passenden Anbieter</h2>
+      </div>
+      <ol class="ablauf__schritte">
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Anliegen beschreiben</h3>
+          <p>Suchen oder Thema antippen, Ort angeben.</p>
+        </li>
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Passende regionale Anbieter finden</h3>
+          <p>Wir zeigen geprüfte Anbieter aus Ihrer Region.</p>
+        </li>
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Kontakt aufnehmen</h3>
+          <p>Sie rufen den Anbieter selbst an oder schreiben ihm.</p>
+        </li>
+      </ol>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="/hilfe-finden/">
+          Anbieter suchen
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rückfallweg: persönliche Vermittlung (bis Relaunch 3.2 „So funktioniert’s“ auf der Startseite, #so-funktionierts).
+       Einzige Stelle mit der vollen Botschaft: persönlich, kostenlos, keine anonyme Datenbank,
+       Weitergabe nur mit Zustimmung, keine Erfolgsgarantie. -->
+  <section class="section section--navy steps-section" id="so-funktionierts" aria-labelledby="ablauf-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Persönliche Vermittlung</span>
+        <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
+        <p class="section__intro">Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da.
+          Sie beschreiben, wobei Sie Unterstützung brauchen. Jemand aus unserem Team
+          sucht für Sie passende Dienstleister oder private Helfer in Ihrer Region – für Sie
+          selbst oder für Ihre Angehörigen.</p>
+        <p class="section__intro">Bei uns landen Sie nicht in einer anonymen Datenbank. Wir sind selbst kein Dienstleister: Unser Team hört zu, sucht und stellt den Kontakt her, persönlich und kostenlos.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <h3 class="step__title">Anliegen beschreiben</h3>
+          <p class="step__text">Über unser Formular. Erzählen Sie in eigenen Worten, was Sie brauchen und wo Sie wohnen.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Unser Team sucht für Sie</h3>
+          <p class="step__text">Jemand aus unserem Team liest Ihre Anfrage, fragt bei Bedarf nach und sucht passende Betriebe oder private Helfer in Ihrer Region. Kein Algorithmus entscheidet.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Sie erhalten Rückmeldung</h3>
+          <p class="step__text">Wir melden uns persönlich mit einem oder mehreren Kontakten, so, wie Sie es wünschen: telefonisch oder per E-Mail. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
+        </li>
+      </ol>
+
+      <div class="notice">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Sie behalten die Kontrolle.</strong> Ihre Kontaktdaten geben wir nur mit Ihrer ausdrücklichen Zustimmung weiter.
+          <strong>Ehrlich gesagt:</strong> Wir können nicht garantieren, dass wir immer jemanden finden.
+          Wenn wir niemanden finden, sagen wir Ihnen das offen und nennen Ihnen, wenn möglich, andere Anlaufstellen.</p>
+      </div>
+
+      <div class="btn-group steps-section__aktion">
+        <a class="btn btn--outline-light" href="/anfrage/">Anliegen beschreiben</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Für Angehörige (bis Relaunch 3.2 auf der Startseite, #angehoerige) -->
+  <section class="section relatives" id="angehoerige" aria-labelledby="angehoerige-titel">
+    <div class="container">
+      <div class="relatives__panel">
+        <picture class="relatives__media">
+          <source type="image/webp" srcset="/assets/img/angehoerige-familie-480.webp 480w, /assets/img/angehoerige-familie-800.webp 800w, /assets/img/angehoerige-familie-1200.webp 1200w" sizes="(min-width: 68em) 20rem, (min-width: 48em) 15rem, 92vw">
+          <img src="/assets/img/angehoerige-familie-800.jpg" width="800" height="533" alt="Eine ältere Frau sitzt lächelnd zwischen ihrer Tochter und ihrem Sohn im sonnigen Garten, die Tochter hat ihr die Hand auf die Schulter gelegt."
+               loading="lazy" decoding="async">
+        </picture>
+        <div class="relatives__text">
+          <span class="section__eyebrow">Für Angehörige</span>
+          <h2 id="angehoerige-titel">Sie suchen Unterstützung für Ihre Eltern oder Angehörigen?</h2>
+          <p>
+            Auch Sie können unser Portal nutzen. Beschreiben Sie uns einfach, wobei Hilfe benötigt wird.
+            Wir suchen nach passenden Ansprechpartnern in der Region – auch wenn Sie selbst nicht vor Ort wohnen.
+          </p>
+          <p>Oder suchen Sie selbst: <a href="/hilfe-finden/?person=angehoerige">Anbieter für einen Angehörigen suchen</a></p>
+          <p class="relatives__guide">
+            <a href="/ratgeber/eltern-aus-der-ferne-unterstuetzen/">Leitfaden: Eltern aus der Ferne unterstützen</a>
+          </p>
+        </div>
+        <div class="relatives__action">
+          <a class="btn btn--secondary" href="/anfrage/?wer=angehoerige">
+            Für Angehörige anfragen
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bildband über volle Breite (bis Relaunch 3.2 auf der Startseite). Reine Stimmung, kein Text auf dem Bild. -->
+  <figure class="photo-band">
+    <picture>
+      <source type="image/webp" srcset="/assets/img/ratgeber/gemeinsam-statt-einsam-800.webp 800w, /assets/img/ratgeber/gemeinsam-statt-einsam-1400.webp 1400w" sizes="100vw">
+      <img src="/assets/img/ratgeber/gemeinsam-statt-einsam-1400.jpg" width="1400" height="933" loading="lazy" decoding="async" alt="Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.">
+    </picture>
+  </figure>
+
+  <!-- Vertrauen (gleiche Aussagen wie Startseite Teil F) -->
+  <section class="section section--sage" id="vertrauen" aria-labelledby="vertrauen-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Vertrauen</span>
+        <h2 id="vertrauen-titel">Darauf können Sie sich verlassen</h2>
+      </div>
+      <ul class="vertrauen">
+        <li class="vertrauen__item">
+          <img class="vertrauen__icon" src="/assets/img/icons/kostenlos-96.webp" srcset="/assets/img/icons/kostenlos-96.webp 1x, /assets/img/icons/kostenlos-192.webp 2x" width="96" height="96" alt="" loading="lazy" decoding="async">
+          <p><strong class="vertrauen__titel">Kostenlos und unverbindlich</strong> Suche, Ratgeber und Vermittlung kosten Sie nichts. Sie gehen keine Verpflichtung ein.</p>
+        </li>
+        <li class="vertrauen__item">
+          <span class="vertrauen__icon vertrauen__icon--zeichen"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>
+          <p><strong class="vertrauen__titel">Sie entscheiden selbst</strong> Sie wählen den Anbieter aus und vereinbaren Preise und Termine direkt mit ihm.</p>
+        </li>
+        <li class="vertrauen__item">
+          <img class="vertrauen__icon" src="/assets/img/icons/regional-96.webp" srcset="/assets/img/icons/regional-96.webp 1x, /assets/img/icons/regional-192.webp 2x" width="96" height="96" alt="" loading="lazy" decoding="async">
+          <p><strong class="vertrauen__titel">Regional und nah</strong> Anbieter aus Ihrer Region: Rheinland, Niederrhein und Bergisches Land.</p>
+        </li>
+        <li class="vertrauen__item">
+          <img class="vertrauen__icon" src="/assets/img/icons/persoenlich-96.webp" srcset="/assets/img/icons/persoenlich-96.webp 1x, /assets/img/icons/persoenlich-192.webp 2x" width="96" height="96" alt="" loading="lazy" decoding="async">
+          <p><strong class="vertrauen__titel">Wir helfen, wenn Sie nicht weiterkommen</strong> Persönlich statt anonym: Jemand aus unserem Team sucht für Sie, wenn nichts passt oder Sie lieber Unterstützung möchten.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Drei Wege (bis Relaunch 3.2 auf der Startseite, #drei-wege) -->
+  <section class="section" id="drei-wege" aria-labelledby="drei-wege-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Unser Angebot</span>
+        <h2 id="drei-wege-titel">Drei Wege, wie wir helfen</h2>
+        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten.</p>
+      </div>
+      <ul class="ways ways--drei">
+        <li class="way-card way-card--navy">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-hilfe"/></svg>
+          <div>
+            <span class="path-card__tag">Hilfe finden</span>
+            <h3 class="way-card__title"><a href="/hilfe-finden/">Anbieter in Ihrer Region</a></h3>
+            <p class="way-card__text">Suchen Sie selbst nach Thema oder Stichwort. Wenn nichts passt, suchen wir persönlich für Sie.</p>
+          </div>
+        </li>
+        <li class="way-card way-card--sage">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-wissen"/></svg>
+          <div>
+            <span class="path-card__tag">Wissen bekommen</span>
+            <h3 class="way-card__title"><a href="/ratgeber/">Verständlich erklärt: der Ratgeber</a></h3>
+            <p class="way-card__text">Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit, ohne Fachchinesisch.</p>
+          </div>
+        </li>
+        <li class="way-card way-card--terra">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg?v=5084e533d1#illu-alltag"/></svg>
+          <div>
+            <span class="path-card__tag">Alltag erleichtern</span>
+            <h3 class="way-card__title"><a href="/mein-alltag/">Mein Alltag</a></h3>
+            <p class="way-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause, ohne Anmeldung, ohne Speicherung.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Für Anbieter: nur ein schmaler Hinweis, alles Weitere auf /fuer-anbieter/ -->
+  <section class="provider-hint" id="fuer-anbieter" aria-labelledby="anbieter-hinweis-titel">
+    <div class="container provider-hint__inner">
+      <p><strong id="anbieter-hinweis-titel">Für Dienstleister und private Helfer:</strong> Werden Sie Teil unseres regionalen Netzwerks.</p>
+      <a class="provider-hint__link" href="/fuer-anbieter/">Mehr für Anbieter <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<!-- BEGIN partial:footer  (→ footer.php; Themen- und Regionslisten setzt tools/build.py) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="logo logo--light" href="/" aria-label="Konzept 60+ – zur Startseite">
+          <span class="logo__text" translate="no">Konzept 60+</span>
+        </a>
+        <p>Kostenlose, persönliche Vermittlung von Dienstleistern und privaten Helfern für Menschen ab 60 und ihre Angehörigen.
+          Wir erbringen selbst keine Dienstleistungen.</p>
+      </div>
+
+      <nav aria-labelledby="footer-saeulen">
+        <h2 id="footer-saeulen">Drei Wege</h2>
+        <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
+        <ul>
+          <li><a href="/hilfe-finden/">Hilfe finden</a></li>
+          <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
+          <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-themen">
+        <h2 id="footer-themen">Themen</h2>
+        <!-- → WordPress: get_terms( 'themenbereich' ) -->
+        <ul>
+          <li><a href="/themen/wohnen-haus-handwerk/">Wohnen, Haus und Handwerk</a></li>
+          <li><a href="/themen/haushalt-reinigung/">Haushalt und Reinigung</a></li>
+          <li><a href="/themen/pflege-betreuung/">Pflege und Betreuung</a></li>
+          <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
+          <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
+          <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+          <li><a href="/themen/">Alle Themen</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-regionen">
+        <h2 id="footer-regionen">Regionen</h2>
+        <!-- → WordPress: get_terms( 'region' ) -->
+        <ul class="site-footer__regions">
+          <li><a href="/anfrage/?region=duesseldorf" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/anfrage/?region=wuppertal" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/anfrage/?region=hilden" data-region="hilden">Hilden</a></li>
+          <li><a href="/anfrage/?region=remscheid" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/anfrage/?region=solingen" data-region="solingen">Solingen</a></li>
+          <li><a href="/anfrage/?region=langenfeld" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/anfrage/?region=haan" data-region="haan">Haan</a></li>
+          <li><a href="/anfrage/?region=wesel" data-region="wesel">Wesel</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-info">
+        <h2 id="footer-info">Informationen</h2>
+        <ul class="site-footer__info">
+          <li><a href="/so-funktioniert-es/">So funktioniert es</a></li>
+          <li><a href="/anfrage/">Bei uns melden</a></li>
+          <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
+          <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
+          <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/datenschutz/">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 <span translate="no">Konzept 60+</span> (Arbeitstitel)</p>
+      <p class="site-footer__prototype"><span class="demo-label">Prototyp</span> Beispieldaten: Formulare senden nichts, die Domain ist ein Platzhalter.</p>
+    </div>
+  </div>
+</footer>
+<!-- END partial:footer -->
+
+<nav class="leiste no-print" aria-label="Schnellzugriff">
+  <a class="btn btn--primary leiste__knopf" href="/hilfe-finden/">
+    <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
+    <span>Anbieter suchen</span>
+  </a>
+</nav>
+
+<!-- Quellenangabe im Ausdruck: nur beim Drucken sichtbar (print.css). main.js (11.)
+     setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
+<p class="print-url print-only" data-print-url></p>
+
+<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+
+</body>
+</html>

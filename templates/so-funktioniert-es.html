@@ -1,0 +1,191 @@
+<!--meta
+title: So funktioniert es – {{site_name}}
+description: So finden Sie bei {{site_name}} passende Hilfe: selbst einen Anbieter aus Ihrer Region aussuchen oder sich kostenlos und persönlich vermitteln lassen. Auch für Angehörige.
+nav: so
+-->
+  <!-- ======================================================================
+       So funktioniert es (Relaunch 3.2, Konzept docs/relaunch/konzept-assistent-suche.md Abschnitt 8):
+       Ablauf (selbst suchen + persönliche Vermittlung), für Angehörige, Vertrauen, Drei Wege, für Anbieter.
+       Texte aus der früheren Startseite (Abschnitte „So funktioniert’s“, „Für Angehörige“, „Drei Wege“,
+       Vertrauensleiste, Bildband, Hinweis „Für Anbieter“), siehe docs/relaunch/startseite-textabgleich.md.
+       → WordPress: page-so-funktioniert-es.php mit Template-Parts ablauf, persoenlich, angehoerige, vertrauen
+       ====================================================================== -->
+  <div class="page-header page-header--plain">
+    <div class="container">
+      <span class="section__eyebrow">So funktioniert es</span>
+      <h1>So finden Sie passende Hilfe</h1>
+      <p class="section__intro">
+        Sie suchen sich Ihren Anbieter selbst aus. Wenn nichts passt oder Sie lieber Unterstützung möchten,
+        sucht jemand aus unserem Team persönlich für Sie, kostenlos und unverbindlich.
+      </p>
+{{werkzeuge_so}}
+    </div>
+  </div>
+
+  <!-- Hauptweg: selbst suchen (gleiche Schritte wie auf der Startseite, Teil D) -->
+  <section class="section section--flush-top" id="ablauf" aria-labelledby="selbst-titel">
+    <div class="container ablauf">
+      <div class="section__header">
+        <span class="section__eyebrow">Selbst suchen</span>
+        <h2 id="selbst-titel">In drei Schritten zum passenden Anbieter</h2>
+      </div>
+      <ol class="ablauf__schritte">
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Anliegen beschreiben</h3>
+          <p>Suchen oder Thema antippen, Ort angeben.</p>
+        </li>
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Passende regionale Anbieter finden</h3>
+          <p>Wir zeigen geprüfte Anbieter aus Ihrer Region.</p>
+        </li>
+        <li class="ablauf__schritt">
+          <h3 class="ablauf__titel">Kontakt aufnehmen</h3>
+          <p>Sie rufen den Anbieter selbst an oder schreiben ihm.</p>
+        </li>
+      </ol>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="/hilfe-finden/">
+          Anbieter suchen
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rückfallweg: persönliche Vermittlung (bis Relaunch 3.2 „So funktioniert’s“ auf der Startseite, #so-funktionierts).
+       Einzige Stelle mit der vollen Botschaft: persönlich, kostenlos, keine anonyme Datenbank,
+       Weitergabe nur mit Zustimmung, keine Erfolgsgarantie. -->
+  <section class="section section--navy steps-section" id="so-funktionierts" aria-labelledby="ablauf-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Persönliche Vermittlung</span>
+        <h2 id="ablauf-titel">In drei Schritten zur passenden Hilfe</h2>
+        <p class="section__intro">Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da.
+          Sie beschreiben, wobei Sie Unterstützung brauchen. Jemand aus unserem Team
+          sucht für Sie passende Dienstleister oder private Helfer in Ihrer Region – für Sie
+          selbst oder für Ihre Angehörigen.</p>
+        <p class="section__intro">Bei uns landen Sie nicht in einer anonymen Datenbank. Wir sind selbst kein Dienstleister: Unser Team hört zu, sucht und stellt den Kontakt her, persönlich und kostenlos.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <h3 class="step__title">Anliegen beschreiben</h3>
+          <p class="step__text">Über unser Formular. Erzählen Sie in eigenen Worten, was Sie brauchen und wo Sie wohnen.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Unser Team sucht für Sie</h3>
+          <p class="step__text">Jemand aus unserem Team liest Ihre Anfrage, fragt bei Bedarf nach und sucht passende Betriebe oder private Helfer in Ihrer Region. Kein Algorithmus entscheidet.</p>
+        </li>
+        <li class="step">
+          <h3 class="step__title">Sie erhalten Rückmeldung</h3>
+          <p class="step__text">Wir melden uns persönlich mit einem oder mehreren Kontakten, so, wie Sie es wünschen: telefonisch oder per E-Mail. Ob und mit wem Sie zusammenarbeiten, entscheiden Sie.</p>
+        </li>
+      </ol>
+
+      <div class="notice">
+        <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
+        <p><strong>Sie behalten die Kontrolle.</strong> Ihre Kontaktdaten geben wir nur mit Ihrer ausdrücklichen Zustimmung weiter.
+          <strong>Ehrlich gesagt:</strong> Wir können nicht garantieren, dass wir immer jemanden finden.
+          Wenn wir niemanden finden, sagen wir Ihnen das offen und nennen Ihnen, wenn möglich, andere Anlaufstellen.</p>
+      </div>
+
+      <div class="btn-group steps-section__aktion">
+        <a class="btn btn--outline-light" href="/anfrage/">Anliegen beschreiben</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Für Angehörige (bis Relaunch 3.2 auf der Startseite, #angehoerige) -->
+  <section class="section relatives" id="angehoerige" aria-labelledby="angehoerige-titel">
+    <div class="container">
+      <div class="relatives__panel">
+        <picture class="relatives__media">
+          <source type="image/webp" srcset="/assets/img/angehoerige-familie-480.webp 480w, /assets/img/angehoerige-familie-800.webp 800w, /assets/img/angehoerige-familie-1200.webp 1200w" sizes="(min-width: 68em) 20rem, (min-width: 48em) 15rem, 92vw">
+          <img src="/assets/img/angehoerige-familie-800.jpg" width="800" height="533" alt="Eine ältere Frau sitzt lächelnd zwischen ihrer Tochter und ihrem Sohn im sonnigen Garten, die Tochter hat ihr die Hand auf die Schulter gelegt."
+               loading="lazy" decoding="async">
+        </picture>
+        <div class="relatives__text">
+          <span class="section__eyebrow">Für Angehörige</span>
+          <h2 id="angehoerige-titel">Sie suchen Unterstützung für Ihre Eltern oder Angehörigen?</h2>
+          <p>
+            Auch Sie können unser Portal nutzen. Beschreiben Sie uns einfach, wobei Hilfe benötigt wird.
+            Wir suchen nach passenden Ansprechpartnern in der Region – auch wenn Sie selbst nicht vor Ort wohnen.
+          </p>
+          <p>Oder suchen Sie selbst: <a href="/hilfe-finden/?person=angehoerige">Anbieter für einen Angehörigen suchen</a></p>
+          <p class="relatives__guide">
+            <a href="{{leitfaden_angehoerige}}">Leitfaden: Eltern aus der Ferne unterstützen</a>
+          </p>
+        </div>
+        <div class="relatives__action">
+          <a class="btn btn--secondary" href="/anfrage/?wer=angehoerige">
+            Für Angehörige anfragen
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bildband über volle Breite (bis Relaunch 3.2 auf der Startseite). Reine Stimmung, kein Text auf dem Bild. -->
+  <figure class="photo-band">
+    <picture>
+      <source type="image/webp" srcset="/assets/img/ratgeber/gemeinsam-statt-einsam-800.webp 800w, /assets/img/ratgeber/gemeinsam-statt-einsam-1400.webp 1400w" sizes="100vw">
+      <img src="/assets/img/ratgeber/gemeinsam-statt-einsam-1400.jpg" width="1400" height="933" loading="lazy" decoding="async" alt="Ein älteres Paar mit Rucksäcken und Wanderstöcken lächelt sich auf einem sonnigen Waldweg an, im Hintergrund ein See zwischen Hügeln.">
+    </picture>
+  </figure>
+
+  <!-- Vertrauen (gleiche Aussagen wie Startseite Teil F) -->
+  <section class="section section--sage" id="vertrauen" aria-labelledby="vertrauen-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Vertrauen</span>
+        <h2 id="vertrauen-titel">Darauf können Sie sich verlassen</h2>
+      </div>
+{{vertrauen_liste}}
+    </div>
+  </section>
+
+  <!-- Drei Wege (bis Relaunch 3.2 auf der Startseite, #drei-wege) -->
+  <section class="section" id="drei-wege" aria-labelledby="drei-wege-titel">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__eyebrow">Unser Angebot</span>
+        <h2 id="drei-wege-titel">Drei Wege, wie wir helfen</h2>
+        <p class="section__intro">Suchen Sie sich aus, womit Sie anfangen möchten.</p>
+      </div>
+      <ul class="ways ways--drei">
+        <li class="way-card way-card--navy">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-hilfe"/></svg>
+          <div>
+            <span class="path-card__tag">Hilfe finden</span>
+            <h3 class="way-card__title"><a href="/hilfe-finden/">Anbieter in Ihrer Region</a></h3>
+            <p class="way-card__text">Suchen Sie selbst nach Thema oder Stichwort. Wenn nichts passt, suchen wir persönlich für Sie.</p>
+          </div>
+        </li>
+        <li class="way-card way-card--sage">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-wissen"/></svg>
+          <div>
+            <span class="path-card__tag">Wissen bekommen</span>
+            <h3 class="way-card__title"><a href="/ratgeber/">Verständlich erklärt: der Ratgeber</a></h3>
+            <p class="way-card__text">Beiträge zu Haushalt, Wohnen, Pflege und Sicherheit, ohne Fachchinesisch.</p>
+          </div>
+        </li>
+        <li class="way-card way-card--terra">
+          <svg class="illu illu--s" aria-hidden="true" focusable="false"><use href="/assets/img/illus.svg#illu-alltag"/></svg>
+          <div>
+            <span class="path-card__tag">Alltag erleichtern</span>
+            <h3 class="way-card__title"><a href="/mein-alltag/">Mein Alltag</a></h3>
+            <p class="way-card__text">Checklisten zum Abhaken und ein Wohnungs-Check für mehr Sicherheit zu Hause, ohne Anmeldung, ohne Speicherung.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Für Anbieter: nur ein schmaler Hinweis, alles Weitere auf /fuer-anbieter/ -->
+  <section class="provider-hint" id="fuer-anbieter" aria-labelledby="anbieter-hinweis-titel">
+    <div class="container provider-hint__inner">
+      <p><strong id="anbieter-hinweis-titel">Für Dienstleister und private Helfer:</strong> Werden Sie Teil unseres regionalen Netzwerks.</p>
+      <a class="provider-hint__link" href="/fuer-anbieter/">Mehr für Anbieter <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+    </div>
+  </section>

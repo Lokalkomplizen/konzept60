@@ -7,6 +7,7 @@ bild_alt: Ein Putzeimer mit Sprühflasche, Bürste und gelben Handschuhen, gefal
 stand: November 2026
 veroeffentlicht: 2026-11-20 16:45
 geaendert: 2026-11-20
+startseite: 2
 ---
 
 Der Haushalt gehört zum Alltag. Doch Einkaufen, Putzen, Wäschewaschen oder die Pflege des Gartens können mit zunehmendem Alter anstrengender werden. Was früher selbstverständlich war, kostet plötzlich viel Kraft und Zeit.

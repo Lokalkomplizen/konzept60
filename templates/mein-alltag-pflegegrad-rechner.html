@@ -24,6 +24,9 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
   <section class="section section--tight pgr-section" aria-labelledby="pgr-titel">
     <div class="container">
       <div class="pgr" data-pgr>
+        <!-- A11Y-05 (WCAG-Audit 24.11.2026): Während der Fragen, der Übersicht und im Ergebnis ist das Start-Panel
+             mit seiner h1 verborgen. Dann zeigt rechner.js diese (visuell verborgene) h1, damit jede Ansicht genau eine h1 hat. -->
+        <h1 class="visually-hidden" data-pgr-h1 hidden>Pflegegradrechner</h1>
 
         <!-- 1. Start -->
         <div class="pgr-start" data-pgr-start>
@@ -150,7 +153,7 @@ body_extra: <script src="/assets/js/alltag.js" defer></script><script src="/asse
           <p><a href="/ratgeber/pflegegrad-beantragen/">Ratgeber: Pflegegrad beantragen – so geht es Schritt für Schritt</a></p>
 
           <div class="btn-group no-print">
-            <a class="btn btn--primary" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Passende Unterstützung finden</a>
+            <a class="btn btn--primary" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">Passende Unterstützung finden</a>
             <button type="button" class="btn btn--secondary" data-drucken hidden>Auswertung drucken oder als PDF speichern</button>
           </div>
 

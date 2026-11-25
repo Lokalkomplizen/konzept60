@@ -3,6 +3,8 @@
   <div class="site-header__topbar">
     <div class="container">
       <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+      <!-- Rückfallweg auf jeder Seite an derselben Stelle (ab 48em; darunter im Footer) -->
+      <a href="/anfrage/">Lieber persönlich? Bei uns melden</a>
     </div>
   </div>
 
@@ -11,8 +13,9 @@
       <span class="logo__text" translate="no">{{site_name}}</span>
     </a>
 
-    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent) -->
-    <a class="btn btn--secondary site-header__suche" href="/hilfe-finden/"{{nav:suche}}>
+    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent).
+         Hauptaktion im Kopf; auf dem Handy stattdessen als feste Leiste unten (MOBIL_LEISTE in build.py). -->
+    <a class="btn btn--primary site-header__suche" href="/hilfe-finden/"{{nav:suche}}>
       <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
       <span>Anbieter suchen</span>
     </a>
@@ -25,14 +28,14 @@
 
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
       <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
-           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
+           Relaunch 3.2: Hilfe finden (/hilfe-finden/, Themen gehören dazu) · Ratgeber · Mein Alltag · So funktioniert es.
+           „Für Anbieter“ steht im Footer. -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="/themen/"{{nav:themen}}>Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/hilfe-finden/"{{nav:hilfe}}>Hilfe finden</a></li>
         <li><a class="site-nav__link" href="/ratgeber/"{{nav:ratgeber}}>Ratgeber</a></li>
         <li><a class="site-nav__link" href="/mein-alltag/"{{nav:alltag}}>Mein Alltag</a></li>
-        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/"{{nav:anbieter}}>Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/so-funktioniert-es/"{{nav:so}}>So funktioniert es</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
     </nav>
   </div>
 </header>

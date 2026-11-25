@@ -1,7 +1,7 @@
 <!--meta
 title: Hilfe finden: Anbieter suchen – {{site_name}}
 description: Finden Sie selbst passende Anbieter in Ihrer Stadt: Pflegedienst, Haushaltshilfe, Treppenlift, Badumbau und mehr. Mit Suche, kurzen Fragen und Notizzettel für Ihr Gespräch. Kostenlos, ohne Anmeldung.
-nav: suche
+nav: hilfe
 body_extra: <script src="/assets/js/anbieter-logik.js" defer></script> <script src="/assets/js/anbieter.js" defer></script> <script src="/assets/js/suche-logik.js" defer></script> <script src="/assets/js/assistent.js" defer></script>
 -->
   <!-- Hilfe finden (Relaunch 3.1): Suche + Assistent + sechs Themen
@@ -21,13 +21,17 @@ body_extra: <script src="/assets/js/anbieter-logik.js" defer></script> <script s
   <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent-url="{{assistent_url}}" data-anbieter-url="{{anbieter_url}}" data-seitenname="{{site_name}}">
     <div class="container">
       <div class="section__header">
-        <h2 id="assistent-titel">Was suchen Sie?</h2>
-        <p class="section__intro">Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
+        <span class="section__eyebrow">Assistent</span>
+        <h2 id="assistent-titel">Wie können wir Ihnen heute helfen?</h2>
+        <p class="section__intro">Beantworten Sie zwei, drei kurze Fragen – wir zeigen Ihnen den passenden nächsten Schritt.
+          Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
       </div>
 
       <!-- Ohne JavaScript: Themenseiten und Anfrageformular -->
       <ul class="assistent__nojs">
 {{assistent_nojs}}
+        <li><a href="/ratgeber/">Wissen bekommen</a> – der Ratgeber</li>
+        <li><a href="/mein-alltag/">Alltag erleichtern</a> – Mein Alltag</li>
       </ul>
 
       <!-- Mit JavaScript: assistent.js füllt diesen Bereich (Suche, Fragen, Ergebnis) -->
@@ -47,7 +51,7 @@ body_extra: <script src="/assets/js/anbieter-logik.js" defer></script> <script s
       <div class="notice notice--light">
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
         <p><strong>Nichts Passendes dabei?</strong> Beschreiben Sie uns Ihr Anliegen, dann suchen wir persönlich für Sie.
-          <a href="/?thema=sonstiges#anfrage" data-thema="sonstiges">Zum Anfrageformular</a></p>
+          <a href="/anfrage/?thema=sonstiges" data-thema="sonstiges">Zum Anfrageformular</a></p>
       </div>
     </div>
   </section>

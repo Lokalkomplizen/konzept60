@@ -139,6 +139,6 @@ Die Organisation der Pflege kann für Betroffene und Angehörige eine große Her
 
 Wir helfen dabei, passende Unterstützung und regionale Ansprechpartner zu finden.
 
-Ob Haushaltshilfe, Alltagsbegleitung, Betreuung oder weitere Unterstützung im Alltag: [Beschreiben Sie einfach, wobei Sie Hilfe benötigen.](/?thema=pflege-betreuung#anfrage)
+Ob Haushaltshilfe, Alltagsbegleitung, Betreuung oder weitere Unterstützung im Alltag: [Beschreiben Sie einfach, wobei Sie Hilfe benötigen.](/anfrage/?thema=pflege-betreuung)
 
 Hilfe finden. Einfach und kostenlos.

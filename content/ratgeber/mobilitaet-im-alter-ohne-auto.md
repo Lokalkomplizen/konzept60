@@ -801,4 +801,4 @@ Mobilität bedeutet Lebensqualität. Und diese muss nicht mit dem Autoschlüssel
 
 Sie möchten auch ohne eigenes Auto mobil bleiben? Sie benötigen Unterstützung bei Einkäufen, Arztbesuchen oder regelmäßigen Erledigungen? Oder Sie suchen einen Fahrdienst, eine Begleitung oder ehrenamtliche Unterstützung in Ihrer Nähe?
 
-Wir helfen Ihnen dabei, passende Ansprechpartner und Angebote in Ihrer Region zu finden. [Beschreiben Sie uns einfach, wobei Sie Unterstützung benötigen.](/?thema=alltag-persoenliche-hilfe#anfrage) Wir prüfen Ihre Anfrage persönlich und suchen nach geeigneten Kontakten.
+Wir helfen Ihnen dabei, passende Ansprechpartner und Angebote in Ihrer Region zu finden. [Beschreiben Sie uns einfach, wobei Sie Unterstützung benötigen.](/anfrage/?thema=alltag-persoenliche-hilfe) Wir prüfen Ihre Anfrage persönlich und suchen nach geeigneten Kontakten.

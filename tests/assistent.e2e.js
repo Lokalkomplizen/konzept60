@@ -145,7 +145,7 @@ async function angezeigteIds(page) {
       assert.match(await page.textContent("[data-notizzettel]"), /Treppe: Mit Kurve oder Wendel[\s\S]*Lage der Treppe: Im Haus[\s\S]*Etagen: Zwei Etagen/);
     } else {
       assert.match(await page.textContent(".assistent__trefferzahl"), /noch keinen Anbieter/);
-      assert.ok(await page.getByRole("link", { name: /Bei uns melden/ }).count() === 1);
+      assert.ok(await page.locator("#assistent").getByRole("link", { name: /Bei uns melden/ }).count() === 1);
     }
     // Null-Treffer mit verwandten Anliegen (echte Zahlen): Wesel hat keine Einträge
     await page.goto(BASE + "/hilfe-finden/?anliegen=treppenlift&stadt=Wesel");
@@ -155,8 +155,8 @@ async function angezeigteIds(page) {
     for (const hint of await page.locator(".assistent__verwandt .choice-card__hint").allTextContents()) {
       assert.match(hint, /^[1-9]\d* Anbieter in Wesel$|Ratgeber/, "verwandte Anliegen nur mit echten Zahlen > 0");
     }
-    const melden = page.getByRole("link", { name: /Bei uns melden/ });
-    assert.match(await melden.getAttribute("href"), /^\/\?thema=wohnen-haus-handwerk&wer=selbst&ort=Wesel&leistung=treppenlift-und-hilfsmittel&notiz=.*#anfrage$/);
+    const melden = page.locator("#assistent").getByRole("link", { name: /Bei uns melden/ });
+    assert.match(await melden.getAttribute("href"), /^\/anfrage\/\?thema=wohnen-haus-handwerk&wer=selbst&ort=Wesel&leistung=treppenlift-und-hilfsmittel&notiz=.*$/);
     await keinHorizontalesScrollen(page, name + " Null-Treffer");
 
     // ---- Szenario 3: Pflegedienst für Mutter in Düsseldorf → Bei uns melden ----
@@ -173,10 +173,10 @@ async function angezeigteIds(page) {
     await warteAufListe(page);
     const soll3 = erwartet(["03.01"], "Düsseldorf");
     assert.deepEqual(await angezeigteIds(page), soll3);
-    const href3 = await page.getByRole("link", { name: /Bei uns melden/ }).getAttribute("href");
+    const href3 = await page.locator("#assistent").getByRole("link", { name: /Bei uns melden/ }).getAttribute("href");
     assert.match(href3, /thema=pflege-betreuung&wer=angehoerige&ort=D%C3%BCsseldorf&leistung=ambulante-pflege-durch-einen-pflegedienst/);
-    await page.getByRole("link", { name: /Bei uns melden/ }).click();
-    await page.waitForURL(/#anfrage$/);
+    await page.locator("#assistent").getByRole("link", { name: /Bei uns melden/ }).click();
+    await page.waitForURL(/\/anfrage\/\?/);
     await page.waitForFunction(() => document.getElementById("f-thema").value === "pflege-betreuung");
     assert.equal(await page.isChecked("#f-wer-angehoerige"), true);
     assert.equal(await page.inputValue("#f-ort"), "Düsseldorf");
@@ -214,20 +214,19 @@ async function angezeigteIds(page) {
     await ctx.close();
   }
 
-  // ---- Startseite: Assistent an derselben Stelle (#assistent), 4 Tipps bis zum Anruf ----
+  // ---- Startseite (Relaunch 3.2): Chip „Haushaltshilfe“ öffnet den Assistenten auf /hilfe-finden/, 3 Tipps bis zum Anruf ----
   {
     const { ctx, page } = await neueSeite("start", { width: 390, height: 844 });
     await page.goto(BASE + "/");
+    await page.locator(".hero-chips").getByRole("link", { name: "Haushaltshilfe", exact: true }).click(); // 1
+    await page.waitForURL(/\/hilfe-finden\/\?anliegen=haushaltshilfe&f-haushalt-art=reinigung$/);
     const app = page.locator("#assistent [data-assistent-app]");
-    await app.locator(".assistent__card").waitFor();
-    await app.getByRole("button", { name: /^Haushaltshilfe/ }).click();             // 1
-    await app.getByRole("button", { name: "Putzen und Reinigung" }).click();        // 2
-    await app.getByRole("button", { name: "Wuppertal", exact: true }).click();      // 3
+    await app.getByRole("button", { name: "Wuppertal", exact: true }).click();      // 2
     await warteAufListe(page);
-    assert.match(page.url(), /\/\?anliegen=haushaltshilfe&stadt=Wuppertal&f-haushalt-art=reinigung#assistent$/);
+    assert.match(page.url(), /\/hilfe-finden\/\?anliegen=haushaltshilfe&stadt=Wuppertal&f-haushalt-art=reinigung$/);
     assert.ok(erwartet(["02.01"], "Wuppertal").length > 0, "Testvoraussetzung");
-    assert.match(await app.locator(".anbieter-karte__anruf").first().getAttribute("href"), /^tel:/);       // 4
-    // Mein Alltag weiterhin erreichbar
+    assert.match(await app.locator(".anbieter-karte__anruf").first().getAttribute("href"), /^tel:/);       // 3
+    // Mein Alltag weiterhin über den Assistenten erreichbar
     await app.getByRole("button", { name: "Neu starten" }).click();
     await app.getByRole("button", { name: /Alltag besser organisieren/ }).click();
     await app.getByRole("button", { name: /Wohnungs-Check/ }).click();
@@ -257,7 +256,7 @@ async function angezeigteIds(page) {
     const nojs = page.locator(".assistent__nojs");
     assert.equal(await nojs.isVisible(), true);
     assert.equal(await nojs.locator("a[href^='/themen/']").count(), 6);
-    assert.equal(await nojs.locator("a[href='/#anfrage']").count(), 1);
+    assert.equal(await nojs.locator("a[href='/anfrage/']").count(), 1);
     assert.equal(await page.locator("[data-assistent-app]").isVisible(), false);
     await ctx.close();
   }

@@ -16,6 +16,7 @@
   11. Ganze Seite drucken ([data-drucken-seite]) + Quellenangabe im Ausdruck
   12. Checklisten in Ratgeber-Beiträgen
   13. Inhaltsverzeichnis im Beitrag: Handy/Tablet eingeklappt, ab 64em offen
+  14. Feste Leiste „Anbieter suchen“ (Handy): auf der Startseite aus, solange die Hero-Suche sichtbar ist
    Es wird NICHTS gesendet oder gespeichert: kein fetch, kein Storage, keine Cookies.
    → WordPress: wp_enqueue_script( 'wirhelfen-main', …, [ 'strategy' => 'defer' ] );
    ========================================================================== */
@@ -72,9 +73,10 @@
 
   /* ------------------------------------------------------------------------
      2. Vorauswahl im Anfrageformular
-        Links wie /?thema=pflege-betreuung#anfrage funktionieren von jeder Seite
-        (ohne JS: normale Navigation zum Formular). Auf der Startseite selbst
+        Links wie /anfrage/?thema=pflege-betreuung funktionieren von jeder Seite
+        (ohne JS: normale Navigation zum Formular). Auf /anfrage/ selbst
         wird der Link abgefangen – kein Neuladen, Fokus springt zum Formular.
+        Alte Links /?…#anfrage leitet assets/js/weiterleitung.js auf /anfrage/?… um.
      ------------------------------------------------------------------------ */
   function applyPreselect(form, params) {
     var applied = false;
@@ -138,10 +140,11 @@
       var link = event.target.closest('a[href]');
       if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
       var url = new URL(link.href, window.location.href);
-      if (url.pathname !== window.location.pathname || url.hash !== '#anfrage' || !url.search) return;
+      if (url.pathname !== window.location.pathname || !url.search) return;
+      if (url.hash !== '#anfrage' && url.pathname !== '/anfrage/') return;
       event.preventDefault();
       applyPreselect(form, url.searchParams);
-      history.replaceState(null, '', url.pathname + '#anfrage');
+      history.replaceState(null, '', url.pathname + url.hash);
       var section = document.getElementById('anfrage');
       var heading = document.getElementById('anfrage-titel');
       if (form.hidden) {
@@ -1248,7 +1251,21 @@
   }
 
   /* ------------------------------------------------------------------------ */
+  /* ------------------------------------------------------------------------
+     14. Feste Leiste „Anbieter suchen“ (Handy): auf der Startseite ausgeblendet, solange die Suche
+         im Hero zu sehen ist (sonst stünde dieselbe Aktion zweimal untereinander). Ohne JS bleibt sie sichtbar.
+     ------------------------------------------------------------------------ */
+  function initLeiste() {
+    var leiste = document.querySelector('.leiste');
+    var suche = document.querySelector('[data-assistent-einstieg]');
+    if (!leiste || !suche || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (eintraege) {
+      leiste.classList.toggle('is-verborgen', eintraege[0].isIntersecting);
+    }).observe(suche);
+  }
+
   initNavigation();
+  initLeiste();
   var updateLeistungen = initLeistungen();
   initRequestForm(updateLeistungen);
   initPreselect();

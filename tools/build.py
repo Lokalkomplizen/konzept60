@@ -37,7 +37,11 @@ SITE = "https://www.example.org"  # PLATZHALTER-Domain (reserviert) – vor Live
 
 PLACEHOLDER_RE = re.compile(r"\{\{\s*([a-z0-9_:\-]+)\s*\}\}")
 META_RE = re.compile(r"\A<!--meta\n(.*?)\n-->\n", re.S)
-NAV_KEYS = ("themen", "ratgeber", "alltag", "anbieter", "suche")
+# Hauptnavigation (Relaunch 3.2, Konzept Abschnitt 8): Hilfe finden · Ratgeber · Mein Alltag · So funktioniert es,
+# dazu der Knopf „Anbieter suchen“ (nav:suche, ebenfalls /hilfe-finden/). „Für Anbieter“ steht nur noch im Footer.
+# Template-Kopf „nav: hilfe“ markiert /hilfe-finden/ (Menüpunkt und Knopf, aria-current="page");
+# „nav: hilfe“ + „nav_level: section“ markiert nur den Menüpunkt (Themenübersicht und Themenseiten, aria-current="true").
+NAV_KEYS = ("hilfe", "ratgeber", "alltag", "so", "suche")
 
 
 # --------------------------------------------------------------------------
@@ -120,7 +124,7 @@ def theme_card(t, heading="h3"):
         {chips}
       </ul>
       <div class="card__actions">
-        <a class="card__link" href="/?thema={t["slug"]}#anfrage" data-thema="{t["slug"]}">Anliegen beschreiben<span class="visually-hidden">: {title}</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        <a class="card__link" href="/anfrage/?thema={t["slug"]}" data-thema="{t["slug"]}">Anliegen beschreiben<span class="visually-hidden">: {title}</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
         <a class="card__more" href="/themen/{t["slug"]}/">Mehr zum Thema<span class="visually-hidden">: {title}</span></a>
       </div>
     </div>
@@ -186,7 +190,7 @@ def footer_themen(themen):
 
 def footer_regionen(regionen):
     return indent(
-        [f'<li><a href="/?region={r["slug"]}#anfrage" data-region="{r["slug"]}">{esc(r["name"])}</a></li>' for r in regionen],
+        [f'<li><a href="/anfrage/?region={r["slug"]}" data-region="{r["slug"]}">{esc(r["name"])}</a></li>' for r in regionen],
         10,
     )
 
@@ -197,6 +201,154 @@ def liste(items, n, css="check-list"):
         lines.append(
             f'  <li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg><span>{esc(item)}</span></li>'
         )
+    lines.append("</ul>")
+    return indent(lines, n)
+
+
+# --------------------------------------------------------------------------
+# Relaunch 3.2: Sprungmarken der Leistungen auf den Themenseiten und Bausteine der Startseite (A–F,
+# docs/relaunch/startseite-ia.md). → WordPress: front-page.php mit Template-Parts hero-suche, themen,
+# ablauf, ratgeber-auswahl, vertrauen.
+# --------------------------------------------------------------------------
+THEMA_IDS = {"inhalt", "hauptnavigation", "angebote-titel", "leistungen-titel", "persoenlich-titel",
+             "weitere-titel", "ratgeber-hinweis-titel", "leistungen"}
+
+
+def leistung_anker(leistung):
+    """Sprungmarke einer Leistung auf ihrer Themenseite, z. B. #treppenlift-und-hilfsmittel."""
+    return slugify(leistung)
+
+
+def anliegen_fuer_leistung(leistung, anliegen):
+    """Passendstes Anliegen zu einer Leistung (für den Link „Anbieter suchen“ auf der Themenseite):
+    zuerst Anliegen mit Anbieterliste, ohne Gruppe, mit möglichst wenigen Leistungen; sonst Katalogreihenfolge."""
+    passend = [a for a in anliegen["anliegen"] if leistung in a["leistungen"]]
+    if not passend:
+        raise SystemExit(f"FEHLER: Leistung „{leistung}“ hat kein Anliegen")
+    return min(passend, key=lambda a: (not a["kategorien"], bool(a.get("gruppe")), len(a["leistungen"])))
+
+
+def thema_leistungen_liste(t, anliegen, n):
+    """„Beispiele für konkrete Leistungen“ auf der Themenseite: jede Leistung mit eigener Sprungmarke
+    (Ziel der Unterthemen-Links der Startseite) und einem Link in den Assistenten (/hilfe-finden/?anliegen=…)."""
+    lines = ['<ul class="check-list check-list--leistungen">']
+    gesehen = set()
+    for leistung in t["leistungen"]:
+        anker = leistung_anker(leistung)
+        if anker in gesehen or anker in THEMA_IDS:
+            raise SystemExit(f"FEHLER: themen.json – Sprungmarke #{anker} ({t['slug']}) nicht eindeutig")
+        gesehen.add(anker)
+        a = anliegen_fuer_leistung(leistung, anliegen)
+        text = "Anbieter suchen" if a["kategorien"] else "Mehr dazu"
+        lines.append(
+            f'  <li id="{anker}"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>'
+            f'<span>{esc(leistung)} <a class="check-list__link" href="/hilfe-finden/?anliegen={a["id"]}">'
+            f'{text}<span class="visually-hidden">: {esc(leistung)}</span></a></span></li>'
+        )
+    lines.append("</ul>")
+    return indent(lines, n)
+
+
+def unterthemen(t):
+    """Unterthemen-Links einer Startseiten-Karte: die bisherigen Beispiel-Stichworte (Text bleibt), jeweils
+    verlinkt auf die Sprungmarke der passenden Leistung (erste Leistung, die das erste Wort enthält)."""
+    out = []
+    for b in t["beispiele"]:
+        wort = b.split()[0].lower()
+        leistung = next((x for x in t["leistungen"] if wort in x.lower()), None)
+        if not leistung:
+            raise SystemExit(f"FEHLER: themen.json – Beispiel „{b}“ ({t['slug']}) passt zu keiner Leistung")
+        out.append((b, f'/themen/{t["slug"]}/#{leistung_anker(leistung)}'))
+    if not 3 <= len(out) <= 4:
+        raise SystemExit(f"FEHLER: themen.json – {t['slug']} braucht 3–4 Beispiele für die Startseite")
+    return out
+
+
+START_SIZES = "(min-width: 48em) 10rem, 4.5rem"
+
+
+def themen_start(themen, n):
+    """Teil B: sechs Themenkarten (Bild, Titel, 3–4 Unterthemen-Links, „Alle Leistungen ansehen“).
+    Anders als das Kartenraster auf /themen/: Bild links, Unterthemen als Links (→ template-parts/card-thema-start.php)."""
+    lines = []
+    for t in themen:
+        title = esc(t["titel"])
+        links = "\n".join(
+            f'    <li><a class="thema-start__link" href="{href}">{esc(label)}</a></li>' for label, href in unterthemen(t)
+        )
+        lines.append(f"""<li class="thema-start">
+{indent(picture(t, START_SIZES, "thema-start__media").splitlines(), 2)}
+  <h3 class="thema-start__title" id="thema-start-{t["slug"]}"><a href="/themen/{t["slug"]}/">{title}</a></h3>
+  <ul class="thema-start__links" aria-labelledby="thema-start-{t["slug"]}">
+{links}
+  </ul>
+  <p class="thema-start__alle"><a href="/themen/{t["slug"]}/#leistungen-titel">Alle Leistungen ansehen<span class="visually-hidden">: {title}</span></a></p>
+</li>""")
+    return indent("\n".join(lines).splitlines(), n)
+
+
+def hero_chips(anliegen, n):
+    """Teil A, „Häufig gesucht“: Links in den Assistenten mit vorgewähltem Anliegen (und ggf. Filterantwort),
+    Reihenfolge und Wortlaut aus data/anliegen.json → startseite. Funktionieren ohne JS als normale Links."""
+    from urllib.parse import urlencode
+    lines = []
+    for c in anliegen["startseite"]:
+        query = urlencode({"anliegen": c["anliegen"], **c.get("vorwahl", {})})
+        lines.append(f'<li><a class="hero-chip" href="/hilfe-finden/?{esc(query)}">{esc(c["titel"])}</a></li>')
+    return indent(lines, n)
+
+
+def ratgeber_start(beitraege, n):
+    """Teil E: sechs ausgewählte Beiträge (Frontmatter startseite: 1–6) statt der drei neuesten;
+    Karte wie überall (Bild, Thema, Titel, automatischer Anreißer)."""
+    auswahl = sorted((b for b in beitraege if b.get("startseite")), key=lambda b: int(b["startseite"]))
+    return "\n".join(article_card(b, "h3", n) for b in auswahl)
+
+
+def werkzeug_kacheln(n):
+    """Teil E: Kacheln Pflegegradrechner, Wohnungs-Check, Checklisten (aus ALLTAG_WERKZEUGE) und Veranstaltungen.
+    Ohne Illustrationen: schlichte Verweiszeilen, damit nicht jedes Raster gleich aussieht."""
+    by_id = {w["id"]: w for w in ALLTAG_WERKZEUGE}
+    kacheln = [by_id["pflegegrad-rechner"], by_id["wohnungs-check"], by_id["checklisten"],
+               {"titel": "Veranstaltungen", "hinweis": "Was ist los in Ihrer Stadt?", "url": "/veranstaltungen/"}]
+    lines = [
+        f'<li><a class="werkzeug-kachel" href="{k["url"]}"><span class="werkzeug-kachel__titel">{esc(k["titel"])}</span>'
+        f'<span class="werkzeug-kachel__text">{esc(k["hinweis"])}</span>'
+        f'<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a></li>'
+        for k in kacheln
+    ]
+    return indent(lines, n)
+
+
+VERTRAUEN = [
+    ("kostenlos", "Kostenlos und unverbindlich",
+     "Suche, Ratgeber und Vermittlung kosten Sie nichts. Sie gehen keine Verpflichtung ein."),
+    (None, "Sie entscheiden selbst",
+     "Sie wählen den Anbieter aus und vereinbaren Preise und Termine direkt mit ihm."),
+    ("regional", "Regional und nah",
+     "Anbieter aus Ihrer Region: Rheinland, Niederrhein und Bergisches Land."),
+    ("persoenlich", "Wir helfen, wenn Sie nicht weiterkommen",
+     "Persönlich statt anonym: Jemand aus unserem Team sucht für Sie, wenn nichts passt oder Sie lieber Unterstützung möchten."),
+]
+
+
+def vertrauen_liste(n):
+    """Teil F (Startseite) und /so-funktioniert-es/: vier Aussagen mit den vorhandenen Icons (WebP, 96/192 px).
+    Für „Sie entscheiden selbst“ gibt es kein eigenes Bild: dort steht das vorhandene Häkchen aus dem SVG-Sprite."""
+    lines = ['<ul class="vertrauen">']
+    for icon, titel, text in VERTRAUEN:
+        if icon:
+            bild = (f'<img class="vertrauen__icon" src="/assets/img/icons/{icon}-96.webp" '
+                    f'srcset="/assets/img/icons/{icon}-96.webp 1x, /assets/img/icons/{icon}-192.webp 2x" '
+                    f'width="96" height="96" alt="" loading="lazy" decoding="async">')
+        else:
+            bild = '<span class="vertrauen__icon vertrauen__icon--zeichen"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span>'
+        lines += [
+            '  <li class="vertrauen__item">',
+            f"    {bild}",
+            f'    <p><strong class="vertrauen__titel">{esc(titel)}</strong> {esc(text)}</p>',
+            "  </li>",
+        ]
     lines.append("</ul>")
     return indent(lines, n)
 
@@ -317,6 +469,7 @@ def hinweis_block(t):
 #   tabelle_beschriftung   <caption> (visuell verborgen) für Tabellen im Beitrag; mehrere Tabellen: „Erste | Zweite“
 #   seo_titel              eigener <title>/og:title statt "titel" (→ WordPress: SEO-Titel, z. B. Yoast/Rank Math)
 #   meta_beschreibung      eigene Meta-Description statt des gekürzten ersten Absatzes
+#   startseite             1–6: Platz in der Ratgeber-Auswahl der Startseite (jede Zahl genau einmal)
 # --------------------------------------------------------------------------
 FRONTMATTER_KEYS = ("titel", "slug", "thema", "bild", "bild_alt", "stand", "geaendert")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
@@ -609,6 +762,11 @@ def load_beitraege(themen):
         b["url"] = f"/ratgeber/{meta['slug']}/"
         b["_blocks"] = blocks
         beitraege.append(b)
+    # Startseiten-Auswahl (Relaunch 3.2): Frontmatter "startseite: 1" … "startseite: 6", jede Zahl genau einmal
+    # (→ WordPress: Meta-Feld bzw. „Beitrag oben halten“ + menu_order)
+    plaetze = sorted(b["startseite"] for b in beitraege if b.get("startseite"))
+    if plaetze != [str(i) for i in range(1, 7)]:
+        raise SystemExit(f"FEHLER: Frontmatter 'startseite' muss genau einmal 1 bis 6 vergeben (gefunden: {plaetze})")
     # Neueste zuerst (→ WordPress: orderby date DESC): Feld "veroeffentlicht" (JJJJ-MM-TT HH:MM),
     # sonst "geaendert"; bei Gleichstand Dateiname absteigend
     beitraege.sort(key=lambda x: (x.get("veroeffentlicht", x["geaendert"]), x["slug"]), reverse=True)
@@ -690,7 +848,7 @@ def write_anbieter_assets(themen):
 
 def write_ratgeber_json(beitraege):
     """data/ratgeber.json – gesammelte Beitragsdaten (Abbildung auf WordPress-Posts, s. README)."""
-    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "anreisser", "url",
+    keys = ("slug", "titel", "thema", "thema_titel", "bild", "bild_alt", "stand", "veroeffentlicht", "geaendert", "startseite", "anreisser", "url",
             "inline_bild", "inline_bild_alt", "inline_nach_ueberschrift", "tabelle_beschriftung", "hinweis",
             "quellen", "seo_titel", "meta_beschreibung")
     data = {
@@ -827,6 +985,18 @@ def load_anliegen(themen, beitraege):
         for leistung in t["leistungen"]:
             if leistung not in alle_leistungen:
                 raise SystemExit(f"FEHLER: anliegen.json – Leistung „{leistung}“ ({t['slug']}) hat kein Anliegen")
+    # Startseite „Häufig gesucht“: Anliegen + optionale Vorwahl (f-<Filterfrage>, n-<Notizfrage>) mit gültiger Option
+    for c in kat.get("startseite", []):
+        a = next((x for x in kat["anliegen"] if x["id"] == c.get("anliegen")), None)
+        if not a or not c.get("titel"):
+            raise SystemExit(f"FEHLER: anliegen.json – startseite: unbekanntes Anliegen {c.get('anliegen')}")
+        for k, v in c.get("vorwahl", {}).items():
+            fid = k[2:]
+            erlaubt = a["fragen"] if k.startswith("f-") else a["notizfragen"] if k.startswith("n-") else []
+            if fid not in erlaubt or v not in [o["id"] for o in fragen[fid]["optionen"]]:
+                raise SystemExit(f"FEHLER: anliegen.json – startseite {c['titel']}: Vorwahl {k}={v} ungültig")
+    if not 6 <= len(kat.get("startseite", [])) <= 8:
+        raise SystemExit("FEHLER: anliegen.json – startseite braucht 6–8 Einträge")
     for h in kat["haeufig"]:
         if (h.split(":", 1)[1] not in gruppen) if h.startswith("gruppe:") else (h not in ids):
             raise SystemExit(f"FEHLER: anliegen.json – haeufig '{h}' unbekannt")
@@ -890,7 +1060,7 @@ def assistent_data(themen, regionen, beitraege, anliegen):
 def assistent_nojs(themen):
     """Ohne JavaScript: Links auf die Themenseiten und das Anfrageformular (Konzept Abschnitt 7)."""
     lines = [f'<li><a href="/themen/{t["slug"]}/">{esc(t["titel"])}</a></li>' for t in themen]
-    lines.append('<li><a href="/#anfrage">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>')
+    lines.append('<li><a href="/anfrage/">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>')
     return indent(lines, 8)
 
 
@@ -1062,7 +1232,7 @@ def checklisten_html(checklisten, beitraege, site_name):
   <p class="print-only">{esc(site_name)} – Checkliste zum Ausdrucken. Sie ersetzt keine persönliche Beratung.</p>
   <div class="checklist__actions no-print">
     <button class="btn btn--secondary" type="button" data-drucken hidden>Drucken / als PDF speichern</button>
-    <a class="btn btn--secondary" href="/?thema={c["thema"]}#anfrage" data-thema="{c["thema"]}">Unterstützung anfragen</a>
+    <a class="btn btn--secondary" href="/anfrage/?thema={c["thema"]}" data-thema="{c["thema"]}">Unterstützung anfragen</a>
   </div>
   <p class="checklist__more no-print">Mehr dazu: <a href="{r["url"]}">{esc(r["titel"])}</a></p>
 </section>""")
@@ -1154,7 +1324,7 @@ def wohnungs_check_html(check, beitraege, site_name):
   </div>
 
   <div class="btn-group no-print">
-    <a class="btn btn--secondary" href="/?thema={check["thema"]}#anfrage" data-thema="{check["thema"]}">Unterstützung anfragen</a>
+    <a class="btn btn--secondary" href="/anfrage/?thema={check["thema"]}" data-thema="{check["thema"]}">Unterstützung anfragen</a>
     <button class="btn btn--secondary" type="button" data-drucken>Drucken / als PDF speichern</button>
     <button class="btn btn--secondary" type="button" data-neu-starten>Antworten ändern</button>
   </div>
@@ -1394,6 +1564,17 @@ def meta_seo(path, title, description, image=None, noindex=False, article=None):
   <meta name="twitter:card" content="summary_large_image">"""
 
 
+# Feste Leiste unten auf dem Handy (< 48em, CSS .leiste). Verdeckt nichts: body.hat-leiste bekommt unten
+# Innenabstand in Leistenhöhe, html scroll-padding-bottom (Fokus nie verdeckt); während ein Eingabefeld
+# den Fokus hat (Bildschirmtastatur), blendet CSS die Leiste aus. → WordPress: footer.php (außer page-hilfe-finden)
+MOBIL_LEISTE = """<nav class="leiste no-print" aria-label="Schnellzugriff">
+  <a class="btn btn--primary leiste__knopf" href="/hilfe-finden/">
+    <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
+    <span>Anbieter suchen</span>
+  </a>
+</nav>"""
+
+
 def build_page(template, output, ctx, partials, themen, regionen):
     meta, body = parse_template(template)
     page_ctx = dict(ctx)
@@ -1403,10 +1584,16 @@ def build_page(template, output, ctx, partials, themen, regionen):
     nav = meta.get("nav", "")
     nav_ctx = {"site_name": esc(SITE_NAME)}
     for key in NAV_KEYS:
-        if key == nav:
-            nav_ctx[f"nav:{key}"] = ' aria-current="true"' if meta.get("nav_level") == "section" else ' aria-current="page"'
-        else:
-            nav_ctx[f"nav:{key}"] = ""
+        nav_ctx[f"nav:{key}"] = ""
+    if nav:
+        if nav not in NAV_KEYS or nav == "suche":
+            raise SystemExit(f"FEHLER: templates/{template} – unbekannter Navigationspunkt '{nav}'")
+        bereich = meta.get("nav_level") == "section"
+        nav_ctx[f"nav:{nav}"] = ' aria-current="true"' if bereich else ' aria-current="page"'
+        if nav == "hilfe" and not bereich:
+            nav_ctx["nav:suche"] = ' aria-current="page"'
+    # Handy: feste Leiste „Anbieter suchen“ unten (nicht auf /hilfe-finden/ selbst, dort steht die Suche schon)
+    leiste = output != "hilfe-finden/index.html"
 
     image = None
     if "thema_slug" in ctx:
@@ -1431,6 +1618,8 @@ def build_page(template, output, ctx, partials, themen, regionen):
             "footer_regionen": footer_regionen(regionen),
         }, "partials/footer.html").rstrip(),
         "content": content.rstrip(),
+        "body_klasse": ' class="hat-leiste"' if leiste else "",
+        "mobil_leiste": MOBIL_LEISTE if leiste else "",
     }
     page = render(partials["layout"], layout_ctx, "templates/_layout.html")
     page = page.replace(
@@ -1479,8 +1668,14 @@ def main():
     region_items = [(r["slug"], r["name"]) for r in regionen]
     common = {
         "site_name": esc(SITE_NAME),
-        # Startseite: die drei neuesten Beiträge (Raster mit 3 Spalten), Übersicht: alle (keine Begrenzung)
-        "ratgeber_karten": "\n".join(article_card(b, "h3", 8) for b in beitraege[:3]),
+        # Startseite (Relaunch 3.2): sechs ausgewählte Beiträge (Frontmatter startseite), Übersicht: alle
+        "ratgeber_start": ratgeber_start(beitraege, 8),
+        "ratgeber_anzahl": str(len(beitraege)),
+        "themen_start": themen_start(themen, 8),
+        "hero_chips": hero_chips(anliegen, 10),
+        "werkzeug_kacheln": werkzeug_kacheln(8),
+        "vertrauen_liste": vertrauen_liste(6),
+        "werkzeuge_so": seiten_werkzeuge("Seite „So funktioniert es“ teilen: Link zu dieser Seite", 6),
         "leitfaden_angehoerige": next(
             (b["url"] for b in beitraege if b["slug"] == "eltern-aus-der-ferne-unterstuetzen"), "/ratgeber/"),
         "ratgeber_karten_h2": "\n".join(article_card(b, "h3", 8, filter_attr=True) for b in beitraege),
@@ -1514,7 +1709,6 @@ def main():
         "assistent_url": assistent_data(themen, regionen, beitraege, anliegen),
         "assistent_nojs": assistent_nojs(themen),
         "werkzeuge_hilfe": seiten_werkzeuge("Seite „Hilfe finden“ teilen: Link zu dieser Seite", 6),
-        "themen_karten_h4": theme_cards(themen, "h4", 8),
         "themen_karten_h2": theme_cards(themen, "h2", 8),
         "themen_karten_h3": theme_cards(themen, "h3", 8),
         "kategorie_optionen": kategorie_optionen(themen),
@@ -1536,6 +1730,8 @@ def main():
         ("index.html", "index.html"),
         ("themen.html", "themen/index.html"),
         ("hilfe-finden.html", "hilfe-finden/index.html"),
+        ("anfrage.html", "anfrage/index.html"),
+        ("so-funktioniert-es.html", "so-funktioniert-es/index.html"),
         ("fuer-anbieter.html", "fuer-anbieter/index.html"),
         ("ratgeber.html", "ratgeber/index.html"),
         ("mein-alltag.html", "mein-alltag/index.html"),
@@ -1559,7 +1755,7 @@ def main():
             "thema_einleitung": esc(t["einleitung"]),
             "thema_bild": indent(picture(t, "(min-width: 30em) 28rem, 92vw", "topic-hero__media", loading="eager", priority=True).splitlines(), 6),
             "thema_angebote": liste(t["angebote"], 8),
-            "thema_leistungen": liste(t["leistungen"], 8),
+            "thema_leistungen": thema_leistungen_liste(t, anliegen, 8),
             "thema_hinweis": hinweis_block(t),
             "andere_themen": andere_themen(themen, t["slug"]),
             "thema_ratgeber": thema_ratgeber(t, beitraege),

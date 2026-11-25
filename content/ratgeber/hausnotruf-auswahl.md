@@ -7,6 +7,7 @@ bild_alt: Eine ältere Frau auf dem Sofa zeigt lächelnd auf den Notrufknopf an 
 stand: November 2026
 veroeffentlicht: 2026-11-20 10:02
 geaendert: 2026-11-20
+startseite: 4
 ---
 
 Ein Sturz, ein plötzlicher Schwindelanfall oder ein medizinischer Notfall: Gerade wenn man allein zu Hause lebt, kann schnelle Hilfe entscheidend sein. Ein Hausnotrufsystem gibt Sicherheit und ermöglicht es, im Ernstfall mit einem Knopfdruck Unterstützung anzufordern. Doch welche Systeme gibt es und worauf sollten Sie bei der Auswahl achten?

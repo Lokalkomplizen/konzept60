@@ -2,6 +2,7 @@
 <!-- GENERIERT von tools/build.py – example.org ist ein Platzhalter -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.example.org/</loc></url>
+  <url><loc>https://www.example.org/anfrage/</loc></url>
   <url><loc>https://www.example.org/datenschutz/</loc></url>
   <url><loc>https://www.example.org/fuer-anbieter/</loc></url>
   <url><loc>https://www.example.org/hilfe-finden/</loc></url>
@@ -32,6 +33,7 @@
   <url><loc>https://www.example.org/ratgeber/pflegereform-2027/</loc></url>
   <url><loc>https://www.example.org/ratgeber/rente-reicht-nicht-finanzielle-hilfen/</loc></url>
   <url><loc>https://www.example.org/ratgeber/treppenlift-einbau/</loc></url>
+  <url><loc>https://www.example.org/so-funktioniert-es/</loc></url>
   <url><loc>https://www.example.org/themen/</loc></url>
   <url><loc>https://www.example.org/themen/alltag-persoenliche-hilfe/</loc></url>
   <url><loc>https://www.example.org/themen/freizeit-lebensqualitaet/</loc></url>

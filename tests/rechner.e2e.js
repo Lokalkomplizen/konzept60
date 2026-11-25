@@ -44,13 +44,20 @@ async function shot(page, name) {
   if (SHOTS) await page.screenshot({ path: path.join(SHOTS, name), fullPage: true });
 }
 
+// A11Y-05: in jedem Zustand genau eine h1 im Barrierefreiheitsbaum (nicht hidden, nicht display:none)
+async function h1Anzahl(page) {
+  return page.evaluate(() => [...document.querySelectorAll("h1")].filter((h) => !h.closest("[hidden]") && h.getClientRects().length > 0).length);
+}
+
 async function durchlauf(page, prefix) {
   const requests = [];
   page.on("request", (r) => requests.push(r.url()));
   await page.goto(BASE + "/mein-alltag/pflegegrad-rechner/");
   await shot(page, prefix + "-start.png");
   const nachLaden = requests.length;
+  assert.equal(await h1Anzahl(page), 1, "Start: genau eine h1");
   await page.click("[data-pgr-los]");
+  assert.equal(await h1Anzahl(page), 1, "Fragen: genau eine h1");
 
   // Pflichtfeld: Weiter ohne Antwort zeigt Fehler
   await page.click("[data-pgr-frage] button[type=submit]");
@@ -81,10 +88,12 @@ async function durchlauf(page, prefix) {
     assert.ok(schritt < 40, "Endlosschleife im Fragebogen");
   }
   assert.ok(await page.isVisible("[data-pgr-zusammenfassung]"));
+  assert.equal(await h1Anzahl(page), 1, "Zusammenfassung: genau eine h1");
   await shot(page, prefix + "-zusammenfassung.png");
   await page.click("[data-pgr-auswerten]");
   await page.waitForSelector("[data-pgr-ergebnis]:not([hidden])");
   await shot(page, prefix + "-ergebnis.png");
+  assert.equal(await h1Anzahl(page), 1, "Ergebnis: genau eine h1");
 
   const summe = await page.textContent("[data-pgr-summe]");
   const grad = await page.textContent("[data-pgr-grad]");

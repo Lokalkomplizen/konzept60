@@ -1,6 +1,8 @@
 /* ==========================================================================
    Konzept 60+ – assistent.js: Assistent mit Freitextsuche (Relaunch 3.1)
-   Eingesetzt auf der Startseite (#assistent) und auf /hilfe-finden/.
+   Eingesetzt auf /hilfe-finden/ (#assistent, ganzer Ablauf) und als Einstieg im Hero der Startseite
+   ([data-assistent-einstieg], Relaunch 3.2): dort nur Suchfeld mit Vorschlägen; jede Auswahl öffnet
+   /hilfe-finden/ mit dem passenden Zustand in der Adresszeile (Chips „Häufig gesucht“ sind normale Links).
    Konzept: docs/relaunch/konzept-assistent-suche.md (Abschnitte 2, 3, 5, 6, 7; Umkreissuche zurückgestellt).
    - Daten: assets/data/assistent.json (Anliegen-Katalog, Fragen, Themen, Städte, Ratgeber; erzeugt von
      tools/build.py, lesend per fetch). Anbieter: AnbieterListe (anbieter.js) mit AnbieterLogik.filtereAnliegen.
@@ -20,14 +22,16 @@
   'use strict';
 
   var root = document.getElementById('assistent');
-  var app = root && root.querySelector('[data-assistent-app]');
+  var EINSTIEG = !root && document.querySelector('[data-assistent-einstieg]');
+  if (EINSTIEG) root = EINSTIEG;
+  var app = root && !EINSTIEG ? root.querySelector('[data-assistent-app]') : null;
   var L = window.AnbieterLogik;
   var S = window.SucheLogik;
-  if (!root || !app || !L || !S) return;
+  if (!root || !S || (!EINSTIEG && (!app || !L))) return;
+  var ZIEL = '/hilfe-finden/';
 
   var data = null;
   var ST = {};
-  var HASH = window.location.pathname === '/' ? '#assistent' : '';
   var FILTER = 'f-';
   var NOTIZ = 'n-';
   var uid = 0;
@@ -101,14 +105,14 @@
     });
     return st;
   }
-  function query(st) {
+  function query(st, pfad) {
     var p = new URLSearchParams();
     KEYS.forEach(function (k) { if (st[k]) p.set(k, st[k]); });
     Object.keys(st).sort().forEach(function (k) {
       if ((k.indexOf(FILTER) === 0 || k.indexOf(NOTIZ) === 0) && st[k]) p.set(k, st[k]);
     });
     var q = p.toString();
-    return window.location.pathname + (q ? '?' + q : '') + HASH;
+    return (pfad || window.location.pathname) + (q ? '?' + q : '');
   }
   function gehe(st, ersetzen) {
     ST = st;
@@ -431,7 +435,7 @@
     feld.appendChild(input);
     feld.appendChild(liste);
     zeile.appendChild(feld);
-    var knopf = el('button', { type: 'submit', 'class': 'btn btn--secondary suche__knopf' }, [icon('suche'), ' ' + (opt.knopf || 'Suchen')]);
+    var knopf = el('button', { type: 'submit', 'class': 'btn ' + (opt.knopfKlasse || 'btn--secondary') + ' suche__knopf' }, [icon('suche'), ' ' + (opt.knopf || 'Suchen')]);
     zeile.appendChild(knopf);
     form.appendChild(zeile);
     form.appendChild(status);
@@ -528,10 +532,16 @@
     r.themen.forEach(function (t) { liste.push({ art: 'thema', id: t.id, label: t.titel, hinweis: 'Thema' }); });
     return { liste: liste, roh: r };
   }
+  /* Zielzustand eines Vorschlags; im Einstieg (Startseite) als Seitenwechsel nach /hilfe-finden/ */
   function nimmTreffer(v, text) {
     if (v.art === 'ratgeber') { window.location.href = v.url; return; }
-    if (v.art === 'thema') { gehe(mit({ bereich: v.id }, ['gruppe', 'anliegen', 'q', FILTER, NOTIZ, 'notizen'])); return; }
-    if (v.art === 'gruppe') { gehe(mit({ gruppe: v.id }, ['anliegen', 'q', FILTER, NOTIZ, 'notizen'])); return; }
+    var st = zielVon(v, text);
+    if (EINSTIEG) window.location.href = query(st, ZIEL);
+    else gehe(st);
+  }
+  function zielVon(v, text) {
+    if (v.art === 'thema') return mit({ bereich: v.id }, ['gruppe', 'anliegen', 'q', FILTER, NOTIZ, 'notizen']);
+    if (v.art === 'gruppe') return mit({ gruppe: v.id }, ['anliegen', 'q', FILTER, NOTIZ, 'notizen']);
     var a = anliegenById(v.id);
     var r = S.suche(text || '', katalog());
     var extra = {};
@@ -542,7 +552,39 @@
       var o = S.passendeOption(text || '', frage(fid).optionen);
       if (o) extra[NOTIZ + fid] = o;
     });
-    waehleAnliegen(a, extra);
+    return Object.assign(mit({ anliegen: a.id }, ['notizen', 'q', FILTER, NOTIZ]), extra);
+  }
+
+  /* Einstieg im Hero der Startseite: das Formular aus dem HTML (funktioniert ohne JS) wird durch die
+     Combobox ersetzt. Schon getippter Text und der Fokus bleiben erhalten. */
+  function starteEinstieg() {
+    var alt = root.querySelector('[data-einstieg-form]');
+    if (!alt) return;
+    var altInput = alt.querySelector('input');
+    var wert = altInput ? altInput.value : '';
+    var hatteFokus = alt.contains(document.activeElement);
+    var cb = combobox({
+      id: 'hero-suche',
+      label: 'Was suchen Sie?',
+      platzhalter: altInput ? altInput.getAttribute('placeholder') : null,
+      knopf: 'Hilfe finden',
+      knopfKlasse: 'btn--primary',
+      rolle: 'search',
+      action: ZIEL,
+      wert: wert,
+      vorschlaege: function (text) { return treffer(text).liste; },
+      waehle: function (v) { nimmTreffer(v, cb.input.value); },
+      absenden: function (text) {
+        if (!text.trim()) { cb.input.focus(); return; }
+        window.location.href = query({ q: text.trim() }, ZIEL);
+      }
+    });
+    cb.form.classList.add('suche--hero');
+    alt.parentNode.replaceChild(cb.form, alt);
+    if (hatteFokus) {
+      cb.input.focus();
+      if (wert.trim().length >= 2) cb.input.dispatchEvent(new Event('input'));
+    }
   }
 
   function sucheBaustein() {
@@ -653,7 +695,7 @@
     return zeilen;
   }
 
-  /* „Bei uns melden“: vorausgefülltes Anfrageformular (main.js 2. übernimmt thema, wer, ort, leistung, notiz) */
+  /* „Bei uns melden“: vorausgefülltes Anfrageformular /anfrage/ (main.js 2. übernimmt thema, wer, ort, leistung, notiz) */
   function meldenLink(a, freitext) {
     var p = new URLSearchParams();
     var thema = a ? a.thema : (ST.bereich || '');
@@ -665,7 +707,7 @@
     if (a) notiz = L.notizText('Mein Anliegen', notizZeilen(a));
     else if (freitext) notiz = 'Ich suche: ' + freitext.trim();
     if (notiz) p.set('notiz', notiz);
-    return '/?' + p.toString() + '#anfrage';
+    return '/anfrage/?' + p.toString();
   }
 
   function meldenBlock(a, text) {
@@ -874,6 +916,7 @@
     .then(function (d) {
       if (!d || !d.anliegen || !d.themen) throw new Error('Daten unvollständig');
       data = d;
+      if (EINSTIEG) { starteEinstieg(); return; }
       ST = ausUrl();
       app.hidden = false;
       render(false);

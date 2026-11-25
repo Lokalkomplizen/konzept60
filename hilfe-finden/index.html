@@ -30,10 +30,10 @@
        → WordPress: wp_enqueue_style() in functions.php in derselben Reihenfolge -->
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/fonts.css?v=5a2e75ee17">
-  <link rel="stylesheet" href="/assets/css/tokens.css?v=0738e96f5d">
-  <link rel="stylesheet" href="/assets/css/base.css?v=0e91fd6f69">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=427197b68b">
-  <link rel="stylesheet" href="/assets/css/components.css?v=c77d4dd356">
+  <link rel="stylesheet" href="/assets/css/tokens.css?v=d13f2615d9">
+  <link rel="stylesheet" href="/assets/css/base.css?v=05bbf4065e">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=56e932cb86">
+  <link rel="stylesheet" href="/assets/css/components.css?v=b7611f1e24">
   <link rel="stylesheet" href="/assets/css/print.css?v=3a6d4990a8" media="print">
 
 </head>
@@ -70,6 +70,8 @@
   <div class="site-header__topbar">
     <div class="container">
       <p class="site-header__topbar-hint">Kostenlose, persönliche Vermittlung für Menschen ab 60 und Angehörige</p>
+      <!-- Rückfallweg auf jeder Seite an derselben Stelle (ab 48em; darunter im Footer) -->
+      <a href="/anfrage/">Lieber persönlich? Bei uns melden</a>
     </div>
   </div>
 
@@ -78,8 +80,9 @@
       <span class="logo__text" translate="no">Konzept 60+</span>
     </a>
 
-    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent) -->
-    <a class="btn btn--secondary site-header__suche" href="/hilfe-finden/" aria-current="page">
+    <!-- Fester Knopf „Anbieter suchen“ (Konzept Abschnitt 8) → /hilfe-finden/ (Suche + Assistent).
+         Hauptaktion im Kopf; auf dem Handy stattdessen als feste Leiste unten (MOBIL_LEISTE in build.py). -->
+    <a class="btn btn--primary site-header__suche" href="/hilfe-finden/" aria-current="page">
       <svg class="icon" aria-hidden="true"><use href="#icon-suche"/></svg>
       <span>Anbieter suchen</span>
     </a>
@@ -92,14 +95,14 @@
 
     <nav class="site-nav" id="hauptnavigation" aria-label="Hauptnavigation">
       <!-- → WordPress: wp_nav_menu( [ 'theme_location' => 'primary' ] )
-           Drei Säulen: Hilfe finden (Vermittlung) · Ratgeber (Wissen bekommen) · Mein Alltag (Werkzeuge) -->
+           Relaunch 3.2: Hilfe finden (/hilfe-finden/, Themen gehören dazu) · Ratgeber · Mein Alltag · So funktioniert es.
+           „Für Anbieter“ steht im Footer. -->
       <ul class="site-nav__list">
-        <li><a class="site-nav__link" href="/themen/">Hilfe finden</a></li>
+        <li><a class="site-nav__link" href="/hilfe-finden/" aria-current="page">Hilfe finden</a></li>
         <li><a class="site-nav__link" href="/ratgeber/">Ratgeber</a></li>
         <li><a class="site-nav__link" href="/mein-alltag/">Mein Alltag</a></li>
-        <li class="site-nav__item--minor"><a class="site-nav__link site-nav__link--minor" href="/fuer-anbieter/">Für Anbieter</a></li>
+        <li><a class="site-nav__link" href="/so-funktioniert-es/">So funktioniert es</a></li>
       </ul>
-      <a class="btn btn--primary site-nav__cta" href="/#anfrage">Anfrage stellen</a>
     </nav>
   </div>
 </header>
@@ -130,8 +133,10 @@
   <section class="section section--sand assistent" id="assistent" aria-labelledby="assistent-titel" data-assistent-url="/assets/data/assistent.json?v=c0ec44684b" data-anbieter-url="/assets/data/anbieter.json?v=098781b1f1" data-seitenname="Konzept 60+">
     <div class="container">
       <div class="section__header">
-        <h2 id="assistent-titel">Was suchen Sie?</h2>
-        <p class="section__intro">Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
+        <span class="section__eyebrow">Assistent</span>
+        <h2 id="assistent-titel">Wie können wir Ihnen heute helfen?</h2>
+        <p class="section__intro">Beantworten Sie zwei, drei kurze Fragen – wir zeigen Ihnen den passenden nächsten Schritt.
+          Höchstens vier kurze Fragen bis zur Liste. Gespeichert wird nichts.</p>
       </div>
 
       <!-- Ohne JavaScript: Themenseiten und Anfrageformular -->
@@ -142,7 +147,9 @@
         <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
         <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
         <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
-        <li><a href="/#anfrage">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>
+        <li><a href="/anfrage/">Anliegen beschreiben</a> – wir suchen persönlich für Sie</li>
+        <li><a href="/ratgeber/">Wissen bekommen</a> – der Ratgeber</li>
+        <li><a href="/mein-alltag/">Alltag erleichtern</a> – Mein Alltag</li>
       </ul>
 
       <!-- Mit JavaScript: assistent.js füllt diesen Bereich (Suche, Fragen, Ergebnis) -->
@@ -171,7 +178,7 @@
                 <li>Kleinreparaturen</li><li>Gartenpflege</li><li>Barrierearmer Umbau</li><li>Umzugshilfe</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=wohnen-haus-handwerk#anfrage" data-thema="wohnen-haus-handwerk">Anliegen beschreiben<span class="visually-hidden">: Wohnen, Haus und Handwerk</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=wohnen-haus-handwerk" data-thema="wohnen-haus-handwerk">Anliegen beschreiben<span class="visually-hidden">: Wohnen, Haus und Handwerk</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/wohnen-haus-handwerk/">Mehr zum Thema<span class="visually-hidden">: Wohnen, Haus und Handwerk</span></a>
               </div>
             </div>
@@ -191,7 +198,7 @@
                 <li>Wohnungsreinigung</li><li>Fenster putzen</li><li>Wäsche</li><li>Entrümpelung</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=haushalt-reinigung#anfrage" data-thema="haushalt-reinigung">Anliegen beschreiben<span class="visually-hidden">: Haushalt und Reinigung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=haushalt-reinigung" data-thema="haushalt-reinigung">Anliegen beschreiben<span class="visually-hidden">: Haushalt und Reinigung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/haushalt-reinigung/">Mehr zum Thema<span class="visually-hidden">: Haushalt und Reinigung</span></a>
               </div>
             </div>
@@ -211,7 +218,7 @@
                 <li>Ambulante Pflege</li><li>Stundenweise Betreuung</li><li>Entlastung für Angehörige</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=pflege-betreuung#anfrage" data-thema="pflege-betreuung">Anliegen beschreiben<span class="visually-hidden">: Pflege und Betreuung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=pflege-betreuung" data-thema="pflege-betreuung">Anliegen beschreiben<span class="visually-hidden">: Pflege und Betreuung</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/pflege-betreuung/">Mehr zum Thema<span class="visually-hidden">: Pflege und Betreuung</span></a>
               </div>
             </div>
@@ -231,7 +238,7 @@
                 <li>Einkaufen</li><li>Begleitung zu Terminen</li><li>Fahrdienst</li><li>Post und Formulare</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=alltag-persoenliche-hilfe#anfrage" data-thema="alltag-persoenliche-hilfe">Anliegen beschreiben<span class="visually-hidden">: Alltag und persönliche Hilfe</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=alltag-persoenliche-hilfe" data-thema="alltag-persoenliche-hilfe">Anliegen beschreiben<span class="visually-hidden">: Alltag und persönliche Hilfe</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/alltag-persoenliche-hilfe/">Mehr zum Thema<span class="visually-hidden">: Alltag und persönliche Hilfe</span></a>
               </div>
             </div>
@@ -251,7 +258,7 @@
                 <li>Smartphone und Tablet</li><li>Hausnotruf</li><li>Rauchmelder</li><li>Fernseher einrichten</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=technik-sicherheit#anfrage" data-thema="technik-sicherheit">Anliegen beschreiben<span class="visually-hidden">: Technik und Sicherheit</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=technik-sicherheit" data-thema="technik-sicherheit">Anliegen beschreiben<span class="visually-hidden">: Technik und Sicherheit</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/technik-sicherheit/">Mehr zum Thema<span class="visually-hidden">: Technik und Sicherheit</span></a>
               </div>
             </div>
@@ -271,7 +278,7 @@
                 <li>Spaziergänge</li><li>Kurse</li><li>Ausflüge</li><li>Gesellschaft</li>
               </ul>
               <div class="card__actions">
-                <a class="card__link" href="/?thema=freizeit-lebensqualitaet#anfrage" data-thema="freizeit-lebensqualitaet">Anliegen beschreiben<span class="visually-hidden">: Freizeit und Lebensqualität</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+                <a class="card__link" href="/anfrage/?thema=freizeit-lebensqualitaet" data-thema="freizeit-lebensqualitaet">Anliegen beschreiben<span class="visually-hidden">: Freizeit und Lebensqualität</span> <svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
                 <a class="card__more" href="/themen/freizeit-lebensqualitaet/">Mehr zum Thema<span class="visually-hidden">: Freizeit und Lebensqualität</span></a>
               </div>
             </div>
@@ -281,7 +288,7 @@
       <div class="notice notice--light">
         <svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>
         <p><strong>Nichts Passendes dabei?</strong> Beschreiben Sie uns Ihr Anliegen, dann suchen wir persönlich für Sie.
-          <a href="/?thema=sonstiges#anfrage" data-thema="sonstiges">Zum Anfrageformular</a></p>
+          <a href="/anfrage/?thema=sonstiges" data-thema="sonstiges">Zum Anfrageformular</a></p>
       </div>
     </div>
   </section>
@@ -303,7 +310,7 @@
         <h2 id="footer-saeulen">Drei Wege</h2>
         <!-- → WordPress: Menü "footer-saeulen" (wp_nav_menu) -->
         <ul>
-          <li><a href="/themen/">Hilfe finden</a></li>
+          <li><a href="/hilfe-finden/">Hilfe finden</a></li>
           <li><a href="/ratgeber/">Ratgeber – Wissen bekommen</a></li>
           <li><a href="/mein-alltag/">Mein Alltag – Alltag erleichtern</a></li>
         </ul>
@@ -319,6 +326,7 @@
           <li><a href="/themen/alltag-persoenliche-hilfe/">Alltag und persönliche Hilfe</a></li>
           <li><a href="/themen/technik-sicherheit/">Technik und Sicherheit</a></li>
           <li><a href="/themen/freizeit-lebensqualitaet/">Freizeit und Lebensqualität</a></li>
+          <li><a href="/themen/">Alle Themen</a></li>
         </ul>
       </nav>
 
@@ -326,21 +334,22 @@
         <h2 id="footer-regionen">Regionen</h2>
         <!-- → WordPress: get_terms( 'region' ) -->
         <ul class="site-footer__regions">
-          <li><a href="/?region=duesseldorf#anfrage" data-region="duesseldorf">Düsseldorf</a></li>
-          <li><a href="/?region=wuppertal#anfrage" data-region="wuppertal">Wuppertal</a></li>
-          <li><a href="/?region=hilden#anfrage" data-region="hilden">Hilden</a></li>
-          <li><a href="/?region=remscheid#anfrage" data-region="remscheid">Remscheid</a></li>
-          <li><a href="/?region=solingen#anfrage" data-region="solingen">Solingen</a></li>
-          <li><a href="/?region=langenfeld#anfrage" data-region="langenfeld">Langenfeld</a></li>
-          <li><a href="/?region=haan#anfrage" data-region="haan">Haan</a></li>
-          <li><a href="/?region=wesel#anfrage" data-region="wesel">Wesel</a></li>
+          <li><a href="/anfrage/?region=duesseldorf" data-region="duesseldorf">Düsseldorf</a></li>
+          <li><a href="/anfrage/?region=wuppertal" data-region="wuppertal">Wuppertal</a></li>
+          <li><a href="/anfrage/?region=hilden" data-region="hilden">Hilden</a></li>
+          <li><a href="/anfrage/?region=remscheid" data-region="remscheid">Remscheid</a></li>
+          <li><a href="/anfrage/?region=solingen" data-region="solingen">Solingen</a></li>
+          <li><a href="/anfrage/?region=langenfeld" data-region="langenfeld">Langenfeld</a></li>
+          <li><a href="/anfrage/?region=haan" data-region="haan">Haan</a></li>
+          <li><a href="/anfrage/?region=wesel" data-region="wesel">Wesel</a></li>
         </ul>
       </nav>
 
       <nav aria-labelledby="footer-info">
         <h2 id="footer-info">Informationen</h2>
         <ul class="site-footer__info">
-          <li><a href="/#so-funktionierts">So funktioniert’s</a></li>
+          <li><a href="/so-funktioniert-es/">So funktioniert es</a></li>
+          <li><a href="/anfrage/">Bei uns melden</a></li>
           <li><a href="/veranstaltungen/">Veranstaltungen</a></li>
           <li><a href="/veranstaltungen/melden/">Veranstaltung melden</a></li>
           <li><a href="/fuer-anbieter/">Für Anbieter</a></li>
@@ -358,11 +367,13 @@
 </footer>
 <!-- END partial:footer -->
 
+
+
 <!-- Quellenangabe im Ausdruck: nur beim Drucken sichtbar (print.css). main.js (11.)
      setzt die Seitenadresse beim beforeprint-Ereignis; ohne JS bleibt sie leer. -->
 <p class="print-url print-only" data-print-url></p>
 
-<script src="/assets/js/main.js?v=3c4b2b5ec0" defer></script>
-  <script src="/assets/js/anbieter-logik.js?v=7644f1e6e1" defer></script> <script src="/assets/js/anbieter.js?v=f6f831e717" defer></script> <script src="/assets/js/suche-logik.js?v=e127fde0ed" defer></script> <script src="/assets/js/assistent.js?v=355a2a9999" defer></script>
+<script src="/assets/js/main.js?v=aee5de502b" defer></script>
+  <script src="/assets/js/anbieter-logik.js?v=7644f1e6e1" defer></script> <script src="/assets/js/anbieter.js?v=21053982b9" defer></script> <script src="/assets/js/suche-logik.js?v=e127fde0ed" defer></script> <script src="/assets/js/assistent.js?v=cdc309fbee" defer></script>
 </body>
 </html>

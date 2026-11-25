@@ -36,7 +36,7 @@ Reihenfolge auf allen Geräten gleich. Geschätzte Länge auf dem Handy: rund 5 
 ### A. Hero mit Suche
 
 - **Überschrift (h1):** „Hilfe finden. Einfach und kostenlos."
-- **Unterzeile:** „Geprüfte Anbieter aus Ihrer Region. Sie wählen selbst, wir helfen, wenn Sie nicht weiterkommen." Die bisherige h1 „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." zieht in D (Rückfall-Kasten) um.
+- **Unterzeile:** „Anbieter aus Ihrer Region. Sie wählen selbst, wir helfen, wenn Sie nicht weiterkommen." Die bisherige h1 „Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." zieht in D (Rückfall-Kasten) um.
 - **Suchfeld** mit sichtbarem Label „Was suchen Sie?", mindestens 56 px hoch, Schrift 20 px, großer Button „Hilfe finden". Platzhalter wechselt nicht automatisch (Animation), sondern zeigt fest ein Beispiel: „z. B. Hilfe im Haushalt".
 - **Häufig gesucht** (ehemals C), 6 große Chips, je mindestens 48 px hoch und 12 px Abstand:
   Haushaltshilfe · Treppenlift · Pflege zu Hause · Gartenhilfe · Bad umbauen · Hausnotruf · Hilfe am Computer
@@ -62,7 +62,7 @@ Geht in A auf (siehe Punkt 2.1). Falls du C trotzdem als eigenen Block willst: d
 ### D. So funktioniert die Vermittlung
 
 1. **Anliegen beschreiben.** Suchen oder Thema antippen, Ort angeben.
-2. **Passende regionale Anbieter finden.** Wir zeigen geprüfte Anbieter aus Ihrer Region.
+2. **Passende regionale Anbieter finden.** Wir zeigen passende Anbieter aus Ihrer Region.
 3. **Kontakt aufnehmen.** Sie rufen den Anbieter selbst an oder schreiben ihm.
 
 **Rückfall-Kasten direkt darunter:** „Nichts Passendes gefunden? Oder lieber mit Unterstützung? Sie müssen nicht wissen, wer Ihnen helfen kann. Dafür sind wir da." Button „Bei uns melden" zu `/anfrage/` (persönliche Vermittlung, Rückruf durch uns möglich). Derselbe Kasten erscheint am Ende jeder Trefferliste und bei null Treffern.
